@@ -53,7 +53,7 @@ If you are using [Maven](http://maven.apache.org) for building your project, you
 ## Licenses
 
 The Test Suite software is avaible under the terms of the [W3C Software Notice and License](http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231).
-To contribute to the Test Suite software, @@TODO@@.
+To contribute to the Test Suite software, you have to [sign the Contributor License Agreement](https://www.clahub.com/agreements/w3c/ldp-testsuite).
 
 The Test Suite data is available under both [W3C Test Suite License](http://www.w3.org/Consortium/Legal/2008/04-testsuite-license) and 
 [W3C 3-clause BSD License](http://www.w3.org/Consortium/Legal/2008/03-bsd-license). To contribute to the Test Suite data, see the 
