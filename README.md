@@ -9,6 +9,10 @@ Test Suite for Linked Data Platform (LDP).
 * [LDP Best Practices and Guidelines](https://dvcs.w3.org/hg/ldpwg/raw-file/default/ldp-bp/ldp-bp.html) (W3C Editor's Draft 17 April 2014)
 * [Linked Data Platform 1.0 Test Cases](https://dvcs.w3.org/hg/ldpwg/raw-file/default/Test%20Cases/LDP%20Test%20Cases.html) (W3C Working Group Note 17 April 2014)
 
+## Status
+
+This Test Suite is still _work-in-progress_, so __should not be used__ yet.
+
 ## Usage
 
 ### Standalone
@@ -43,6 +47,7 @@ If you are using [Maven](http://maven.apache.org) for building your project, you
 ## Contributors
 
 * Steve Speicher (IBM)
+* Samuel Padgett (IBM)
 * Sergio Fernández (ASF)
 
 ## Licenses
@@ -54,4 +59,3 @@ The Test Suite data is available under both [W3C Test Suite License](http://www.
 [W3C 3-clause BSD License](http://www.w3.org/Consortium/Legal/2008/03-bsd-license). To contribute to the Test Suite data, see the 
 [policies and contribution forms](http://www.w3.org/2004/10/27-testcases).
 
-under the terms of the [](http://www.w3.org/Consortium/Legal/2008/04-testsuite-copyright.html).
