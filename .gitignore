@@ -1,0 +1,16 @@
+*~
+*.class
+*.jar
+*.war
+*.ipr
+*.iws
+*.iml
+*.db
+.project
+.classpath
+.externalToolBuilders/
+.settings/
+target/
+.idea/
+.metadata/
+maven-eclipse.xml
