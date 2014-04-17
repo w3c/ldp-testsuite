@@ -24,6 +24,7 @@ public class LdpTestSuite {
 
         testng = new TestNG();
         testng.setDefaultSuiteName("LDP Test Suite");
+        //TODO: dynamically set the parameter 'ldp.server'
 
         testng.setTestClasses(new Class[] { GenericTests.class }); //TODO
         //XmlSuite suite = new XmlSuite();
