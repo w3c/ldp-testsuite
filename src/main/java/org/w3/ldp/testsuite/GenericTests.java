@@ -12,16 +12,19 @@ import org.testng.annotations.Test;
  */
 public class GenericTests {
 
-    private static String server = null;
+    private final String server;
+
+    @Parameters("ldp.server")
+    public GenericTests(String server) {
+        this.server = server;
+        //TODO: REST-assure initialization,
+        //      and then move it to an abstract test
+    }
 
     @BeforeSuite
-    @Parameters({"ldp.server"})
-    public void beforeClass(String server) throws Exception {
+    public void beforeSuite() throws Exception {
         System.out.println("BEFORE CLASS: " + server);
-        this.server = server;
         Assumes.assumeThat("server is required", server != null);
-        //TODO: REST-assure initialization,
-        //      and then move it to an abstract test case
     }
 
     @Test
