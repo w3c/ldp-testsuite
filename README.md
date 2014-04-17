@@ -16,7 +16,14 @@ Test Suite for Linked Data Platform (LDP).
 You can run the test suite against an arbitrary server:
 
     mvn package
-    java -jar target/ldp-testsuite-1.0.0-SNAPSHOT-shaded.jar
+    cd target
+    java -jar ldp-testsuite-1.0.0-SNAPSHOT-shaded.jar --server http://ldp.example.org
+
+For instance, if you want to test [Apache Marmotta](http://marmotta.apache.org), once you
+[have it installed](http://marmotta.apache.org/installation.html#source) the command to use
+would be:
+
+    java -jar ldp-testsuite-1.0.0-SNAPSHOT-shaded.jar --server http://localhost:8080/ldp
 
 ### Maven
 
@@ -31,7 +38,7 @@ If you are using [Maven](http://maven.apache.org) for building your project, you
         <scope>test</scope>
     </dependency>
 
-@@TODO@@: code example from Marmotta
+@@TODO@@: code example from Marmotta, as soon as we have this api available
 
 ## Contributors
 
@@ -40,13 +47,11 @@ If you are using [Maven](http://maven.apache.org) for building your project, you
 
 ## Licenses
 
-The Test Suite's source code is avaible as open source software under the terms of the 
-[W3C Software Notice and License](http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231).
+The Test Suite software is avaible under the terms of the [W3C Software Notice and License](http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231).
+To contribute to the Test Suite software, @@TODO@@.
 
-The [Test Cases](https://dvcs.w3.org/hg/ldpwg/raw-file/default/Test%20Cases/LDP%20Test%20Cases.html) 
-have [Copyright](http://www.w3.org/Consortium/Legal/ipr-notice#Copyright) © 2014 [W3C](http://www.w3.org/)® 
-([MIT](http://www.csail.mit.edu), [ERCIM](http://www.ercim.eu), [Keio](http://www.keio.ac.jp), 
-[Beihang](http://ev.buaa.edu.cn)), All Rights Reserved. W3C [liability](http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer), 
-[trademark](http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks) and 
-[document use](http://www.w3.org/Consortium/Legal/copyright-documents) rules apply.
+The Test Suite data is available under both [W3C Test Suite License](http://www.w3.org/Consortium/Legal/2008/04-testsuite-license) and 
+[W3C 3-clause BSD License](http://www.w3.org/Consortium/Legal/2008/03-bsd-license). To contribute to the Test Suite data, see the 
+[policies and contribution forms](http://www.w3.org/2004/10/27-testcases).
 
+under the terms of the [](http://www.w3.org/Consortium/Legal/2008/04-testsuite-copyright.html).

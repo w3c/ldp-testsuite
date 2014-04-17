@@ -1,16 +1,43 @@
 package org.w3.ldp.testsuite;
 
 import org.apache.commons.cli.*;
+import org.testng.TestListenerAdapter;
+import org.testng.TestNG;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 
 /**
- * LDP Test Suite Command-Line Interface
+ * LDP Test Suite Command-Line Interface, a wrapper
+ * to {@link org.testng.TestNG}
  *
  * @author Sergio Fernández
  */
-public class CLI {
+public class LdpTestSuite {
+
+    private final String server;
+
+    private final TestNG testng;
+
+    public LdpTestSuite(String server) {
+        this.server = server;
+        //see: http://testng.org/doc/documentation-main.html#running-testng-programmatically
+
+        testng = new TestNG();
+        testng.setDefaultSuiteName("LDP Test Suite");
+
+        testng.setTestClasses(new Class[] { GenericTests.class }); //TODO
+        //XmlSuite suite = new XmlSuite();
+        //suite.setFileName("testng.xml");
+        //suite.onParameterElement("server", server);
+        //testng.setCommandLineSuite(suite);
+
+        TestListenerAdapter tla = new TestListenerAdapter();
+        testng.addListener(tla);
+    }
+
+    public void run() {
+        testng.run();
+    }
 
     public static void main(String[] args) {
         Options options = new Options();
@@ -20,7 +47,7 @@ public class CLI {
                 .isRequired()
                 .create());
         options.addOption(OptionBuilder.withLongOpt("help")
-                .withDescription("print this help")
+                .withDescription("print usage help")
                 .create());
 
         CommandLineParser parser = new BasicParser();
@@ -46,8 +73,9 @@ public class CLI {
             printUsage(options);
         }
 
-        //TODO: actual test suite execution
-        System.out.println("not yet implemented");
+        //actual test suite execution
+        LdpTestSuite ldpTestSuite = new LdpTestSuite(server);
+        ldpTestSuite.run();
 
         System.exit(0);
     }
