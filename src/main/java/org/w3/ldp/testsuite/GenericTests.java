@@ -14,7 +14,7 @@ public class GenericTests {
 
     private final String server;
 
-    @Parameters("ldp.server")
+    @Parameters(LdpTestSuite.PARAM_SERVER)
     public GenericTests(String server) {
         this.server = server;
         //TODO: REST-assure initialization,

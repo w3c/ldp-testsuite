@@ -3,8 +3,14 @@ package org.w3.ldp.testsuite;
 import org.apache.commons.cli.*;
 import org.testng.TestListenerAdapter;
 import org.testng.TestNG;
+import org.testng.xml.XmlPackage;
+import org.testng.xml.XmlSuite;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * LDP Test Suite Command-Line Interface, a wrapper
@@ -14,6 +20,9 @@ import java.net.URI;
  */
 public class LdpTestSuite {
 
+    public static final String NAME = "LDP Test Suite";
+    public static final String PARAM_SERVER = "ldp.server";
+
     private final String server;
 
     private final TestNG testng;
@@ -22,15 +31,19 @@ public class LdpTestSuite {
         this.server = server;
         //see: http://testng.org/doc/documentation-main.html#running-testng-programmatically
 
-        testng = new TestNG();
-        testng.setDefaultSuiteName("LDP Test Suite");
-        //TODO: dynamically set the parameter 'ldp.server'
+        XmlSuite suite = new XmlSuite();
+        suite.setName(NAME);
+        List<XmlPackage> packages = new ArrayList<>();
+        packages.add(new XmlPackage(this.getClass().getPackage().getName())); //FIXME: does not work
+        suite.setPackages(packages);
+        //TODO: dynamic groups
+        Map<String,String> parameters = new HashMap<>();
+        parameters.put(PARAM_SERVER, server); //FIXME: does not work
+        suite.setParameters(parameters);
 
+        testng = new TestNG();
+        testng.setCommandLineSuite(suite);
         testng.setTestClasses(new Class[] { GenericTests.class }); //TODO
-        //XmlSuite suite = new XmlSuite();
-        //suite.setFileName("testng.xml");
-        //suite.onParameterElement("server", server);
-        //testng.setCommandLineSuite(suite);
 
         TestListenerAdapter tla = new TestListenerAdapter();
         testng.addListener(tla);
@@ -38,6 +51,10 @@ public class LdpTestSuite {
 
     public void run() {
         testng.run();
+    }
+
+    private int getStatus() {
+        return testng.getStatus();
     }
 
     public static void main(String[] args) {
@@ -76,9 +93,15 @@ public class LdpTestSuite {
 
         //actual test suite execution
         LdpTestSuite ldpTestSuite = new LdpTestSuite(server);
-        ldpTestSuite.run();
 
-        System.exit(0);
+        try {
+            ldpTestSuite.run();
+        } catch (Exception e) {
+            System.err.println("ERROR: " + e.getMessage());
+            //e.printStackTrace();
+            printUsage(options);
+        }
+        System.exit(ldpTestSuite.getStatus());
     }
 
     private static void printUsage(Options options) {
