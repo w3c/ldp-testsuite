@@ -25,12 +25,24 @@
             <name>Sergio Fernández</name>
             <organization>Apache Software Foundation</organization>
         </developer>
+        <developer>
+            <name>Samuel Padgett</name>
+            <organization>IBM Corporation</organization>
+        </developer>
     </developers>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <app.main.class>org.w3.ldp.testsuite.LdpTestSuite</app.main.class>
     </properties>
+
+    <repositories>
+        <repository>
+            <id>rendersnake-repo</id>
+            <name>Repository for rendersnake</name>
+            <url>http://rendersnake.googlecode.com/svn/repo</url>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>
@@ -128,6 +140,14 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.17</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
             <!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -161,9 +181,19 @@
             <version>6.8.8</version>
         </dependency>
         <dependency>
-            <groupId>nl.javadude.assumeng</groupId>
-            <artifactId>assumeng</artifactId>
-            <version>1.2.4</version>
+            <groupId>com.jayway.restassured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.jena</groupId>
+            <artifactId>jena-core</artifactId>
+            <version>2.7.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.rendersnake</groupId>
+            <artifactId>rendersnake</artifactId>
+            <version>1.7.3</version>
         </dependency>
     </dependencies>
 
