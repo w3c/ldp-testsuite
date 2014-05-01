@@ -14,6 +14,7 @@ import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.OptionGroup;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.testng.TestListenerAdapter;
 import org.testng.TestNG;
 import org.testng.xml.XmlClass;
@@ -162,10 +163,12 @@ public class LdpTestSuite {
         try {
             ldpTestSuite.run();
         } catch (Exception e) {
-            System.err.println("ERROR: " + e.getMessage());
+            Throwable cause = ExceptionUtils.getRootCause(e);
+            System.err.println("ERROR: " + cause.getMessage());
             //e.printStackTrace();
             printUsage(options);
         }
+        
         System.exit(ldpTestSuite.getStatus());
     }
 
