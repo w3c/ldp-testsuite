@@ -10,8 +10,10 @@
 .classpath
 .externalToolBuilders/
 .settings/
+.DS_Store
 target/
 .idea/
 .metadata/
 maven-eclipse.xml
 test-output
+/bin
