@@ -21,54 +21,54 @@ import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 
 public class BasicContainerTest extends CommonContainerTest {
-	private String basicContainer;
+    private String basicContainer;
 
-	@Parameters("basicContainer")
-	public BasicContainerTest(@Optional String basicContainer) {
-		this.basicContainer = basicContainer;
-	}
-	
-	@BeforeClass(alwaysRun = true)
-	public void hasBasicContainer() {
-		if (basicContainer == null) {
-			throw new SkipException("No basicContainer parameter provided in testng.xml. Skipping ldp:basicContainer tests.");
-		}
-	}
+    @Parameters("basicContainer")
+    public BasicContainerTest(@Optional String basicContainer) {
+        this.basicContainer = basicContainer;
+    }
 
-	@Test(
-			groups = { MUST }, 
-			description = "LDP servers exposing LDPCs MUST advertise their "
-							+ "LDP support by exposing a HTTP Link header with a "
-							+ "target URI matching the type of container (see below) "
-							+ "the server supports, and a link relation type of type "
-							+ "(that is, rel='type') in all responses to requests made "
-							+ "to the LDPC's HTTP Request-URI.")
-	@Reference(uri = SPEC_URI + "#ldpc-linktypehdr")
-	public void testContainerSupportsHttpLinkHeader() throws URISyntaxException {
-		Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
-				.expect().statusCode(HttpStatus.SC_OK).when()
-				.get(new URI(basicContainer));
-		assertTrue(
-				hasLinkHeader(response, TYPE_BASIC_CONTAINER, LINK_REL_TYPE),
-				"LDP BasicContainers must advertise their LDP support by exposing a HTTP Link header with a URI matching <" + TYPE_BASIC_CONTAINER + "> and rel='type'");
-	}
+    @BeforeClass(alwaysRun = true)
+    public void hasBasicContainer() {
+        if (basicContainer == null) {
+            throw new SkipException("No basicContainer parameter provided in testng.xml. Skipping ldp:basicContainer tests.");
+        }
+    }
 
-	@Test(
-			groups = { MUST }, 
-			description = "Each LDP Basic Container MUST also be a "
-							+ "conforming LDP Container in section 5.2 Container "
-							+ "along the following restrictions in this section.")
-	@Reference(uri = SPEC_URI + "#ldpbc-are-ldpcs")
-	public void testContainerTypeIsBasicContainer() throws URISyntaxException {
-		// FIXME: We're just testing the RDF type here. We're not really testing the requirement.
-		Model containerModel = getAsModel(basicContainer);
-		Resource container = containerModel.getResource(basicContainer);
-		assertTrue(container.hasProperty(RDF.type, LdpConstants.TYPE_BASIC_CONTAINER),
-				"Could not locate LDP BasicContainer rdf:type for <"+basicContainer+">");
-	}
+    @Test(
+            groups = {MUST},
+            description = "LDP servers exposing LDPCs MUST advertise their "
+                    + "LDP support by exposing a HTTP Link header with a "
+                    + "target URI matching the type of container (see below) "
+                    + "the server supports, and a link relation type of type "
+                    + "(that is, rel='type') in all responses to requests made "
+                    + "to the LDPC's HTTP Request-URI.")
+    @Reference(uri = SPEC_URI + "#ldpc-linktypehdr")
+    public void testContainerSupportsHttpLinkHeader() throws URISyntaxException {
+        Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
+                .expect().statusCode(HttpStatus.SC_OK).when()
+                .get(new URI(basicContainer));
+        assertTrue(
+                hasLinkHeader(response, TYPE_BASIC_CONTAINER, LINK_REL_TYPE),
+                "LDP BasicContainers must advertise their LDP support by exposing a HTTP Link header with a URI matching <" + TYPE_BASIC_CONTAINER + "> and rel='type'");
+    }
 
-	@Override
+    @Test(
+            groups = {MUST},
+            description = "Each LDP Basic Container MUST also be a "
+                    + "conforming LDP Container in section 5.2 Container "
+                    + "along the following restrictions in this section.")
+    @Reference(uri = SPEC_URI + "#ldpbc-are-ldpcs")
+    public void testContainerTypeIsBasicContainer() throws URISyntaxException {
+        // FIXME: We're just testing the RDF type here. We're not really testing the requirement.
+        Model containerModel = getAsModel(basicContainer);
+        Resource container = containerModel.getResource(basicContainer);
+        assertTrue(container.hasProperty(RDF.type, LdpConstants.TYPE_BASIC_CONTAINER),
+                "Could not locate LDP BasicContainer rdf:type for <" + basicContainer + ">");
+    }
+
+    @Override
     protected String getResourceUri() {
-	    return basicContainer;
+        return basicContainer;
     }
 }

@@ -20,55 +20,53 @@ import com.jayway.restassured.response.Response;
 
 public abstract class LdpTest implements HttpHeaders, LdpConstants, MediaTypes {
 
-	/**
-	 * An absolute requirement of the specification.
-	 * 
-	 * @see <a href="https://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>
-	 */
-	public static final String MUST = "MUST";
+    /**
+     * An absolute requirement of the specification.
+     *
+     * @see <a href="https://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>
+     */
+    public static final String MUST = "MUST";
 
-	/**
-	 * There may exist valid reasons in particular circumstances to ignore a
-	 * particular item, but the full implications must be understood and
-	 * carefully weighed before choosing a different course.
-	 * 
-	 * @see <a href="https://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>
-	 */
-	public static final String SHOULD = "SHOULD";
+    /**
+     * There may exist valid reasons in particular circumstances to ignore a
+     * particular item, but the full implications must be understood and
+     * carefully weighed before choosing a different course.
+     *
+     * @see <a href="https://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>
+     */
+    public static final String SHOULD = "SHOULD";
 
-	/**
-	 * An item is truly optional. One vendor may choose to include the item
-	 * because a particular marketplace requires it or because the vendor feels
-	 * that it enhances the product while another vendor may omit the same item.
-	 * 
-	 * @see <a href="https://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>
-	 */
-	public static final String MAY = "MAY";
-	
-	private static boolean warnings = false;
+    /**
+     * An item is truly optional. One vendor may choose to include the item
+     * because a particular marketplace requires it or because the vendor feels
+     * that it enhances the product while another vendor may omit the same item.
+     *
+     * @see <a href="https://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>
+     */
+    public static final String MAY = "MAY";
 
-	public static boolean getWarnings() {
-		return warnings;
-	}
+    private static boolean warnings = false;
 
-	// TODO: Make this a hamcrest matcher for convenience.
-	/**
-	 * Tests if a Link response header with the expected URI and relation
-	 * is present in an HTTP response.
-	 * 
-	 * @param response
-	 *            the HTTP response
-	 * @param uri
-	 *            the expected URI
-	 * @param linkRelation
-	 *            the expected link relation (rel)
-	 * @see <a href="http://tools.ietf.org/html/rfc5988">RFC 5988</a>
-	 */
-	protected boolean hasLinkHeader(Response response, String uri, String linkRelation) {
-	    List<Header> linkHeaders = response.getHeaders().getList(LINK);
-	    for (Header h : linkHeaders) {
-	    	// The following code requires JAX-RS 2.0, but I'm not sure we want that
-	    	// dependency. Commenting out for now.
+    public static boolean getWarnings() {
+        return warnings;
+    }
+
+    // TODO: Make this a hamcrest matcher for convenience.
+
+    /**
+     * Tests if a Link response header with the expected URI and relation
+     * is present in an HTTP response.
+     *
+     * @param response     the HTTP response
+     * @param uri          the expected URI
+     * @param linkRelation the expected link relation (rel)
+     * @see <a href="http://tools.ietf.org/html/rfc5988">RFC 5988</a>
+     */
+    protected boolean hasLinkHeader(Response response, String uri, String linkRelation) {
+        List<Header> linkHeaders = response.getHeaders().getList(LINK);
+        for (Header h : linkHeaders) {
+            // The following code requires JAX-RS 2.0, but I'm not sure we want that
+            // dependency. Commenting out for now.
 //	    	Link l = Link.valueOf(h.getValue());
 //	    	if (uri.equals(l.getUri().toString())) {
 //	    		for (String rel : l.getRels()) {
@@ -77,35 +75,35 @@ public abstract class LdpTest implements HttpHeaders, LdpConstants, MediaTypes {
 //	    			}
 //	    		}
 //	    	}
-	    	// FIXME: This is not a proper test. Need to find a library to parse the link header.
-	    	if (h.getValue().contains(uri) && h.getValue().contains(linkRelation)) {
-	    		return true;
-	    	}
-	    }
-	
-	    return false;
-	}
-	
-	public Model getAsModel(String uri) throws URISyntaxException {
-		return getResourceAsModel(uri, TEXT_TURTLE);
-	}
+            // FIXME: This is not a proper test. Need to find a library to parse the link header.
+            if (h.getValue().contains(uri) && h.getValue().contains(linkRelation)) {
+                return true;
+            }
+        }
 
-	public Model getResourceAsModel(String uri, String mediaType)
-			throws URISyntaxException {
-		return RestAssured
-				.given().header(ACCEPT, mediaType)
-				.expect().statusCode(HttpStatus.SC_OK)
-				.when().get(new URI(uri)).as(Model.class, new RdfObjectMapper(uri));
-	}
+        return false;
+    }
 
-	protected Model postContent() {
-	    Model model = ModelFactory.createDefaultModel();
-		Resource resource = model.createResource("",
-				model.createResource("http://example.com/ns#Bug"));
-		resource.addProperty(
-				model.createProperty("http://example.com/ns#severity"), "High");
-		resource.addProperty(DC.title, "Another bug to test.");
-		resource.addProperty(DC.description, "Issues that need to be fixed.");
-	    return model;
-	}
+    public Model getAsModel(String uri) throws URISyntaxException {
+        return getResourceAsModel(uri, TEXT_TURTLE);
+    }
+
+    public Model getResourceAsModel(String uri, String mediaType)
+            throws URISyntaxException {
+        return RestAssured
+                .given().header(ACCEPT, mediaType)
+                .expect().statusCode(HttpStatus.SC_OK)
+                .when().get(new URI(uri)).as(Model.class, new RdfObjectMapper(uri));
+    }
+
+    protected Model postContent() {
+        Model model = ModelFactory.createDefaultModel();
+        Resource resource = model.createResource("",
+                model.createResource("http://example.com/ns#Bug"));
+        resource.addProperty(
+                model.createProperty("http://example.com/ns#severity"), "High");
+        resource.addProperty(DC.title, "Another bug to test.");
+        resource.addProperty(DC.description, "Issues that need to be fixed.");
+        return model;
+    }
 }

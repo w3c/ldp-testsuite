@@ -32,8 +32,10 @@ public class LdpTestSuite {
     public static final String NAME = "LDP Test Suite";
 
     private final TestNG testng;
-    
-    enum ContainerType { BASIC, DIRECT, INDIRECT };
+
+    enum ContainerType {BASIC, DIRECT, INDIRECT}
+
+    ;
 
     public LdpTestSuite(String server, ContainerType type) {
         //see: http://testng.org/doc/documentation-main.html#running-testng-programmatically
@@ -43,57 +45,57 @@ public class LdpTestSuite {
 
         TestListenerAdapter tla = new LdpTestListener();
         testng.addListener(tla);
-        
-		// create XmlSuite instance
-		XmlSuite testsuite = new XmlSuite();
-		testsuite.setName(NAME);
 
-		// provide included/excluded groups
+        // create XmlSuite instance
+        XmlSuite testsuite = new XmlSuite();
+        testsuite.setName(NAME);
+
+        // provide included/excluded groups
         //TODO: dynamic groups
-		testsuite.addIncludedGroup("MUST");
-		testsuite.addIncludedGroup("SHOULD");
-		testsuite.addIncludedGroup("MAY");
-		testsuite.addIncludedGroup("ldpMember");
+        testsuite.addIncludedGroup("MUST");
+        testsuite.addIncludedGroup("SHOULD");
+        testsuite.addIncludedGroup("MAY");
+        testsuite.addIncludedGroup("ldpMember");
 
-		// create XmlTest instance
-		XmlTest test = new XmlTest(testsuite);
-		test.setName("W3C Linked Data Platform Tests");
+        // create XmlTest instance
+        XmlTest test = new XmlTest(testsuite);
+        test.setName("W3C Linked Data Platform Tests");
 
-		// Add any parameters that you want to set to the Test.
+        // Add any parameters that you want to set to the Test.
 
-		// Add classes we want to test
-		List<XmlClass> classes = new ArrayList<XmlClass>();
-		
-        Map<String,String> parameters = new HashMap<>();
-		switch (type) {
-		case BASIC:
-			classes.add(new XmlClass("org.w3.ldp.testsuite.test.BasicContainerTest"));
-			parameters.put("basicContainer", server);
-			break;
-		case DIRECT:
-			classes.add(new XmlClass("org.w3.ldp.testsuite.test.DirectContainerTest"));
-			parameters.put("directContainer", server);
-			break;
-		case INDIRECT:
-			classes.add(new XmlClass("org.w3.ldp.testsuite.test.IndirectContainerTest"));
-			parameters.put("indirectContainer", server);
-			break;
-		}
-		classes.add(new XmlClass("org.w3.ldp.testsuite.test.MemberResourceTest"));
+        // Add classes we want to test
+        List<XmlClass> classes = new ArrayList<XmlClass>();
 
-		test.setXmlClasses(classes);
+        Map<String, String> parameters = new HashMap<>();
+        switch (type) {
+            case BASIC:
+                classes.add(new XmlClass("org.w3.ldp.testsuite.test.BasicContainerTest"));
+                parameters.put("basicContainer", server);
+                break;
+            case DIRECT:
+                classes.add(new XmlClass("org.w3.ldp.testsuite.test.DirectContainerTest"));
+                parameters.put("directContainer", server);
+                break;
+            case INDIRECT:
+                classes.add(new XmlClass("org.w3.ldp.testsuite.test.IndirectContainerTest"));
+                parameters.put("indirectContainer", server);
+                break;
+        }
+        classes.add(new XmlClass("org.w3.ldp.testsuite.test.MemberResourceTest"));
 
-		List<XmlTest> tests = new ArrayList<XmlTest>();
-		tests.add(test);
+        test.setXmlClasses(classes);
 
-		testsuite.setParameters(parameters);
-		testsuite.setTests(tests);
+        List<XmlTest> tests = new ArrayList<XmlTest>();
+        tests.add(test);
 
-		List<XmlSuite> suites = new ArrayList<XmlSuite>();
-		suites.add(testsuite);
+        testsuite.setParameters(parameters);
+        testsuite.setTests(tests);
 
-		// provide our reporter and listener
-		testng.setXmlSuites(suites);
+        List<XmlSuite> suites = new ArrayList<XmlSuite>();
+        suites.add(testsuite);
+
+        // provide our reporter and listener
+        testng.setXmlSuites(suites);
     }
 
     public void run() {
@@ -120,7 +122,7 @@ public class LdpTestSuite {
         options.addOption(OptionBuilder.withLongOpt("help")
                 .withDescription("print usage help")
                 .create());
-        
+
         OptionGroup containerType = new OptionGroup();
         containerType.addOption(OptionBuilder.withLongOpt("basic").withDescription("server url is a basic container").create());
         containerType.addOption(OptionBuilder.withLongOpt("direct").withDescription("server url is a direct container").create());
@@ -145,7 +147,9 @@ public class LdpTestSuite {
         String server = cmd.getOptionValue("server");
         try {
             URI uri = new URI(server);
-            if (!"http".equals(uri.getScheme())) { throw new IllegalArgumentException("non-http uri"); }
+            if (!"http".equals(uri.getScheme())) {
+                throw new IllegalArgumentException("non-http uri");
+            }
             //TODO: check it is alive
         } catch (Exception e) {
             System.err.println("ERROR: invalid server uri, " + e.getLocalizedMessage());
@@ -164,17 +168,17 @@ public class LdpTestSuite {
         }
         System.exit(ldpTestSuite.getStatus());
     }
-    
+
     private static ContainerType getSelectedType(CommandLine cmd) {
-    	if (cmd.hasOption("direct")) {
-    		return ContainerType.DIRECT;
-    	}
-    	
-    	if (cmd.hasOption("indirect")) {
-    		return ContainerType.INDIRECT;
-    	}
-    	
-    	return ContainerType.BASIC;
+        if (cmd.hasOption("direct")) {
+            return ContainerType.DIRECT;
+        }
+
+        if (cmd.hasOption("indirect")) {
+            return ContainerType.INDIRECT;
+        }
+
+        return ContainerType.BASIC;
     }
 
     private static void printUsage(Options options) {
