@@ -27,6 +27,8 @@ import org.w3.ldp.testsuite.reporter.LdpTestListener;
  * to {@link org.testng.TestNG}
  *
  * @author Sergio Fernández
+ * @author Steve Speicher
+ * @author Samuel Padgett
  */
 public class LdpTestSuite {
 
@@ -34,13 +36,10 @@ public class LdpTestSuite {
 
     private final TestNG testng;
 
-    enum ContainerType {BASIC, DIRECT, INDIRECT}
-
-    ;
+    enum ContainerType { BASIC, DIRECT, INDIRECT };
 
     public LdpTestSuite(String server, ContainerType type) {
         //see: http://testng.org/doc/documentation-main.html#running-testng-programmatically
-
 
         testng = new TestNG();
 
@@ -158,7 +157,8 @@ public class LdpTestSuite {
         }
 
         //actual test suite execution
-        LdpTestSuite ldpTestSuite = new LdpTestSuite(server, getSelectedType(cmd));
+        ContainerType type = getSelectedType(cmd);
+        LdpTestSuite ldpTestSuite = new LdpTestSuite(server, type);
 
         try {
             ldpTestSuite.run();
@@ -168,7 +168,7 @@ public class LdpTestSuite {
             //e.printStackTrace();
             printUsage(options);
         }
-        
+
         System.exit(ldpTestSuite.getStatus());
     }
 
@@ -191,4 +191,5 @@ public class LdpTestSuite {
         System.out.println();
         System.exit(-1);
     }
+    
 }
