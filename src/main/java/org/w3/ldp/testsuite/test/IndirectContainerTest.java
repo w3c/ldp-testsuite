@@ -11,10 +11,12 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.Reference;
 
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
+import org.w3.ldp.testsuite.vocab.LDP;
 
 public class IndirectContainerTest extends CommonContainerTest {
     private String indirectContainer;
@@ -40,14 +42,14 @@ public class IndirectContainerTest extends CommonContainerTest {
                     + "the server supports, and a link relation type of type "
                     + "(that is, rel='type') in all responses to requests made "
                     + "to the LDPC's HTTP Request-URI.")
-    @Reference(uri = SPEC_URI + "#ldpc-linktypehdr")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-linktypehdr")
     public void testContainerSupportsHttpLinkHeader() throws URISyntaxException {
         Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
                 .expect().statusCode(HttpStatus.SC_OK).when()
                 .get(new URI(indirectContainer));
         assertTrue(
-                hasLinkHeader(response, TYPE_INDIRECT_CONTAINER, LINK_REL_TYPE),
-                "LDP DirectContainers must advertise their LDP support by exposing a HTTP Link header with a URI matching <" + TYPE_INDIRECT_CONTAINER + "> and rel='type'");
+                hasLinkHeader(response, LDP.IndirectContainer.stringValue(), LINK_REL_TYPE),
+                "LDP DirectContainers must advertise their LDP support by exposing a HTTP Link header with a URI matching <" + LDP.IndirectContainer.stringValue() + "> and rel='type'");
     }
 
     @Test(
@@ -56,7 +58,7 @@ public class IndirectContainerTest extends CommonContainerTest {
             description = "Each LDP Indirect Container MUST also be a conforming "
                     + "LDP Direct Container in section 5.4 Direct along "
                     + "the following restrictions.")
-    @Reference(uri = SPEC_URI + "#ldpic-are-ldpcs")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpic-are-ldpcs")
     public void testCreateIndirectContainer() {
 
     }
@@ -69,7 +71,7 @@ public class IndirectContainerTest extends CommonContainerTest {
                     + "is ldp:insertedContentRelation, and whose object ICR "
                     + "describes how the member-derived-URI in the container's "
                     + "membership triples is chosen.")
-    @Reference(uri = SPEC_URI + "#ldpic-indirectmbr")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpic-indirectmbr")
     public void testContainsLdpcUri() {
 
     }
@@ -85,7 +87,7 @@ public class IndirectContainerTest extends CommonContainerTest {
                     + "different from the member-derived URI in this case). This "
                     + "ldp:contains triple can be the only link from the container to the "
                     + "newly created resource in certain cases.")
-    @Reference(uri = SPEC_URI + "#ldpic-post-indirectmbrrel")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpic-post-indirectmbrrel")
     public void testPostResource() {
 
     }
@@ -94,4 +96,5 @@ public class IndirectContainerTest extends CommonContainerTest {
     protected String getResourceUri() {
         return indirectContainer;
     }
+
 }

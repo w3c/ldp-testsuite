@@ -5,9 +5,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 import org.apache.http.HttpStatus;
-import org.w3.ldp.testsuite.HttpHeaders;
-import org.w3.ldp.testsuite.LdpConstants;
-import org.w3.ldp.testsuite.MediaTypes;
+import org.w3.ldp.testsuite.http.HttpHeaders;
+import org.w3.ldp.testsuite.http.MediaTypes;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 
 import com.hp.hpl.jena.rdf.model.Model;
@@ -18,7 +17,7 @@ import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Header;
 import com.jayway.restassured.response.Response;
 
-public abstract class LdpTest implements HttpHeaders, LdpConstants, MediaTypes {
+public abstract class LdpTest implements HttpHeaders, MediaTypes {
 
     /**
      * An absolute requirement of the specification.

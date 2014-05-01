@@ -13,7 +13,8 @@ import java.util.UUID;
 import org.apache.http.HttpStatus;
 import org.testng.SkipException;
 import org.testng.annotations.Test;
-import org.w3.ldp.testsuite.HttpMethod;
+import org.w3.ldp.testsuite.LdpTestSuite;
+import org.w3.ldp.testsuite.http.HttpMethod;
 import org.w3.ldp.testsuite.annotations.Reference;
 import org.w3.ldp.testsuite.exception.SkipClientTestException;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
@@ -26,6 +27,7 @@ import com.hp.hpl.jena.vocabulary.RDF;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.RequestSpecification;
+import org.w3.ldp.testsuite.vocab.LDP;
 
 /**
  * Common tests for all LDP container types.
@@ -43,7 +45,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
                     + "Request-URI when the resource already exists, and to "
                     + "the URI of the created resource when the request results "
                     + "in the creation of a new resource.")
-    @Reference(uri = SPEC_URI + "#ldpr-gen-defbaseuri")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpr-gen-defbaseuri")
     public void testRelativeUriResolutionPost() {
 
     }
@@ -52,7 +54,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
             groups = {SHOULD},
             description = "LDPC representations SHOULD NOT use RDF container "
                     + "types rdf:Bag, rdf:Seq or rdf:List.")
-    @Reference(uri = SPEC_URI + "#ldpc-nordfcontainertypes")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-nordfcontainertypes")
     public void testNoRdfBagSeqOrList() throws URISyntaxException {
         Model containerModel = getAsModel(getResourceUri());
         assertFalse(containerModel.listResourcesWithProperty(RDF.type, RDF.Bag).hasNext(), "LDPC representations should not use rdf:Bag");
@@ -68,7 +70,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
                     + "client is interested in processing, to influence the set of "
                     + "triples returned in representations of an LDPC, particularly for "
                     + "large LDPCs. See also [LDP-PAGING].")
-    @Reference(uri = SPEC_URI + "#ldpc-prefer")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-prefer")
     public void testClientHints() {
 
     }
@@ -78,7 +80,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
             description = "LDPC clients SHOULD create member resources by "
                     + "submitting a representation as the entity body of the "
                     + "HTTP POST to a known LDPC.")
-    @Reference(uri = SPEC_URI + "#ldpc-post-created201")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-post-created201")
     public void testClientPostToCreate() {
         throw new SkipClientTestException();
     }
@@ -92,7 +94,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
                     + "header set to the new resource’s URL. Clients shall not "
                     + "expect any representation in the response entity body on "
                     + "a 201 (Created) response.")
-    @Reference(uri = SPEC_URI + "#ldpc-post-created201")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-post-created201")
     public void testPostResponseStatusAndLocation() throws URISyntaxException {
         skipIfMethodNotAllowed(HttpMethod.POST);
 
@@ -114,7 +116,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
             description = "When a successful HTTP POST request to an LDPC results "
                     + "in the creation of an LDPR, a containment triple MUST be "
                     + "added to the state of LDPC.")
-    @Reference(uri = SPEC_URI + "#ldpc-post-createdmbr-contains")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-post-createdmbr-contains")
     public void testPostContainer() throws URISyntaxException {
         skipIfMethodNotAllowed(HttpMethod.POST);
 
@@ -131,7 +133,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         Model containerModel = getAsModel(containerUri);
         Resource container = containerModel.getResource(containerUri);
 
-        assertTrue(container.hasProperty(LDP.contains, containerModel.getResource(location)),
+        assertTrue(container.hasProperty(containerModel.createProperty(LDP.contains.stringValue()), containerModel.getResource(location)),
                 "Container <" + containerUri + "> does not have a containment triple for newly created resource <" + location + ">.");
 
         RestAssured.expect().statusCode(isSuccessful()).when().delete(new URI(location));
@@ -145,7 +147,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
                     + "client's requested interaction model(s). The created resource "
                     + "can be thought of as an RDF named graph [rdf11-concepts]. If any "
                     + "model cannot be honored, the server MUST fail the request.")
-    @Reference(uri = SPEC_URI + "#ldpc-post-createrdf")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-post-createrdf")
     public void testRequestedInteractionModel() {
         skipIfMethodNotAllowed(HttpMethod.POST);
 
@@ -156,7 +158,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
             groups = {MUST},
             description = "LDP servers MUST accept a request entity body with a "
                     + "request header of Content-Type with value of text/turtle [turtle].")
-    @Reference(uri = SPEC_URI + "#ldpc-post-turtle")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-post-turtle")
     public void testAcceptTurtle() throws URISyntaxException {
         skipIfMethodNotAllowed(HttpMethod.POST);
 
@@ -179,7 +181,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
             description = "LDP servers SHOULD use the Content-Type request header to "
                     + "determine the representation format when the request has an "
                     + "entity body.")
-    @Reference(uri = SPEC_URI + "#ldpc-post-contenttype")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-post-contenttype")
     public void testContentTypeHeader() throws URISyntaxException {
         skipIfMethodNotAllowed(HttpMethod.POST);
 
@@ -194,7 +196,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
                     + "entity is the model for the “to be created” LDPR, so triples whose subject "
                     + "is the null relative URI will usually result in triples in the created "
                     + "resource whose subject is the created resource.")
-    @Reference(uri = SPEC_URI + "#ldpc-post-rdfnullrel")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-post-rdfnullrel")
     public void testNullRelativeUri() throws URISyntaxException {
         skipIfMethodNotAllowed(HttpMethod.POST);
 
@@ -229,7 +231,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
             enabled = false, // not implemented
             description = "LDP servers SHOULD assign the URI for the resource to be created "
                     + "using server application specific rules in the absence of a client hint.")
-    @Reference(uri = SPEC_URI + "#ldpc-post-serverassignuri")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-post-serverassignuri")
     public void testAssignUri() {
         skipIfMethodNotAllowed(HttpMethod.POST);
 
@@ -244,7 +246,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
                     + "is a consequence of the requirement to enable simple creation and "
                     + "modification of LDPRs. LDP servers expose these application-specific "
                     + "constraints as described in section 4.2.1 General.")
-    @Reference(uri = SPEC_URI + "#ldpc-post-mincontraints")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-post-mincontraints")
     public void testCreateWithoutConstraints() throws URISyntaxException {
         skipIfMethodNotAllowed(HttpMethod.POST);
 
@@ -270,7 +272,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
     @Test(
             groups = {SHOULD},
             description = "LDP servers that allow member creation via POST SHOULD NOT re-use URIs.")
-    @Reference(uri = SPEC_URI + "#ldpc-post-dontreuseuris")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-post-dontreuseuris")
     public void testRestrictUriReUseSlug() throws URISyntaxException {
         testRestrictUriReUse("uritest");
     }
@@ -278,7 +280,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
     @Test(
             groups = {SHOULD},
             description = "LDP servers that allow member creation via POST SHOULD NOT re-use URIs.")
-    @Reference(uri = SPEC_URI + "#ldpc-post-dontreuseuris")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-post-dontreuseuris")
     public void testRestrictUriReUseNoSlug() throws URISyntaxException {
         testRestrictUriReUse(null);
     }
@@ -318,7 +320,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
             description = "Upon successful creation of an LDP-NR (HTTP status code of 201-Created "
                     + "and URI indicated by Location response header), LDP servers MAY create an "
                     + "associated LDP-RS to contain data about the newly created LDP-NR.")
-    @Reference(uri = SPEC_URI + "#ldpc-post-createbinlinkmetahdr")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-post-createbinlinkmetahdr")
     public void testCreateAssociatedRdfSource() {
 
     }
@@ -331,7 +333,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
                     + "its location on the HTTP response using the HTTP Link response header "
                     + "with link relation describedby and href to be the URI of the associated "
                     + "LDP-RS resource [RFC5988].")
-    @Reference(uri = SPEC_URI + "#ldpc-post-createbinlinkmetahdr")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-post-createbinlinkmetahdr")
     public void testAssociatedRdfSourceLinkResponseHeader() {
 
     }
@@ -342,7 +344,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
             description = "LDP servers that support POST MUST include an Accept-Post "
                     + "response header on HTTP OPTIONS responses, listing post document "
                     + "media type(s) supported by the server.")
-    @Reference(uri = SPEC_URI + "#ldpc-post-acceptposthdr")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-post-acceptposthdr")
     public void testAcceptPostResponseHeader() throws URISyntaxException {
         skipIfMethodNotAllowed(HttpMethod.POST);
 
@@ -358,7 +360,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
             description = "LDP servers SHOULD NOT allow HTTP PUT to update an LDPC’s "
                     + "containment triples; if the server receives such a request, it "
                     + "SHOULD respond with a 409 (Conflict) status code.")
-    @Reference(uri = SPEC_URI + "#ldpc-put-mbrprops")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-put-mbrprops")
     public void testRejectPutModifyingContainmentTriples() {
 
     }
@@ -369,7 +371,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
             description = "LDP servers that allow LDPR creation via PUT SHOULD NOT "
                     + "re-use URIs. For RDF representations (LDP-RSs),the created "
                     + "resource can be thought of as an RDF named graph [rdf11-concepts].")
-    @Reference(uri = SPEC_URI + "#ldpc-put-create")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-put-create")
     public void testRestrictPutReUseUri() {
 
     }
@@ -379,7 +381,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
             description = "When an LDPR identified by the object of a containment triple "
                     + "is deleted, the LDPC server MUST also remove the LDPR from the "
                     + "containing LDPC by removing the corresponding containment triple.")
-    @Reference(uri = SPEC_URI + "#ldpc-del-contremovesconttriple")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-del-contremovesconttriple")
     public void testDeleteRemovesContainmentTriple() throws URISyntaxException {
         skipIfMethodNotAllowed(HttpMethod.POST);
 
@@ -406,7 +408,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         Model containerModel = getAsModel(getResourceUri());
         Resource container = containerModel.getResource(getResourceUri());
 
-        assertFalse(container.hasProperty(containerModel.createProperty(CONTAINS), containerModel.getResource(location)),
+        assertFalse(container.hasProperty(containerModel.createProperty(LDP.contains.stringValue()), containerModel.getResource(location)),
                 "The LDPC server must remove the corresponding containment triple when an LDPR is deleted.");
     }
 
@@ -417,7 +419,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
                     + "is deleted, and the LDPC server created an associated LDP-RS "
                     + "(see the LDPC POST section), the LDPC server MUST also remove the "
                     + "associated LDP-RS it created.")
-    @Reference(uri = SPEC_URI + "#ldpc-del-contremovescontres")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-del-contremovescontres")
     public void testDeleteContainerAssociatedResource() {
 
     }
@@ -426,7 +428,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
             groups = {SHOULD},
             description = "LDP servers are RECOMMENDED to support HTTP PATCH as the "
                     + "preferred method for updating an LDPC's empty-container triples. ")
-    @Reference(uri = SPEC_URI + "#ldpc-patch-req")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-patch-req")
     public void testPatchMethod() {
         assertTrue(supports(HttpMethod.PATCH),
                 "Container <" + getResourceUri() + "> has not advertised PATCH support through its HTTP OPTIONS response.");
@@ -444,8 +446,9 @@ public abstract class CommonContainerTest extends RdfSourceTest {
                     + "associated LDP-RS, an LDPC server MUST provide an HTTP Link "
                     + "header whose target URI is the associated LDP-RS, and whose link "
                     + "relation type is describedby [RFC5988].")
-    @Reference(uri = SPEC_URI + "#ldpc-options-linkmetahdr")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-options-linkmetahdr")
     public void testProvideLinkHeaderAssociatedRdfSource() {
 
     }
+
 }

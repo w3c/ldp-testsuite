@@ -17,7 +17,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import org.w3.ldp.testsuite.HttpMethod;
+import org.w3.ldp.testsuite.LdpTestSuite;
+import org.w3.ldp.testsuite.http.HttpMethod;
 import org.w3.ldp.testsuite.annotations.Reference;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 
@@ -25,6 +26,7 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
+import org.w3.ldp.testsuite.vocab.LDP;
 
 public class DirectContainerTest extends CommonContainerTest {
     private String directContainer;
@@ -56,14 +58,14 @@ public class DirectContainerTest extends CommonContainerTest {
                     + "the server supports, and a link relation type of type "
                     + "(that is, rel='type') in all responses to requests made "
                     + "to the LDPC's HTTP Request-URI.")
-    @Reference(uri = SPEC_URI + "#ldpc-linktypehdr")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-linktypehdr")
     public void testHttpLinkHeader() throws URISyntaxException {
         Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
                 .expect().statusCode(HttpStatus.SC_OK).when()
                 .get(new URI(directContainer));
         assertTrue(
-                hasLinkHeader(response, TYPE_DIRECT_CONTAINER, LINK_REL_TYPE),
-                "LDP DirectContainers must advertise their LDP support by exposing a HTTP Link header with a URI matching <" + TYPE_DIRECT_CONTAINER + "> and rel='type'");
+                hasLinkHeader(response, LDP.DirectContainer.stringValue(), LINK_REL_TYPE),
+                "LDP DirectContainers must advertise their LDP support by exposing a HTTP Link header with a URI matching <" + LDP.DirectContainer.stringValue() + "> and rel='type'");
     }
 
     @Test(
@@ -71,12 +73,12 @@ public class DirectContainerTest extends CommonContainerTest {
             description = "LDP Direct Containers SHOULD use the ldp:member predicate "
                     + "as an LDPC's membership predicate if there is no obvious "
                     + "predicate from an application vocabulary to use.")
-    @Reference(uri = SPEC_URI + "#ldpdc-mbrpred")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpdc-mbrpred")
     public void testUseMemberPredicate() throws URISyntaxException {
         Model containerModel = getAsModel(directContainer);
         Resource container = containerModel.getResource(directContainer);
-        Resource hasMemberRelation = container.getPropertyResourceValue(LDP.hasMemberRelation);
-        assertEquals(MEMBER, hasMemberRelation.getURI(), "LDP Direct Containers should use the ldp:member predicate if "
+        Resource hasMemberRelation = container.getPropertyResourceValue(containerModel.createProperty(LDP.hasMemberRelation.stringValue()));
+        assertEquals(LDP.member.stringValue(), hasMemberRelation.getURI(), "LDP Direct Containers should use the ldp:member predicate if "
                 + "there is no obvious predicate from the application vocabulary. You can disabled this test using the 'testLdpMember' parameter in testng.xml.");
     }
 
@@ -87,11 +89,11 @@ public class DirectContainerTest extends CommonContainerTest {
                     + "ldp:membershipResource, and whose object is the LDPC's membership-"
                     + "constant-URI. Commonly the LDPC's URI is the membership-constant-URI,"
                     + " but LDP does not require this.")
-    @Reference(uri = SPEC_URI + "#ldpdc-containres")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpdc-containres")
     public void testMemberResourceTriple() throws URISyntaxException {
         Model containerModel = getAsModel(directContainer);
         Resource container = containerModel.getResource(directContainer);
-        Resource membershipResource = container.getPropertyResourceValue(LDP.membershipResource);
+        Resource membershipResource = container.getPropertyResourceValue(containerModel.createProperty(LDP.membershipResource.stringValue()));
         assertNotNull(membershipResource);
     }
 
@@ -103,12 +105,12 @@ public class DirectContainerTest extends CommonContainerTest {
                     + "The object of the triple is constrained by other sections, "
                     + "such as ldp:hasMemberRelation or ldp:isMemberOfRelation, "
                     + "based on the membership triple pattern used by the container.")
-    @Reference(uri = SPEC_URI + "#ldpdc-containtriples")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpdc-containtriples")
     public void testMemberRelationOrIsMemberOfRelationTripleExists() throws URISyntaxException {
         Model containerModel = getAsModel(directContainer);
         Resource container = containerModel.getResource(directContainer);
-        Resource hasMemberRelation = container.getPropertyResourceValue(containerModel.createProperty(HAS_MEMBER_RELATION));
-        Resource isMemberOfRelation = container.getPropertyResourceValue(containerModel.createProperty(IS_MEMBER_OF_RELATION));
+        Resource hasMemberRelation = container.getPropertyResourceValue(containerModel.createProperty(LDP.hasMemberRelation.stringValue()));
+        Resource isMemberOfRelation = container.getPropertyResourceValue(containerModel.createProperty(LDP.isMemberOfRelation.stringValue()));
         if (hasMemberRelation == null) {
             assertNotNull(isMemberOfRelation, "LDP DirectContainer must have either ldp:hasMemberRelation or ldp:isMemberOfRelation");
         } else {
@@ -123,7 +125,7 @@ public class DirectContainerTest extends CommonContainerTest {
                     + "(LDPC URI, ldp:insertedContentRelation , ldp:MemberSubject)"
                     + " triple, but LDP imposes no requirement to materialize such "
                     + "a triple in the LDP-DC representation.")
-    @Reference(uri = SPEC_URI + "#ldpdc-indirectmbr-basic")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpdc-indirectmbr-basic")
     public void testActAsIfInsertedContentRelationTripleExists() {
 
     }
@@ -135,7 +137,7 @@ public class DirectContainerTest extends CommonContainerTest {
                     + "membership triples to reflect that addition, and the resulting "
                     + "membership triple MUST be consistent with any LDP-defined "
                     + "predicates it exposes.")
-    @Reference(uri = SPEC_URI + "#ldpdc-post-createdmbr-member")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpdc-post-createdmbr-member")
     public void testPostResourceUpdatesTriples() throws URISyntaxException {
         skipIfMethodNotAllowed(HttpMethod.POST);
 
@@ -147,8 +149,8 @@ public class DirectContainerTest extends CommonContainerTest {
         String location = postResponse.getHeader(LOCATION);
         Model containerModel = getAsModel(directContainer);
         Resource container = containerModel.getResource(directContainer);
-        Resource membershipResource = container.getPropertyResourceValue(containerModel.createProperty(MEMBERSHIP_RESOURCE));
-        Resource hasMemberRelation = container.getPropertyResourceValue(containerModel.createProperty(HAS_MEMBER_RELATION));
+        Resource membershipResource = container.getPropertyResourceValue(containerModel.createProperty(LDP.membershipResource.stringValue()));
+        Resource hasMemberRelation = container.getPropertyResourceValue(containerModel.createProperty(LDP.hasMemberRelation.stringValue()));
         assertNotNull(membershipResource);
 
         // Make sure the resource is in the container.
@@ -166,7 +168,7 @@ public class DirectContainerTest extends CommonContainerTest {
             description = "When an LDPR identified by the object of a membership "
                     + "triple which was originally created by the LDP-DC is deleted, "
                     + "the LDPC server MUST also remove the corresponding membership triple.")
-    @Reference(uri = SPEC_URI + "#ldpdc-del-contremovesmbrtriple")
+    @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpdc-del-contremovesmbrtriple")
     public void testDeleteResourceUpdatesTriples() throws URISyntaxException {
         skipIfMethodNotAllowed(HttpMethod.POST);
 
@@ -180,8 +182,8 @@ public class DirectContainerTest extends CommonContainerTest {
         // Test the membership triple
         Model containerModel = getAsModel(directContainer);
         Resource container = containerModel.getResource(directContainer);
-        Resource membershipResource = container.getPropertyResourceValue(LDP.membershipResource);
-        Resource hasMemberRelation = container.getPropertyResourceValue(LDP.hasMemberRelation);
+        Resource membershipResource = container.getPropertyResourceValue(containerModel.createProperty(LDP.membershipResource.stringValue()));
+        Resource hasMemberRelation = container.getPropertyResourceValue(containerModel.createProperty(LDP.hasMemberRelation.stringValue()));
         Resource isMemberOfRelation = null;
         assertNotNull(membershipResource, MSG_MBRRES_NOTFOUND);
         Model membershipResourceModel = null;
@@ -199,7 +201,7 @@ public class DirectContainerTest extends CommonContainerTest {
         } else {
             // Not if membership triple is not of form: (container, membership predicate, member), it may be the inverse.
             // Check both the membership resource and the member resource for the membership triple
-            isMemberOfRelation = container.getPropertyResourceValue(LDP.isMemberOfRelation);
+            isMemberOfRelation = container.getPropertyResourceValue(containerModel.createProperty(LDP.isMemberOfRelation.stringValue()));
             int numMembershipTriples = membershipResourceModel.listStatements(membershipResourceModel.getResource(location), membershipResourceModel.createProperty(isMemberOfRelation.getURI()), membershipResource).toSet().size();
             Model memberResourceModel = getAsModel(location);
             assertNotNull(memberResourceModel, "Unable to fetch created member resource to validate membership triples (isMemberOfRelation)	");
@@ -220,7 +222,7 @@ public class DirectContainerTest extends CommonContainerTest {
                     "The LDPC server must remove the corresponding membership triple when an LDPR is deleted (hasMemberRelation).");
         } else {
             // Not if membership triple is not of form: (container, membership predicate, member), it may be the inverse.
-            isMemberOfRelation = container.getPropertyResourceValue(containerModel.createProperty(IS_MEMBER_OF_RELATION));
+            isMemberOfRelation = container.getPropertyResourceValue(containerModel.createProperty(LDP.isMemberOfRelation.stringValue()));
             assertEquals(containerModel.listStatements(membershipResourceModel.getResource(location), membershipResourceModel.createProperty(isMemberOfRelation.getURI()), membershipResource).toSet().size(),
                     0, "The LDPC server must remove the corresponding membership triple when an LDPR is deleted (isMemberOfRelation).");
         }

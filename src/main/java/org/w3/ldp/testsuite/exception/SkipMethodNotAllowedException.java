@@ -1,7 +1,7 @@
 package org.w3.ldp.testsuite.exception;
 
 import org.testng.SkipException;
-import org.w3.ldp.testsuite.HttpMethod;
+import org.w3.ldp.testsuite.http.HttpMethod;
 
 public class SkipMethodNotAllowedException extends SkipException {
     private static final long serialVersionUID = 1L;

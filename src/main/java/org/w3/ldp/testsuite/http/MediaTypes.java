@@ -1,4 +1,4 @@
-package org.w3.ldp.testsuite;
+package org.w3.ldp.testsuite.http;
 
 public interface MediaTypes {
 

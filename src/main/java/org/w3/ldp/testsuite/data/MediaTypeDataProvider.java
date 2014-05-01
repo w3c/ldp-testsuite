@@ -1,7 +1,7 @@
 package org.w3.ldp.testsuite.data;
 
 import org.testng.annotations.DataProvider;
-import org.w3.ldp.testsuite.MediaTypes;
+import org.w3.ldp.testsuite.http.MediaTypes;
 
 public class MediaTypeDataProvider implements MediaTypes {
     public final static String NAME = "mediaTypes";

@@ -34,6 +34,8 @@ public class LdpTestSuite {
 
     public static final String NAME = "LDP Test Suite";
 
+    public static final String SPEC_URI = "https://dvcs.w3.org/hg/ldpwg/raw-file/default/ldp.html";
+
     private final TestNG testng;
 
     enum ContainerType { BASIC, DIRECT, INDIRECT };
