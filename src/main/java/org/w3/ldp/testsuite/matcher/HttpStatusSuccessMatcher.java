@@ -21,4 +21,5 @@ public class HttpStatusSuccessMatcher extends TypeSafeMatcher<Integer> {
     public static Matcher<Integer> isSuccessful() {
         return new HttpStatusSuccessMatcher();
     }
+
 }

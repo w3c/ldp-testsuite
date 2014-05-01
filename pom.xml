@@ -181,6 +181,11 @@
             <version>3.3.2</version>
         </dependency>
         <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+        <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>6.8.8</version>
@@ -191,6 +196,11 @@
             <version>2.3.0</version>
         </dependency>
         <dependency>
+            <groupId>org.openrdf.sesame</groupId>
+            <artifactId>sesame-model</artifactId>
+            <version>2.7.11</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.jena</groupId>
             <artifactId>jena-core</artifactId>
             <version>2.7.1</version>
@@ -199,6 +209,11 @@
             <groupId>org.rendersnake</groupId>
             <artifactId>rendersnake</artifactId>
             <version>1.7.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jaxrs</artifactId>
+            <version>3.0.8.Final</version>
         </dependency>
     </dependencies>
 

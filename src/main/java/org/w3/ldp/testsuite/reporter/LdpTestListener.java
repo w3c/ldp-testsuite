@@ -30,4 +30,5 @@ public class LdpTestListener extends TestListenerAdapter {
     private void log(String string, String status, String time) {
         System.out.printf("%-55s %-15s %15s %n", string, status, time);
     }
+
 }

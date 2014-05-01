@@ -23,6 +23,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.Test;
 import org.testng.internal.Utils;
 import org.testng.xml.XmlSuite;
+import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.Reference;
 
 /**
@@ -41,8 +42,8 @@ public class LdpHtmlReporter implements IReporter {
                     .head()
                     .link(rel("stylesheet").type("text/css").href(
                             "reportStyle.css"))._head().body().title()
-                    .content("Test Suite Report");
-            html.h1().content("Test Suite Summary");
+                    .content(LdpTestSuite.NAME + " Report");
+            html.h1().content(LdpTestSuite.NAME + " Summary");
             generateOverallSummaryReport(suites, "summary");
             displayGroupsInfo(suites);
             displayMethodsSummary(suites);

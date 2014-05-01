@@ -343,4 +343,5 @@ public abstract class CommonResourceTest extends LdpTest {
             throw new SkipMethodNotAllowedException(getResourceUri(), method);
         }
     }
+
 }

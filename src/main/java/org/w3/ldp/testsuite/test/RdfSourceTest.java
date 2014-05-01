@@ -152,4 +152,5 @@ public abstract class RdfSourceTest extends CommonResourceTest {
                 .expect().statusCode(isSuccessful()).contentType(TEXT_TURTLE)
                 .when().get(new URI(getResourceUri())).as(Model.class, new RdfObjectMapper(getResourceUri()));
     }
+
 }

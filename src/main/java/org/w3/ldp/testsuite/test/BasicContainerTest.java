@@ -21,6 +21,7 @@ import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 
 public class BasicContainerTest extends CommonContainerTest {
+
     private String basicContainer;
 
     @Parameters("basicContainer")
@@ -71,4 +72,5 @@ public class BasicContainerTest extends CommonContainerTest {
     protected String getResourceUri() {
         return basicContainer;
     }
+
 }

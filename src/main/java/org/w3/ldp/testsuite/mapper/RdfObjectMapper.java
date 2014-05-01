@@ -61,4 +61,5 @@ public class RdfObjectMapper implements ObjectMapper {
         // with media types other than JSON and XML.
         return output.getBytes();
     }
+
 }

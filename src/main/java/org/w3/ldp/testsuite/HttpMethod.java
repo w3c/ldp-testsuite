@@ -1,6 +1,7 @@
 package org.w3.ldp.testsuite;
 
 public enum HttpMethod {
+
     GET("GET"),
     PUT("PUT"),
     POST("POST"),
@@ -18,4 +19,5 @@ public enum HttpMethod {
     public String getName() {
         return name;
     }
+
 }

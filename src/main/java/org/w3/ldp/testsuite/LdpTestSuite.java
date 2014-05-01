@@ -109,16 +109,13 @@ public class LdpTestSuite {
     @SuppressWarnings("static-access")
     public static void main(String[] args) {
         Options options = new Options();
+
         options.addOption(OptionBuilder.withLongOpt("server")
                 .withDescription("server url to run the test suite")
                 .hasArg()
                 .isRequired()
                 .create());
-        options.addOption(OptionBuilder.withLongOpt("server")
-                .withDescription("server url to run the test suite")
-                .hasArg()
-                .isRequired()
-                .create());
+
         options.addOption(OptionBuilder.withLongOpt("help")
                 .withDescription("print usage help")
                 .create());
@@ -150,7 +147,6 @@ public class LdpTestSuite {
             if (!"http".equals(uri.getScheme())) {
                 throw new IllegalArgumentException("non-http uri");
             }
-            //TODO: check it is alive
         } catch (Exception e) {
             System.err.println("ERROR: invalid server uri, " + e.getLocalizedMessage());
             printUsage(options);
@@ -191,5 +187,5 @@ public class LdpTestSuite {
         System.out.println();
         System.exit(-1);
     }
-    
+
 }
