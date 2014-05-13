@@ -4,15 +4,19 @@
 	<listeners>
 		<listener class-name='org.w3.ldp.testsuite.reporter.LdpTestListener' />
 		<listener class-name='org.w3.ldp.testsuite.reporter.LdpHtmlReporter' />
+		<listener class-name='org.w3.ldp.testsuite.reporter.LdpEarlReporter' />
 	</listeners>
 
-	<!-- <parameter name="basicContainer" value="http://localhost:8080/ldp/resources/" /> -->
+	<!-- <parameter name="basicContainer" value="http://localhost:8080/ldp/resources/" 
+		/> -->
 	<parameter name="directContainer" value="http://localhost:8080/ldp/resources/" />
-	<!-- <parameter name="indirectContainer" value="http://localhost:8080/ldp/resources/" /> -->
+	<!-- <parameter name="indirectContainer" value="http://localhost:8080/ldp/resources/" 
+		/> -->
 
 	<!-- Optional RDF member resource parameter. If left out, the tests will 
 		try to create a resource in one of the containers. -->
-	<!-- <parameter name="memberResource" value="http://localhost:8080/ldp/resources/bt1" /> -->
+	<!-- <parameter name="memberResource" value="http://localhost:8080/ldp/resources/bt1" 
+		/> -->
 
 	<test name="All Tests">
 		<groups>
