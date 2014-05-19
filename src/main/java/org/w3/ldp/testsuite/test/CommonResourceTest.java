@@ -1,6 +1,7 @@
 package org.w3.ldp.testsuite.test;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.testng.Assert.assertTrue;
 import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
@@ -9,17 +10,26 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashSet;
 
+import org.apache.http.HttpStatus;
+import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.w3.ldp.testsuite.LdpTestSuite;
-import org.w3.ldp.testsuite.http.HttpMethod;
 import org.w3.ldp.testsuite.annotations.Reference;
 import org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException;
+import org.w3.ldp.testsuite.http.HttpMethod;
+import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
+import org.w3.ldp.testsuite.vocab.LDP;
 
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.Statement;
+import com.hp.hpl.jena.rdf.model.StmtIterator;
+import com.hp.hpl.jena.vocabulary.DCTerms;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.ResponseSpecification;
-import org.w3.ldp.testsuite.vocab.LDP;
 
 /**
  * Common tests for all LDP resources, RDF source and non-RDF source.
@@ -116,7 +126,6 @@ public abstract class CommonResourceTest extends LdpTest {
     }
 
     @Test(
-            enabled = false,
             groups = {MUST},
             description = "LDP servers MUST assign the default base-URI "
                     + "for [RFC3987] relative-URI resolution to be the HTTP "
@@ -124,8 +133,34 @@ public abstract class CommonResourceTest extends LdpTest {
                     + "the URI of the created resource when the request results "
                     + "in the creation of a new resource.")
     @Reference(uri =LdpTestSuite.SPEC_URI + "#ldpr-gen-defbaseuri")
-    public void testRelativeUriResolutionPut() {
-        // ...
+    public void testRelativeUriResolutionPut() throws URISyntaxException {
+    	skipIfMethodNotAllowed(HttpMethod.PUT);
+
+    	String resourceUri = getResourceUri();
+    	Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
+    			.expect().statusCode(isSuccessful()).header(ETAG, notNullValue())
+    			.when().get(new URI(resourceUri));
+    	
+    	String eTag = response.getHeader(ETAG);
+    	Model model = response.as(Model.class, new RdfObjectMapper("")); // relative URI
+
+    	// Update a property
+    	updateResource(model.getResource(""));
+    	
+    	// Put the resource back using relative URIs.
+    	RestAssured
+                .given().contentType(TEXT_TURTLE).header(IF_MATCH, eTag)
+                	.body(model, new RdfObjectMapper("")) // relative URI
+                .expect().statusCode(isSuccessful())
+                .when().put(new URI(resourceUri));
+    	
+    	// Get the resource again to verify its content.
+    	model = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
+    			.expect().statusCode(isSuccessful())
+    			.when().get(new URI(resourceUri)).as(Model.class, new RdfObjectMapper(resourceUri));
+    	
+    	// Verify the change.
+    	verifyUpdatedResource(model.getResource(resourceUri));
     }
 
     @Test(
@@ -141,7 +176,6 @@ public abstract class CommonResourceTest extends LdpTest {
     }
 
     @Test(
-            // enabled = false,
             groups = {MUST},
             description = "LDP servers MUST support the HTTP GET Method for LDPRs")
     @Reference(uri =LdpTestSuite.SPEC_URI + "#ldpr-get-must")
@@ -173,31 +207,107 @@ public abstract class CommonResourceTest extends LdpTest {
         expectResponse.when().get(new URI(getResourceUri()));
     }
 
-    /**
-     * Use of Http PUT method is optional
-     */
     @Test(
-            enabled = false,
             groups = {MUST},
             description = "If a HTTP PUT is accepted on an existing resource, "
                     + "LDP servers MUST replace the entire persistent state of "
                     + "the identified resource with the entity representation "
                     + "in the body of the request.")
     @Reference(uri =LdpTestSuite.SPEC_URI + "#ldpr-put-replaceall")
-    public void testReplaceExisitngResource() {
+    public void testPutReplacesResource() throws URISyntaxException {
+    	skipIfMethodNotAllowed(HttpMethod.PUT);
+    	
+    	if (restrictionsOnContent()) {
+    		throw new SkipException("Skipping test because there are restrictions on PUT content for this resource");
+    	}
+    	
+    	// TODO: Is there a better way to test this requirement?
+    	String resourceUri = getResourceUri();
+    	Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
+    			.expect().statusCode(isSuccessful()).header(ETAG, notNullValue())
+    			.when().get(new URI(resourceUri));
+    	
+    	String eTag = response.getHeader(ETAG);
+    	Model originalModel = response.as(Model.class, new RdfObjectMapper(resourceUri));
 
+    	// Replace the resource with something different.
+    	Model differentContent = ModelFactory.createDefaultModel();
+    	final String UPDATED_TITLE = "This resources content has been replaced";
+		differentContent.add(differentContent.getResource(resourceUri),
+		        DCTerms.title, UPDATED_TITLE);
+    	RestAssured
+                .given().contentType(TEXT_TURTLE).header(IF_MATCH, eTag)
+                	.body(differentContent, new RdfObjectMapper(resourceUri)) // relative URI
+                .expect().statusCode(isSuccessful())
+                .when().put(new URI(resourceUri));
+    	
+    	// Get the resource again to see what's there.
+    	response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
+    			.expect().statusCode(isSuccessful()).header(ETAG, notNullValue())
+    			.when().get(new URI(resourceUri));
+    	eTag = response.getHeader(ETAG);
+    	Model updatedModel = response.as(Model.class, new RdfObjectMapper(resourceUri));
+    	
+    	// Validate the updated resource content. The LDP server is allowed to add in
+    	// some triples (for instance, dcterms:lastModified), so we can't just compare
+    	// that it's exactly what we posted. Let's make sure not all of the triples
+    	// from the original resource are there since we've completely replaced it,
+    	// however. Also check that the title is as expected.
+    	Resource updatedResource = updatedModel.getResource(resourceUri);
+    	assertTrue(updatedResource.hasProperty(DCTerms.title, UPDATED_TITLE), "Expected updated resource to have title: " + UPDATED_TITLE);
+    	boolean hasDifferentProperties = false;
+    	Resource originalResource = originalModel.getResource(resourceUri);
+    	StmtIterator iter = originalResource.listProperties();
+    	while (iter.hasNext()) {
+    		Statement s = iter.next();
+    		if (!updatedResource.hasProperty(s.getPredicate())) {
+    			hasDifferentProperties = true;
+    		}
+    	}
+    	assertTrue(hasDifferentProperties, "The updated resource has the same properties as the original. Was it really replaced?");
+    	
+    	// Replace the resource with its original content to clean up.
+    	RestAssured
+                .given().contentType(TEXT_TURTLE).header(IF_MATCH, eTag)
+                	.body(originalModel, new RdfObjectMapper(resourceUri)) // relative URI
+                .expect().statusCode(isSuccessful())
+                .when().put(new URI(resourceUri));
     }
 
     @Test(
-            enabled = false,
             groups = {SHOULD},
             description = "LDP servers SHOULD allow clients to update resources "
                     + "without requiring detailed knowledge of server-specific "
                     + "constraints. This is a consequence of the requirement to "
                     + "enable simple creation and modification of LDPRs.")
     @Reference(uri =LdpTestSuite.SPEC_URI + "#ldpr-put-simpleupdate")
-    public void testAllowUpdateResources() {
+    public void testAllowUpdateResources() throws URISyntaxException {
+    	skipIfMethodNotAllowed(HttpMethod.PUT);
 
+    	String resourceUri = getResourceUri();
+    	Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
+    			.expect().statusCode(isSuccessful()).header(ETAG, notNullValue())
+    			.when().get(new URI(resourceUri));
+    	
+    	String eTag = response.getHeader(ETAG);
+    	Model model = response.as(Model.class, new RdfObjectMapper(resourceUri));
+
+    	// Update a property
+    	updateResource(model.getResource(resourceUri));
+    	
+    	RestAssured
+                .given().contentType(TEXT_TURTLE).header(IF_MATCH, eTag)
+                	.body(model, new RdfObjectMapper(resourceUri))
+                .expect().statusCode(isSuccessful())
+                .when().put(new URI(resourceUri));
+    	
+    	// Get the resource again to verify its content.
+    	model = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
+    			.expect().statusCode(isSuccessful())
+    			.when().get(new URI(resourceUri)).as(Model.class, new RdfObjectMapper(resourceUri));
+    	
+    	// Verify the change.
+    	verifyUpdatedResource(model.getResource(resourceUri));
     }
 
     @Test(
@@ -251,15 +361,100 @@ public abstract class CommonResourceTest extends LdpTest {
     }
 
     @Test(
-            enabled = false,
             groups = {SHOULD},
             description = "LDP clients SHOULD use the HTTP If-Match header and HTTP ETags "
                     + "to ensure it isn’t modifying a resource that has changed since the "
                     + "client last retrieved its representation. LDP servers SHOULD require "
                     + "the HTTP If-Match header and HTTP ETags to detect collisions.")
     @Reference(uri =LdpTestSuite.SPEC_URI + "#ldpr-put-precond")
-    public void testUseHttpIfMatchHeaderAndETags() {
+    public void testPutRequiresIfMatch() throws URISyntaxException {
+    	skipIfMethodNotAllowed(HttpMethod.PUT);
 
+    	String resourceUri = getResourceUri();
+    	Model model = RestAssured
+    			.given()
+    				.header(ACCEPT, TEXT_TURTLE)
+    			.expect()
+    				.statusCode(isSuccessful())
+    				.header(ETAG, notNullValue())
+    			.when()
+    				.get(new URI(resourceUri)).as(Model.class, new RdfObjectMapper(resourceUri));
+
+    	RestAssured
+                .given()
+                	.contentType(TEXT_TURTLE)
+                	.body(model, new RdfObjectMapper(resourceUri))
+                .expect()
+                	.statusCode(not(isSuccessful()))
+                .when()
+                	.put(new URI(resourceUri));
+    }
+
+    @Test(
+            groups = {MUST},
+            description = "LDP servers MUST respond with status code 412 "
+                    + "(Condition Failed) if ETags fail to match when there "
+                    + "are no other errors with the request [HTTP11]. LDP "
+                    + "servers that require conditional requests MUST respond "
+                    + "with status code 428 (Precondition Required) when the "
+                    + "absence of a precondition is the only reason for rejecting "
+                    + "the request [RFC6585].")
+    @Reference(uri =LdpTestSuite.SPEC_URI + "#ldpr-put-precond")
+    public void testConditionFailedStatusCode() throws URISyntaxException {
+    	skipIfMethodNotAllowed(HttpMethod.PUT);
+
+    	String resourceUri = getResourceUri();
+    	Model model = RestAssured
+    		.given()
+    			.header(ACCEPT, TEXT_TURTLE)
+    		.expect()
+    			.statusCode(isSuccessful()).header(ETAG, notNullValue())
+    		.when()
+    			.get(resourceUri).as(Model.class, new RdfObjectMapper(resourceUri));
+
+    	RestAssured
+            .given()
+                    .contentType(TEXT_TURTLE)
+                    .header(IF_MATCH, "These aren't the ETags you're looking for.")
+                    .body(model, new RdfObjectMapper(resourceUri))
+            .expect()
+                    .statusCode(HttpStatus.SC_PRECONDITION_FAILED)
+            .when()
+                    .put(resourceUri);
+    }
+
+    @Test(
+            groups = {MUST},
+            dependsOnMethods = {"testPutRequiresIfMatch"},
+            description = "LDP servers MUST respond with status code 412 "
+                    + "(Condition Failed) if ETags fail to match when there "
+                    + "are no other errors with the request [HTTP11]. LDP "
+                    + "servers that require conditional requests MUST respond "
+                    + "with status code 428 (Precondition Required) when the "
+                    + "absence of a precondition is the only reason for rejecting "
+                    + "the request [RFC6585].")
+    @Reference(uri =LdpTestSuite.SPEC_URI + "#ldpr-put-precond")
+    public void testPreconditionRequiredStatusCode() throws URISyntaxException {
+    	skipIfMethodNotAllowed(HttpMethod.PUT);
+
+    	String resourceUri = getResourceUri();
+    	Model model = RestAssured
+    			.given()
+    				.header(ACCEPT, TEXT_TURTLE)
+    			.expect()
+    				.statusCode(isSuccessful())
+    				.header(ETAG, notNullValue())
+    			.when()
+    				.get(new URI(resourceUri)).as(Model.class, new RdfObjectMapper(resourceUri));
+
+    	RestAssured
+                .given()
+                	.contentType(TEXT_TURTLE)
+                	.body(model, new RdfObjectMapper(resourceUri))
+                .expect()
+                	.statusCode(428)
+                .when()
+                	.put(new URI(resourceUri));
     }
 
     @Test(
@@ -274,20 +469,26 @@ public abstract class CommonResourceTest extends LdpTest {
                     + "absence of a precondition is the only reason for rejecting "
                     + "the request [RFC6585].")
     @Reference(uri =LdpTestSuite.SPEC_URI + "#ldpr-put-precond")
-    public void testResponseOnFailedRequests() {
+    public void testPutBadETag() throws URISyntaxException {
+    	skipIfMethodNotAllowed(HttpMethod.PUT);
 
-    }
+    	String resourceUri = getResourceUri();
+    	Model model = RestAssured
+    			.given()
+    				.header(ACCEPT, TEXT_TURTLE)
+    			.expect()
+    				.statusCode(isSuccessful()).header(ETAG, notNullValue())
+    			.when()
+    				.get(new URI(resourceUri)).as(Model.class, new RdfObjectMapper(resourceUri));
 
-    /**
-     * Use of Http PUT method is optional
-     */
-    @Test(
-            enabled = false,
-            groups = {MAY},
-            description = "LDP servers MAY choose to allow the creation of new "
-                    + "resources using HTTP PUT.")
-    @Reference(uri =LdpTestSuite.SPEC_URI + "#ldpr-put-create")
-    public void testPut() {
+    	RestAssured
+                .given().contentType(TEXT_TURTLE)
+                	.header(ETAG, "This is not the ETag you're looking for") // bad ETag value
+                	.body(model, new RdfObjectMapper(resourceUri))
+                .expect()
+                	.statusCode(HttpStatus.SC_PRECONDITION_FAILED)
+                .when()
+                	.put(new URI(resourceUri));
     }
 
     @Test(
@@ -346,4 +547,43 @@ public abstract class CommonResourceTest extends LdpTest {
         }
     }
 
+    // Update a resource then later test if the updates were applied (i.e., on a subsequent GET).
+    // These methods could be overwritten by subclasses.
+    private final static String TITLE_FOR_UPDATE = "LDP Test Suite: This resource has been updated... " + System.currentTimeMillis();
+    
+    /**
+	 * Update a resource then later test if the updates were applied (i.e., on a
+	 * subsequent GET). These methods could be overwritten by subclasses.
+	 * 
+	 * @see #verifyUpdatedResource(Resource)
+	 */
+    protected void updateResource(Resource r) {
+    	// Set a title.
+    	r.removeAll(DCTerms.title);
+    	r.addProperty(DCTerms.title, TITLE_FOR_UPDATE);
+    }
+    
+    /**
+	 * Update a resource then later test if the updates were applied (i.e., on a
+	 * subsequent GET). These methods could be overwritten by subclasses.
+	 * 
+	 * @see #updateResource(Resource)
+	 */
+    protected void verifyUpdatedResource(Resource r) {
+    	// Test the resource has the title we set.
+    	r.hasProperty(DCTerms.title, TITLE_FOR_UPDATE);
+    }
+ 
+	/**
+	 * Are there any restrictions on resource content? This should be true for
+	 * LDP containers since PUT is not allowed to modify containment triples.
+	 * 
+	 * @return true if there are restrictions on what triples are allowed; false
+	 *         if the entire resource can be replaced with any triples
+	 * @see #testPutReplacesResource
+	 * @see CommonContainerTest#testRejectPutModifyingContainmentTriples
+	 */
+    protected boolean restrictionsOnContent() {
+    	return false;
+    }
 }

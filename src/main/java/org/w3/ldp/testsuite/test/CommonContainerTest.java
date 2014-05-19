@@ -1,5 +1,6 @@
 package org.w3.ldp.testsuite.test;
 
+import static org.hamcrest.core.IsNot.not;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertNotEquals;
 import static org.testng.Assert.assertNotNull;
@@ -9,6 +10,8 @@ import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.UUID;
+
+import javax.ws.rs.core.UriBuilder;
 
 import org.apache.http.HttpStatus;
 import org.testng.SkipException;
@@ -27,6 +30,7 @@ import com.hp.hpl.jena.vocabulary.RDF;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.RequestSpecification;
+
 import org.w3.ldp.testsuite.vocab.LDP;
 
 /**
@@ -36,6 +40,16 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 
     public static final String MSG_LOC_NOTFOUND = "Location header missing after POST create.";
     public static final String MSG_MBRRES_NOTFOUND = "Unable to locate object in triple with predicate ldp:membershipResource.";
+
+    @Test(
+            groups = {MAY},
+            description = "LDP servers MAY choose to allow the creation of new "
+                    + "resources using HTTP PUT.")
+    @Reference(uri =LdpTestSuite.SPEC_URI + "#ldpr-put-create")
+    public void testPutToCreate() throws URISyntaxException {
+    	String location = putToCreate();
+    	RestAssured.expect().statusCode(isSuccessful()).when().delete(new URI(location));
+    }
 
     @Test(
             enabled = false,
@@ -281,35 +295,6 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         testRestrictUriReUse(null);
     }
 
-    private void testRestrictUriReUse(String slug) throws URISyntaxException {
-        skipIfMethodNotAllowed(HttpMethod.POST);
-
-        // POST two resources with the same Slug header and content to make sure they have different URIs.
-        Model content = postContent();
-        String loc1 = post(content, slug);
-
-        // TODO: Test if DELETE is supported before trying to delete the resource.
-        // Delete the resource to make sure the server doesn't reuse the URI below.
-        RestAssured.expect().statusCode(isSuccessful()).when().delete(new URI(loc1));
-
-        String loc2 = post(content, slug);
-        assertNotEquals(loc1, loc2, "Server reused URIs for POSTed resources.");
-    }
-
-    private String post(Model content, String slug) throws URISyntaxException {
-        RequestSpecification spec = RestAssured.given().contentType(TEXT_TURTLE);
-        if (slug != null) {
-            spec.header(SLUG, slug);
-        }
-        Response post = spec.body(content, new RdfObjectMapper())
-                .expect().statusCode(HttpStatus.SC_CREATED)
-                .when().post(new URI(getResourceUri()));
-        String location = post.getHeader(LOCATION);
-        assertNotNull(location, MSG_LOC_NOTFOUND);
-
-        return location;
-    }
-
     @Test(
             groups = {MAY},
             enabled = false, // not implemented
@@ -351,24 +336,61 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 
     @Test(
             groups = {SHOULD},
-            enabled = false, // not implemented
             description = "LDP servers SHOULD NOT allow HTTP PUT to update an LDPC’s "
                     + "containment triples; if the server receives such a request, it "
                     + "SHOULD respond with a 409 (Conflict) status code.")
     @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-put-mbrprops")
     public void testRejectPutModifyingContainmentTriples() {
+    	String containerUri = getResourceUri();
+    	Response response = RestAssured
+    			.given().header(ACCEPT, TEXT_TURTLE)
+    			.expect().statusCode(isSuccessful())
+    			.when().get(containerUri);
+    	String eTag = response.getHeader(ETAG);
+    	Model model = response.as(Model.class, new RdfObjectMapper(containerUri));
+    	
+    	// Try to modify the ldp:contains triple.
+    	Resource containerResource = model.getResource(containerUri);
+    	containerResource.addProperty(model.createProperty(LDP.contains.stringValue()),
+    			model.createResource("#foo"));
 
+    	RequestSpecification putRequest = RestAssured.given().contentType(TEXT_TURTLE);
+    	if (eTag != null) {
+    		putRequest.header(IF_MATCH, eTag);
+    	}
+    	putRequest.body(model, new RdfObjectMapper(containerUri))
+    		.expect().statusCode(not(isSuccessful()))
+    		.when().put(containerUri);
     }
 
     @Test(
             groups = {SHOULD},
-            enabled = false, // not implemented
+            dependsOnMethods = { "testPutToCreate" },
             description = "LDP servers that allow LDPR creation via PUT SHOULD NOT "
                     + "re-use URIs. For RDF representations (LDP-RSs),the created "
                     + "resource can be thought of as an RDF named graph [rdf11-concepts].")
     @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-put-create")
-    public void testRestrictPutReUseUri() {
+    public void testRestrictPutReUseUri() throws URISyntaxException {
+    	String location = putToCreate();
+    	URI uri = new URI(location);
+    	
+    	// Delete the resource.
+    	RestAssured
+    		.expect()
+    			.statusCode(isSuccessful())
+    		.when()
+    			.delete(uri);
 
+    	// Try to put to the same URI again. It should fail.
+    	Model content = postContent();
+    	RestAssured
+    		.given()
+    			.body(content, new RdfObjectMapper(location))
+    			.contentType(TEXT_TURTLE)
+    		.expect()
+    			.statusCode(not(isSuccessful()))
+    		.when()
+    			.put(uri);
     }
 
     @Test(
@@ -444,6 +466,73 @@ public abstract class CommonContainerTest extends RdfSourceTest {
     @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-options-linkmetahdr")
     public void testProvideLinkHeaderAssociatedRdfSource() {
 
+    }
+
+    protected boolean restrictionsOnContent() {
+    	return false;
+    }
+
+    /**
+     * Tests that LDP servers do not reuse URIs after deleting resources.
+     * 
+     * @param slug the slug header for the request or null if no slug
+     * 
+     * @throws URISyntaxException on bad URIs
+     *
+     * @see #testRestrictUriReUseSlug()
+     * @see #testRestrictUriReUseNoSlug()
+     */
+    private void testRestrictUriReUse(String slug) throws URISyntaxException {
+        skipIfMethodNotAllowed(HttpMethod.POST);
+
+        // POST two resources with the same Slug header and content to make sure they have different URIs.
+        Model content = postContent();
+        String loc1 = post(content, slug);
+
+        // TODO: Test if DELETE is supported before trying to delete the resource.
+        // Delete the resource to make sure the server doesn't reuse the URI below.
+        RestAssured.expect().statusCode(isSuccessful()).when().delete(new URI(loc1));
+
+        String loc2 = post(content, slug);
+        assertNotEquals(loc1, loc2, "Server reused URIs for POSTed resources.");
+    }
+
+    private String post(Model content, String slug) throws URISyntaxException {
+        RequestSpecification spec = RestAssured.given().contentType(TEXT_TURTLE);
+        if (slug != null) {
+            spec.header(SLUG, slug);
+        }
+        Response post = spec.body(content, new RdfObjectMapper())
+                .expect().statusCode(HttpStatus.SC_CREATED)
+                .when().post(new URI(getResourceUri()));
+        String location = post.getHeader(LOCATION);
+        assertNotNull(location, MSG_LOC_NOTFOUND);
+
+        return location;
+    }
+
+    /**
+     * Attempts to create a new resource using PUT.
+     * 
+     * @return the location of the created resource
+     * @see #testPutToCreate()
+     * @see #testRestrictPutReUseUri()
+     */
+	protected String putToCreate() {
+	    // Build a unique URI for the PUT request.
+    	URI target = UriBuilder.fromUri(getResourceUri()).path(UUID.randomUUID().toString()).build();
+    	Model model = postContent();
+    	Response response = RestAssured
+    			.given().contentType(TEXT_TURTLE).body(model, new RdfObjectMapper(""))
+    			.expect().statusCode(HttpStatus.SC_CREATED)
+    			.when().put(target);
+
+    	String location = response.getHeader(LOCATION);
+    	if (location == null) {
+    		return target.toString();
+    	}
+
+	    return location;
     }
 
 }

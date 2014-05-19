@@ -9,7 +9,7 @@ public class HttpStatusSuccessMatcher extends TypeSafeMatcher<Integer> {
 
     @Override
     public void describeTo(Description d) {
-        d.appendText("successful status code");
+        d.appendText("between 200 and 209");
     }
 
     @Override

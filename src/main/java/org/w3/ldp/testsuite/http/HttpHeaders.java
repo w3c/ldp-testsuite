@@ -7,6 +7,7 @@ public interface HttpHeaders {
     public static final String ACCEPT_POST = "Accept-Post";
     public static final String ALLOW = "Allow";
     public static final String ETAG = "ETAG";
+    public static final String IF_MATCH = "If-Match";
     public static final String LINK = "Link";
     public static final String LINK_REL_TYPE = "type";
     public static final String LOCATION = "Location";
