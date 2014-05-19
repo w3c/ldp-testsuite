@@ -87,8 +87,6 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 
     @Test(
             groups = {MUST},
-            enabled = false, // not implemented
-            dependsOnMethods = {"testPostToKnownLdpc"},
             description = "If the resource was created successfully, LDP servers MUST "
                     + "respond with status code 201 (Created) and the Location "
                     + "header set to the new resource’s URL. Clients shall not "
@@ -112,7 +110,6 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 
     @Test(
             groups = {MUST},
-            enabled = false, // not implemented
             description = "When a successful HTTP POST request to an LDPC results "
                     + "in the creation of an LDPR, a containment triple MUST be "
                     + "added to the state of LDPC.")
@@ -240,7 +237,6 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 
     @Test(
             groups = {SHOULD},
-            enabled = false, // not implemented
             description = "LDP servers SHOULD allow clients to create new resources without "
                     + "requiring detailed knowledge of application-specific constraints. This "
                     + "is a consequence of the requirement to enable simple creation and "
@@ -340,7 +336,6 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 
     @Test(
             groups = {MUST},
-            enabled = false, // not implemented
             description = "LDP servers that support POST MUST include an Accept-Post "
                     + "response header on HTTP OPTIONS responses, listing post document "
                     + "media type(s) supported by the server.")
