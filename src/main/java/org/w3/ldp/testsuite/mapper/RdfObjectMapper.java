@@ -54,9 +54,6 @@ public class RdfObjectMapper implements ObjectMapper {
 
         String output = stringWriter.toString();
 
-        // DEBUG
-        //System.out.println(output);
-
         // Must call getBytes() to avoid rest-assured errors handling strings
         // with media types other than JSON and XML.
         return output.getBytes();
