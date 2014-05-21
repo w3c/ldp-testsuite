@@ -9,7 +9,9 @@ import java.net.URISyntaxException;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 import org.w3.ldp.testsuite.LdpTestSuite;
+import org.w3.ldp.testsuite.annotations.Implementation;
 import org.w3.ldp.testsuite.annotations.Reference;
+import org.w3.ldp.testsuite.annotations.Status;
 import org.w3.ldp.testsuite.exception.SkipClientTestException;
 import org.w3.ldp.testsuite.exception.SkipNotTestableException;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
@@ -29,6 +31,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
                     + "for LDP-RSs. The HTTP Request-URI of the LDP-RS is "
                     + "typically the subject of most triples in the response.")
     @Reference(uri = LdpTestSuite.SPEC_URI + "#ldprs-gen-rdf")
+	@Status(status = Status.APPROVED)
+    @Implementation(implementation = Implementation.IMPLEMENTED)
     public void testGetResource() throws URISyntaxException {
         // Make sure we can get the resource itself and the response is
         // valid RDF. Turtle is a required media type, so this request
@@ -45,6 +49,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
                     + " much more useful to client applications that don’t "
                     + "support inferencing.")
     @Reference(uri = LdpTestSuite.SPEC_URI + "#ldprs-gen-atleast1rdftype")
+    @Status(status = Status.APPROVED)
+    @Implementation(implementation = Implementation.IMPLEMENTED)
     public void testContainsRdfType() throws URISyntaxException {
         Model containerModel = getAsModel(getResourceUri());
         Resource r = containerModel.getResource(getResourceUri());
@@ -58,6 +64,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
                     + "to this general rule, some specific cases are covered by "
                     + "other conformance rules.")
     @Reference(uri = LdpTestSuite.SPEC_URI + "#ldprs-gen-reusevocab")
+	@Status(status = Status.APPROVED)
+    @Implementation(implementation = Implementation.NOT_IMPLEMENTED, manual = true)
     public void testReUseVocabularies() {
         throw new SkipNotTestableException();
     }
@@ -68,6 +76,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
                     + "as Dublin Core [DC-TERMS], RDF [rdf11-concepts] and RDF "
                     + "Schema [rdf-schema], whenever possible.")
     @Reference(uri = LdpTestSuite.SPEC_URI + "#ldprs-gen-reusevocabsuchas")
+	@Status(status = Status.APPROVED)
+    @Implementation(implementation = Implementation.NOT_IMPLEMENTED, manual = true)
     public void testUseStandardVocabularies() throws URISyntaxException {
         throw new SkipNotTestableException();
     }
@@ -78,6 +88,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
                     + "or domain, LDP clients MUST assume that any LDP-RS can "
                     + "have multiple values for rdf:type.")
     @Reference(uri = LdpTestSuite.SPEC_URI + "#ldp-cli-multitype")
+	@Status(status = Status.APPROVED)
+    @Implementation(implementation = Implementation.NOT_IMPLEMENTED, clientOnly = true)
     public void testAllowMultipleRdfTypes() {
         throw new SkipClientTestException();
     }
@@ -89,6 +101,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
                     + "that the rdf:type values of a given LDP-RS can "
                     + "change over time.")
     @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpr-cli-typeschange")
+	@Status(status = Status.APPROVED)
+    @Implementation(implementation = Implementation.NOT_IMPLEMENTED, clientOnly = true)
     public void testChangeRdfTypeValue() {
         throw new SkipClientTestException();
     }
@@ -103,6 +117,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
                     + "that are used in the state of any one LDP-RS is not limited "
                     + "to any pre-defined set.")
     @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpr-cli-openpreds")
+	@Status(status = Status.APPROVED)
+    @Implementation(implementation = Implementation.NOT_IMPLEMENTED, clientOnly = true)
     public void testServerOpen() {
         throw new SkipClientTestException();
     }
@@ -116,6 +132,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
                     + "content defined by LDP must be explicitly represented, unless noted "
                     + "otherwise within this document.")
     @Reference(uri = LdpTestSuite.SPEC_URI + "#ldprs-gen-noinferencing")
+	@Status(status = Status.APPROVED)
+    @Implementation(implementation = Implementation.NOT_IMPLEMENTED, isTestable = false, manual = true)
     public void testRestrictClientInference() {
         throw new SkipNotTestableException();
     }
@@ -129,6 +147,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
                     + "HTTP PATCH instead of HTTP PUT for update avoids this "
                     + "burden for clients [RFC5789]. ")
     @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpr-cli-preservetriples")
+	@Status(status = Status.APPROVED)
+    @Implementation(implementation = Implementation.NOT_IMPLEMENTED, isTestable = false, manual = true)
     public void testGetResourcePreservesTriples() throws URISyntaxException {
         throw new SkipNotTestableException();
     }
@@ -139,6 +159,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
                     + "formed by an LDP server that ignores hints, including "
                     + "LDP-defined hints.")
     @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpr-cli-hints-ignorable")
+	@Status(status = Status.APPROVED)
+    @Implementation(implementation = Implementation.NOT_IMPLEMENTED, isTestable = false, manual = true)
     public void testAllowResponsesFromServer() {
         throw new SkipNotTestableException();
     }
@@ -148,6 +170,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
             description = "LDP servers MUST provide a text/turtle representation "
                     + "of the requested LDP-RS [turtle].")
     @Reference(uri = LdpTestSuite.SPEC_URI + "#ldprs-get-turtle")
+	@Status(status = Status.APPROVED)
+    @Implementation(implementation = Implementation.IMPLEMENTED)
     public void testGetResourceTurtle() throws URISyntaxException {
         RestAssured.given().header(ACCEPT, TEXT_TURTLE)
                 .expect().statusCode(isSuccessful()).contentType(TEXT_TURTLE)

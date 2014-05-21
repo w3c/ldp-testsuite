@@ -19,13 +19,16 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.http.HttpMethod;
+import org.w3.ldp.testsuite.annotations.Implementation;
 import org.w3.ldp.testsuite.annotations.Reference;
+import org.w3.ldp.testsuite.annotations.Status;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
+
 import org.w3.ldp.testsuite.vocab.LDP;
 
 public class DirectContainerTest extends CommonContainerTest {
@@ -59,6 +62,8 @@ public class DirectContainerTest extends CommonContainerTest {
                     + "(that is, rel='type') in all responses to requests made "
                     + "to the LDPC's HTTP Request-URI.")
     @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-linktypehdr")
+	@Status(status = Status.APPROVED)
+    @Implementation(implementation = Implementation.IMPLEMENTED)
     public void testHttpLinkHeader() throws URISyntaxException {
         Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
                 .expect().statusCode(HttpStatus.SC_OK).when()
@@ -74,6 +79,8 @@ public class DirectContainerTest extends CommonContainerTest {
                     + "as an LDPC's membership predicate if there is no obvious "
                     + "predicate from an application vocabulary to use.")
     @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpdc-mbrpred")
+	@Status(status = Status.APPROVED)
+    @Implementation(implementation = Implementation.IMPLEMENTED)
     public void testUseMemberPredicate() throws URISyntaxException {
         Model containerModel = getAsModel(directContainer);
         Resource container = containerModel.getResource(directContainer);
@@ -90,6 +97,8 @@ public class DirectContainerTest extends CommonContainerTest {
                     + "constant-URI. Commonly the LDPC's URI is the membership-constant-URI,"
                     + " but LDP does not require this.")
     @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpdc-containres")
+	@Status(status = Status.APPROVED)
+    @Implementation(implementation = Implementation.IMPLEMENTED)
     public void testMemberResourceTriple() throws URISyntaxException {
         Model containerModel = getAsModel(directContainer);
         Resource container = containerModel.getResource(directContainer);
@@ -106,6 +115,8 @@ public class DirectContainerTest extends CommonContainerTest {
                     + "such as ldp:hasMemberRelation or ldp:isMemberOfRelation, "
                     + "based on the membership triple pattern used by the container.")
     @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpdc-containtriples")
+	@Status(status = Status.APPROVED)
+    @Implementation(implementation = Implementation.IMPLEMENTED)
     public void testMemberRelationOrIsMemberOfRelationTripleExists() throws URISyntaxException {
         Model containerModel = getAsModel(directContainer);
         Resource container = containerModel.getResource(directContainer);
@@ -126,6 +137,8 @@ public class DirectContainerTest extends CommonContainerTest {
                     + " triple, but LDP imposes no requirement to materialize such "
                     + "a triple in the LDP-DC representation.")
     @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpdc-indirectmbr-basic")
+	@Status(status = Status.PENDING)
+    @Implementation(implementation = Implementation.NOT_IMPLEMENTED)
     public void testActAsIfInsertedContentRelationTripleExists() {
 
     }
@@ -138,6 +151,8 @@ public class DirectContainerTest extends CommonContainerTest {
                     + "membership triple MUST be consistent with any LDP-defined "
                     + "predicates it exposes.")
     @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpdc-post-createdmbr-member")
+	@Status(status = Status.APPROVED)
+    @Implementation(implementation = Implementation.IMPLEMENTED)
     public void testPostResourceUpdatesTriples() throws URISyntaxException {
         skipIfMethodNotAllowed(HttpMethod.POST);
 
@@ -169,6 +184,8 @@ public class DirectContainerTest extends CommonContainerTest {
                     + "triple which was originally created by the LDP-DC is deleted, "
                     + "the LDPC server MUST also remove the corresponding membership triple.")
     @Reference(uri = LdpTestSuite.SPEC_URI + "#ldpdc-del-contremovesmbrtriple")
+	@Status(status = Status.APPROVED)
+    @Implementation(implementation = Implementation.IMPLEMENTED)
     public void testDeleteResourceUpdatesTriples() throws URISyntaxException {
         skipIfMethodNotAllowed(HttpMethod.POST);
 
