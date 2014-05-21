@@ -1,0 +1,43 @@
+@CHARSET "ISO-8859-1";
+
+h1 {
+	text-align: center
+}
+
+th {
+	border: 1px solid black;
+	padding: 10px
+}
+
+td,tr {
+	border: 1px solid black;
+	padding: 20px;
+	border-collapse: collapse
+}
+
+.annotation {
+	border-collapse: collapse;
+	border: 1px solid black;
+	margin-left: +3em;
+	border: 1px solid black
+}
+
+.summary {
+	border: 1px solid black;
+	padding: 20px;
+	border-collapse: collapse;
+	border: 1px solid black;
+	margin-left: +5em
+}
+
+.totop {
+	font-size: 80%;
+	text-align: center;
+	border-bottom: 2px solid
+}
+
+.totest {
+	font-size: 80%;
+	text-align: center;
+	border-bottom: 2px dashed
+}
