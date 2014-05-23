@@ -399,25 +399,25 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 			testMethod = METHOD.AUTOMATED)
 	public void testRejectPutModifyingContainmentTriples() {
 		String containerUri = getResourceUri();
-		Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
-				.expect().statusCode(isSuccessful()).when().get(containerUri);
-		String eTag = response.getHeader(ETAG);
-		Model model = response.as(Model.class,
-				new RdfObjectMapper(containerUri));
+    	Response response = RestAssured
+    			.given().header(ACCEPT, TEXT_TURTLE)
+    			.expect().statusCode(isSuccessful())
+    			.when().get(containerUri);
+    	String eTag = response.getHeader(ETAG);
+    	Model model = response.as(Model.class, new RdfObjectMapper(containerUri));
+    	
+    	// Try to modify the ldp:contains triple.
+    	Resource containerResource = model.getResource(containerUri);
+    	containerResource.addProperty(model.createProperty(LDP.contains.stringValue()),
+    			model.createResource("#" + System.currentTimeMillis()));
 
-		// Try to modify the ldp:contains triple.
-		Resource containerResource = model.getResource(containerUri);
-		containerResource.addProperty(
-				model.createProperty(LDP.contains.stringValue()),
-				model.createResource("#foo"));
-
-		RequestSpecification putRequest = RestAssured.given().contentType(
-				TEXT_TURTLE);
-		if (eTag != null) {
-			putRequest.header(IF_MATCH, eTag);
-		}
-		putRequest.body(model, new RdfObjectMapper(containerUri)).expect()
-				.statusCode(not(isSuccessful())).when().put(containerUri);
+    	RequestSpecification putRequest = RestAssured.given().contentType(TEXT_TURTLE);
+    	if (eTag != null) {
+    		putRequest.header(IF_MATCH, eTag);
+    	}
+    	putRequest.body(model, new RdfObjectMapper(containerUri))
+    		.expect().statusCode(not(isSuccessful()))
+    		.when().put(containerUri);
 	}
 
 	@Test(
@@ -434,13 +434,22 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 		URI uri = new URI(location);
 
 		// Delete the resource.
-		RestAssured.expect().statusCode(isSuccessful()).when().delete(uri);
+    	RestAssured
+    		.expect()
+    			.statusCode(isSuccessful())
+    		.when()
+    			.delete(uri);
 
 		// Try to put to the same URI again. It should fail.
-		Model content = postContent();
-		RestAssured.given().body(content, new RdfObjectMapper(location))
-				.contentType(TEXT_TURTLE).expect()
-				.statusCode(not(isSuccessful())).when().put(uri);
+    	Model content = postContent();
+    	RestAssured
+    		.given()
+    			.contentType(TEXT_TURTLE)
+    			.body(content, new RdfObjectMapper(location))
+    		.expect()
+    			.statusCode(not(isSuccessful()))
+    		.when()
+    			.put(uri);
 	}
 
 	@Test(
@@ -533,7 +542,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	}
 
 	protected boolean restrictionsOnContent() {
-		return false;
+		return true;
 	}
 
 	/**
