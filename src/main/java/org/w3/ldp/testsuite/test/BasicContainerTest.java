@@ -40,13 +40,17 @@ public class BasicContainerTest extends CommonContainerTest {
 		}
 	}
 
-	@Test(groups = { MUST }, description = "LDP servers exposing LDPCs MUST advertise their "
-			+ "LDP support by exposing a HTTP Link header with a "
-			+ "target URI matching the type of container (see below) "
-			+ "the server supports, and a link relation type of type "
-			+ "(that is, rel='type') in all responses to requests made "
-			+ "to the LDPC's HTTP Request-URI.")
-	@SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-linktypehdr", testMethod = METHOD.AUTOMATED)
+	@Test(
+			groups = { MUST }, 
+			description = "LDP servers exposing LDPCs MUST advertise their "
+					+ "LDP support by exposing a HTTP Link header with a "
+					+ "target URI matching the type of container (see below) "
+					+ "the server supports, and a link relation type of type "
+					+ "(that is, rel='type') in all responses to requests made "
+					+ "to the LDPC's HTTP Request-URI.")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-linktypehdr", 
+			testMethod = METHOD.AUTOMATED)
 	public void testContainerSupportsHttpLinkHeader() throws URISyntaxException {
 		Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
 				.expect().statusCode(HttpStatus.SC_OK).when()
@@ -58,10 +62,14 @@ public class BasicContainerTest extends CommonContainerTest {
 						+ LDP.BasicContainer.stringValue() + "> and rel='type'");
 	}
 
-	@Test(groups = { MUST }, description = "Each LDP Basic Container MUST also be a "
-			+ "conforming LDP Container in section 5.2 Container "
-			+ "along the following restrictions in this section.")
-	@SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpbc-are-ldpcs", testMethod = METHOD.AUTOMATED)
+	@Test(
+			groups = { MUST }, 
+			description = "Each LDP Basic Container MUST also be a "
+					+ "conforming LDP Container in section 5.2 Container "
+					+ "along the following restrictions in this section.")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldpbc-are-ldpcs", 
+			testMethod = METHOD.AUTOMATED)
 	public void testContainerTypeIsBasicContainer() throws URISyntaxException {
 		// FIXME: We're just testing the RDF type here. We're not really testing
 		// the requirement.
