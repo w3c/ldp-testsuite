@@ -13,6 +13,8 @@ Test Suite for Linked Data Platform (LDP).
 
 This Test Suite is still _work-in-progress_, so __should not be used__ yet.
 
+The list of test cases, along with their status (WG approved, manual, client-only) is available in [a generated report](http://w3c.github.io/ldp-testsuite/report/LdpTestCasesHtmlReport.html).
+
 ## Usage
 
 ### Standalone
