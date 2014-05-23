@@ -27,7 +27,9 @@ public abstract class NonRDFSourceTest extends CommonResourceTest {
             description = "LDP servers may accept an HTTP POST of non-RDF " +
                     "representations (LDP-NRs) for creation of any kind of " +
                     "resource, for example binary resources.")
-    @SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#dfn-ldp-server", testMethod = METHOD.AUTOMATED)
+    @SpecTest(
+    		specRefUri = LdpTestSuite.SPEC_URI + "#dfn-ldp-server", 
+    		testMethod = METHOD.AUTOMATED)
     public void testPostResource() throws URISyntaxException, IOException {
         // Make sure we can post binary resources
         RestAssured
