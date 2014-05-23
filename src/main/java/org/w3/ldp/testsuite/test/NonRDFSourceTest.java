@@ -1,14 +1,15 @@
 package org.w3.ldp.testsuite.test;
 
 import com.hp.hpl.jena.rdf.model.Model;
-
 import com.jayway.restassured.RestAssured;
+
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpStatus;
 import org.hamcrest.CoreMatchers;
 import org.testng.annotations.Test;
 import org.w3.ldp.testsuite.LdpTestSuite;
-import org.w3.ldp.testsuite.annotations.Reference;
+import org.w3.ldp.testsuite.annotations.SpecTest;
+import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.matcher.HeaderMatchers;
 
@@ -26,7 +27,7 @@ public abstract class NonRDFSourceTest extends CommonResourceTest {
             description = "LDP servers may accept an HTTP POST of non-RDF " +
                     "representations (LDP-NRs) for creation of any kind of " +
                     "resource, for example binary resources.")
-    @Reference(uri = LdpTestSuite.SPEC_URI + "#dfn-ldp-server")
+    @SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#dfn-ldp-server", testMethod = METHOD.AUTOMATED)
     public void testPostResource() throws URISyntaxException, IOException {
         // Make sure we can post binary resources
         RestAssured

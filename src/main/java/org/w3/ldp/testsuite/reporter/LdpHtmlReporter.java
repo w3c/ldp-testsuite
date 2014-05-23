@@ -26,7 +26,7 @@ import org.testng.annotations.Test;
 import org.testng.internal.Utils;
 import org.testng.xml.XmlSuite;
 import org.w3.ldp.testsuite.LdpTestSuite;
-import org.w3.ldp.testsuite.annotations.Reference;
+import org.w3.ldp.testsuite.annotations.SpecTest;
 
 /**
  * HTML reporter for the LDP test suite. Takes the results of the test methods
@@ -362,9 +362,9 @@ public class LdpHtmlReporter implements IReporter {
 
 		String reference = "";
 		if (m.getMethod().getConstructorOrMethod().getMethod()
-				.getAnnotation(Reference.class) != null) {
+				.getAnnotation(SpecTest.class) != null) {
 			reference = m.getMethod().getConstructorOrMethod().getMethod()
-					.getAnnotation(Reference.class).uri();
+					.getAnnotation(SpecTest.class).specRefUri();
 			html.p(class_("indented")).b().write("Reference URI: ")._b()
 					.a(href(reference)).write(reference)._a()._p();
 		}
