@@ -16,7 +16,8 @@ import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.internal.Utils;
 import org.testng.xml.XmlSuite;
-import org.w3.ldp.testsuite.annotations.Reference;
+import org.w3.ldp.testsuite.annotations.SpecTest;
+//import org.w3.ldp.testsuite.annotations.Reference;
 import org.w3.ldp.testsuite.vocab.Earl;
 
 import com.hp.hpl.jena.rdf.model.Model;
@@ -112,10 +113,10 @@ public class LdpEarlReporter implements IReporter {
 
 		caseResource.addProperty(DCTerms.subject, "Groups: " + groups);
 		if (result.getMethod().getConstructorOrMethod().getMethod()
-				.getAnnotation(Reference.class).uri() != null) {
+				.getAnnotation(SpecTest.class).specRefUri() != null) {
 			caseResource.addProperty(DCTerms.relation,
 					result.getMethod().getConstructorOrMethod().getMethod()
-							.getAnnotation(Reference.class).uri());
+							.getAnnotation(SpecTest.class).specRefUri());
 		}
 
 		/* Test Result Resource */

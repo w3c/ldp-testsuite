@@ -23,9 +23,9 @@ import org.w3.ldp.testsuite.test.DirectContainerTest;
 import org.w3.ldp.testsuite.test.IndirectContainerTest;
 import org.w3.ldp.testsuite.test.NonRDFSourceTest;
 import org.w3.ldp.testsuite.test.RdfSourceTest;
-import org.w3.ldp.testsuite.annotations.Implementation;
-import org.w3.ldp.testsuite.annotations.Reference;
-import org.w3.ldp.testsuite.annotations.Status;
+import org.w3.ldp.testsuite.annotations.SpecTest;
+import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
+import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 
 public class LdpTestCaseReporter {
 
@@ -68,7 +68,7 @@ public class LdpTestCaseReporter {
 	private static Class<BasicContainerTest> bcTest = BasicContainerTest.class;
 	private static Class<RdfSourceTest> rdfSourceTest = RdfSourceTest.class;
 	private static Class<IndirectContainerTest> indirectContainerTest = IndirectContainerTest.class;
-	private static Class<DirectContainerTest> directContienerTest = DirectContainerTest.class;
+	private static Class<DirectContainerTest> directContianerTest = DirectContainerTest.class;
 	private static Class<CommonContainerTest> commonContainerTest = CommonContainerTest.class;
 	private static Class<CommonResourceTest> commonResourceTest = CommonResourceTest.class;
 	private static Class<NonRDFSourceTest> nonRdfSourceTest = NonRDFSourceTest.class;
@@ -97,7 +97,7 @@ public class LdpTestCaseReporter {
 		acquireTestCases(commonResourceTest);
 		acquireTestCases(nonRdfSourceTest);
 		acquireTestCases(indirectContainerTest);
-		acquireTestCases(directContienerTest);
+		acquireTestCases(directContianerTest);
 	}
 
 	private static void createSummaryReport() throws IOException {
@@ -186,11 +186,31 @@ public class LdpTestCaseReporter {
 		acquireTestCases(commonResourceTest);
 		acquireTestCases(nonRdfSourceTest);
 		acquireTestCases(indirectContainerTest);
-		acquireTestCases(directContienerTest);
+		acquireTestCases(directContianerTest);
 	}
 
 	private static void generateListOfTestCases() throws IOException {
+		// FIXME: change to a table, with methods called
 		html.h2().content("Implemented Test Classes");
+
+		// html.table(class_("classes"));
+		// html.tr().th().content("Test Class Name");
+		// html.th(class_("none")).content("Test Cases");
+		// html._tr();
+		// // html.tr().td().b().write("Test Name")._b()._td();
+		// // html.td().b().write("Info")._b()._td();
+		// // html._tr();
+		//
+		// writeCaseRow(rdfSourceTest);
+		// writeCaseRow(bcTest);
+		// writeCaseRow(commonContainerTest);
+		// writeCaseRow(commonResourceTest);
+		// writeCaseRow(indirectContainerTest);
+		// writeCaseRow(directContianerTest);
+		// writeCaseRow(nonRdfSourceTest);
+		//
+		// html._table();
+
 		html.ul();
 		html.li().a(href("#" + rdfSourceTest.getCanonicalName()))
 				.content(rdfSourceTest.getCanonicalName())._li();
@@ -202,8 +222,8 @@ public class LdpTestCaseReporter {
 				.content(commonResourceTest.getCanonicalName())._li();
 		html.li().a(href("#" + indirectContainerTest.getCanonicalName()))
 				.content(indirectContainerTest.getCanonicalName())._li();
-		html.li().a(href("#" + directContienerTest.getCanonicalName()))
-				.content(directContienerTest.getCanonicalName())._li();
+		html.li().a(href("#" + directContianerTest.getCanonicalName()))
+				.content(directContianerTest.getCanonicalName())._li();
 		html.li().a(href("#" + nonRdfSourceTest.getCanonicalName()))
 				.content(nonRdfSourceTest.getCanonicalName())._li();
 		html._ul();
@@ -215,6 +235,38 @@ public class LdpTestCaseReporter {
 				._h2();
 		generateList(clients);
 
+	}
+
+	private static <T> void writeCaseRow(Class<T> classType) throws IOException {
+		// TODO Auto-generated method stub
+		html.tr();
+		html.td();
+		html.a(href("#" + classType.getCanonicalName()))
+				.content(classType.getCanonicalName())._td();
+		writeCellInfo(classType.getDeclaredMethods());
+		html._tr();
+	}
+
+	private static void writeCellInfo(Method[] declaredMethods)
+			throws IOException {
+		// TODO Auto-generated method stub
+		// html.tr(colspan(declaredMethods.length + ""));
+		// for (Method method : declaredMethods) {
+		// html.tr().td().content("als")._tr();
+		// html.tr().td().content("ba")._tr();
+		// }
+		html.td();
+
+		for (Method method : declaredMethods) {
+			if (method.isAnnotationPresent(Test.class))
+				html.a(href("#" + method.getName())).write(method.getName())
+						._a().br();
+			else
+				html.write(method.getName()).br();
+		}
+
+		html._td();
+		// html._tr();
 	}
 
 	private static void generateList(ArrayList<String> list) throws IOException {
@@ -255,25 +307,76 @@ public class LdpTestCaseReporter {
 
 	private static void generateInformation(Method method, String name)
 			throws IOException {
-
-		Reference ref = null;
+		SpecTest testLdp = null;
 		Test test = null;
-		Status status = null;
-		Implementation implmnt = null;
-
-		if (initialRead) {
-			html.table(class_("annotation"));
-			html.tr().th().content("Annotation Type");
-			html.th().content("Information")._tr();
-		}
-
-		if (method.getAnnotation(Test.class) != null) {
+		if (method.getAnnotation(SpecTest.class) != null
+				&& method.getAnnotation(Test.class) != null) {
+			testLdp = method.getAnnotation(SpecTest.class);
 			test = method.getAnnotation(Test.class);
 
 			if (!initialRead) {
+
+				METHOD methodStatus = testLdp.testMethod();
 				if (!test.enabled())
 					disabled++;
+				if (methodStatus.equals(METHOD.AUTOMATED) && test.enabled())
+					totalImplemented++;
+				if (methodStatus.equals(METHOD.NOT_IMPLEMENTED)
+						|| methodStatus.equals(METHOD.CLIENT_ONLY)
+						|| methodStatus.equals(METHOD.MANUAL)
+						|| !test.enabled())
+					unimplemented++;
+				if (methodStatus.equals(METHOD.CLIENT_ONLY)) {
+					clientTest++;
+					clients.add(method.getName());
+				}
+				if (methodStatus.equals(METHOD.MANUAL)) {
+					manual++;
+					manuals.add(method.getName());
+				}
+				if (!refURI.contains(testLdp.specRefUri())) {
+					coverage++;
+					String group = Arrays.toString(test.groups());
+					if (group.contains("MUST"))
+						must++;
+					if (group.contains("SHOULD"))
+						should++;
+					if (group.contains("MAY"))
+						may++;
+
+					refURI.add(testLdp.specRefUri());
+					if (methodStatus.equals(METHOD.AUTOMATED)) {
+						reqImpl++;
+						if (group.contains("MUST"))
+							mustImpl++;
+						if (group.contains("SHOULD"))
+							shouldImpl++;
+						if (group.contains("MAY"))
+							mayImpl++;
+
+					}
+					if (methodStatus.equals(METHOD.NOT_IMPLEMENTED)) {
+						refNotImpl++;
+
+						if (group.contains("MUST"))
+							mustNotImpl++;
+						if (group.contains("SHOULD"))
+							shouldNotImpl++;
+						if (group.contains("MAY"))
+							mayNotImpl++;
+					}
+					if (testLdp.approval().equals(STATUS.WG_PENDING))
+						pending++;
+					if (testLdp.approval().equals(STATUS.WG_APPROVED))
+						approved++;
+				}
+
 			} else {
+
+				html.table(class_("annotation"));
+				html.tr().th().content("Annotation Type");
+				html.th().content("Information")._tr();
+
 				html.tr().td()
 						.content(test.annotationType().getCanonicalName());
 				html.td();
@@ -283,115 +386,25 @@ public class LdpTestCaseReporter {
 				html.br().b().write("Enabled: ")._b()
 						.write("" + test.enabled())._td();
 				html._tr();
-			}
 
-		}
-
-		if (method.getAnnotation(Implementation.class) != null) {
-			implmnt = method.getAnnotation(Implementation.class);
-			if (!initialRead) {
-				if (implmnt.implementation().equals(Implementation.IMPLEMENTED)
-						&& !implmnt.clientOnly() && implmnt.isTestable()
-						&& (test != null && test.enabled())) {
-					totalImplemented++;
-				}
-				if (implmnt.implementation().equals(
-						Implementation.NOT_IMPLEMENTED)
-						|| implmnt.clientOnly()
-						|| !implmnt.isTestable()
-						|| (test != null && !test.enabled())) {
-					unimplemented++;
-				}
-				if (implmnt.clientOnly()) {
-					clientTest++;
-					clients.add(method.getName());
-				}
-				if (implmnt.manual()) {
-					manual++;
-					manuals.add(method.getName());
-				}
-			} else {
 				html.tr().td()
-						.content(implmnt.annotationType().getCanonicalName());
-				html.br().td().b().write("Implementation: ")._b()
-						.write(implmnt.implementation());
-				html.br().b().write("Manual Test: ")._b()
-						.write("" + implmnt.manual());
-				html.br().b().write("Client Only: ")._b()
-						.write("" + implmnt.clientOnly());
+						.content(testLdp.annotationType().getCanonicalName());
+				html.td().b().write("Reference URI: ")._b()
+						.a(href(testLdp.specRefUri()))
+						.write(testLdp.specRefUri())._a();
+				html.br().b().write("Status: ")._b()
+						.write(testLdp.approval().toString());
+
+				html.br().b().write("Test Case Implementation: ")._b()
+						.write("" + testLdp.testMethod());
 				html._td();
 				html._tr();
+
+				html._table();
+				toTestClass(name);
 			}
 		}
 
-		if (method.getAnnotation(Reference.class) != null) {
-			ref = method.getAnnotation(Reference.class);
-			if (!initialRead) {
-				if (implmnt != null && test != null) {
-					if (!refURI.contains(ref.uri())) {
-						coverage++;
-						String group = Arrays.toString(test.groups());
-						if (group.contains("MUST"))
-							must++;
-						if (group.contains("SHOULD"))
-							should++;
-						if (group.contains("MAY"))
-							may++;
-
-						refURI.add(ref.uri());
-						if (implmnt.implementation().equals(
-								Implementation.IMPLEMENTED)) {
-							reqImpl++;
-							if (group.contains("MUST"))
-								mustImpl++;
-							if (group.contains("SHOULD"))
-								shouldImpl++;
-							if (group.contains("MAY"))
-								mayImpl++;
-
-						}
-						if (implmnt.implementation().equals(
-								Implementation.NOT_IMPLEMENTED)) {
-							refNotImpl++;
-
-							if (group.contains("MUST"))
-								mustNotImpl++;
-							if (group.contains("SHOULD"))
-								shouldNotImpl++;
-							if (group.contains("MAY"))
-								mayNotImpl++;
-						}
-
-					}
-				}
-			} else {
-				html.tr().td().content(ref.annotationType().getCanonicalName());
-				html.td().b().write("Reference URI: ")._b().a(href(ref.uri()))
-						.write(ref.uri())._a()._td();
-				html._tr();
-			}
-		}
-
-		if (method.getAnnotation(Status.class) != null) {
-			status = method.getAnnotation(Status.class);
-			if (!initialRead) {
-				if (status.status().equals(Status.PENDING))
-					pending++;
-				if (status.status().equals(Status.APPROVED))
-					approved++;
-			} else {
-				html.tr().td()
-						.content(status.annotationType().getCanonicalName());
-				html.td().b().write("Status: ")._b().write(status.status())
-						._td();
-				html._tr();
-			}
-		}
-
-		if (initialRead) {
-			html._table();
-			toTestClass(name);
-		}
 	}
 
 	private static void toTop() throws IOException {

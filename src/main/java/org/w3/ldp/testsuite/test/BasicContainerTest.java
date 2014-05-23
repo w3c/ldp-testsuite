@@ -12,9 +12,6 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.w3.ldp.testsuite.LdpTestSuite;
-import org.w3.ldp.testsuite.annotations.Implementation;
-import org.w3.ldp.testsuite.annotations.Reference;
-import org.w3.ldp.testsuite.annotations.Status;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Resource;
@@ -22,6 +19,8 @@ import com.hp.hpl.jena.vocabulary.RDF;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 
+import org.w3.ldp.testsuite.annotations.SpecTest;
+import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.vocab.LDP;
 
 public class BasicContainerTest extends CommonContainerTest {
@@ -47,9 +46,7 @@ public class BasicContainerTest extends CommonContainerTest {
 			+ "the server supports, and a link relation type of type "
 			+ "(that is, rel='type') in all responses to requests made "
 			+ "to the LDPC's HTTP Request-URI.")
-	@Reference(uri = LdpTestSuite.SPEC_URI + "#ldpc-linktypehdr")
-	@Status(status = Status.APPROVED)
-	@Implementation(implementation = Implementation.IMPLEMENTED)
+	@SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-linktypehdr", testMethod = METHOD.AUTOMATED)
 	public void testContainerSupportsHttpLinkHeader() throws URISyntaxException {
 		Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
 				.expect().statusCode(HttpStatus.SC_OK).when()
@@ -64,9 +61,7 @@ public class BasicContainerTest extends CommonContainerTest {
 	@Test(groups = { MUST }, description = "Each LDP Basic Container MUST also be a "
 			+ "conforming LDP Container in section 5.2 Container "
 			+ "along the following restrictions in this section.")
-	@Reference(uri = LdpTestSuite.SPEC_URI + "#ldpbc-are-ldpcs")
-	@Status(status = Status.APPROVED)
-	@Implementation(implementation = Implementation.IMPLEMENTED)
+	@SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpbc-are-ldpcs", testMethod = METHOD.AUTOMATED)
 	public void testContainerTypeIsBasicContainer() throws URISyntaxException {
 		// FIXME: We're just testing the RDF type here. We're not really testing
 		// the requirement.
