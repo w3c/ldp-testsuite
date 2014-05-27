@@ -8,7 +8,6 @@ import static org.testng.Assert.assertNull;
 import static org.testng.Assert.assertTrue;
 import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
-import java.net.URI;
 import java.net.URISyntaxException;
 
 import org.apache.http.HttpStatus;
@@ -23,13 +22,12 @@ import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.http.HttpMethod;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
+import org.w3.ldp.testsuite.vocab.LDP;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
-
-import org.w3.ldp.testsuite.vocab.LDP;
 
 public class DirectContainerTest extends CommonContainerTest {
     private String directContainer;
@@ -65,10 +63,10 @@ public class DirectContainerTest extends CommonContainerTest {
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-linktypehdr", 
     		testMethod = METHOD.AUTOMATED,
     		approval   = STATUS.WG_APPROVED)
-    public void testHttpLinkHeader() throws URISyntaxException {
+    public void testHttpLinkHeader() {
         Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
                 .expect().statusCode(HttpStatus.SC_OK).when()
-                .get(new URI(directContainer));
+                .get(directContainer);
         assertTrue(
                 hasLinkHeader(response, LDP.DirectContainer.stringValue(), LINK_REL_TYPE),
                 "LDP DirectContainers must advertise their LDP support by exposing a HTTP Link header with a URI matching <" + LDP.DirectContainer.stringValue() + "> and rel='type'");
@@ -159,13 +157,13 @@ public class DirectContainerTest extends CommonContainerTest {
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldpdc-post-createdmbr-member", 
     		testMethod = METHOD.AUTOMATED,
     		approval   = STATUS.WG_APPROVED)
-    public void testPostResourceUpdatesTriples() throws URISyntaxException {
+    public void testPostResourceUpdatesTriples() {
         skipIfMethodNotAllowed(HttpMethod.POST);
 
         Model model = postContent();
         Response postResponse = RestAssured.given().contentType(TEXT_TURTLE).body(model, new RdfObjectMapper())
                 .expect().statusCode(HttpStatus.SC_CREATED).header(LOCATION, notNullValue())
-                .when().post(new URI(directContainer));
+                .when().post(directContainer);
 
         String location = postResponse.getHeader(LOCATION);
         Model containerModel = getAsModel(directContainer);
@@ -181,7 +179,7 @@ public class DirectContainerTest extends CommonContainerTest {
         }
 
         // Delete the resource to clean up.
-        RestAssured.expect().statusCode(isSuccessful()).when().delete(new URI(location));
+        RestAssured.expect().statusCode(isSuccessful()).when().delete(location);
     }
 
     @Test(
@@ -193,13 +191,13 @@ public class DirectContainerTest extends CommonContainerTest {
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldpdc-del-contremovesmbrtriple", 
     		testMethod = METHOD.AUTOMATED,
     		approval   = STATUS.WG_APPROVED)
-    public void testDeleteResourceUpdatesTriples() throws URISyntaxException {
+    public void testDeleteResourceUpdatesTriples() {
         skipIfMethodNotAllowed(HttpMethod.POST);
 
         Model model = postContent();
         Response postResponse = RestAssured.given().contentType(TEXT_TURTLE).body(model, new RdfObjectMapper())
                 .expect().statusCode(HttpStatus.SC_CREATED).header(LOCATION, notNullValue())
-                .when().post(new URI(directContainer));
+                .when().post(directContainer);
 
         String location = postResponse.getHeader(LOCATION);
 
@@ -234,7 +232,7 @@ public class DirectContainerTest extends CommonContainerTest {
         }
 
         // Delete the resource
-        RestAssured.expect().statusCode(isSuccessful()).when().delete(new URI(location));
+        RestAssured.expect().statusCode(isSuccessful()).when().delete(location);
 
         // Get the updated membership resource
         membershipResourceModel = getAsModel(membershipResource.getURI());

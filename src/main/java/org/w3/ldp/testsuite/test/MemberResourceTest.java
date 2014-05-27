@@ -3,9 +3,6 @@ package org.w3.ldp.testsuite.test;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-
 import org.apache.http.HttpStatus;
 import org.testng.SkipException;
 import org.testng.annotations.AfterClass;
@@ -25,8 +22,7 @@ public class MemberResourceTest extends RdfSourceTest {
     private String memberResource;
 
     @Parameters({"memberResource", "directContainer", "indirectContainer", "basicContainer"})
-    public MemberResourceTest(@Optional String memberResource, @Optional String directContainer, @Optional String indirectContainer, @Optional String basicContainer)
-            throws URISyntaxException {
+    public MemberResourceTest(@Optional String memberResource, @Optional String directContainer, @Optional String indirectContainer, @Optional String basicContainer) {
         // If resource is defined, use that. Otherwise, fall back to creating one from one of the containers.
         if (memberResource != null) {
             this.memberResource = memberResource;
@@ -46,7 +42,7 @@ public class MemberResourceTest extends RdfSourceTest {
             Response postResponse =
                     RestAssured.given().contentType(TEXT_TURTLE).body(model, new RdfObjectMapper())
                             .expect().statusCode(HttpStatus.SC_CREATED).header(LOCATION, notNullValue())
-                            .when().post(new URI(this.container));
+                            .when().post(this.container);
 
             this.memberResource = postResponse.getHeader(LOCATION);
         }
@@ -57,10 +53,10 @@ public class MemberResourceTest extends RdfSourceTest {
     }
 
     @AfterClass
-    public void deleteTestResource() throws URISyntaxException {
+    public void deleteTestResource() {
         // If container isn't null, we created the resource ourselves. To clean up, delete the resource.
         if (container != null) {
-            RestAssured.expect().statusCode(isSuccessful()).when().delete(new URI(memberResource));
+            RestAssured.expect().statusCode(isSuccessful()).when().delete(memberResource);
         }
     }
 

@@ -1,7 +1,6 @@
 package org.w3.ldp.testsuite.test;
 
-import com.hp.hpl.jena.rdf.model.Model;
-import com.jayway.restassured.RestAssured;
+import java.io.IOException;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpStatus;
@@ -14,9 +13,8 @@ import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.matcher.HeaderMatchers;
 
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.jayway.restassured.RestAssured;
 
 /**
  * Tests Non-RDF Source LDP resources.
@@ -32,7 +30,7 @@ public abstract class NonRDFSourceTest extends CommonResourceTest {
     		specRefUri = LdpTestSuite.SPEC_URI + "#dfn-ldp-server", 
     		testMethod = METHOD.AUTOMATED,
     		approval   = STATUS.WG_APPROVED)
-    public void testPostResource() throws URISyntaxException, IOException {
+    public void testPostResource() throws IOException {
         // Make sure we can post binary resources
         RestAssured
             .given()
@@ -48,12 +46,12 @@ public abstract class NonRDFSourceTest extends CommonResourceTest {
                                 HeaderMatchers.isLink(org.w3.ldp.testsuite.vocab.LDP.BasicContainer.stringValue(), "type"))
                 )
             .when()
-                .post(new URI(getResourceUri()));
+                .post(getResourceUri());
 
 
         RestAssured.given().header(ACCEPT, TEXT_TURTLE)
                 .expect().statusCode(HttpStatus.SC_OK).contentType(TEXT_TURTLE)
-                .when().get(new URI(getResourceUri())).as(Model.class, new RdfObjectMapper(getResourceUri()));
+                .when().get(getResourceUri()).as(Model.class, new RdfObjectMapper(getResourceUri()));
     }
 
     //TODO: still refactoring tests from Marmotta

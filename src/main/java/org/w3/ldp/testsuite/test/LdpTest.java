@@ -1,7 +1,5 @@
 package org.w3.ldp.testsuite.test;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
 
 import org.apache.http.HttpStatus;
@@ -83,16 +81,15 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes {
         return false;
     }
 
-    public Model getAsModel(String uri) throws URISyntaxException {
+    public Model getAsModel(String uri) {
         return getResourceAsModel(uri, TEXT_TURTLE);
     }
 
-    public Model getResourceAsModel(String uri, String mediaType)
-            throws URISyntaxException {
+    public Model getResourceAsModel(String uri, String mediaType) {
         return RestAssured
                 .given().header(ACCEPT, mediaType)
                 .expect().statusCode(HttpStatus.SC_OK)
-                .when().get(new URI(uri)).as(Model.class, new RdfObjectMapper(uri));
+                .when().get(uri).as(Model.class, new RdfObjectMapper(uri));
     }
 
     protected Model postContent() {
