@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
+import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.matcher.HeaderMatchers;
 
@@ -29,7 +30,8 @@ public abstract class NonRDFSourceTest extends CommonResourceTest {
                     "resource, for example binary resources.")
     @SpecTest(
     		specRefUri = LdpTestSuite.SPEC_URI + "#dfn-ldp-server", 
-    		testMethod = METHOD.AUTOMATED)
+    		testMethod = METHOD.AUTOMATED,
+    		approval   = STATUS.WG_APPROVED)
     public void testPostResource() throws URISyntaxException, IOException {
         // Make sure we can post binary resources
         RestAssured
