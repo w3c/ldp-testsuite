@@ -20,6 +20,7 @@ import org.testng.annotations.Test;
 import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
+import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.http.HttpMethod;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 
@@ -62,7 +63,8 @@ public class DirectContainerTest extends CommonContainerTest {
             		+ "to the LDPC's HTTP Request-URI.")
     @SpecTest(
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-linktypehdr", 
-    		testMethod = METHOD.AUTOMATED)
+    		testMethod = METHOD.AUTOMATED,
+    		approval   = STATUS.WG_APPROVED)
     public void testHttpLinkHeader() throws URISyntaxException {
         Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
                 .expect().statusCode(HttpStatus.SC_OK).when()
@@ -79,7 +81,8 @@ public class DirectContainerTest extends CommonContainerTest {
             		+ "predicate from an application vocabulary to use.")
     @SpecTest(
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldpdc-mbrpred", 
-    		testMethod = METHOD.AUTOMATED)
+    		testMethod = METHOD.AUTOMATED,
+    		approval   = STATUS.WG_APPROVED)
     public void testUseMemberPredicate() throws URISyntaxException {
         Model containerModel = getAsModel(directContainer);
         Resource container = containerModel.getResource(directContainer);
@@ -97,7 +100,8 @@ public class DirectContainerTest extends CommonContainerTest {
             		+ " but LDP does not require this.")
     @SpecTest(
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldpdc-containres", 
-    		testMethod = METHOD.AUTOMATED)
+    		testMethod = METHOD.AUTOMATED,
+    		approval   = STATUS.WG_APPROVED)
     public void testMemberResourceTriple() throws URISyntaxException {
         Model containerModel = getAsModel(directContainer);
         Resource container = containerModel.getResource(directContainer);
@@ -115,7 +119,8 @@ public class DirectContainerTest extends CommonContainerTest {
             		+ "based on the membership triple pattern used by the container.")
     @SpecTest(
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldpdc-containtriples", 
-    		testMethod = METHOD.AUTOMATED)
+    		testMethod = METHOD.AUTOMATED,
+    		approval   = STATUS.WG_APPROVED)
     public void testMemberRelationOrIsMemberOfRelationTripleExists() throws URISyntaxException {
         Model containerModel = getAsModel(directContainer);
         Resource container = containerModel.getResource(directContainer);
@@ -137,9 +142,10 @@ public class DirectContainerTest extends CommonContainerTest {
             		+ "a triple in the LDP-DC representation.")
     @SpecTest(
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldpdc-indirectmbr-basic", 
-    		testMethod = METHOD.NOT_IMPLEMENTED)
+    		testMethod = METHOD.NOT_IMPLEMENTED,
+    		approval   = STATUS.WG_PENDING)
     public void testActAsIfInsertedContentRelationTripleExists() {
-
+    	// TODO: Impl testActAsIfInsertedContentRelationTripleExists
     }
 
     @Test(
@@ -151,7 +157,8 @@ public class DirectContainerTest extends CommonContainerTest {
             		+ "predicates it exposes.")
     @SpecTest(
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldpdc-post-createdmbr-member", 
-    		testMethod = METHOD.AUTOMATED)
+    		testMethod = METHOD.AUTOMATED,
+    		approval   = STATUS.WG_APPROVED)
     public void testPostResourceUpdatesTriples() throws URISyntaxException {
         skipIfMethodNotAllowed(HttpMethod.POST);
 
@@ -184,7 +191,8 @@ public class DirectContainerTest extends CommonContainerTest {
             		+ "the LDPC server MUST also remove the corresponding membership triple.")
     @SpecTest(
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldpdc-del-contremovesmbrtriple", 
-    		testMethod = METHOD.AUTOMATED)
+    		testMethod = METHOD.AUTOMATED,
+    		approval   = STATUS.WG_APPROVED)
     public void testDeleteResourceUpdatesTriples() throws URISyntaxException {
         skipIfMethodNotAllowed(HttpMethod.POST);
 

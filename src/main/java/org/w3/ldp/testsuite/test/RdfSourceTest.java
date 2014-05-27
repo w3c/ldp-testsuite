@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
+import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.exception.SkipClientTestException;
 import org.w3.ldp.testsuite.exception.SkipNotTestableException;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
@@ -31,7 +32,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
                     + "typically the subject of most triples in the response.")
     @SpecTest(
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-gen-rdf", 
-    		testMethod = METHOD.AUTOMATED)
+    		testMethod = METHOD.AUTOMATED,
+    		approval   = STATUS.WG_APPROVED)
     public void testGetResource() throws URISyntaxException {
         // Make sure we can get the resource itself and the response is
         // valid RDF. Turtle is a required media type, so this request
@@ -49,7 +51,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
                     + "support inferencing.")
     @SpecTest(
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-gen-atleast1rdftype", 
-    		testMethod = METHOD.AUTOMATED)
+    		testMethod = METHOD.AUTOMATED,
+    		approval   = STATUS.WG_APPROVED)
     public void testContainsRdfType() throws URISyntaxException {
         Model containerModel = getAsModel(getResourceUri());
         Resource r = containerModel.getResource(getResourceUri());
@@ -64,7 +67,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
                     + "other conformance rules.")
     @SpecTest(
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-gen-reusevocab", 
-    		testMethod = METHOD.MANUAL)
+    		testMethod = METHOD.MANUAL,
+    		approval   = STATUS.WG_APPROVED)
     public void testReUseVocabularies() {
         throw new SkipNotTestableException();
     }
@@ -76,8 +80,17 @@ public abstract class RdfSourceTest extends CommonResourceTest {
                     + "Schema [rdf-schema], whenever possible.")
     @SpecTest(
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-gen-reusevocabsuchas", 
-    		testMethod = METHOD.MANUAL)
+    		testMethod = METHOD.MANUAL,
+    		approval   = STATUS.WG_APPROVED)
     public void testUseStandardVocabularies() throws URISyntaxException {
+    	// TODO: Consider ideas for testUseStandardVocabularies (see comment)
+    	/* Possible ideas: 
+    	   fetch resource, look for known vocabulary term
+    	   URIs.  Also can look at total number of terms and have a threshold
+    	   of differences, say 100 terms and < 5 standard predicates would be odd.
+    	   Also could look for similar/like short predicate short names or even
+    	   look for owl:sameAs.
+    	    */
         throw new SkipNotTestableException();
     }
 
@@ -88,7 +101,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
                     + "have multiple values for rdf:type.")
     @SpecTest(
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldp-cli-multitype", 
-    		testMethod = METHOD.CLIENT_ONLY)
+    		testMethod = METHOD.CLIENT_ONLY,
+    		approval   = STATUS.WG_APPROVED)
     public void testAllowMultipleRdfTypes() {
         throw new SkipClientTestException();
     }
@@ -101,7 +115,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
                     + "change over time.")
     @SpecTest(
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-cli-typeschange", 
-    		testMethod = METHOD.CLIENT_ONLY)
+    		testMethod = METHOD.CLIENT_ONLY,
+    		approval   = STATUS.WG_APPROVED)
     public void testChangeRdfTypeValue() {
         throw new SkipClientTestException();
     }
@@ -117,7 +132,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
                     + "to any pre-defined set.")
     @SpecTest(
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-cli-openpreds", 
-    		testMethod = METHOD.CLIENT_ONLY)
+    		testMethod = METHOD.CLIENT_ONLY,
+    		approval   = STATUS.WG_APPROVED)
     public void testServerOpen() {
         throw new SkipClientTestException();
     }
@@ -132,7 +148,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
                     + "otherwise within this document.")
     @SpecTest(
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-gen-noinferencing", 
-    		testMethod = METHOD.MANUAL)
+    		testMethod = METHOD.MANUAL,
+    		approval   = STATUS.WG_APPROVED)
     public void testRestrictClientInference() {
         throw new SkipNotTestableException();
     }
@@ -147,7 +164,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
                     + "burden for clients [RFC5789]. ")
     @SpecTest(
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-cli-preservetriples", 
-    		testMethod = METHOD.MANUAL)
+    		testMethod = METHOD.MANUAL,
+    		approval   = STATUS.WG_APPROVED)
     public void testGetResourcePreservesTriples() throws URISyntaxException {
         throw new SkipNotTestableException();
     }
@@ -159,7 +177,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
                     + "LDP-defined hints.")
     @SpecTest(
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-cli-hints-ignorable", 
-    		testMethod = METHOD.MANUAL)
+    		testMethod = METHOD.MANUAL,
+    		approval   = STATUS.WG_APPROVED)
     public void testAllowResponsesFromServer() {
         throw new SkipNotTestableException();
     }
@@ -170,7 +189,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
                     + "of the requested LDP-RS [turtle].")
     @SpecTest(
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-get-turtle", 
-    		testMethod = METHOD.AUTOMATED)
+    		testMethod = METHOD.AUTOMATED,
+    		approval   = STATUS.WG_APPROVED)
     public void testGetResourceTurtle() throws URISyntaxException {
         RestAssured.given().header(ACCEPT, TEXT_TURTLE)
                 .expect().statusCode(isSuccessful()).contentType(TEXT_TURTLE)

@@ -18,6 +18,7 @@ import com.jayway.restassured.response.Response;
 
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
+import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.vocab.LDP;
 
 public class IndirectContainerTest extends CommonContainerTest {
@@ -47,7 +48,8 @@ public class IndirectContainerTest extends CommonContainerTest {
 					+ "to the LDPC's HTTP Request-URI.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-linktypehdr", 
-			testMethod = METHOD.AUTOMATED)
+			testMethod = METHOD.AUTOMATED,
+			approval   = STATUS.WG_APPROVED)
 	public void testContainerSupportsHttpLinkHeader() throws URISyntaxException {
 		Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
 				.expect().statusCode(HttpStatus.SC_OK).when()
@@ -68,9 +70,10 @@ public class IndirectContainerTest extends CommonContainerTest {
 					+ "the following restrictions.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpic-are-ldpcs", 
-			testMethod = METHOD.NOT_IMPLEMENTED)
+			testMethod = METHOD.NOT_IMPLEMENTED,
+			approval   = STATUS.WG_PENDING)
 	public void testCreateIndirectContainer() {
-
+		// TODO: Impl testCreateIndirectContainer
 	}
 
 	@Test(
@@ -83,9 +86,10 @@ public class IndirectContainerTest extends CommonContainerTest {
 					+ "membership triples is chosen.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpic-indirectmbr", 
-			testMethod = METHOD.NOT_IMPLEMENTED)
+			testMethod = METHOD.NOT_IMPLEMENTED,
+			approval   = STATUS.WG_PENDING)
 	public void testContainsLdpcUri() {
-
+		// TODO: Impl testContainsLdpcUri
 	}
 
 	@Test(
@@ -101,9 +105,10 @@ public class IndirectContainerTest extends CommonContainerTest {
 					+ "newly created resource in certain cases.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpic-post-indirectmbrrel", 
-			testMethod = METHOD.NOT_IMPLEMENTED)
+			testMethod = METHOD.NOT_IMPLEMENTED,
+			approval   = STATUS.WG_PENDING)
 	public void testPostResource() {
-
+		// TODO: Impl testPostResource
 	}
 
 	@Override

@@ -39,7 +39,7 @@ public class LdpTestCaseReporter {
 	private static ArrayList<String> manuals = new ArrayList<String>();
 
 	private static int totalTests = 0;
-	private static int totalImplemented = 0;
+	private static int automated = 0;
 	private static int unimplemented = 0;
 	private static int coverage = 0;
 	private static int clientTest = 0;
@@ -57,13 +57,15 @@ public class LdpTestCaseReporter {
 	private static int shouldImpl = 0;
 	private static int mayImpl = 0;
 
-	private static int refNotImpl = 0;
+	private static int reqNotImpl = 0;
 	private static int mustNotImpl = 0;
 	private static int mayNotImpl = 0;
 	private static int shouldNotImpl = 0;
 
 	private static int pending = 0;
 	private static int approved = 0;
+	private static int extended = 0;
+	private static int deprecated = 0;
 
 	private static Class<BasicContainerTest> bcTest = BasicContainerTest.class;
 	private static Class<RdfSourceTest> rdfSourceTest = RdfSourceTest.class;
@@ -107,16 +109,29 @@ public class LdpTestCaseReporter {
 		initialRead = true;
 		html.h2().content("Summary of Test Methods");
 		html.table(class_("summary"));
-		html.tr().th().content("Total Tests");
-		html.th().content("Overall Coverage");
-		html.th().content("Unimplemented Methods");
+		html.tr().th().content("Totals");
+		html.th().content("Coverage");
+		html.th().content("Not Implemented");
 		html._tr();
 
 		html.tr();
 		html.td().b().write("" + totalTests)._b()
-				.write(" Total Tests Running Against Specifications");
-		html.br().b().write(pending + " ")._b().write("Tests pending, ").b()
-				.write(approved + " ")._b().write("Tests approved");
+				.write(" Total Tests");
+		html.ul().li().b().write(approved + " ")._b().write("WG Approved")._li();
+		html.li().b().write(pending + " ")._b().write("Approval Pending")._li();
+		html.li().b().write(extended + " ")._b().write("Extension")._li();
+		html.li().b().write(deprecated + " ")._b().write("No longer valid")._li();
+		html._ul();
+		// TODO: Add "awaiting approval": !not-impl && pending
+		// TODO: Add link to to grouping of kinds of tests (approved or not).  Perhaps a sortable table?
+		html._td();
+
+		html.td();
+
+		html.b().write(automated + " / " + totalTests)._b()
+				.write(" of Total Tests Automated").br();
+		html.b().write(automated + " / " + (automated+unimplemented))._b()
+		.write(" of Tests Possible to Automate");
 		html.ul();
 		html.li().b().write("" + coverage)._b().write(" Requirements Covered")
 				._li();
@@ -124,24 +139,17 @@ public class LdpTestCaseReporter {
 		html.li().b().write("" + should)._b().write(" SHOULD")._li();
 		html.li().b().write("" + may)._b().write(" MAY")._li()._ul();
 		html._ul();
-
-		html._td();
-
-		html.td();
-
-		html.b().write(totalImplemented + "/" + totalTests)._b()
-				.write(" of Total Tests Implemented");
-
+		
 		html.ul();
 		html.li().b().write(reqImpl + " ")._b()
-				.write("Requirements Implemented")._li();
+				.write("Requirements Automated")._li();
 		html.ul();
-		html.li().b().write(mustImpl + "/" + must)._b()
-				.write(" of MUST Tests Implemented")._li();
-		html.li().b().write(shouldImpl + "/" + should)._b()
-				.write(" of SHOULD Tests Implemented")._li();
-		html.li().b().write(mayImpl + "/" + may)._b()
-				.write(" of MAY Tests Implemented")._li();
+		html.li().b().write(mustImpl + " / " + must)._b()
+				.write(" MUST")._li();
+		html.li().b().write(shouldImpl + " / " + should)._b()
+				.write(" SHOULD")._li();
+		html.li().b().write(mayImpl + " / " + may)._b()
+				.write(" MAY")._li();
 		html._ul();
 		html._ul();
 
@@ -149,22 +157,24 @@ public class LdpTestCaseReporter {
 
 		// html.td().content(totalImplemented + " Tests");
 		html.td();
-		html.b().write(unimplemented + " ")._b().write("of the Total Tests");
+		html.b().write((unimplemented+clientTest+manual) + " ")._b().write("of the Total Tests");
 		html.ul();
 
-		html.li().b().write(disabled + " ")._b()
-				.write("of the Total Tests not enabled")._li();
+		html.li().b().write(unimplemented + " ")._b()
+				.write("of the Tests yet to be Coded")._li();
+		/* TODO: Determine if disabled is really valuable or not
+		html.li().b().write(disabled + " ")._b().write("of the Tests not enabled")._li(); */
 		html.li().b().write(clientTest + " ")._b().write("of the Total are ")
 				.a(href("#clientTests")).write("Client-Based Tests")._a()._li();
 		html.li().b().write(manual + " ")._b()
-				.write("of the Total must be Tested ").a(href("#manualTests"))
-				.write("Manually")._a()._li();
+				.write("of the Total must be ").a(href("#manualTests"))
+				.write("Tested Manually")._a()._li();
 		html._ul();
 
 		html.write("From the Total, ");
 
 		html.ul();
-		html.li().b().write(refNotImpl + " ")._b()
+		html.li().b().write(reqNotImpl + " ")._b()
 				.write("Requirements not Implemented")._li();
 		html.ul();
 		html.li().b().write(mustNotImpl + " ")._b().write("MUST")._li();
@@ -320,11 +330,8 @@ public class LdpTestCaseReporter {
 				if (!test.enabled())
 					disabled++;
 				if (methodStatus.equals(METHOD.AUTOMATED) && test.enabled())
-					totalImplemented++;
-				if (methodStatus.equals(METHOD.NOT_IMPLEMENTED)
-						|| methodStatus.equals(METHOD.CLIENT_ONLY)
-						|| methodStatus.equals(METHOD.MANUAL)
-						|| !test.enabled())
+					automated++;
+				if (methodStatus.equals(METHOD.NOT_IMPLEMENTED))
 					unimplemented++;
 				if (methodStatus.equals(METHOD.CLIENT_ONLY)) {
 					clientTest++;
@@ -335,7 +342,9 @@ public class LdpTestCaseReporter {
 					manuals.add(method.getName());
 				}
 				if (!refURI.contains(testLdp.specRefUri())) {
+					refURI.add(testLdp.specRefUri());
 					coverage++;
+					
 					String group = Arrays.toString(test.groups());
 					if (group.contains("MUST"))
 						must++;
@@ -344,7 +353,6 @@ public class LdpTestCaseReporter {
 					if (group.contains("MAY"))
 						may++;
 
-					refURI.add(testLdp.specRefUri());
 					if (methodStatus.equals(METHOD.AUTOMATED)) {
 						reqImpl++;
 						if (group.contains("MUST"))
@@ -353,11 +361,9 @@ public class LdpTestCaseReporter {
 							shouldImpl++;
 						if (group.contains("MAY"))
 							mayImpl++;
-
 					}
 					if (methodStatus.equals(METHOD.NOT_IMPLEMENTED)) {
-						refNotImpl++;
-
+						reqNotImpl++;
 						if (group.contains("MUST"))
 							mustNotImpl++;
 						if (group.contains("SHOULD"))
@@ -365,12 +371,23 @@ public class LdpTestCaseReporter {
 						if (group.contains("MAY"))
 							mayNotImpl++;
 					}
-					if (testLdp.approval().equals(STATUS.WG_PENDING))
-						pending++;
-					if (testLdp.approval().equals(STATUS.WG_APPROVED))
-						approved++;
 				}
-
+				switch (testLdp.approval()) {
+				case WG_PENDING:
+					pending++;
+					break;
+				case WG_APPROVED:
+					approved++;
+					break;
+				case WG_EXTENSION:
+					extended++;
+					break;
+				case WG_DEPRECATED:
+					deprecated++;
+					break;
+				default:
+					break;
+				}
 			} else {
 
 				html.table(class_("annotation"));

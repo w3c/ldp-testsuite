@@ -21,6 +21,7 @@ import com.jayway.restassured.response.Response;
 
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
+import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.vocab.LDP;
 
 public class BasicContainerTest extends CommonContainerTest {
@@ -50,7 +51,8 @@ public class BasicContainerTest extends CommonContainerTest {
 					+ "to the LDPC's HTTP Request-URI.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-linktypehdr", 
-			testMethod = METHOD.AUTOMATED)
+			testMethod = METHOD.AUTOMATED,
+			approval   = STATUS.WG_APPROVED)
 	public void testContainerSupportsHttpLinkHeader() throws URISyntaxException {
 		Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
 				.expect().statusCode(HttpStatus.SC_OK).when()
@@ -69,7 +71,8 @@ public class BasicContainerTest extends CommonContainerTest {
 					+ "along the following restrictions in this section.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpbc-are-ldpcs", 
-			testMethod = METHOD.AUTOMATED)
+			testMethod = METHOD.AUTOMATED,
+			approval   = STATUS.WG_APPROVED)
 	public void testContainerTypeIsBasicContainer() throws URISyntaxException {
 		// FIXME: We're just testing the RDF type here. We're not really testing
 		// the requirement.

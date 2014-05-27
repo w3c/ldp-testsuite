@@ -20,6 +20,7 @@ import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.http.HttpMethod;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
+import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.exception.SkipClientTestException;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 
@@ -48,7 +49,8 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					+ "resources using HTTP PUT.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-create", 
-			testMethod = METHOD.AUTOMATED)
+			testMethod = METHOD.AUTOMATED,
+			approval   = STATUS.WG_APPROVED)
 	public void testPutToCreate() throws URISyntaxException {
 		String location = putToCreate();
 		RestAssured.expect().statusCode(isSuccessful()).when()
@@ -65,9 +67,10 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					+ "in the creation of a new resource.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-defbaseuri", 
-			testMethod = METHOD.NOT_IMPLEMENTED)
+			testMethod = METHOD.NOT_IMPLEMENTED,
+			approval   = STATUS.WG_PENDING)
 	public void testRelativeUriResolutionPost() {
-
+		// TODO: Impl testRelativeUriResolutionPost
 	}
 
 	@Test(
@@ -76,7 +79,8 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					+ "types rdf:Bag, rdf:Seq or rdf:List.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-nordfcontainertypes", 
-			testMethod = METHOD.AUTOMATED)
+			testMethod = METHOD.AUTOMATED,
+			approval   = STATUS.WG_APPROVED)
 	public void testNoRdfBagSeqOrList() throws URISyntaxException {
 		Model containerModel = getAsModel(getResourceUri());
 		assertFalse(containerModel.listResourcesWithProperty(RDF.type, RDF.Bag)
@@ -98,9 +102,10 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					+ "large LDPCs. See also [LDP-PAGING].")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-prefer", 
-			testMethod = METHOD.NOT_IMPLEMENTED)
+			testMethod = METHOD.NOT_IMPLEMENTED,
+			approval   = STATUS.WG_PENDING)
 	public void testClientHints() {
-
+		// TODO: Impl testClientHints
 	}
 
 	@Test(
@@ -110,7 +115,8 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					+ "HTTP POST to a known LDPC.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-created201", 
-			testMethod = METHOD.CLIENT_ONLY)
+			testMethod = METHOD.CLIENT_ONLY,
+			approval   = STATUS.WG_APPROVED)
 	public void testClientPostToCreate() {
 		throw new SkipClientTestException();
 	}
@@ -124,7 +130,8 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					+ "a 201 (Created) response.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-created201", 
-			testMethod = METHOD.AUTOMATED)
+			testMethod = METHOD.AUTOMATED,
+			approval   = STATUS.WG_APPROVED)
 	public void testPostResponseStatusAndLocation() throws URISyntaxException {
 		skipIfMethodNotAllowed(HttpMethod.POST);
 
@@ -148,7 +155,8 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					+ "added to the state of LDPC.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-createdmbr-contains", 
-			testMethod = METHOD.AUTOMATED)
+			testMethod = METHOD.AUTOMATED,
+			approval   = STATUS.WG_APPROVED)
 	public void testPostContainer() throws URISyntaxException {
 		skipIfMethodNotAllowed(HttpMethod.POST);
 
@@ -188,11 +196,11 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					+ "model cannot be honored, the server MUST fail the request.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-createrdf", 
-			testMethod = METHOD.NOT_IMPLEMENTED)
+			testMethod = METHOD.NOT_IMPLEMENTED,
+			approval   = STATUS.WG_PENDING)
 	public void testRequestedInteractionModel() {
 		skipIfMethodNotAllowed(HttpMethod.POST);
-
-		// ...
+		// TODO: Impl testRequestedInteractionModel
 	}
 
 	@Test(
@@ -201,7 +209,8 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					+ "request header of Content-Type with value of text/turtle [turtle].")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-turtle", 
-			testMethod = METHOD.AUTOMATED)
+			testMethod = METHOD.AUTOMATED,
+			approval   = STATUS.WG_APPROVED)
 	public void testAcceptTurtle() throws URISyntaxException {
 		skipIfMethodNotAllowed(HttpMethod.POST);
 
@@ -227,11 +236,12 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					+ "entity body.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-contenttype",
-			testMethod = METHOD.NOT_IMPLEMENTED)
+			testMethod = METHOD.NOT_IMPLEMENTED,
+			approval   = STATUS.WG_PENDING)
 	public void testContentTypeHeader() throws URISyntaxException {
 		skipIfMethodNotAllowed(HttpMethod.POST);
 
-		// TODO: Determine how to best test this.
+		// TODO: Impl testContentTypeHeader
 	}
 
 	@Test(
@@ -244,7 +254,8 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					+ "resource whose subject is the created resource.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-rdfnullrel", 
-			testMethod = METHOD.AUTOMATED)
+			testMethod = METHOD.AUTOMATED,
+			approval   = STATUS.WG_APPROVED)
 	public void testNullRelativeUri() throws URISyntaxException {
 		skipIfMethodNotAllowed(HttpMethod.POST);
 
@@ -286,11 +297,12 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					+ "using server application specific rules in the absence of a client hint.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-serverassignuri", 
-			testMethod = METHOD.NOT_IMPLEMENTED)
+			testMethod = METHOD.NOT_IMPLEMENTED,
+			approval   = STATUS.WG_PENDING)
 	public void testAssignUri() {
 		skipIfMethodNotAllowed(HttpMethod.POST);
 
-		// ...
+		// TODO: Impl testAssignUri
 	}
 
 	@Test(
@@ -302,7 +314,8 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					+ "constraints as described in section 4.2.1 General.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-mincontraints", 
-			testMethod = METHOD.AUTOMATED)
+			testMethod = METHOD.AUTOMATED,
+			approval   = STATUS.WG_APPROVED)
 	public void testCreateWithoutConstraints() throws URISyntaxException {
 		skipIfMethodNotAllowed(HttpMethod.POST);
 
@@ -331,7 +344,8 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 			description = "LDP servers that allow member creation via POST SHOULD NOT re-use URIs.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-dontreuseuris", 
-			testMethod = METHOD.AUTOMATED)
+			testMethod = METHOD.AUTOMATED,
+			approval   = STATUS.WG_APPROVED)
 	public void testRestrictUriReUseSlug() throws URISyntaxException {
 		testRestrictUriReUse("uritest");
 	}
@@ -339,7 +353,10 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	@Test(
 			groups = { SHOULD }, 
 			description = "LDP servers that allow member creation via POST SHOULD NOT re-use URIs.")
-	@SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-dontreuseuris", testMethod = METHOD.AUTOMATED)
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-dontreuseuris", 
+			testMethod = METHOD.AUTOMATED,
+			approval   = STATUS.WG_APPROVED)
 	public void testRestrictUriReUseNoSlug() throws URISyntaxException {
 		testRestrictUriReUse(null);
 	}
@@ -350,9 +367,12 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 			description = "Upon successful creation of an LDP-NR (HTTP status code of 201-Created "
 					+ "and URI indicated by Location response header), LDP servers MAY create an "
 					+ "associated LDP-RS to contain data about the newly created LDP-NR.")
-	@SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-createbinlinkmetahdr", testMethod = METHOD.NOT_IMPLEMENTED)
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-createbinlinkmetahdr", 
+			testMethod = METHOD.NOT_IMPLEMENTED,
+			approval   = STATUS.WG_PENDING)
 	public void testCreateAssociatedRdfSource() {
-
+		// TODO: Impl testCreateAssociatedRdfSource
 	}
 
 	@Test(
@@ -363,9 +383,12 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					+ "its location on the HTTP response using the HTTP Link response header "
 					+ "with link relation describedby and href to be the URI of the associated "
 					+ "LDP-RS resource [RFC5988].")
-	@SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-createbinlinkmetahdr", testMethod = METHOD.NOT_IMPLEMENTED)
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-createbinlinkmetahdr", 
+			testMethod = METHOD.NOT_IMPLEMENTED,
+			approval   = STATUS.WG_PENDING)
 	public void testAssociatedRdfSourceLinkResponseHeader() {
-
+		// TODO: Impl testAssociatedRdfSourceLinkResponseHeader
 	}
 
 	@Test(
@@ -375,7 +398,8 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					+ "media type(s) supported by the server.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-acceptposthdr", 
-			testMethod = METHOD.AUTOMATED)
+			testMethod = METHOD.AUTOMATED,
+			approval   = STATUS.WG_APPROVED)
 	public void testAcceptPostResponseHeader() throws URISyntaxException {
 		skipIfMethodNotAllowed(HttpMethod.POST);
 
@@ -396,7 +420,8 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					+ "SHOULD respond with a 409 (Conflict) status code.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-put-mbrprops", 
-			testMethod = METHOD.AUTOMATED)
+			testMethod = METHOD.AUTOMATED,
+			approval   = STATUS.WG_APPROVED)
 	public void testRejectPutModifyingContainmentTriples() {
 		String containerUri = getResourceUri();
     	Response response = RestAssured
@@ -428,7 +453,8 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					+ "resource can be thought of as an RDF named graph [rdf11-concepts].")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-put-create", 
-			testMethod = METHOD.AUTOMATED)
+			testMethod = METHOD.AUTOMATED,
+			approval   = STATUS.WG_APPROVED)
 	public void testRestrictPutReUseUri() throws URISyntaxException {
 		String location = putToCreate();
 		URI uri = new URI(location);
@@ -457,7 +483,10 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 			description = "When an LDPR identified by the object of a containment triple "
 					+ "is deleted, the LDPC server MUST also remove the LDPR from the "
 					+ "containing LDPC by removing the corresponding containment triple.")
-	@SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-del-contremovesconttriple", testMethod = METHOD.AUTOMATED)
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-del-contremovesconttriple", 
+			testMethod = METHOD.AUTOMATED,
+			approval   = STATUS.WG_APPROVED)
 	public void testDeleteRemovesContainmentTriple() throws URISyntaxException {
 		skipIfMethodNotAllowed(HttpMethod.POST);
 
@@ -502,9 +531,10 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 				+ "associated LDP-RS it created.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-del-contremovescontres", 
-			testMethod = METHOD.NOT_IMPLEMENTED)
+			testMethod = METHOD.NOT_IMPLEMENTED,
+			approval   = STATUS.WG_PENDING)
 	public void testDeleteContainerAssociatedResource() {
-
+		// TODO: Impl testDeleteContainerAssociatedResource
 	}
 
 	@Test(
@@ -513,7 +543,8 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					+ "preferred method for updating an LDPC's empty-container triples. ")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-patch-req", 
-			testMethod = METHOD.AUTOMATED)
+			testMethod = METHOD.AUTOMATED,
+			approval   = STATUS.WG_APPROVED)
 	public void testPatchMethod() {
 		assertTrue(
 				supports(HttpMethod.PATCH),
@@ -536,9 +567,10 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					+ "relation type is describedby [RFC5988].")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-options-linkmetahdr", 
-			testMethod = METHOD.NOT_IMPLEMENTED)
+			testMethod = METHOD.NOT_IMPLEMENTED,
+			approval   = STATUS.WG_PENDING)
 	public void testProvideLinkHeaderAssociatedRdfSource() {
-
+		// TODO: Impl testProvideLinkHeaderAssociatedRdfSource
 	}
 
 	protected boolean restrictionsOnContent() {
