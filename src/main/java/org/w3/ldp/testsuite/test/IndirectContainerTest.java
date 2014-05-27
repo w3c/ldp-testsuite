@@ -2,9 +2,6 @@ package org.w3.ldp.testsuite.test;
 
 import static org.testng.Assert.assertTrue;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-
 import org.apache.http.HttpStatus;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
@@ -12,14 +9,13 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.w3.ldp.testsuite.LdpTestSuite;
-
-import com.jayway.restassured.RestAssured;
-import com.jayway.restassured.response.Response;
-
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.vocab.LDP;
+
+import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.response.Response;
 
 public class IndirectContainerTest extends CommonContainerTest {
     private String indirectContainer;
@@ -50,10 +46,10 @@ public class IndirectContainerTest extends CommonContainerTest {
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-linktypehdr", 
 			testMethod = METHOD.AUTOMATED,
 			approval   = STATUS.WG_APPROVED)
-	public void testContainerSupportsHttpLinkHeader() throws URISyntaxException {
+	public void testContainerSupportsHttpLinkHeader() {
 		Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
 				.expect().statusCode(HttpStatus.SC_OK).when()
-				.get(new URI(indirectContainer));
+				.get(indirectContainer);
 		assertTrue(
 				hasLinkHeader(response, LDP.IndirectContainer.stringValue(),
 						LINK_REL_TYPE),

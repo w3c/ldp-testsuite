@@ -3,7 +3,6 @@ package org.w3.ldp.testsuite.test;
 import static org.testng.Assert.assertTrue;
 import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
-import java.net.URI;
 import java.net.URISyntaxException;
 
 import org.apache.http.HttpStatus;
@@ -34,13 +33,13 @@ public abstract class RdfSourceTest extends CommonResourceTest {
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-gen-rdf", 
     		testMethod = METHOD.AUTOMATED,
     		approval   = STATUS.WG_APPROVED)
-    public void testGetResource() throws URISyntaxException {
+    public void testGetResource() {
         // Make sure we can get the resource itself and the response is
         // valid RDF. Turtle is a required media type, so this request
         // should succeed for all LDP-RS.
         RestAssured.given().header(ACCEPT, TEXT_TURTLE)
                 .expect().statusCode(HttpStatus.SC_OK).contentType(TEXT_TURTLE)
-                .when().get(new URI(getResourceUri())).as(Model.class, new RdfObjectMapper(getResourceUri()));
+                .when().get(getResourceUri()).as(Model.class, new RdfObjectMapper(getResourceUri()));
     }
 
     @Test(
@@ -53,7 +52,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-gen-atleast1rdftype", 
     		testMethod = METHOD.AUTOMATED,
     		approval   = STATUS.WG_APPROVED)
-    public void testContainsRdfType() throws URISyntaxException {
+    public void testContainsRdfType() {
         Model containerModel = getAsModel(getResourceUri());
         Resource r = containerModel.getResource(getResourceUri());
         assertTrue(r.hasProperty(RDF.type), "LDP-RS representation has no explicit rdf:type");
@@ -191,10 +190,10 @@ public abstract class RdfSourceTest extends CommonResourceTest {
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-get-turtle", 
     		testMethod = METHOD.AUTOMATED,
     		approval   = STATUS.WG_APPROVED)
-    public void testGetResourceTurtle() throws URISyntaxException {
+    public void testGetResourceTurtle() {
         RestAssured.given().header(ACCEPT, TEXT_TURTLE)
                 .expect().statusCode(isSuccessful()).contentType(TEXT_TURTLE)
-                .when().get(new URI(getResourceUri())).as(Model.class, new RdfObjectMapper(getResourceUri()));
+                .when().get(getResourceUri()).as(Model.class, new RdfObjectMapper(getResourceUri()));
     }
 
 }

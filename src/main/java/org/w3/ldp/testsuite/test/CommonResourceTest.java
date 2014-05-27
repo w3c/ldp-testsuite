@@ -6,7 +6,6 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.testng.Assert.assertTrue;
 import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashSet;
 
@@ -43,12 +42,12 @@ public abstract class CommonResourceTest extends LdpTest {
     protected abstract String getResourceUri();
 
     @BeforeClass(alwaysRun = true)
-    public void determineOptions() throws URISyntaxException {
+    public void determineOptions() {
         String uri = getResourceUri();
 
         if (uri != null) {
             // Use HTTP OPTIONS, which MUST be supported by LDP servers, to determine what methods are supported on this container.
-            Response optionsResponse = RestAssured.options(new URI(uri));
+            Response optionsResponse = RestAssured.options(uri);
             String allow = optionsResponse.header(ALLOW);
             if (allow != null) {
                 String[] methods = allow.split("\\s*,\\s*");
@@ -67,9 +66,9 @@ public abstract class CommonResourceTest extends LdpTest {
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-http", 
     		testMethod = METHOD.AUTOMATED,
     		approval   = STATUS.WG_EXTENSION)
-    public void testIsHttp11Server() throws URISyntaxException {
+    public void testIsHttp11Server() {
     	// TODO: Consider a more extensive test for HTTP/1.1
-        RestAssured.expect().statusLine(containsString("HTTP/1.1")).when().head(new URI(getResourceUri()));
+        RestAssured.expect().statusLine(containsString("HTTP/1.1")).when().head(getResourceUri());
     }
     
     @Test(
@@ -109,11 +108,11 @@ public abstract class CommonResourceTest extends LdpTest {
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-etags", 
     		testMethod = METHOD.AUTOMATED,
     		approval   = STATUS.WG_APPROVED)
-    public void testETagHeadersGet() throws URISyntaxException {
+    public void testETagHeadersGet() {
         // GET requests
         RestAssured.given().header(ACCEPT, TEXT_TURTLE)
                 .expect().statusCode(isSuccessful()).header(ETAG, notNullValue())
-                .when().get(new URI(getResourceUri()));
+                .when().get(getResourceUri());
     }
 
     @Test(
@@ -125,11 +124,11 @@ public abstract class CommonResourceTest extends LdpTest {
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-etags", 
     		testMethod = METHOD.AUTOMATED,
     		approval   = STATUS.WG_APPROVED)
-    public void testETagHeadersHead() throws URISyntaxException {
+    public void testETagHeadersHead() {
         // GET requests
         RestAssured.given().header(ACCEPT, TEXT_TURTLE)
                 .expect().statusCode(isSuccessful()).header(ETAG, notNullValue())
-                .when().head(new URI(getResourceUri()));
+                .when().head(getResourceUri());
     }
 
     @Test(
@@ -144,10 +143,10 @@ public abstract class CommonResourceTest extends LdpTest {
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-linktypehdr", 
     		testMethod = METHOD.AUTOMATED,
     		approval   = STATUS.WG_APPROVED)
-    public void testLdpLinkHeader() throws URISyntaxException {
+    public void testLdpLinkHeader() {
         Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
                 .expect().statusCode(isSuccessful())
-                .when().get(new URI(getResourceUri()));
+                .when().get(getResourceUri());
         assertTrue(
                 hasLinkHeader(response, LDP.Resource.stringValue(), LINK_REL_TYPE),
                 "4.2.1.4 LDP servers exposing LDPRs must advertise their LDP support by exposing a HTTP Link header "
@@ -168,13 +167,13 @@ public abstract class CommonResourceTest extends LdpTest {
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-defbaseuri", 
     		testMethod = METHOD.AUTOMATED,
     		approval   = STATUS.WG_APPROVED)
-    public void testRelativeUriResolutionPut() throws URISyntaxException {
+    public void testRelativeUriResolutionPut() {
     	skipIfMethodNotAllowed(HttpMethod.PUT);
 
     	String resourceUri = getResourceUri();
     	Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
     			.expect().statusCode(isSuccessful()).header(ETAG, notNullValue())
-    			.when().get(new URI(resourceUri));
+    			.when().get(resourceUri);
     	
     	String eTag = response.getHeader(ETAG);
     	Model model = response.as(Model.class, new RdfObjectMapper("")); // relative URI
@@ -187,12 +186,12 @@ public abstract class CommonResourceTest extends LdpTest {
                 .given().contentType(TEXT_TURTLE).header(IF_MATCH, eTag)
                 	.body(model, new RdfObjectMapper("")) // relative URI
                 .expect().statusCode(isSuccessful())
-                .when().put(new URI(resourceUri));
+                .when().put(resourceUri);
     	
     	// Get the resource again to verify its content.
     	model = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
     			.expect().statusCode(isSuccessful())
-    			.when().get(new URI(resourceUri)).as(Model.class, new RdfObjectMapper(resourceUri));
+    			.when().get(resourceUri).as(Model.class, new RdfObjectMapper(resourceUri));
     	
     	// Verify the change.
     	verifyUpdatedResource(model.getResource(resourceUri));
@@ -220,11 +219,11 @@ public abstract class CommonResourceTest extends LdpTest {
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-get-must", 
     		testMethod = METHOD.AUTOMATED,
     		approval   = STATUS.WG_APPROVED)
-    public void testGetResource() throws URISyntaxException {
+    public void testGetResource() {
         assertTrue(supports(HttpMethod.GET), "HTTP GET is not listed in the Allow response header on HTTP OPTIONS requests for resource <" + getResourceUri() + ">");
         RestAssured
                 .expect().statusCode(isSuccessful())
-                .when().get(new URI(getResourceUri()));
+                .when().get(getResourceUri());
     }
 
     @Test(
@@ -235,7 +234,7 @@ public abstract class CommonResourceTest extends LdpTest {
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-get-options", 
     		testMethod = METHOD.AUTOMATED,
     		approval   = STATUS.WG_APPROVED)
-    public void testGetResponseHeaders() throws URISyntaxException {
+    public void testGetResponseHeaders() {
         ResponseSpecification expectResponse = RestAssured.expect();
         expectResponse.header(ALLOW, notNullValue());
 
@@ -248,7 +247,7 @@ public abstract class CommonResourceTest extends LdpTest {
             expectResponse.header(ACCEPT_POST, notNullValue());
         }
 
-        expectResponse.when().get(new URI(getResourceUri()));
+        expectResponse.when().get(getResourceUri());
     }
 
     @Test(
@@ -261,7 +260,7 @@ public abstract class CommonResourceTest extends LdpTest {
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-replaceall", 
     		testMethod = METHOD.AUTOMATED,
     		approval   = STATUS.WG_APPROVED)
-    public void testPutReplacesResource() throws URISyntaxException {
+    public void testPutReplacesResource() {
     	skipIfMethodNotAllowed(HttpMethod.PUT);
     	
     	if (restrictionsOnContent()) {
@@ -272,7 +271,7 @@ public abstract class CommonResourceTest extends LdpTest {
     	String resourceUri = getResourceUri();
     	Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
     			.expect().statusCode(isSuccessful()).header(ETAG, notNullValue())
-    			.when().get(new URI(resourceUri));
+    			.when().get(resourceUri);
     	
     	String eTag = response.getHeader(ETAG);
     	Model originalModel = response.as(Model.class, new RdfObjectMapper(resourceUri));
@@ -286,12 +285,12 @@ public abstract class CommonResourceTest extends LdpTest {
                 .given().contentType(TEXT_TURTLE).header(IF_MATCH, eTag)
                 	.body(differentContent, new RdfObjectMapper(resourceUri)) // relative URI
                 .expect().statusCode(isSuccessful())
-                .when().put(new URI(resourceUri));
+                .when().put(resourceUri);
     	
     	// Get the resource again to see what's there.
     	response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
     			.expect().statusCode(isSuccessful()).header(ETAG, notNullValue())
-    			.when().get(new URI(resourceUri));
+    			.when().get(resourceUri);
     	eTag = response.getHeader(ETAG);
     	Model updatedModel = response.as(Model.class, new RdfObjectMapper(resourceUri));
     	
@@ -318,7 +317,7 @@ public abstract class CommonResourceTest extends LdpTest {
                 .given().contentType(TEXT_TURTLE).header(IF_MATCH, eTag)
                 	.body(originalModel, new RdfObjectMapper(resourceUri)) // relative URI
                 .expect().statusCode(isSuccessful())
-                .when().put(new URI(resourceUri));
+                .when().put(resourceUri);
     }
 
     @Test(
@@ -331,13 +330,13 @@ public abstract class CommonResourceTest extends LdpTest {
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-simpleupdate", 
     		testMethod = METHOD.AUTOMATED,
     		approval   = STATUS.WG_APPROVED)
-    public void testAllowUpdateResources() throws URISyntaxException {
+    public void testAllowUpdateResources() {
     	skipIfMethodNotAllowed(HttpMethod.PUT);
 
     	String resourceUri = getResourceUri();
     	Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
     			.expect().statusCode(isSuccessful()).header(ETAG, notNullValue())
-    			.when().get(new URI(resourceUri));
+    			.when().get(resourceUri);
     	
     	String eTag = response.getHeader(ETAG);
     	Model model = response.as(Model.class, new RdfObjectMapper(resourceUri));
@@ -349,12 +348,12 @@ public abstract class CommonResourceTest extends LdpTest {
                 .given().contentType(TEXT_TURTLE).header(IF_MATCH, eTag)
                 	.body(model, new RdfObjectMapper(resourceUri))
                 .expect().statusCode(isSuccessful())
-                .when().put(new URI(resourceUri));
+                .when().put(resourceUri);
     	
     	// Get the resource again to verify its content.
     	model = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
     			.expect().statusCode(isSuccessful())
-    			.when().get(new URI(resourceUri)).as(Model.class, new RdfObjectMapper(resourceUri));
+    			.when().get(resourceUri).as(Model.class, new RdfObjectMapper(resourceUri));
     	
     	// Verify the change.
     	verifyUpdatedResource(model.getResource(resourceUri));
@@ -443,7 +442,7 @@ public abstract class CommonResourceTest extends LdpTest {
     				.statusCode(isSuccessful())
     				.header(ETAG, notNullValue())
     			.when()
-    				.get(new URI(resourceUri)).as(Model.class, new RdfObjectMapper(resourceUri));
+    				.get(resourceUri).as(Model.class, new RdfObjectMapper(resourceUri));
 
     	RestAssured
                 .given()
@@ -452,7 +451,7 @@ public abstract class CommonResourceTest extends LdpTest {
                 .expect()
                 	.statusCode(not(isSuccessful()))
                 .when()
-                	.put(new URI(resourceUri));
+                	.put(resourceUri);
     }
 
     @Test(
@@ -468,7 +467,7 @@ public abstract class CommonResourceTest extends LdpTest {
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-precond", 
     		testMethod = METHOD.AUTOMATED,
     		approval   = STATUS.WG_APPROVED)
-    public void testConditionFailedStatusCode() throws URISyntaxException {
+    public void testConditionFailedStatusCode() {
     	skipIfMethodNotAllowed(HttpMethod.PUT);
 
     	String resourceUri = getResourceUri();
@@ -505,7 +504,7 @@ public abstract class CommonResourceTest extends LdpTest {
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-precond", 
     		testMethod = METHOD.AUTOMATED,
     		approval   = STATUS.WG_APPROVED)
-    public void testPreconditionRequiredStatusCode() throws URISyntaxException {
+    public void testPreconditionRequiredStatusCode() {
     	skipIfMethodNotAllowed(HttpMethod.PUT);
 
     	String resourceUri = getResourceUri();
@@ -516,7 +515,7 @@ public abstract class CommonResourceTest extends LdpTest {
     				.statusCode(isSuccessful())
     				.header(ETAG, notNullValue())
     			.when()
-    				.get(new URI(resourceUri)).as(Model.class, new RdfObjectMapper(resourceUri));
+    				.get(resourceUri).as(Model.class, new RdfObjectMapper(resourceUri));
 
     	RestAssured
                 .given()
@@ -525,7 +524,7 @@ public abstract class CommonResourceTest extends LdpTest {
                 .expect()
                 	.statusCode(428)
                 .when()
-                	.put(new URI(resourceUri));
+                	.put(resourceUri);
     }
 
     @Test(
@@ -543,7 +542,7 @@ public abstract class CommonResourceTest extends LdpTest {
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-precond", 
     		testMethod = METHOD.NOT_IMPLEMENTED,
     		approval   = STATUS.WG_APPROVED)
-    public void testPutBadETag() throws URISyntaxException {
+    public void testPutBadETag() {
     	skipIfMethodNotAllowed(HttpMethod.PUT);
 
     	String resourceUri = getResourceUri();
@@ -553,7 +552,7 @@ public abstract class CommonResourceTest extends LdpTest {
     			.expect()
     				.statusCode(isSuccessful()).header(ETAG, notNullValue())
     			.when()
-    				.get(new URI(resourceUri)).as(Model.class, new RdfObjectMapper(resourceUri));
+    				.get(resourceUri).as(Model.class, new RdfObjectMapper(resourceUri));
 
     	RestAssured
                 .given().contentType(TEXT_TURTLE)
@@ -562,7 +561,7 @@ public abstract class CommonResourceTest extends LdpTest {
                 .expect()
                 	.statusCode(HttpStatus.SC_PRECONDITION_FAILED)
                 .when()
-                	.put(new URI(resourceUri));
+                	.put(resourceUri);
     }
 
     @Test(
@@ -588,12 +587,12 @@ public abstract class CommonResourceTest extends LdpTest {
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-patch-acceptpatch", 
     		testMethod = METHOD.AUTOMATED,
     		approval   = STATUS.WG_APPROVED)
-    public void testAcceptPatchHeader() throws URISyntaxException {
+    public void testAcceptPatchHeader() {
         skipIfMethodNotAllowed(HttpMethod.PATCH);
 
         RestAssured
                 .expect().statusCode(isSuccessful()).header(ACCEPT_PATCH, notNullValue())
-                .when().options(new URI(getResourceUri()));
+                .when().options(getResourceUri());
     }
 
     @Test(
@@ -618,9 +617,9 @@ public abstract class CommonResourceTest extends LdpTest {
     		specRefUri = LdpTestSuite.SPEC_URI + "ldpr-options-allow",
     		testMethod = METHOD.AUTOMATED,
     		approval   = STATUS.WG_APPROVED)
-    public void testOptionsAllowHeader() throws URISyntaxException {
-        URI uri = new URI(getResourceUri());
-        RestAssured.expect().statusCode(isSuccessful()).header(ALLOW, notNullValue()).when().options(uri);
+    public void testOptionsAllowHeader() {
+        RestAssured.expect().statusCode(isSuccessful()).header(ALLOW, notNullValue())
+        	.when().options(getResourceUri());
     }
 
     protected boolean supports(HttpMethod method) {
