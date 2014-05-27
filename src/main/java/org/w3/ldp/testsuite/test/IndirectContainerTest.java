@@ -18,6 +18,7 @@ import com.jayway.restassured.response.Response;
 
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
+import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.vocab.LDP;
 
 public class IndirectContainerTest extends CommonContainerTest {
@@ -37,13 +38,18 @@ public class IndirectContainerTest extends CommonContainerTest {
 	}
 
 	// TODO implement tests, signatures are from LDP spec
-	@Test(groups = { MUST }, description = "LDP servers exposing LDPCs MUST advertise their "
-			+ "LDP support by exposing a HTTP Link header with a "
-			+ "target URI matching the type of container (see below) "
-			+ "the server supports, and a link relation type of type "
-			+ "(that is, rel='type') in all responses to requests made "
-			+ "to the LDPC's HTTP Request-URI.")
-	@SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-linktypehdr", testMethod = METHOD.AUTOMATED)
+	@Test(
+			groups = { MUST }, 
+			description = "LDP servers exposing LDPCs MUST advertise their "
+					+ "LDP support by exposing a HTTP Link header with a "
+					+ "target URI matching the type of container (see below) "
+					+ "the server supports, and a link relation type of type "
+					+ "(that is, rel='type') in all responses to requests made "
+					+ "to the LDPC's HTTP Request-URI.")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-linktypehdr", 
+			testMethod = METHOD.AUTOMATED,
+			approval   = STATUS.WG_APPROVED)
 	public void testContainerSupportsHttpLinkHeader() throws URISyntaxException {
 		Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
 				.expect().statusCode(HttpStatus.SC_OK).when()
@@ -56,35 +62,53 @@ public class IndirectContainerTest extends CommonContainerTest {
 						+ "> and rel='type'");
 	}
 
-	@Test(groups = { MUST }, enabled = false, description = "Each LDP Indirect Container MUST also be a conforming "
-			+ "LDP Direct Container in section 5.4 Direct along "
-			+ "the following restrictions.")
-	@SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpic-are-ldpcs", testMethod = METHOD.NOT_IMPLEMENTED)
+	@Test(
+			groups = { MUST }, 
+			enabled = false, 
+			description = "Each LDP Indirect Container MUST also be a conforming "
+					+ "LDP Direct Container in section 5.4 Direct along "
+					+ "the following restrictions.")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldpic-are-ldpcs", 
+			testMethod = METHOD.NOT_IMPLEMENTED,
+			approval   = STATUS.WG_PENDING)
 	public void testCreateIndirectContainer() {
-
+		// TODO: Impl testCreateIndirectContainer
 	}
 
-	@Test(groups = { MUST }, enabled = false, description = "LDP Indirect Containers MUST contain exactly one "
-			+ "triple whose subject is the LDPC URI, whose predicate "
-			+ "is ldp:insertedContentRelation, and whose object ICR "
-			+ "describes how the member-derived-URI in the container's "
-			+ "membership triples is chosen.")
-	@SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpic-indirectmbr", testMethod = METHOD.NOT_IMPLEMENTED)
+	@Test(
+			groups = { MUST }, 
+			enabled = false, 
+			description = "LDP Indirect Containers MUST contain exactly one "
+					+ "triple whose subject is the LDPC URI, whose predicate "
+					+ "is ldp:insertedContentRelation, and whose object ICR "
+					+ "describes how the member-derived-URI in the container's "
+					+ "membership triples is chosen.")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldpic-indirectmbr", 
+			testMethod = METHOD.NOT_IMPLEMENTED,
+			approval   = STATUS.WG_PENDING)
 	public void testContainsLdpcUri() {
-
+		// TODO: Impl testContainsLdpcUri
 	}
 
-	@Test(groups = { MUST }, enabled = false, description = "LDPCs whose ldp:insertedContentRelation triple has an "
-			+ "object other than ldp:MemberSubject and that create new "
-			+ "resources MUST add a triple to the container whose subject is "
-			+ "the container's URI, whose predicate is ldp:contains, and whose "
-			+ "object is the newly created resource's URI (which will be "
-			+ "different from the member-derived URI in this case). This "
-			+ "ldp:contains triple can be the only link from the container to the "
-			+ "newly created resource in certain cases.")
-	@SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpic-post-indirectmbrrel", testMethod = METHOD.NOT_IMPLEMENTED)
+	@Test(
+			groups = { MUST }, 
+			enabled = false, 
+			description = "LDPCs whose ldp:insertedContentRelation triple has an "
+					+ "object other than ldp:MemberSubject and that create new "
+					+ "resources MUST add a triple to the container whose subject is "
+					+ "the container's URI, whose predicate is ldp:contains, and whose "
+					+ "object is the newly created resource's URI (which will be "
+					+ "different from the member-derived URI in this case). This "
+					+ "ldp:contains triple can be the only link from the container to the "
+					+ "newly created resource in certain cases.")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldpic-post-indirectmbrrel", 
+			testMethod = METHOD.NOT_IMPLEMENTED,
+			approval   = STATUS.WG_PENDING)
 	public void testPostResource() {
-
+		// TODO: Impl testPostResource
 	}
 
 	@Override

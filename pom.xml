@@ -216,5 +216,32 @@
             <version>3.0.8.Final</version>
         </dependency>
     </dependencies>
+    
+    <profiles>
+		<profile>
+			<id>test-coverage</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.1.1</version>
+						<executions>
+							<execution>
+								<phase>test</phase>
+								<goals>
+									<goal>java</goal>
+								</goals>
+								<configuration>
+									<mainClass>org.w3.ldp.testsuite.reporter.LdpTestCaseReporter</mainClass>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+    
 
 </project>

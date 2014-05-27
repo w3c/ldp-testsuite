@@ -21,6 +21,7 @@ import com.jayway.restassured.response.Response;
 
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
+import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.vocab.LDP;
 
 public class BasicContainerTest extends CommonContainerTest {
@@ -40,13 +41,18 @@ public class BasicContainerTest extends CommonContainerTest {
 		}
 	}
 
-	@Test(groups = { MUST }, description = "LDP servers exposing LDPCs MUST advertise their "
-			+ "LDP support by exposing a HTTP Link header with a "
-			+ "target URI matching the type of container (see below) "
-			+ "the server supports, and a link relation type of type "
-			+ "(that is, rel='type') in all responses to requests made "
-			+ "to the LDPC's HTTP Request-URI.")
-	@SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-linktypehdr", testMethod = METHOD.AUTOMATED)
+	@Test(
+			groups = { MUST }, 
+			description = "LDP servers exposing LDPCs MUST advertise their "
+					+ "LDP support by exposing a HTTP Link header with a "
+					+ "target URI matching the type of container (see below) "
+					+ "the server supports, and a link relation type of type "
+					+ "(that is, rel='type') in all responses to requests made "
+					+ "to the LDPC's HTTP Request-URI.")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-linktypehdr", 
+			testMethod = METHOD.AUTOMATED,
+			approval   = STATUS.WG_APPROVED)
 	public void testContainerSupportsHttpLinkHeader() throws URISyntaxException {
 		Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
 				.expect().statusCode(HttpStatus.SC_OK).when()
@@ -58,10 +64,15 @@ public class BasicContainerTest extends CommonContainerTest {
 						+ LDP.BasicContainer.stringValue() + "> and rel='type'");
 	}
 
-	@Test(groups = { MUST }, description = "Each LDP Basic Container MUST also be a "
-			+ "conforming LDP Container in section 5.2 Container "
-			+ "along the following restrictions in this section.")
-	@SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpbc-are-ldpcs", testMethod = METHOD.AUTOMATED)
+	@Test(
+			groups = { MUST }, 
+			description = "Each LDP Basic Container MUST also be a "
+					+ "conforming LDP Container in section 5.2 Container "
+					+ "along the following restrictions in this section.")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldpbc-are-ldpcs", 
+			testMethod = METHOD.AUTOMATED,
+			approval   = STATUS.WG_APPROVED)
 	public void testContainerTypeIsBasicContainer() throws URISyntaxException {
 		// FIXME: We're just testing the RDF type here. We're not really testing
 		// the requirement.

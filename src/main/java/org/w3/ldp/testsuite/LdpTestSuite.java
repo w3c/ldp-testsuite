@@ -20,174 +20,189 @@ import org.testng.TestNG;
 import org.testng.xml.XmlClass;
 import org.testng.xml.XmlSuite;
 import org.testng.xml.XmlTest;
+import org.w3.ldp.testsuite.reporter.LdpEarlReporter;
+import org.w3.ldp.testsuite.reporter.LdpHtmlReporter;
 import org.w3.ldp.testsuite.reporter.LdpTestListener;
 
 /**
- * LDP Test Suite Command-Line Interface, a wrapper
- * to {@link org.testng.TestNG}
- *
+ * LDP Test Suite Command-Line Interface, a wrapper to {@link org.testng.TestNG}
+ * 
  * @author Sergio Fernández
  * @author Steve Speicher
  * @author Samuel Padgett
  */
 public class LdpTestSuite {
 
-    public static final String NAME = "LDP Test Suite";
+	public static final String NAME = "LDP Test Suite";
 
-    public static final String SPEC_URI = "https://dvcs.w3.org/hg/ldpwg/raw-file/default/ldp.html";
+	public static final String SPEC_URI = "https://dvcs.w3.org/hg/ldpwg/raw-file/default/ldp.html";
 
-    private final TestNG testng;
+	private final TestNG testng;
 
-    enum ContainerType { BASIC, DIRECT, INDIRECT };
+	enum ContainerType {
+		BASIC, DIRECT, INDIRECT
+	};
 
-    public LdpTestSuite(String server, ContainerType type) {
-        //see: http://testng.org/doc/documentation-main.html#running-testng-programmatically
+	public LdpTestSuite(String server, ContainerType type) {
+		// see:
+		// http://testng.org/doc/documentation-main.html#running-testng-programmatically
 
-        testng = new TestNG();
+		testng = new TestNG();
 
-        TestListenerAdapter tla = new LdpTestListener();
-        testng.addListener(tla);
+		TestListenerAdapter tla = new LdpTestListener();
 
-        // create XmlSuite instance
-        XmlSuite testsuite = new XmlSuite();
-        testsuite.setName(NAME);
+		LdpEarlReporter earlReport = new LdpEarlReporter();
+		LdpHtmlReporter htmlReport = new LdpHtmlReporter();
 
-        // provide included/excluded groups
-        //TODO: dynamic groups
-        testsuite.addIncludedGroup("MUST");
-        testsuite.addIncludedGroup("SHOULD");
-        testsuite.addIncludedGroup("MAY");
-        testsuite.addIncludedGroup("ldpMember");
+		testng.addListener(tla);
+		testng.addListener(earlReport);
+		testng.addListener(htmlReport);
 
-        // create XmlTest instance
-        XmlTest test = new XmlTest(testsuite);
-        test.setName("W3C Linked Data Platform Tests");
+		// create XmlSuite instance
+		XmlSuite testsuite = new XmlSuite();
+		testsuite.setName(NAME);
 
-        // Add any parameters that you want to set to the Test.
+		// provide included/excluded groups
+		// TODO: dynamic groups
+		testsuite.addIncludedGroup("MUST");
+		testsuite.addIncludedGroup("SHOULD");
+		testsuite.addIncludedGroup("MAY");
+		testsuite.addIncludedGroup("ldpMember");
 
-        // Add classes we want to test
-        List<XmlClass> classes = new ArrayList<XmlClass>();
+		// create XmlTest instance
+		XmlTest test = new XmlTest(testsuite);
+		test.setName("W3C Linked Data Platform Tests");
 
-        Map<String, String> parameters = new HashMap<>();
-        switch (type) {
-            case BASIC:
-                classes.add(new XmlClass("org.w3.ldp.testsuite.test.BasicContainerTest"));
-                parameters.put("basicContainer", server);
-                break;
-            case DIRECT:
-                classes.add(new XmlClass("org.w3.ldp.testsuite.test.DirectContainerTest"));
-                parameters.put("directContainer", server);
-                break;
-            case INDIRECT:
-                classes.add(new XmlClass("org.w3.ldp.testsuite.test.IndirectContainerTest"));
-                parameters.put("indirectContainer", server);
-                break;
-        }
-        classes.add(new XmlClass("org.w3.ldp.testsuite.test.MemberResourceTest"));
+		// Add any parameters that you want to set to the Test.
 
-        test.setXmlClasses(classes);
+		// Add classes we want to test
+		List<XmlClass> classes = new ArrayList<XmlClass>();
 
-        List<XmlTest> tests = new ArrayList<XmlTest>();
-        tests.add(test);
+		Map<String, String> parameters = new HashMap<>();
+		switch (type) {
+		case BASIC:
+			classes.add(new XmlClass(
+					"org.w3.ldp.testsuite.test.BasicContainerTest"));
+			parameters.put("basicContainer", server);
+			break;
+		case DIRECT:
+			classes.add(new XmlClass(
+					"org.w3.ldp.testsuite.test.DirectContainerTest"));
+			parameters.put("directContainer", server);
+			break;
+		case INDIRECT:
+			classes.add(new XmlClass(
+					"org.w3.ldp.testsuite.test.IndirectContainerTest"));
+			parameters.put("indirectContainer", server);
+			break;
+		}
+		classes.add(new XmlClass("org.w3.ldp.testsuite.test.MemberResourceTest"));
 
-        testsuite.setParameters(parameters);
-        testsuite.setTests(tests);
+		test.setXmlClasses(classes);
 
-        List<XmlSuite> suites = new ArrayList<XmlSuite>();
-        suites.add(testsuite);
+		List<XmlTest> tests = new ArrayList<XmlTest>();
+		tests.add(test);
 
-        // provide our reporter and listener
-        testng.setXmlSuites(suites);
-    }
+		testsuite.setParameters(parameters);
+		testsuite.setTests(tests);
 
-    public void run() {
-        testng.run();
-    }
+		List<XmlSuite> suites = new ArrayList<XmlSuite>();
+		suites.add(testsuite);
 
-    private int getStatus() {
-        return testng.getStatus();
-    }
+		// provide our reporter and listener
+		testng.setXmlSuites(suites);
+	}
 
-    @SuppressWarnings("static-access")
-    public static void main(String[] args) {
-        Options options = new Options();
+	public void run() {
+		testng.run();
+	}
 
-        options.addOption(OptionBuilder.withLongOpt("server")
-                .withDescription("server url to run the test suite")
-                .hasArg()
-                .isRequired()
-                .create());
+	private int getStatus() {
+		return testng.getStatus();
+	}
 
-        options.addOption(OptionBuilder.withLongOpt("help")
-                .withDescription("print usage help")
-                .create());
+	@SuppressWarnings("static-access")
+	public static void main(String[] args) {
+		Options options = new Options();
 
-        OptionGroup containerType = new OptionGroup();
-        containerType.addOption(OptionBuilder.withLongOpt("basic").withDescription("server url is a basic container").create());
-        containerType.addOption(OptionBuilder.withLongOpt("direct").withDescription("server url is a direct container").create());
-        containerType.addOption(OptionBuilder.withLongOpt("indirect").withDescription("server url is an indirect container").create());
-        containerType.setRequired(true);
+		options.addOption(OptionBuilder.withLongOpt("server")
+				.withDescription("server url to run the test suite").hasArg()
+				.isRequired().create());
 
-        options.addOptionGroup(containerType);
+		options.addOption(OptionBuilder.withLongOpt("help")
+				.withDescription("print usage help").create());
 
-        CommandLineParser parser = new BasicParser();
-        CommandLine cmd = null;
-        try {
-            cmd = parser.parse(options, args);
-        } catch (ParseException e) {
-            System.err.println("ERROR: " + e.getLocalizedMessage());
-            printUsage(options);
-        }
+		OptionGroup containerType = new OptionGroup();
+		containerType.addOption(OptionBuilder.withLongOpt("basic")
+				.withDescription("server url is a basic container").create());
+		containerType.addOption(OptionBuilder.withLongOpt("direct")
+				.withDescription("server url is a direct container").create());
+		containerType.addOption(OptionBuilder.withLongOpt("indirect")
+				.withDescription("server url is an indirect container")
+				.create());
+		containerType.setRequired(true);
 
-        if (cmd.hasOption("help")) {
-            printUsage(options);
-        }
+		options.addOptionGroup(containerType);
 
-        String server = cmd.getOptionValue("server");
-        try {
-            URI uri = new URI(server);
-            if (!"http".equals(uri.getScheme())) {
-                throw new IllegalArgumentException("non-http uri");
-            }
-        } catch (Exception e) {
-            System.err.println("ERROR: invalid server uri, " + e.getLocalizedMessage());
-            printUsage(options);
-        }
+		CommandLineParser parser = new BasicParser();
+		CommandLine cmd = null;
+		try {
+			cmd = parser.parse(options, args);
+		} catch (ParseException e) {
+			System.err.println("ERROR: " + e.getLocalizedMessage());
+			printUsage(options);
+		}
 
-        //actual test suite execution
-        ContainerType type = getSelectedType(cmd);
-        LdpTestSuite ldpTestSuite = new LdpTestSuite(server, type);
+		if (cmd.hasOption("help")) {
+			printUsage(options);
+		}
 
-        try {
-            ldpTestSuite.run();
-        } catch (Exception e) {
-            Throwable cause = ExceptionUtils.getRootCause(e);
-            System.err.println("ERROR: " + cause.getMessage());
-            //e.printStackTrace();
-            printUsage(options);
-        }
+		String server = cmd.getOptionValue("server");
+		try {
+			URI uri = new URI(server);
+			if (!"http".equals(uri.getScheme())) {
+				throw new IllegalArgumentException("non-http uri");
+			}
+		} catch (Exception e) {
+			System.err.println("ERROR: invalid server uri, "
+					+ e.getLocalizedMessage());
+			printUsage(options);
+		}
 
-        System.exit(ldpTestSuite.getStatus());
-    }
+		// actual test suite execution
+		ContainerType type = getSelectedType(cmd);
+		LdpTestSuite ldpTestSuite = new LdpTestSuite(server, type);
 
-    private static ContainerType getSelectedType(CommandLine cmd) {
-        if (cmd.hasOption("direct")) {
-            return ContainerType.DIRECT;
-        }
+		try {
+			ldpTestSuite.run();
+		} catch (Exception e) {
+			Throwable cause = ExceptionUtils.getRootCause(e);
+			System.err.println("ERROR: " + cause.getMessage());
+			// e.printStackTrace();
+			printUsage(options);
+		}
 
-        if (cmd.hasOption("indirect")) {
-            return ContainerType.INDIRECT;
-        }
+		System.exit(ldpTestSuite.getStatus());
+	}
 
-        return ContainerType.BASIC;
-    }
+	private static ContainerType getSelectedType(CommandLine cmd) {
+		if (cmd.hasOption("direct")) {
+			return ContainerType.DIRECT;
+		}
 
-    private static void printUsage(Options options) {
-        HelpFormatter formatter = new HelpFormatter();
-        System.out.println();
-        formatter.printHelp("java -jar ldp-testsuite.jar", options);
-        System.out.println();
-        System.exit(-1);
-    }
+		if (cmd.hasOption("indirect")) {
+			return ContainerType.INDIRECT;
+		}
+
+		return ContainerType.BASIC;
+	}
+
+	private static void printUsage(Options options) {
+		HelpFormatter formatter = new HelpFormatter();
+		System.out.println();
+		formatter.printHelp("java -jar ldp-testsuite.jar", options);
+		System.out.println();
+		System.exit(-1);
+	}
 
 }

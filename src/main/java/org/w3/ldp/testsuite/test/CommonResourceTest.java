@@ -17,6 +17,7 @@ import org.testng.annotations.Test;
 import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
+import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException;
 import org.w3.ldp.testsuite.http.HttpMethod;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
@@ -61,30 +62,53 @@ public abstract class CommonResourceTest extends LdpTest {
     @Test(
             groups = {MUST},
             description = "LDP servers MUST at least be"
-                    + " HTTP/1.1 conformant servers [HTTP11].")
-    @SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-http", testMethod = METHOD.AUTOMATED)
+            		+ " HTTP/1.1 conformant servers [HTTP11].")
+    @SpecTest(
+    		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-http", 
+    		testMethod = METHOD.AUTOMATED,
+    		approval   = STATUS.WG_EXTENSION)
     public void testIsHttp11Server() throws URISyntaxException {
+    	// TODO: Consider a more extensive test for HTTP/1.1
         RestAssured.expect().statusLine(containsString("HTTP/1.1")).when().head(new URI(getResourceUri()));
     }
+    
+    @Test(
+            groups = {MUST},
+            description = "LDP servers MUST at least be"
+            		+ " HTTP/1.1 conformant servers [HTTP11].")
+    @SpecTest(
+    		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-http", 
+    		testMethod = METHOD.MANUAL,
+    		approval   = STATUS.WG_APPROVED)
+    public void testIsHttp11Manual() throws URISyntaxException {
+
+    }
+
 
     @Test(
             enabled = false,
             groups = {MAY},
             description = "LDP servers MAY host a mixture of LDPRs, "
-                    + "LDP-RSs and LDP-NRs. For example, it is common "
-                    + "for LDP servers to need to host binary or text "
-                    + "resources that do not have useful RDF representations.")
-    @SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-binary", testMethod = METHOD.NOT_IMPLEMENTED)
+            		+ "LDP-RSs and LDP-NRs. For example, it is common "
+            		+ "for LDP servers to need to host binary or text "
+            		+ "resources that do not have useful RDF representations.")
+    @SpecTest(
+    		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-binary", 
+    		testMethod = METHOD.NOT_IMPLEMENTED,
+    		approval   = STATUS.WG_PENDING)
     public void testOtherMediaTypes() {
-
+    	// TODO: Impl testOtherMediaTypes
     }
 
     @Test(
             groups = {MUST},
             description = "LDP server responses MUST use entity tags "
-                    + "(either weak or strong ones) as response "
-                    + "ETag header values.")
-    @SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-etags", testMethod = METHOD.AUTOMATED)
+            		+ "(either weak or strong ones) as response "
+            		+ "ETag header values.")
+    @SpecTest(
+    		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-etags", 
+    		testMethod = METHOD.AUTOMATED,
+    		approval   = STATUS.WG_APPROVED)
     public void testETagHeadersGet() throws URISyntaxException {
         // GET requests
         RestAssured.given().header(ACCEPT, TEXT_TURTLE)
@@ -95,9 +119,12 @@ public abstract class CommonResourceTest extends LdpTest {
     @Test(
             groups = {MUST},
             description = "LDP server responses MUST use entity tags "
-                    + "(either weak or strong ones) as response "
-                    + "ETag header values.")
-    @SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-etags", testMethod = METHOD.AUTOMATED)
+            		+ "(either weak or strong ones) as response "
+            		+ "ETag header values.")
+    @SpecTest(
+    		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-etags", 
+    		testMethod = METHOD.AUTOMATED,
+    		approval   = STATUS.WG_APPROVED)
     public void testETagHeadersHead() throws URISyntaxException {
         // GET requests
         RestAssured.given().header(ACCEPT, TEXT_TURTLE)
@@ -108,12 +135,15 @@ public abstract class CommonResourceTest extends LdpTest {
     @Test(
     		groups = {MUST},
             description = "LDP servers exposing LDPRs MUST advertise "
-                    + "their LDP support by exposing a HTTP Link header "
-                    + "with a target URI of http://www.w3.org/ns/ldp#Resource, "
-                    + "and a link relation type of type (that is, rel='type') "
-                    + "in all responses to requests made to the LDPR's "
-                    + "HTTP Request-URI.")
-    @SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-linktypehdr", testMethod = METHOD.AUTOMATED)
+            		+ "their LDP support by exposing a HTTP Link header "
+            		+ "with a target URI of http://www.w3.org/ns/ldp#Resource, "
+            		+ "and a link relation type of type (that is, rel='type') "
+            		+ "in all responses to requests made to the LDPR's "
+            		+ "HTTP Request-URI.")
+    @SpecTest(
+    		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-linktypehdr", 
+    		testMethod = METHOD.AUTOMATED,
+    		approval   = STATUS.WG_APPROVED)
     public void testLdpLinkHeader() throws URISyntaxException {
         Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
                 .expect().statusCode(isSuccessful())
@@ -130,11 +160,14 @@ public abstract class CommonResourceTest extends LdpTest {
     @Test(
             groups = {MUST},
             description = "LDP servers MUST assign the default base-URI "
-                    + "for [RFC3987] relative-URI resolution to be the HTTP "
-                    + "Request-URI when the resource already exists, and to "
-                    + "the URI of the created resource when the request results "
-                    + "in the creation of a new resource.")
-    @SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-defbaseuri", testMethod = METHOD.AUTOMATED)
+            		+ "for [RFC3987] relative-URI resolution to be the HTTP "
+            		+ "Request-URI when the resource already exists, and to "
+            		+ "the URI of the created resource when the request results "
+            		+ "in the creation of a new resource.")
+    @SpecTest(
+    		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-defbaseuri", 
+    		testMethod = METHOD.AUTOMATED,
+    		approval   = STATUS.WG_APPROVED)
     public void testRelativeUriResolutionPut() throws URISyntaxException {
     	skipIfMethodNotAllowed(HttpMethod.PUT);
 
@@ -172,15 +205,21 @@ public abstract class CommonResourceTest extends LdpTest {
                     + "ability to create or update LDPRs, by adding a Link header "
                     + "with rel='describedby' [RFC5988] to all responses to requests "
                     + "which fail due to violation of those constraints.")
-    @SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-pubclireqs", testMethod = METHOD.NOT_IMPLEMENTED)
+    @SpecTest(
+    		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-pubclireqs", 
+    		testMethod = METHOD.NOT_IMPLEMENTED,
+    		approval   = STATUS.WG_PENDING)
     public void testPublishConstraints() {
-
+    	// TODO: Impl testPublishConstraints
     }
 
     @Test(
             groups = {MUST},
             description = "LDP servers MUST support the HTTP GET Method for LDPRs")
-    @SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-get-must", testMethod = METHOD.AUTOMATED)
+    @SpecTest(
+    		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-get-must", 
+    		testMethod = METHOD.AUTOMATED,
+    		approval   = STATUS.WG_APPROVED)
     public void testGetResource() throws URISyntaxException {
         assertTrue(supports(HttpMethod.GET), "HTTP GET is not listed in the Allow response header on HTTP OPTIONS requests for resource <" + getResourceUri() + ">");
         RestAssured
@@ -192,7 +231,10 @@ public abstract class CommonResourceTest extends LdpTest {
             groups = {MUST},
             description = "LDP servers MUST support the HTTP response headers "
                     + "defined in section 4.2.8 HTTP OPTIONS. ")
-    @SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-get-options", testMethod = METHOD.AUTOMATED)
+    @SpecTest(
+    		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-get-options", 
+    		testMethod = METHOD.AUTOMATED,
+    		approval   = STATUS.WG_APPROVED)
     public void testGetResponseHeaders() throws URISyntaxException {
         ResponseSpecification expectResponse = RestAssured.expect();
         expectResponse.header(ALLOW, notNullValue());
@@ -215,7 +257,10 @@ public abstract class CommonResourceTest extends LdpTest {
                     + "LDP servers MUST replace the entire persistent state of "
                     + "the identified resource with the entity representation "
                     + "in the body of the request.")
-    @SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-replaceall", testMethod = METHOD.AUTOMATED)
+    @SpecTest(
+    		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-replaceall", 
+    		testMethod = METHOD.AUTOMATED,
+    		approval   = STATUS.WG_APPROVED)
     public void testPutReplacesResource() throws URISyntaxException {
     	skipIfMethodNotAllowed(HttpMethod.PUT);
     	
@@ -282,7 +327,10 @@ public abstract class CommonResourceTest extends LdpTest {
                     + "without requiring detailed knowledge of server-specific "
                     + "constraints. This is a consequence of the requirement to "
                     + "enable simple creation and modification of LDPRs.")
-    @SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-simpleupdate", testMethod = METHOD.AUTOMATED)
+    @SpecTest(
+    		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-simpleupdate", 
+    		testMethod = METHOD.AUTOMATED,
+    		approval   = STATUS.WG_APPROVED)
     public void testAllowUpdateResources() throws URISyntaxException {
     	skipIfMethodNotAllowed(HttpMethod.PUT);
 
@@ -319,9 +367,12 @@ public abstract class CommonResourceTest extends LdpTest {
                     + "attempts to change properties the server does not allow "
                     + "clients to modify, LDP servers MUST respond with a 4xx range "
                     + "status code (typically 409 Conflict)")
-    @SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-put-servermanagedprops", testMethod = METHOD.NOT_IMPLEMENTED)
+    @SpecTest(
+    		specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-put-servermanagedprops", 
+    		testMethod = METHOD.NOT_IMPLEMENTED,
+    		approval   = STATUS.WG_PENDING)
     public void testPutReadOnlyProperties4xxStatus() {
-
+    	// TODO: Impl testPutReadOnlyProperties4xxStatus
     }
 
     @Test(
@@ -331,9 +382,12 @@ public abstract class CommonResourceTest extends LdpTest {
             description = "LDP servers SHOULD provide a corresponding response body containing "
                     + "information about which properties could not be persisted. The "
                     + "format of the 4xx response body is not constrained by LDP.")
-    @SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-put-servermanagedprops", testMethod = METHOD.NOT_IMPLEMENTED)
+    @SpecTest(
+    		specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-put-servermanagedprops", 
+    		testMethod = METHOD.NOT_IMPLEMENTED,
+    		approval   = STATUS.WG_PENDING)
     public void test4xxErrorHasResponseBody() {
-
+    	// TODO: Impl test4xxErrorHasResponseBody
     }
 
     @Test(
@@ -343,9 +397,12 @@ public abstract class CommonResourceTest extends LdpTest {
                     + "contains properties the server chooses not to persist, "
                     + "e.g. unknown content, LDP servers MUST respond with an "
                     + "appropriate 4xx range status code [HTTP11].")
-    @SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-put-failed", testMethod = METHOD.NOT_IMPLEMENTED)
+    @SpecTest(
+    		specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-put-failed", 
+    		testMethod = METHOD.NOT_IMPLEMENTED,
+    		approval   = STATUS.WG_PENDING)
     public void testPutPropertiesNotPersisted() {
-
+    	// TODO: Impl testPutPropertiesNotPersisted
     }
 
     @Test(
@@ -357,9 +414,12 @@ public abstract class CommonResourceTest extends LdpTest {
                     + "format of the 4xx response body is not constrained by LDP. LDP "
                     + "servers expose these application-specific constraints as described "
                     + "in section 4.2.1 General.")
-    @SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-put-failed", testMethod = METHOD.NOT_IMPLEMENTED)
+    @SpecTest(
+    		specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-put-failed", 
+    		testMethod = METHOD.NOT_IMPLEMENTED,
+    		approval   = STATUS.WG_PENDING)
     public void testResponsePropertiesNotPersisted() {
-
+    	// TODO: Impl testResponsePropertiesNotPersisted
     }
 
     @Test(
@@ -368,7 +428,10 @@ public abstract class CommonResourceTest extends LdpTest {
                     + "to ensure it isn’t modifying a resource that has changed since the "
                     + "client last retrieved its representation. LDP servers SHOULD require "
                     + "the HTTP If-Match header and HTTP ETags to detect collisions.")
-    @SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-precond", testMethod = METHOD.AUTOMATED)
+    @SpecTest(
+    		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-precond", 
+    		testMethod = METHOD.AUTOMATED,
+    		approval   = STATUS.WG_APPROVED)
     public void testPutRequiresIfMatch() throws URISyntaxException {
     	skipIfMethodNotAllowed(HttpMethod.PUT);
 
@@ -401,7 +464,10 @@ public abstract class CommonResourceTest extends LdpTest {
                     + "with status code 428 (Precondition Required) when the "
                     + "absence of a precondition is the only reason for rejecting "
                     + "the request [RFC6585].")
-    @SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-precond", testMethod = METHOD.AUTOMATED)
+    @SpecTest(
+    		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-precond", 
+    		testMethod = METHOD.AUTOMATED,
+    		approval   = STATUS.WG_APPROVED)
     public void testConditionFailedStatusCode() throws URISyntaxException {
     	skipIfMethodNotAllowed(HttpMethod.PUT);
 
@@ -435,7 +501,10 @@ public abstract class CommonResourceTest extends LdpTest {
                     + "with status code 428 (Precondition Required) when the "
                     + "absence of a precondition is the only reason for rejecting "
                     + "the request [RFC6585].")
-    @SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-precond", testMethod = METHOD.AUTOMATED)
+    @SpecTest(
+    		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-precond", 
+    		testMethod = METHOD.AUTOMATED,
+    		approval   = STATUS.WG_APPROVED)
     public void testPreconditionRequiredStatusCode() throws URISyntaxException {
     	skipIfMethodNotAllowed(HttpMethod.PUT);
 
@@ -470,7 +539,10 @@ public abstract class CommonResourceTest extends LdpTest {
                     + "with status code 428 (Precondition Required) when the "
                     + "absence of a precondition is the only reason for rejecting "
                     + "the request [RFC6585].")
-    @SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-precond", testMethod = METHOD.NOT_IMPLEMENTED)
+    @SpecTest(
+    		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-precond", 
+    		testMethod = METHOD.NOT_IMPLEMENTED,
+    		approval   = STATUS.WG_APPROVED)
     public void testPutBadETag() throws URISyntaxException {
     	skipIfMethodNotAllowed(HttpMethod.PUT);
 
@@ -497,7 +569,10 @@ public abstract class CommonResourceTest extends LdpTest {
             // enabled = false,
             groups = {MUST},
             description = "LDP servers MUST support the HTTP HEAD method. ")
-    @SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-head-must", testMethod = METHOD.AUTOMATED)
+    @SpecTest(
+    		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-head-must", 
+    		testMethod = METHOD.AUTOMATED,
+    		approval   = STATUS.WG_APPROVED)
     public void testHead() {
         assertTrue(supports(HttpMethod.HEAD), "HTTP HEAD is not listed in the Allow response header on HTTP OPTIONS requests for resource <" + getResourceUri() + ">");
         RestAssured.expect().statusCode(isSuccessful()).when().head(getResourceUri());
@@ -509,7 +584,10 @@ public abstract class CommonResourceTest extends LdpTest {
                     + "Accept-Patch HTTP response header [RFC5789] on HTTP "
                     + "OPTIONS requests, listing patch document media type(s) "
                     + "supported by the server. ")
-    @SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-patch-acceptpatch", testMethod = METHOD.AUTOMATED)
+    @SpecTest(
+    		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-patch-acceptpatch", 
+    		testMethod = METHOD.AUTOMATED,
+    		approval   = STATUS.WG_APPROVED)
     public void testAcceptPatchHeader() throws URISyntaxException {
         skipIfMethodNotAllowed(HttpMethod.PATCH);
 
@@ -522,7 +600,10 @@ public abstract class CommonResourceTest extends LdpTest {
             // enabled = false,
             groups = {MUST},
             description = "LDP servers MUST support the HTTP OPTIONS method. ")
-    @SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-options-must", testMethod = METHOD.AUTOMATED)
+    @SpecTest(
+    		specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-options-must", 
+    		testMethod = METHOD.AUTOMATED,
+    		approval   = STATUS.WG_APPROVED)
     public void testOptions() {
         RestAssured.expect().statusCode(isSuccessful()).when().options(getResourceUri());
     }
@@ -533,7 +614,10 @@ public abstract class CommonResourceTest extends LdpTest {
             description = "LDP servers MUST indicate their support for HTTP Methods "
                     + "by responding to a HTTP OPTIONS request on the LDPR’s URL "
                     + "with the HTTP Method tokens in the HTTP response header Allow. ")
-    @SpecTest(specRefUri = LdpTestSuite.SPEC_URI + "ldpr-options-allow", testMethod = METHOD.AUTOMATED)
+    @SpecTest(
+    		specRefUri = LdpTestSuite.SPEC_URI + "ldpr-options-allow",
+    		testMethod = METHOD.AUTOMATED,
+    		approval   = STATUS.WG_APPROVED)
     public void testOptionsAllowHeader() throws URISyntaxException {
         URI uri = new URI(getResourceUri());
         RestAssured.expect().statusCode(isSuccessful()).header(ALLOW, notNullValue()).when().options(uri);
