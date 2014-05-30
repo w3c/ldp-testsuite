@@ -76,7 +76,7 @@ public class BasicContainerTest extends CommonContainerTest {
 		Resource container = containerModel.getResource(basicContainer);
 		assertTrue(
 				container.hasProperty(RDF.type,
-						LDP.BasicContainer.stringValue()),
+						containerModel.createResource(LDP.BasicContainer.stringValue())),
 				"Could not locate LDP BasicContainer rdf:type for <"
 						+ basicContainer + ">");
 	}
