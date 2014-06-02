@@ -31,15 +31,13 @@ public class LdpTestSuite {
 
     enum ContainerType {
         BASIC, DIRECT, INDIRECT
-    }
-
-    ;
+    };
 
     public LdpTestSuite(String server, ContainerType type) {
-        // see:
-        // http://testng.org/doc/documentation-main.html#running-testng-programmatically
+        // see: http://testng.org/doc/documentation-main.html#running-testng-programmatically
 
         testng = new TestNG();
+        testng.setDefaultSuiteName(NAME);
 
         TestListenerAdapter tla = new LdpTestListener();
 
