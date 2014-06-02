@@ -11,6 +11,7 @@ import com.jayway.restassured.mapper.ObjectMapperDeserializationContext;
 import com.jayway.restassured.mapper.ObjectMapperSerializationContext;
 
 public class RdfObjectMapper implements ObjectMapper {
+
     private String baseURI;
 
     public RdfObjectMapper() {
