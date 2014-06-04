@@ -57,10 +57,10 @@ body {
 }
 
 a {
-  color: #d5000d;
+  color: #005a9c;
 }
 a:hover {
-  color: #c5000c;
+  text-decoration: underline;
 }
 
 header {
@@ -72,7 +72,8 @@ header h1 {
   font-family: 'Chivo', 'Helvetica Neue', Helvetica, Arial, serif; font-weight: 900;
   letter-spacing: -1px;
   font-size: 48px;
-  color: #303030;
+  color: #005a9c;
+  font-weight: bold;
   line-height: 1.2;
 }
 
@@ -99,6 +100,7 @@ header h2 {
 }
 
 #downloads {
+  float: right;
   margin-bottom: 40px;
 }
 
@@ -190,6 +192,7 @@ pre code {
   background-color: #303030;
   border: none;
   padding: 0;
+  font-family: monospace;
 }
 
 ul, ol, dl {
@@ -252,7 +255,7 @@ h2 {
 } 
 
 h3 {
-  color: #d5000d;
+  color: #005a9c;
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 8px;
