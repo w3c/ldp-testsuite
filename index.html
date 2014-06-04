@@ -78,7 +78,7 @@ would be:</p>
 <p>If you are using <a href="http://maven.apache.org">Maven</a> for building your project, you can use the test suite by 
 <a href="http://maven.apache.org/guides/mini/guide-attached-tests.html#Using_the_attached_test_JAR">attaching the test JAR</a>:</p>
 
-<pre><code>&lt;dependency&lt;
+<pre><code>&lt;dependency&gt;
     &lt;groupId&gt;org.w3&lt;/groupId&gt;
     &lt;artifactId&gt;ldp-testsuite&lt;/artifactId&gt;
     &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
@@ -89,7 +89,7 @@ would be:</p>
 
 <p>And then you can execute the test suite with a code like:</p>
 
-<pre><code>Map&lt;String, String&lt; options = new HashMap&lt;&lt;();
+<pre><code>Map&lt;String, String&gt; options = new HashMap&lt;&gt;();
 options.put("server", "http://ldp.example.org");
 options.put("basic", null);
 LdpTestSuite testSuite = new LdpTestSuite(options);
