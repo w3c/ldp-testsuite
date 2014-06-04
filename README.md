@@ -24,7 +24,8 @@ You can run the test suite against an arbitrary server:
     mvn package
     java -jar target/ldp-testsuite-1.0.0-SNAPSHOT-shaded.jar --server http://ldp.example.org --basic
 
-Use "--basic", "--direct", or "--indirect" for the type of container you want to test.
+Use `--basic`, `--direct`, or `--indirect` for the type of container you want to test;
+`--help` for getting some more help.
 
 For instance, if you want to test [Apache Marmotta](http://marmotta.apache.org), once you
 [have it installed](http://marmotta.apache.org/installation.html#source) the command to use
