@@ -1,6 +1,6 @@
 # LDP Test Suite
 
-Test Suite for [Linked Data Platform 1.0](http://www.w3.org/TR/ldp/) (LDP).
+[Test Suite for [Linked Data Platform 1.0](http://w3c.github.io/ldp-testsuite)
 
 ## Background 
 
