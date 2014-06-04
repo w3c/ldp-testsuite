@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>LDP Test Suite by w3c</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>LDP Test Suite</h1>
+          <h2>Test Suite for W3C Linked Data Platform 1.0</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/w3c/ldp-testsuite/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/w3c/ldp-testsuite/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/w3c/ldp-testsuite" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>
+<a name="ldp-test-suite" class="anchor" href="#ldp-test-suite"><span class="octicon octicon-link"></span></a>LDP Test Suite</h1>
+
+<p>Test Suite for <a href="http://www.w3.org/TR/ldp/">Linked Data Platform 1.0</a> (LDP).</p>
+
+<h2>
+<a name="background" class="anchor" href="#background"><span class="octicon octicon-link"></span></a>Background</h2>
+
+<ul>
+<li>
+<a href="http://www.w3.org/TR/ldp/">Linked Data Platform 1.0</a> (W3C Last Call Working Draft 11 March 2014)</li>
+<li>
+<a href="http://www.w3.org/TR/ldp-ucr/">Linked Data Platform Use Cases and Requirements</a> (W3C Working Group Note 13 March 2014)</li>
+<li>
+<a href="https://dvcs.w3.org/hg/ldpwg/raw-file/default/ldp-bp/ldp-bp.html">LDP Best Practices and Guidelines</a> (W3C Editor's Draft 17 April 2014)</li>
+<li>
+<a href="https://dvcs.w3.org/hg/ldpwg/raw-file/default/Test%20Cases/LDP%20Test%20Cases.html">Linked Data Platform 1.0 Test Cases</a> (W3C Working Group Note 17 April 2014)</li>
+</ul><h2>
+<a name="status" class="anchor" href="#status"><span class="octicon octicon-link"></span></a>Status</h2>
+
+<p>This Test Suite is still <em>work-in-progress</em>, but you could start to use it to check your implementation and send some early feedback to the <a href="http://www.w3.org/2012/ldp/">working group</a>.</p>
+
+<p>The list of test cases, along with their status (WG approved, manual, client-only) is available in <a href="http://w3c.github.io/ldp-testsuite/report/LdpTestCasesHtmlReport.html">a generated report</a>.</p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a name="standalone" class="anchor" href="#standalone"><span class="octicon octicon-link"></span></a>Standalone</h3>
+
+<p>You can run the test suite against an arbitrary server:</p>
+
+<pre><code>mvn package
+cd target
+java -jar ldp-testsuite-1.0.0-SNAPSHOT-shaded.jar --server http://ldp.example.org --basic
+</code></pre>
+
+<p>Use "--basic", "--direct", or "--indirect" for the type of container you want to test.</p>
+
+<p>For instance, if you want to test <a href="http://marmotta.apache.org">Apache Marmotta</a>, once you
+<a href="http://marmotta.apache.org/installation.html#source">have it installed</a> the command to use
+would be:</p>
+
+<pre><code>java -jar ldp-testsuite-1.0.0-SNAPSHOT-shaded.jar --server http://localhost:8080/ldp --basic
+</code></pre>
+
+<h3>
+<a name="maven" class="anchor" href="#maven"><span class="octicon octicon-link"></span></a>Maven</h3>
+
+<p>If you are using <a href="http://maven.apache.org">Maven</a> for building your project, you can use the test suite by 
+<a href="http://maven.apache.org/guides/mini/guide-attached-tests.html#Using_the_attached_test_JAR">attaching the test JAR</a>:</p>
+
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.w3&lt;/groupId&gt;
+    &lt;artifactId&gt;ldp-testsuite&lt;/artifactId&gt;
+    &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
+    &lt;type&gt;test-jar&lt;/type&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<p>@<a href="https://github.com/TODO" class="user-mention">@TODO</a>@@: code example from Marmotta, as soon as we have this api available</p>
+
+<h2>
+<a name="contributors" class="anchor" href="#contributors"><span class="octicon octicon-link"></span></a>Contributors</h2>
+
+<ul>
+<li>Steve Speicher (<a href="http://www.ibm.com">IBM</a>)</li>
+<li>Samuel Padgett (<a href="http://www.ibm.com">IBM</a>)</li>
+<li>Sergio Fernández (<a href="http://www.apache.org">ASF</a>)</li>
+</ul><h2>
+<a name="licenses" class="anchor" href="#licenses"><span class="octicon octicon-link"></span></a>Licenses</h2>
+
+<p>The Test Suite software is avaible under the terms of the <a href="http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231">W3C Software Notice and License</a>.
+To contribute to the Test Suite software, you have to <a href="https://www.clahub.com/agreements/w3c/ldp-testsuite">sign the Contributor License Agreement</a>.</p>
+
+<p>The Test Suite data is available under both <a href="http://www.w3.org/Consortium/Legal/2008/04-testsuite-license">W3C Test Suite License</a> and 
+<a href="http://www.w3.org/Consortium/Legal/2008/03-bsd-license">W3C 3-clause BSD License</a>. To contribute to the Test Suite data, see the 
+<a href="http://www.w3.org/2004/10/27-testcases">policies and contribution forms</a>.</p>
+        </section>
+
+        <footer>
+          LDP Test Suite is maintained by <a href="https://github.com/w3c">w3c</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
