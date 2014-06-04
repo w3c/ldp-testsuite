@@ -11,7 +11,7 @@ Test Suite for Linked Data Platform (LDP).
 
 ## Status
 
-This Test Suite is still _work-in-progress_, so __should not be used__ yet.
+This Test Suite is still _work-in-progress_, but you could start to use it to check your implementation and send some early feedback to the [working group](http://www.w3.org/2012/ldp/).
 
 The list of test cases, along with their status (WG approved, manual, client-only) is available in [a generated report](http://w3c.github.io/ldp-testsuite/report/LdpTestCasesHtmlReport.html).
 
@@ -50,9 +50,9 @@ If you are using [Maven](http://maven.apache.org) for building your project, you
 
 ## Contributors
 
-* Steve Speicher (IBM)
-* Samuel Padgett (IBM)
-* Sergio Fernández (ASF)
+* Steve Speicher ([IBM](http://www.ibm.com))
+* Samuel Padgett ([IBM](http://www.ibm.com))
+* Sergio Fernández ([ASF](http://www.apache.org))
 
 ## Licenses
 
@@ -62,4 +62,3 @@ To contribute to the Test Suite software, you have to [sign the Contributor Lice
 The Test Suite data is available under both [W3C Test Suite License](http://www.w3.org/Consortium/Legal/2008/04-testsuite-license) and 
 [W3C 3-clause BSD License](http://www.w3.org/Consortium/Legal/2008/03-bsd-license). To contribute to the Test Suite data, see the 
 [policies and contribution forms](http://www.w3.org/2004/10/27-testcases).
-
