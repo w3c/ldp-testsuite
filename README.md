@@ -50,6 +50,8 @@ If you are using [Maven](http://maven.apache.org) for building your project, you
 
 ## Contributors
 
+On behalf of the [W3C LDP Working Group](http://www.w3.org/2012/ldp/):
+
 * Steve Speicher ([IBM](http://www.ibm.com))
 * Samuel Padgett ([IBM](http://www.ibm.com))
 * Sergio Fernández ([ASF](http://www.apache.org))
