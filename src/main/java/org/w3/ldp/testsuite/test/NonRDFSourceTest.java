@@ -61,7 +61,7 @@ public abstract class NonRDFSourceTest extends CommonResourceTest {
     }
 
     @Test(
-            groups = {MAY},
+            groups = {MAY, NR},
             description = "LDP servers may accept an HTTP POST of non-RDF " +
                     "representations (LDP-NRs) for creation of any kind of " +
                     "resource, for example binary resources.")
@@ -96,7 +96,7 @@ public abstract class NonRDFSourceTest extends CommonResourceTest {
     }
 
     @Test(
-            groups = {MAY},
+            groups = {MAY, NR},
             description = "LDP servers may accept an HTTP POST of non-RDF " +
                     "representations (LDP-NRs) for creation of any kind of " +
                     "resource, for example binary resources.")
@@ -153,7 +153,7 @@ public abstract class NonRDFSourceTest extends CommonResourceTest {
     }
 
     @Test(
-            groups = {MAY},
+            groups = {MAY, NR},
             description = "LDP servers may host a mixture of LDP-RSs and LDP-NRs. " +
                     "For example, it is common for LDP servers to need to host binary " +
                     "or text resources that do not have useful RDF representations.")
@@ -204,7 +204,7 @@ public abstract class NonRDFSourceTest extends CommonResourceTest {
     }
 
     @Test(
-            groups = {MAY},
+            groups = {MAY, NR},
             description = "Each LDP Non-RDF Source must also be a conforming LDP Resource. " +
                     "LDP Non-RDF Sources may not be able to fully express their state using RDF.")
     @SpecTest(
@@ -266,7 +266,7 @@ public abstract class NonRDFSourceTest extends CommonResourceTest {
     }
 
     @Test(
-            groups = {MAY},
+            groups = {MAY, NR},
             description = "LDP servers exposing an LDP Non-RDF Source may advertise this by exposing " +
                     "a HTTP Link header with a target URI of http://www.w3.org/ns/ldp#NonRDFSource, and " +
                     "a link relation type of type (that is, rel='type') in responses to requests made to " +
@@ -314,7 +314,7 @@ public abstract class NonRDFSourceTest extends CommonResourceTest {
     }
 
     @Test(
-            groups = {MAY},
+            groups = {MAY, NR},
             description = "Upon successful creation of an LDP-NR (HTTP status code of 201-Created and " +
                     "URI indicated by Location response header), LDP servers may create an associated " +
                     "LDP-RS to contain data about the newly created LDP-NR. If a LDP server creates " +
@@ -375,6 +375,5 @@ public abstract class NonRDFSourceTest extends CommonResourceTest {
                 .get(associatedResource);
 
     }
-
 
 }
