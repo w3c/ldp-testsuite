@@ -31,13 +31,8 @@
         <hr>
 
         <section id="main_content">
-          <h1>
-<a name="ldp-test-suite" class="anchor" href="#ldp-test-suite"><span class="octicon octicon-link"></span></a>LDP Test Suite</h1>
 
-<p>Test Suite for <a href="http://www.w3.org/TR/ldp/">Linked Data Platform 1.0</a> (LDP).</p>
-
-<h2>
-<a name="background" class="anchor" href="#background"><span class="octicon octicon-link"></span></a>Background</h2>
+<h1><a name="background" class="anchor" href="#background"><span class="octicon octicon-link"></span></a>Background</h1>
 
 <ul>
 <li>
@@ -48,18 +43,17 @@
 <a href="https://dvcs.w3.org/hg/ldpwg/raw-file/default/ldp-bp/ldp-bp.html">LDP Best Practices and Guidelines</a> (W3C Editor's Draft 17 April 2014)</li>
 <li>
 <a href="https://dvcs.w3.org/hg/ldpwg/raw-file/default/Test%20Cases/LDP%20Test%20Cases.html">Linked Data Platform 1.0 Test Cases</a> (W3C Working Group Note 17 April 2014)</li>
-</ul><h2>
-<a name="status" class="anchor" href="#status"><span class="octicon octicon-link"></span></a>Status</h2>
+</ul>
+
+<h1><a name="status" class="anchor" href="#status"><span class="octicon octicon-link"></span></a>Status</h1>
 
 <p>This Test Suite is still <em>work-in-progress</em>, but you could start to use it to check your implementation and send some early feedback to the <a href="http://www.w3.org/2012/ldp/">working group</a>.</p>
 
 <p>The list of test cases, along with their status (WG approved, manual, client-only) is available in <a href="http://w3c.github.io/ldp-testsuite/report/LdpTestCasesHtmlReport.html">a generated report</a>.</p>
 
-<h2>
-<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+<h1><a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h1>
 
-<h3>
-<a name="standalone" class="anchor" href="#standalone"><span class="octicon octicon-link"></span></a>Standalone</h3>
+<h2><a name="standalone" class="anchor" href="#standalone"><span class="octicon octicon-link"></span></a>Standalone</h2>
 
 <p>You can run the test suite against an arbitrary server:</p>
 
@@ -67,7 +61,8 @@
 java -jar target/ldp-testsuite-1.0.0-SNAPSHOT-shaded.jar --server http://ldp.example.org --basic
 </code></pre>
 
-<p>Use "--basic", "--direct", or "--indirect" for the type of container you want to test.</p>
+<p>Use <code>--basic</code>, <code>--direct</code>, or <code>--indirect</code> for the type of container
+you want to test; <code>--help</code> for getting some more help.</p>
 
 <p>For instance, if you want to test <a href="http://marmotta.apache.org">Apache Marmotta</a>, once you
 <a href="http://marmotta.apache.org/installation.html#source">have it installed</a> the command to use
@@ -76,8 +71,7 @@ would be:</p>
 <pre><code>java -jar ldp-testsuite-1.0.0-SNAPSHOT-shaded.jar --server http://localhost:8080/ldp --basic
 </code></pre>
 
-<h3>
-<a name="maven" class="anchor" href="#maven"><span class="octicon octicon-link"></span></a>Maven</h3>
+<h2><a name="maven" class="anchor" href="#maven"><span class="octicon octicon-link"></span></a>Maven</h2>
 
 <p>If you are using <a href="http://maven.apache.org">Maven</a> for building your project, you can use the test suite by 
 <a href="http://maven.apache.org/guides/mini/guide-attached-tests.html#Using_the_attached_test_JAR">attaching the test JAR</a>:</p>
@@ -91,17 +85,19 @@ would be:</p>
 &lt;/dependency&gt;
 </code></pre>
 
-<p>@<a href="https://github.com/TODO" class="user-mention">@TODO</a>@@: code example from Marmotta, as soon as we have this api available</p>
+<p><code>@@TODO@@</code>: code example from Marmotta, as soon as we have this api available</p>
 
-<h2>
-<a name="contributors" class="anchor" href="#contributors"><span class="octicon octicon-link"></span></a>Contributors</h2>
+<h1><a name="contributors" class="anchor" href="#contributors"><span class="octicon octicon-link"></span></a>Contributors</h1>
+
+<p>On behalf of the <a href="http://www.w3.org/2012/ldp/">W3C LDP Working Group</a>:</p>
 
 <ul>
 <li>Steve Speicher (<a href="http://www.ibm.com">IBM</a>)</li>
 <li>Samuel Padgett (<a href="http://www.ibm.com">IBM</a>)</li>
 <li>Sergio Fernández (<a href="http://www.apache.org">ASF</a>)</li>
-</ul><h2>
-<a name="licenses" class="anchor" href="#licenses"><span class="octicon octicon-link"></span></a>Licenses</h2>
+</ul>
+
+<h1><a name="licenses" class="anchor" href="#licenses"><span class="octicon octicon-link"></span></a>Licenses</h1>
 
 <p>The Test Suite software is avaible under the terms of the <a href="http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231">W3C Software Notice and License</a>.
 To contribute to the Test Suite software, you have to <a href="https://www.clahub.com/agreements/w3c/ldp-testsuite">sign the Contributor License Agreement</a>.</p>
