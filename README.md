@@ -22,8 +22,7 @@ The list of test cases, along with their status (WG approved, manual, client-onl
 You can run the test suite against an arbitrary server:
 
     mvn package
-    cd target
-    java -jar ldp-testsuite-1.0.0-SNAPSHOT-shaded.jar --server http://ldp.example.org --basic
+    java -jar target/ldp-testsuite-1.0.0-SNAPSHOT-shaded.jar --server http://ldp.example.org --basic
 
 Use "--basic", "--direct", or "--indirect" for the type of container you want to test.
 
