@@ -285,12 +285,12 @@ public class LdpHtmlReporter implements IReporter {
         for (ITestResult result : tests.getAllResults()) {
             ITestNGMethod method = result.getMethod();
             html.tr();
-            html.td().a(href("#" + method.getMethodName()))
+           html.td()
+					.a(href("#" + method.getTestClass().getName() + "_"
+							+ method.getMethodName()))
                     .write(method.getMethodName(), NO_ESCAPE)._a()._td();
-            html.td().content(
-                    method.getConstructorOrMethod().getDeclaringClass()
-                            .getName()
-            );
+           			html.td().content(method.getTestClass().getName());
+
             html.td().content(
                     (method.getDescription() != null ? method.getDescription()
                             : "No Description found")
@@ -318,12 +318,10 @@ public class LdpHtmlReporter implements IReporter {
         for (ITestResult m : tests.getAllResults()) {
             ITestNGMethod method = m.getMethod();
             html.h2()
-                    .a(id(method.getMethodName()))
-                    .write(method.getMethodName()
-                            + " ("
-                            + method.getConstructorOrMethod()
-                            .getDeclaringClass().getName() + ")")._a()
-                    ._h2();
+                   	.a(id(m.getTestClass().getName() + "_"
+							+ method.getMethodName()))
+					.write(m.getTestClass().getName() + ": "
+							+ method.getMethodName())._a()._h2();
             getAdditionalInfo(m, method);
             html.p(class_("indented"))
                     .b()

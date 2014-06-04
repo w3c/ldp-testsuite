@@ -94,8 +94,7 @@ public class LdpEarlReporter implements IReporter {
 				Earl.TestMode);
 
 		/* Add properties to the Test Subject Resource */
-		String declaringClass = result.getMethod().getConstructorOrMethod()
-				.getDeclaringClass().getName();
+		String declaringClass = result.getTestClass().getName();
 		subjectResource.addProperty(DCTerms.description, "Declaring Class: "
 				+ declaringClass);
 
