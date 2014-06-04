@@ -33,13 +33,13 @@ import static org.testng.Assert.assertEquals;
  * Tests Non-RDF Source LDP resources.
  *
  */
-public abstract class NonRDFSourceTest extends CommonResourceTest {
+public class NonRDFSourceTest extends CommonResourceTest {
 
     private final String rootContainer;
 
     private final URI containerType;
 
-    @Parameters("basicContainer")
+    @Parameters({"basicContainer", "directContainer", "indirectContainer"})
     public NonRDFSourceTest(@Optional String basicContainer, @Optional String directContainer, @Optional String indirectContainer) {
         if (StringUtils.isNotBlank(basicContainer)) {
             rootContainer = basicContainer;
