@@ -14,6 +14,7 @@ import org.w3.ldp.testsuite.reporter.LdpEarlReporter;
 import org.w3.ldp.testsuite.reporter.LdpHtmlReporter;
 import org.w3.ldp.testsuite.reporter.LdpTestListener;
 import org.w3.ldp.testsuite.test.LdpTest;
+import org.w3.ldp.testsuite.util.CommandLineUtil;
 
 /**
  * LDP Test Suite Command-Line Interface, a wrapper to {@link org.testng.TestNG}
@@ -35,6 +36,10 @@ public class LdpTestSuite {
     };
 
     public LdpTestSuite(CommandLine cmd) {
+        this(CommandLineUtil.asMap(cmd));
+    }
+
+    public LdpTestSuite(Map<String, String> options) {
         // see: http://testng.org/doc/documentation-main.html#running-testng-programmatically
 
         testng = new TestNG();
@@ -60,22 +65,27 @@ public class LdpTestSuite {
 
         // Add any parameters that you want to set to the Test.
 
-        String server = cmd.getOptionValue("server");
-        try {
-            URI uri = new URI(server);
-            if (!"http".equals(uri.getScheme())) {
-                throw new IllegalArgumentException("non-http uri");
+        String server = null;
+        if (options.containsKey("server")) {
+            server = options.get("server");
+            try {
+                URI uri = new URI(server);
+                if (!"http".equals(uri.getScheme())) {
+                    throw new IllegalArgumentException("non-http uri");
+                }
+            } catch (Exception e) {
+                throw new IllegalArgumentException("ERROR: invalid server uri, "
+                        + e.getLocalizedMessage());
             }
-        } catch (Exception e) {
-            throw new IllegalArgumentException("ERROR: invalid server uri, "
-                    + e.getLocalizedMessage());
+        } else {
+            throw new IllegalArgumentException("ERROR: missing server uri");
         }
 
         // Add classes we want to test
         List<XmlClass> classes = new ArrayList<XmlClass>();
 
         Map<String, String> parameters = new HashMap<>();
-        ContainerType type = getSelectedType(cmd);
+        ContainerType type = getSelectedType(options);
         switch (type) {
             case BASIC:
                 classes.add(new XmlClass( "org.w3.ldp.testsuite.test.BasicContainerTest"));
@@ -94,7 +104,7 @@ public class LdpTestSuite {
         classes.add(new XmlClass("org.w3.ldp.testsuite.test.MemberResourceTest"));
         testsuite.addIncludedGroup("ldpMember");
 
-        if (cmd.hasOption("non-rdf")) {
+        if (options.containsKey("non-rdf")) {
             classes.add(new XmlClass("org.w3.ldp.testsuite.test.NonRDFSourceTest"));
             testsuite.addIncludedGroup(LdpTest.NR);
         }
@@ -127,7 +137,8 @@ public class LdpTestSuite {
         Options options = new Options();
 
         options.addOption(OptionBuilder.withLongOpt("server")
-                .withDescription("server url to run the test suite").hasArg()
+                .withDescription("server url to run the test suite")
+                .hasArg().withArgName("server")
                 .isRequired().create());
 
         OptionGroup containerType = new OptionGroup();
@@ -166,24 +177,22 @@ public class LdpTestSuite {
             ldpTestSuite.run();
             System.exit(ldpTestSuite.getStatus());
         } catch (Exception e) {
-            Throwable cause = ExceptionUtils.getRootCause(e);
-            System.err.println("ERROR: " + cause.getMessage());
             // e.printStackTrace();
+            Throwable cause = ExceptionUtils.getRootCause(e);
+            System.err.println("ERROR: " + (cause != null ? cause.getMessage() : e.getMessage()));
             printUsage(options);
         }
 
     }
 
-    private static ContainerType getSelectedType(CommandLine cmd) {
-        if (cmd.hasOption("direct")) {
+    private static ContainerType getSelectedType(Map<String, String> options) {
+        if (options.containsKey("direct")) {
             return ContainerType.DIRECT;
-        }
-
-        if (cmd.hasOption("indirect")) {
+        } else if (options.containsKey("indirect")) {
             return ContainerType.INDIRECT;
+        } else {
+            return ContainerType.BASIC;
         }
-
-        return ContainerType.BASIC;
     }
 
     private static void printUsage(Options options) {
@@ -192,9 +201,9 @@ public class LdpTestSuite {
             @Override
             public int compare(Option o1, Option o2) {
                 if ("server".equals(o1.getLongOpt())) {
-                    return -1000;
+                    return -10000;
                 } else if ("help".equals(o1.getLongOpt())) {
-                    return 1000;
+                    return 10000;
                 } else {
                     return o1.getLongOpt().compareTo(o2.getLongOpt());
                 }
