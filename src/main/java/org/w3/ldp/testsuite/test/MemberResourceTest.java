@@ -18,6 +18,7 @@ import com.jayway.restassured.response.Response;
  * Tests that run on an LDP-RS that is not a container.
  */
 public class MemberResourceTest extends RdfSourceTest {
+
     private String container;
     private String memberResource;
 
@@ -59,6 +60,5 @@ public class MemberResourceTest extends RdfSourceTest {
             RestAssured.expect().statusCode(isSuccessful()).when().delete(memberResource);
         }
     }
-
 
 }

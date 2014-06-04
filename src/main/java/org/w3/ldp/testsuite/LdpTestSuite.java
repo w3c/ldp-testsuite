@@ -13,6 +13,7 @@ import org.testng.xml.XmlTest;
 import org.w3.ldp.testsuite.reporter.LdpEarlReporter;
 import org.w3.ldp.testsuite.reporter.LdpHtmlReporter;
 import org.w3.ldp.testsuite.reporter.LdpTestListener;
+import org.w3.ldp.testsuite.test.LdpTest;
 
 /**
  * LDP Test Suite Command-Line Interface, a wrapper to {@link org.testng.TestNG}
@@ -33,20 +34,15 @@ public class LdpTestSuite {
         BASIC, DIRECT, INDIRECT
     };
 
-    public LdpTestSuite(String server, ContainerType type) {
+    public LdpTestSuite(CommandLine cmd) {
         // see: http://testng.org/doc/documentation-main.html#running-testng-programmatically
 
         testng = new TestNG();
         testng.setDefaultSuiteName(NAME);
 
-        TestListenerAdapter tla = new LdpTestListener();
-
-        LdpEarlReporter earlReport = new LdpEarlReporter();
-        LdpHtmlReporter htmlReport = new LdpHtmlReporter();
-
-        testng.addListener(tla);
-        testng.addListener(earlReport);
-        testng.addListener(htmlReport);
+        testng.addListener(new LdpTestListener());
+        testng.addListener(new LdpEarlReporter());
+        testng.addListener(new LdpHtmlReporter());
 
         // create XmlSuite instance
         XmlSuite testsuite = new XmlSuite();
@@ -54,10 +50,9 @@ public class LdpTestSuite {
 
         // provide included/excluded groups
         // TODO: dynamic groups
-        testsuite.addIncludedGroup("MUST");
-        testsuite.addIncludedGroup("SHOULD");
-        testsuite.addIncludedGroup("MAY");
-        testsuite.addIncludedGroup("ldpMember");
+        testsuite.addIncludedGroup(LdpTest.MUST);
+        testsuite.addIncludedGroup(LdpTest.SHOULD);
+        testsuite.addIncludedGroup(LdpTest.MAY);
 
         // create XmlTest instance
         XmlTest test = new XmlTest(testsuite);
@@ -65,28 +60,44 @@ public class LdpTestSuite {
 
         // Add any parameters that you want to set to the Test.
 
+        String server = cmd.getOptionValue("server");
+        try {
+            URI uri = new URI(server);
+            if (!"http".equals(uri.getScheme())) {
+                throw new IllegalArgumentException("non-http uri");
+            }
+        } catch (Exception e) {
+            throw new IllegalArgumentException("ERROR: invalid server uri, "
+                    + e.getLocalizedMessage());
+        }
+
         // Add classes we want to test
         List<XmlClass> classes = new ArrayList<XmlClass>();
 
         Map<String, String> parameters = new HashMap<>();
+        ContainerType type = getSelectedType(cmd);
         switch (type) {
             case BASIC:
-                classes.add(new XmlClass(
-                        "org.w3.ldp.testsuite.test.BasicContainerTest"));
+                classes.add(new XmlClass( "org.w3.ldp.testsuite.test.BasicContainerTest"));
                 parameters.put("basicContainer", server);
                 break;
             case DIRECT:
-                classes.add(new XmlClass(
-                        "org.w3.ldp.testsuite.test.DirectContainerTest"));
+                classes.add(new XmlClass( "org.w3.ldp.testsuite.test.DirectContainerTest"));
                 parameters.put("directContainer", server);
                 break;
             case INDIRECT:
-                classes.add(new XmlClass(
-                        "org.w3.ldp.testsuite.test.IndirectContainerTest"));
+                classes.add(new XmlClass( "org.w3.ldp.testsuite.test.IndirectContainerTest"));
                 parameters.put("indirectContainer", server);
                 break;
         }
+
         classes.add(new XmlClass("org.w3.ldp.testsuite.test.MemberResourceTest"));
+        testsuite.addIncludedGroup("ldpMember");
+
+        if (cmd.hasOption("non-rdf")) {
+            classes.add(new XmlClass("org.w3.ldp.testsuite.test.NonRDFSourceTest"));
+            testsuite.addIncludedGroup(LdpTest.NR);
+        }
 
         test.setXmlClasses(classes);
 
@@ -119,9 +130,6 @@ public class LdpTestSuite {
                 .withDescription("server url to run the test suite").hasArg()
                 .isRequired().create());
 
-        options.addOption(OptionBuilder.withLongOpt("help")
-                .withDescription("prints this usage help").create());
-
         OptionGroup containerType = new OptionGroup();
         containerType.addOption(OptionBuilder.withLongOpt("basic")
                 .withDescription("the server url is a basic container").create());
@@ -131,8 +139,13 @@ public class LdpTestSuite {
                 .withDescription("the server url is an indirect container")
                 .create());
         containerType.setRequired(true);
-
         options.addOptionGroup(containerType);
+
+        options.addOption(OptionBuilder.withLongOpt("non-rdf")
+                .withDescription("include LDP-NR testing").create());
+
+        options.addOption(OptionBuilder.withLongOpt("help")
+                .withDescription("prints this usage help").create());
 
         CommandLineParser parser = new BasicParser();
         CommandLine cmd = null;
@@ -147,24 +160,11 @@ public class LdpTestSuite {
             printUsage(options);
         }
 
-        String server = cmd.getOptionValue("server");
-        try {
-            URI uri = new URI(server);
-            if (!"http".equals(uri.getScheme())) {
-                throw new IllegalArgumentException("non-http uri");
-            }
-        } catch (Exception e) {
-            System.err.println("ERROR: invalid server uri, "
-                    + e.getLocalizedMessage());
-            printUsage(options);
-        }
-
         // actual test suite execution
-        ContainerType type = getSelectedType(cmd);
-        LdpTestSuite ldpTestSuite = new LdpTestSuite(server, type);
-
         try {
+            LdpTestSuite ldpTestSuite = new LdpTestSuite(cmd);
             ldpTestSuite.run();
+            System.exit(ldpTestSuite.getStatus());
         } catch (Exception e) {
             Throwable cause = ExceptionUtils.getRootCause(e);
             System.err.println("ERROR: " + cause.getMessage());
@@ -172,7 +172,6 @@ public class LdpTestSuite {
             printUsage(options);
         }
 
-        System.exit(ldpTestSuite.getStatus());
     }
 
     private static ContainerType getSelectedType(CommandLine cmd) {
