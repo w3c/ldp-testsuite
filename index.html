@@ -89,12 +89,11 @@ would be:</p>
 
 <p>And then you can execute the test suite with a code like:</p>
 
-<pre><code>Map&lt;String, String&gt; options = new HashMap&lt;&gt;();
-options.put("server", "http://ldp.example.org");
-options.put("basic", null);
-LdpTestSuite testSuite = new LdpTestSuite(options);
+<pre><code>LdpTestSuite testSuite = new LdpTestSuite("http://ldp.example.org");
 testSuite.run();
 </code></pre>
+
+<p>For further details and advance usage, please check the <a href="api/java/index.html?org/w3/ldp/testsuite/LdpTestSuite.html">javadoc</a>.</p>
 
 <h1><a name="contributors" class="anchor" href="#contributors"><span class="octicon octicon-link"></span></a>Contributors</h1>
 

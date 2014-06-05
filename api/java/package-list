@@ -1,0 +1,11 @@
+org.w3.ldp.testsuite
+org.w3.ldp.testsuite.annotations
+org.w3.ldp.testsuite.data
+org.w3.ldp.testsuite.exception
+org.w3.ldp.testsuite.http
+org.w3.ldp.testsuite.mapper
+org.w3.ldp.testsuite.matcher
+org.w3.ldp.testsuite.reporter
+org.w3.ldp.testsuite.test
+org.w3.ldp.testsuite.util
+org.w3.ldp.testsuite.vocab
