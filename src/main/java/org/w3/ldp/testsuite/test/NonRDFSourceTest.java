@@ -1,9 +1,11 @@
 package org.w3.ldp.testsuite.test;
 
+import com.google.common.base.Function;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.vocabulary.DCTerms;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.response.Header;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -12,6 +14,7 @@ import org.apache.marmotta.commons.util.HashUtils;
 import org.apache.marmotta.commons.vocabulary.LDP;
 import org.hamcrest.CoreMatchers;
 import org.openrdf.model.URI;
+import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -25,6 +28,7 @@ import org.w3.ldp.testsuite.matcher.HeaderMatchers;
 
 import javax.ws.rs.core.UriBuilder;
 import java.io.IOException;
+import java.util.List;
 
 import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.assertEquals;
@@ -75,24 +79,24 @@ public class NonRDFSourceTest extends CommonResourceTest {
                 file = slug + ".png",
                 mimeType = "image/png",
                 container = getResourceUri(),
-                resource = container + "/" + file;
+                rs = container + "/" + slug,
+                nr = container + "/" + file;
 
         // Make sure we can post binary resources
-        RestAssured
+        List<Header> links = RestAssured
             .given()
                 .header("Slug", slug)
                 .body(IOUtils.toByteArray(getClass().getResourceAsStream("/" + file)))
                 .contentType(mimeType)
             .expect()
                 .statusCode(HttpStatus.SC_CREATED)
-                .header("Location", resource)
-                .header("Link", CoreMatchers.anyOf( //TODO: RestAssured only checks the FIRST header...
-                                HeaderMatchers.isLink(resource, "describedby"),
-                                //HeaderMatchers.isLink(LdpWebService.LDP_SERVER_CONSTRAINTS, "describedby"),
-                                HeaderMatchers.isLink(containerType.stringValue(), "type"))
-                )
+                .header("Location", nr)
             .when()
-                .post(container);
+                .post(container)
+                .headers().getList("Link");
+
+        Assert.assertTrue(containsLinkHeader(rs, "describedby", links));
+        Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
     }
 
     @Test(
