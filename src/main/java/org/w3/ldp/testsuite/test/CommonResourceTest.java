@@ -77,6 +77,7 @@ public abstract class CommonResourceTest extends LdpTest {
     }
 
     @Test(
+            enabled = false,
             groups = {MUST},
             description = "LDP servers MUST at least be"
                     + " HTTP/1.1 conformant servers [HTTP11].")
@@ -85,9 +86,8 @@ public abstract class CommonResourceTest extends LdpTest {
             testMethod = METHOD.MANUAL,
             approval = STATUS.WG_APPROVED)
     public void testIsHttp11Manual() throws URISyntaxException {
-
+        // TODO: Impl testIsHttp11Manual
     }
-
 
     @Test(
             enabled = false,
@@ -112,7 +112,8 @@ public abstract class CommonResourceTest extends LdpTest {
     @SpecTest(
             specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-etags",
             testMethod = METHOD.AUTOMATED,
-            approval = STATUS.WG_APPROVED)
+            approval = STATUS.WG_CLARIFICATION,
+            comment = "the resource should exist before? (Sergio)")
     public void testETagHeadersGet() {
         // GET requests
         RestAssured.given().header(ACCEPT, TEXT_TURTLE)
@@ -724,6 +725,5 @@ public abstract class CommonResourceTest extends LdpTest {
     protected boolean containsLinkHeader(String uri, String rel, List<Header> headers) {
         return containsLinkHeader(Link.fromUri(uri).rel(rel).build(), headers);
     }
-
 
 }
