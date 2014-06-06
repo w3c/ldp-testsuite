@@ -75,22 +75,22 @@ would be:</p>
 
 <h2><a name="maven" class="anchor" href="#maven"><span class="octicon octicon-link"></span></a>Maven</h2>
 
-<p>If you are using <a href="http://maven.apache.org">Maven</a> for building your project, you can use the test suite by 
-<a href="http://maven.apache.org/guides/mini/guide-attached-tests.html#Using_the_attached_test_JAR">attaching the test JAR</a>:</p>
+<p>If you are using <a href="http://maven.apache.org">Maven</a> for building your project, you can use the 
+test suite as dependency for your tests:</p>
 
 <pre><code>&lt;dependency&gt;
     &lt;groupId&gt;org.w3&lt;/groupId&gt;
     &lt;artifactId&gt;ldp-testsuite&lt;/artifactId&gt;
     &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
-    &lt;type&gt;test-jar&lt;/type&gt;
     &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
 </code></pre>
 
-<p>And then you can execute the test suite with a code like:</p>
+<p>And then you can programmatically execute the test suite with a code like:</p>
 
 <pre><code>LdpTestSuite testSuite = new LdpTestSuite("http://ldp.example.org");
 testSuite.run();
+System.out.println(testSuite.getStatus());
 </code></pre>
 
 <p>For further details and advance usage, please check the <a href="api/java/index.html?org/w3/ldp/testsuite/LdpTestSuite.html">javadoc</a>.</p>
