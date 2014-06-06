@@ -56,7 +56,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
     }
 
     protected String getResourceUri() {
-        String randomContainer = RandomStringUtils.random(16);
+        String randomContainer = RandomStringUtils.randomAlphabetic(16);
         return UriBuilder.fromUri(rootContainer).path(randomContainer).build().toString();
     }
 
