@@ -114,24 +114,23 @@ public class NonRDFSourceTest extends CommonResourceTest {
                 file = slug + ".png",
                 mimeType = "image/png",
                 container = getResourceUri(),
-                resource = container + "/" + file;
+                rs = container + "/" + slug,
+                nr = container + "/" + file;
 
         // Make sure we can post binary resources
-        RestAssured
+        List<Header> links = RestAssured
             .given()
                 .header("Slug", slug)
                 .body(IOUtils.toByteArray(getClass().getResourceAsStream("/" + file)))
                 .contentType(mimeType)
             .expect()
                 .statusCode(HttpStatus.SC_CREATED)
-                .header("Location", resource)
-                .header("Link", CoreMatchers.anyOf( //TODO: RestAssured only checks the FIRST header...
-                                HeaderMatchers.isLink(resource, "describedby"),
-                                //HeaderMatchers.isLink(LdpWebService.LDP_SERVER_CONSTRAINTS, "describedby"),
-                                HeaderMatchers.isLink(containerType.stringValue(), "type"))
-                )
+                .header("Location", nr)
             .when()
-                .post(container);
+                .post(container)
+                .headers().getList("Link");
+        Assert.assertTrue(containsLinkHeader(rs, "describedby", links));
+        Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
 
         // Check the container contains the new resource
         Model model = RestAssured
@@ -139,20 +138,15 @@ public class NonRDFSourceTest extends CommonResourceTest {
                 .header("Accept", TEXT_TURTLE)
             .expect()
                 .statusCode(HttpStatus.SC_OK)
-                .header("Link", CoreMatchers.anyOf( //TODO: RestAssured only checks the FIRST header...
-                                //HeaderMatchers.isLink(LdpWebService.LDP_SERVER_CONSTRAINTS, "describedby"),
-                                HeaderMatchers.isLink(containerType.stringValue(), "type"))
-                )
                 .header("ETag", HeaderMatchers.hasEntityTag(true)) // FIXME: be more specific here
                 .contentType(TEXT_TURTLE)
             .get(container)
                 .body().as(Model.class, new RdfObjectMapper(container));
-
         assertTrue(model.contains(model.createResource(container), RDF.type, model.createResource(LDP.Resource.stringValue())));
         assertTrue(model.contains(model.createResource(container), RDF.type, model.createResource(LDP.Container.stringValue())));
         assertTrue(model.contains(model.createResource(container), RDF.type, model.createResource(LDP.Container.stringValue())));
         assertTrue(model.contains(model.createResource(container), DCTerms.modified));
-        assertTrue(model.contains(model.createResource(container), model.createProperty(LDP.contains.stringValue()), model.createResource(resource)));
+        assertTrue(model.contains(model.createResource(container), model.createProperty(LDP.contains.stringValue()), model.createResource(nr)));
 
     }
 
@@ -171,25 +165,24 @@ public class NonRDFSourceTest extends CommonResourceTest {
                 file = slug + ".png",
                 mimeType = "image/png",
                 container = getResourceUri(),
-                resource = container + "/" + file;
+                rs = container + "/" + slug,
+                nr = container + "/" + file;
 
         // Make sure we can post binary resources
-        RestAssured
+        List<Header> links = RestAssured
             .given()
                 .header("Slug", slug)
                 .body(IOUtils.toByteArray(getClass().getResourceAsStream("/" + file)))
                 .contentType(mimeType)
             .expect()
-                .statusCode(201)
-                .header("Location", resource)
-                .header("ETag", HeaderMatchers.hasEntityTag(true)) // FIXME: be more specific here
-                .header("Link", CoreMatchers.anyOf( //TODO: RestAssured only checks the FIRST header...
-                                HeaderMatchers.isLink(resource, "describedby"),
-                                //HeaderMatchers.isLink(LdpWebService.LDP_SERVER_CONSTRAINTS, "describedby"),
-                                HeaderMatchers.isLink(containerType.stringValue(), "type"))
-                )
+                .statusCode(HttpStatus.SC_CREATED)
+                .header("Location", nr)
             .when()
-                .post(container);
+                .post(container)
+                .headers().getList("Link");
+
+        Assert.assertTrue(containsLinkHeader(rs, "describedby", links));
+        Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
 
         // And then check we get the binary back
         final String expectedMD5 = HashUtils.md5sum(NonRDFSourceTest.class.getResourceAsStream("/" + file));
@@ -199,12 +192,11 @@ public class NonRDFSourceTest extends CommonResourceTest {
             .expect()
                 .statusCode(HttpStatus.SC_OK)
                 .contentType(mimeType)
-                .header("ETag", HeaderMatchers.hasEntityTag(true)) // FIXME: be more specific here
+                .header("ETag", HeaderMatchers.hasEntityTag()) // FIXME: be more specific here
             .when()
-                .get(resource)
+                .get(nr)
                 .body().asByteArray();
-
-        assertEquals("md5sum",expectedMD5, HashUtils.md5sum(binary));
+        assertEquals(expectedMD5, HashUtils.md5sum(binary), "md5sum");
     }
 
     @Test(
@@ -221,25 +213,24 @@ public class NonRDFSourceTest extends CommonResourceTest {
                 file = slug + ".png",
                 mimeType = "image/png",
                 container = getResourceUri(),
-                resource = container + "/" + file;
+                rs = container + "/" + slug,
+                nr = container + "/" + file;
 
         // Make sure we can post binary resources
-        RestAssured
+        List<Header> links = RestAssured
             .given()
                 .header("Slug", slug)
                 .body(IOUtils.toByteArray(getClass().getResourceAsStream("/" + file)))
                 .contentType(mimeType)
             .expect()
                 .statusCode(HttpStatus.SC_CREATED)
-                .header("Location", resource)
-                .header("ETag", HeaderMatchers.hasEntityTag(true)) // FIXME: be more specific here
-                .header("Link", CoreMatchers.anyOf( //TODO: RestAssured only checks the FIRST header...
-                                HeaderMatchers.isLink(resource, "describedby"),
-                                //HeaderMatchers.isLink(LdpWebService.LDP_SERVER_CONSTRAINTS, "describedby"),
-                                HeaderMatchers.isLink(containerType.stringValue(), "type"))
-                )
+                .header("Location", nr)
             .when()
-                .post(container);
+                .post(container)
+                .headers().getList("Link");
+
+        Assert.assertTrue(containsLinkHeader(rs, "describedby", links));
+        Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
 
         // And then check we get the metadata of back
         Model model = RestAssured
@@ -248,9 +239,9 @@ public class NonRDFSourceTest extends CommonResourceTest {
             .expect()
                 .statusCode(HttpStatus.SC_OK)
                 .contentType(TEXT_TURTLE)
-                .header("ETag", HeaderMatchers.hasEntityTag(true)) // FIXME: be more specific here
+                .header("ETag", HeaderMatchers.hasEntityTag()) // FIXME: be more specific here
             .when()
-                .get(resource)
+                .get(nr)
                 .as(Model.class, new RdfObjectMapper(getResourceUri()));
 
         // And the binary too
@@ -261,12 +252,11 @@ public class NonRDFSourceTest extends CommonResourceTest {
             .expect()
                 .statusCode(HttpStatus.SC_OK)
                 .contentType(mimeType)
-                .header("ETag", HeaderMatchers.hasEntityTag(true)) // FIXME: be more specific here
+                .header("ETag", HeaderMatchers.hasEntityTag()) // FIXME: be more specific here
             .when()
-                .get(resource)
+                .get(nr)
                 .body().asByteArray();
-
-        assertEquals("md5sum",expectedMD5, HashUtils.md5sum(binary));
+        assertEquals(expectedMD5, HashUtils.md5sum(binary), "md5sum");
     }
 
     @Test(
@@ -285,36 +275,33 @@ public class NonRDFSourceTest extends CommonResourceTest {
                 file = slug + ".png",
                 mimeType = "image/png",
                 container = getResourceUri(),
-                resource = container + "/" + file;
+                rs = container + "/" + slug,
+                nr = container + "/" + file;
 
         // Make sure we can post binary resources
-        RestAssured
+        List<Header> links = RestAssured
             .given()
                 .header("Slug", slug)
                 .body(IOUtils.toByteArray(getClass().getResourceAsStream("/" + file)))
                 .contentType(mimeType)
             .expect()
                 .statusCode(HttpStatus.SC_CREATED)
-                .header("Location", resource)
-                .header("ETag", HeaderMatchers.hasEntityTag(true)) // FIXME: be more specific here
-                .header("Link", CoreMatchers.anyOf( //TODO: RestAssured only checks the FIRST header...
-                                HeaderMatchers.isLink(resource, "describedby"),
-                                //HeaderMatchers.isLink(LdpWebService.LDP_SERVER_CONSTRAINTS, "describedby"),
-                                HeaderMatchers.isLink(containerType.stringValue(), "type"))
-                )
+                .header("Location", nr)
             .when()
-                .post(container);
+                .post(container)
+                .headers().getList("Link");
+        Assert.assertTrue(containsLinkHeader(rs, "describedby", links));
+        Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
 
         // And then check the link when requesting the LDP-NS
-        RestAssured
+        List<Header> linksNR = RestAssured
             .expect()
                 .statusCode(HttpStatus.SC_OK)
-                .header("ETag", HeaderMatchers.hasEntityTag(true)) // FIXME: be more specific here
-                .header("Link", CoreMatchers.anyOf( //TODO: RestAssured only checks the FIRST header...
-                                HeaderMatchers.isLink(LDP.NonRDFSource.stringValue(), "type"))
-                )
+                .header("ETag", HeaderMatchers.hasEntityTag()) // FIXME: be more specific here
             .when()
-                .get(resource);
+                .get(nr)
+                .headers().getList("Link");
+        Assert.assertTrue(containsLinkHeader(LDP.NonRDFSource.stringValue(), "type", linksNR));
     }
 
     @Test(
@@ -335,37 +322,33 @@ public class NonRDFSourceTest extends CommonResourceTest {
                 file = slug + ".png",
                 mimeType = "image/png",
                 container = getResourceUri(),
-                resource = container + "/" + file,
-                associatedResource = container + "/" + slug;
+                rs = container + "/" + slug,
+                nr = container + "/" + file;
 
         // Make sure we can post binary resources
-        RestAssured
+        List<Header> links = RestAssured
             .given()
                 .header("Slug", slug)
                 .body(IOUtils.toByteArray(getClass().getResourceAsStream("/" + file)))
                 .contentType(mimeType)
             .expect()
                 .statusCode(HttpStatus.SC_CREATED)
-                .header("Location", resource)
-                .header("ETag", HeaderMatchers.hasEntityTag(true)) // FIXME: be more specific here
-                .header("Link", CoreMatchers.anyOf( //TODO: RestAssured only checks the FIRST header...
-                                HeaderMatchers.isLink(resource, "describedby"),
-                                //HeaderMatchers.isLink(LdpWebService.LDP_SERVER_CONSTRAINTS, "describedby"),
-                                HeaderMatchers.isLink(containerType.stringValue(), "type"))
-                )
+                .header("Location", nr)
             .when()
-                .post(container);
+                .post(container)
+                .headers().getList("Link");
+        Assert.assertTrue(containsLinkHeader(rs, "describedby", links));
+        Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
 
         // Check the link when requesting the LDP-NS
-        RestAssured
+        List<Header> linksNR = RestAssured
             .expect()
                 .statusCode(HttpStatus.SC_OK)
-                .header("ETag", HeaderMatchers.hasEntityTag(true)) // FIXME: be more specific here
-                .header("Link", CoreMatchers.anyOf( //TODO: RestAssured only checks the FIRST header...
-                                HeaderMatchers.isLink(associatedResource, "describedby"))
-                )
+                .header("ETag", HeaderMatchers.hasEntityTag()) // FIXME: be more specific here
             .when()
-                .get(resource);
+                .get(nr)
+                .headers().getList("Link");
+        Assert.assertTrue(containsLinkHeader(rs, "describedby", linksNR));
 
         // And then check the associated LDP-RS is actually there
         RestAssured
@@ -376,7 +359,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
                 .contentType(TEXT_TURTLE)
                 .header("ETag", HeaderMatchers.hasEntityTag(true)) // FIXME: be more specific here
             .when()
-                .get(associatedResource);
+                .get(rs);
 
     }
 
