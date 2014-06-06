@@ -148,7 +148,7 @@ public class LdpTestSuite {
         testng.run();
     }
 
-    private int getStatus() {
+    public int getStatus() {
         return testng.getStatus();
     }
 
