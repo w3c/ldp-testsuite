@@ -7,13 +7,13 @@
 		<listener class-name='org.w3.ldp.testsuite.reporter.LdpEarlReporter' />
 	</listeners>
 
-	<!-- <parameter name="basicContainer" value="http://localhost:8080/ldp/resources/" /> -->
-	<parameter name="directContainer" value="http://localhost:8080/ldp/resources/" />
+	 <parameter name="basicContainer" value="http://localhost:8080/ldp/resources/bc/" /> 
+	<!--<parameter name="directContainer" value="http://localhost:8080/ldp/resources/dc-simple/" />-->
 	<!-- <parameter name="indirectContainer" value="http://localhost:8080/ldp/resources/" /> -->
 
 	<!-- Optional RDF member resource parameter. If left out, the tests will 
 		try to create a resource in one of the containers. -->
-	<!-- <parameter name="memberResource" value="http://localhost:8080/ldp/resources/bt1" /> -->
+	<parameter name="memberResource" value="http://localhost:8080/ldp/resources/diffmr1" />
 
 	<test name="All Tests">
 		<groups>
@@ -35,11 +35,11 @@
 			</run>
 		</groups>
 		<classes>
-			<class name="org.w3.ldp.testsuite.test.DirectContainerTest" />
-			<!-- <class name="org.w3.ldp.testsuite.test.IndirectContainerTest" /> 
-				<class name="org.w3.ldp.testsuite.test.BasicContainerTest" /> -->
+			<!-- <class name="org.w3.ldp.testsuite.test.DirectContainerTest" />
+			<class name="org.w3.ldp.testsuite.test.IndirectContainerTest" />  -->
+			<class name="org.w3.ldp.testsuite.test.BasicContainerTest" />
 			<class name="org.w3.ldp.testsuite.test.MemberResourceTest" />
-			<class name="org.w3.ldp.testsuite.test.NonRDFSourceTest" />
+			<!-- <class name="org.w3.ldp.testsuite.test.NonRDFSourceTest" />  -->
 		</classes>
 	</test>
 </suite>
