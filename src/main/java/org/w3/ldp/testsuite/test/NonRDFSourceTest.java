@@ -1,6 +1,5 @@
 package org.w3.ldp.testsuite.test;
 
-import com.google.common.base.Function;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.vocabulary.DCTerms;
 import com.hp.hpl.jena.vocabulary.RDF;
@@ -12,7 +11,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
 import org.apache.marmotta.commons.util.HashUtils;
 import org.apache.marmotta.commons.vocabulary.LDP;
-import org.hamcrest.CoreMatchers;
 import org.openrdf.model.URI;
 import org.testng.Assert;
 import org.testng.SkipException;
@@ -70,7 +68,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
                     "representations (LDP-NRs) for creation of any kind of " +
                     "resource, for example binary resources.")
     @SpecTest(
-            specRefUri = LdpTestSuite.SPEC_URI + "#dfn-ldp-server",
+            specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-createbins",
             testMethod = METHOD.AUTOMATED,
             approval = STATUS.WG_APPROVED)
     public void testPostResource() throws IOException {
@@ -105,7 +103,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
                     "representations (LDP-NRs) for creation of any kind of " +
                     "resource, for example binary resources.")
     @SpecTest(
-            specRefUri = LdpTestSuite.SPEC_URI + "#dfn-ldp-server",
+            specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-createbins",
             testMethod = METHOD.AUTOMATED,
             approval = STATUS.WG_PENDING)
     public void testPostResourceAndGetFromContainer() throws IOException {
@@ -144,7 +142,6 @@ public class NonRDFSourceTest extends CommonResourceTest {
                 .body().as(Model.class, new RdfObjectMapper(container));
         assertTrue(model.contains(model.createResource(container), RDF.type, model.createResource(LDP.Resource.stringValue())));
         assertTrue(model.contains(model.createResource(container), RDF.type, model.createResource(LDP.Container.stringValue())));
-        assertTrue(model.contains(model.createResource(container), RDF.type, model.createResource(LDP.Container.stringValue())));
         assertTrue(model.contains(model.createResource(container), DCTerms.modified));
         assertTrue(model.contains(model.createResource(container), model.createProperty(LDP.contains.stringValue()), model.createResource(nr)));
 
@@ -156,9 +153,9 @@ public class NonRDFSourceTest extends CommonResourceTest {
                     "For example, it is common for LDP servers to need to host binary " +
                     "or text resources that do not have useful RDF representations.")
     @SpecTest(
-            specRefUri = LdpTestSuite.SPEC_URI + "#h5_ldpr-gen-binary",
+            specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-binary",
             testMethod = METHOD.AUTOMATED,
-            approval = STATUS.WG_PENDING)
+            approval = STATUS.WG_APPROVED)
     public void testPostResourceGetBinary() throws IOException {
         // Test constants
         final String slug = "test",
@@ -204,9 +201,9 @@ public class NonRDFSourceTest extends CommonResourceTest {
             description = "Each LDP Non-RDF Source must also be a conforming LDP Resource. " +
                     "LDP Non-RDF Sources may not be able to fully express their state using RDF.")
     @SpecTest(
-            specRefUri = LdpTestSuite.SPEC_URI + "#h5_ldpnr-are-ldpr",
+            specRefUri = LdpTestSuite.SPEC_URI + "#ldpnr-are-ldpr",
             testMethod = METHOD.AUTOMATED,
-            approval = STATUS.WG_PENDING)
+            approval = STATUS.WG_APPROVED)
     public void testPostResourceGetMetadataAndBinary() throws IOException {
         // Test constants
         final String slug = "test",
@@ -233,7 +230,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
         Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
 
         // And then check we get the metadata of back
-        Model model = RestAssured
+        /* Model model = */ RestAssured
             .given()
                 .header(ACCEPT, TEXT_TURTLE)
             .expect()
@@ -266,9 +263,9 @@ public class NonRDFSourceTest extends CommonResourceTest {
                     "a link relation type of type (that is, rel='type') in responses to requests made to " +
                     "the LDP-NR's HTTP Request-URI.")
     @SpecTest(
-            specRefUri = LdpTestSuite.SPEC_URI + "#h5_ldpnr-type",
+            specRefUri = LdpTestSuite.SPEC_URI + "#ldpnr-type",
             testMethod = METHOD.AUTOMATED,
-            approval = STATUS.WG_PENDING)
+            approval = STATUS.WG_APPROVED)
     public void testPostResourceAndCheckLink() throws IOException {
         // Test constants
         final String slug = "test",
@@ -313,9 +310,9 @@ public class NonRDFSourceTest extends CommonResourceTest {
                     "the HTTP Link response header with link relation describedby and href to be the " +
                     "URI of the associated LDP-RS resource.")
     @SpecTest(
-            specRefUri = LdpTestSuite.SPEC_URI + "#h5_ldpc-post-createbinlinkmetahdr",
+            specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-createbinlinkmetahdr",
             testMethod = METHOD.AUTOMATED,
-            approval = STATUS.WG_PENDING)
+            approval = STATUS.WG_APPROVED)
     public void testPostResourceAndCheckAssociatedResource() throws IOException {
         // Test constants
         final String slug = "test",
@@ -361,6 +358,34 @@ public class NonRDFSourceTest extends CommonResourceTest {
             .when()
                 .get(rs);
 
+    }
+    
+    @Test(
+            groups = {MAY, NR},
+            description = "When a contained LDPR is deleted, and the LDPC server created an"+
+            		"associated LDP-RS (see the LDPC POST section), the LDPC server must also"+
+            		"delete the associated LDP-RS it created.")
+    @SpecTest(
+            specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-del-contremovescontres",
+            testMethod = METHOD.NOT_IMPLEMENTED,
+            approval = STATUS.WG_PENDING)
+    public void testDeleteNonRDFSourceDeletesAssociatedResource() throws IOException {
+        // TODO: Impl testDeleteNonRDFSourceDeletesAssociatedResource
+    	throw new SkipException("Test not yet implemented");
+    }
+
+    @Test(
+            groups = {MAY, NR},
+            description = "When responding to requests whose request-URI is a LDP-NR with an"+
+            		"associated LDP-RS, a LDPC server must provide the same HTTP Link response"+
+            		"header as is required in the create response")
+    @SpecTest(
+            specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-options-linkmetahdr",
+            testMethod = METHOD.NOT_IMPLEMENTED,
+            approval = STATUS.WG_PENDING)
+    public void testOptionsHasSameLinkHeader() throws IOException {
+        // TODO: Impl testOptionsHasSameLinkHeader
+    	throw new SkipException("Test not yet implemented");
     }
 
 }
