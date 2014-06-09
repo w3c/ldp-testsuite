@@ -28,7 +28,7 @@ import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 
 public class LdpTestCaseReporter {
-
+	
 	private static HtmlCanvas html;
 
 	private static boolean initialRead;
@@ -390,34 +390,21 @@ public class LdpTestCaseReporter {
 				}
 			} else {
 
-				html.table(class_("annotation"));
-				html.tr().th().content("Annotation Type");
-				html.th().content("Information")._tr();
-
-				html.tr().td()
-						.content(test.annotationType().getCanonicalName());
-				html.td();
+				html.div(class_("pad-left"));
 				html.b().write("Description: ")._b().write(test.description());
+				html.br().b().write("Reference URI: ")._b()
+					.a(href(testLdp.specRefUri()))
+					.write(testLdp.specRefUri())._a();
 				html.br().b().write("Groups: ")._b()
-						.write(Arrays.toString(test.groups()));
-				html.br().b().write("Enabled: ")._b()
-						.write("" + test.enabled())._td();
-				html._tr();
-
-				html.tr().td()
-						.content(testLdp.annotationType().getCanonicalName());
-				html.td().b().write("Reference URI: ")._b()
-						.a(href(testLdp.specRefUri()))
-						.write(testLdp.specRefUri())._a();
+					.write(Arrays.toString(test.groups()));
 				html.br().b().write("Status: ")._b()
-						.write(testLdp.approval().toString());
-
+					.write(testLdp.approval().toString());
 				html.br().b().write("Test Case Implementation: ")._b()
-						.write("" + testLdp.testMethod());
-				html._td();
-				html._tr();
-
-				html._table();
+					.write("" + testLdp.testMethod());
+				html.br().b().write("Enabled: ")._b()
+				.write("" + test.enabled());
+				
+				html._div();
 				toTestClass(name);
 			}
 		}
