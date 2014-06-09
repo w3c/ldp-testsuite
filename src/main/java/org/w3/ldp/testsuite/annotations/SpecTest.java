@@ -8,13 +8,14 @@ public @interface SpecTest {
 
 	/**
 	 * WG_PENDING (default) - no official recommendation from the WG supporting
-	 * the specification being tested by this test suite. 
-	 * WG_APPROVED - working group has approved this test case 
+	 *                        the specification being tested by this test suite.
+	 * WG_APPROVED - working group has approved this test case
+     * WG_CLARIFICATION - requires further clarification from the working group
 	 * WG_DEPRECATED - no longer recommended by WG 
 	 * WG_EXTENSION - valuable test case but not part of the WG approved set
 	 */
 	public static enum STATUS {
-		WG_PENDING, WG_APPROVED, WG_DEPRECATED, WG_EXTENSION
+		WG_PENDING, WG_APPROVED, WG_DEPRECATED, WG_EXTENSION, WG_CLARIFICATION
 	};
 
 	/**
@@ -45,5 +46,10 @@ public @interface SpecTest {
 	 * Whether the test case itself has been implemented or not
 	 */
 	public METHOD testMethod() default METHOD.NOT_IMPLEMENTED;
+
+    /**
+     * Whether further coment that can be useful
+     */
+    public String comment() default "";
 
 }

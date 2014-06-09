@@ -55,3 +55,8 @@ td,tr {
 	text-align: center;
 	border-bottom: 2px dashed
 }
+
+.pad-left {
+	margin-left: 4em;
+	
+}

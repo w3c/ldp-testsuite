@@ -3,6 +3,7 @@ package org.w3.ldp.testsuite;
 import java.net.URI;
 import java.util.*;
 
+import com.google.common.collect.ImmutableMap;
 import org.apache.commons.cli.*;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.testng.TestListenerAdapter;
@@ -35,13 +36,32 @@ public class LdpTestSuite {
         BASIC, DIRECT, INDIRECT
     };
 
-    public LdpTestSuite(CommandLine cmd) {
+    /**
+     * Basic test suite initialization over a server testing basic containers
+     *
+     * @param server base urtl to the server
+     */
+    public LdpTestSuite(final String server) {
+        this(ImmutableMap.of("server", server, "basic", null));
+    }
+
+    /**
+     * Initialize the test suite with options as the row command-line input
+     *
+     * @param cmd command-line options
+     */
+    public LdpTestSuite(final CommandLine cmd) {
         this(CommandLineUtil.asMap(cmd));
     }
 
-    public LdpTestSuite(Map<String, String> options) {
-        // see: http://testng.org/doc/documentation-main.html#running-testng-programmatically
+    /**
+     * Initialize the test suite with a map of options
+     *
+     * @param options options
+     */
+    public LdpTestSuite(final Map<String, String> options) {
 
+        // see: http://testng.org/doc/documentation-main.html#running-testng-programmatically
         testng = new TestNG();
         testng.setDefaultSuiteName(NAME);
 
@@ -65,7 +85,7 @@ public class LdpTestSuite {
 
         // Add any parameters that you want to set to the Test.
 
-        String server = null;
+        final String server;
         if (options.containsKey("server")) {
             server = options.get("server");
             try {
@@ -82,10 +102,10 @@ public class LdpTestSuite {
         }
 
         // Add classes we want to test
-        List<XmlClass> classes = new ArrayList<XmlClass>();
+        final List<XmlClass> classes = new ArrayList<>();
 
-        Map<String, String> parameters = new HashMap<>();
-        ContainerType type = getSelectedType(options);
+        final Map<String, String> parameters = new HashMap<>();
+        final ContainerType type = getSelectedType(options);
         switch (type) {
             case BASIC:
                 classes.add(new XmlClass( "org.w3.ldp.testsuite.test.BasicContainerTest"));
@@ -111,13 +131,13 @@ public class LdpTestSuite {
 
         test.setXmlClasses(classes);
 
-        List<XmlTest> tests = new ArrayList<XmlTest>();
+        final List<XmlTest> tests = new ArrayList<>();
         tests.add(test);
 
         testsuite.setParameters(parameters);
         testsuite.setTests(tests);
 
-        List<XmlSuite> suites = new ArrayList<XmlSuite>();
+        final List<XmlSuite> suites = new ArrayList<>();
         suites.add(testsuite);
 
         // provide our reporter and listener
@@ -128,7 +148,7 @@ public class LdpTestSuite {
         testng.run();
     }
 
-    private int getStatus() {
+    public int getStatus() {
         return testng.getStatus();
     }
 

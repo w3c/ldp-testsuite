@@ -70,6 +70,10 @@ public class HeaderMatchers {
         };
     }
 
+    public static Matcher<String> hasEntityTag() {
+        return hasEntityTag(false);
+    }
+
     public static Matcher<String> hasEntityTag(final boolean weakTag) {
         return new CustomTypeSafeMatcher<String>(String.format("a %s EntityTag", weakTag?"weak":"strong")) {
             @Override
