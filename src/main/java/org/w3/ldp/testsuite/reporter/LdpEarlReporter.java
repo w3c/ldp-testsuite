@@ -4,10 +4,13 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.StringWriter;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.openrdf.model.vocabulary.EARL;
 import org.testng.IReporter;
 import org.testng.IResultMap;
 import org.testng.ISuite;
@@ -17,29 +20,56 @@ import org.testng.ITestResult;
 import org.testng.internal.Utils;
 import org.testng.xml.XmlSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
-//import org.w3.ldp.testsuite.annotations.Reference;
+import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.vocab.Earl;
 
+import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.vocabulary.DCTerms;
+import com.github.jsonldjava.core.JsonLdError;
+import com.github.jsonldjava.core.JsonLdOptions;
+import com.github.jsonldjava.core.JsonLdProcessor;
+import com.github.jsonldjava.jena.*;
+import com.github.jsonldjava.utils.JsonUtils;
 
 /**
  * Earl Reporter for the LDP Test Suite. Takes in the results of the test suite
- * and reports the information to a Turtle file, which contains Earl vocabulary.
+ * and reports the information to a Turtle file and a JSON-LD file, both of
+ * which contains Earl vocabulary.
  */
 public class LdpEarlReporter implements IReporter {
 
-	private BufferedWriter writer;
+	private BufferedWriter writerTurtle;
+	private BufferedWriter writerJson;
 	private Model model;
 
 	private static final String PASS = "TEST PASSED";
 	private static final String FAIL = "TEST FAILED";
 	private static final String SKIP = "TEST SKIPPED";
 	private static final String TURTLE = "TURTLE";
+	private static final String JSON_LD = "JSON-LD";
 	private static final String outputDir = "report"; // directory where results
 														// will go
+
+	private static final String DIRECT_TEST = "DirectContainerTest";
+	private static final String MEMBER_TEST = "MemberResourceTest";
+	private static final String BASIC_TEST = "BasicContainerTest";
+	private static final String INDIRECT_TEST = "IndirectContainerTest";
+
+	private static String defaultUri = "http://localhost:8080/ldp/resources/";
+
+	private static String direct;
+	private static String member;
+	private static String basic;
+	private static String indirect;
+
+	private static String softwareTitle;
+
+	static {
+		JenaJSONLD.init();
+	}
 
 	@Override
 	public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites,
@@ -59,87 +89,167 @@ public class LdpEarlReporter implements IReporter {
 
 	private void createAssertions(List<ISuite> suites) {
 		for (ISuite suite : suites) {
+			// Acquire parameters
+			direct = suite.getParameter("directContainer");
+			member = suite.getParameter("memberResource");
+			basic = suite.getParameter("basicContainer");
+			indirect = suite.getParameter("indirectContainer");
+
+			softwareTitle = suite.getParameter("softwareTitle");
+
+			// Make the Assertor Resource
+			Resource assertor = model.createResource(null, Earl.Assertor);
+			assertor.addProperty(DCTerms.title, suite.getName());
 
 			Map<String, ISuiteResult> tests = suite.getResults();
 
 			for (ISuiteResult results : tests.values()) {
 				ITestContext testContext = results.getTestContext();
-				getResultProperties(testContext.getFailedTests(), FAIL,
-						suite.getName());
-				getResultProperties(testContext.getSkippedTests(), SKIP,
-						suite.getName());
-				getResultProperties(testContext.getPassedTests(), PASS,
-						suite.getName());
+				getResultProperties(testContext.getFailedTests(), FAIL);
+				getResultProperties(testContext.getSkippedTests(), SKIP);
+				getResultProperties(testContext.getPassedTests(), PASS);
 			}
 
 		}
 
 	}
 
-	private void getResultProperties(IResultMap tests, String status,
-			String name) {
+	private void getResultProperties(IResultMap tests, String status) {
 		for (ITestResult result : tests.getAllResults()) {
-			makeResultResource(result, status, name);
+			makeResultResource(result, status);
 		}
 	}
 
-	private void makeResultResource(ITestResult result, String status,
-			String name) {
+	private void makeResultResource(ITestResult result, String status) {
 		Resource assertionResource = model.createResource(null, Earl.Assertion);
 		Resource caseResource = model.createResource(null, Earl.TestCase);
 		Resource subjectResource = model.createResource(null, Earl.TestSubject);
 		Resource resultResource = model.createResource(null, Earl.TestResult);
-		Resource assertorResource = model.createResource(null, Earl.Assertor);
-		Resource modeResource = model.createResource(EARL.AUTOMATIC.toString(),
-				Earl.TestMode);
+		Resource softResource = model.createResource(null, Earl.Software);
+		// Resource modeResource = null;
 
 		/* Add properties to the Test Subject Resource */
-		String declaringClass = result.getTestClass().getName();
-		subjectResource.addProperty(DCTerms.description, "Declaring Class: "
-				+ declaringClass);
 
-		subjectResource.addProperty(DCTerms.title, result.getName());
+		// FIXME
+		String testClass = result.getTestClass().getName();
+		if (testClass.contains(DIRECT_TEST) && direct != null)
+			subjectResource.addProperty(DCTerms.title, direct);
 
-		/* Assertor Resource */
-		assertorResource.addProperty(DCTerms.title, name);
+		if (testClass.contains(BASIC_TEST) && basic != null)
+			subjectResource.addProperty(DCTerms.title, basic);
+
+		if (testClass.contains(INDIRECT_TEST) && indirect != null)
+			subjectResource.addProperty(DCTerms.title, indirect);
+
+		if (testClass.contains(MEMBER_TEST)) {
+			if (member != null)
+				subjectResource.addProperty(DCTerms.title, member);
+			else if (direct != null)
+				subjectResource.addProperty(DCTerms.title, direct);
+			else if (basic != null)
+				subjectResource.addProperty(DCTerms.title, basic);
+			else if (indirect != null)
+				subjectResource.addProperty(DCTerms.title, indirect);
+			else
+				subjectResource.addProperty(DCTerms.title, defaultUri);
+
+		}
+
+		/* Software Resource */
+		if (softwareTitle != null)
+			softResource.addProperty(DCTerms.title, softwareTitle);
 
 		/* Test Criterion/Test Case Resource */
-		caseResource.addProperty(DCTerms.description, (result.getMethod()
-				.getDescription() != null ? result.getMethod().getDescription()
-				: "No Description available"));
+		String declaringClass = result.getTestClass().getName();
+
+		caseResource.addProperty(DCTerms.description, "Declaring Class: "
+				+ declaringClass
+				+ " - "
+				+ (result.getMethod().getDescription() != null ? result
+						.getMethod().getDescription()
+						: "No Description available"));
 
 		String groups = groups(result.getMethod().getGroups());
 
 		caseResource.addProperty(DCTerms.subject, "Groups: " + groups);
-		if (result.getMethod().getConstructorOrMethod().getMethod()
-				.getAnnotation(SpecTest.class).specRefUri() != null) {
-			caseResource.addProperty(DCTerms.relation,
-					result.getMethod().getConstructorOrMethod().getMethod()
-							.getAnnotation(SpecTest.class).specRefUri());
-		}
+
+		Calendar cal = GregorianCalendar.getInstance();
+		Literal value = model.createTypedLiteral(cal);
+		caseResource.addProperty(DCTerms.date, value);
 
 		/* Test Result Resource */
-		long time = result.getEndMillis() - result.getStartMillis();
-		resultResource.addLiteral(DCTerms.date, time + " Msec");
+
+		// long time = result.getEndMillis() - result.getStartMillis();
+		// resultResource.addProperty(Earl.time, time + " Msec");
+
 		resultResource.addProperty(DCTerms.title, status);
+		switch (status) {
+		case FAIL:
+			resultResource.addProperty(Earl.outcome, Earl.fail);
+			break;
+		case PASS:
+			resultResource.addProperty(Earl.outcome, Earl.pass);
+			break;
+		case SKIP:
+			resultResource.addProperty(Earl.outcome, Earl.skip);
+			break;
+		default:
+			break;
+		}
 
 		if (result.getThrowable() != null) {
 			createExceptionProperty(result.getThrowable(), resultResource);
 		}
 
-		/* Add the above resources to the Assertion Resource */
+		if (result.getMethod().getConstructorOrMethod().getMethod()
+				.getAnnotation(SpecTest.class) != null) {
+
+			SpecTest test = result.getMethod().getConstructorOrMethod()
+					.getMethod().getAnnotation(SpecTest.class);
+			METHOD type = test.testMethod();
+			switch (type) {
+			case AUTOMATED:
+				assertionResource.addProperty(Earl.mode,
+						model.createResource(Earl.Automatic));
+				break;
+			case MANUAL:
+				assertionResource.addProperty(Earl.mode,
+						model.createResource(Earl.Manual));
+				break;
+			case NOT_IMPLEMENTED:
+				assertionResource.addProperty(Earl.mode,
+						model.createResource(Earl.NotTested));
+				break;
+			case CLIENT_ONLY:
+				assertionResource.addProperty(Earl.mode,
+						model.createResource(Earl.NotTested));
+				break;
+			default:
+				assertionResource.addProperty(Earl.mode,
+						model.createResource(Earl.NotTested));
+				break;
+			}
+			// modeResource.addProperty(DCTerms.title, type.toString());
+			// modeResource.addProperty(DCTerms.description, result.getName());
+		}
+
+		// setProperty(Earl.mode, model.createResource(Earl.Automatic));
+
+		/*
+		 * Add the above resources to the Assertion Resource
+		 */
 		assertionResource.addProperty(Earl.test, caseResource);
-		assertionResource.addProperty(Earl.testResult, resultResource);
 		assertionResource.addProperty(Earl.testSubject, subjectResource);
-		assertionResource.addProperty(Earl.assertedBy, assertorResource);
-		assertionResource.addProperty(Earl.mode, modeResource);
+		assertionResource.addProperty(Earl.testResult, resultResource);
+		assertionResource.addProperty(Earl.assertedBy, softResource);
+
 	}
 
 	private void createExceptionProperty(Throwable thrown, Resource resource) {
 		if (thrown.getClass().getName().contains(SKIP))
-			resource.addProperty(Earl.outcome, thrown.getMessage());
+			resource.addProperty(DCTerms.description, thrown.getMessage());
 		else
-			resource.addLiteral(Earl.outcome,
+			resource.addLiteral(DCTerms.description,
 					Utils.stackTrace(thrown, false)[0]);
 	}
 
@@ -157,19 +267,51 @@ public class LdpEarlReporter implements IReporter {
 	}
 
 	private void createWriter(String directory) throws IOException {
-		writer = null;
+		writerTurtle = null;
+		writerJson = null;
 		new File(directory).mkdirs();
-		writer = new BufferedWriter(new FileWriter(directory
-				+ "/EarlTestSuiteReport.ttl"));
+		writerTurtle = new BufferedWriter(new FileWriter(directory
+				+ "/EarlTestSuiteReportTurtle.ttl"));
+		writerJson = new BufferedWriter(new FileWriter(directory
+				+ "/EarlTestSuiteReportJsonLd.jsonld", false));
+
 	}
 
 	private void write() {
-		model.write(writer, TURTLE);
+		model.write(writerTurtle, TURTLE);
+
+		StringWriter sw = new StringWriter();
+		model.write(sw, JSON_LD);
+		try {
+
+			Object jsonObject = JsonUtils.fromString(sw.toString());
+
+			HashMap<String, String> context = new HashMap<String, String>();
+			// Customise context
+			context.put("dcterms", "http://purl.org/dc/terms/");
+			context.put("earl", "http://www.w3.org/ns/earl#");
+			context.put("foaf", "http://xmlns.com/foaf/0.1/");
+			context.put("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
+
+			// Create an instance of JsonLdOptions with the standard JSON-LD
+			// options (will just be default for now)
+			JsonLdOptions options = new JsonLdOptions();
+			Object compact = JsonLdProcessor.compact(jsonObject, context,
+					options);
+
+			writerJson.write(JsonUtils.toPrettyString(compact));
+		} catch (IOException | JsonLdError e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	private void endWriter() throws IOException {
-		writer.flush();
-		writer.close();
+		writerTurtle.flush();
+		writerTurtle.close();
+
+		writerJson.flush();
+		writerTurtle.close();
 	}
 
 	private void createModel() {

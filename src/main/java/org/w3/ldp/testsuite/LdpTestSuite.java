@@ -101,10 +101,18 @@ public class LdpTestSuite {
             throw new IllegalArgumentException("ERROR: missing server uri");
         }
 
+        String softwareTitle = null;
+		if (options.containsKey("software"))
+			softwareTitle = options.get("software");
+        
         // Add classes we want to test
         final List<XmlClass> classes = new ArrayList<>();
 
         final Map<String, String> parameters = new HashMap<>();
+        
+        if (softwareTitle != null)
+			parameters.put("softwareTitle", softwareTitle);
+        
         final ContainerType type = getSelectedType(options);
         switch (type) {
             case BASIC:
@@ -160,6 +168,12 @@ public class LdpTestSuite {
                 .withDescription("server url to run the test suite")
                 .hasArg().withArgName("server")
                 .isRequired().create());
+
+		options.addOption(OptionBuilder
+				.withLongOpt("software")
+				.withDescription(
+						"title of the software test suite runs on")
+				.hasArg().withArgName("software").isRequired(false).create());
 
         OptionGroup containerType = new OptionGroup();
         containerType.addOption(OptionBuilder.withLongOpt("basic")

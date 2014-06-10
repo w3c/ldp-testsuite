@@ -10,6 +10,8 @@
 	 <parameter name="basicContainer" value="http://localhost:8080/ldp/resources/bc/" /> 
 	<!--<parameter name="directContainer" value="http://localhost:8080/ldp/resources/dc-simple/" />-->
 	<!-- <parameter name="indirectContainer" value="http://localhost:8080/ldp/resources/" /> -->
+	
+	<!-- <parameter name="softwareDescription" value = "TODO: ADD DESCRIPTION" -->
 
 	<!-- Optional RDF member resource parameter. If left out, the tests will 
 		try to create a resource in one of the containers. -->
