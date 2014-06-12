@@ -63,24 +63,14 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes {
     /**
      * Tests if a Link response header with the expected URI and relation
      * is present in an HTTP response.
-     *
-     * @param response     the HTTP response
      * @param uri          the expected URI
      * @param linkRelation the expected link relation (rel)
+     * @param response     the HTTP response
+     *
      * @see <a href="http://tools.ietf.org/html/rfc5988">RFC 5988</a>
-     * @deprecated use {@see #containsLinkHeader(String, String, List)
      */
-    @Deprecated
-    protected boolean hasLinkHeader(Response response, String uri, String linkRelation) {
-        List<Header> linkHeaders = response.getHeaders().getList(LINK);
-        for (Header h : linkHeaders) {
-            // FIXME: This is not a proper test. Need to find a library to parse the link header.
-            if (h.getValue().contains(uri) && h.getValue().contains(linkRelation)) {
-                return true;
-            }
-        }
-
-        return false;
+    protected boolean containsLinkHeader(String uri, String linkRelation, Response response) {
+    	return containsLinkHeader(uri, linkRelation, response.getHeaders().getList(LINK));
     }
 
     public Model getAsModel(String uri) {
