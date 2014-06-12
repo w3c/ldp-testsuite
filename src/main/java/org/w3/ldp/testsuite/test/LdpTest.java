@@ -2,7 +2,10 @@ package org.w3.ldp.testsuite.test;
 
 import java.util.List;
 
+import javax.ws.rs.core.Link;
+
 import org.apache.http.HttpStatus;
+import org.jboss.resteasy.plugins.delegates.LinkDelegate;
 import org.w3.ldp.testsuite.http.HttpHeaders;
 import org.w3.ldp.testsuite.http.MediaTypes;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
@@ -57,8 +60,6 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes {
         return warnings;
     }
 
-    // TODO: Make this a hamcrest matcher for convenience.
-
     /**
      * Tests if a Link response header with the expected URI and relation
      * is present in an HTTP response.
@@ -67,20 +68,12 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes {
      * @param uri          the expected URI
      * @param linkRelation the expected link relation (rel)
      * @see <a href="http://tools.ietf.org/html/rfc5988">RFC 5988</a>
+     * @deprecated use {@see #containsLinkHeader(String, String, List)
      */
+    @Deprecated
     protected boolean hasLinkHeader(Response response, String uri, String linkRelation) {
         List<Header> linkHeaders = response.getHeaders().getList(LINK);
         for (Header h : linkHeaders) {
-            // The following code requires JAX-RS 2.0, but I'm not sure we want that
-            // dependency. Commenting out for now.
-//	    	Link l = Link.valueOf(h.getValue());
-//	    	if (uri.equals(l.getUri().toString())) {
-//	    		for (String rel : l.getRels()) {
-//	    			if (linkRelation.equals(rel)) {
-//	    				return true;
-//	    			}
-//	    		}
-//	    	}
             // FIXME: This is not a proper test. Need to find a library to parse the link header.
             if (h.getValue().contains(uri) && h.getValue().contains(linkRelation)) {
                 return true;
@@ -112,4 +105,65 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes {
         return model;
     }
 
+	/**
+	 * Check if the header is contained in the headers list
+	 * (becase RestAssured only checks the FIRST header)
+	 *
+	 * @param header  header to look for
+	 * @param headers list of headers
+	 * @return header is contained
+	 */
+    protected boolean containsLinkHeader(Header header, List<Header> headers) {
+        for (Header h : headers) {
+            if (header.equals(h)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+	/**
+	 * Check if the link is contained in the headers list
+	 * (becase RestAssured only checks the FIRST header)
+	 *
+	 * @param link header to look for
+	 * @param headers list of headers
+	 * @return link is contained
+	 */
+    protected boolean containsLinkHeader(Link link, List<Header> headers) {
+        for (Header header : headers) {
+        	for (String s : header.getValue().split(",")) {
+        		Link l = new LinkDelegate().fromString(s);
+        		if (link.equals(l)) {
+        			return true;
+        		}
+            }
+        }
+        return false;
+    }
+
+	/**
+	 * Check if the link is contained in the headers list
+	 * (becase RestAssured only checks the FIRST header)
+	 *
+	 * @param uri link uri
+	 * @param rel link rel
+	 * @param headers list of headers
+	 * @return link is contained
+	 */
+    protected boolean containsLinkHeader(String uri, String rel, List<Header> headers) {
+        return containsLinkHeader(Link.fromUri(uri).rel(rel).build(), headers);
+    }
+
+    protected String getFirstLinkForRelation(String rel, List<Header> headers) {
+        for (Header header : headers) {
+        	for (String s : header.getValue().split(",")) {
+        		Link l = new LinkDelegate().fromString(s);
+        		if (rel.equals(l.getRel())) {
+        			return l.getUri().toString();
+        		}
+            }
+        }
+        return null;    	
+    }
 }

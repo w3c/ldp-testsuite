@@ -8,11 +8,8 @@ import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful
 
 import java.net.URISyntaxException;
 import java.util.HashSet;
-import java.util.List;
 
-import com.jayway.restassured.response.Header;
 import org.apache.http.HttpStatus;
-import org.jboss.resteasy.plugins.delegates.LinkDelegate;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -34,8 +31,6 @@ import com.hp.hpl.jena.vocabulary.DCTerms;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.ResponseSpecification;
-
-import javax.ws.rs.core.Link;
 
 /**
  * Common tests for all LDP resources, RDF source and non-RDF source.
@@ -677,53 +672,4 @@ public abstract class CommonResourceTest extends LdpTest {
     protected boolean restrictionsOnContent() {
         return false;
     }
-
-    /**
-     * Check if the header is contained in the headers list
-     * (becase RestAssured only checks the FIRST header)
-     *
-     * @param header  header to look for
-     * @param headers list of headers
-     * @return header is contained
-     */
-    protected boolean containsLinkHeader(Header header, List<Header> headers) {
-        for (Header h : headers) {
-            if (header.equals(h)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Check if the link is contained in the headers list
-     * (becase RestAssured only checks the FIRST header)
-     *
-     * @param link header to look for
-     * @param headers list of headers
-     * @return link is contained
-     */
-    protected boolean containsLinkHeader(Link link, List<Header> headers) {
-        for (Header header : headers) {
-            Link l = new LinkDelegate().fromString(header.getValue());
-            if (link.equals(l)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Check if the link is contained in the headers list
-     * (becase RestAssured only checks the FIRST header)
-     *
-     * @param uri link uri
-     * @param rel link rel
-     * @param headers list of headers
-     * @return link is contained
-     */
-    protected boolean containsLinkHeader(String uri, String rel, List<Header> headers) {
-        return containsLinkHeader(Link.fromUri(uri).rel(rel).build(), headers);
-    }
-
 }
