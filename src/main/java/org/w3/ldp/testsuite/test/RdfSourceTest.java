@@ -184,16 +184,42 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 
     @Test(
             groups = {MUST},
-            description = "LDP servers MUST provide a text/turtle representation "
-                    + "of the requested LDP-RS [turtle].")
+            description = "LDP servers must provide a text/turtle representation "
+            		+ "of the requested LDP-RS whenever HTTP content negotiation "
+            		+ "does not force another outcome [turtle]. In other words, if "
+            		+ "the server receives a GET request whose Request-URI "
+            		+ "identifies a LDP-RS, and either text/turtle has the highest "
+            		+ "relative quality factor (q= value) in the Accept request "
+            		+ "header or that header is absent, then an LDP server has to "
+            		+ "respond with Turtle.")
     @SpecTest(
     		specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-get-turtle", 
     		testMethod = METHOD.AUTOMATED,
     		approval   = STATUS.WG_APPROVED)
-    public void testGetResourceTurtle() {
+    public void testGetResourceAcceptTurtle() {
+    	// Accept: text/turtle
         RestAssured.given().header(ACCEPT, TEXT_TURTLE)
                 .expect().statusCode(isSuccessful()).contentType(TEXT_TURTLE)
                 .when().get(getResourceUri()).as(Model.class, new RdfObjectMapper(getResourceUri()));
-    }
 
+        // No Accept header
+        RestAssured
+                .expect().statusCode(isSuccessful()).contentType(TEXT_TURTLE)
+                .when().get(getResourceUri()).as(Model.class, new RdfObjectMapper(getResourceUri()));
+
+        // Wildcard
+        RestAssured.given().header(ACCEPT, "*/*")
+                .expect().statusCode(isSuccessful()).contentType(TEXT_TURTLE)
+                .when().get(getResourceUri()).as(Model.class, new RdfObjectMapper(getResourceUri()));
+
+        // Accept: text/*
+        RestAssured.given().header(ACCEPT, "text/*")
+                .expect().statusCode(isSuccessful()).contentType(TEXT_TURTLE)
+                .when().get(getResourceUri()).as(Model.class, new RdfObjectMapper(getResourceUri()));
+
+        // More complicated Accept header
+        RestAssured.given().header(ACCEPT, "text/turtle;q=0.9,application/json;q=0.8")
+                .expect().statusCode(isSuccessful()).contentType(TEXT_TURTLE)
+                .when().get(getResourceUri()).as(Model.class, new RdfObjectMapper(getResourceUri()));
+    }
 }
