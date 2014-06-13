@@ -262,8 +262,10 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 		String identifier = UUID.randomUUID().toString();
 		resource.addProperty(DCTerms.identifier, identifier);
 
+		// Do not pass a URI to RdfObjectMapper so that it stays as the null
+		// relative URI in the request body
 		Response postResponse = RestAssured.given().contentType(TEXT_TURTLE)
-				.body(requestModel, new RdfObjectMapper(getResourceUri()))
+				.body(requestModel, new RdfObjectMapper()) // do not pass a URI
 				.expect().statusCode(HttpStatus.SC_CREATED).when()
 				.post(getResourceUri());
 
