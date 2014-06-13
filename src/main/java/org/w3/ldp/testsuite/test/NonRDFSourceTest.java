@@ -1,8 +1,9 @@
 package org.w3.ldp.testsuite.test;
 
-import static org.hamcrest.Matchers.notNullValue;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+import static org.w3.ldp.testsuite.matcher.HttpStatusNotFoundOrGoneMatcher.isNotFoundOrGone;
+import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
 import java.io.IOException;
 import java.util.List;
@@ -66,23 +67,13 @@ public class NonRDFSourceTest extends LdpTest {
             approval = STATUS.WG_APPROVED)
     public void testPostResource() throws IOException {
         // Test constants
-        final String slug = "test",
+	    final String slug = "test",
                 file = slug + ".png",
                 mimeType = "image/png";
 
         // Make sure we can post binary resources
-        List<Header> links = RestAssured
-            .given()
-                .header(SLUG, slug)
-                .body(IOUtils.toByteArray(getClass().getResourceAsStream("/" + file)))
-                .contentType(mimeType)
-            .expect()
-                .statusCode(HttpStatus.SC_CREATED)
-                .header(LOCATION, notNullValue())
-            .when()
-                .post(rootContainer)
-                .headers().getList(LINK);
-
+        Response response = postNonRDFSource(slug, file, mimeType);
+        List<Header> links = response.headers().getList("Link");
         Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
     }
 
@@ -97,22 +88,12 @@ public class NonRDFSourceTest extends LdpTest {
             approval = STATUS.WG_PENDING)
     public void testPostResourceAndGetFromContainer() throws IOException {
         // Test constants
-        final String slug = "test",
+	    final String slug = "test",
                 file = slug + ".png",
                 mimeType = "image/png";
 
         // Make sure we can post binary resources
-        Response response = RestAssured
-            .given()
-                .header(SLUG, slug)
-                .body(IOUtils.toByteArray(getClass().getResourceAsStream("/" + file)))
-                .contentType(mimeType)
-            .expect()
-                .statusCode(HttpStatus.SC_CREATED)
-                .header(LOCATION, notNullValue())
-            .when()
-                .post(rootContainer);
-                
+        Response response = postNonRDFSource(slug, file, mimeType);
         List<Header> links = response.headers().getList("Link");
         Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
 
@@ -139,21 +120,12 @@ public class NonRDFSourceTest extends LdpTest {
             approval = STATUS.WG_APPROVED)
     public void testPostResourceGetBinary() throws IOException {
         // Test constants
-        final String slug = "test",
+	    final String slug = "test",
                 file = slug + ".png",
                 mimeType = "image/png";
 
         // Make sure we can post binary resources
-        Response response = RestAssured
-            .given()
-                .header(SLUG, slug)
-                .body(IOUtils.toByteArray(getClass().getResourceAsStream("/" + file)))
-                .contentType(mimeType)
-            .expect()
-                .statusCode(HttpStatus.SC_CREATED)
-                .header(LOCATION, notNullValue())
-            .when()
-                .post(rootContainer);
+        Response response = postNonRDFSource(slug, file, mimeType);
         List<Header> links = response.headers().getList("Link");
         Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
 
@@ -182,21 +154,12 @@ public class NonRDFSourceTest extends LdpTest {
             approval = STATUS.WG_APPROVED)
     public void testPostResourceGetMetadataAndBinary() throws IOException {
         // Test constants
-        final String slug = "test",
+	    final String slug = "test",
                 file = slug + ".png",
                 mimeType = "image/png";
 
         // Make sure we can post binary resources
-        Response response = RestAssured
-            .given()
-                .header(SLUG, slug)
-                .body(IOUtils.toByteArray(getClass().getResourceAsStream("/" + file)))
-                .contentType(mimeType)
-            .expect()
-                .statusCode(HttpStatus.SC_CREATED)
-                .header(LOCATION, HeaderMatchers.headerPresent())
-            .when()
-                .post(rootContainer);
+        Response response = postNonRDFSource(slug, file, mimeType);
 
         String location = response.getHeader(LOCATION);
         List<Header> links = response.getHeaders().getList(LINK);
@@ -243,28 +206,19 @@ public class NonRDFSourceTest extends LdpTest {
             approval = STATUS.WG_APPROVED)
     public void testPostResourceAndCheckLink() throws IOException {
         // Test constants
-        final String slug = "test",
+	    final String slug = "test",
                 file = slug + ".png",
                 mimeType = "image/png";
 
         // Make sure we can post binary resources
-        Response response = RestAssured
-            .given()
-                .header(SLUG, slug)
-                .body(IOUtils.toByteArray(getClass().getResourceAsStream("/" + file)))
-                .contentType(mimeType)
-            .expect()
-                .statusCode(HttpStatus.SC_CREATED)
-                .header(LOCATION, notNullValue())
-            .when()
-                .post(rootContainer);
+        Response response = postNonRDFSource(slug, file, mimeType);
         List<Header> links = response.headers().getList(LINK);
         Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
 
         // And then check the link when requesting the LDP-NR
         List<Header> linksNR = RestAssured
             .expect()
-                .statusCode(HttpStatus.SC_OK)
+                .statusCode(isSuccessful())
                 .header(ETAG, HeaderMatchers.headerPresent())
             .when()
                 .get(response.getHeader(LOCATION))
@@ -286,21 +240,12 @@ public class NonRDFSourceTest extends LdpTest {
             approval = STATUS.WG_APPROVED)
     public void testPostResourceAndCheckAssociatedResource() throws IOException {
         // Test constants
-        final String slug = "test",
+	    final String slug = "test",
                 file = slug + ".png",
                 mimeType = "image/png";
 
         // Make sure we can post binary resources
-        Response response = RestAssured
-            .given()
-                .header(SLUG, slug)
-                .body(IOUtils.toByteArray(getClass().getResourceAsStream("/" + file)))
-                .contentType(mimeType)
-            .expect()
-                .statusCode(HttpStatus.SC_CREATED)
-                .header(LOCATION, HeaderMatchers.headerPresent())
-            .when()
-                .post(rootContainer);
+        Response response = postNonRDFSource(slug, file, mimeType);
         List<Header> links = response.headers().getList(LINK);
         String describedBy = getFirstLinkForRelation("describedby", links);
         Assert.assertNotNull(describedBy, "Expected Link response header with relation 'describedby'");
@@ -310,8 +255,8 @@ public class NonRDFSourceTest extends LdpTest {
         // Check the link when requesting the LDP-NS
         List<Header> linksNR = RestAssured
             .expect()
-                .statusCode(HttpStatus.SC_OK)
-                .header(ETAG, HeaderMatchers.headerPresent()) // FIXME: be more specific here
+                .statusCode(isSuccessful())
+                .header(ETAG, HeaderMatchers.headerPresent())
             .when()
                 .get(location)
                 .headers().getList("Link");
@@ -322,7 +267,7 @@ public class NonRDFSourceTest extends LdpTest {
             .given()
                 .header(ACCEPT, TEXT_TURTLE)
             .expect()
-                .statusCode(HttpStatus.SC_OK)
+                .statusCode(isSuccessful())
                 .contentType(TEXT_TURTLE)
                 .header(ETAG, HeaderMatchers.headerPresent()) // FIXME: be more specific here
             .when()
@@ -330,31 +275,102 @@ public class NonRDFSourceTest extends LdpTest {
     }
     
     @Test(
-            groups = {MAY, NR},
+            groups = {MUST, NR},
             description = "When a contained LDPR is deleted, and the LDPC server created an"+
             		"associated LDP-RS (see the LDPC POST section), the LDPC server must also"+
-            		"delete the associated LDP-RS it created.")
+            		"delete the associated LDP-RS it created.",
+            dependsOnMethods = "testPostResourceAndCheckAssociatedResource")
     @SpecTest(
             specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-del-contremovescontres",
-            testMethod = METHOD.NOT_IMPLEMENTED,
+            testMethod = METHOD.AUTOMATED,
             approval = STATUS.WG_PENDING)
     public void testDeleteNonRDFSourceDeletesAssociatedResource() throws IOException {
-        // TODO: Impl testDeleteNonRDFSourceDeletesAssociatedResource
-    	throw new SkipException("Test not yet implemented");
+        // Test constants
+	    final String slug = "test",
+                file = slug + ".png",
+                mimeType = "image/png";
+
+        // Make sure we can post binary resources
+        Response postResponse = postNonRDFSource(slug, file, mimeType);
+        List<Header> links = postResponse.headers().getList(LINK);
+        String describedBy = getFirstLinkForRelation("describedby", links);
+        Assert.assertNotNull(describedBy, "Expected Link response header with relation 'describedby'");
+        String location = postResponse.getHeader(LOCATION);
+
+        // And then check the associated LDP-RS is actually there
+        RestAssured
+            .given()
+                .header(ACCEPT, TEXT_TURTLE)
+            .expect()
+                .statusCode(isSuccessful())
+                .contentType(TEXT_TURTLE)
+            .when()
+                .get(describedBy);
+        
+        // Delete the LDP-NR.
+        RestAssured
+        	.expect()
+        		.statusCode(isSuccessful())
+        	.when()
+        		.delete(location);
+        
+        // Check that the associated LDP-RS is also deleted.
+        RestAssured
+            .given()
+                .header(ACCEPT, TEXT_TURTLE)
+            .expect()
+            	.statusCode(isNotFoundOrGone())
+            .when()
+                .get(describedBy);
+    }
+
+	protected Response postNonRDFSource(String slug, String file, String mimeType) throws IOException {
+        // Make sure we can post binary resources
+        return RestAssured
+            .given()
+                .header(SLUG, slug)
+                .body(IOUtils.toByteArray(getClass().getResourceAsStream("/" + file)))
+                .contentType(mimeType)
+            .expect()
+                .statusCode(HttpStatus.SC_CREATED)
+                .header(LOCATION, HeaderMatchers.headerPresent())
+            .when()
+                .post(rootContainer);
     }
 
     @Test(
-            groups = {MAY, NR},
+            groups = {MUST, NR},
             description = "When responding to requests whose request-URI is a LDP-NR with an"+
             		"associated LDP-RS, a LDPC server must provide the same HTTP Link response"+
-            		"header as is required in the create response")
+            		"header as is required in the create response",
+            dependsOnMethods = "testPostResourceAndCheckAssociatedResource")
     @SpecTest(
             specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-options-linkmetahdr",
-            testMethod = METHOD.NOT_IMPLEMENTED,
+            testMethod = METHOD.AUTOMATED,
             approval = STATUS.WG_PENDING)
     public void testOptionsHasSameLinkHeader() throws IOException {
-        // TODO: Impl testOptionsHasSameLinkHeader
-    	throw new SkipException("Test not yet implemented");
-    }
+        // Test constants
+	    final String slug = "test",
+                file = slug + ".png",
+                mimeType = "image/png";
 
+        // Make sure we can post binary resources
+        Response postResponse = postNonRDFSource(slug, file, mimeType);
+
+        String location = postResponse.getHeader(LOCATION);
+        List<Header> links = postResponse.getHeaders().getList(LINK);
+        String describedBy = getFirstLinkForRelation("describedby", links);
+        Assert.assertNotNull(describedBy, "Expected Link response header with relation 'describedby' for LDP-NR POST request");
+
+        // Check the Link headers on an HTTP OPTIONS for the LDP-NR
+        List<Header> linksOPTIONS = RestAssured
+            .expect()
+                .statusCode(isSuccessful())
+            .when()
+                .options(location)
+                .getHeaders().getList(LINK);
+        Assert.assertTrue(containsLinkHeader(describedBy, "describedby", linksOPTIONS),
+		        "Expected Link response header with relation 'describedby' and URI <"
+		                + describedBy + "> for LDP-NR OPTIONS request");
+    }
 }
