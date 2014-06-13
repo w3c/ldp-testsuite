@@ -54,8 +54,8 @@ public class BasicContainerTest extends CommonContainerTest {
 				.expect().statusCode(HttpStatus.SC_OK).when()
 				.get(basicContainer);
 		assertTrue(
-				hasLinkHeader(response, LDP.BasicContainer.stringValue(),
-						LINK_REL_TYPE),
+				containsLinkHeader(LDP.BasicContainer.stringValue(), LINK_REL_TYPE,
+						response),
 				"LDP BasicContainers must advertise their LDP support by exposing a HTTP Link header with a URI matching <"
 						+ LDP.BasicContainer.stringValue() + "> and rel='type'");
 	}
