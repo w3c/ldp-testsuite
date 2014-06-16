@@ -615,6 +615,19 @@ public abstract class CommonResourceTest extends LdpTest {
         RestAssured.expect().statusCode(isSuccessful()).header(ALLOW, notNullValue())
                 .when().options(getResourceUri());
     }
+    
+	@Test(
+			enabled = false, 
+			groups = { MAY }, 
+			description = "LDP servers MAY choose to allow "
+					+ "the creation of new resources using HTTP PUT. ")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-create", 
+			testMethod = METHOD.NOT_IMPLEMENTED,
+			approval = STATUS.WG_PENDING)
+	public void testPutCreate() {
+		// TODO Impl testPutCreate
+	}
 
     protected boolean supports(HttpMethod method) {
         return options.contains(method.getName());
