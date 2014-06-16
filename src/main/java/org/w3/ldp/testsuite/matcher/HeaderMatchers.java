@@ -22,7 +22,6 @@ import org.hamcrest.BaseMatcher;
 import org.hamcrest.CustomTypeSafeMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
-import org.jboss.resteasy.plugins.delegates.EntityTagDelegate;
 import org.jboss.resteasy.plugins.delegates.LinkDelegate;
 
 import javax.ws.rs.core.Link;
@@ -31,6 +30,13 @@ import javax.ws.rs.core.Link;
  * Matcher collection to work with HttpHeaders.
  */
 public class HeaderMatchers {
+    
+    /**
+     * Regular expression matching valid ETag values.
+     * 
+     * @see <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19">HTTP 1.1: Section 14.19 - ETag</a>
+     */
+    public final static String ETAG_REGEX = "([wW]/)?\"([^\"]|\\\\\")*\"";
 
     public static Matcher<String> headerPresent() {
         return new BaseMatcher<String>() {
@@ -69,35 +75,22 @@ public class HeaderMatchers {
             }
         };
     }
-
-    public static Matcher<String> hasEntityTag() {
-        return hasEntityTag(false);
-    }
-
-    public static Matcher<String> hasEntityTag(final boolean weakTag) {
-        return new CustomTypeSafeMatcher<String>(String.format("a %s EntityTag", weakTag ? "weak" : "strong")) {
+ 
+    /**
+     * Checks that the ETag value is present and valid as defined in RFC2616
+     * 
+     * @param item
+     *            the header value
+     * @return true only if the ETag is valid
+     * 
+     * @see <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19">HTTP 1.1: Section 14.19 - ETag</a>
+     */
+    public static Matcher<String> isValidEntityTag() {
+        return new CustomTypeSafeMatcher<String>("a valid EntityTag value as defined in RFC2616 section 14.19 (did you quote the value?)") {
             @Override
             protected boolean matchesSafely(String item) {
-                return (new EntityTagDelegate().fromString(item).isWeak() == weakTag);
+                return item.matches(ETAG_REGEX);
             }
         };
     }
-
-    /*
-    public static Matcher<String> hasEntityTag(String value, boolean weakTag) {
-        final EntityTag expected = new EntityTag(value, weakTag);
-        return new CustomTypeSafeMatcher<String>(String.format("an EntityTag %s", expected)) {
-            @Override
-            protected boolean matchesSafely(String item) {
-                return EntityTagUtils.equals(expected, new EntityTagDelegate().fromString(item));
-            }
-        };
-    }
-
-      
-    public static Matcher<String> hasEntityTag(String value) {
-        return hasEntityTag(value, false);
-    }
-    */
-
 }
