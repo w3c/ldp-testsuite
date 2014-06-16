@@ -1,11 +1,44 @@
-body                     {padding: 0; margin: 0;}
-a                        {color: #006699;}
-a:visited                {color: #003366;}
-body                     {font-family: Lucida Sans Unicode, Lucida Grande, sans-serif; line-height: 1.8em; font-size: 62.5%; margin: 1.8em 1em;}
-h1                       {font-family: Arial, Helvetica, sans-serif; font-weight: bold; font-size: 2.7em; margin-bottom: 0.6667em;}
-h2                       {font-family: Arial, Helvetica, sans-serif; font-weight: bold; font-size: 1.8em; margin-bottom: 0;}
-p                        {font-size: 1.3em;}
-td                       {font-size: 1.3em;}
+body {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    color: #006699;
+}
+
+a:visited {
+    color: #003366;
+}
+
+body {
+    font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+    line-height: 1.8em;
+    font-size: 62.5%;
+    margin: 1.8em 1em;
+}
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 2.7em;
+    margin-bottom: 0.6667em;
+}
+
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 1.8em;
+    margin-bottom: 0;
+}
+
+p {
+    font-size: 1.3em;
+}
+
+td {
+    font-size: 1.3em;
+}
 
 ul {
     margin: 0px;
@@ -25,7 +58,7 @@ a:hover {
 
 .navigator-selected {
     background: #aaaaaa;
-    line-height: 28px; 
+    line-height: 28px;
 }
 
 .wrapper {
@@ -290,7 +323,7 @@ table.google-visualization-table-table {
 
 .navigator-suite-header {
     font-size: 22px;
-    line-height: 28px; 
+    line-height: 28px;
     margin: 0px 10px 5px 0px;
     background-color: #005a9c;
     color: #ffffff;

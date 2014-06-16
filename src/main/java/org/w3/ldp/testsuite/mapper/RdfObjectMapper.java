@@ -1,14 +1,14 @@
 package org.w3.ldp.testsuite.mapper;
 
-import java.io.InputStream;
-import java.io.StringWriter;
-
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.RDFWriter;
 import com.jayway.restassured.mapper.ObjectMapper;
 import com.jayway.restassured.mapper.ObjectMapperDeserializationContext;
 import com.jayway.restassured.mapper.ObjectMapperSerializationContext;
+
+import java.io.InputStream;
+import java.io.StringWriter;
 
 public class RdfObjectMapper implements ObjectMapper {
 

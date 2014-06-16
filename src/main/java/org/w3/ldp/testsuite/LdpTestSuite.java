@@ -1,12 +1,8 @@
 package org.w3.ldp.testsuite;
 
-import java.net.URI;
-import java.util.*;
-
 import com.google.common.collect.ImmutableMap;
 import org.apache.commons.cli.*;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.testng.TestListenerAdapter;
 import org.testng.TestNG;
 import org.testng.xml.XmlClass;
 import org.testng.xml.XmlSuite;
@@ -16,6 +12,9 @@ import org.w3.ldp.testsuite.reporter.LdpHtmlReporter;
 import org.w3.ldp.testsuite.reporter.LdpTestListener;
 import org.w3.ldp.testsuite.test.LdpTest;
 import org.w3.ldp.testsuite.util.CommandLineUtil;
+
+import java.net.URI;
+import java.util.*;
 
 /**
  * LDP Test Suite Command-Line Interface, a wrapper to {@link org.testng.TestNG}
@@ -34,7 +33,9 @@ public class LdpTestSuite {
 
     enum ContainerType {
         BASIC, DIRECT, INDIRECT
-    };
+    }
+
+    ;
 
     /**
      * Basic test suite initialization over a server testing basic containers
@@ -102,29 +103,29 @@ public class LdpTestSuite {
         }
 
         String softwareTitle = null;
-		if (options.containsKey("software"))
-			softwareTitle = options.get("software");
-        
+        if (options.containsKey("software"))
+            softwareTitle = options.get("software");
+
         // Add classes we want to test
         final List<XmlClass> classes = new ArrayList<>();
 
         final Map<String, String> parameters = new HashMap<>();
-        
+
         if (softwareTitle != null)
-			parameters.put("softwareTitle", softwareTitle);
-        
+            parameters.put("softwareTitle", softwareTitle);
+
         final ContainerType type = getSelectedType(options);
         switch (type) {
             case BASIC:
-                classes.add(new XmlClass( "org.w3.ldp.testsuite.test.BasicContainerTest"));
+                classes.add(new XmlClass("org.w3.ldp.testsuite.test.BasicContainerTest"));
                 parameters.put("basicContainer", server);
                 break;
             case DIRECT:
-                classes.add(new XmlClass( "org.w3.ldp.testsuite.test.DirectContainerTest"));
+                classes.add(new XmlClass("org.w3.ldp.testsuite.test.DirectContainerTest"));
                 parameters.put("directContainer", server);
                 break;
             case INDIRECT:
-                classes.add(new XmlClass( "org.w3.ldp.testsuite.test.IndirectContainerTest"));
+                classes.add(new XmlClass("org.w3.ldp.testsuite.test.IndirectContainerTest"));
                 parameters.put("indirectContainer", server);
                 break;
         }
@@ -169,11 +170,11 @@ public class LdpTestSuite {
                 .hasArg().withArgName("server")
                 .isRequired().create());
 
-		options.addOption(OptionBuilder
-				.withLongOpt("software")
-				.withDescription(
-						"title of the software test suite runs on")
-				.hasArg().withArgName("software").isRequired(false).create());
+        options.addOption(OptionBuilder
+                .withLongOpt("software")
+                .withDescription(
+                        "title of the software test suite runs on")
+                .hasArg().withArgName("software").isRequired(false).create());
 
         OptionGroup containerType = new OptionGroup();
         containerType.addOption(OptionBuilder.withLongOpt("basic")

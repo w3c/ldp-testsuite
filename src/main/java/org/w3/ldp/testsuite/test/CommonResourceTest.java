@@ -1,14 +1,10 @@
 package org.w3.ldp.testsuite.test;
 
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.not;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.testng.Assert.assertTrue;
-import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
-
-import java.net.URISyntaxException;
-import java.util.HashSet;
-
+import com.hp.hpl.jena.rdf.model.*;
+import com.hp.hpl.jena.vocabulary.DCTerms;
+import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.response.Response;
+import com.jayway.restassured.specification.ResponseSpecification;
 import org.apache.http.HttpStatus;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
@@ -22,15 +18,12 @@ import org.w3.ldp.testsuite.http.HttpMethod;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.vocab.LDP;
 
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.rdf.model.Statement;
-import com.hp.hpl.jena.rdf.model.StmtIterator;
-import com.hp.hpl.jena.vocabulary.DCTerms;
-import com.jayway.restassured.RestAssured;
-import com.jayway.restassured.response.Response;
-import com.jayway.restassured.specification.ResponseSpecification;
+import java.net.URISyntaxException;
+import java.util.HashSet;
+
+import static org.hamcrest.Matchers.*;
+import static org.testng.Assert.assertTrue;
+import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
 /**
  * Common tests for all LDP resources, RDF source and non-RDF source.

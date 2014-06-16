@@ -1,8 +1,8 @@
 package org.w3.ldp.testsuite.test;
 
-import static org.hamcrest.Matchers.notNullValue;
-import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
-
+import com.hp.hpl.jena.rdf.model.Model;
+import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.testng.SkipException;
 import org.testng.annotations.AfterClass;
@@ -10,9 +10,8 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 
-import com.hp.hpl.jena.rdf.model.Model;
-import com.jayway.restassured.RestAssured;
-import com.jayway.restassured.response.Response;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
 /**
  * Tests that run on an LDP-RS that is not a container.

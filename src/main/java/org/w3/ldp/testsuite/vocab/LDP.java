@@ -6,11 +6,11 @@ import org.openrdf.model.impl.ValueFactoryImpl;
 
 /**
  * W3C Linked Data Platform (LDP).
- * <p>
+ * <p/>
  * This ontology provides an informal representation of the concepts and
  * terms as defined in the LDP specification. Consult the LDP
  * specification for normative reference..
- * <p>
+ * <p/>
  * Namespace Ldp.
  * Prefix: {@code <http://www.w3.org/ns/ldp#>}
  *
@@ -21,17 +21,21 @@ import org.openrdf.model.impl.ValueFactoryImpl;
  */
 public class LDP {
 
-    /** {@code http://www.w3.org/ns/ldp#} **/
+    /**
+     * {@code http://www.w3.org/ns/ldp#} *
+     */
     public static final String NAMESPACE = "http://www.w3.org/ns/ldp#";
 
-    /** {@code ldp} **/
+    /**
+     * {@code ldp} *
+     */
     public static final String PREFIX = "ldp";
 
     /**
      * BasicContainer
-     * <p>
+     * <p/>
      * {@code http://www.w3.org/ns/ldp#BasicContainer}.
-     * <p>
+     * <p/>
      * An LDPC that uses a predefined predicate to simply link to its
      * contained resources.
      *
@@ -41,9 +45,9 @@ public class LDP {
 
     /**
      * Container
-     * <p>
+     * <p/>
      * {@code http://www.w3.org/ns/ldp#Container}.
-     * <p>
+     * <p/>
      * A Linked Data Platform RDF Source (LDP-RS) that also conforms to
      * additional patterns and conventions for managing membership. Readers
      * should refer to the specification defining this ontology for the list
@@ -55,9 +59,9 @@ public class LDP {
 
     /**
      * contains
-     * <p>
+     * <p/>
      * {@code http://www.w3.org/ns/ldp#contains}.
-     * <p>
+     * <p/>
      * Links a container with resources created through the container.
      *
      * @see <a href="http://www.w3.org/ns/ldp#contains">contains</a>
@@ -66,9 +70,9 @@ public class LDP {
 
     /**
      * DirectContainer
-     * <p>
+     * <p/>
      * {@code http://www.w3.org/ns/ldp#DirectContainer}.
-     * <p>
+     * <p/>
      * An LDPC that is similar to a LDP-DC but it allows an indirection with
      * the ability to list as member a resource, such as a URI representing a
      * real-world object, that is different from the resource that is created
@@ -79,9 +83,9 @@ public class LDP {
 
     /**
      * hasMemberRelation
-     * <p>
+     * <p/>
      * {@code http://www.w3.org/ns/ldp#hasMemberRelation}.
-     * <p>
+     * <p/>
      * Indicates which predicate is used in membership triples, and that the
      * membership triple pattern is < membership-constant-URI ,
      * object-of-hasMemberRelation, member-URI >.
@@ -92,9 +96,9 @@ public class LDP {
 
     /**
      * IndirectContainer
-     * <p>
+     * <p/>
      * {@code http://www.w3.org/ns/ldp#IndirectContainer}.
-     * <p>
+     * <p/>
      * An LDPC that has the flexibility of choosing what form the membership
      * triples take.
      *
@@ -104,9 +108,9 @@ public class LDP {
 
     /**
      * insertedContentRelation
-     * <p>
+     * <p/>
      * {@code http://www.w3.org/ns/ldp#insertedContentRelation}.
-     * <p>
+     * <p/>
      * Indicates which triple in a creation request should be used as the
      * member-URI value in the membership triple added when the creation
      * request is successful.
@@ -117,9 +121,9 @@ public class LDP {
 
     /**
      * isMemmberOfRelation
-     * <p>
+     * <p/>
      * {@code http://www.w3.org/ns/ldp#isMemberOfRelation}.
-     * <p>
+     * <p/>
      * Indicates which predicate is used in membership triples, and that the
      * membership triple pattern is < member-URI ,
      * object-of-isMemberOfRelation, membership-constant-URI >.
@@ -130,9 +134,9 @@ public class LDP {
 
     /**
      * member
-     * <p>
+     * <p/>
      * {@code http://www.w3.org/ns/ldp#member}.
-     * <p>
+     * <p/>
      * LDP servers should use this predicate as the membership predicate if
      * there is no obvious predicate from an application vocabulary to use.
      *
@@ -142,9 +146,9 @@ public class LDP {
 
     /**
      * membershipResource
-     * <p>
+     * <p/>
      * {@code http://www.w3.org/ns/ldp#membershipResource}.
-     * <p>
+     * <p/>
      * Indicates the membership-constant-URI in a membership triple.
      * Depending upon the membership triple pattern a container uses, as
      * indicated by the presence of ldp:hasMemberRelation or
@@ -157,9 +161,9 @@ public class LDP {
 
     /**
      * MemberSubject
-     * <p>
+     * <p/>
      * {@code http://www.w3.org/ns/ldp#MemberSubject}.
-     * <p>
+     * <p/>
      * Used to indicate default and typical behavior for
      * ldp:insertedContentRelation, where the member-URI value in the
      * membership triple added when a creation request is successful is the
@@ -171,9 +175,9 @@ public class LDP {
 
     /**
      * NonRDFSource
-     * <p>
+     * <p/>
      * {@code http://www.w3.org/ns/ldp#NonRDFSource}.
-     * <p>
+     * <p/>
      * A Linked Data Platform Resource (LDPR) whose state is NOT represented
      * as RDF.
      *
@@ -183,9 +187,9 @@ public class LDP {
 
     /**
      * PreferContainment
-     * <p>
+     * <p/>
      * {@code http://www.w3.org/ns/ldp#PreferContainment}.
-     * <p>
+     * <p/>
      * URI identifying a LDPC's containment triples, for example to allow
      * clients to express interest in receiving them.
      *
@@ -195,9 +199,9 @@ public class LDP {
 
     /**
      * PreferEmptyContainer
-     * <p>
+     * <p/>
      * {@code http://www.w3.org/ns/ldp#PreferEmptyContainer}.
-     * <p>
+     * <p/>
      * URI identifying the subset of a LDPC's triples present in an empty
      * LDPC, for example to allow clients to express interest in receiving
      * them. Currently this excludes containment and membership triples, but
@@ -210,9 +214,9 @@ public class LDP {
 
     /**
      * PreferMembership
-     * <p>
+     * <p/>
      * {@code http://www.w3.org/ns/ldp#PreferMembership}.
-     * <p>
+     * <p/>
      * URI identifying a LDPC's membership triples, for example to allow
      * clients to express interest in receiving them.
      *
@@ -222,9 +226,9 @@ public class LDP {
 
     /**
      * RDFSource
-     * <p>
+     * <p/>
      * {@code http://www.w3.org/ns/ldp#RDFSource}.
-     * <p>
+     * <p/>
      * A Linked Data Platform Resource (LDPR) whose state is represented as
      * RDF.
      *
@@ -234,9 +238,9 @@ public class LDP {
 
     /**
      * Resource
-     * <p>
+     * <p/>
      * {@code http://www.w3.org/ns/ldp#Resource}.
-     * <p>
+     * <p/>
      * A HTTP-addressable resource whose lifecycle is managed by a LDP
      * server.
      *

@@ -1,5 +1,14 @@
 package org.w3.ldp.testsuite.reporter;
 
+import org.rendersnake.HtmlCanvas;
+import org.rendersnake.StringResource;
+import org.testng.*;
+import org.testng.annotations.Test;
+import org.testng.internal.Utils;
+import org.testng.xml.XmlSuite;
+import org.w3.ldp.testsuite.LdpTestSuite;
+import org.w3.ldp.testsuite.annotations.SpecTest;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -14,22 +23,6 @@ import java.util.List;
 import java.util.Map;
 
 import static org.rendersnake.HtmlAttributesFactory.*;
-
-import org.apache.commons.io.IOUtils;
-import org.rendersnake.HtmlCanvas;
-import org.rendersnake.StringResource;
-import org.testng.IReporter;
-import org.testng.IResultMap;
-import org.testng.ISuite;
-import org.testng.ISuiteResult;
-import org.testng.ITestContext;
-import org.testng.ITestNGMethod;
-import org.testng.ITestResult;
-import org.testng.annotations.Test;
-import org.testng.internal.Utils;
-import org.testng.xml.XmlSuite;
-import org.w3.ldp.testsuite.LdpTestSuite;
-import org.w3.ldp.testsuite.annotations.SpecTest;
 
 /**
  * HTML reporter for the LDP test suite. Takes the results of the test methods
@@ -58,7 +51,7 @@ public class LdpHtmlReporter implements IReporter {
             // send html to a file
             createWriter("report", html.toHtml());
 
-            Files.copy(getClass().getResourceAsStream("/testng-reports.css"), new File(outputDirectory, "testng-reports.css").toPath(), StandardCopyOption .REPLACE_EXISTING);
+            Files.copy(getClass().getResourceAsStream("/testng-reports.css"), new File(outputDirectory, "testng-reports.css").toPath(), StandardCopyOption.REPLACE_EXISTING);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -285,11 +278,11 @@ public class LdpHtmlReporter implements IReporter {
         for (ITestResult result : tests.getAllResults()) {
             ITestNGMethod method = result.getMethod();
             html.tr();
-           html.td()
-					.a(href("#" + method.getTestClass().getName() + "_"
-							+ method.getMethodName()))
+            html.td()
+                    .a(href("#" + method.getTestClass().getName() + "_"
+                            + method.getMethodName()))
                     .write(method.getMethodName(), NO_ESCAPE)._a()._td();
-           			html.td().content(method.getTestClass().getName());
+            html.td().content(method.getTestClass().getName());
 
             html.td().content(
                     (method.getDescription() != null ? method.getDescription()
@@ -318,10 +311,10 @@ public class LdpHtmlReporter implements IReporter {
         for (ITestResult m : tests.getAllResults()) {
             ITestNGMethod method = m.getMethod();
             html.h2()
-                   	.a(id(m.getTestClass().getName() + "_"
-							+ method.getMethodName()))
-					.write(m.getTestClass().getName() + ": "
-							+ method.getMethodName())._a()._h2();
+                    .a(id(m.getTestClass().getName() + "_"
+                            + method.getMethodName()))
+                    .write(m.getTestClass().getName() + ": "
+                            + method.getMethodName())._a()._h2();
             getAdditionalInfo(m, method);
             html.p(class_("indented"))
                     .b()

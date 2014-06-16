@@ -75,7 +75,7 @@ public class HeaderMatchers {
     }
 
     public static Matcher<String> hasEntityTag(final boolean weakTag) {
-        return new CustomTypeSafeMatcher<String>(String.format("a %s EntityTag", weakTag?"weak":"strong")) {
+        return new CustomTypeSafeMatcher<String>(String.format("a %s EntityTag", weakTag ? "weak" : "strong")) {
             @Override
             protected boolean matchesSafely(String item) {
                 return (new EntityTagDelegate().fromString(item).isWeak() == weakTag);

@@ -10,7 +10,7 @@ public class CommandLineUtil {
 
     public static Map<String, String> asMap(CommandLine cmd) {
         Map<String, String> map = new HashMap<>();
-        for (Option option: cmd.getOptions()) {
+        for (Option option : cmd.getOptions()) {
             map.put(option.getLongOpt(), option.getValue());
         }
         return map;

@@ -1,62 +1,62 @@
 @CHARSET "ISO-8859-1";
 
 h1 {
-	text-align: center
+    text-align: center
 }
 
 th {
-	border: 1px solid black;
-	padding: 10px
+    border: 1px solid black;
+    padding: 10px
 }
 
-td,tr {
-	border: 1px solid black;
-	padding: 20px;
-	border-collapse: collapse
+td, tr {
+    border: 1px solid black;
+    padding: 20px;
+    border-collapse: collapse
 }
 
 .alt {
-	background: #F2F2F2
+    background: #F2F2F2
 }
 
 .annotation {
-	border-collapse: collapse;
-	border: 1px solid black;
-	margin-left: +3em
+    border-collapse: collapse;
+    border: 1px solid black;
+    margin-left: +3em
 }
 
 .classes {
-	border: 1px solid black;
-	padding: 10px;
-	border-collapse: collapse;
-	margin-left: +2em
+    border: 1px solid black;
+    padding: 10px;
+    border-collapse: collapse;
+    margin-left: +2em
 }
 
 .none {
-	padding: 10px;
-	border: none
+    padding: 10px;
+    border: none
 }
 
 .summary {
-	border: 1px solid black;
-	padding: 20px;
-	border-collapse: collapse;
-	margin-left: +5em
+    border: 1px solid black;
+    padding: 20px;
+    border-collapse: collapse;
+    margin-left: +5em
 }
 
 .totop {
-	font-size: 80%;
-	text-align: center;
-	border-bottom: 2px solid
+    font-size: 80%;
+    text-align: center;
+    border-bottom: 2px solid
 }
 
 .totest {
-	font-size: 80%;
-	text-align: center;
-	border-bottom: 2px dashed
+    font-size: 80%;
+    text-align: center;
+    border-bottom: 2px dashed
 }
 
 .pad-left {
-	margin-left: 4em;
-	
+    margin-left: 4em;
+
 }
