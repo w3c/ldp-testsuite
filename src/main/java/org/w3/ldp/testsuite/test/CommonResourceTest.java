@@ -5,6 +5,16 @@ import com.hp.hpl.jena.vocabulary.DCTerms;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.ResponseSpecification;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.testng.Assert.assertTrue;
+import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
+import static org.w3.ldp.testsuite.matcher.HeaderMatchers.isValidEntityTag;
+
+import java.net.URISyntaxException;
+import java.util.HashSet;
+
 import org.apache.http.HttpStatus;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
@@ -17,13 +27,6 @@ import org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException;
 import org.w3.ldp.testsuite.http.HttpMethod;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.vocab.LDP;
-
-import java.net.URISyntaxException;
-import java.util.HashSet;
-
-import static org.hamcrest.Matchers.*;
-import static org.testng.Assert.assertTrue;
-import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
 /**
  * Common tests for all LDP resources, RDF source and non-RDF source.
@@ -104,9 +107,14 @@ public abstract class CommonResourceTest extends LdpTest {
             comment = "the resource should exist before? (Sergio)")
     public void testETagHeadersGet() {
         // GET requests
-        RestAssured.given().header(ACCEPT, TEXT_TURTLE)
-                .expect().statusCode(isSuccessful()).header(ETAG, notNullValue())
-                .when().get(getResourceUri());
+        RestAssured
+            .given()
+                .header(ACCEPT, TEXT_TURTLE)
+            .expect()
+                .statusCode(isSuccessful())
+                .header(ETAG, isValidEntityTag())
+            .when()
+                .get(getResourceUri());
     }
 
     @Test(
@@ -121,7 +129,7 @@ public abstract class CommonResourceTest extends LdpTest {
     public void testETagHeadersHead() {
         // GET requests
         RestAssured.given().header(ACCEPT, TEXT_TURTLE)
-                .expect().statusCode(isSuccessful()).header(ETAG, notNullValue())
+                .expect().statusCode(isSuccessful()).header(ETAG, isValidEntityTag())
                 .when().head(getResourceUri());
     }
 
@@ -165,9 +173,14 @@ public abstract class CommonResourceTest extends LdpTest {
         skipIfMethodNotAllowed(HttpMethod.PUT);
 
         String resourceUri = getResourceUri();
-        Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
-                .expect().statusCode(isSuccessful()).header(ETAG, notNullValue())
-                .when().get(resourceUri);
+        Response response = RestAssured
+            .given()
+                .header(ACCEPT, TEXT_TURTLE)
+            .expect()
+                .statusCode(isSuccessful())
+                .header(ETAG, isValidEntityTag())
+            .when()
+                .get(resourceUri);
 
         String eTag = response.getHeader(ETAG);
         Model model = response.as(Model.class, new RdfObjectMapper("")); // relative URI
@@ -263,9 +276,14 @@ public abstract class CommonResourceTest extends LdpTest {
 
         // TODO: Is there a better way to test this requirement?
         String resourceUri = getResourceUri();
-        Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
-                .expect().statusCode(isSuccessful()).header(ETAG, notNullValue())
-                .when().get(resourceUri);
+        Response response = RestAssured
+                .given()
+                        .header(ACCEPT, TEXT_TURTLE)
+                .expect()
+                        .statusCode(isSuccessful())
+                        .header(ETAG, isValidEntityTag())
+                .when()
+                        .get(resourceUri);
 
         String eTag = response.getHeader(ETAG);
         Model originalModel = response.as(Model.class, new RdfObjectMapper(resourceUri));
@@ -282,9 +300,14 @@ public abstract class CommonResourceTest extends LdpTest {
                 .when().put(resourceUri);
 
         // Get the resource again to see what's there.
-        response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
-                .expect().statusCode(isSuccessful()).header(ETAG, notNullValue())
-                .when().get(resourceUri);
+        response = RestAssured
+            .given()
+                .header(ACCEPT, TEXT_TURTLE)
+            .expect()
+                .statusCode(isSuccessful())
+                .header(ETAG, isValidEntityTag())
+            .when()
+                .get(resourceUri);
         eTag = response.getHeader(ETAG);
         Model updatedModel = response.as(Model.class, new RdfObjectMapper(resourceUri));
 
@@ -329,7 +352,7 @@ public abstract class CommonResourceTest extends LdpTest {
 
         String resourceUri = getResourceUri();
         Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
-                .expect().statusCode(isSuccessful()).header(ETAG, notNullValue())
+                .expect().statusCode(isSuccessful()).header(ETAG, isValidEntityTag())
                 .when().get(resourceUri);
 
         String eTag = response.getHeader(ETAG);
@@ -430,12 +453,12 @@ public abstract class CommonResourceTest extends LdpTest {
 
         String resourceUri = getResourceUri();
         Model model = RestAssured
-                .given()
+            .given()
                 .header(ACCEPT, TEXT_TURTLE)
-                .expect()
+            .expect()
                 .statusCode(isSuccessful())
-                .header(ETAG, notNullValue())
-                .when()
+                .header(ETAG, isValidEntityTag())
+            .when()
                 .get(resourceUri).as(Model.class, new RdfObjectMapper(resourceUri));
 
         RestAssured
@@ -469,7 +492,7 @@ public abstract class CommonResourceTest extends LdpTest {
                 .given()
                 .header(ACCEPT, TEXT_TURTLE)
                 .expect()
-                .statusCode(isSuccessful()).header(ETAG, notNullValue())
+                .statusCode(isSuccessful()).header(ETAG, isValidEntityTag())
                 .when()
                 .get(resourceUri).as(Model.class, new RdfObjectMapper(resourceUri));
 
@@ -507,7 +530,7 @@ public abstract class CommonResourceTest extends LdpTest {
                 .header(ACCEPT, TEXT_TURTLE)
                 .expect()
                 .statusCode(isSuccessful())
-                .header(ETAG, notNullValue())
+                .header(ETAG, isValidEntityTag())
                 .when()
                 .get(resourceUri).as(Model.class, new RdfObjectMapper(resourceUri));
 
@@ -544,13 +567,13 @@ public abstract class CommonResourceTest extends LdpTest {
                 .given()
                 .header(ACCEPT, TEXT_TURTLE)
                 .expect()
-                .statusCode(isSuccessful()).header(ETAG, notNullValue())
+                .statusCode(isSuccessful()).header(ETAG, isValidEntityTag())
                 .when()
                 .get(resourceUri).as(Model.class, new RdfObjectMapper(resourceUri));
 
         RestAssured
                 .given().contentType(TEXT_TURTLE)
-                .header(ETAG, "This is not the ETag you're looking for") // bad ETag value
+                .header(ETAG, "\"This is not the ETag you're looking for\"") // bad ETag value
                 .body(model, new RdfObjectMapper(resourceUri))
                 .expect()
                 .statusCode(HttpStatus.SC_PRECONDITION_FAILED)
@@ -616,18 +639,18 @@ public abstract class CommonResourceTest extends LdpTest {
                 .when().options(getResourceUri());
     }
     
-	@Test(
-			enabled = false, 
-			groups = { MAY }, 
-			description = "LDP servers MAY choose to allow "
-					+ "the creation of new resources using HTTP PUT. ")
-	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-create", 
-			testMethod = METHOD.NOT_IMPLEMENTED,
-			approval = STATUS.WG_PENDING)
-	public void testPutCreate() {
-		// TODO Impl testPutCreate
-	}
+    @Test(
+            enabled = false, 
+            groups = { MAY }, 
+            description = "LDP servers MAY choose to allow "
+                    + "the creation of new resources using HTTP PUT. ")
+    @SpecTest(
+            specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-create", 
+            testMethod = METHOD.NOT_IMPLEMENTED,
+            approval = STATUS.WG_PENDING)
+    public void testPutCreate() {
+        // TODO Impl testPutCreate
+    }
 
     protected boolean supports(HttpMethod method) {
         return options.contains(method.getName());

@@ -1,9 +1,13 @@
 package org.w3.ldp.testsuite.test;
 
-import com.hp.hpl.jena.rdf.model.Model;
-import com.jayway.restassured.RestAssured;
-import com.jayway.restassured.response.Header;
-import com.jayway.restassured.response.Response;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+import static org.w3.ldp.testsuite.matcher.HttpStatusNotFoundOrGoneMatcher.isNotFoundOrGone;
+import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
+
+import java.io.IOException;
+import java.util.List;
+
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
@@ -22,13 +26,10 @@ import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.matcher.HeaderMatchers;
 
-import java.io.IOException;
-import java.util.List;
-
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-import static org.w3.ldp.testsuite.matcher.HttpStatusNotFoundOrGoneMatcher.isNotFoundOrGone;
-import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.response.Header;
+import com.jayway.restassured.response.Response;
 
 /**
  * Tests Non-RDF Source LDP resources.
@@ -39,7 +40,7 @@ public class NonRDFSourceTest extends LdpTest {
     private final String rootContainer;
     private final URI containerType;
 
-    @Parameters({"basicContainer", "directContainer", "indirectContainer"})
+    @Parameters({ "basicContainer", "directContainer", "indirectContainer"})
     public NonRDFSourceTest(@Optional String basicContainer, @Optional String directContainer, @Optional String indirectContainer) {
         if (StringUtils.isNotBlank(basicContainer)) {
             rootContainer = basicContainer;
@@ -98,12 +99,12 @@ public class NonRDFSourceTest extends LdpTest {
 
         // Check the container contains the new resource
         Model model = RestAssured
-                .given()
+            .given()
                 .header(ACCEPT, TEXT_TURTLE)
-                .expect()
+            .expect()
                 .statusCode(HttpStatus.SC_OK)
                 .contentType(TEXT_TURTLE)
-                .get(rootContainer)
+            .get(rootContainer)
                 .body().as(Model.class, new RdfObjectMapper(rootContainer));
         assertTrue(model.contains(model.createResource(rootContainer), model.createProperty(LDP.contains.stringValue()), model.createResource(response.getHeader(LOCATION))));
     }
@@ -131,13 +132,13 @@ public class NonRDFSourceTest extends LdpTest {
         // And then check we get the binary back
         final String expectedMD5 = HashUtils.md5sum(NonRDFSourceTest.class.getResourceAsStream("/" + file));
         final byte[] binary = RestAssured
-                .given()
+            .given()
                 .header(ACCEPT, mimeType)
-                .expect()
+            .expect()
                 .statusCode(HttpStatus.SC_OK)
                 .contentType(mimeType)
-                .header(ETAG, HeaderMatchers.hasEntityTag()) // FIXME: be more specific here
-                .when()
+                .header(ETAG, HeaderMatchers.isValidEntityTag())
+            .when()
                 .get(response.getHeader(LOCATION))
                 .body().asByteArray();
         assertEquals(expectedMD5, HashUtils.md5sum(binary), "md5sum");
@@ -167,28 +168,27 @@ public class NonRDFSourceTest extends LdpTest {
         Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
 
         // And then check we get the metadata of back
-        /* Model model = */
-        RestAssured
-                .given()
+        /* Model model = */ RestAssured
+            .given()
                 .header(ACCEPT, TEXT_TURTLE)
-                .expect()
+            .expect()
                 .statusCode(HttpStatus.SC_OK)
                 .contentType(TEXT_TURTLE)
-                .header(ETAG, HeaderMatchers.headerPresent())
-                .when()
+                .header(ETAG, HeaderMatchers.isValidEntityTag())
+            .when()
                 .get(describedBy)
                 .as(Model.class, new RdfObjectMapper(describedBy));
 
         // And the binary too
         final String expectedMD5 = HashUtils.md5sum(NonRDFSourceTest.class.getResourceAsStream("/" + file));
         final byte[] binary = RestAssured
-                .given()
+            .given()
                 .header(ACCEPT, mimeType)
-                .expect()
+            .expect()
                 .statusCode(HttpStatus.SC_OK)
                 .contentType(mimeType)
-                .header(ETAG, HeaderMatchers.headerPresent())
-                .when()
+                .header(ETAG, HeaderMatchers.isValidEntityTag())
+            .when()
                 .get(location)
                 .body().asByteArray();
         assertEquals(expectedMD5, HashUtils.md5sum(binary), "md5sum");
@@ -217,10 +217,10 @@ public class NonRDFSourceTest extends LdpTest {
 
         // And then check the link when requesting the LDP-NR
         List<Header> linksNR = RestAssured
-                .expect()
+            .expect()
                 .statusCode(isSuccessful())
-                .header(ETAG, HeaderMatchers.headerPresent())
-                .when()
+                .header(ETAG, HeaderMatchers.isValidEntityTag())
+            .when()
                 .get(response.getHeader(LOCATION))
                 .headers().getList(LINK);
         Assert.assertTrue(containsLinkHeader(LDP.NonRDFSource.stringValue(), "type", linksNR));
@@ -254,30 +254,30 @@ public class NonRDFSourceTest extends LdpTest {
 
         // Check the link when requesting the LDP-NS
         List<Header> linksNR = RestAssured
-                .expect()
+            .expect()
                 .statusCode(isSuccessful())
                 .header(ETAG, HeaderMatchers.headerPresent())
-                .when()
+            .when()
                 .get(location)
                 .headers().getList("Link");
         Assert.assertTrue(containsLinkHeader(describedBy, "describedby", linksNR));
 
         // And then check the associated LDP-RS is actually there
         RestAssured
-                .given()
+            .given()
                 .header(ACCEPT, TEXT_TURTLE)
-                .expect()
+            .expect()
                 .statusCode(isSuccessful())
                 .contentType(TEXT_TURTLE)
-                .header(ETAG, HeaderMatchers.headerPresent()) // FIXME: be more specific here
-                .when()
+                .header(ETAG, HeaderMatchers.isValidEntityTag())
+            .when()
                 .get(describedBy);
     }
 
     @Test(
             groups = {MUST, NR},
-            description = "When a contained LDPR is deleted, and the LDPC server created an" +
-                    "associated LDP-RS (see the LDPC POST section), the LDPC server must also" +
+            description = "When a contained LDPR is deleted, and the LDPC server created an"+
+                    "associated LDP-RS (see the LDPC POST section), the LDPC server must also"+
                     "delete the associated LDP-RS it created.",
             dependsOnMethods = "testPostResourceAndCheckAssociatedResource")
     @SpecTest(
@@ -299,49 +299,49 @@ public class NonRDFSourceTest extends LdpTest {
 
         // And then check the associated LDP-RS is actually there
         RestAssured
-                .given()
+            .given()
                 .header(ACCEPT, TEXT_TURTLE)
-                .expect()
+            .expect()
                 .statusCode(isSuccessful())
                 .contentType(TEXT_TURTLE)
-                .when()
+            .when()
                 .get(describedBy);
 
         // Delete the LDP-NR.
         RestAssured
-                .expect()
+            .expect()
                 .statusCode(isSuccessful())
-                .when()
+            .when()
                 .delete(location);
 
         // Check that the associated LDP-RS is also deleted.
         RestAssured
-                .given()
+            .given()
                 .header(ACCEPT, TEXT_TURTLE)
-                .expect()
+            .expect()
                 .statusCode(isNotFoundOrGone())
-                .when()
+            .when()
                 .get(describedBy);
     }
 
     protected Response postNonRDFSource(String slug, String file, String mimeType) throws IOException {
         // Make sure we can post binary resources
         return RestAssured
-                .given()
+            .given()
                 .header(SLUG, slug)
                 .body(IOUtils.toByteArray(getClass().getResourceAsStream("/" + file)))
                 .contentType(mimeType)
-                .expect()
+            .expect()
                 .statusCode(HttpStatus.SC_CREATED)
                 .header(LOCATION, HeaderMatchers.headerPresent())
-                .when()
+            .when()
                 .post(rootContainer);
     }
 
     @Test(
             groups = {MUST, NR},
-            description = "When responding to requests whose request-URI is a LDP-NR with an" +
-                    "associated LDP-RS, a LDPC server must provide the same HTTP Link response" +
+            description = "When responding to requests whose request-URI is a LDP-NR with an"+
+                    "associated LDP-RS, a LDPC server must provide the same HTTP Link response"+
                     "header as is required in the create response",
             dependsOnMethods = "testPostResourceAndCheckAssociatedResource")
     @SpecTest(
@@ -364,14 +364,13 @@ public class NonRDFSourceTest extends LdpTest {
 
         // Check the Link headers on an HTTP OPTIONS for the LDP-NR
         List<Header> linksOPTIONS = RestAssured
-                .expect()
+            .expect()
                 .statusCode(isSuccessful())
-                .when()
+            .when()
                 .options(location)
                 .getHeaders().getList(LINK);
         Assert.assertTrue(containsLinkHeader(describedBy, "describedby", linksOPTIONS),
                 "Expected Link response header with relation 'describedby' and URI <"
-                        + describedBy + "> for LDP-NR OPTIONS request"
-        );
+                        + describedBy + "> for LDP-NR OPTIONS request");
     }
 }
