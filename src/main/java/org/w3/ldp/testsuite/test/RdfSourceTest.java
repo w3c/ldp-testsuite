@@ -221,4 +221,31 @@ public abstract class RdfSourceTest extends CommonResourceTest {
                 .expect().statusCode(isSuccessful()).contentType(TEXT_TURTLE)
                 .when().get(getResourceUri()).as(Model.class, new RdfObjectMapper(getResourceUri()));
     }
+    
+	@Test(
+			enabled = false, 
+			groups = { MAY }, 
+			description = "LDP clients MAY provide LDP-defined hints that allow servers "
+					+ "to optimize the content of responses. section 7.2 Preferences on "
+					+ "the Prefer Request Header defines hints that apply to LDP-RSs. ")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-cli-can-hint", 
+			testMethod = METHOD.NOT_IMPLEMENTED, 
+			approval = STATUS.WG_PENDING)
+	public void testLdpHasHints() {
+		// TODO Impl testLdpHasHints
+	}
+    	
+	@Test(
+			enabled = false, 
+			groups = { SHOULD }, 
+			description = "LDP servers SHOULD offer a application/ld+json representation"
+					+ " of the requested LDP-RS [JSON-LD]. ")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-get-jsonld", 
+			testMethod = METHOD.NOT_IMPLEMENTED, 
+			approval = STATUS.WG_PENDING)
+	public void testJsonLdRepresentation() {
+		// TODO Impl testJsonLdRepresentation
+	}
 }

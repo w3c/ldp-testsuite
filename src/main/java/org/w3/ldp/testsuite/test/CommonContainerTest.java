@@ -571,6 +571,68 @@ public abstract class CommonContainerTest extends RdfSourceTest {
     public void testProvideLinkHeaderAssociatedRdfSource() {
         // TODO: Impl testProvideLinkHeaderAssociatedRdfSource
     }
+    
+	@Test(
+			enabled = false, 
+			groups = { MAY }, 
+			description = "The representation of a LDPC MAY have an rdf:type "
+					+ "of ldp:Container for Linked Data Platform Container. Non-normative "
+					+ "note: LDPCs might have additional types, like any LDP-RS. ")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-typecontainer", 
+			testMethod = METHOD.NOT_IMPLEMENTED, 
+			approval = STATUS.WG_PENDING)
+	public void testContainerHasRdfType() {
+		// TODO Impl testcontainerHasRdfType
+	}
+	
+	@Test(
+			enabled = false, 
+			groups = { MAY }, 
+			description = "LDP servers MAY accept an HTTP POST of non-RDF "
+					+ "representations (LDP-NRs) for creation of any kind of "
+					+ "resource, for example binary resources. See the Accept-Post "
+					+ "section for details on how clients can discover whether a "
+					+ "LDPC supports this behavior. ")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-createbins", 
+			testMethod = METHOD.NOT_IMPLEMENTED, 
+			approval = STATUS.WG_PENDING)
+	public void testAcceptNonRdfPost() {
+		// TODO Impl TestAcceptNonRdfPost
+	}
+	
+	@Test(
+			enabled = false, 
+			groups = { MAY }, 
+			description = "LDP servers MAY allow clients to suggest "
+					+ "the URI for a resource created through POST, "
+					+ "using the HTTP Slug header as defined in [RFC5023]. "
+					+ "LDP adds no new requirements to this usage, so its "
+					+ "presence functions as a client hint to the server "
+					+ "providing a desired string to be incorporated into the "
+					+ "server's final choice of resource URI.")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-slug", 
+			testMethod = METHOD.NOT_IMPLEMENTED, 
+			approval = STATUS.WG_PENDING)
+	public void testAllowSlugUri() {
+		// TODO Impl testAllowSlugUri
+	}
+	
+	@Test(
+			enabled = false, 
+			groups = { SHOULD }, 
+			description = "LDP servers SHOULD accept a request entity "
+					+ "body with a request header of Content-Type with "
+					+ "value of application/ld+json [JSON-LD].")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-jsonld", 
+			testMethod = METHOD.NOT_IMPLEMENTED, 
+			approval = STATUS.WG_PENDING)
+	public void testPostJsonLd() {
+		// TODO Impl testPostJsonLd
+	}
 
     protected boolean restrictionsOnContent() {
         return true;
