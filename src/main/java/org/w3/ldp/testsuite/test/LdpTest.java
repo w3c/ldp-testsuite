@@ -4,7 +4,6 @@ import java.io.InputStream;
 import java.util.List;
 
 import org.apache.http.HttpStatus;
-import org.apache.marmotta.commons.constants.Namespace.FOAF;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -14,7 +13,6 @@ import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.vocabulary.DC;
 import com.jayway.restassured.RestAssured;
