@@ -1,19 +1,12 @@
 package org.w3.ldp.testsuite;
 
-import java.io.StringWriter;
 import java.net.URI;
 import java.util.*;
 
 import com.google.common.collect.ImmutableMap;
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.Property;
-import com.hp.hpl.jena.rdf.model.Resource;
 
 import org.apache.commons.cli.*;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.apache.marmotta.commons.constants.Namespace.FOAF;
-import org.testng.TestListenerAdapter;
 import org.testng.TestNG;
 import org.testng.xml.XmlClass;
 import org.testng.xml.XmlSuite;
