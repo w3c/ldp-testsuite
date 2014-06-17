@@ -1,16 +1,11 @@
 package org.w3.ldp.testsuite.test;
 
-import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.vocabulary.DCTerms;
-import com.jayway.restassured.RestAssured;
-import com.jayway.restassured.response.Response;
-import com.jayway.restassured.specification.ResponseSpecification;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.testng.Assert.assertTrue;
-import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 import static org.w3.ldp.testsuite.matcher.HeaderMatchers.isValidEntityTag;
+import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
 import java.net.URISyntaxException;
 import java.util.HashSet;
@@ -27,6 +22,17 @@ import org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException;
 import org.w3.ldp.testsuite.http.HttpMethod;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.vocab.LDP;
+
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.Statement;
+import com.hp.hpl.jena.rdf.model.StmtIterator;
+import com.hp.hpl.jena.util.ResourceUtils;
+import com.hp.hpl.jena.vocabulary.DCTerms;
+import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.response.Response;
+import com.jayway.restassured.specification.ResponseSpecification;
 
 /**
  * Common tests for all LDP resources, RDF source and non-RDF source.
@@ -183,11 +189,14 @@ public abstract class CommonResourceTest extends LdpTest {
                 .get(resourceUri);
 
         String eTag = response.getHeader(ETAG);
-        Model model = response.as(Model.class, new RdfObjectMapper("")); // relative URI
+        Model model = response.as(Model.class, new RdfObjectMapper(resourceUri));
+ 
+        // Make sure the resource is specified using a relative URI
+        ResourceUtils.renameResource(model.getResource(resourceUri), "");
 
         // Update a property
         updateResource(model.getResource(""));
-
+        
         // Put the resource back using relative URIs.
         RestAssured
                 .given().contentType(TEXT_TURTLE).header(IF_MATCH, eTag)
