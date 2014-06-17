@@ -106,6 +106,29 @@ public class LdpTestSuite {
 			throw new IllegalArgumentException("ERROR: missing server uri");
 		}
 
+		// Listener injection from options
+		final String[] listeners;
+		if (options.containsKey("listeners")) {
+			listeners = options.get("listeners").split(",");
+
+			for (String listener : listeners) {
+
+				try {
+					Class<?> listenerCl = Class.forName(listener.trim());
+					Object instance = listenerCl.newInstance();
+					testng.addListener(instance);
+				} catch (ClassNotFoundException e) {
+					throw new IllegalArgumentException(
+							"ERROR: invalid listener class name, "
+									+ e.getLocalizedMessage());
+				} catch (InstantiationException | IllegalAccessException e) {
+					throw new IllegalArgumentException(
+							"ERROR: problem while creating listener, "
+									+ e.getLocalizedMessage());
+				}
+			}
+		}
+		
 		String softwareTitle = null;
 		if (options.containsKey("software"))
 			softwareTitle = options.get("software");
@@ -150,6 +173,18 @@ public class LdpTestSuite {
 					"org.w3.ldp.testsuite.test.IndirectContainerTest"));
 			parameters.put("indirectContainer", server);
 			break;
+		}
+		
+		final String post;
+		if (options.containsKey("post")) {
+			post = options.get("post");
+			parameters.put("post", post);
+		}
+
+		final String memberResource;
+		if (options.containsKey("memberResource")) {
+			memberResource = options.get("memberResource");
+			parameters.put("memberResource", memberResource);
 		}
 
 		classes.add(new XmlClass("org.w3.ldp.testsuite.test.MemberResourceTest"));
