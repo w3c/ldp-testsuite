@@ -1,6 +1,7 @@
 package org.w3.ldp.testsuite;
 
 import com.google.common.collect.ImmutableMap;
+
 import org.apache.commons.cli.*;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.testng.TestNG;
@@ -11,6 +12,7 @@ import org.w3.ldp.testsuite.reporter.LdpEarlReporter;
 import org.w3.ldp.testsuite.reporter.LdpHtmlReporter;
 import org.w3.ldp.testsuite.reporter.LdpTestListener;
 import org.w3.ldp.testsuite.test.LdpTest;
+import org.w3.ldp.testsuite.transformer.MethodEnabler;
 import org.w3.ldp.testsuite.util.CommandLineUtil;
 
 import java.net.URI;
@@ -73,6 +75,9 @@ public class LdpTestSuite {
 		testng.addListener(new LdpTestListener());
 		testng.addListener(new LdpEarlReporter());
 		testng.addListener(new LdpHtmlReporter());
+		
+		// Add method enabler (Annotation Transformer)
+		testng.addListener(new MethodEnabler());
 
 		// create XmlSuite instance
 		XmlSuite testsuite = new XmlSuite();
