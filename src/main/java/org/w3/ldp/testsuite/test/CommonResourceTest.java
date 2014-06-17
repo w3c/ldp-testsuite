@@ -199,11 +199,13 @@ public abstract class CommonResourceTest extends LdpTest {
         updateResource(model.getResource(""));
         
         // Put the resource back using relative URIs.
-        RestAssured
+        Response put = RestAssured
                 .given().contentType(TEXT_TURTLE).header(IF_MATCH, eTag)
                 .body(model, new RdfObjectMapper("")) // relative URI
-                .expect().statusCode(isSuccessful())
                 .when().put(resourceUri);
+        if (!isSuccessful().matches(put.getStatusCode())) {
+           throw new SkipException("Cannot verify relative URI resolution because the PUT request failed. Skipping test."); 
+        }
 
         // Get the resource again to verify its content.
         model = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
@@ -717,7 +719,7 @@ public abstract class CommonResourceTest extends LdpTest {
      */
     protected void verifyUpdatedResource(Resource r) {
         // Test the resource has the title we set.
-        r.hasProperty(DCTerms.title, TITLE_FOR_UPDATE);
+        assertTrue(r.hasProperty(DCTerms.title, TITLE_FOR_UPDATE), "Expected resource to have title \"" + TITLE_FOR_UPDATE + "\"");
     }
 
     /**
