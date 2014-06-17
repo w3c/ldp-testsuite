@@ -186,7 +186,7 @@ public abstract class CommonResourceTest extends LdpTest {
         Model model = response.as(Model.class, new RdfObjectMapper("")); // relative URI
 
         // Update a property
-        updateResource(model.getResource(""));
+        updateResource(model.getResource(this.getResourceUri()));
 
         // Put the resource back using relative URIs.
         RestAssured
