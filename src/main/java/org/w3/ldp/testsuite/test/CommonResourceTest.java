@@ -3,6 +3,7 @@ package org.w3.ldp.testsuite.test;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import static org.w3.ldp.testsuite.matcher.HeaderMatchers.isValidEntityTag;
 import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
@@ -504,7 +505,7 @@ public abstract class CommonResourceTest extends LdpTest {
                 .statusCode(isSuccessful()).header(ETAG, isValidEntityTag())
                 .when()
                 .get(resourceUri).as(Model.class, new RdfObjectMapper(resourceUri));
-
+        
         RestAssured
                 .given()
                 .contentType(TEXT_TURTLE)
@@ -518,7 +519,6 @@ public abstract class CommonResourceTest extends LdpTest {
 
     @Test(
             groups = {MUST},
-            dependsOnMethods = {"testPutRequiresIfMatch"},
             description = "LDP servers MUST respond with status code 412 "
                     + "(Condition Failed) if ETags fail to match when there "
                     + "are no other errors with the request [HTTP11]. LDP "
@@ -534,23 +534,45 @@ public abstract class CommonResourceTest extends LdpTest {
         skipIfMethodNotAllowed(HttpMethod.PUT);
 
         String resourceUri = getResourceUri();
-        Model model = RestAssured
+        Response getResponse = RestAssured
                 .given()
                 .header(ACCEPT, TEXT_TURTLE)
                 .expect()
                 .statusCode(isSuccessful())
                 .header(ETAG, isValidEntityTag())
                 .when()
-                .get(resourceUri).as(Model.class, new RdfObjectMapper(resourceUri));
+                .get(resourceUri);
+        
+        Model model = getResponse.as(Model.class, new RdfObjectMapper(resourceUri));
+        
+        // Verify that we can successfully PUT the resource WITH an If-Match header.
+        Response ifMatchResponse = RestAssured
+                .given()
+                .contentType(TEXT_TURTLE)
+                .header(IF_MATCH, getResponse.getHeader(ETAG))
+                .body(model, new RdfObjectMapper(resourceUri))
+                .when()
+                .put(resourceUri);
+        if (!isSuccessful().matches(ifMatchResponse.getStatusCode())) {
+            throw new SkipException("Skipping test because PUT request failed with valid If-Match header.");
+        }
 
-        RestAssured
+        // Now try WITHOUT the If-Match header. If the result is NOT successful,
+        // it should be because the header is missing and we can check the error
+        // code.
+        Response noIfMatchResponse = RestAssured
                 .given()
                 .contentType(TEXT_TURTLE)
                 .body(model, new RdfObjectMapper(resourceUri))
-                .expect()
-                .statusCode(428)
                 .when()
                 .put(resourceUri);
+        if (isSuccessful().matches(noIfMatchResponse.getStatusCode())) {
+            // It worked. This server doesn't require If-Match, which is only a
+            // SHOULD requirement (see testPutRequiresIfMatch). Skip the test.
+            throw new SkipException("Server does not require If-Match header.");
+        }
+        
+        assertEquals(428, noIfMatchResponse.getStatusCode(), "Expected 428 Precondition Required error on PUT request with no If-Match header");
     }
 
     @Test(
