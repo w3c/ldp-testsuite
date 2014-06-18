@@ -1,4 +1,4 @@
-/EarlTestSuiteReport.ttl
-/LdpTestSuiteHtmlReport.html
-/EarlTestSuiteReportJsonLd.jsonld
-/EarlTestSuiteReportTurtle.ttl
+/ldp-testsuite-coverage-report.html
+/ldp-testsuite-execution-report-earl.ttl
+/ldp-testsuite-execution-report-earl.jsonld
+/ldp-testsuite-execution-report.html

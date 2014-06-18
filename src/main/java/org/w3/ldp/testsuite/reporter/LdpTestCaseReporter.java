@@ -622,7 +622,7 @@ public class LdpTestCaseReporter {
 		new File(directory).mkdirs();
 		try {
 			writer = new BufferedWriter(new FileWriter(directory
-					+ "/LdpTestCasesHtmlReport.html"));
+					+ "/ldp-testsuite-coverage-report.html"));
 			writer.write(output);
 
 		} catch (IOException e) {
