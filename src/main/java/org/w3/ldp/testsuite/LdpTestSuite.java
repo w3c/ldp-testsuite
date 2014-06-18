@@ -1,9 +1,26 @@
 package org.w3.ldp.testsuite;
 
-import com.google.common.collect.ImmutableMap;
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Pattern;
 
-import org.apache.commons.cli.*;
+import org.apache.commons.cli.BasicParser;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.OptionBuilder;
+import org.apache.commons.cli.OptionGroup;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.testng.IMethodInstance;
+import org.testng.IMethodInterceptor;
+import org.testng.ITestContext;
 import org.testng.TestNG;
 import org.testng.xml.XmlClass;
 import org.testng.xml.XmlSuite;
@@ -14,9 +31,6 @@ import org.w3.ldp.testsuite.reporter.LdpTestListener;
 import org.w3.ldp.testsuite.test.LdpTest;
 import org.w3.ldp.testsuite.transformer.MethodEnabler;
 import org.w3.ldp.testsuite.util.CommandLineUtil;
-
-import java.net.URI;
-import java.util.*;
 
 /**
  * LDP Test Suite Command-Line Interface, a wrapper to {@link org.testng.TestNG}
@@ -40,35 +54,13 @@ public class LdpTestSuite {
 	;
 
 	/**
-	 * Basic test suite initialization over a server testing basic containers
-	 * 
-	 * @param server
-	 *            base urtl to the server
-	 */
-	public LdpTestSuite(final String server) {
-		this(ImmutableMap.of("server", server, "basic", null));
-	}
-
-	/**
 	 * Initialize the test suite with options as the row command-line input
 	 * 
 	 * @param cmd
 	 *            command-line options
 	 */
 	public LdpTestSuite(final CommandLine cmd) {
-		this(CommandLineUtil.asMap(cmd));
-	}
-
-	/**
-	 * Initialize the test suite with a map of options
-	 * 
-	 * @param options
-	 *            options
-	 */
-	public LdpTestSuite(final Map<String, String> options) {
-
-		// see:
-		// http://testng.org/doc/documentation-main.html#running-testng-programmatically
+        // see: http://testng.org/doc/documentation-main.html#running-testng-programmatically
 		testng = new TestNG();
 		testng.setDefaultSuiteName(NAME);
 		
@@ -89,8 +81,8 @@ public class LdpTestSuite {
 		// Add any parameters that you want to set to the Test.
 
 		final String server;
-		if (options.containsKey("server")) {
-			server = options.get("server");
+        if (cmd.hasOption("server")) {
+            server = cmd.getOptionValue("server");
 			try {
 				URI uri = new URI(server);
 				if (!"http".equals(uri.getScheme())) {
@@ -136,17 +128,17 @@ public class LdpTestSuite {
 
 		
 		String softwareTitle = null;
-		if (options.containsKey("software"))
-			softwareTitle = options.get("software");
+		if (cmd.hasOption("software"))
+			softwareTitle = cmd.getOptionValue("software");
 		String softwareDev = null;
-		if (options.containsKey("developer"))
-			softwareDev = options.get("developer");
+		if (cmd.hasOption("developer"))
+			softwareDev = cmd.getOptionValue("developer");
 		String language = null;
-		if (options.containsKey("language"))
-			language = options.get("language");
+		if (cmd.hasOption("language"))
+			language = cmd.getOptionValue("language");
 		String homepage = null;
-		if (options.containsKey("homepage"))
-			homepage = options.get("homepage");
+		if (cmd.hasOption("homepage"))
+			homepage = cmd.getOptionValue("homepage");
 
 		// Add classes we want to test
 		final List<XmlClass> classes = new ArrayList<>();
@@ -162,7 +154,7 @@ public class LdpTestSuite {
 		if (homepage != null)
 			parameters.put("homepage", homepage);
 
-		final ContainerType type = getSelectedType(options);
+        final ContainerType type = getSelectedType(cmd);
 		switch (type) {
 		case BASIC:
 			classes.add(new XmlClass(
@@ -196,9 +188,8 @@ public class LdpTestSuite {
 		classes.add(new XmlClass("org.w3.ldp.testsuite.test.MemberResourceTest"));
 		testsuite.addIncludedGroup("ldpMember");
 
-		if (options.containsKey("non-rdf")) {
-			classes.add(new XmlClass(
-					"org.w3.ldp.testsuite.test.NonRDFSourceTest"));
+        if (cmd.hasOption("non-rdf")) {
+            classes.add(new XmlClass("org.w3.ldp.testsuite.test.NonRDFSourceTest"));
 			testsuite.addIncludedGroup(LdpTest.NR);
 		}
 
@@ -212,9 +203,48 @@ public class LdpTestSuite {
 
 		final List<XmlSuite> suites = new ArrayList<>();
 		suites.add(testsuite);
-
-		// provide our reporter and listener
 		testng.setXmlSuites(suites);
+ 
+        if (cmd.hasOption("test")) {
+            final String[] testNamePatterns = cmd.getOptionValues("test");
+            for (int i = 0; i < testNamePatterns.length; i++) {
+                // We support only * as a wildcard character to keep the command line simple.
+                // Convert the wildcard pattern into a regex to use internally.
+                testNamePatterns[i] = wildcardPatternToRegex(testNamePatterns[i]);
+            }
+
+            // Add a method intercepter to filter the list for matching tests.
+            testng.addListener(new IMethodInterceptor() {
+                @Override
+                public List<IMethodInstance> intercept(List<IMethodInstance> methods, ITestContext context) {
+                    ArrayList<IMethodInstance> toRun = new ArrayList<>();
+                    for (IMethodInstance method : methods) {
+                        for (String testNamePattern : testNamePatterns) {
+                            if (method.getMethod().getMethodName().matches(testNamePattern)) {
+                                toRun.add(method);
+                            }
+                        }
+                    }
+
+                    return toRun;
+                }
+            });
+        }
+    }
+ 
+    public String wildcardPatternToRegex(String wildcardPattern) {
+        // use lookarounds and zero-width matches to include the * delimeter in the result
+        String[] tokens = wildcardPattern.split("(?<=\\*)|(?=\\*)");
+        StringBuilder builder = new StringBuilder();
+        for (String token : tokens) {
+            if ("*".equals(token)) {
+                builder.append(".*");
+            } else if (token.length() > 0) {
+                builder.append(Pattern.quote(token));
+            }
+        }
+
+        return builder.toString();
 	}
 
 	public void run() {
@@ -265,6 +295,11 @@ public class LdpTestSuite {
 		options.addOption(OptionBuilder.withLongOpt("non-rdf")
 				.withDescription("include LDP-NR testing").create());
 
+        options.addOption(OptionBuilder.withLongOpt("test")
+                .withDescription("which tests to run (* is a wildcard)")
+                .hasArgs().withArgName("test names")
+                .create());
+
 		options.addOption(OptionBuilder.withLongOpt("help")
 				.withDescription("prints this usage help").create());
 
@@ -296,10 +331,10 @@ public class LdpTestSuite {
 
 	}
 
-	private static ContainerType getSelectedType(Map<String, String> options) {
-		if (options.containsKey("direct")) {
+    private static ContainerType getSelectedType(CommandLine cmd) {
+        if (cmd.hasOption("direct")) {
 			return ContainerType.DIRECT;
-		} else if (options.containsKey("indirect")) {
+        } else if (cmd.hasOption("indirect")) {
 			return ContainerType.INDIRECT;
 		} else {
 			return ContainerType.BASIC;
