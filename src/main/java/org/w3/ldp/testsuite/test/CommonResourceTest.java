@@ -196,7 +196,7 @@ public abstract class CommonResourceTest extends LdpTest {
         ResourceUtils.renameResource(model.getResource(resourceUri), "");
 
         // Update a property
-        updateResource(model.getResource(this.getResourceUri()));
+        updateResource(model.getResource(""));
         
         // Put the resource back using relative URIs.
         Response put = RestAssured

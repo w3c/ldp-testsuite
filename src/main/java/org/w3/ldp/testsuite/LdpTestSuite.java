@@ -112,12 +112,12 @@ public class LdpTestSuite {
 		// Listener injection from options
 		final String[] listeners;
 		if (options.hasOption("listeners")) {
-			listeners = options.getOptionValue("listeners").split(",");
+			listeners = options.getOptionValues("listeners");
 
 			for (String listener : listeners) {
 
 				try {
-					Class<?> listenerCl = Class.forName(listener.trim());
+					Class<?> listenerCl = Class.forName(listener);
 					Object instance = listenerCl.newInstance();
 					testng.addListener(instance);
 				} catch (ClassNotFoundException e) {
