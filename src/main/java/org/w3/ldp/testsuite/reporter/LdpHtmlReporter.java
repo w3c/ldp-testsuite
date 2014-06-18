@@ -69,7 +69,7 @@ public class LdpHtmlReporter implements IReporter {
         new File(directory).mkdirs();
         try {
             writer = new BufferedWriter(new FileWriter(directory
-                    + "/LdpTestSuiteHtmlReport.html"));
+                    + "/ldp-testsuite-execution-report.html"));
             writer.write(output);
 
         } catch (IOException e) {

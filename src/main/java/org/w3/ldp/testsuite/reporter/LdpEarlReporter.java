@@ -255,9 +255,9 @@ public class LdpEarlReporter implements IReporter {
 		writerJson = null;
 		new File(directory).mkdirs();
 		writerTurtle = new BufferedWriter(new FileWriter(directory
-				+ "/EarlTestSuiteReportTurtle.ttl"));
+				+ "/ldp-testsuite-execution-report-earl.ttl"));
 		writerJson = new BufferedWriter(new FileWriter(directory
-				+ "/EarlTestSuiteReportJsonLd.jsonld", false));
+				+ "/ldp-testsuite-execution-report-earl.jsonld", false));
 
 	}
 
