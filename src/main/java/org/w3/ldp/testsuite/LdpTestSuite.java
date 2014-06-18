@@ -29,6 +29,8 @@ import org.w3.ldp.testsuite.reporter.LdpEarlReporter;
 import org.w3.ldp.testsuite.reporter.LdpHtmlReporter;
 import org.w3.ldp.testsuite.reporter.LdpTestListener;
 import org.w3.ldp.testsuite.test.LdpTest;
+import org.w3.ldp.testsuite.transformer.MethodEnabler;
+import org.w3.ldp.testsuite.util.OptionsHandler;
 
 /**
  * LDP Test Suite Command-Line Interface, a wrapper to {@link org.testng.TestNG}
@@ -49,8 +51,17 @@ public class LdpTestSuite {
 		BASIC, DIRECT, INDIRECT
 	}
 
-	;
-
+	/**
+	 * Initialize the test suite with options as a map
+	 * 
+	 * @param options
+	 *      		map of options
+	 */
+	public LdpTestSuite(final Map<String, String> options) {
+		testng = new TestNG();
+		this.setupSuite(new OptionsHandler(options));
+	}
+	
 	/**
 	 * Initialize the test suite with options as the row command-line input
 	 * 
@@ -60,12 +71,12 @@ public class LdpTestSuite {
 	public LdpTestSuite(final CommandLine cmd) {
         // see: http://testng.org/doc/documentation-main.html#running-testng-programmatically
 		testng = new TestNG();
+		this.setupSuite(new OptionsHandler(cmd));
+    }
+	
+	private void setupSuite(OptionsHandler options) {
 		testng.setDefaultSuiteName(NAME);
-
-		testng.addListener(new LdpTestListener());
-		testng.addListener(new LdpEarlReporter());
-		testng.addListener(new LdpHtmlReporter());
-
+		
 		// create XmlSuite instance
 		XmlSuite testsuite = new XmlSuite();
 		testsuite.setName(NAME);
@@ -83,8 +94,8 @@ public class LdpTestSuite {
 		// Add any parameters that you want to set to the Test.
 
 		final String server;
-        if (cmd.hasOption("server")) {
-            server = cmd.getOptionValue("server");
+        if (options.hasOption("server")) {
+            server = options.getOptionValue("server");
 			try {
 				URI uri = new URI(server);
 				if (!"http".equals(uri.getScheme())) {
@@ -98,18 +109,49 @@ public class LdpTestSuite {
 			throw new IllegalArgumentException("ERROR: missing server uri");
 		}
 
+		// Listener injection from options
+		final String[] listeners;
+		if (options.hasOption("listeners")) {
+			listeners = options.getOptionValues("listeners");
+
+			for (String listener : listeners) {
+
+				try {
+					Class<?> listenerCl = Class.forName(listener);
+					Object instance = listenerCl.newInstance();
+					testng.addListener(instance);
+				} catch (ClassNotFoundException e) {
+					throw new IllegalArgumentException(
+							"ERROR: invalid listener class name, "
+									+ e.getLocalizedMessage());
+				} catch (InstantiationException | IllegalAccessException e) {
+					throw new IllegalArgumentException(
+							"ERROR: problem while creating listener, "
+									+ e.getLocalizedMessage());
+				}
+			}
+		}
+		
+		testng.addListener(new LdpTestListener());
+		testng.addListener(new LdpEarlReporter());
+		testng.addListener(new LdpHtmlReporter());
+		
+		// Add method enabler (Annotation Transformer)
+		testng.addListener(new MethodEnabler());
+
+		
 		String softwareTitle = null;
-		if (cmd.hasOption("software"))
-			softwareTitle = cmd.getOptionValue("software");
+		if (options.hasOption("software"))
+			softwareTitle = options.getOptionValue("software");
 		String softwareDev = null;
-		if (cmd.hasOption("developer"))
-			softwareDev = cmd.getOptionValue("developer");
+		if (options.hasOption("developer"))
+			softwareDev = options.getOptionValue("developer");
 		String language = null;
-		if (cmd.hasOption("language"))
-			language = cmd.getOptionValue("language");
+		if (options.hasOption("language"))
+			language = options.getOptionValue("language");
 		String homepage = null;
-		if (cmd.hasOption("homepage"))
-			homepage = cmd.getOptionValue("homepage");
+		if (options.hasOption("homepage"))
+			homepage = options.getOptionValue("homepage");
 
 		// Add classes we want to test
 		final List<XmlClass> classes = new ArrayList<>();
@@ -125,7 +167,7 @@ public class LdpTestSuite {
 		if (homepage != null)
 			parameters.put("homepage", homepage);
 
-        final ContainerType type = getSelectedType(cmd);
+        final ContainerType type = getSelectedType(options);
 		switch (type) {
 		case BASIC:
 			classes.add(new XmlClass(
@@ -144,10 +186,16 @@ public class LdpTestSuite {
 			break;
 		}
 
+		final String memberResource;
+		if (options.hasOption("memberResource")) {
+			memberResource = options.getOptionValue("memberResource");
+			parameters.put("memberResource", memberResource);
+		}
+
 		classes.add(new XmlClass("org.w3.ldp.testsuite.test.MemberResourceTest"));
 		testsuite.addIncludedGroup("ldpMember");
 
-        if (cmd.hasOption("non-rdf")) {
+        if (options.hasOption("non-rdf")) {
             classes.add(new XmlClass("org.w3.ldp.testsuite.test.NonRDFSourceTest"));
 			testsuite.addIncludedGroup(LdpTest.NR);
 		}
@@ -164,8 +212,8 @@ public class LdpTestSuite {
 		suites.add(testsuite);
 		testng.setXmlSuites(suites);
  
-        if (cmd.hasOption("test")) {
-            final String[] testNamePatterns = cmd.getOptionValues("test");
+        if (options.hasOption("test")) {
+            final String[] testNamePatterns = options.getOptionValues("test");
             for (int i = 0; i < testNamePatterns.length; i++) {
                 // We support only * as a wildcard character to keep the command line simple.
                 // Convert the wildcard pattern into a regex to use internally.
@@ -189,7 +237,7 @@ public class LdpTestSuite {
                 }
             });
         }
-    }
+	}
  
     public String wildcardPatternToRegex(String wildcardPattern) {
         // use lookarounds and zero-width matches to include the * delimeter in the result
@@ -213,7 +261,7 @@ public class LdpTestSuite {
 	public int getStatus() {
 		return testng.getStatus();
 	}
-
+	
 	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
 		Options options = new Options();
@@ -290,10 +338,10 @@ public class LdpTestSuite {
 
 	}
 
-    private static ContainerType getSelectedType(CommandLine cmd) {
-        if (cmd.hasOption("direct")) {
+    private static ContainerType getSelectedType(OptionsHandler options) {
+        if (options.hasOption("direct")) {
 			return ContainerType.DIRECT;
-        } else if (cmd.hasOption("indirect")) {
+        } else if (options.hasOption("indirect")) {
 			return ContainerType.INDIRECT;
 		} else {
 			return ContainerType.BASIC;

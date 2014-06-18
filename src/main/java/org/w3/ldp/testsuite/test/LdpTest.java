@@ -7,6 +7,7 @@ import com.hp.hpl.jena.vocabulary.DC;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Header;
 import com.jayway.restassured.response.Response;
+
 import org.apache.http.HttpStatus;
 import org.jboss.resteasy.plugins.delegates.LinkDelegate;
 import org.w3.ldp.testsuite.http.HttpHeaders;
@@ -14,10 +15,11 @@ import org.w3.ldp.testsuite.http.MediaTypes;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 
 import javax.ws.rs.core.Link;
+
 import java.util.List;
 
 public abstract class LdpTest implements HttpHeaders, MediaTypes {
-
+	
     /**
      * An absolute requirement of the specification.
      *
@@ -83,14 +85,16 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes {
     }
 
     protected Model postContent() {
-        Model model = ModelFactory.createDefaultModel();
-        Resource resource = model.createResource("",
-                model.createResource("http://example.com/ns#Bug"));
-        resource.addProperty(
-                model.createProperty("http://example.com/ns#severity"), "High");
-        resource.addProperty(DC.title, "Another bug to test.");
-        resource.addProperty(DC.description, "Issues that need to be fixed.");
-        return model;
+    	Model model = ModelFactory.createDefaultModel();
+
+		Resource resource = model.createResource("",
+				model.createResource("http://example.com/ns#Bug"));
+		resource.addProperty(
+				model.createProperty("http://example.com/ns#severity"), "High");
+		resource.addProperty(DC.title, "Another bug to test.");
+		resource.addProperty(DC.description, "Issues that need to be fixed.");
+
+		return model;
     }
 
     /**
