@@ -21,8 +21,8 @@ public class MemberResourceTest extends RdfSourceTest {
     private String container;
     private String memberResource;
 
-    @Parameters({"memberResource", "directContainer", "indirectContainer", "basicContainer"})
-    public MemberResourceTest(@Optional String memberResource, @Optional String directContainer, @Optional String indirectContainer, @Optional String basicContainer) {
+    @Parameters({"memberResource", "directContainer", "indirectContainer", "basicContainer", "post"})
+    public MemberResourceTest(@Optional String memberResource, @Optional String directContainer, @Optional String indirectContainer, @Optional String basicContainer, @Optional String post) {
         // If resource is defined, use that. Otherwise, fall back to creating one from one of the containers.
         if (memberResource != null) {
             this.memberResource = memberResource;
@@ -35,6 +35,8 @@ public class MemberResourceTest extends RdfSourceTest {
         } else {
             throw new SkipException("No memberResource or container parameters defined in testng.xml");
         }
+        
+        this.post = post;
 
         if (this.memberResource == null) {
             Model model = postContent();
