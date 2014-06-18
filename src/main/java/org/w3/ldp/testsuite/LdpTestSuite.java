@@ -71,14 +71,7 @@ public class LdpTestSuite {
 		// http://testng.org/doc/documentation-main.html#running-testng-programmatically
 		testng = new TestNG();
 		testng.setDefaultSuiteName(NAME);
-
-		testng.addListener(new LdpTestListener());
-		testng.addListener(new LdpEarlReporter());
-		testng.addListener(new LdpHtmlReporter());
 		
-		// Add method enabler (Annotation Transformer)
-		testng.addListener(new MethodEnabler());
-
 		// create XmlSuite instance
 		XmlSuite testsuite = new XmlSuite();
 		testsuite.setName(NAME);
@@ -133,6 +126,14 @@ public class LdpTestSuite {
 				}
 			}
 		}
+		
+		testng.addListener(new LdpTestListener());
+		testng.addListener(new LdpEarlReporter());
+		testng.addListener(new LdpHtmlReporter());
+		
+		// Add method enabler (Annotation Transformer)
+		testng.addListener(new MethodEnabler());
+
 		
 		String softwareTitle = null;
 		if (options.containsKey("software"))
