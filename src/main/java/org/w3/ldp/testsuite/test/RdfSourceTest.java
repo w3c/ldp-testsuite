@@ -1,10 +1,13 @@
 package org.w3.ldp.testsuite.test;
 
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.vocabulary.RDF;
-import com.jayway.restassured.RestAssured;
+import static org.testng.Assert.assertTrue;
+import static org.w3.ldp.testsuite.matcher.HeaderMatchers.isValidEntityTag;
+import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
+
+import java.net.URISyntaxException;
+
 import org.apache.http.HttpStatus;
+import org.testng.SkipException;
 import org.testng.annotations.Test;
 import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
@@ -12,17 +15,155 @@ import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.exception.SkipClientTestException;
 import org.w3.ldp.testsuite.exception.SkipNotTestableException;
+import org.w3.ldp.testsuite.http.HttpMethod;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 
-import java.net.URISyntaxException;
-
-import static org.testng.Assert.assertTrue;
-import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.Statement;
+import com.hp.hpl.jena.rdf.model.StmtIterator;
+import com.hp.hpl.jena.util.ResourceUtils;
+import com.hp.hpl.jena.vocabulary.DCTerms;
+import com.hp.hpl.jena.vocabulary.RDF;
+import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.response.Response;
 
 /**
  * Tests all RDF source LDP resources, including containers and member resources.
  */
 public abstract class RdfSourceTest extends CommonResourceTest {
+    @Test(
+            groups = {MUST},
+            description = "LDP servers MUST assign the default base-URI "
+                    + "for [RFC3987] relative-URI resolution to be the HTTP "
+                    + "Request-URI when the resource already exists, and to "
+                    + "the URI of the created resource when the request results "
+                    + "in the creation of a new resource.")
+    @SpecTest(
+            specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-defbaseuri",
+            testMethod = METHOD.AUTOMATED,
+            approval = STATUS.WG_APPROVED)
+    public void testRelativeUriResolutionPut() {
+        skipIfMethodNotAllowed(HttpMethod.PUT);
+
+        String resourceUri = getResourceUri();
+        Response response = RestAssured
+            .given()
+                .header(ACCEPT, TEXT_TURTLE)
+            .expect()
+                .statusCode(isSuccessful())
+                .header(ETAG, isValidEntityTag())
+            .when()
+                .get(resourceUri);
+
+        String eTag = response.getHeader(ETAG);
+        Model model = response.as(Model.class, new RdfObjectMapper(resourceUri));
+ 
+        // Make sure the resource is specified using a relative URI
+        ResourceUtils.renameResource(model.getResource(resourceUri), "");
+
+        // Update a property
+        updateResource(model.getResource(""));
+        
+        // Put the resource back using relative URIs.
+        Response put = RestAssured
+                .given().contentType(TEXT_TURTLE).header(IF_MATCH, eTag)
+                .body(model, new RdfObjectMapper("")) // relative URI
+                .when().put(resourceUri);
+        if (!isSuccessful().matches(put.getStatusCode())) {
+           throw new SkipException("Cannot verify relative URI resolution because the PUT request failed. Skipping test."); 
+        }
+
+        // Get the resource again to verify its content.
+        model = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
+                .expect().statusCode(isSuccessful())
+                .when().get(resourceUri).as(Model.class, new RdfObjectMapper(resourceUri));
+
+        // Verify the change.
+        verifyUpdatedResource(model.getResource(resourceUri));
+    }
+    
+    @Test(
+            groups = {MUST},
+            description = "If a HTTP PUT is accepted on an existing resource, "
+                    + "LDP servers MUST replace the entire persistent state of "
+                    + "the identified resource with the entity representation "
+                    + "in the body of the request.")
+    @SpecTest(
+            specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-replaceall",
+            testMethod = METHOD.AUTOMATED,
+            approval = STATUS.WG_APPROVED)
+    public void testPutReplacesResource() {
+        skipIfMethodNotAllowed(HttpMethod.PUT);
+
+        if (restrictionsOnContent()) {
+            throw new SkipException("Skipping test because there are restrictions on PUT content for this resource");
+        }
+
+        // TODO: Is there a better way to test this requirement?
+        String resourceUri = getResourceUri();
+        Response response = RestAssured
+                .given()
+                        .header(ACCEPT, TEXT_TURTLE)
+                .expect()
+                        .statusCode(isSuccessful())
+                        .header(ETAG, isValidEntityTag())
+                .when()
+                        .get(resourceUri);
+
+        String eTag = response.getHeader(ETAG);
+        Model originalModel = response.as(Model.class, new RdfObjectMapper(resourceUri));
+
+        // Replace the resource with something different.
+        Model differentContent = ModelFactory.createDefaultModel();
+        final String UPDATED_TITLE = "This resources content has been replaced";
+        differentContent.add(differentContent.getResource(resourceUri),
+                DCTerms.title, UPDATED_TITLE);
+        RestAssured
+                .given().contentType(TEXT_TURTLE).header(IF_MATCH, eTag)
+                .body(differentContent, new RdfObjectMapper(resourceUri)) // relative URI
+                .expect().statusCode(isSuccessful())
+                .when().put(resourceUri);
+
+        // Get the resource again to see what's there.
+        response = RestAssured
+            .given()
+                .header(ACCEPT, TEXT_TURTLE)
+            .expect()
+                .statusCode(isSuccessful())
+                .header(ETAG, isValidEntityTag())
+            .when()
+                .get(resourceUri);
+        eTag = response.getHeader(ETAG);
+        Model updatedModel = response.as(Model.class, new RdfObjectMapper(resourceUri));
+
+        // Validate the updated resource content. The LDP server is allowed to add in
+        // some triples (for instance, dcterms:lastModified), so we can't just compare
+        // that it's exactly what we posted. Let's make sure not all of the triples
+        // from the original resource are there since we've completely replaced it,
+        // however. Also check that the title is as expected.
+        Resource updatedResource = updatedModel.getResource(resourceUri);
+        assertTrue(updatedResource.hasProperty(DCTerms.title, UPDATED_TITLE), "Expected updated resource to have title: " + UPDATED_TITLE);
+        boolean hasDifferentProperties = false;
+        Resource originalResource = originalModel.getResource(resourceUri);
+        StmtIterator iter = originalResource.listProperties();
+        while (iter.hasNext()) {
+            Statement s = iter.next();
+            if (!updatedResource.hasProperty(s.getPredicate())) {
+                hasDifferentProperties = true;
+            }
+        }
+        assertTrue(hasDifferentProperties, "The updated resource has the same properties as the original. Was it really replaced?");
+
+        // Replace the resource with its original content to clean up.
+        RestAssured
+                .given().contentType(TEXT_TURTLE).header(IF_MATCH, eTag)
+                .body(originalModel, new RdfObjectMapper(resourceUri)) // relative URI
+                .expect().statusCode(isSuccessful())
+                .when().put(resourceUri);
+    }
+
     @Test(
             groups = {MUST},
             description = "LDP servers MUST provide an RDF representation "
@@ -248,4 +389,44 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	public void testJsonLdRepresentation() {
 		// TODO Impl testJsonLdRepresentation
 	}
+
+    // Update a resource then later test if the updates were applied (i.e., on a subsequent GET).
+    // These methods could be overwritten by subclasses.
+    private final static String TITLE_FOR_UPDATE = "LDP Test Suite: This resource has been updated... " + System.currentTimeMillis();
+
+    /**
+     * Update a resource then later test if the updates were applied (i.e., on a
+     * subsequent GET). These methods could be overwritten by subclasses.
+     *
+     * @see #verifyUpdatedResource(Resource)
+     */
+    protected void updateResource(Resource r) {
+        // Set a title.
+        r.removeAll(DCTerms.title);
+        r.addProperty(DCTerms.title, TITLE_FOR_UPDATE);
+    }
+
+    /**
+     * Update a resource then later test if the updates were applied (i.e., on a
+     * subsequent GET). These methods could be overwritten by subclasses.
+     *
+     * @see #updateResource(Resource)
+     */
+    protected void verifyUpdatedResource(Resource r) {
+        // Test the resource has the title we set.
+        assertTrue(r.hasProperty(DCTerms.title, TITLE_FOR_UPDATE), "Expected resource to have title \"" + TITLE_FOR_UPDATE + "\"");
+    }
+
+    /**
+     * Are there any restrictions on resource content? This should be true for
+     * LDP containers since PUT is not allowed to modify containment triples.
+     *
+     * @return true if there are restrictions on what triples are allowed; false
+     * if the entire resource can be replaced with any triples
+     * @see #testPutReplacesResource
+     * @see CommonContainerTest#testRejectPutModifyingContainmentTriples
+     */
+    protected boolean restrictionsOnContent() {
+        return false;
+    }
 }
