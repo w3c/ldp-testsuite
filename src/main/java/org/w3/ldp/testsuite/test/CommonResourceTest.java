@@ -1,16 +1,12 @@
 package org.w3.ldp.testsuite.test;
 
-import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.vocabulary.DCTerms;
-import com.jayway.restassured.RestAssured;
-import com.jayway.restassured.response.Response;
-import com.jayway.restassured.specification.ResponseSpecification;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
-import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 import static org.w3.ldp.testsuite.matcher.HeaderMatchers.isValidEntityTag;
+import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
 import java.net.URISyntaxException;
 import java.util.HashSet;
@@ -27,6 +23,17 @@ import org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException;
 import org.w3.ldp.testsuite.http.HttpMethod;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.vocab.LDP;
+
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.Statement;
+import com.hp.hpl.jena.rdf.model.StmtIterator;
+import com.hp.hpl.jena.util.ResourceUtils;
+import com.hp.hpl.jena.vocabulary.DCTerms;
+import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.response.Response;
+import com.jayway.restassured.specification.ResponseSpecification;
 
 /**
  * Common tests for all LDP resources, RDF source and non-RDF source.
@@ -183,17 +190,22 @@ public abstract class CommonResourceTest extends LdpTest {
                 .get(resourceUri);
 
         String eTag = response.getHeader(ETAG);
-        Model model = response.as(Model.class, new RdfObjectMapper("")); // relative URI
+        Model model = response.as(Model.class, new RdfObjectMapper(resourceUri));
+ 
+        // Make sure the resource is specified using a relative URI
+        ResourceUtils.renameResource(model.getResource(resourceUri), "");
 
         // Update a property
-        updateResource(model.getResource(""));
-
+        updateResource(model.getResource(this.getResourceUri()));
+        
         // Put the resource back using relative URIs.
-        RestAssured
+        Response put = RestAssured
                 .given().contentType(TEXT_TURTLE).header(IF_MATCH, eTag)
                 .body(model, new RdfObjectMapper("")) // relative URI
-                .expect().statusCode(isSuccessful())
                 .when().put(resourceUri);
+        if (!isSuccessful().matches(put.getStatusCode())) {
+           throw new SkipException("Cannot verify relative URI resolution because the PUT request failed. Skipping test."); 
+        }
 
         // Get the resource again to verify its content.
         model = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
@@ -495,7 +507,7 @@ public abstract class CommonResourceTest extends LdpTest {
                 .statusCode(isSuccessful()).header(ETAG, isValidEntityTag())
                 .when()
                 .get(resourceUri).as(Model.class, new RdfObjectMapper(resourceUri));
-
+        
         RestAssured
                 .given()
                 .contentType(TEXT_TURTLE)
@@ -509,7 +521,6 @@ public abstract class CommonResourceTest extends LdpTest {
 
     @Test(
             groups = {MUST},
-            dependsOnMethods = {"testPutRequiresIfMatch"},
             description = "LDP servers MUST respond with status code 412 "
                     + "(Condition Failed) if ETags fail to match when there "
                     + "are no other errors with the request [HTTP11]. LDP "
@@ -525,23 +536,45 @@ public abstract class CommonResourceTest extends LdpTest {
         skipIfMethodNotAllowed(HttpMethod.PUT);
 
         String resourceUri = getResourceUri();
-        Model model = RestAssured
+        Response getResponse = RestAssured
                 .given()
                 .header(ACCEPT, TEXT_TURTLE)
                 .expect()
                 .statusCode(isSuccessful())
                 .header(ETAG, isValidEntityTag())
                 .when()
-                .get(resourceUri).as(Model.class, new RdfObjectMapper(resourceUri));
+                .get(resourceUri);
+        
+        Model model = getResponse.as(Model.class, new RdfObjectMapper(resourceUri));
+        
+        // Verify that we can successfully PUT the resource WITH an If-Match header.
+        Response ifMatchResponse = RestAssured
+                .given()
+                .contentType(TEXT_TURTLE)
+                .header(IF_MATCH, getResponse.getHeader(ETAG))
+                .body(model, new RdfObjectMapper(resourceUri))
+                .when()
+                .put(resourceUri);
+        if (!isSuccessful().matches(ifMatchResponse.getStatusCode())) {
+            throw new SkipException("Skipping test because PUT request failed with valid If-Match header.");
+        }
 
-        RestAssured
+        // Now try WITHOUT the If-Match header. If the result is NOT successful,
+        // it should be because the header is missing and we can check the error
+        // code.
+        Response noIfMatchResponse = RestAssured
                 .given()
                 .contentType(TEXT_TURTLE)
                 .body(model, new RdfObjectMapper(resourceUri))
-                .expect()
-                .statusCode(428)
                 .when()
                 .put(resourceUri);
+        if (isSuccessful().matches(noIfMatchResponse.getStatusCode())) {
+            // It worked. This server doesn't require If-Match, which is only a
+            // SHOULD requirement (see testPutRequiresIfMatch). Skip the test.
+            throw new SkipException("Server does not require If-Match header.");
+        }
+        
+        assertEquals(428, noIfMatchResponse.getStatusCode(), "Expected 428 Precondition Required error on PUT request with no If-Match header");
     }
 
     @Test(
@@ -686,7 +719,7 @@ public abstract class CommonResourceTest extends LdpTest {
      */
     protected void verifyUpdatedResource(Resource r) {
         // Test the resource has the title we set.
-        r.hasProperty(DCTerms.title, TITLE_FOR_UPDATE);
+        assertTrue(r.hasProperty(DCTerms.title, TITLE_FOR_UPDATE), "Expected resource to have title \"" + TITLE_FOR_UPDATE + "\"");
     }
 
     /**
