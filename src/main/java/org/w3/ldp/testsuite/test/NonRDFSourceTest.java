@@ -16,6 +16,7 @@ import org.apache.marmotta.commons.vocabulary.LDP;
 import org.openrdf.model.URI;
 import org.testng.Assert;
 import org.testng.SkipException;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -34,26 +35,45 @@ import com.jayway.restassured.response.Response;
 /**
  * Tests Non-RDF Source LDP resources.
  */
-// TODO: Extend CommonResourceTest
-public class NonRDFSourceTest extends LdpTest {
+public class NonRDFSourceTest extends CommonResourceTest {
 
-    private final String rootContainer;
+    private final String container;
     private final URI containerType;
+    /** Resource for CommonResourceTest */
+    private final String nonRdfSource;
 
     @Parameters({ "basicContainer", "directContainer", "indirectContainer"})
-    public NonRDFSourceTest(@Optional String basicContainer, @Optional String directContainer, @Optional String indirectContainer) {
+    public NonRDFSourceTest(@Optional String basicContainer, @Optional String directContainer, @Optional String indirectContainer) throws IOException {
         if (StringUtils.isNotBlank(basicContainer)) {
-            rootContainer = basicContainer;
+            container = basicContainer;
             containerType = LDP.BasicContainer;
         } else if (StringUtils.isNotBlank(directContainer)) {
-            rootContainer = directContainer;
+            container = directContainer;
             containerType = LDP.DirectContainer;
         } else if (StringUtils.isNotBlank(indirectContainer)) {
-            rootContainer = indirectContainer;
+            container = indirectContainer;
             containerType = LDP.IndirectContainer;
         } else {
             throw new SkipException("No root container provided in testng.xml. Skipping LDP Non-RDF Source (LDP-NR) tests.");
         }
+        
+        final String slug = "test",
+                file = slug + ".png",
+                mimeType = "image/png";
+
+        // Create a resource to use for CommonResourceTest.
+        Response response = postNonRDFSource(slug, file, mimeType);
+        nonRdfSource = response.getHeader(LOCATION);
+    }
+
+    @AfterClass
+    public void deleteTestResource() {
+        RestAssured.expect().statusCode(isSuccessful()).when().delete(nonRdfSource);
+    }
+
+    @Override
+    protected String getResourceUri() {
+        return nonRdfSource;
     }
 
     @Test(
@@ -104,9 +124,9 @@ public class NonRDFSourceTest extends LdpTest {
             .expect()
                 .statusCode(HttpStatus.SC_OK)
                 .contentType(TEXT_TURTLE)
-            .get(rootContainer)
-                .body().as(Model.class, new RdfObjectMapper(rootContainer));
-        assertTrue(model.contains(model.createResource(rootContainer), model.createProperty(LDP.contains.stringValue()), model.createResource(response.getHeader(LOCATION))));
+            .get(container)
+                .body().as(Model.class, new RdfObjectMapper(container));
+        assertTrue(model.contains(model.createResource(container), model.createProperty(LDP.contains.stringValue()), model.createResource(response.getHeader(LOCATION))));
     }
 
     @Test(
@@ -335,7 +355,7 @@ public class NonRDFSourceTest extends LdpTest {
                 .statusCode(HttpStatus.SC_CREATED)
                 .header(LOCATION, HeaderMatchers.headerPresent())
             .when()
-                .post(rootContainer);
+                .post(container);
     }
 
     @Test(
