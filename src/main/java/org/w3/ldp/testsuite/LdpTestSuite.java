@@ -185,12 +185,6 @@ public class LdpTestSuite {
 			parameters.put("indirectContainer", server);
 			break;
 		}
-		
-		final String post;
-		if (options.hasOption("post")) {
-			post = options.getOptionValue("post");
-			parameters.put("post", post);
-		}
 
 		final String memberResource;
 		if (options.hasOption("memberResource")) {
