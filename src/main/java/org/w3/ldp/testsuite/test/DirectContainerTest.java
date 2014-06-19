@@ -4,6 +4,7 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
+
 import org.apache.http.HttpStatus;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
@@ -16,6 +17,7 @@ import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.http.HttpMethod;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
+import org.w3.ldp.testsuite.matcher.HeaderMatchers;
 import org.w3.ldp.testsuite.vocab.LDP;
 
 import java.net.URISyntaxException;
@@ -79,9 +81,12 @@ public class DirectContainerTest extends CommonContainerTest {
     public void testUseMemberPredicate() throws URISyntaxException {
         Model containerModel = getAsModel(directContainer);
         Resource container = containerModel.getResource(directContainer);
+        if (container.hasProperty(containerModel.createProperty(LDP.isMemberOfRelation.stringValue()))) {
+            throw new SkipException("This test does not apply to containers using the ldp:isMemberOfRelation membership pattern.");
+        }
         Resource hasMemberRelation = container.getPropertyResourceValue(containerModel.createProperty(LDP.hasMemberRelation.stringValue()));
         assertEquals(LDP.member.stringValue(), hasMemberRelation.getURI(), "LDP Direct Containers should use the ldp:member predicate if "
-                + "there is no obvious predicate from the application vocabulary. You can disabled this test using the 'testLdpMember' parameter in testng.xml.");
+                + "there is no obvious predicate from the application vocabulary. You can disable this test using the 'testLdpMember' parameter in testng.xml.");
     }
 
     @Test(
@@ -161,16 +166,23 @@ public class DirectContainerTest extends CommonContainerTest {
                 .when().post(directContainer);
 
         String location = postResponse.getHeader(LOCATION);
-        Model containerModel = getAsModel(directContainer);
+        Response getResponse = RestAssured
+                .given()
+                    .header(ACCEPT, TEXT_TURTLE)
+                    .header(PREFER, PREFERENCE_INCLUDE_MEMBERSHIP) // request all membership triples
+                .expect()
+                    .statusCode(isSuccessful())
+                .when()
+                    .get(directContainer);
+        Model containerModel = getResponse.as(Model.class, new RdfObjectMapper(directContainer));
         Resource container = containerModel.getResource(directContainer);
         Resource membershipResource = container.getPropertyResourceValue(containerModel.createProperty(LDP.membershipResource.stringValue()));
         Resource hasMemberRelation = container.getPropertyResourceValue(containerModel.createProperty(LDP.hasMemberRelation.stringValue()));
         assertNotNull(membershipResource);
 
-        // Make sure the resource is in the container.
-        Resource r = containerModel.createResource(location);
         if (hasMemberRelation != null) {
-            assertTrue(membershipResource.hasProperty(containerModel.createProperty(hasMemberRelation.getURI()), r));
+            // Make sure the resource is a member of the container.
+            assertTrue(membershipResource.hasProperty(containerModel.createProperty(hasMemberRelation.getURI()), containerModel.createResource(location)));
         }
 
         // Delete the resource to clean up.
@@ -189,59 +201,81 @@ public class DirectContainerTest extends CommonContainerTest {
     public void testDeleteResourceUpdatesTriples() {
         skipIfMethodNotAllowed(HttpMethod.POST);
 
+        // Create a resource.
         Model model = postContent();
-        Response postResponse = RestAssured.given().contentType(TEXT_TURTLE).body(model, new RdfObjectMapper())
-                .expect().statusCode(HttpStatus.SC_CREATED).header(LOCATION, notNullValue())
-                .when().post(directContainer);
+        Response postResponse = RestAssured
+            .given()
+                .contentType(TEXT_TURTLE)
+                .body(model, new RdfObjectMapper())
+            .expect()
+                .statusCode(HttpStatus.SC_CREATED)
+                .header(LOCATION, HeaderMatchers.headerPresent())
+            .when()
+                .post(directContainer);
 
         String location = postResponse.getHeader(LOCATION);
 
         // Test the membership triple
-        Model containerModel = getAsModel(directContainer);
+        Response getResponse = RestAssured
+                .given()
+                    .header(ACCEPT, TEXT_TURTLE)
+                    .header(PREFER, PREFERENCE_INCLUDE_MEMBERSHIP) // request all membership triples regardless of membership pattern
+                .expect()
+                    .statusCode(isSuccessful())
+                .when()
+                    .get(directContainer);
+        Model containerModel = getResponse.as(Model.class, new RdfObjectMapper(directContainer));
+
         Resource container = containerModel.getResource(directContainer);
         Resource membershipResource = container.getPropertyResourceValue(containerModel.createProperty(LDP.membershipResource.stringValue()));
         Resource hasMemberRelation = container.getPropertyResourceValue(containerModel.createProperty(LDP.hasMemberRelation.stringValue()));
         Resource isMemberOfRelation = null;
         assertNotNull(membershipResource, MSG_MBRRES_NOTFOUND);
-        Model membershipResourceModel = null;
-        if (membershipResource.getURI().equals(directContainer)) {
-            membershipResourceModel = containerModel;
-        } else {
-            membershipResourceModel = getAsModel(membershipResource.getURI());
-            membershipResource = membershipResourceModel.getResource(membershipResource.getURI());
-        }
 
         // First verify the membership triples exist
         if (hasMemberRelation != null) {
-            assertTrue(membershipResource.hasProperty(membershipResourceModel.createProperty(hasMemberRelation.getURI()), membershipResourceModel.getResource(location)),
+            assertTrue(membershipResource.hasProperty(containerModel.createProperty(hasMemberRelation.getURI()), containerModel.getResource(location)),
                     "The LDPC server must have a corresponding membership triple when an LDPR is added (hasMemberRelation).");
         } else {
             // Not if membership triple is not of form: (container, membership predicate, member), it may be the inverse.
-            // Check both the membership resource and the member resource for the membership triple
             isMemberOfRelation = container.getPropertyResourceValue(containerModel.createProperty(LDP.isMemberOfRelation.stringValue()));
-            int numMembershipTriples = membershipResourceModel.listStatements(membershipResourceModel.getResource(location), membershipResourceModel.createProperty(isMemberOfRelation.getURI()), membershipResource).toSet().size();
+            // Check the container for the triple.
+            if (!containerModel.contains(containerModel.getResource(location), containerModel.createProperty(isMemberOfRelation.getURI()), membershipResource)) {
+                assertFalse(
+                        getResponse.getHeaders().hasHeaderWithName(PREFERNCE_APPLIED),
+                        "Server responded with Preference-Applied header for including membership triples, but membership triple is missing.");
+            }
+ 
+            // Check the resource has the triple as well.
             Model memberResourceModel = getAsModel(location);
-            assertNotNull(memberResourceModel, "Unable to fetch created member resource to validate membership triples (isMemberOfRelation)	");
-            numMembershipTriples += memberResourceModel.listStatements(memberResourceModel.getResource(location), memberResourceModel.createProperty(isMemberOfRelation.getURI()), membershipResource).toSet().size();
-            assertTrue(numMembershipTriples > 0, "The LDPC server must have a corresponding membership triple when an LDPR is added (isMemberOfRelation).");
+            assertTrue(memberResourceModel.contains(memberResourceModel.getResource(location), memberResourceModel.createProperty(isMemberOfRelation.getURI()), membershipResource),
+                    "The LDPC server must have a corresponding membership triple when an LDPR is added (isMemberOfRelation).");
         }
 
         // Delete the resource
         RestAssured.expect().statusCode(isSuccessful()).when().delete(location);
 
         // Get the updated membership resource
-        membershipResourceModel = getAsModel(membershipResource.getURI());
-        membershipResource = membershipResourceModel.getResource(membershipResource.getURI());
+        getResponse = RestAssured
+                .given()
+                    .header(ACCEPT, TEXT_TURTLE)
+                    .header(PREFER, PREFERENCE_INCLUDE_MEMBERSHIP) // request all membership triples regardless of membership pattern
+                .expect()
+                    .statusCode(isSuccessful())
+                .when()
+                    .get(directContainer);
+        containerModel = getResponse.as(Model.class, new RdfObjectMapper(directContainer));
+        membershipResource = containerModel.getResource(membershipResource.getURI());
 
         // Now verify the membership triples DON"T exist
         if (hasMemberRelation != null) {
-            assertFalse(membershipResource.hasProperty(membershipResourceModel.createProperty(hasMemberRelation.getURI()), membershipResourceModel.getResource(location)),
+            assertFalse(membershipResource.hasProperty(containerModel.createProperty(hasMemberRelation.getURI()), containerModel.getResource(location)),
                     "The LDPC server must remove the corresponding membership triple when an LDPR is deleted (hasMemberRelation).");
         } else {
             // Not if membership triple is not of form: (container, membership predicate, member), it may be the inverse.
             isMemberOfRelation = container.getPropertyResourceValue(containerModel.createProperty(LDP.isMemberOfRelation.stringValue()));
-            assertEquals(containerModel.listStatements(membershipResourceModel.getResource(location), membershipResourceModel.createProperty(isMemberOfRelation.getURI()), membershipResource).toSet().size(),
-                    0, "The LDPC server must remove the corresponding membership triple when an LDPR is deleted (isMemberOfRelation).");
+            assertFalse(containerModel.contains(containerModel.getResource(location), containerModel.createProperty(isMemberOfRelation.getURI()), membershipResource),
+                    "The LDPC server must remove the corresponding membership triple when an LDPR is deleted (isMemberOfRelation).");
         }
     }
 

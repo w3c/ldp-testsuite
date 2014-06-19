@@ -1,14 +1,12 @@
 package org.w3.ldp.testsuite.test;
 
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.vocabulary.DC;
-import com.jayway.restassured.RestAssured;
-import com.jayway.restassured.response.Header;
-import com.jayway.restassured.response.Response;
+import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
-import org.apache.http.HttpStatus;
+import java.io.InputStream;
+import java.util.List;
+
+import javax.ws.rs.core.Link;
+
 import org.jboss.resteasy.plugins.delegates.LinkDelegate;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
@@ -17,10 +15,13 @@ import org.w3.ldp.testsuite.http.HttpHeaders;
 import org.w3.ldp.testsuite.http.MediaTypes;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 
-import javax.ws.rs.core.Link;
-
-import java.io.InputStream;
-import java.util.List;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.vocabulary.DC;
+import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.response.Header;
+import com.jayway.restassured.response.Response;
 
 public abstract class LdpTest implements HttpHeaders, MediaTypes {
 
@@ -91,9 +92,12 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes {
 
     public Model getResourceAsModel(String uri, String mediaType) {
         return RestAssured
-                .given().header(ACCEPT, mediaType)
-                .expect().statusCode(HttpStatus.SC_OK)
-                .when().get(uri).as(Model.class, new RdfObjectMapper(uri));
+            .given()
+                .header(ACCEPT, mediaType)
+            .expect()
+                .statusCode(isSuccessful())
+            .when()
+                .get(uri).as(Model.class, new RdfObjectMapper(uri));
     }
 
     protected Model postContent() {
