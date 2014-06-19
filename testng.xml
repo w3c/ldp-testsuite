@@ -8,9 +8,16 @@
     </listeners>
 
     <parameter name="basicContainer" value="http://localhost:8080/ldp/resources/bc/"/>
-    <!--<parameter name="directContainer" value="http://localhost:8080/ldp/resources/dc-simple/" />-->
+    <!-- <parameter name="directContainer" value="http://localhost:8080/ldp/resources/dc-simple/" /> -->
     <!-- <parameter name="indirectContainer" value="http://localhost:8080/ldp/resources/" /> -->
-
+    
+    <!-- A resource whose internal RDF state has a type triple of one of container types
+         but whose interaction model was created with header on POST request of:
+           Link: <http://www.w3c.org/ldp/ns#Resource>;rel="type"
+         See: http://www.w3.org/TR/ldp/#ldpc-post-createrdf
+      -->
+    <parameter name="containerAsResource" value="http://localhost:8080/ldp/resources/bc/" />
+    
     <parameter name="language" value = "Java" />
     <parameter name="homepage" value ="http://eclipse.org/lyo" />
     <parameter name="subjectName" value="Eclipse Lyo LDP Reference Implementation" />
@@ -39,11 +46,11 @@
             </run>
         </groups>
         <classes>
-            <!-- <class name="org.w3.ldp.testsuite.test.DirectContainerTest" />
-            <class name="org.w3.ldp.testsuite.test.IndirectContainerTest" />  -->
+            <!--  <class name="org.w3.ldp.testsuite.test.DirectContainerTest" />  -->
+            <!-- <class name="org.w3.ldp.testsuite.test.IndirectContainerTest" />  -->
             <class name="org.w3.ldp.testsuite.test.BasicContainerTest"/>
             <class name="org.w3.ldp.testsuite.test.MemberResourceTest"/>
-            <!-- <class name="org.w3.ldp.testsuite.test.NonRDFSourceTest" />  -->
+            <class name="org.w3.ldp.testsuite.test.NonRDFSourceTest" />
         </classes>
     </test>
 </suite>

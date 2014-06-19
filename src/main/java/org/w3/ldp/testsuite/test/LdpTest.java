@@ -25,6 +25,9 @@ import com.jayway.restassured.response.Response;
 
 public abstract class LdpTest implements HttpHeaders, MediaTypes {
 
+	/**
+	 * Alternate content to use on POST requests
+	 */
 	protected String post;
 	
 	@BeforeSuite (alwaysRun = true)

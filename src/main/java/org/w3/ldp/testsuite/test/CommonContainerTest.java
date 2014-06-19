@@ -8,8 +8,11 @@ import com.hp.hpl.jena.vocabulary.RDF;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.RequestSpecification;
+
 import org.apache.http.HttpStatus;
 import org.testng.SkipException;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
@@ -21,6 +24,7 @@ import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.vocab.LDP;
 
 import javax.ws.rs.core.UriBuilder;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.UUID;
@@ -184,19 +188,63 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 
     @Test(
             groups = {MUST},
-            enabled = false, // not implemented
             description = "LDP servers that successfully create a resource from a "
                     + "RDF representation in the request entity body MUST honor the "
                     + "client's requested interaction model(s). The created resource "
                     + "can be thought of as an RDF named graph [rdf11-concepts]. If any "
                     + "model cannot be honored, the server MUST fail the request.")
+    @Parameters("containerAsResource")
     @SpecTest(
             specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-createrdf",
-            testMethod = METHOD.NOT_IMPLEMENTED,
+            testMethod = METHOD.AUTOMATED,
             approval = STATUS.WG_PENDING)
-    public void testRequestedInteractionModel() {
-        skipIfMethodNotAllowed(HttpMethod.POST);
-        // TODO: Impl testRequestedInteractionModel
+    public void testRequestedInteractionModelCreateNotAllowed(@Optional String containerAsResource) {
+    	if (containerAsResource == null)
+    		throw new SkipException("containerAsResource is null");
+    	
+        Model model = postContent();
+
+        // If create is successful, then not acting like a plain ole resource
+        Response postResponse = RestAssured.given().contentType(TEXT_TURTLE)
+                .body(model, new RdfObjectMapper())
+                .post(containerAsResource);
+
+        // Cleanup if it actually created something
+        String location = postResponse.getHeader(LOCATION);
+        if (postResponse.statusCode() == HttpStatus.SC_CREATED && location !=null)
+        	RestAssured.expect().statusCode(isSuccessful()).when().delete(location);
+
+        assertNotEquals(postResponse.statusCode(), HttpStatus.SC_CREATED, "Resources with interaction model of only ldp:Resources shouldn't allow container POST-create behavior.");
+        
+        // TODO: Possibly parse 'Allow' header to see if POST is wrongly listed
+    }
+    
+    @Test(
+            groups = {MUST},
+            description = "LDP servers that successfully create a resource from a "
+                    + "RDF representation in the request entity body MUST honor the "
+                    + "client's requested interaction model(s). The created resource "
+                    + "can be thought of as an RDF named graph [rdf11-concepts]. If any "
+                    + "model cannot be honored, the server MUST fail the request.")
+    @Parameters("containerAsResource")
+    @SpecTest(
+            specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-createrdf",
+            testMethod = METHOD.AUTOMATED,
+            approval = STATUS.WG_PENDING)
+    public void testRequestedInteractionModelHeaders(@Optional String containerAsResource) {
+    	if (containerAsResource == null)
+    		throw new SkipException("containerAsResource is null");
+        
+        // Ensure we don't get back any of the container types in the rel='type' Link header
+        Response response = RestAssured.expect().statusCode(HttpStatus.SC_OK)
+        		.options(containerAsResource);
+        assertFalse(
+                containsLinkHeader(LDP.BasicContainer.stringValue(), LINK_REL_TYPE, response) ||
+                containsLinkHeader(LDP.DirectContainer.stringValue(), LINK_REL_TYPE, response) ||
+                containsLinkHeader(LDP.IndirectContainer.stringValue(), LINK_REL_TYPE, response),
+                "Resource wrongly advertising itself as a rel='type' of one of the container types."
+        );
+        
     }
 
     @Test(

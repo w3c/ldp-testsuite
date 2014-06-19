@@ -22,7 +22,8 @@ public class MemberResourceTest extends RdfSourceTest {
     private String memberResource;
 
     @Parameters({"memberResource", "directContainer", "indirectContainer", "basicContainer", "post"})
-    public MemberResourceTest(@Optional String memberResource, @Optional String directContainer, @Optional String indirectContainer, @Optional String basicContainer, @Optional String post) {
+    public MemberResourceTest(@Optional String memberResource, @Optional String directContainer, 
+    		@Optional String indirectContainer, @Optional String basicContainer, @Optional String post) {
         // If resource is defined, use that. Otherwise, fall back to creating one from one of the containers.
         if (memberResource != null) {
             this.memberResource = memberResource;

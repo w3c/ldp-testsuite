@@ -108,7 +108,7 @@ public class LdpTestSuite {
 		} else {
 			throw new IllegalArgumentException("ERROR: missing server uri");
 		}
-
+        
 		// Listener injection from options
 		final String[] listeners;
 		if (options.hasOption("listeners")) {
@@ -139,7 +139,19 @@ public class LdpTestSuite {
 		// Add method enabler (Annotation Transformer)
 		testng.addListener(new MethodEnabler());
 
-		
+		String containerAsResource = null;
+        if (options.hasOption("cont-res")) {
+        	containerAsResource = options.getOptionValue("cont-res");
+			try {
+				URI uri = new URI(containerAsResource);
+				if (!"http".equals(uri.getScheme())) {
+					throw new IllegalArgumentException("non-http uri");
+				}
+			} catch (Exception e) {
+				throw new IllegalArgumentException(
+						"ERROR: invalid containerAsResource uri, " + e.getLocalizedMessage());
+			}
+		}
 		String softwareTitle = null;
 		if (options.hasOption("software"))
 			softwareTitle = options.getOptionValue("software");
@@ -166,6 +178,8 @@ public class LdpTestSuite {
 			parameters.put("language", language);
 		if (homepage != null)
 			parameters.put("homepage", homepage);
+		if (containerAsResource != null)
+			parameters.put("containerAsResource", containerAsResource);
 
         final ContainerType type = getSelectedType(options);
 		switch (type) {
@@ -313,6 +327,10 @@ public class LdpTestSuite {
                 .hasArgs().withArgName("test names")
                 .create());
 
+		options.addOption(OptionBuilder.withLongOpt("cont-res")
+				.withDescription("url of a container with interaction model of a resource").hasArg()
+				.withArgName("cont-res").create());
+		
 		options.addOption(OptionBuilder.withLongOpt("help")
 				.withDescription("prints this usage help").create());
 
