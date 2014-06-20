@@ -169,7 +169,7 @@ public class DirectContainerTest extends CommonContainerTest {
         Response getResponse = RestAssured
                 .given()
                     .header(ACCEPT, TEXT_TURTLE)
-                    .header(PREFER, PREFERENCE_INCLUDE_MEMBERSHIP) // request all membership triples
+                    .header(PREFER, include(PREFER_MEMBERSHIP)) // request all membership triples
                 .expect()
                     .statusCode(isSuccessful())
                 .when()
@@ -219,7 +219,7 @@ public class DirectContainerTest extends CommonContainerTest {
         Response getResponse = RestAssured
                 .given()
                     .header(ACCEPT, TEXT_TURTLE)
-                    .header(PREFER, PREFERENCE_INCLUDE_MEMBERSHIP) // request all membership triples regardless of membership pattern
+                    .header(PREFER, include(PREFER_MEMBERSHIP)) // request all membership triple regardless of membership patterns
                 .expect()
                     .statusCode(isSuccessful())
                 .when()
@@ -242,7 +242,7 @@ public class DirectContainerTest extends CommonContainerTest {
             // Check the container for the triple.
             if (!containerModel.contains(containerModel.getResource(location), containerModel.createProperty(isMemberOfRelation.getURI()), membershipResource)) {
                 assertFalse(
-                        getResponse.getHeaders().hasHeaderWithName(PREFERNCE_APPLIED),
+                        isPreferenceApplied(getResponse),
                         "Server responded with Preference-Applied header for including membership triples, but membership triple is missing.");
             }
  
@@ -259,7 +259,7 @@ public class DirectContainerTest extends CommonContainerTest {
         getResponse = RestAssured
                 .given()
                     .header(ACCEPT, TEXT_TURTLE)
-                    .header(PREFER, PREFERENCE_INCLUDE_MEMBERSHIP) // request all membership triples regardless of membership pattern
+                    .header(PREFER, include(PREFER_MEMBERSHIP)) // request all membership triple regardless of membership patterns
                 .expect()
                     .statusCode(isSuccessful())
                 .when()
@@ -278,6 +278,99 @@ public class DirectContainerTest extends CommonContainerTest {
                     "The LDPC server must remove the corresponding membership triple when an LDPR is deleted (isMemberOfRelation).");
         }
     }
+    
+    private boolean hasMembershipTriples(Model containerModel) {
+        Resource container = containerModel.getResource(directContainer);
+        Resource membershipResource = container.getPropertyResourceValue(containerModel.createProperty(LDP.membershipResource.stringValue()));
+        Resource hasMemberRelation = container.getPropertyResourceValue(containerModel.createProperty(LDP.hasMemberRelation.stringValue()));
+        assertNotNull(membershipResource, MSG_MBRRES_NOTFOUND);
+
+        // First verify the membership triples exist
+        if (hasMemberRelation != null) {
+            return membershipResource.hasProperty(containerModel.createProperty(hasMemberRelation.getURI()));
+        }
+
+        // Not if membership triple is not of form: (container, membership predicate, member), it may be the inverse.
+        Resource isMemberOfRelation = container.getPropertyResourceValue(containerModel.createProperty(LDP.isMemberOfRelation.stringValue()));
+        return containerModel.contains(null, containerModel.createProperty(isMemberOfRelation.getURI()), membershipResource);
+    }
+ 
+    @Test(
+            groups = {SHOULD},
+            description = "LDP servers SHOULD respect all of a client's LDP-defined "
+                    + "hints, for example which subsets of LDP-defined state the "
+                    + "client is interested in processing, to influence the set of "
+                    + "triples returned in representations of an LDPC, particularly for "
+                    + "large LDPCs. See also [LDP-PAGING].")
+    @SpecTest(
+            specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-prefer",
+            testMethod = METHOD.AUTOMATED,
+            approval = STATUS.WG_PENDING)
+    public void testPreferMembershipTriples() {
+        Response response;
+        Model model;
+
+        // Ask for membership triples.
+        response = RestAssured
+                .given()
+                    .header(ACCEPT, TEXT_TURTLE)
+                    .header(PREFER, include(PREFER_MEMBERSHIP)) // request all membership triples
+                .expect()
+                    .statusCode(isSuccessful())
+                .when()
+                    .get(directContainer);
+        model = response.as(Model.class, new RdfObjectMapper(directContainer));
+
+        // Assumes the container is not empty.
+        assertTrue(isPreferenceApplied(response), MSG_PREFERENCE_NOT_APPLIED);
+        assertTrue(hasMembershipTriples(model), "Container does not have membership triples");
+ 
+        // Ask for a minimal container.
+        response = RestAssured
+                .given()
+                    .header(ACCEPT, TEXT_TURTLE)
+                    .header(PREFER, include(PREFER_MINIMAL_CONTAINER)) // request no membership triples
+                .expect()
+                    .statusCode(isSuccessful())
+                .when()
+                    .get(directContainer);
+        model = response.as(Model.class, new RdfObjectMapper(directContainer));
+
+        assertTrue(isPreferenceApplied(response), MSG_PREFERENCE_NOT_APPLIED);
+        assertFalse(hasMembershipTriples(model), "Container has membership triples when minimal container was requested");
+ 
+        // Ask to omit membership.
+        response = RestAssured
+                .given()
+                    .header(ACCEPT, TEXT_TURTLE)
+                    .header(PREFER, omit(PREFER_MEMBERSHIP)) // request no membership triples
+                .expect()
+                    .statusCode(isSuccessful())
+                .when()
+                    .get(directContainer);
+        model = response.as(Model.class, new RdfObjectMapper(directContainer));
+
+        assertTrue(isPreferenceApplied(response), MSG_PREFERENCE_NOT_APPLIED);
+        assertFalse(hasMembershipTriples(model), "Container has membership triples when client requested server omit them");
+        
+        // Ask for a minimal container, but include membership. (Example from spec.)
+        response = RestAssured
+                .given()
+                    .header(ACCEPT, TEXT_TURTLE)
+                    .header(PREFER, include(PREFER_MINIMAL_CONTAINER, PREFER_MEMBERSHIP))
+                .expect()
+                    .statusCode(isSuccessful())
+                .when()
+                    .get(directContainer);
+        model = response.as(Model.class, new RdfObjectMapper(directContainer));
+
+        // Assumes the container is not empty.
+        assertTrue(isPreferenceApplied(response), MSG_PREFERENCE_NOT_APPLIED);
+        assertTrue(hasMembershipTriples(model), "Container does not have membership triples");
+        assertFalse(model.contains(model.getResource(directContainer), model.createProperty(LDP.contains.stringValue())),
+                "Container has containment triples when minimal container was requested");
+    }
+
 
     @Override
     protected String getResourceUri() {

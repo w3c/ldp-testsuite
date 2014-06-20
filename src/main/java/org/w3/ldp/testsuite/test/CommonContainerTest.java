@@ -1,13 +1,17 @@
 package org.w3.ldp.testsuite.test;
 
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.vocabulary.DCTerms;
-import com.hp.hpl.jena.vocabulary.RDF;
-import com.jayway.restassured.RestAssured;
-import com.jayway.restassured.response.Response;
-import com.jayway.restassured.specification.RequestSpecification;
+import static org.hamcrest.core.IsNot.not;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNotEquals;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
+import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.UUID;
+
+import javax.ws.rs.core.UriBuilder;
 
 import org.apache.http.HttpStatus;
 import org.testng.SkipException;
@@ -23,15 +27,14 @@ import org.w3.ldp.testsuite.http.HttpMethod;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.vocab.LDP;
 
-import javax.ws.rs.core.UriBuilder;
-
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.UUID;
-
-import static org.hamcrest.core.IsNot.not;
-import static org.testng.Assert.*;
-import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.vocabulary.DCTerms;
+import com.hp.hpl.jena.vocabulary.RDF;
+import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.response.Response;
+import com.jayway.restassured.specification.RequestSpecification;
 
 /**
  * Common tests for all LDP container types.
@@ -40,6 +43,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 
     public static final String MSG_LOC_NOTFOUND = "Location header missing after POST create.";
     public static final String MSG_MBRRES_NOTFOUND = "Unable to locate object in triple with predicate ldp:membershipResource.";
+    public static final String MSG_PREFERENCE_NOT_APPLIED = "Server did not return Preference-Applied: return=representation response header";
 
     @Test(
             groups = {MAY},
@@ -91,9 +95,11 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         );
     }
 
+    /**
+     * @see #testServerHonorsSlug()
+     */
     @Test(
             groups = {SHOULD},
-            enabled = false, // not implemented
             description = "LDP servers SHOULD respect all of a client's LDP-defined "
                     + "hints, for example which subsets of LDP-defined state the "
                     + "client is interested in processing, to influence the set of "
@@ -101,10 +107,92 @@ public abstract class CommonContainerTest extends RdfSourceTest {
                     + "large LDPCs. See also [LDP-PAGING].")
     @SpecTest(
             specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-prefer",
-            testMethod = METHOD.NOT_IMPLEMENTED,
+            testMethod = METHOD.AUTOMATED,
             approval = STATUS.WG_PENDING)
-    public void testClientHints() {
-        // TODO: Impl testClientHints
+    public void testPreferContainmentTriples() {
+        Response response;
+        Model model;
+        String containerUri = getResourceUri();
+        
+        // Ask for containment triples.
+        response = RestAssured
+                .given()
+                    .header(ACCEPT, TEXT_TURTLE)
+                    .header(PREFER, include(PREFER_CONTAINMENT)) // request all containment triples
+                .expect()
+                    .statusCode(isSuccessful())
+                .when()
+                    .get(containerUri);
+        model = response.as(Model.class, new RdfObjectMapper(containerUri));
+
+        assertTrue(isPreferenceApplied(response), MSG_PREFERENCE_NOT_APPLIED);
+
+        // Assumes the container is not empty.
+        assertTrue(model.contains(model.getResource(containerUri), model.createProperty(LDP.contains.stringValue())),
+                "Container does not have containment triples");
+        
+        // Ask for a minimal container.
+        response = RestAssured
+                .given()
+                    .header(ACCEPT, TEXT_TURTLE)
+                    .header(PREFER, include(PREFER_MINIMAL_CONTAINER)) // request no containment triples
+                .expect()
+                    .statusCode(isSuccessful())
+                .when()
+                    .get(containerUri);
+        model = response.as(Model.class, new RdfObjectMapper(containerUri));
+
+        assertTrue(isPreferenceApplied(response), MSG_PREFERENCE_NOT_APPLIED);
+        assertFalse(model.contains(model.getResource(containerUri), model.createProperty(LDP.contains.stringValue())),
+                "Container has containment triples when minimal container was requested");
+        
+        // Ask to omit containment triples.
+        response = RestAssured
+                .given()
+                    .header(ACCEPT, TEXT_TURTLE)
+                    .header(PREFER, omit(PREFER_CONTAINMENT)) // request no containment triples
+                .expect()
+                    .statusCode(isSuccessful())
+                .when()
+                    .get(containerUri);
+        model = response.as(Model.class, new RdfObjectMapper(containerUri));
+
+        assertTrue(isPreferenceApplied(response), MSG_PREFERENCE_NOT_APPLIED);
+
+        // Assumes the container is not empty.
+        assertFalse(model.contains(model.getResource(containerUri), model.createProperty(LDP.contains.stringValue())),
+                "Container has containment triples when client requested server omit them");
+    }
+    
+    /**
+     * @see #testPreferContainmentTriples()
+     */
+    @Test(
+            groups = {SHOULD},
+            description = "LDP servers SHOULD respect all of a client's LDP-defined "
+                    + "hints, for example which subsets of LDP-defined state the "
+                    + "client is interested in processing, to influence the set of "
+                    + "triples returned in representations of an LDPC, particularly for "
+                    + "large LDPCs. See also [LDP-PAGING].")
+    @SpecTest(
+            specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-prefer",
+            testMethod = METHOD.AUTOMATED,
+            approval = STATUS.WG_PENDING)
+    public void testServerHonorsSlug() {
+        skipIfMethodNotAllowed(HttpMethod.POST);
+
+        // Come up with a unique slug header.
+        String slug = UUID.randomUUID().toString();
+
+        // POST two resources with the same Slug header and content to make sure
+        // they have different URIs.
+        Model content = postContent();
+        String location = post(content, slug);
+        
+        assertTrue(location.contains(slug), "Slug is not part of the return Location");
+        
+        // Clean up.
+        RestAssured.delete(location);
     }
 
     @Test(
