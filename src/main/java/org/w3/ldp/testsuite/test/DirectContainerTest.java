@@ -186,7 +186,7 @@ public class DirectContainerTest extends CommonContainerTest {
         }
 
         // Delete the resource to clean up.
-        RestAssured.expect().statusCode(isSuccessful()).when().delete(location);
+        RestAssured.delete(location);
     }
 
     @Test(

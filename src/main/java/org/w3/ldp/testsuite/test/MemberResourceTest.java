@@ -1,8 +1,7 @@
 package org.w3.ldp.testsuite.test;
 
-import com.hp.hpl.jena.rdf.model.Model;
-import com.jayway.restassured.RestAssured;
-import com.jayway.restassured.response.Response;
+import static org.hamcrest.Matchers.notNullValue;
+
 import org.apache.http.HttpStatus;
 import org.testng.SkipException;
 import org.testng.annotations.AfterClass;
@@ -10,8 +9,9 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 
-import static org.hamcrest.Matchers.notNullValue;
-import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.response.Response;
 
 /**
  * Tests that run on an LDP-RS that is not a container.
@@ -59,7 +59,7 @@ public class MemberResourceTest extends RdfSourceTest {
     public void deleteTestResource() {
         // If container isn't null, we created the resource ourselves. To clean up, delete the resource.
         if (container != null) {
-            RestAssured.expect().statusCode(isSuccessful()).when().delete(memberResource);
+            RestAssured.delete(memberResource);
         }
     }
 

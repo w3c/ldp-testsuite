@@ -68,7 +68,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 
     @AfterClass
     public void deleteTestResource() {
-        RestAssured.expect().statusCode(isSuccessful()).when().delete(nonRdfSource);
+        RestAssured.delete(nonRdfSource);
     }
 
     @Override
@@ -95,6 +95,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
         Response response = postNonRDFSource(slug, file, mimeType);
         List<Header> links = response.headers().getList("Link");
         Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
+        RestAssured.delete(response.getHeader(LOCATION));
     }
 
     @Test(
@@ -127,6 +128,8 @@ public class NonRDFSourceTest extends CommonResourceTest {
             .get(container)
                 .body().as(Model.class, new RdfObjectMapper(container));
         assertTrue(model.contains(model.createResource(container), model.createProperty(LDP.contains.stringValue()), model.createResource(response.getHeader(LOCATION))));
+
+        RestAssured.delete(response.getHeader(LOCATION));
     }
 
     @Test(
@@ -162,6 +165,8 @@ public class NonRDFSourceTest extends CommonResourceTest {
                 .get(response.getHeader(LOCATION))
                 .body().asByteArray();
         assertEquals(expectedMD5, HashUtils.md5sum(binary), "md5sum");
+
+        RestAssured.delete(response.getHeader(LOCATION));
     }
 
     @Test(
@@ -212,6 +217,8 @@ public class NonRDFSourceTest extends CommonResourceTest {
                 .get(location)
                 .body().asByteArray();
         assertEquals(expectedMD5, HashUtils.md5sum(binary), "md5sum");
+        
+        RestAssured.delete(location);
     }
 
     @Test(
@@ -244,6 +251,8 @@ public class NonRDFSourceTest extends CommonResourceTest {
                 .get(response.getHeader(LOCATION))
                 .headers().getList(LINK);
         Assert.assertTrue(containsLinkHeader(LDP.NonRDFSource.stringValue(), "type", linksNR));
+
+        RestAssured.delete(response.header(LOCATION));
     }
 
     @Test(
@@ -292,6 +301,8 @@ public class NonRDFSourceTest extends CommonResourceTest {
                 .header(ETAG, HeaderMatchers.isValidEntityTag())
             .when()
                 .get(describedBy);
+
+        RestAssured.delete(location);
     }
 
     @Test(
@@ -392,5 +403,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
         Assert.assertTrue(containsLinkHeader(describedBy, "describedby", linksOPTIONS),
                 "Expected Link response header with relation 'describedby' and URI <"
                         + describedBy + "> for LDP-NR OPTIONS request");
+        
+        RestAssured.delete(location);
     }
 }

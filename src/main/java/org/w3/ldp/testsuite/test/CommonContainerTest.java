@@ -55,8 +55,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
             approval = STATUS.WG_APPROVED)
     public void testPutToCreate() {
         String location = putToCreate();
-        RestAssured.expect().statusCode(isSuccessful()).when()
-                .delete(location);
+        RestAssured.delete(location);
     }
 
     @Test(
@@ -231,8 +230,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         String location = postResponse.getHeader(LOCATION);
         assertNotNull(location, MSG_LOC_NOTFOUND);
 
-        RestAssured.expect().statusCode(isSuccessful()).when()
-                .delete(new URI(location));
+        RestAssured.delete(location);
     }
 
     @Test(
@@ -271,7 +269,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
                         + location + ">."
         );
 
-        RestAssured.expect().statusCode(isSuccessful()).when().delete(location);
+        RestAssured.delete(location);
     }
 
     @Test(
@@ -300,7 +298,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         // Cleanup if it actually created something
         String location = postResponse.getHeader(LOCATION);
         if (postResponse.statusCode() == HttpStatus.SC_CREATED && location !=null)
-        	RestAssured.expect().statusCode(isSuccessful()).when().delete(location);
+        	RestAssured.delete(location);
 
         assertNotEquals(postResponse.statusCode(), HttpStatus.SC_CREATED, "Resources with interaction model of only ldp:Resources shouldn't allow container POST-create behavior.");
         
@@ -355,7 +353,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         // Delete the resource to clean up.
         String location = postResponse.getHeader(LOCATION);
         if (location != null) {
-            RestAssured.expect().statusCode(isSuccessful()).when().delete(location);
+            RestAssured.delete(location);
         }
     }
 
@@ -420,7 +418,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         );
 
         // Delete the resource to clean up.
-        RestAssured.expect().statusCode(isSuccessful()).when().delete(location);
+        RestAssured.delete(location);
     }
 
     @Test(
@@ -466,7 +464,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         // Delete the resource to clean up.
         String location = postResponse.getHeader(LOCATION);
         if (location != null) {
-            RestAssured.expect().statusCode(isSuccessful()).when().delete(location);
+            RestAssured.delete(location);
         }
 
     }
