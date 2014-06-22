@@ -427,7 +427,7 @@ public class LdpHtmlReporter implements IReporter {
 				+ mayFailed + " ] },");
 		graphs.write("{ labels: [ \"MUST\", \"SHOULD\", \"MAY\" ],");
 		graphs.write("colors: { passed: '#a2bf2f', failed: '#a80000' },");
-		graphs.write("hover_color: \"#2f59bf\",");
+		graphs.write("hover_color: \"#ccccff\",");
 
 		graphs.write("datalabels: { passed: [ \"" + mustPass + " Passed\", \""
 				+ shouldPass + " Passed\", \"" + mayPass + " Passed\"],");
@@ -451,7 +451,7 @@ public class LdpHtmlReporter implements IReporter {
 		graphs.write("var resource_bar = new Grafico.StackedBarGraph($('resourcesChart'),");
 		writeChartValues(passClasses, failClasses, skipClasses);
 		graphs.write("{ labels: [ \"Passed\", \"Failed\", \"Skipped\" ],");
-		graphs.write("hover_color: \"#2f59bf\",");
+		graphs.write("hover_color: \"#ccccff\",");
 		writeChartLabels(passClasses, failClasses, skipClasses);
 		graphs.write("}); });");
 		graphs.write("</script>");

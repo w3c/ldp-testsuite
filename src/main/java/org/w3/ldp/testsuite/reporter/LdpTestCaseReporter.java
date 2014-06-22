@@ -86,6 +86,10 @@ public class LdpTestCaseReporter {
 	private static int shoulddep = 0;
 	private static int maydep = 0;
 
+	private static int notYetMust = 0;
+	private static int notYetShould = 0;
+	private static int notYetMay = 0;
+
 	public static void main(String[] args) throws IOException {
 		initialRead = false;
 		makeReport();
@@ -98,7 +102,7 @@ public class LdpTestCaseReporter {
 		html.html().head();
 		writeCss();
 		html.title().content("Test Cases Report")._head().body();
-		
+
 		html.h1().content("LDP Test Suite: Test Cases Report");
 
 		createSummaryReport();
@@ -121,7 +125,7 @@ public class LdpTestCaseReporter {
 		html.script().content(StringResource.get("/grafico/grafico-min.js"),
 				NO_ESCAPE);
 		html.write(graphs.toString(), NO_ESCAPE);
-		
+
 		html._body()._html();
 	}
 
@@ -219,26 +223,34 @@ public class LdpTestCaseReporter {
 
 	private static void generateBarGraph() throws IOException {
 
-		html.h2().content("Overal Specification Requirements Coverage");
+		html.h2().content("Overall Specification Requirements Coverage");
 		html.div(id("coverage_bar").class_("barChart"))._div();
 		graphs.write("<script>");
 		graphs.write("Event.observe(window, 'load', function() {");
 		graphs.write("var coverage_bar = new Grafico.StackedBarGraph($('coverage_bar'),");
-		graphs.write("{ approved: [" + mustapp + "," + shouldapp + ", " + mayapp
+		graphs.write("{ approved: [" + mustapp + "," + shouldapp + ", "
+				+ mayapp + "],");
+		graphs.write("pending: [" + (mustpend - notYetMust) + ", "
+				+ (shouldpend - notYetShould) + ", " + (maypend - notYetMay)
 				+ "],");
-		graphs.write("pending: [" + mustpend + ", " + shouldpend + ", " + maypend
-				+ "],");
+		graphs.write("autoPend: [" + notYetMust + ", " + notYetShould + ", "
+				+ notYetMay + " ],");
 		graphs.write("extended: [" + mustex + ", " + shouldex + ", " + mayex
 				+ "],");
-		graphs.write("deprecated: [" + mustdep + ", " + shoulddep + ", " + maydep
-				+ "] },");
+		graphs.write("deprecated: [" + mustdep + ", " + shoulddep + ", "
+				+ maydep + "] },");
 		graphs.write("{ labels: [ \"MUST\", \"SHOULD\", \"MAY\" ],");
-		graphs.write("colors: { approved: '#2f59bf', pending: '#a2bf2f', extended: '#bfa22f', deprecated: '#bf5a2f' },");
-		graphs.write("hover_color: \"#CC0000\",");
-		graphs.write("datalabels: { approved: [ \"" + mustapp + " Approved\", \""
-				+ shouldapp + " Approved\", \"" + mayapp + " Approved\"],");
-		graphs.write("pending: [ \"" + mustpend + " Pending\", \"" + shouldpend
-				+ " Pending\", \"" + maypend + " Pending\" ],");
+		graphs.write("colors: { approved: '#2f59bf', pending: '#a2bf2f', autoPend:'#1cbf5c', extended: '#bfa22f', deprecated: '#bf5a2f' },");
+		graphs.write("hover_color: \"#ccccff\",");
+		graphs.write("datalabels: { approved: [ \"" + mustapp
+				+ " Approved\", \"" + shouldapp + " Approved\", \"" + mayapp
+				+ " Approved\"],");
+		graphs.write("pending: [ \"" + (mustpend - notYetMust)
+				+ " Unimplemented\", \"" + (shouldpend - notYetShould)
+				+ " Unimplemented\", \"" + (maypend - notYetMay) + " Unimplemented\" ],");
+		graphs.write("autoPend: [ \"" + notYetMust + " Awaiting Approval\", \""
+				+ notYetShould + " Awaiting Approval\", \"" + notYetMay
+				+ " Awaiting Approval\" ],");
 		graphs.write("extended: [ \"" + mustex + " Extends\" , \"" + shouldex
 				+ " Extends\" , \"" + mayex + " Extends\"],");
 		graphs.write("deprecated: [ \"" + mustdep + " Deprecated\" , \""
@@ -247,7 +259,6 @@ public class LdpTestCaseReporter {
 		graphs.write("}); });");
 
 		graphs.write("</script>");
-
 	}
 
 	private static void firstRead() throws IOException {
@@ -432,11 +443,10 @@ public class LdpTestCaseReporter {
 		graphs.write("[" + (total - unimpl - extend - depre - client - manual)
 				+ ", " + unimpl + ", " + extend + ", " + manual + ", " + client
 				+ ", " + depre + "],");
-		graphs.write(
-				"{ labels: [ \"Automated\", \"Unimplemented\", \"Extends\", \"Manual\", \"Client\", \"Deprecated\" ],");
+		graphs.write("{ labels: [ \"Automated\", \"Unimplemented\", \"Extends\", \"Manual\", \"Client\", \"Deprecated\" ],");
 		graphs.write("color: '#2f59bf',");
 		graphs.write("label_rotation: -10,");
-		graphs.write("hover_color: \"#CC0000\",");
+		graphs.write("hover_color: \"#ccccff\",");
 		graphs.write("datalabels: { one: ["
 				+ (total - unimpl - extend - depre - client - manual) + ", "
 				+ unimpl + ", " + extend + ", " + manual + ", " + client + ", "
@@ -542,12 +552,27 @@ public class LdpTestCaseReporter {
 				switch (testLdp.approval()) {
 				case WG_PENDING:
 					pending++;
-					if (group.contains("MUST"))
-						mustpend++;
-					if (group.contains("SHOULD"))
-						shouldpend++;
-					if (group.contains("MAY"))
-						maypend++;
+					if (group.contains("MUST")) {
+						if (testLdp.testMethod().equals(
+								SpecTest.METHOD.AUTOMATED))
+							notYetMust++;
+						else
+							mustpend++;
+					}
+					if (group.contains("SHOULD")) {
+						if (testLdp.testMethod().equals(
+								SpecTest.METHOD.AUTOMATED))
+							notYetShould++;
+						else
+							shouldpend++;
+					}
+					if (group.contains("MAY")) {
+						if (testLdp.testMethod().equals(
+								SpecTest.METHOD.AUTOMATED))
+							notYetMay++;
+						else
+							maypend++;
+					}
 					break;
 				case WG_APPROVED:
 					approved++;
