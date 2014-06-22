@@ -32,6 +32,7 @@ public class LdpTestCaseReporter {
 
 	private static ArrayList<String> clients = new ArrayList<String>();
 	private static ArrayList<String> manuals = new ArrayList<String>();
+	private static ArrayList<String> readyToBeApproved = new ArrayList<String>();
 
 	private static int totalTests = 0;
 	private static int automated = 0;
@@ -61,7 +62,8 @@ public class LdpTestCaseReporter {
 	private static int approved = 0;
 	private static int extended = 0;
 	private static int deprecated = 0;
-
+	private static int clarification = 0;
+	
 	private static Class<BasicContainerTest> bcTest = BasicContainerTest.class;
 	private static Class<RdfSourceTest> rdfSourceTest = RdfSourceTest.class;
 	private static Class<IndirectContainerTest> indirectContainerTest = IndirectContainerTest.class;
@@ -101,9 +103,10 @@ public class LdpTestCaseReporter {
 		html = new HtmlCanvas();
 		html.html().head();
 		writeCss();
-		html.title().content("Test Cases Report")._head().body();
+		html.title().content("LDP: Test Cases Coverage Report")._head().body();
 
-		html.h1().content("LDP Test Suite: Test Cases Report");
+		html.h1().content("W3C Linked Data Platform (LDP) Test Suite: Test Cases Coverate Report");
+		html.p().a(href("http://www.w3.org/2012/ldp/")).write("See also W3C Linked Data Platform WG")._a()._p();
 
 		createSummaryReport();
 		toTop();
@@ -147,14 +150,17 @@ public class LdpTestCaseReporter {
 		html.td().b().write("" + totalTests)._b().write(" Total Tests");
 		html.ul().li().b().write(approved + " ")._b().write("WG Approved")
 				._li();
-		html.li().b().write(pending + " ")._b().write("Approval Pending")._li();
+		html.li().b().write(pending + " ")._b().write("Incomplete")._li();
 		html.li().b().write(extended + " ")._b().write("Extension")._li();
 		html.li().b().write(deprecated + " ")._b().write("No longer valid")
 				._li();
+		html.li().b().write(clarification + " ")._b().write("Needs to be clarified with WG")
+		._li();
 		html._ul();
-		// TODO: Add "awaiting approval": !not-impl && pending
-		// TODO: Add link to to grouping of kinds of tests (approved or not).
-		// Perhaps a sortable table?
+		
+		html.br().b().a(href("#tobeapproved")).write(notYetMust+notYetShould+notYetMay+
+				" Ready for WG Approval")._a()._b();
+
 		html._td();
 
 		html.td();
@@ -272,6 +278,21 @@ public class LdpTestCaseReporter {
 	}
 
 	private static void generateListOfTestCases() throws IOException {
+		html.h2(id("tobeapproved")).content("Test Cases Ready for WG Approval");
+
+		if (readyToBeApproved.size() == 0) {
+			html.b().write("No test cases awaiting WG approval.")._b().br();
+		} else {
+			html.p().write("For details of test cases, ").a(href("https://github.com/w3c/ldp-testsuite")).
+				write("see source in GitHub")._a()._p();
+			html.ul();
+			for(String tc: readyToBeApproved) {
+				html.li().write(tc)._li();
+			}
+			html._ul();
+		}
+		toTop();
+		
 		html.h2().content("Implemented Test Classes");
 
 		html.b().a(href("#" + rdfSourceTest.getCanonicalName()))
@@ -476,7 +497,6 @@ public class LdpTestCaseReporter {
 		for (Method method : bcMethods) {
 			if (method.isAnnotationPresent(Test.class)) {
 				if (!initialRead) {
-					totalTests++;
 					generateInformation(method, name);
 				} else {
 					html.li().b().a(id(method.getName()))
@@ -502,12 +522,13 @@ public class LdpTestCaseReporter {
 			test = method.getAnnotation(Test.class);
 
 			if (!initialRead) {
+				totalTests++;
 
 				METHOD methodStatus = testLdp.testMethod();
 				String group = Arrays.toString(test.groups());
 				if (!test.enabled())
 					disabled++;
-				if (methodStatus.equals(METHOD.AUTOMATED) && test.enabled())
+				if (methodStatus.equals(METHOD.AUTOMATED))
 					automated++;
 				if (methodStatus.equals(METHOD.NOT_IMPLEMENTED))
 					unimplemented++;
@@ -553,24 +574,27 @@ public class LdpTestCaseReporter {
 				case WG_PENDING:
 					pending++;
 					if (group.contains("MUST")) {
-						if (testLdp.testMethod().equals(
-								SpecTest.METHOD.AUTOMATED))
+						if (testLdp.testMethod() !=
+								SpecTest.METHOD.NOT_IMPLEMENTED) {
 							notYetMust++;
-						else
+							readyToBeApproved.add(method.getName());
+						} else
 							mustpend++;
 					}
 					if (group.contains("SHOULD")) {
-						if (testLdp.testMethod().equals(
-								SpecTest.METHOD.AUTOMATED))
+						if (testLdp.testMethod() !=
+								SpecTest.METHOD.NOT_IMPLEMENTED) {
 							notYetShould++;
-						else
+							readyToBeApproved.add(method.getName());
+						} else
 							shouldpend++;
 					}
 					if (group.contains("MAY")) {
-						if (testLdp.testMethod().equals(
-								SpecTest.METHOD.AUTOMATED))
+						if (testLdp.testMethod() !=
+								SpecTest.METHOD.NOT_IMPLEMENTED) {
 							notYetMay++;
-						else
+							readyToBeApproved.add(method.getName());
+						} else
 							maypend++;
 					}
 					break;
@@ -600,6 +624,9 @@ public class LdpTestCaseReporter {
 						shoulddep++;
 					if (group.contains("MAY"))
 						maydep++;
+					break;
+				case WG_CLARIFICATION:
+					clarification++;
 					break;
 				default:
 					break;
