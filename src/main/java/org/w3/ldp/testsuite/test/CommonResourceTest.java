@@ -102,8 +102,7 @@ public abstract class CommonResourceTest extends LdpTest {
     @SpecTest(
             specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-etags",
             testMethod = METHOD.AUTOMATED,
-            approval = STATUS.WG_CLARIFICATION,
-            comment = "the resource should exist before? (Sergio)")
+            approval = STATUS.WG_PENDING)
     public void testETagHeadersGet() {
         // GET requests
         RestAssured
