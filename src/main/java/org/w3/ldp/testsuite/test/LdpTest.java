@@ -7,11 +7,13 @@ import java.util.List;
 
 import javax.ws.rs.core.Link;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jboss.resteasy.plugins.delegates.LinkDelegate;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.w3.ldp.testsuite.http.HttpHeaders;
+import org.w3.ldp.testsuite.http.LdpPreferences;
 import org.w3.ldp.testsuite.http.MediaTypes;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 
@@ -23,7 +25,7 @@ import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Header;
 import com.jayway.restassured.response.Response;
 
-public abstract class LdpTest implements HttpHeaders, MediaTypes {
+public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences {
 
 	/**
 	 * Alternate content to use on POST requests
@@ -183,5 +185,39 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes {
             }
         }
         return null;
+    }
+    
+    /**
+     * Checks the response for a
+     * <code>Preference-Applied: return=representation</code> response header.
+     * 
+     * @param response
+     *            the HTTP response
+     * @return true if and only if the response contains the expected
+     *         <code>Preference-Applied</code> header
+     */
+    protected boolean isPreferenceApplied(Response response) {
+       List<Header> preferenceAppliedHeaders = response.getHeaders().getList(PREFERNCE_APPLIED); 
+       for (Header h : preferenceAppliedHeaders) {
+            // Handle optional whitespace, quoted preference token values, and
+            // other tokens in the Preference-Applied response header.
+           if (h.getValue().matches("(^|[ ;])return *= *\"?representation\"?($|[ ;])")) {
+               return true;
+           }
+       }
+ 
+       return false;
+    }
+ 
+    public static String include(String... preferences) {
+        return ldpPreference(PREFERENCE_INCLUDE, preferences);
+    }
+    
+    public static String omit(String... preferences) {
+       return ldpPreference(PREFERENCE_OMIT, preferences); 
+    }
+ 
+    private static String ldpPreference(String name, String... values) {
+        return "return=representation; " + name + "=\"" + StringUtils.join(values, " ") + "\"";
     }
 }
