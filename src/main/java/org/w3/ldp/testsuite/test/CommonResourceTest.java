@@ -393,7 +393,7 @@ public abstract class CommonResourceTest extends LdpTest {
     @Test(
             enabled = false,
             groups = {MUST},
-            dependsOnMethods = {"testUseHttpIfMatchHeaderAndETags"},
+            dependsOnMethods = {"testPutRequiresIfMatch"},
             description = "LDP servers MUST respond with status code 412 "
                     + "(Condition Failed) if ETags fail to match when there "
                     + "are no other errors with the request [HTTP11]. LDP "
