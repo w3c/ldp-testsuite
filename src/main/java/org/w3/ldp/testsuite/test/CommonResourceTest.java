@@ -80,21 +80,6 @@ public abstract class CommonResourceTest extends LdpTest {
     }
 
     @Test(
-            enabled = false,
-            groups = {MAY},
-            description = "LDP servers MAY host a mixture of LDPRs, "
-                    + "LDP-RSs and LDP-NRs. For example, it is common "
-                    + "for LDP servers to need to host binary or text "
-                    + "resources that do not have useful RDF representations.")
-    @SpecTest(
-            specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-binary",
-            testMethod = METHOD.NOT_IMPLEMENTED,
-            approval = STATUS.WG_PENDING)
-    public void testOtherMediaTypes() {
-        // TODO: Impl testOtherMediaTypes
-    }
-
-    @Test(
             groups = {MUST},
             description = "LDP server responses MUST use entity tags "
                     + "(either weak or strong ones) as response "
