@@ -418,7 +418,7 @@ public abstract class CommonResourceTest extends LdpTest {
         RestAssured
             .given()
                 .contentType(response.getContentType())
-                .header(ETAG, "\"This is not the ETag you're looking for\"") // bad ETag value
+                .header(IF_MATCH, "\"This is not the ETag you're looking for\"") // bad ETag value
                 .body(response.asByteArray())
             .expect()
                 .statusCode(HttpStatus.SC_PRECONDITION_FAILED)
