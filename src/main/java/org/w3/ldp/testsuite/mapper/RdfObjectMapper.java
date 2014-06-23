@@ -29,8 +29,6 @@ public class RdfObjectMapper implements ObjectMapper {
             return "RDF/XML";
         }
 
-        // TODO: JSON-LD
-
         throw new IllegalArgumentException("Unsupported media type: " + mediaType);
     }
 
