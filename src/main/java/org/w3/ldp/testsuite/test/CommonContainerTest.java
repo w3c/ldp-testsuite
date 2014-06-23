@@ -94,9 +94,6 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         );
     }
 
-    /**
-     * @see #testServerHonorsSlug()
-     */
     @Test(
             groups = {SHOULD},
             description = "LDP servers SHOULD respect all of a client's LDP-defined "
@@ -163,37 +160,6 @@ public abstract class CommonContainerTest extends RdfSourceTest {
                 "Container has containment triples when client requested server omit them");
     }
     
-    /**
-     * @see #testPreferContainmentTriples()
-     */
-    @Test(
-            groups = {SHOULD},
-            description = "LDP servers SHOULD respect all of a client's LDP-defined "
-                    + "hints, for example which subsets of LDP-defined state the "
-                    + "client is interested in processing, to influence the set of "
-                    + "triples returned in representations of an LDPC, particularly for "
-                    + "large LDPCs. See also [LDP-PAGING].")
-    @SpecTest(
-            specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-prefer",
-            testMethod = METHOD.AUTOMATED,
-            approval = STATUS.WG_PENDING)
-    public void testServerHonorsSlug() {
-        skipIfMethodNotAllowed(HttpMethod.POST);
-
-        // Come up with a unique slug header.
-        String slug = UUID.randomUUID().toString();
-
-        // POST two resources with the same Slug header and content to make sure
-        // they have different URIs.
-        Model content = postContent();
-        String location = post(content, slug);
-        
-        assertTrue(location.contains(slug), "Slug is not part of the return Location");
-        
-        // Clean up.
-        RestAssured.delete(location);
-    }
-
     @Test(
             groups = {SHOULD},
             description = "LDPC clients SHOULD create member resources by "
@@ -732,10 +698,23 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					+ "server's final choice of resource URI.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-slug", 
-			testMethod = METHOD.NOT_IMPLEMENTED, 
+			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_PENDING)
-	public void testAllowSlugUri() {
-		// TODO Impl testAllowSlugUri
+	public void testServerHonorsSlug() {
+        skipIfMethodNotAllowed(HttpMethod.POST);
+
+        // Come up with a unique slug header.
+        String slug = UUID.randomUUID().toString();
+
+        // POST two resources with the same Slug header and content to make sure
+        // they have different URIs.
+        Model content = postContent();
+        String location = post(content, slug);
+        
+        assertTrue(location.contains(slug), "Slug is not part of the return Location");
+        
+        // Clean up.
+        RestAssured.delete(location);
 	}
 	
 	@Test(
