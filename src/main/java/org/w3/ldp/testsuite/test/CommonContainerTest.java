@@ -458,36 +458,6 @@ public abstract class CommonContainerTest extends RdfSourceTest {
     }
 
     @Test(
-            groups = {MAY},
-            enabled = false, // not implemented
-            description = "Upon successful creation of an LDP-NR (HTTP status code of 201-Created "
-                    + "and URI indicated by Location response header), LDP servers MAY create an "
-                    + "associated LDP-RS to contain data about the newly created LDP-NR.")
-    @SpecTest(
-            specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-createbinlinkmetahdr",
-            testMethod = METHOD.NOT_IMPLEMENTED,
-            approval = STATUS.WG_PENDING)
-    public void testCreateAssociatedRdfSource() {
-        // TODO: Impl testCreateAssociatedRdfSource
-    }
-
-    @Test(
-            groups = {MUST},
-            enabled = false, // not implemented
-            dependsOnMethods = {"testCreateAssociatedRdfSource"},
-            description = "If an LDPC server creates this associated LDP-RS it MUST indicate "
-                    + "its location on the HTTP response using the HTTP Link response header "
-                    + "with link relation describedby and href to be the URI of the associated "
-                    + "LDP-RS resource [RFC5988].")
-    @SpecTest(
-            specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-createbinlinkmetahdr",
-            testMethod = METHOD.NOT_IMPLEMENTED,
-            approval = STATUS.WG_PENDING)
-    public void testAssociatedRdfSourceLinkResponseHeader() {
-        // TODO: Impl testAssociatedRdfSourceLinkResponseHeader
-    }
-
-    @Test(
             groups = {MUST},
             description = "LDP servers that support POST MUST include an Accept-Post "
                     + "response header on HTTP OPTIONS responses, listing post document "
@@ -621,21 +591,6 @@ public abstract class CommonContainerTest extends RdfSourceTest {
     }
 
     @Test(
-            groups = {MUST},
-            enabled = false, // not implemented
-            description = "When an LDPR identified by the object of a containment triple "
-                    + "is deleted, and the LDPC server created an associated LDP-RS "
-                    + "(see the LDPC POST section), the LDPC server MUST also remove the "
-                    + "associated LDP-RS it created.")
-    @SpecTest(
-            specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-del-contremovescontres",
-            testMethod = METHOD.NOT_IMPLEMENTED,
-            approval = STATUS.WG_PENDING)
-    public void testDeleteContainerAssociatedResource() {
-        // TODO: Impl testDeleteContainerAssociatedResource
-    }
-
-    @Test(
             groups = {SHOULD},
             description = "LDP servers are RECOMMENDED to support HTTP PATCH as the "
                     + "preferred method for updating an LDPC's empty-container triples. ")
@@ -654,24 +609,6 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         // TODO: Actually try to patch the containment triples.
     }
 
-    @Test(
-            groups = {MUST},
-            enabled = false, // not implemented
-            description = "When an LDPC server creates an LDP-NR (for example, one "
-                    + "whose representation was HTTP POSTed to the LDPC) the LDP "
-                    + "server might create an associated LDP-RS to contain data about "
-                    + "the non-LDPR (see LDPC POST section). For LDP-NRs that have this "
-                    + "associated LDP-RS, an LDPC server MUST provide an HTTP Link "
-                    + "header whose target URI is the associated LDP-RS, and whose link "
-                    + "relation type is describedby [RFC5988].")
-    @SpecTest(
-            specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-options-linkmetahdr",
-            testMethod = METHOD.NOT_IMPLEMENTED,
-            approval = STATUS.WG_PENDING)
-    public void testProvideLinkHeaderAssociatedRdfSource() {
-        // TODO: Impl testProvideLinkHeaderAssociatedRdfSource
-    }
-    
 	@Test(
 			enabled = false, 
 			groups = { MAY }, 
