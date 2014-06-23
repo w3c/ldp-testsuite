@@ -85,7 +85,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
             specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-createbins",
             testMethod = METHOD.AUTOMATED,
             approval = STATUS.WG_APPROVED)
-    public void testPostResource() throws IOException {
+    public void testPostNonRDFSource() throws IOException {
         // Test constants
         final String slug = "test",
                 file = slug + ".png",
