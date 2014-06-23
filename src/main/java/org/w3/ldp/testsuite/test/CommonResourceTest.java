@@ -403,7 +403,7 @@ public abstract class CommonResourceTest extends LdpTest {
                     + "the request [RFC6585].")
     @SpecTest(
             specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-precond",
-            testMethod = METHOD.NOT_IMPLEMENTED,
+            testMethod = METHOD.AUTOMATED,
             approval = STATUS.WG_APPROVED)
     public void testPutBadETag() {
         skipIfMethodNotAllowed(HttpMethod.PUT);
