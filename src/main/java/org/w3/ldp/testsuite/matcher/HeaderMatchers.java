@@ -23,6 +23,7 @@ import org.hamcrest.CustomTypeSafeMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.jboss.resteasy.plugins.delegates.LinkDelegate;
+import org.w3.ldp.testsuite.http.MediaTypes;
 
 import javax.ws.rs.core.Link;
 
@@ -76,21 +77,37 @@ public class HeaderMatchers {
         };
     }
  
-    /**
-     * Checks that the ETag value is present and valid as defined in RFC2616
-     * 
-     * @param item
-     *            the header value
-     * @return true only if the ETag is valid
-     * 
-     * @see <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19">HTTP 1.1: Section 14.19 - ETag</a>
-     */
+
     public static Matcher<String> isValidEntityTag() {
         return new CustomTypeSafeMatcher<String>("a valid EntityTag value as defined in RFC2616 section 14.19 (did you quote the value?)") {
+            /**
+             * Checks that the ETag value is present and valid as defined in RFC2616
+             * 
+             * @param item
+             *            the header value
+             * @return true only if the ETag is valid
+             * 
+             * @see <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19">HTTP 1.1: Section 14.19 - ETag</a>
+             */
             @Override
             protected boolean matchesSafely(String item) {
                 return item.matches(ETAG_REGEX);
             }
         };
+    }
+    
+    /**
+     * Matcher testing a Content-Type response header's compatibility with
+     * JSON-LD (expects application/ld+json or application/json).
+     * 
+     * @return the matcher
+     */
+    public static Matcher<String> isJsonLdCompatibleContentType() {
+        return new CustomTypeSafeMatcher<String>("application/ld+json or application/json") {
+            @Override
+            protected boolean matchesSafely(String item) {
+                return item.equals(MediaTypes.APPLICATION_LD_JSON) || item.equals(MediaTypes.APPLICATION_JSON);
+            }
+        }; 
     }
 }

@@ -4,6 +4,7 @@ import static org.testng.Assert.assertTrue;
 import static org.w3.ldp.testsuite.matcher.HeaderMatchers.isValidEntityTag;
 import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
+import java.io.IOException;
 import java.net.URISyntaxException;
 
 import org.apache.http.HttpStatus;
@@ -17,7 +18,11 @@ import org.w3.ldp.testsuite.exception.SkipClientTestException;
 import org.w3.ldp.testsuite.exception.SkipNotTestableException;
 import org.w3.ldp.testsuite.http.HttpMethod;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
+import org.w3.ldp.testsuite.matcher.HeaderMatchers;
 
+import com.github.jsonldjava.core.JsonLdError;
+import com.github.jsonldjava.core.JsonLdProcessor;
+import com.github.jsonldjava.utils.JsonUtils;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
@@ -383,16 +388,26 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	}
  
 	@Test(
-			enabled = false, 
 			groups = { SHOULD }, 
 			description = "LDP servers SHOULD offer a application/ld+json representation"
 					+ " of the requested LDP-RS [JSON-LD]. ")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-get-jsonld", 
-			testMethod = METHOD.NOT_IMPLEMENTED, 
+			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_PENDING)
-	public void testJsonLdRepresentation() {
-		// TODO Impl testJsonLdRepresentation
+	public void testJsonLdRepresentation() throws IOException, JsonLdError {
+	    Response response = RestAssured
+	        .given()
+	            .header(ACCEPT, "application/ld+json, application/json;q=0.5")
+	         .expect()
+	             .statusCode(isSuccessful())
+	             .contentType(HeaderMatchers.isJsonLdCompatibleContentType())
+	         .when()
+	             .get(getResourceUri());
+	
+	    // Make sure it parses as JSON-LD.
+	    Object json = JsonUtils.fromInputStream(response.asInputStream());
+	    JsonLdProcessor.toRDF(json); // throws JsonLdError if not valid
 	}
 
     // Update a resource then later test if the updates were applied (i.e., on a subsequent GET).
