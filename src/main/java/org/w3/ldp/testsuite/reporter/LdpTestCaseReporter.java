@@ -33,6 +33,7 @@ public class LdpTestCaseReporter {
 	private static ArrayList<String> clients = new ArrayList<String>();
 	private static ArrayList<String> manuals = new ArrayList<String>();
 	private static ArrayList<String> readyToBeApproved = new ArrayList<String>();
+	private static ArrayList<String> needCode = new ArrayList<String>();
 
 	private static int totalTests = 0;
 	private static int automated = 0;
@@ -197,7 +198,7 @@ public class LdpTestCaseReporter {
 		html.ul();
 
 		html.li().b().write(unimplemented + " ")._b()
-				.write("of the Tests yet to be Coded")._li();
+				.write("of the Tests ").a(href("#needCode")).write("Yet to be Coded")._a()._li();
 		/*
 		 * TODO: Determine if disabled is really valuable or not
 		 * html.li().b().write(disabled +
@@ -252,8 +253,8 @@ public class LdpTestCaseReporter {
 				+ " Approved\", \"" + shouldapp + " Approved\", \"" + mayapp
 				+ " Approved\"],");
 		graphs.write("pending: [ \"" + (mustpend - notYetMust)
-				+ " Unimplemented\", \"" + (shouldpend - notYetShould)
-				+ " Unimplemented\", \"" + (maypend - notYetMay) + " Unimplemented\" ],");
+				+ " Pending\", \"" + (shouldpend - notYetShould)
+				+ " Pending\", \"" + (maypend - notYetMay) + " Pending\" ],");
 		graphs.write("autoPend: [ \"" + notYetMust + " Awaiting Approval\", \""
 				+ notYetShould + " Awaiting Approval\", \"" + notYetMay
 				+ " Awaiting Approval\" ],");
@@ -289,6 +290,18 @@ public class LdpTestCaseReporter {
 			for(String tc: readyToBeApproved) {
 				html.li().write(tc)._li();
 			}
+			html._ul();
+		}
+		toTop();
+		
+		html.h2(id("needCode")).content("Test Cases Yet to be Implemented");
+		if (needCode.size() == 0)
+			html.b().write("No test cases that need to be Implemented")._b()
+					.br();
+		else {
+			html.ul();
+			for (String tc : needCode)
+				html.li().content(tc);
 			html._ul();
 		}
 		toTop();
@@ -329,6 +342,8 @@ public class LdpTestCaseReporter {
 				.content(nonRdfSourceTest.getCanonicalName())._b();
 		writeTestClassTable(nonRdfSourceTest);
 
+		toTop();
+		
 		html.h2().a(id("manualTests"))
 				.content("Tests that Must be Tested Manually")._h2();
 		generateList(manuals);
@@ -530,8 +545,10 @@ public class LdpTestCaseReporter {
 					disabled++;
 				if (methodStatus.equals(METHOD.AUTOMATED))
 					automated++;
-				if (methodStatus.equals(METHOD.NOT_IMPLEMENTED))
+				if (methodStatus.equals(METHOD.NOT_IMPLEMENTED)){
 					unimplemented++;
+					needCode.add(method.getName());
+				}
 				if (methodStatus.equals(METHOD.CLIENT_ONLY)) {
 					clientTest++;
 					clients.add(method.getName());
