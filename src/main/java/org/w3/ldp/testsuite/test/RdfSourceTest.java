@@ -363,6 +363,11 @@ public abstract class RdfSourceTest extends CommonResourceTest {
                 .when().get(getResourceUri()).as(Model.class, new RdfObjectMapper(getResourceUri()));
     }
     
+    /**
+     * This is a client-only test. Server tests are covered by
+     * {@link CommonContainerTest#testPreferContainmentTriples()} and
+     * {@link DirectContainerTest#testPreferMembershipTriples()}.
+     */
 	@Test(
 			enabled = false, 
 			groups = { MAY }, 
@@ -371,12 +376,12 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 					+ "the Prefer Request Header defines hints that apply to LDP-RSs. ")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-cli-can-hint", 
-			testMethod = METHOD.NOT_IMPLEMENTED, 
+			testMethod = METHOD.CLIENT_ONLY,
 			approval = STATUS.WG_PENDING)
-	public void testLdpHasHints() {
-		// TODO Impl testLdpHasHints
+	public void testClientMayProvideHints() {
+	    throw new SkipClientTestException();
 	}
-    	
+ 
 	@Test(
 			enabled = false, 
 			groups = { SHOULD }, 
