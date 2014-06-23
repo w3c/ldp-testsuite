@@ -723,22 +723,6 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	@Test(
 			enabled = false, 
 			groups = { MAY }, 
-			description = "LDP servers MAY accept an HTTP POST of non-RDF "
-					+ "representations (LDP-NRs) for creation of any kind of "
-					+ "resource, for example binary resources. See the Accept-Post "
-					+ "section for details on how clients can discover whether a "
-					+ "LDPC supports this behavior. ")
-	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-createbins", 
-			testMethod = METHOD.NOT_IMPLEMENTED, 
-			approval = STATUS.WG_PENDING)
-	public void testAcceptNonRdfPost() {
-		// TODO Impl TestAcceptNonRdfPost
-	}
-	
-	@Test(
-			enabled = false, 
-			groups = { MAY }, 
 			description = "LDP servers MAY allow clients to suggest "
 					+ "the URI for a resource created through POST, "
 					+ "using the HTTP Slug header as defined in [RFC5023]. "
