@@ -66,7 +66,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
         nonRdfSource = response.getHeader(LOCATION);
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void deleteTestResource() {
         RestAssured.delete(nonRdfSource);
     }

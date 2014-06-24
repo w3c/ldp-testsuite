@@ -747,6 +747,8 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 
         String loc2 = post(content, slug);
         assertNotEquals(loc1, loc2, "Server reused URIs for POSTed resources.");
+        
+        RestAssured.delete(loc2);
     }
 
     private String post(Model content, String slug) {

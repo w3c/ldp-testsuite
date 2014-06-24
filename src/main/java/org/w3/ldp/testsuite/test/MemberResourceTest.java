@@ -55,7 +55,7 @@ public class MemberResourceTest extends RdfSourceTest {
         return memberResource;
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void deleteTestResource() {
         // If container isn't null, we created the resource ourselves. To clean up, delete the resource.
         if (container != null) {
