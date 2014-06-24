@@ -33,6 +33,11 @@ public class MethodEnabler implements IAnnotationTransformer {
 		
 		if (transforms.containsKey(methodName)) {
 			annotation.setEnabled(transforms.get(methodName));
+			
+			String[] dependencies = annotation.getDependsOnMethods();
+			for (String dep : dependencies) {
+				transforms.put(dep, true);
+			}
 		} else {	
 			// If it is not in the transforms map and defEnabled is true, 
 			// do what its annotation says
