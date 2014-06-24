@@ -27,6 +27,7 @@ import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.exception.SkipClientTestException;
 import org.w3.ldp.testsuite.http.HttpMethod;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
+import org.w3.ldp.testsuite.matcher.HeaderMatchers;
 import org.w3.ldp.testsuite.vocab.LDP;
 
 import com.hp.hpl.jena.rdf.model.Model;
@@ -427,17 +428,29 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 
     @Test(
             groups = {SHOULD},
-            enabled = false, // not implemented
             description = "LDP servers SHOULD assign the URI for the resource to be created "
                     + "using server application specific rules in the absence of a client hint.")
     @SpecTest(
             specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-serverassignuri",
-            testMethod = METHOD.NOT_IMPLEMENTED,
+            testMethod = METHOD.AUTOMATED,
             approval = STATUS.WG_PENDING)
-    public void testAssignUri() {
+    public void testPostNoSlug() {
         skipIfMethodNotAllowed(HttpMethod.POST);
 
-        // TODO: Impl testAssignUri
+        // POST content with no Slug and see if the server assigns a URI.
+        Model model = postContent();
+        Response postResponse = RestAssured
+            .given()
+                .contentType(TEXT_TURTLE)
+                .body(model, new RdfObjectMapper())
+             .expect()
+                .statusCode(HttpStatus.SC_CREATED)
+                .header(LOCATION, HeaderMatchers.headerPresent())
+            .when()
+                .post(getResourceUri());
+
+        // Delete the resource to clean up.
+        RestAssured.delete(postResponse.getHeader(LOCATION));
     }
 
     @Test(
