@@ -2,6 +2,7 @@ package org.w3.ldp.testsuite.test;
 
 import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
@@ -31,22 +32,40 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes,
 	/**
 	 * Alternate content to use on POST requests
 	 */
-	protected static String postPath;
 	private static Model postModel;
 
-	@BeforeSuite(alwaysRun = true)
-	@Parameters("post")
-	public void setPostContent(@Optional String post) {
-		postPath = post;
+	/**
+	 * Alternate content to use on member resource initialization
+	 * {@link org.w3.ldp.testsuite.test.MemberResourceTest}
+	 */
+	private static Model memberModel;
 
-		Model model = ModelFactory.createDefaultModel();
+	private Model readModel(String path) {
 
-		if (postPath != null) {
+		Model model = null;
+		if (path != null) {
+			model = ModelFactory.createDefaultModel();
 			InputStream inputStream = getClass().getClassLoader()
-					.getResourceAsStream(postPath);
+					.getResourceAsStream(path);
 
-			postModel = model.read(inputStream, "", "TURTLE");
+			model.read(inputStream, "", "TURTLE");
+			try {
+				inputStream.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+
+		return model;
+	}
+
+	@BeforeSuite(alwaysRun = true)
+	@Parameters({ "postTtl", "memberTtl" })
+	public void setPostContent(@Optional String postTtl,
+			@Optional String memberTtl) {
+
+		postModel = this.readModel(postTtl);
+		memberModel = this.readModel(memberTtl);
 	}
 
 	/**
@@ -117,12 +136,7 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes,
 				.as(Model.class, new RdfObjectMapper(uri));
 	}
 
-	protected Model postContent() {
-
-		if (postModel != null) {
-			return postModel;
-		}
-		
+	private Model postBug() {
 		Model model = ModelFactory.createDefaultModel();
 		Resource resource = model.createResource("",
 				model.createResource("http://example.com/ns#Bug"));
@@ -134,8 +148,24 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes,
 		return model;
 	}
 
+	protected Model postContent() {
+		if (postModel != null) {
+			return postModel;
+		}
+
+		return postBug();
+	}
+
+	protected Model postMember() {
+		if (memberModel != null) {
+			return memberModel;
+		}
+
+		return postBug();
+	}
+
 	/**
-	 * Check if the header is contained in the headers list (becase RestAssured
+	 * Check if the header is contained in the headers list (because RestAssured
 	 * only checks the FIRST header)
 	 *
 	 * @param header
