@@ -37,7 +37,7 @@ public class HeaderMatchers {
      * 
      * @see <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19">HTTP 1.1: Section 14.19 - ETag</a>
      */
-    public final static String ETAG_REGEX = "([wW]/)?\"([^\"]|\\\\\")*\"";
+    public final static String ETAG_REGEX = "^(W/)?\"([^\"]|\\\\\")*\"$";
 
     public static Matcher<String> headerPresent() {
         return new BaseMatcher<String>() {
@@ -91,7 +91,7 @@ public class HeaderMatchers {
              */
             @Override
             protected boolean matchesSafely(String item) {
-                return item.matches(ETAG_REGEX);
+                return item.trim().matches(ETAG_REGEX);
             }
         };
     }
