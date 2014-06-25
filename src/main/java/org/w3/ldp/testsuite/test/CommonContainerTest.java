@@ -661,17 +661,25 @@ public abstract class CommonContainerTest extends RdfSourceTest {
     }
 
 	@Test(
-			enabled = false, 
 			groups = { MAY }, 
 			description = "The representation of a LDPC MAY have an rdf:type "
 					+ "of ldp:Container for Linked Data Platform Container. Non-normative "
 					+ "note: LDPCs might have additional types, like any LDP-RS. ")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-typecontainer", 
-			testMethod = METHOD.NOT_IMPLEMENTED, 
+			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_PENDING)
-	public void testContainerHasRdfType() {
-		// TODO Impl testcontainerHasRdfType
+	public void testRdfTypeLdpContainer() {
+	    String container = getResourceUri();
+        Model m = RestAssured
+            .given()
+                .header(ACCEPT, TEXT_TURTLE)
+            .expect()
+                .statusCode(isSuccessful())
+            .when()
+                .get(container).as(Model.class, new RdfObjectMapper(container));
+        assertTrue(m.contains(m.getResource(container), RDF.type, m.getResource(LDP.Container.stringValue())),
+                "LDPC does not have an rdf:type of ldp:Container");
 	}
 	
 	@Test(
