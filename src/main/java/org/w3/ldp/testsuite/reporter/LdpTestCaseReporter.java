@@ -5,6 +5,7 @@ import org.rendersnake.StringResource;
 import org.testng.annotations.Test;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
+import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.test.*;
 
 import java.io.BufferedWriter;
@@ -48,13 +49,10 @@ public class LdpTestCaseReporter {
 	private static int should = 0;
 	private static int may = 0;
 
-	private static int reqImpl = 0;
-
 	private static int mustImpl = 0;
 	private static int shouldImpl = 0;
 	private static int mayImpl = 0;
 
-	private static int reqNotImpl = 0;
 	private static int mustNotImpl = 0;
 	private static int mayNotImpl = 0;
 	private static int shouldNotImpl = 0;
@@ -64,7 +62,7 @@ public class LdpTestCaseReporter {
 	private static int extended = 0;
 	private static int deprecated = 0;
 	private static int clarification = 0;
-	
+
 	private static Class<BasicContainerTest> bcTest = BasicContainerTest.class;
 	private static Class<RdfSourceTest> rdfSourceTest = RdfSourceTest.class;
 	private static Class<IndirectContainerTest> indirectContainerTest = IndirectContainerTest.class;
@@ -72,14 +70,6 @@ public class LdpTestCaseReporter {
 	private static Class<CommonContainerTest> commonContainerTest = CommonContainerTest.class;
 	private static Class<CommonResourceTest> commonResourceTest = CommonResourceTest.class;
 	private static Class<NonRDFSourceTest> nonRdfSourceTest = NonRDFSourceTest.class;
-
-	private static int mustpend = 0;
-	private static int shouldpend = 0;
-	private static int maypend = 0;
-
-	private static int mustapp = 0;
-	private static int shouldapp = 0;
-	private static int mayapp = 0;
 
 	private static int mustex = 0;
 	private static int shouldex = 0;
@@ -92,6 +82,14 @@ public class LdpTestCaseReporter {
 	private static int notYetMust = 0;
 	private static int notYetShould = 0;
 	private static int notYetMay = 0;
+
+	private static int mustMan;
+	private static int shouldMan;
+	private static int mayMan;
+
+	private static int mustClient;
+	private static int shouldClient;
+	private static int mayClient;
 
 	public static void main(String[] args) throws IOException {
 		initialRead = false;
@@ -156,11 +154,11 @@ public class LdpTestCaseReporter {
 		html.li().b().write(deprecated + " ")._b().write("No longer valid")
 				._li();
 		html.li().b().write(clarification + " ")._b().write("Needs to be clarified with WG")
-		._li();
+			._li();
 		html._ul();
-		
-		html.br().b().a(href("#tobeapproved")).write(notYetMust+notYetShould+notYetMay+
-				" Ready for WG Approval")._a()._b();
+
+		html.br().b().a(href("#tobeapproved")).write(notYetMust + notYetShould + notYetMay 
+				+ " Ready for WG Approval")._a()._b();
 
 		html._td();
 
@@ -179,7 +177,7 @@ public class LdpTestCaseReporter {
 		html._ul();
 
 		html.ul();
-		html.li().b().write(reqImpl + " ")._b().write("Requirements Automated")
+		html.li().b().write((mustImpl+shouldImpl+mayImpl) + " ")._b().write("Requirements Automated")
 				._li();
 		html.ul();
 		html.li().b().write(mustImpl + " / " + must)._b().write(" MUST")._li();
@@ -197,8 +195,8 @@ public class LdpTestCaseReporter {
 				.write("of the Total Tests");
 		html.ul();
 
-		html.li().b().write(unimplemented + " ")._b()
-				.write("of the Tests ").a(href("#needCode")).write("Yet to be Coded")._a()._li();
+		html.li().b().write(unimplemented + " ")._b().write("of the Tests ")
+				.a(href("#needCode")).write("Yet to be Coded")._a()._li();
 		/*
 		 * TODO: Determine if disabled is really valuable or not
 		 * html.li().b().write(disabled +
@@ -213,8 +211,8 @@ public class LdpTestCaseReporter {
 		html.write("From the Total, ");
 
 		html.ul();
-		html.li().b().write(reqNotImpl + " ")._b()
-				.write("Requirements not Implemented")._li();
+		html.li().b().write((mustNotImpl + shouldNotImpl + mayNotImpl) + " ")
+				._b().write("Requirements not Implemented")._li();
 		html.ul();
 		html.li().b().write(mustNotImpl + " ")._b().write("MUST")._li();
 		html.li().b().write(shouldNotImpl + " ")._b().write("SHOULD")._li();
@@ -234,32 +232,46 @@ public class LdpTestCaseReporter {
 		html.div(id("coverage_bar").class_("barChart"))._div();
 		graphs.write("<script>");
 		graphs.write("Event.observe(window, 'load', function() {");
-		graphs.write("var coverage_bar = new Grafico.StackedBarGraph($('coverage_bar'),");
-		graphs.write("{ approved: [" + mustapp + "," + shouldapp + ", "
-				+ mayapp + "],");
-		graphs.write("pending: [" + (mustpend - notYetMust) + ", "
-				+ (shouldpend - notYetShould) + ", " + (maypend - notYetMay)
-				+ "],");
+		graphs.write("var coverage_bar = new Grafico.StackedBarGraph($('coverage_bar'), {");
+		graphs.write("automated: [ "
+				+ (mustImpl - mustdep - mustex - notYetMust) + ", "
+				+ (shouldImpl - shoulddep - shouldex - notYetShould) + ", "
+				+ (mayImpl - maydep - mayex - notYetMay) + "],");
+		graphs.write("unimplemented: [" + mustNotImpl + ", " + shouldNotImpl
+				+ ", " + mayNotImpl + " ],");
 		graphs.write("autoPend: [" + notYetMust + ", " + notYetShould + ", "
 				+ notYetMay + " ],");
 		graphs.write("extended: [" + mustex + ", " + shouldex + ", " + mayex
 				+ "],");
+		graphs.write("client: [" + mustClient + ", " + shouldClient + ", "
+				+ mayClient + " ],");
+		graphs.write("manual: [" + mustMan + ", " + shouldMan + ", " + mayMan
+				+ " ],");
 		graphs.write("deprecated: [" + mustdep + ", " + shoulddep + ", "
 				+ maydep + "] },");
 		graphs.write("{ labels: [ \"MUST\", \"SHOULD\", \"MAY\" ],");
-		graphs.write("colors: { approved: '#2f59bf', pending: '#a2bf2f', autoPend:'#1cbf5c', extended: '#bfa22f', deprecated: '#bf5a2f' },");
+		graphs.write("colors: { automated: '#8d1cbf', unimplemented: '#a2bf2f', client: '#bf1c56', manual: '#1cbf7d', autoPend:'#1cbfbb', extended: '#bfa22f', deprecated: '#bf5a2f' },");
 		graphs.write("hover_color: \"#ccccff\",");
-		graphs.write("datalabels: { approved: [ \"" + mustapp
-				+ " Approved\", \"" + shouldapp + " Approved\", \"" + mayapp
-				+ " Approved\"],");
-		graphs.write("pending: [ \"" + (mustpend - notYetMust)
-				+ " Pending\", \"" + (shouldpend - notYetShould)
-				+ " Pending\", \"" + (maypend - notYetMay) + " Pending\" ],");
+		graphs.write("datalabels: { ");
+		graphs.write("automated: [ \""
+				+ (mustImpl - mustdep - mustex - notYetMust)
+				+ " Automated\", \""
+				+ (shouldImpl - shoulddep - shouldex - notYetShould)
+				+ " Automated\", \"" + (mayImpl - maydep - mayex - notYetMay)
+				+ " Automated\" ],");
+		graphs.write("unimplemented: [ \"" + mustNotImpl
+				+ " Unimplemented\", \"" + shouldNotImpl
+				+ " Unimplemented\", \"" + mayNotImpl + " Unimplemented\" ],");
 		graphs.write("autoPend: [ \"" + notYetMust + " Awaiting Approval\", \""
 				+ notYetShould + " Awaiting Approval\", \"" + notYetMay
 				+ " Awaiting Approval\" ],");
 		graphs.write("extended: [ \"" + mustex + " Extends\" , \"" + shouldex
 				+ " Extends\" , \"" + mayex + " Extends\"],");
+		graphs.write("client: [ \"" + mustClient + " Client-Based\", \""
+				+ shouldClient + " Client-Based\", \"" + mayClient
+				+ " Client-Based\" ],");
+		graphs.write("manual: [ \"" + mustMan + " Manual\", \"" + shouldMan
+				+ " Manual\", \"" + mayMan + " Manual\" ],");
 		graphs.write("deprecated: [ \"" + mustdep + " Deprecated\" , \""
 				+ shoulddep + " Deprecated\" , \"" + maydep
 				+ " Deprecated\" ] },");
@@ -284,16 +296,17 @@ public class LdpTestCaseReporter {
 		if (readyToBeApproved.size() == 0) {
 			html.b().write("No test cases awaiting WG approval.")._b().br();
 		} else {
-			html.p().write("For details of test cases, ").a(href("https://github.com/w3c/ldp-testsuite")).
-				write("see source in GitHub")._a()._p();
+			html.p().write("For details of test cases, ")
+					.a(href("https://github.com/w3c/ldp-testsuite"))
+					.write("see source in GitHub")._a()._p();
 			html.ul();
-			for(String tc: readyToBeApproved) {
+			for (String tc : readyToBeApproved) {
 				html.li().write(tc)._li();
 			}
 			html._ul();
 		}
 		toTop();
-		
+
 		html.h2(id("needCode")).content("Test Cases Yet to be Implemented");
 		if (needCode.size() == 0)
 			html.b().write("No test cases that need to be Implemented")._b()
@@ -305,7 +318,7 @@ public class LdpTestCaseReporter {
 			html._ul();
 		}
 		toTop();
-		
+
 		html.h2().content("Implemented Test Classes");
 
 		html.b().a(href("#" + rdfSourceTest.getCanonicalName()))
@@ -343,7 +356,7 @@ public class LdpTestCaseReporter {
 		writeTestClassTable(nonRdfSourceTest);
 
 		toTop();
-		
+
 		html.h2().a(id("manualTests"))
 				.content("Tests that Must be Tested Manually")._h2();
 		generateList(manuals);
@@ -538,118 +551,209 @@ public class LdpTestCaseReporter {
 
 			if (!initialRead) {
 				totalTests++;
-
 				METHOD methodStatus = testLdp.testMethod();
+				STATUS testApproval = testLdp.approval();
 				String group = Arrays.toString(test.groups());
-				if (!test.enabled())
-					disabled++;
-				if (methodStatus.equals(METHOD.AUTOMATED))
-					automated++;
-				if (methodStatus.equals(METHOD.NOT_IMPLEMENTED)){
-					unimplemented++;
-					needCode.add(method.getName());
-				}
-				if (methodStatus.equals(METHOD.CLIENT_ONLY)) {
-					clientTest++;
-					clients.add(method.getName());
-				}
-				if (methodStatus.equals(METHOD.MANUAL)) {
-					manual++;
-					manuals.add(method.getName());
-				}
-				if (!refURI.contains(testLdp.specRefUri())) {
+				if (!refURI.contains(testLdp.specRefUri())) { // for just the requirement testing
 					refURI.add(testLdp.specRefUri());
 					coverage++;
-
-					if (group.contains("MUST"))
-						must++;
-					if (group.contains("SHOULD"))
-						should++;
-					if (group.contains("MAY"))
-						may++;
-
-					if (methodStatus.equals(METHOD.AUTOMATED)) {
-						reqImpl++;
-						if (group.contains("MUST"))
-							mustImpl++;
-						if (group.contains("SHOULD"))
-							shouldImpl++;
-						if (group.contains("MAY"))
-							mayImpl++;
-					}
-					if (methodStatus.equals(METHOD.NOT_IMPLEMENTED)) {
-						reqNotImpl++;
-						if (group.contains("MUST"))
-							mustNotImpl++;
-						if (group.contains("SHOULD"))
-							shouldNotImpl++;
-						if (group.contains("MAY"))
-							mayNotImpl++;
-					}
-				}
-				switch (testLdp.approval()) {
-				case WG_PENDING:
-					pending++;
 					if (group.contains("MUST")) {
-						if (testLdp.testMethod() !=
-								SpecTest.METHOD.NOT_IMPLEMENTED) {
-							notYetMust++;
-							readyToBeApproved.add(method.getName());
-						} else
-							mustpend++;
+						must++;
+						switch (methodStatus) {
+						case AUTOMATED:
+							automated++;
+							mustImpl++;
+							if (testApproval.equals(STATUS.WG_PENDING)) {
+								notYetMust++;
+								readyToBeApproved.add(method.getName());
+							}
+							break;
+						case CLIENT_ONLY:
+							clients.add(method.getName());
+							clientTest++;
+							mustClient++;
+							break;
+						case MANUAL:
+							manuals.add(method.getName());
+							manual++;
+							mustMan++;
+							break;
+						case NOT_IMPLEMENTED:
+							mustNotImpl++;
+							unimplemented++;
+							needCode.add(method.getName());
+							break;
+						default:
+							break;
+						}
+						switch (testApproval) {
+						case WG_APPROVED:
+							approved++;
+							break;
+						case WG_CLARIFICATION:
+							clarification++;
+							break;
+						case WG_DEPRECATED:
+							deprecated++;
+							mustdep++;
+							break;
+						case WG_EXTENSION:
+							extended++;
+							mustex++;
+							break;
+						case WG_PENDING:
+							pending++;
+						default:
+							break;
+						}
+
 					}
 					if (group.contains("SHOULD")) {
-						if (testLdp.testMethod() !=
-								SpecTest.METHOD.NOT_IMPLEMENTED) {
-							notYetShould++;
-							readyToBeApproved.add(method.getName());
-						} else
-							shouldpend++;
+						should++;
+						switch (methodStatus) {
+						case AUTOMATED:
+							automated++;
+							shouldImpl++;
+							if (testApproval.equals(STATUS.WG_PENDING)) {
+								notYetShould++;
+								readyToBeApproved.add(method.getName());
+							}
+							break;
+						case CLIENT_ONLY:
+							clients.add(method.getName());
+							clientTest++;
+							shouldClient++;
+							break;
+						case MANUAL:
+							manuals.add(method.getName());
+							manual++;
+							shouldMan++;
+							break;
+						case NOT_IMPLEMENTED:
+							shouldNotImpl++;
+							unimplemented++;
+							needCode.add(method.getName());
+							break;
+						default:
+							break;
+						}
+						switch (testApproval) {
+						case WG_APPROVED:
+							approved++;
+							break;
+						case WG_CLARIFICATION:
+							clarification++;
+							break;
+						case WG_DEPRECATED:
+							deprecated++;
+							shoulddep++;
+							break;
+						case WG_EXTENSION:
+							extended++;
+							shouldex++;
+							break;
+						case WG_PENDING:
+							pending++;
+						default:
+							break;
+						}
 					}
 					if (group.contains("MAY")) {
-						if (testLdp.testMethod() !=
-								SpecTest.METHOD.NOT_IMPLEMENTED) {
-							notYetMay++;
-							readyToBeApproved.add(method.getName());
-						} else
-							maypend++;
+						may++;
+						switch (methodStatus) {
+						case AUTOMATED:
+							automated++;
+							mayImpl++;
+							if (testApproval.equals(STATUS.WG_PENDING)) {
+								notYetMay++;
+								readyToBeApproved.add(method.getName());
+							}
+							break;
+						case CLIENT_ONLY:
+							clients.add(method.getName());
+							clientTest++;
+							mayClient++;
+							break;
+						case MANUAL:
+							manuals.add(method.getName());
+							manual++;
+							mayMan++;
+							break;
+						case NOT_IMPLEMENTED:
+							mayNotImpl++;
+							unimplemented++;
+							needCode.add(method.getName());
+							break;
+						default:
+							break;
+						}
+						switch (testApproval) {
+						case WG_APPROVED:
+							approved++;
+							break;
+						case WG_CLARIFICATION:
+							clarification++;
+							break;
+						case WG_DEPRECATED:
+							deprecated++;
+							maydep++;
+							break;
+						case WG_EXTENSION:
+							extended++;
+							mayex++;
+							break;
+						case WG_PENDING:
+							pending++;
+						default:
+							break;
+						}
 					}
-					break;
-				case WG_APPROVED:
-					approved++;
-					if (group.contains("MUST"))
-						mustapp++;
-					if (group.contains("SHOULD"))
-						shouldapp++;
-					if (group.contains("MAY"))
-						mayapp++;
-					break;
-				case WG_EXTENSION:
-					extended++;
-					if (group.contains("MUST"))
-						mustex++;
-					if (group.contains("SHOULD"))
-						shouldex++;
-					if (group.contains("MAY"))
-						mayex++;
-					break;
-				case WG_DEPRECATED:
-					deprecated++;
-					if (group.contains("MUST"))
-						mustdep++;
-					if (group.contains("SHOULD"))
-						shoulddep++;
-					if (group.contains("MAY"))
-						maydep++;
-					break;
-				case WG_CLARIFICATION:
-					clarification++;
-					break;
-				default:
-					break;
+				} else { // for all the other test cases
+					switch (methodStatus) {
+					case AUTOMATED:
+						automated++;
+						if (testApproval.equals(STATUS.WG_APPROVED))
+						if (testApproval.equals(STATUS.WG_PENDING)) {
+							readyToBeApproved.add(method.getName());
+						}
+						break;
+					case CLIENT_ONLY:
+						clients.add(method.getName());
+						clientTest++;
+						break;
+					case MANUAL:
+						manuals.add(method.getName());
+						manual++;
+						break;
+					case NOT_IMPLEMENTED:
+						unimplemented++;
+						needCode.add(method.getName());
+						break;
+					default:
+						break;
+					}
+					switch (testApproval) {
+					case WG_APPROVED:
+						approved++;
+						break;
+					case WG_CLARIFICATION:
+						clarification++;
+						break;
+					case WG_DEPRECATED:
+						deprecated++;
+						break;
+					case WG_EXTENSION:
+						extended++;
+						break;
+					case WG_PENDING:
+						pending++;
+					default:
+						break;
+					}
 				}
-			} else {
 
+			} else {
+				// write in the test information
 				html.div(class_("pad-left"));
 				html.b().write("Description: ")._b().write(test.description());
 				html.br().b().write("Reference URI: ")._b()

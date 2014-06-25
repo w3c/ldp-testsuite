@@ -376,9 +376,7 @@ public abstract class CommonResourceTest extends LdpTest {
     }
 
     @Test(
-            enabled = false,
             groups = {MUST},
-            dependsOnMethods = {"testPutRequiresIfMatch"},
             description = "LDP servers MUST respond with status code 412 "
                     + "(Condition Failed) if ETags fail to match when there "
                     + "are no other errors with the request [HTTP11]. LDP "
@@ -469,19 +467,6 @@ public abstract class CommonResourceTest extends LdpTest {
                 .when().options(getResourceUri());
     }
     
-    @Test(
-            enabled = false, 
-            groups = { MAY }, 
-            description = "LDP servers MAY choose to allow "
-                    + "the creation of new resources using HTTP PUT. ")
-    @SpecTest(
-            specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-create", 
-            testMethod = METHOD.NOT_IMPLEMENTED,
-            approval = STATUS.WG_PENDING)
-    public void testPutCreate() {
-        // TODO Impl testPutCreate
-    }
-
     protected boolean supports(HttpMethod method) {
         return options.contains(method.getName());
     }

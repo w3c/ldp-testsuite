@@ -1,12 +1,14 @@
 package org.w3.ldp.testsuite.test;
 
 import static org.hamcrest.core.IsNot.not;
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertNotEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
+import java.io.ByteArrayOutputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.UUID;
@@ -25,6 +27,7 @@ import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.exception.SkipClientTestException;
 import org.w3.ldp.testsuite.http.HttpMethod;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
+import org.w3.ldp.testsuite.matcher.HeaderMatchers;
 import org.w3.ldp.testsuite.vocab.LDP;
 
 import com.hp.hpl.jena.rdf.model.Model;
@@ -325,18 +328,54 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 
     @Test(
             groups = {SHOULD},
-            enabled = false,
             description = "LDP servers SHOULD use the Content-Type request header to "
                     + "determine the representation format when the request has an "
                     + "entity body.")
     @SpecTest(
             specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-contenttype",
-            testMethod = METHOD.NOT_IMPLEMENTED,
+            testMethod = METHOD.AUTOMATED,
             approval = STATUS.WG_PENDING)
     public void testContentTypeHeader() throws URISyntaxException {
         skipIfMethodNotAllowed(HttpMethod.POST);
 
-        // TODO: Impl testContentTypeHeader
+        // POST Turtle content with a bad Content-Type request header to see what happens.
+        Model toPost = postContent();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        toPost.write(out, "TURTLE");
+        Response postResponse = RestAssured
+            .given()
+                .contentType("text/this-is-not-turtle")
+                .body(out.toByteArray())
+            .when()
+                .post(getResourceUri());
+ 
+        if (postResponse.getStatusCode() == HttpStatus.SC_UNSUPPORTED_MEDIA_TYPE) {
+            // If we get an unsupported media type status, we're done.
+            return;
+        }
+        
+        // Otherwise, we still might be OK if the server supports non-RDF source,
+        // in which case it might have treated the POST content as binary. Check
+        // the response Content-Type if we ask for the new resource.
+        assertEquals(postResponse.getStatusCode(), HttpStatus.SC_CREATED,
+                "Expected either 415 Unsupported Media Type or 201 Created in response to POST");
+
+        String location = postResponse.getHeader(LOCATION);
+        assertNotNull(location, "No Location response header on 201 Created response");
+
+        Response getResponse = RestAssured
+            .expect()
+                .statusCode(isSuccessful())
+                .contentType(not(TEXT_TURTLE))
+            .when()
+                .get(location);
+ 
+        // Also make sure there is no Link header indicating this is an RDF source.
+        assertFalse(containsLinkHeader(LDP.RDFSource.stringValue(), LINK_REL_TYPE, getResponse),
+                "Server should not responsd with RDF source Link header when content was created with non-RDF Content-Type");
+ 
+        // Clean up.
+        RestAssured.delete(location);
     }
 
     @Test(
@@ -389,17 +428,29 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 
     @Test(
             groups = {SHOULD},
-            enabled = false, // not implemented
             description = "LDP servers SHOULD assign the URI for the resource to be created "
                     + "using server application specific rules in the absence of a client hint.")
     @SpecTest(
             specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-serverassignuri",
-            testMethod = METHOD.NOT_IMPLEMENTED,
+            testMethod = METHOD.AUTOMATED,
             approval = STATUS.WG_PENDING)
-    public void testAssignUri() {
+    public void testPostNoSlug() {
         skipIfMethodNotAllowed(HttpMethod.POST);
 
-        // TODO: Impl testAssignUri
+        // POST content with no Slug and see if the server assigns a URI.
+        Model model = postContent();
+        Response postResponse = RestAssured
+            .given()
+                .contentType(TEXT_TURTLE)
+                .body(model, new RdfObjectMapper())
+             .expect()
+                .statusCode(HttpStatus.SC_CREATED)
+                .header(LOCATION, HeaderMatchers.headerPresent())
+            .when()
+                .post(getResourceUri());
+
+        // Delete the resource to clean up.
+        RestAssured.delete(postResponse.getHeader(LOCATION));
     }
 
     @Test(
@@ -696,6 +747,8 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 
         String loc2 = post(content, slug);
         assertNotEquals(loc1, loc2, "Server reused URIs for POSTed resources.");
+        
+        RestAssured.delete(loc2);
     }
 
     private String post(Model content, String slug) {
