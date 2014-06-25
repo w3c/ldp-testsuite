@@ -37,7 +37,7 @@ public class MemberResourceTest extends RdfSourceTest {
             throw new SkipException("No memberResource or container parameters defined in testng.xml");
         }
         
-        this.post = post;
+        postPath = post;
 
         if (this.memberResource == null) {
             Model model = postContent();
