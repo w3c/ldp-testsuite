@@ -35,12 +35,11 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes,
     private static Model postModel;
 
     /**
-     * Alternate content to use on member resource initialization
-     * {@link org.w3.ldp.testsuite.test.MemberResourceTest}
+     * Builds a model from a turtle representation in a file
+     * @param path
+     * @return
      */
-    private static Model memberModel;
-
-    private Model readModel(String path) {
+    protected Model readModel(String path) {
 
         Model model = null;
         if (path != null) {
@@ -60,19 +59,15 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes,
     }
 
     /**
-     * Initialization of member and generic resource models. This will run only once
-     * at the beginning of the test suite, so postModel and memberModel static fields 
+     * Initialization of generic resource model. This will run only once
+     * at the beginning of the test suite, so postModel static field
      * will be assigned once too. 
      * @param postTtl
-     * @param memberTtl
      */
     @BeforeSuite(alwaysRun = true)
-    @Parameters({ "postTtl", "memberTtl" })
-    public void setPostContent(@Optional String postTtl,
-            @Optional String memberTtl) {
-
-        postModel = this.readModel(postTtl);
-        memberModel = this.readModel(memberTtl);
+    @Parameters({ "postTtl" })
+    public void setPostContent(@Optional String postTtl) {
+        postModel = this.readModel(postTtl);        
     }
 
     /**
@@ -143,7 +138,7 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes,
                 .as(Model.class, new RdfObjectMapper(uri));
     }
 
-    private Model postBug() {
+    protected Model getDefaultModel() {
         Model model = ModelFactory.createDefaultModel();
         Resource resource = model.createResource("",
                 model.createResource("http://example.com/ns#Bug"));
@@ -160,15 +155,7 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes,
             return postModel;
         }
 
-        return postBug();
-    }
-
-    protected Model postMember() {
-        if (memberModel != null) {
-            return memberModel;
-        }
-
-        return postBug();
+        return getDefaultModel();
     }
 
     /**
