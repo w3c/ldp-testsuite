@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.ws.rs.core.Link;
 
+import com.jayway.restassured.specification.RequestSpecification;
 import org.apache.commons.lang3.StringUtils;
 import org.jboss.resteasy.plugins.delegates.LinkDelegate;
 import org.testng.annotations.BeforeSuite;
@@ -21,23 +22,22 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.vocabulary.DC;
-import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Header;
 import com.jayway.restassured.response.Response;
 
 public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences {
 
-	/**
-	 * Alternate content to use on POST requests
-	 */
-	protected String post;
-	
-	@BeforeSuite (alwaysRun = true)
-	@Parameters("post")
-	public void setPostContent(@Optional String post) {
-		this.post = post;
-	}
-	
+    /**
+     * Alternate content to use on POST requests
+     */
+    protected String post;
+
+    @BeforeSuite(alwaysRun = true)
+    @Parameters("post")
+    public void setPostContent(@Optional String post) {
+        this.post = post;
+    }
+
     /**
      * An absolute requirement of the specification.
      *
@@ -91,13 +91,19 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
         return containsLinkHeader(uri, linkRelation, response.getHeaders().getList(LINK));
     }
 
+    /**
+     * Build a base RestAssured {@link com.jayway.restassured.specification.RequestSpecification}.
+     *
+     * @return RestAssured Request Specification
+     */
+    protected abstract RequestSpecification buildBaseRequestSpecification();
+
     public Model getAsModel(String uri) {
         return getResourceAsModel(uri, TEXT_TURTLE);
     }
 
     public Model getResourceAsModel(String uri, String mediaType) {
-        return RestAssured
-            .given()
+        return buildBaseRequestSpecification()
                 .header(ACCEPT, mediaType)
             .expect()
                 .statusCode(isSuccessful())
@@ -106,23 +112,23 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
     }
 
     protected Model postContent() {
-    	Model model = ModelFactory.createDefaultModel();
+        Model model = ModelFactory.createDefaultModel();
 
-		if (this.post != null) {
-			InputStream inputStream = getClass().getClassLoader()
-					.getResourceAsStream(this.post);
+        if (this.post != null) {
+            InputStream inputStream = getClass().getClassLoader()
+                    .getResourceAsStream(this.post);
 
-			return model.read(inputStream, "", "TURTLE");
-		}
+            return model.read(inputStream, "", "TURTLE");
+        }
 
-		Resource resource = model.createResource("",
-				model.createResource("http://example.com/ns#Bug"));
-		resource.addProperty(
-				model.createProperty("http://example.com/ns#severity"), "High");
-		resource.addProperty(DC.title, "Another bug to test.");
-		resource.addProperty(DC.description, "Issues that need to be fixed.");
+        Resource resource = model.createResource("",
+                model.createResource("http://example.com/ns#Bug"));
+        resource.addProperty(
+                model.createProperty("http://example.com/ns#severity"), "High");
+        resource.addProperty(DC.title, "Another bug to test.");
+        resource.addProperty(DC.description, "Issues that need to be fixed.");
 
-		return model;
+        return model;
     }
 
     /**
@@ -220,4 +226,5 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
     private static String ldpPreference(String name, String... values) {
         return "return=representation; " + name + "=\"" + StringUtils.join(values, " ") + "\"";
     }
+
 }

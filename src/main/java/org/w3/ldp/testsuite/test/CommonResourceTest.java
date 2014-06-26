@@ -8,12 +8,20 @@ import static org.testng.Assert.assertTrue;
 import static org.w3.ldp.testsuite.matcher.HeaderMatchers.isValidEntityTag;
 import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
+import com.google.common.collect.ImmutableMap;
+import com.jayway.restassured.specification.RequestSpecification;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
@@ -32,15 +40,16 @@ import com.jayway.restassured.specification.ResponseSpecification;
  */
 public abstract class CommonResourceTest extends LdpTest {
 
-    private HashSet<String> options = new HashSet<String>();
+    private Set<String> options = new HashSet<String>();
+
+    protected Map<String,String> auth;
 
     protected abstract String getResourceUri();
 
     @BeforeClass(alwaysRun = true)
     public void determineOptions() {
         String uri = getResourceUri();
-
-        if (uri != null) {
+        if (StringUtils.isNotBlank(uri)) {
             // Use HTTP OPTIONS, which MUST be supported by LDP servers, to determine what methods are supported on this container.
             Response optionsResponse = RestAssured.options(uri);
             String allow = optionsResponse.header(ALLOW);
@@ -50,6 +59,26 @@ public abstract class CommonResourceTest extends LdpTest {
                     options.add(method);
                 }
             }
+        }
+    }
+
+    @Parameters("auth")
+    public CommonResourceTest(@Optional String auth) throws IOException {
+        if (StringUtils.isNotBlank(auth) && auth.contains(":")) {
+            String[] split = auth.split(":");
+            if (split.length == 2 && StringUtils.isNotBlank(split[0]) && StringUtils.isNotBlank(split[1])) {
+                this.auth = ImmutableMap.of("username", split[0], "password", split[1]);
+            }
+        } else {
+            this.auth = null;
+        }
+    }
+
+    protected RequestSpecification buildBaseRequestSpecification() {
+        if (auth == null) {
+            return RestAssured.given();
+        } else {
+            return RestAssured.given().auth().basic(auth.get("username"), auth.get("password"));
         }
     }
 
@@ -63,7 +92,7 @@ public abstract class CommonResourceTest extends LdpTest {
             approval = STATUS.WG_EXTENSION)
     public void testIsHttp11Server() {
         // TODO: Consider a more extensive test for HTTP/1.1
-        RestAssured.expect().statusLine(containsString("HTTP/1.1")).when().head(getResourceUri());
+        buildBaseRequestSpecification().expect().statusLine(containsString("HTTP/1.1")).when().head(getResourceUri());
     }
 
     @Test(
@@ -90,7 +119,7 @@ public abstract class CommonResourceTest extends LdpTest {
             approval = STATUS.WG_PENDING)
     public void testETagHeadersGet() {
         // GET requests
-        RestAssured
+        buildBaseRequestSpecification()
             .expect()
                 .statusCode(isSuccessful())
                 .header(ETAG, isValidEntityTag())
@@ -109,7 +138,7 @@ public abstract class CommonResourceTest extends LdpTest {
             approval = STATUS.WG_APPROVED)
     public void testETagHeadersHead() {
         // GET requests
-        RestAssured
+        buildBaseRequestSpecification()
                 .expect().statusCode(isSuccessful()).header(ETAG, isValidEntityTag())
                 .when().head(getResourceUri());
     }
@@ -127,7 +156,7 @@ public abstract class CommonResourceTest extends LdpTest {
             testMethod = METHOD.AUTOMATED,
             approval = STATUS.WG_APPROVED)
     public void testLdpLinkHeader() {
-        Response response = RestAssured
+        Response response = buildBaseRequestSpecification()
                 .expect().statusCode(isSuccessful())
                 .when().get(getResourceUri());
         assertTrue(
@@ -164,7 +193,7 @@ public abstract class CommonResourceTest extends LdpTest {
             approval = STATUS.WG_APPROVED)
     public void testGetResource() {
         assertTrue(supports(HttpMethod.GET), "HTTP GET is not listed in the Allow response header on HTTP OPTIONS requests for resource <" + getResourceUri() + ">");
-        RestAssured
+        buildBaseRequestSpecification()
                 .expect().statusCode(isSuccessful())
                 .when().get(getResourceUri());
     }
@@ -178,7 +207,7 @@ public abstract class CommonResourceTest extends LdpTest {
             testMethod = METHOD.AUTOMATED,
             approval = STATUS.WG_APPROVED)
     public void testGetResponseHeaders() {
-        ResponseSpecification expectResponse = RestAssured.expect();
+        ResponseSpecification expectResponse = buildBaseRequestSpecification().expect();
         expectResponse.header(ALLOW, notNullValue());
 
         // Some headers are expected depending on OPTIONS
@@ -269,15 +298,14 @@ public abstract class CommonResourceTest extends LdpTest {
         skipIfMethodNotAllowed(HttpMethod.PUT);
 
         String resourceUri = getResourceUri();
-        Response response = RestAssured
+        Response response = buildBaseRequestSpecification()
             .expect()
                 .statusCode(isSuccessful())
                 .header(ETAG, isValidEntityTag())
             .when()
                 .get(resourceUri);
 
-        RestAssured
-            .given()
+        buildBaseRequestSpecification()
                 .contentType(response.getContentType())
                 .body(response.asByteArray())
             .expect()
@@ -303,15 +331,14 @@ public abstract class CommonResourceTest extends LdpTest {
         skipIfMethodNotAllowed(HttpMethod.PUT);
 
         String resourceUri = getResourceUri();
-        Response response = RestAssured
+        Response response = buildBaseRequestSpecification()
                 .expect()
                     .statusCode(isSuccessful()).header(ETAG, isValidEntityTag())
                 .when()
                     .get(resourceUri);
         String contentType = response.getContentType();
- 
-        RestAssured
-                .given()
+
+        buildBaseRequestSpecification()
                     .contentType(contentType)
                     .header(IF_MATCH, "These aren't the ETags you're looking for.")
                     .body(response.asByteArray())
@@ -338,7 +365,7 @@ public abstract class CommonResourceTest extends LdpTest {
         skipIfMethodNotAllowed(HttpMethod.PUT);
 
         String resourceUri = getResourceUri();
-        Response getResponse = RestAssured
+        Response getResponse = buildBaseRequestSpecification()
                 .expect()
                 .statusCode(isSuccessful())
                 .header(ETAG, isValidEntityTag())
@@ -346,8 +373,7 @@ public abstract class CommonResourceTest extends LdpTest {
                 .get(resourceUri);
         
         // Verify that we can successfully PUT the resource WITH an If-Match header.
-        Response ifMatchResponse = RestAssured
-                .given()
+        Response ifMatchResponse = buildBaseRequestSpecification()
                     .header(IF_MATCH, getResponse.getHeader(ETAG))
                     .contentType(getResponse.contentType())
                     .body(getResponse.asByteArray())
@@ -360,8 +386,7 @@ public abstract class CommonResourceTest extends LdpTest {
         // Now try WITHOUT the If-Match header. If the result is NOT successful,
         // it should be because the header is missing and we can check the error
         // code.
-        Response noIfMatchResponse = RestAssured
-                .given()
+        Response noIfMatchResponse = buildBaseRequestSpecification()
                     .contentType(getResponse.contentType())
                     .body(getResponse.asByteArray())
                 .when()
@@ -392,14 +417,13 @@ public abstract class CommonResourceTest extends LdpTest {
         skipIfMethodNotAllowed(HttpMethod.PUT);
 
         String resourceUri = getResourceUri();
-        Response response = RestAssured
+        Response response = buildBaseRequestSpecification()
             .expect()
                 .statusCode(isSuccessful()).header(ETAG, isValidEntityTag())
             .when()
                 .get(resourceUri);
 
-        RestAssured
-            .given()
+        buildBaseRequestSpecification()
                 .contentType(response.getContentType())
                 .header(IF_MATCH, "\"This is not the ETag you're looking for\"") // bad ETag value
                 .body(response.asByteArray())
@@ -419,7 +443,7 @@ public abstract class CommonResourceTest extends LdpTest {
             approval = STATUS.WG_APPROVED)
     public void testHead() {
         assertTrue(supports(HttpMethod.HEAD), "HTTP HEAD is not listed in the Allow response header on HTTP OPTIONS requests for resource <" + getResourceUri() + ">");
-        RestAssured.expect().statusCode(isSuccessful()).when().head(getResourceUri());
+        buildBaseRequestSpecification().expect().statusCode(isSuccessful()).when().head(getResourceUri());
     }
 
     @Test(
@@ -435,7 +459,7 @@ public abstract class CommonResourceTest extends LdpTest {
     public void testAcceptPatchHeader() {
         skipIfMethodNotAllowed(HttpMethod.PATCH);
 
-        RestAssured
+        buildBaseRequestSpecification()
                 .expect().statusCode(isSuccessful()).header(ACCEPT_PATCH, notNullValue())
                 .when().options(getResourceUri());
     }
@@ -449,7 +473,7 @@ public abstract class CommonResourceTest extends LdpTest {
             testMethod = METHOD.AUTOMATED,
             approval = STATUS.WG_APPROVED)
     public void testOptions() {
-        RestAssured.expect().statusCode(isSuccessful()).when().options(getResourceUri());
+        buildBaseRequestSpecification().expect().statusCode(isSuccessful()).when().options(getResourceUri());
     }
 
     @Test(
@@ -463,7 +487,7 @@ public abstract class CommonResourceTest extends LdpTest {
             testMethod = METHOD.AUTOMATED,
             approval = STATUS.WG_APPROVED)
     public void testOptionsAllowHeader() {
-        RestAssured.expect().statusCode(isSuccessful()).header(ALLOW, notNullValue())
+        buildBaseRequestSpecification().expect().statusCode(isSuccessful()).header(ALLOW, notNullValue())
                 .when().options(getResourceUri());
     }
     
@@ -476,4 +500,5 @@ public abstract class CommonResourceTest extends LdpTest {
             throw new SkipMethodNotAllowedException(getResourceUri(), method);
         }
     }
+
 }

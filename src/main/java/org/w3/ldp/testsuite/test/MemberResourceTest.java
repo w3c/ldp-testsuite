@@ -10,8 +10,9 @@ import org.testng.annotations.Parameters;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 
 import com.hp.hpl.jena.rdf.model.Model;
-import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
+
+import java.io.IOException;
 
 /**
  * Tests that run on an LDP-RS that is not a container.
@@ -21,9 +22,11 @@ public class MemberResourceTest extends RdfSourceTest {
     private String container;
     private String memberResource;
 
-    @Parameters({"memberResource", "directContainer", "indirectContainer", "basicContainer", "post"})
+    @Parameters({"memberResource", "directContainer", "indirectContainer", "basicContainer", "post", "auth"})
     public MemberResourceTest(@Optional String memberResource, @Optional String directContainer, 
-    		@Optional String indirectContainer, @Optional String basicContainer, @Optional String post) {
+        @Optional String indirectContainer, @Optional String basicContainer,
+        @Optional String post, @Optional String auth) throws IOException {
+        super(auth);
         // If resource is defined, use that. Otherwise, fall back to creating one from one of the containers.
         if (memberResource != null) {
             this.memberResource = memberResource;
@@ -42,8 +45,8 @@ public class MemberResourceTest extends RdfSourceTest {
         if (this.memberResource == null) {
             Model model = postContent();
 
-            Response postResponse =
-                    RestAssured.given().contentType(TEXT_TURTLE).body(model, new RdfObjectMapper())
+            Response postResponse = buildBaseRequestSpecification()
+                    .contentType(TEXT_TURTLE).body(model, new RdfObjectMapper())
                             .expect().statusCode(HttpStatus.SC_CREATED).header(LOCATION, notNullValue())
                             .when().post(this.container);
 
@@ -59,7 +62,7 @@ public class MemberResourceTest extends RdfSourceTest {
     public void deleteTestResource() {
         // If container isn't null, we created the resource ourselves. To clean up, delete the resource.
         if (container != null) {
-            RestAssured.delete(memberResource);
+            buildBaseRequestSpecification().delete(memberResource);
         }
     }
 

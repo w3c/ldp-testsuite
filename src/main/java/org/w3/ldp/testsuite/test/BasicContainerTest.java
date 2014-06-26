@@ -3,7 +3,6 @@ package org.w3.ldp.testsuite.test;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.vocabulary.RDF;
-import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.testng.SkipException;
@@ -17,14 +16,17 @@ import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.vocab.LDP;
 
+import java.io.IOException;
+
 import static org.testng.Assert.assertTrue;
 
 public class BasicContainerTest extends CommonContainerTest {
 
     private String basicContainer;
 
-    @Parameters("basicContainer")
-    public BasicContainerTest(@Optional String basicContainer) {
+    @Parameters({"basicContainer", "auth"})
+    public BasicContainerTest(@Optional String basicContainer, @Optional String auth) throws IOException {
+        super(auth);
         this.basicContainer = basicContainer;
     }
 
@@ -49,7 +51,7 @@ public class BasicContainerTest extends CommonContainerTest {
             testMethod = METHOD.AUTOMATED,
             approval = STATUS.WG_APPROVED)
     public void testContainerSupportsHttpLinkHeader() {
-        Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
+        Response response = buildBaseRequestSpecification().header(ACCEPT, TEXT_TURTLE)
                 .expect().statusCode(HttpStatus.SC_OK).when()
                 .get(basicContainer);
         assertTrue(

@@ -2,7 +2,6 @@ package org.w3.ldp.testsuite.test;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Resource;
-import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 
 import org.apache.http.HttpStatus;
@@ -20,6 +19,7 @@ import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.matcher.HeaderMatchers;
 import org.w3.ldp.testsuite.vocab.LDP;
 
+import java.io.IOException;
 import java.net.URISyntaxException;
 
 import static org.hamcrest.Matchers.notNullValue;
@@ -29,8 +29,9 @@ import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful
 public class DirectContainerTest extends CommonContainerTest {
     private String directContainer;
 
-    @Parameters("directContainer")
-    public DirectContainerTest(@Optional String directContainer) {
+    @Parameters({"directContainer", "auth"})
+    public DirectContainerTest(@Optional String directContainer, @Optional String auth) throws IOException {
+        super(auth);
         this.directContainer = directContainer;
     }
 
@@ -61,7 +62,7 @@ public class DirectContainerTest extends CommonContainerTest {
             testMethod = METHOD.AUTOMATED,
             approval = STATUS.WG_APPROVED)
     public void testHttpLinkHeader() {
-        Response response = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
+        Response response = buildBaseRequestSpecification().header(ACCEPT, TEXT_TURTLE)
                 .expect().statusCode(HttpStatus.SC_OK).when()
                 .get(directContainer);
         assertTrue(
@@ -161,13 +162,12 @@ public class DirectContainerTest extends CommonContainerTest {
         skipIfMethodNotAllowed(HttpMethod.POST);
 
         Model model = postContent();
-        Response postResponse = RestAssured.given().contentType(TEXT_TURTLE).body(model, new RdfObjectMapper())
+        Response postResponse = buildBaseRequestSpecification().contentType(TEXT_TURTLE).body(model, new RdfObjectMapper())
                 .expect().statusCode(HttpStatus.SC_CREATED).header(LOCATION, notNullValue())
                 .when().post(directContainer);
 
         String location = postResponse.getHeader(LOCATION);
-        Response getResponse = RestAssured
-                .given()
+        Response getResponse = buildBaseRequestSpecification()
                     .header(ACCEPT, TEXT_TURTLE)
                     .header(PREFER, include(PREFER_MEMBERSHIP)) // request all membership triples
                 .expect()
@@ -186,7 +186,7 @@ public class DirectContainerTest extends CommonContainerTest {
         }
 
         // Delete the resource to clean up.
-        RestAssured.delete(location);
+        buildBaseRequestSpecification().delete(location);
     }
 
     @Test(
@@ -203,8 +203,7 @@ public class DirectContainerTest extends CommonContainerTest {
 
         // Create a resource.
         Model model = postContent();
-        Response postResponse = RestAssured
-            .given()
+        Response postResponse = buildBaseRequestSpecification()
                 .contentType(TEXT_TURTLE)
                 .body(model, new RdfObjectMapper())
             .expect()
@@ -216,8 +215,7 @@ public class DirectContainerTest extends CommonContainerTest {
         String location = postResponse.getHeader(LOCATION);
 
         // Test the membership triple
-        Response getResponse = RestAssured
-                .given()
+        Response getResponse = buildBaseRequestSpecification()
                     .header(ACCEPT, TEXT_TURTLE)
                     .header(PREFER, include(PREFER_MEMBERSHIP)) // request all membership triple regardless of membership patterns
                 .expect()
@@ -253,11 +251,10 @@ public class DirectContainerTest extends CommonContainerTest {
         }
 
         // Delete the resource
-        RestAssured.expect().statusCode(isSuccessful()).when().delete(location);
+        buildBaseRequestSpecification().expect().statusCode(isSuccessful()).when().delete(location);
 
         // Get the updated membership resource
-        getResponse = RestAssured
-                .given()
+        getResponse = buildBaseRequestSpecification()
                     .header(ACCEPT, TEXT_TURTLE)
                     .header(PREFER, include(PREFER_MEMBERSHIP)) // request all membership triple regardless of membership patterns
                 .expect()
@@ -311,8 +308,7 @@ public class DirectContainerTest extends CommonContainerTest {
         Model model;
 
         // Ask for membership triples.
-        response = RestAssured
-                .given()
+        response = buildBaseRequestSpecification()
                     .header(ACCEPT, TEXT_TURTLE)
                     .header(PREFER, include(PREFER_MEMBERSHIP)) // request all membership triples
                 .expect()
@@ -326,8 +322,7 @@ public class DirectContainerTest extends CommonContainerTest {
         assertTrue(hasMembershipTriples(model), "Container does not have membership triples");
  
         // Ask for a minimal container.
-        response = RestAssured
-                .given()
+        response = buildBaseRequestSpecification()
                     .header(ACCEPT, TEXT_TURTLE)
                     .header(PREFER, include(PREFER_MINIMAL_CONTAINER)) // request no membership triples
                 .expect()
@@ -340,8 +335,7 @@ public class DirectContainerTest extends CommonContainerTest {
         assertFalse(hasMembershipTriples(model), "Container has membership triples when minimal container was requested");
  
         // Ask to omit membership.
-        response = RestAssured
-                .given()
+        response = buildBaseRequestSpecification()
                     .header(ACCEPT, TEXT_TURTLE)
                     .header(PREFER, omit(PREFER_MEMBERSHIP)) // request no membership triples
                 .expect()
@@ -354,8 +348,7 @@ public class DirectContainerTest extends CommonContainerTest {
         assertFalse(hasMembershipTriples(model), "Container has membership triples when client requested server omit them");
         
         // Ask for a minimal container, but include membership. (Example from spec.)
-        response = RestAssured
-                .given()
+        response = buildBaseRequestSpecification()
                     .header(ACCEPT, TEXT_TURTLE)
                     .header(PREFER, include(PREFER_MINIMAL_CONTAINER, PREFER_MEMBERSHIP))
                 .expect()
@@ -371,9 +364,9 @@ public class DirectContainerTest extends CommonContainerTest {
                 "Container has containment triples when minimal container was requested");
     }
 
-
     @Override
     protected String getResourceUri() {
         return directContainer;
     }
+
 }

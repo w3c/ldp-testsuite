@@ -28,7 +28,6 @@ import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.matcher.HeaderMatchers;
 
 import com.hp.hpl.jena.rdf.model.Model;
-import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Header;
 import com.jayway.restassured.response.Response;
 
@@ -42,8 +41,9 @@ public class NonRDFSourceTest extends CommonResourceTest {
     /** Resource for CommonResourceTest */
     private final String nonRdfSource;
 
-    @Parameters({ "basicContainer", "directContainer", "indirectContainer"})
-    public NonRDFSourceTest(@Optional String basicContainer, @Optional String directContainer, @Optional String indirectContainer) throws IOException {
+    @Parameters({ "basicContainer", "directContainer", "indirectContainer", "auth"})
+    public NonRDFSourceTest(@Optional String basicContainer, @Optional String directContainer, @Optional String indirectContainer, @Optional String auth) throws IOException {
+        super(auth);
         if (StringUtils.isNotBlank(basicContainer)) {
             container = basicContainer;
             containerType = LDP.BasicContainer;
@@ -68,7 +68,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 
     @AfterClass(alwaysRun = true)
     public void deleteTestResource() {
-        RestAssured.delete(nonRdfSource);
+        buildBaseRequestSpecification().delete(nonRdfSource);
     }
 
     @Override
@@ -95,7 +95,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
         Response response = postNonRDFSource(slug, file, mimeType);
         List<Header> links = response.headers().getList("Link");
         Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
-        RestAssured.delete(response.getHeader(LOCATION));
+        buildBaseRequestSpecification().delete(response.getHeader(LOCATION));
     }
 
     @Test(
@@ -119,8 +119,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
         Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
 
         // Check the container contains the new resource
-        Model model = RestAssured
-            .given()
+        Model model = buildBaseRequestSpecification()
                 .header(ACCEPT, TEXT_TURTLE)
             .expect()
                 .statusCode(HttpStatus.SC_OK)
@@ -129,7 +128,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
                 .body().as(Model.class, new RdfObjectMapper(container));
         assertTrue(model.contains(model.createResource(container), model.createProperty(LDP.contains.stringValue()), model.createResource(response.getHeader(LOCATION))));
 
-        RestAssured.delete(response.getHeader(LOCATION));
+        buildBaseRequestSpecification().delete(response.getHeader(LOCATION));
     }
 
     @Test(
@@ -154,8 +153,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 
         // And then check we get the binary back
         final String expectedMD5 = HashUtils.md5sum(NonRDFSourceTest.class.getResourceAsStream("/" + file));
-        final byte[] binary = RestAssured
-            .given()
+        final byte[] binary = buildBaseRequestSpecification()
                 .header(ACCEPT, mimeType)
             .expect()
                 .statusCode(HttpStatus.SC_OK)
@@ -166,7 +164,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
                 .body().asByteArray();
         assertEquals(expectedMD5, HashUtils.md5sum(binary), "md5sum");
 
-        RestAssured.delete(response.getHeader(LOCATION));
+        buildBaseRequestSpecification().delete(response.getHeader(LOCATION));
     }
 
     @Test(
@@ -193,8 +191,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
         Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
 
         // And then check we get the metadata of back
-        /* Model model = */ RestAssured
-            .given()
+        buildBaseRequestSpecification()
                 .header(ACCEPT, TEXT_TURTLE)
             .expect()
                 .statusCode(HttpStatus.SC_OK)
@@ -206,8 +203,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 
         // And the binary too
         final String expectedMD5 = HashUtils.md5sum(NonRDFSourceTest.class.getResourceAsStream("/" + file));
-        final byte[] binary = RestAssured
-            .given()
+        final byte[] binary = buildBaseRequestSpecification()
                 .header(ACCEPT, mimeType)
             .expect()
                 .statusCode(HttpStatus.SC_OK)
@@ -217,8 +213,8 @@ public class NonRDFSourceTest extends CommonResourceTest {
                 .get(location)
                 .body().asByteArray();
         assertEquals(expectedMD5, HashUtils.md5sum(binary), "md5sum");
-        
-        RestAssured.delete(location);
+
+        buildBaseRequestSpecification().delete(location);
     }
 
     @Test(
@@ -243,7 +239,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
         Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
 
         // And then check the link when requesting the LDP-NR
-        List<Header> linksNR = RestAssured
+        List<Header> linksNR = buildBaseRequestSpecification()
             .expect()
                 .statusCode(isSuccessful())
                 .header(ETAG, HeaderMatchers.isValidEntityTag())
@@ -252,7 +248,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
                 .headers().getList(LINK);
         Assert.assertTrue(containsLinkHeader(LDP.NonRDFSource.stringValue(), "type", linksNR));
 
-        RestAssured.delete(response.header(LOCATION));
+        buildBaseRequestSpecification().delete(response.header(LOCATION));
     }
 
     @Test(
@@ -282,7 +278,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
         String location = response.getHeader(LOCATION);
 
         // Check the link when requesting the LDP-NS
-        List<Header> linksNR = RestAssured
+        List<Header> linksNR = buildBaseRequestSpecification()
             .expect()
                 .statusCode(isSuccessful())
                 .header(ETAG, HeaderMatchers.headerPresent())
@@ -292,8 +288,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
         Assert.assertTrue(containsLinkHeader(describedBy, "describedby", linksNR));
 
         // And then check the associated LDP-RS is actually there
-        RestAssured
-            .given()
+        buildBaseRequestSpecification()
                 .header(ACCEPT, TEXT_TURTLE)
             .expect()
                 .statusCode(isSuccessful())
@@ -302,7 +297,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
             .when()
                 .get(describedBy);
 
-        RestAssured.delete(location);
+        buildBaseRequestSpecification().delete(location);
     }
 
     @Test(
@@ -329,8 +324,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
         String location = postResponse.getHeader(LOCATION);
 
         // And then check the associated LDP-RS is actually there
-        RestAssured
-            .given()
+        buildBaseRequestSpecification()
                 .header(ACCEPT, TEXT_TURTLE)
             .expect()
                 .statusCode(isSuccessful())
@@ -339,15 +333,14 @@ public class NonRDFSourceTest extends CommonResourceTest {
                 .get(describedBy);
 
         // Delete the LDP-NR.
-        RestAssured
+        buildBaseRequestSpecification()
             .expect()
                 .statusCode(isSuccessful())
             .when()
                 .delete(location);
 
         // Check that the associated LDP-RS is also deleted.
-        RestAssured
-            .given()
+        buildBaseRequestSpecification()
                 .header(ACCEPT, TEXT_TURTLE)
             .expect()
                 .statusCode(isNotFoundOrGone())
@@ -357,8 +350,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 
     protected Response postNonRDFSource(String slug, String file, String mimeType) throws IOException {
         // Make sure we can post binary resources
-        return RestAssured
-            .given()
+        return buildBaseRequestSpecification()
                 .header(SLUG, slug)
                 .body(IOUtils.toByteArray(getClass().getResourceAsStream("/" + file)))
                 .contentType(mimeType)
@@ -394,7 +386,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
         Assert.assertNotNull(describedBy, "Expected Link response header with relation 'describedby' for LDP-NR POST request");
 
         // Check the Link headers on an HTTP OPTIONS for the LDP-NR
-        List<Header> linksOPTIONS = RestAssured
+        List<Header> linksOPTIONS = buildBaseRequestSpecification()
             .expect()
                 .statusCode(isSuccessful())
             .when()
@@ -403,7 +395,8 @@ public class NonRDFSourceTest extends CommonResourceTest {
         Assert.assertTrue(containsLinkHeader(describedBy, "describedby", linksOPTIONS),
                 "Expected Link response header with relation 'describedby' and URI <"
                         + describedBy + "> for LDP-NR OPTIONS request");
-        
-        RestAssured.delete(location);
+
+        buildBaseRequestSpecification().delete(location);
     }
+
 }

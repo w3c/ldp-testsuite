@@ -9,6 +9,7 @@ import static org.testng.Assert.assertTrue;
 import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.UUID;
@@ -35,7 +36,6 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.vocabulary.DCTerms;
 import com.hp.hpl.jena.vocabulary.RDF;
-import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.RequestSpecification;
 
@@ -48,6 +48,11 @@ public abstract class CommonContainerTest extends RdfSourceTest {
     public static final String MSG_MBRRES_NOTFOUND = "Unable to locate object in triple with predicate ldp:membershipResource.";
     public static final String MSG_PREFERENCE_NOT_APPLIED = "Server did not return Preference-Applied: return=representation response header";
 
+    @Parameters("auth")
+    public CommonContainerTest(@Optional String auth) throws IOException {
+        super(auth);
+    }
+
     @Test(
             groups = {MAY},
             description = "LDP servers MAY choose to allow the creation of new "
@@ -58,7 +63,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
             approval = STATUS.WG_APPROVED)
     public void testPutToCreate() {
         String location = putToCreate();
-        RestAssured.delete(location);
+        buildBaseRequestSpecification().delete(location);
     }
 
     @Test(
@@ -91,8 +96,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
                 .hasNext(), "LDPC representations should not use rdf:Bag");
         assertFalse(containerModel.listResourcesWithProperty(RDF.type, RDF.Seq)
                 .hasNext(), "LDPC representations should not use rdf:Seq");
-        assertFalse(containerModel
-                        .listResourcesWithProperty(RDF.type, RDF.List).hasNext(),
+        assertFalse(containerModel.listResourcesWithProperty(RDF.type, RDF.List).hasNext(),
                 "LDPC representations should not use rdf:List"
         );
     }
@@ -114,8 +118,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         String containerUri = getResourceUri();
         
         // Ask for containment triples.
-        response = RestAssured
-                .given()
+        response = buildBaseRequestSpecification()
                     .header(ACCEPT, TEXT_TURTLE)
                     .header(PREFER, include(PREFER_CONTAINMENT)) // request all containment triples
                 .expect()
@@ -131,8 +134,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
                 "Container does not have containment triples");
         
         // Ask for a minimal container.
-        response = RestAssured
-                .given()
+        response = buildBaseRequestSpecification()
                     .header(ACCEPT, TEXT_TURTLE)
                     .header(PREFER, include(PREFER_MINIMAL_CONTAINER)) // request no containment triples
                 .expect()
@@ -146,8 +148,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
                 "Container has containment triples when minimal container was requested");
         
         // Ask to omit containment triples.
-        response = RestAssured
-                .given()
+        response = buildBaseRequestSpecification()
                     .header(ACCEPT, TEXT_TURTLE)
                     .header(PREFER, omit(PREFER_CONTAINMENT)) // request no containment triples
                 .expect()
@@ -191,7 +192,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         skipIfMethodNotAllowed(HttpMethod.POST);
 
         Model model = postContent();
-        Response postResponse = RestAssured.given().contentType(TEXT_TURTLE)
+        Response postResponse = buildBaseRequestSpecification().contentType(TEXT_TURTLE)
                 .body(model, new RdfObjectMapper()).expect()
                 .statusCode(HttpStatus.SC_CREATED).when()
                 .post(getResourceUri());
@@ -199,7 +200,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         String location = postResponse.getHeader(LOCATION);
         assertNotNull(location, MSG_LOC_NOTFOUND);
 
-        RestAssured.delete(location);
+        buildBaseRequestSpecification().delete(location);
     }
 
     @Test(
@@ -216,7 +217,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 
         Model model = postContent();
         String containerUri = getResourceUri();
-        Response postResponse = RestAssured.given().contentType(TEXT_TURTLE)
+        Response postResponse = buildBaseRequestSpecification().contentType(TEXT_TURTLE)
                 .body(model, new RdfObjectMapper()).expect()
                 .statusCode(HttpStatus.SC_CREATED).when()
                 .post(getResourceUri());
@@ -238,7 +239,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
                         + location + ">."
         );
 
-        RestAssured.delete(location);
+        buildBaseRequestSpecification().delete(location);
     }
 
     @Test(
@@ -254,20 +255,20 @@ public abstract class CommonContainerTest extends RdfSourceTest {
             testMethod = METHOD.AUTOMATED,
             approval = STATUS.WG_PENDING)
     public void testRequestedInteractionModelCreateNotAllowed(@Optional String containerAsResource) {
-    	if (containerAsResource == null)
-    		throw new SkipException("containerAsResource is null");
-    	
+        if (containerAsResource == null)
+            throw new SkipException("containerAsResource is null");
+
         Model model = postContent();
 
         // If create is successful, then not acting like a plain ole resource
-        Response postResponse = RestAssured.given().contentType(TEXT_TURTLE)
+        Response postResponse = buildBaseRequestSpecification().contentType(TEXT_TURTLE)
                 .body(model, new RdfObjectMapper())
                 .post(containerAsResource);
 
         // Cleanup if it actually created something
         String location = postResponse.getHeader(LOCATION);
         if (postResponse.statusCode() == HttpStatus.SC_CREATED && location !=null)
-        	RestAssured.delete(location);
+            buildBaseRequestSpecification().delete(location);
 
         assertNotEquals(postResponse.statusCode(), HttpStatus.SC_CREATED, "Resources with interaction model of only ldp:Resources shouldn't allow container POST-create behavior.");
         
@@ -287,12 +288,12 @@ public abstract class CommonContainerTest extends RdfSourceTest {
             testMethod = METHOD.AUTOMATED,
             approval = STATUS.WG_PENDING)
     public void testRequestedInteractionModelHeaders(@Optional String containerAsResource) {
-    	if (containerAsResource == null)
-    		throw new SkipException("containerAsResource is null");
-        
+        if (containerAsResource == null)
+            throw new SkipException("containerAsResource is null");
+
         // Ensure we don't get back any of the container types in the rel='type' Link header
-        Response response = RestAssured.expect().statusCode(HttpStatus.SC_OK)
-        		.options(containerAsResource);
+        Response response = buildBaseRequestSpecification().expect().statusCode(HttpStatus.SC_OK)
+                .options(containerAsResource);
         assertFalse(
                 containsLinkHeader(LDP.BasicContainer.stringValue(), LINK_REL_TYPE, response) ||
                 containsLinkHeader(LDP.DirectContainer.stringValue(), LINK_REL_TYPE, response) ||
@@ -314,7 +315,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         skipIfMethodNotAllowed(HttpMethod.POST);
 
         Model model = postContent();
-        Response postResponse = RestAssured.given().contentType(TEXT_TURTLE)
+        Response postResponse = buildBaseRequestSpecification().contentType(TEXT_TURTLE)
                 .body(model, new RdfObjectMapper()).expect()
                 .statusCode(HttpStatus.SC_CREATED).when()
                 .post(getResourceUri());
@@ -322,7 +323,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         // Delete the resource to clean up.
         String location = postResponse.getHeader(LOCATION);
         if (location != null) {
-            RestAssured.delete(location);
+            buildBaseRequestSpecification().delete(location);
         }
     }
 
@@ -342,8 +343,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         Model toPost = postContent();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         toPost.write(out, "TURTLE");
-        Response postResponse = RestAssured
-            .given()
+        Response postResponse = buildBaseRequestSpecification()
                 .contentType("text/this-is-not-turtle")
                 .body(out.toByteArray())
             .when()
@@ -363,7 +363,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         String location = postResponse.getHeader(LOCATION);
         assertNotNull(location, "No Location response header on 201 Created response");
 
-        Response getResponse = RestAssured
+        Response getResponse = buildBaseRequestSpecification()
             .expect()
                 .statusCode(isSuccessful())
                 .contentType(not(TEXT_TURTLE))
@@ -375,7 +375,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
                 "Server should not responsd with RDF source Link header when content was created with non-RDF Content-Type");
  
         // Clean up.
-        RestAssured.delete(location);
+        buildBaseRequestSpecification().delete(location);
     }
 
     @Test(
@@ -400,7 +400,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 
         // Do not pass a URI to RdfObjectMapper so that it stays as the null
         // relative URI in the request body
-        Response postResponse = RestAssured.given().contentType(TEXT_TURTLE)
+        Response postResponse = buildBaseRequestSpecification().contentType(TEXT_TURTLE)
                 .body(requestModel, new RdfObjectMapper()) // do not pass a URI
                 .expect().statusCode(HttpStatus.SC_CREATED).when()
                 .post(getResourceUri());
@@ -423,7 +423,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         );
 
         // Delete the resource to clean up.
-        RestAssured.delete(location);
+        buildBaseRequestSpecification().delete(location);
     }
 
     @Test(
@@ -439,8 +439,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 
         // POST content with no Slug and see if the server assigns a URI.
         Model model = postContent();
-        Response postResponse = RestAssured
-            .given()
+        Response postResponse = buildBaseRequestSpecification()
                 .contentType(TEXT_TURTLE)
                 .body(model, new RdfObjectMapper())
              .expect()
@@ -450,7 +449,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
                 .post(getResourceUri());
 
         // Delete the resource to clean up.
-        RestAssured.delete(postResponse.getHeader(LOCATION));
+        buildBaseRequestSpecification().delete(postResponse.getHeader(LOCATION));
     }
 
     @Test(
@@ -473,7 +472,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         String identifier = UUID.randomUUID().toString();
         resource.addProperty(DCTerms.identifier, identifier);
 
-        Response postResponse = RestAssured.given().contentType(TEXT_TURTLE)
+        Response postResponse = buildBaseRequestSpecification().contentType(TEXT_TURTLE)
                 .body(requestModel, new RdfObjectMapper()).expect()
                 .statusCode(HttpStatus.SC_CREATED).when()
                 .post(getResourceUri());
@@ -481,7 +480,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         // Delete the resource to clean up.
         String location = postResponse.getHeader(LOCATION);
         if (location != null) {
-            RestAssured.delete(location);
+            buildBaseRequestSpecification().delete(location);
         }
 
     }
@@ -520,7 +519,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
     public void testAcceptPostResponseHeader() {
         skipIfMethodNotAllowed(HttpMethod.POST);
 
-        Response optionsResponse = RestAssured.expect()
+        Response optionsResponse = buildBaseRequestSpecification().expect()
                 .statusCode(isSuccessful()).when()
                 .options(getResourceUri());
         assertNotNull(
@@ -542,8 +541,8 @@ public abstract class CommonContainerTest extends RdfSourceTest {
             approval = STATUS.WG_APPROVED)
     public void testRejectPutModifyingContainmentTriples() {
         String containerUri = getResourceUri();
-        Response response = RestAssured
-                .given().header(ACCEPT, TEXT_TURTLE)
+        Response response = buildBaseRequestSpecification()
+                .header(ACCEPT, TEXT_TURTLE)
                 .expect().statusCode(isSuccessful())
                 .when().get(containerUri);
         String eTag = response.getHeader(ETAG);
@@ -554,7 +553,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         containerResource.addProperty(model.createProperty(LDP.contains.stringValue()),
                 model.createResource("#" + System.currentTimeMillis()));
 
-        RequestSpecification putRequest = RestAssured.given().contentType(TEXT_TURTLE);
+        RequestSpecification putRequest = buildBaseRequestSpecification().contentType(TEXT_TURTLE);
         if (eTag != null) {
             putRequest.header(IF_MATCH, eTag);
         }
@@ -577,7 +576,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         String location = putToCreate();
 
         // Delete the resource.
-        RestAssured
+        buildBaseRequestSpecification()
                 .expect()
                 .statusCode(isSuccessful())
                 .when()
@@ -585,7 +584,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 
         // Try to put to the same URI again. It should fail.
         Model content = postContent();
-        RestAssured
+        buildBaseRequestSpecification()
                 .given()
                 .contentType(TEXT_TURTLE)
                 .body(content, new RdfObjectMapper(location))
@@ -608,7 +607,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         skipIfMethodNotAllowed(HttpMethod.POST);
 
         Model model = postContent();
-        Response postResponse = RestAssured.given().contentType(TEXT_TURTLE)
+        Response postResponse = buildBaseRequestSpecification().contentType(TEXT_TURTLE)
                 .body(model, new RdfObjectMapper()).expect()
                 .statusCode(HttpStatus.SC_CREATED).when()
                 .post(getResourceUri());
@@ -625,7 +624,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         // TODO: Check if delete is supported on location.....
 
         // Delete the resource
-        RestAssured.expect().statusCode(isSuccessful()).when()
+        buildBaseRequestSpecification().expect().statusCode(isSuccessful()).when()
                 .delete(location);
 
         // Test the membership triple
@@ -660,19 +659,18 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         // TODO: Actually try to patch the containment triples.
     }
 
-	@Test(
-			groups = { MAY }, 
-			description = "The representation of a LDPC MAY have an rdf:type "
-					+ "of ldp:Container for Linked Data Platform Container. Non-normative "
-					+ "note: LDPCs might have additional types, like any LDP-RS. ")
-	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-typecontainer", 
-			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
-	public void testRdfTypeLdpContainer() {
-	    String container = getResourceUri();
-        Model m = RestAssured
-            .given()
+    @Test(
+            groups = {MAY},
+            description = "The representation of a LDPC MAY have an rdf:type "
+                    + "of ldp:Container for Linked Data Platform Container. Non-normative "
+                    + "note: LDPCs might have additional types, like any LDP-RS. ")
+    @SpecTest(
+            specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-typecontainer",
+            testMethod = METHOD.AUTOMATED,
+            approval = STATUS.WG_PENDING)
+    public void testRdfTypeLdpContainer() {
+        String container = getResourceUri();
+        Model m = buildBaseRequestSpecification()
                 .header(ACCEPT, TEXT_TURTLE)
             .expect()
                 .statusCode(isSuccessful())
@@ -680,23 +678,23 @@ public abstract class CommonContainerTest extends RdfSourceTest {
                 .get(container).as(Model.class, new RdfObjectMapper(container));
         assertTrue(m.contains(m.getResource(container), RDF.type, m.getResource(LDP.Container.stringValue())),
                 "LDPC does not have an rdf:type of ldp:Container");
-	}
-	
-	@Test(
-			enabled = false, 
-			groups = { MAY }, 
-			description = "LDP servers MAY allow clients to suggest "
-					+ "the URI for a resource created through POST, "
-					+ "using the HTTP Slug header as defined in [RFC5023]. "
-					+ "LDP adds no new requirements to this usage, so its "
-					+ "presence functions as a client hint to the server "
-					+ "providing a desired string to be incorporated into the "
-					+ "server's final choice of resource URI.")
-	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-slug", 
-			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
-	public void testServerHonorsSlug() {
+    }
+
+    @Test(
+            enabled = false,
+            groups = {MAY},
+            description = "LDP servers MAY allow clients to suggest "
+                    + "the URI for a resource created through POST, "
+                    + "using the HTTP Slug header as defined in [RFC5023]. "
+                    + "LDP adds no new requirements to this usage, so its "
+                    + "presence functions as a client hint to the server "
+                    + "providing a desired string to be incorporated into the "
+                    + "server's final choice of resource URI.")
+    @SpecTest(
+            specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-slug",
+            testMethod = METHOD.AUTOMATED,
+            approval = STATUS.WG_PENDING)
+    public void testServerHonorsSlug() {
         skipIfMethodNotAllowed(HttpMethod.POST);
 
         // Come up with a unique slug header.
@@ -710,25 +708,24 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         assertTrue(location.contains(slug), "Slug is not part of the return Location");
         
         // Clean up.
-        RestAssured.delete(location);
-	}
-	
-	@Test(
-			groups = { SHOULD }, 
-			description = "LDP servers SHOULD accept a request entity "
-					+ "body with a request header of Content-Type with "
-					+ "value of application/ld+json [JSON-LD].")
-	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-jsonld", 
-			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
-	public void testPostJsonLd() {
+        buildBaseRequestSpecification().delete(location);
+    }
+
+    @Test(
+            groups = {SHOULD},
+            description = "LDP servers SHOULD accept a request entity "
+                    + "body with a request header of Content-Type with "
+                    + "value of application/ld+json [JSON-LD].")
+    @SpecTest(
+            specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-jsonld",
+            testMethod = METHOD.AUTOMATED,
+            approval = STATUS.WG_PENDING)
+    public void testPostJsonLd() {
         skipIfMethodNotAllowed(HttpMethod.POST);
         
         // POST content as JSON-LD.
         Model model = postContent();
-        Response postResponse = RestAssured
-            .given()
+        Response postResponse = buildBaseRequestSpecification()
                 .contentType(APPLICATION_LD_JSON)
                 .body(model, new RdfObjectMapper())
             .expect()
@@ -739,7 +736,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         
         // Get the resource back to make sure it wasn't simply treated as a
         // binary resource. We should be able to get it as text/turtle.
-        Response getResponse = RestAssured
+        Response getResponse = buildBaseRequestSpecification()
             .expect()
                 .statusCode(isSuccessful())
                 .contentType(TEXT_TURTLE)   // if no Accept header, LDP servers must return text/turtle for RDF source
@@ -747,7 +744,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
                 .get(postResponse.getHeader(LOCATION));
         assertFalse(containsLinkHeader(LDP.NonRDFSource.stringValue(), LINK_REL_TYPE, getResponse),
                 "Resources POSTed using JSON-LD should be treated as RDF source");
-	}
+    }
 
     protected boolean restrictionsOnContent() {
         return true;
@@ -773,17 +770,16 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         // resource.
         // Delete the resource to make sure the server doesn't reuse the URI
         // below.
-        RestAssured.expect().statusCode(isSuccessful()).when().delete(loc1);
+        buildBaseRequestSpecification().expect().statusCode(isSuccessful()).when().delete(loc1);
 
         String loc2 = post(content, slug);
         assertNotEquals(loc1, loc2, "Server reused URIs for POSTed resources.");
-        
-        RestAssured.delete(loc2);
+
+        buildBaseRequestSpecification().delete(loc2);
     }
 
     private String post(Model content, String slug) {
-        RequestSpecification spec = RestAssured.given()
-                .contentType(TEXT_TURTLE);
+        RequestSpecification spec = buildBaseRequestSpecification().contentType(TEXT_TURTLE);
         if (slug != null) {
             spec.header(SLUG, slug);
         }
@@ -808,7 +804,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
         URI target = UriBuilder.fromUri(getResourceUri())
                 .path(UUID.randomUUID().toString()).build();
         Model model = postContent();
-        Response response = RestAssured.given().contentType(TEXT_TURTLE)
+        Response response = buildBaseRequestSpecification().contentType(TEXT_TURTLE)
                 .body(model, new RdfObjectMapper("")).expect()
                 .statusCode(HttpStatus.SC_CREATED).when().put(target);
 

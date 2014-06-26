@@ -150,9 +150,9 @@ public class LdpTestSuite {
         if (options.hasOptionWithValue("auth")) {
             final String auth = options.getOptionValue("auth");
             if (auth.contains(":")) {
-                String[] split = auth.split(":");
-                if (split.length == 2 && StringUtils.isNotBlank(split[0]) && StringUtils.isNotBlank(split[1])) {
-                    parameters.put("auth", auth);
+                    String[] split = auth.split(":");
+                    if (split.length == 2 && StringUtils.isNotBlank(split[0]) && StringUtils.isNotBlank(split[1])) {
+                        parameters.put("auth", auth);
                 } else {
                     throw new IllegalArgumentException("ERROR: invalid basic authentication credentials");
                 }
@@ -336,10 +336,9 @@ public class LdpTestSuite {
             ldpTestSuite.run();
             System.exit(ldpTestSuite.getStatus());
         } catch (Exception e) {
-            // e.printStackTrace();
+            e.printStackTrace();
             Throwable cause = ExceptionUtils.getRootCause(e);
-            System.err.println("ERROR: "
-                    + (cause != null ? cause.getMessage() : e.getMessage()));
+            System.err.println("ERROR: " + (cause != null ? cause.getMessage() : e.getMessage()));
             printUsage(options);
         }
 

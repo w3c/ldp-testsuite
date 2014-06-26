@@ -7,8 +7,12 @@ import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful
 import java.io.IOException;
 import java.net.URISyntaxException;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
+import org.apache.marmotta.commons.vocabulary.LDP;
 import org.testng.SkipException;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
@@ -31,13 +35,18 @@ import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.util.ResourceUtils;
 import com.hp.hpl.jena.vocabulary.DCTerms;
 import com.hp.hpl.jena.vocabulary.RDF;
-import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 
 /**
  * Tests all RDF source LDP resources, including containers and member resources.
  */
 public abstract class RdfSourceTest extends CommonResourceTest {
+
+    @Parameters("auth")
+    public RdfSourceTest(@Optional String auth) throws IOException {
+        super(auth);
+    }
+
     @Test(
             groups = {MUST},
             description = "LDP servers MUST assign the default base-URI "
@@ -53,8 +62,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
         skipIfMethodNotAllowed(HttpMethod.PUT);
 
         String resourceUri = getResourceUri();
-        Response response = RestAssured
-            .given()
+        Response response = buildBaseRequestSpecification()
                 .header(ACCEPT, TEXT_TURTLE)
             .expect()
                 .statusCode(isSuccessful())
@@ -72,8 +80,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
         updateResource(model.getResource(""));
         
         // Put the resource back using relative URIs.
-        Response put = RestAssured
-                .given().contentType(TEXT_TURTLE).header(IF_MATCH, eTag)
+        Response put = buildBaseRequestSpecification()
+                .contentType(TEXT_TURTLE).header(IF_MATCH, eTag)
                 .body(model, new RdfObjectMapper("")) // relative URI
                 .when().put(resourceUri);
         if (!isSuccessful().matches(put.getStatusCode())) {
@@ -81,7 +89,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
         }
 
         // Get the resource again to verify its content.
-        model = RestAssured.given().header(ACCEPT, TEXT_TURTLE)
+        model = buildBaseRequestSpecification().header(ACCEPT, TEXT_TURTLE)
                 .expect().statusCode(isSuccessful())
                 .when().get(resourceUri).as(Model.class, new RdfObjectMapper(resourceUri));
 
@@ -108,8 +116,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 
         // TODO: Is there a better way to test this requirement?
         String resourceUri = getResourceUri();
-        Response response = RestAssured
-                .given()
+        Response response = buildBaseRequestSpecification()
                         .header(ACCEPT, TEXT_TURTLE)
                 .expect()
                         .statusCode(isSuccessful())
@@ -125,15 +132,15 @@ public abstract class RdfSourceTest extends CommonResourceTest {
         final String UPDATED_TITLE = "This resources content has been replaced";
         differentContent.add(differentContent.getResource(resourceUri),
                 DCTerms.title, UPDATED_TITLE);
-        RestAssured
+
+        buildBaseRequestSpecification()
                 .given().contentType(TEXT_TURTLE).header(IF_MATCH, eTag)
                 .body(differentContent, new RdfObjectMapper(resourceUri)) // relative URI
                 .expect().statusCode(isSuccessful())
                 .when().put(resourceUri);
 
         // Get the resource again to see what's there.
-        response = RestAssured
-            .given()
+        response = buildBaseRequestSpecification()
                 .header(ACCEPT, TEXT_TURTLE)
             .expect()
                 .statusCode(isSuccessful())
@@ -162,8 +169,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
         assertTrue(hasDifferentProperties, "The updated resource has the same properties as the original. Was it really replaced?");
 
         // Replace the resource with its original content to clean up.
-        RestAssured
-                .given().contentType(TEXT_TURTLE).header(IF_MATCH, eTag)
+        buildBaseRequestSpecification()
+                .contentType(TEXT_TURTLE).header(IF_MATCH, eTag)
                 .body(originalModel, new RdfObjectMapper(resourceUri)) // relative URI
                 .expect().statusCode(isSuccessful())
                 .when().put(resourceUri);
@@ -182,7 +189,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
         // Make sure we can get the resource itself and the response is
         // valid RDF. Turtle is a required media type, so this request
         // should succeed for all LDP-RS.
-        RestAssured.given().header(ACCEPT, TEXT_TURTLE)
+        buildBaseRequestSpecification()
+                .header(ACCEPT, TEXT_TURTLE)
                 .expect().statusCode(HttpStatus.SC_OK).contentType(TEXT_TURTLE)
                 .when().get(getResourceUri()).as(Model.class, new RdfObjectMapper(getResourceUri()));
     }
@@ -229,12 +237,12 @@ public abstract class RdfSourceTest extends CommonResourceTest {
     public void testUseStandardVocabularies() throws URISyntaxException {
         // TODO: Consider ideas for testUseStandardVocabularies (see comment)
         /* Possible ideas:
-    	   fetch resource, look for known vocabulary term
-    	   URIs.  Also can look at total number of terms and have a threshold
-    	   of differences, say 100 terms and < 5 standard predicates would be odd.
-    	   Also could look for similar/like short predicate short names or even
-    	   look for owl:sameAs.
-    	    */
+           fetch resource, look for known vocabulary term
+           URIs.  Also can look at total number of terms and have a threshold
+           of differences, say 100 terms and < 5 standard predicates would be odd.
+           Also could look for similar/like short predicate short names or even
+           look for owl:sameAs.
+        */
         throw new SkipNotTestableException();
     }
 
@@ -343,27 +351,27 @@ public abstract class RdfSourceTest extends CommonResourceTest {
             approval = STATUS.WG_APPROVED)
     public void testGetResourceAcceptTurtle() {
         // Accept: text/turtle
-        RestAssured.given().header(ACCEPT, TEXT_TURTLE)
+        buildBaseRequestSpecification().header(ACCEPT, TEXT_TURTLE)
                 .expect().statusCode(isSuccessful()).contentType(TEXT_TURTLE)
                 .when().get(getResourceUri()).as(Model.class, new RdfObjectMapper(getResourceUri()));
 
         // No Accept header
-        RestAssured
+        buildBaseRequestSpecification()
                 .expect().statusCode(isSuccessful()).contentType(TEXT_TURTLE)
                 .when().get(getResourceUri()).as(Model.class, new RdfObjectMapper(getResourceUri()));
 
         // Wildcard
-        RestAssured.given().header(ACCEPT, "*/*")
+        buildBaseRequestSpecification().header(ACCEPT, "*/*")
                 .expect().statusCode(isSuccessful()).contentType(TEXT_TURTLE)
                 .when().get(getResourceUri()).as(Model.class, new RdfObjectMapper(getResourceUri()));
 
         // Accept: text/*
-        RestAssured.given().header(ACCEPT, "text/*")
+        buildBaseRequestSpecification().header(ACCEPT, "text/*")
                 .expect().statusCode(isSuccessful()).contentType(TEXT_TURTLE)
                 .when().get(getResourceUri()).as(Model.class, new RdfObjectMapper(getResourceUri()));
 
         // More complicated Accept header
-        RestAssured.given().header(ACCEPT, "text/turtle;q=0.9,application/json;q=0.8")
+        buildBaseRequestSpecification().header(ACCEPT, "text/turtle;q=0.9,application/json;q=0.8")
                 .expect().statusCode(isSuccessful()).contentType(TEXT_TURTLE)
                 .when().get(getResourceUri()).as(Model.class, new RdfObjectMapper(getResourceUri()));
     }
@@ -373,42 +381,41 @@ public abstract class RdfSourceTest extends CommonResourceTest {
      * {@link CommonContainerTest#testPreferContainmentTriples()} and
      * {@link DirectContainerTest#testPreferMembershipTriples()}.
      */
-	@Test(
-			enabled = false, 
-			groups = { MAY }, 
-			description = "LDP clients MAY provide LDP-defined hints that allow servers "
-					+ "to optimize the content of responses. section 7.2 Preferences on "
-					+ "the Prefer Request Header defines hints that apply to LDP-RSs. ")
-	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-cli-can-hint", 
-			testMethod = METHOD.CLIENT_ONLY,
-			approval = STATUS.WG_PENDING)
-	public void testClientMayProvideHints() {
-	    throw new SkipClientTestException();
-	}
- 
-	@Test(
-			groups = { SHOULD }, 
-			description = "LDP servers SHOULD offer a application/ld+json representation"
-					+ " of the requested LDP-RS [JSON-LD]. ")
-	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-get-jsonld", 
-			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
-	public void testJsonLdRepresentation() throws IOException, JsonLdError {
-	    Response response = RestAssured
-	        .given()
-	            .header(ACCEPT, "application/ld+json, application/json;q=0.5")
-	         .expect()
-	             .statusCode(isSuccessful())
-	             .contentType(HeaderMatchers.isJsonLdCompatibleContentType())
-	         .when()
-	             .get(getResourceUri());
-	
-	    // Make sure it parses as JSON-LD.
-	    Object json = JsonUtils.fromInputStream(response.asInputStream());
-	    JsonLdProcessor.toRDF(json); // throws JsonLdError if not valid
-	}
+    @Test(
+            enabled = false,
+            groups = {MAY},
+            description = "LDP clients MAY provide LDP-defined hints that allow servers "
+                    + "to optimize the content of responses. section 7.2 Preferences on "
+                    + "the Prefer Request Header defines hints that apply to LDP-RSs. ")
+    @SpecTest(
+            specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-cli-can-hint",
+            testMethod = METHOD.CLIENT_ONLY,
+            approval = STATUS.WG_PENDING)
+    public void testClientMayProvideHints() {
+        throw new SkipClientTestException();
+    }
+
+    @Test(
+            groups = {SHOULD},
+            description = "LDP servers SHOULD offer a application/ld+json representation"
+                    + " of the requested LDP-RS [JSON-LD]. ")
+    @SpecTest(
+            specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-get-jsonld",
+            testMethod = METHOD.AUTOMATED,
+            approval = STATUS.WG_PENDING)
+    public void testJsonLdRepresentation() throws IOException, JsonLdError {
+        Response response = buildBaseRequestSpecification()
+                .header(ACCEPT, "application/ld+json, application/json;q=0.5")
+                .expect()
+                .statusCode(isSuccessful())
+                .contentType(HeaderMatchers.isJsonLdCompatibleContentType())
+                .when()
+                .get(getResourceUri());
+
+        // Make sure it parses as JSON-LD.
+        Object json = JsonUtils.fromInputStream(response.asInputStream());
+        JsonLdProcessor.toRDF(json); // throws JsonLdError if not valid
+    }
 
     // Update a resource then later test if the updates were applied (i.e., on a subsequent GET).
     // These methods could be overwritten by subclasses.
@@ -449,4 +456,5 @@ public abstract class RdfSourceTest extends CommonResourceTest {
     protected boolean restrictionsOnContent() {
         return false;
     }
+
 }
