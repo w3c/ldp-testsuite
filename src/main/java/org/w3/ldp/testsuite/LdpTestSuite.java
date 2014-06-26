@@ -1,6 +1,7 @@
 package org.w3.ldp.testsuite;
 
 import org.apache.commons.cli.*;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.testng.IMethodInstance;
 import org.testng.IMethodInterceptor;
@@ -88,8 +89,7 @@ public class LdpTestSuite {
                     throw new IllegalArgumentException("non-http uri");
                 }
             } catch (Exception e) {
-                throw new IllegalArgumentException(
-                        "ERROR: invalid server uri, " + e.getLocalizedMessage());
+                throw new IllegalArgumentException("ERROR: invalid server uri, " + e.getLocalizedMessage());
             }
         } else {
             throw new IllegalArgumentException("ERROR: missing server uri");
@@ -99,23 +99,15 @@ public class LdpTestSuite {
         final String[] listeners;
         if (options.hasOption("listeners")) {
             listeners = options.getOptionValues("listeners");
-
             for (String listener : listeners) {
-
                 try {
                     Class<?> listenerCl = Class.forName(listener);
                     Object instance = listenerCl.newInstance();
                     testng.addListener(instance);
                 } catch (ClassNotFoundException e) {
-                    throw new IllegalArgumentException(
-                            "ERROR: invalid listener class name, "
-                                    + e.getLocalizedMessage()
-                    );
+                    throw new IllegalArgumentException("ERROR: invalid listener class name, " + e.getLocalizedMessage());
                 } catch (InstantiationException | IllegalAccessException e) {
-                    throw new IllegalArgumentException(
-                            "ERROR: problem while creating listener, "
-                                    + e.getLocalizedMessage()
-                    );
+                    throw new IllegalArgumentException("ERROR: problem while creating listener, " + e.getLocalizedMessage());
                 }
             }
         }
@@ -127,47 +119,50 @@ public class LdpTestSuite {
         // Add method enabler (Annotation Transformer)
         testng.addListener(new MethodEnabler());
 
-        String containerAsResource = null;
-        if (options.hasOption("cont-res")) {
-            containerAsResource = options.getOptionValue("cont-res");
+        // Test suite parameters
+        final Map<String, String> parameters = new HashMap<>();
+
+        if (options.hasOptionWithValue("software"))
+            parameters.put("software", options.getOptionValue("software"));
+
+        if (options.hasOptionWithValue("developer"))
+            parameters.put("software", options.getOptionValue("developer"));
+
+        if (options.hasOptionWithValue("language"))
+            parameters.put("language", options.getOptionValue("language"));
+
+        if (options.hasOptionWithValue("homepage"))
+            parameters.put("homepage", options.getOptionValue("homepage"));
+
+        if (options.hasOptionWithValue("cont-res")) {
+            final String containerAsResource = options.getOptionValue("cont-res");
             try {
                 URI uri = new URI(containerAsResource);
                 if (!"http".equals(uri.getScheme())) {
-                    throw new IllegalArgumentException("non-http uri");
+                    throw new IllegalArgumentException("ERROR: non-http uri");
                 }
             } catch (Exception e) {
-                throw new IllegalArgumentException(
-                        "ERROR: invalid containerAsResource uri, " + e.getLocalizedMessage());
+                throw new IllegalArgumentException("ERROR: invalid containerAsResource uri, " + e.getLocalizedMessage());
+            }
+            parameters.put("containerAsResource", containerAsResource);
+        }
+
+        if (options.hasOptionWithValue("auth")) {
+            final String auth = options.getOptionValue("auth");
+            if (auth.contains(":")) {
+                String[] split = auth.split(":");
+                if (split.length == 2 && StringUtils.isNotBlank(split[0]) && StringUtils.isNotBlank(split[1])) {
+                    parameters.put("auth", auth);
+                } else {
+                    throw new IllegalArgumentException("ERROR: invalid basic authentication credentials");
+                }
+            } else {
+                throw new IllegalArgumentException("ERROR: invalid basic authentication credentials");
             }
         }
-        String softwareTitle = null;
-        if (options.hasOption("software"))
-            softwareTitle = options.getOptionValue("software");
-        String softwareDev = null;
-        if (options.hasOption("developer"))
-            softwareDev = options.getOptionValue("developer");
-        String language = null;
-        if (options.hasOption("language"))
-            language = options.getOptionValue("language");
-        String homepage = null;
-        if (options.hasOption("homepage"))
-            homepage = options.getOptionValue("homepage");
 
         // Add classes we want to test
         final List<XmlClass> classes = new ArrayList<>();
-
-        final Map<String, String> parameters = new HashMap<>();
-
-        if (softwareTitle != null)
-            parameters.put("software", softwareTitle);
-        if (softwareDev != null)
-            parameters.put("developer", softwareDev);
-        if (language != null)
-            parameters.put("language", language);
-        if (homepage != null)
-            parameters.put("homepage", homepage);
-        if (containerAsResource != null)
-            parameters.put("containerAsResource", containerAsResource);
 
         final ContainerType type = getSelectedType(options);
         switch (type) {
