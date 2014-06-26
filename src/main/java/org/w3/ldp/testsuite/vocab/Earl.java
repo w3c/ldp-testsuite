@@ -19,12 +19,13 @@ public class Earl {
 
     public final static Resource Assertor = resource(EARL.ASSERTOR.toString());
 
-    public final static Resource Automatic = resource(EARL.AUTOMATIC.toString());
-    public final static Resource Manual = resource(EARL.MANUAL.toString());
-    public final static Resource NotTested = resource(EARL.NOTTESTED.toString());
     public final static Resource Software = resource(EARL.SOFTWARE.toString());
-
+    
     /* List of Earl Properties */
+    public final static Property automatic = property(EARL.AUTOMATIC.toString());
+    public final static Property manual = property(EARL.MANUAL.toString());
+    public final static Property notTested = property(EARL.NOTTESTED.toString());
+    
     public final static Property testResult = property(EARL.RESULT.toString());
     public final static Property testSubject = property(EARL.SUBJECT.toString());
 
