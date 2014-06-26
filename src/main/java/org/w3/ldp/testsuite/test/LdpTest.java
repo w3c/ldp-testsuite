@@ -59,6 +59,13 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes,
         return model;
     }
 
+    /**
+     * Initialization of member and generic resource models. This will run only once
+     * at the beginning of the test suite, so postModel and memberModel static fields 
+     * will be assigned once too. 
+     * @param postTtl
+     * @param memberTtl
+     */
     @BeforeSuite(alwaysRun = true)
     @Parameters({ "postTtl", "memberTtl" })
     public void setPostContent(@Optional String postTtl,
