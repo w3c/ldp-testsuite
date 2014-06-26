@@ -661,17 +661,25 @@ public abstract class CommonContainerTest extends RdfSourceTest {
     }
 
 	@Test(
-			enabled = false, 
 			groups = { MAY }, 
 			description = "The representation of a LDPC MAY have an rdf:type "
 					+ "of ldp:Container for Linked Data Platform Container. Non-normative "
 					+ "note: LDPCs might have additional types, like any LDP-RS. ")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-typecontainer", 
-			testMethod = METHOD.NOT_IMPLEMENTED, 
+			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_PENDING)
-	public void testContainerHasRdfType() {
-		// TODO Impl testcontainerHasRdfType
+	public void testRdfTypeLdpContainer() {
+	    String container = getResourceUri();
+        Model m = RestAssured
+            .given()
+                .header(ACCEPT, TEXT_TURTLE)
+            .expect()
+                .statusCode(isSuccessful())
+            .when()
+                .get(container).as(Model.class, new RdfObjectMapper(container));
+        assertTrue(m.contains(m.getResource(container), RDF.type, m.getResource(LDP.Container.stringValue())),
+                "LDPC does not have an rdf:type of ldp:Container");
 	}
 	
 	@Test(
@@ -706,17 +714,39 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	}
 	
 	@Test(
-			enabled = false, 
 			groups = { SHOULD }, 
 			description = "LDP servers SHOULD accept a request entity "
 					+ "body with a request header of Content-Type with "
 					+ "value of application/ld+json [JSON-LD].")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-jsonld", 
-			testMethod = METHOD.NOT_IMPLEMENTED, 
+			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_PENDING)
 	public void testPostJsonLd() {
-		// TODO Impl testPostJsonLd
+        skipIfMethodNotAllowed(HttpMethod.POST);
+        
+        // POST content as JSON-LD.
+        Model model = postContent();
+        Response postResponse = RestAssured
+            .given()
+                .contentType(APPLICATION_LD_JSON)
+                .body(model, new RdfObjectMapper())
+            .expect()
+                .statusCode(HttpStatus.SC_CREATED)
+                .header(LOCATION, HeaderMatchers.headerPresent())
+            .when()
+                .post(getResourceUri());
+        
+        // Get the resource back to make sure it wasn't simply treated as a
+        // binary resource. We should be able to get it as text/turtle.
+        Response getResponse = RestAssured
+            .expect()
+                .statusCode(isSuccessful())
+                .contentType(TEXT_TURTLE)   // if no Accept header, LDP servers must return text/turtle for RDF source
+            .when()
+                .get(postResponse.getHeader(LOCATION));
+        assertFalse(containsLinkHeader(LDP.NonRDFSource.stringValue(), LINK_REL_TYPE, getResponse),
+                "Resources POSTed using JSON-LD should be treated as RDF source");
 	}
 
     protected boolean restrictionsOnContent() {
