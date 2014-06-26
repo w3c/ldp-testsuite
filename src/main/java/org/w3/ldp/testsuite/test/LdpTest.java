@@ -2,6 +2,7 @@ package org.w3.ldp.testsuite.test;
 
 import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
@@ -25,19 +26,50 @@ import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Header;
 import com.jayway.restassured.response.Response;
 
-public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences {
+public abstract class LdpTest implements HttpHeaders, MediaTypes,
+        LdpPreferences {
 
-	/**
-	 * Alternate content to use on POST requests
-	 */
-	protected String post;
-	
-	@BeforeSuite (alwaysRun = true)
-	@Parameters("post")
-	public void setPostContent(@Optional String post) {
-		this.post = post;
-	}
-	
+    /**
+     * Alternate content to use on POST requests
+     */
+    private static Model postModel;
+
+    /**
+     * Builds a model from a turtle representation in a file
+     * @param path
+     * @return
+     */
+    protected Model readModel(String path) {
+
+        Model model = null;
+        if (path != null) {
+            model = ModelFactory.createDefaultModel();
+            InputStream inputStream = getClass().getClassLoader()
+                    .getResourceAsStream(path);
+
+            model.read(inputStream, "", "TURTLE");
+            try {
+                inputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return model;
+    }
+
+    /**
+     * Initialization of generic resource model. This will run only once
+     * at the beginning of the test suite, so postModel static field
+     * will be assigned once too. 
+     * @param postTtl
+     */
+    @BeforeSuite(alwaysRun = true)
+    @Parameters({ "postTtl" })
+    public void setPostContent(@Optional String postTtl) {
+        postModel = this.readModel(postTtl);        
+    }
+
     /**
      * An absolute requirement of the specification.
      *
@@ -64,8 +96,8 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
     public static final String MAY = "MAY";
 
     /**
-     * A Linked Data Platform Non-RDF Source (LDP-NR). An LDPR whose state
-     * is not represented in RDF. These are binary or text documents that do not
+     * A Linked Data Platform Non-RDF Source (LDP-NR). An LDPR whose state is
+     * not represented in RDF. These are binary or text documents that do not
      * have useful RDF representations.
      *
      * @see <a href="http://www.w3.org/TR/ldp/#terms">LDP Terminology</a>
@@ -79,16 +111,21 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
     }
 
     /**
-     * Tests if a Link response header with the expected URI and relation
-     * is present in an HTTP response.
+     * Tests if a Link response header with the expected URI and relation is
+     * present in an HTTP response.
      *
-     * @param uri          the expected URI
-     * @param linkRelation the expected link relation (rel)
-     * @param response     the HTTP response
+     * @param uri
+     *            the expected URI
+     * @param linkRelation
+     *            the expected link relation (rel)
+     * @param response
+     *            the HTTP response
      * @see <a href="http://tools.ietf.org/html/rfc5988">RFC 5988</a>
      */
-    protected boolean containsLinkHeader(String uri, String linkRelation, Response response) {
-        return containsLinkHeader(uri, linkRelation, response.getHeaders().getList(LINK));
+    protected boolean containsLinkHeader(String uri, String linkRelation,
+            Response response) {
+        return containsLinkHeader(uri, linkRelation, response.getHeaders()
+                .getList(LINK));
     }
 
     public Model getAsModel(String uri) {
@@ -96,41 +133,39 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
     }
 
     public Model getResourceAsModel(String uri, String mediaType) {
-        return RestAssured
-            .given()
-                .header(ACCEPT, mediaType)
-            .expect()
-                .statusCode(isSuccessful())
-            .when()
-                .get(uri).as(Model.class, new RdfObjectMapper(uri));
+        return RestAssured.given().header(ACCEPT, mediaType).expect()
+                .statusCode(isSuccessful()).when().get(uri)
+                .as(Model.class, new RdfObjectMapper(uri));
+    }
+
+    protected Model getDefaultModel() {
+        Model model = ModelFactory.createDefaultModel();
+        Resource resource = model.createResource("",
+                model.createResource("http://example.com/ns#Bug"));
+        resource.addProperty(
+                model.createProperty("http://example.com/ns#severity"), "High");
+        resource.addProperty(DC.title, "Another bug to test.");
+        resource.addProperty(DC.description, "Issues that need to be fixed.");
+
+        return model;
     }
 
     protected Model postContent() {
-    	Model model = ModelFactory.createDefaultModel();
+        if (postModel != null) {
+            return postModel;
+        }
 
-		if (this.post != null) {
-			InputStream inputStream = getClass().getClassLoader()
-					.getResourceAsStream(this.post);
-
-			return model.read(inputStream, "", "TURTLE");
-		}
-
-		Resource resource = model.createResource("",
-				model.createResource("http://example.com/ns#Bug"));
-		resource.addProperty(
-				model.createProperty("http://example.com/ns#severity"), "High");
-		resource.addProperty(DC.title, "Another bug to test.");
-		resource.addProperty(DC.description, "Issues that need to be fixed.");
-
-		return model;
+        return getDefaultModel();
     }
 
     /**
-     * Check if the header is contained in the headers list
-     * (becase RestAssured only checks the FIRST header)
+     * Check if the header is contained in the headers list (because RestAssured
+     * only checks the FIRST header)
      *
-     * @param header  header to look for
-     * @param headers list of headers
+     * @param header
+     *            header to look for
+     * @param headers
+     *            list of headers
      * @return header is contained
      */
     protected boolean containsLinkHeader(Header header, List<Header> headers) {
@@ -143,11 +178,13 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
     }
 
     /**
-     * Check if the link is contained in the headers list
-     * (becase RestAssured only checks the FIRST header)
+     * Check if the link is contained in the headers list (becase RestAssured
+     * only checks the FIRST header)
      *
-     * @param link    header to look for
-     * @param headers list of headers
+     * @param link
+     *            header to look for
+     * @param headers
+     *            list of headers
      * @return link is contained
      */
     protected boolean containsLinkHeader(Link link, List<Header> headers) {
@@ -163,15 +200,19 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
     }
 
     /**
-     * Check if the link is contained in the headers list
-     * (becase RestAssured only checks the FIRST header)
+     * Check if the link is contained in the headers list (becase RestAssured
+     * only checks the FIRST header)
      *
-     * @param uri     link uri
-     * @param rel     link rel
-     * @param headers list of headers
+     * @param uri
+     *            link uri
+     * @param rel
+     *            link rel
+     * @param headers
+     *            list of headers
      * @return link is contained
      */
-    protected boolean containsLinkHeader(String uri, String rel, List<Header> headers) {
+    protected boolean containsLinkHeader(String uri, String rel,
+            List<Header> headers) {
         return containsLinkHeader(Link.fromUri(uri).rel(rel).build(), headers);
     }
 
@@ -186,7 +227,7 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
         }
         return null;
     }
-    
+
     /**
      * Checks the response for a
      * <code>Preference-Applied: return=representation</code> response header.
@@ -197,27 +238,30 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
      *         <code>Preference-Applied</code> header
      */
     protected boolean isPreferenceApplied(Response response) {
-       List<Header> preferenceAppliedHeaders = response.getHeaders().getList(PREFERNCE_APPLIED); 
-       for (Header h : preferenceAppliedHeaders) {
+        List<Header> preferenceAppliedHeaders = response.getHeaders().getList(
+                PREFERNCE_APPLIED);
+        for (Header h : preferenceAppliedHeaders) {
             // Handle optional whitespace, quoted preference token values, and
             // other tokens in the Preference-Applied response header.
-           if (h.getValue().matches("(^|[ ;])return *= *\"?representation\"?($|[ ;])")) {
-               return true;
-           }
-       }
- 
-       return false;
+            if (h.getValue().matches(
+                    "(^|[ ;])return *= *\"?representation\"?($|[ ;])")) {
+                return true;
+            }
+        }
+
+        return false;
     }
- 
+
     public static String include(String... preferences) {
         return ldpPreference(PREFERENCE_INCLUDE, preferences);
     }
-    
+
     public static String omit(String... preferences) {
-       return ldpPreference(PREFERENCE_OMIT, preferences); 
+        return ldpPreference(PREFERENCE_OMIT, preferences);
     }
- 
+
     private static String ldpPreference(String name, String... values) {
-        return "return=representation; " + name + "=\"" + StringUtils.join(values, " ") + "\"";
+        return "return=representation; " + name + "=\""
+                + StringUtils.join(values, " ") + "\"";
     }
 }

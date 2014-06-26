@@ -4,7 +4,7 @@ import static org.hamcrest.Matchers.notNullValue;
 
 import org.apache.http.HttpStatus;
 import org.testng.SkipException;
-import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
@@ -21,9 +21,9 @@ public class MemberResourceTest extends RdfSourceTest {
     private String container;
     private String memberResource;
 
-    @Parameters({"memberResource", "directContainer", "indirectContainer", "basicContainer", "post"})
+    @Parameters({"memberResource", "directContainer", "indirectContainer", "basicContainer", "memberTtl" })
     public MemberResourceTest(@Optional String memberResource, @Optional String directContainer, 
-    		@Optional String indirectContainer, @Optional String basicContainer, @Optional String post) {
+    		@Optional String indirectContainer, @Optional String basicContainer, @Optional String memberTtl) {
         // If resource is defined, use that. Otherwise, fall back to creating one from one of the containers.
         if (memberResource != null) {
             this.memberResource = memberResource;
@@ -35,12 +35,13 @@ public class MemberResourceTest extends RdfSourceTest {
             this.container = basicContainer;
         } else {
             throw new SkipException("No memberResource or container parameters defined in testng.xml");
-        }
-        
-        this.post = post;
+        }               
 
         if (this.memberResource == null) {
-            Model model = postContent();
+            Model model = this.readModel(memberTtl);
+            if (model == null) {
+                model = this.getDefaultModel();
+            }
 
             Response postResponse =
                     RestAssured.given().contentType(TEXT_TURTLE).body(model, new RdfObjectMapper())
@@ -55,7 +56,7 @@ public class MemberResourceTest extends RdfSourceTest {
         return memberResource;
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterSuite(alwaysRun = true)
     public void deleteTestResource() {
         // If container isn't null, we created the resource ourselves. To clean up, delete the resource.
         if (container != null) {
