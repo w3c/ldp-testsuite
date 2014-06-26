@@ -33,8 +33,7 @@ public class BasicContainerTest extends CommonContainerTest {
     @BeforeClass(alwaysRun = true)
     public void hasBasicContainer() {
         if (basicContainer == null) {
-            throw new SkipException(
-                    "No basicContainer parameter provided in testng.xml. Skipping ldp:basicContainer tests.");
+            throw new SkipException("No basicContainer parameter provided in testng.xml. Skipping ldp:basicContainer tests.");
         }
     }
 
