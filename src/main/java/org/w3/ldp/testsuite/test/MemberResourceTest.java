@@ -4,7 +4,7 @@ import static org.hamcrest.Matchers.notNullValue;
 
 import org.apache.http.HttpStatus;
 import org.testng.SkipException;
-import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
@@ -59,7 +59,7 @@ public class MemberResourceTest extends RdfSourceTest {
 		return memberResource;
 	}
 
-	@AfterClass(alwaysRun = true)
+	@AfterSuite(alwaysRun = true)
 	public void deleteTestResource() {
 		// If container isn't null, we created the resource ourselves. To clean up, delete the resource.
 		if (container != null) {
