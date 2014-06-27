@@ -10,6 +10,7 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.sparql.vocabulary.DOAP;
+import com.hp.hpl.jena.sparql.vocabulary.FOAF;
 import com.hp.hpl.jena.vocabulary.DCTerms;
 
 import org.testng.*;
@@ -58,6 +59,7 @@ public class LdpEarlReporter implements IReporter {
 	private static String subjectName;
 	private static String refPage;
 	private static String language;
+	private static String mailBox;
 
 	static {
 		JenaJSONLD.init();
@@ -95,9 +97,21 @@ public class LdpEarlReporter implements IReporter {
 			subjectDev = suite.getParameter("developer");
 			language = suite.getParameter("language");
 
+			mailBox = suite.getParameter("mail");
+
 			// Make the Assertor Resource
 			Resource assertor = model.createResource(refPage, Earl.Assertor);
 			assertor.addProperty(DOAP.description, suite.getName());
+
+			/* Developer Resource (Person) */
+			Resource personResource = model.createResource(null, FOAF.Person);
+			if (mailBox != null && subjectDev != null) {
+				personResource.addProperty(FOAF.mbox, mailBox); // FIXME: Add in
+																// the mailto
+				personResource.addProperty(FOAF.name, subjectDev);
+			}
+
+			assertor.addProperty(DOAP.developer, personResource);
 
 			/* Software Resource */
 			Resource softResource = model
@@ -117,10 +131,6 @@ public class LdpEarlReporter implements IReporter {
 			if (subjectName != null)
 				subjectResource.addProperty(DOAP.name, subjectName);
 
-			if (subjectDev != null) {
-				subjectResource.addProperty(DOAP.developer, subjectDev);
-				// TODO acquire and add the information about the developer.
-			}
 			if (language != null)
 				subjectResource
 						.addProperty(DOAP.programming_language, language);
