@@ -75,7 +75,7 @@ public abstract class CommonResourceTest extends LdpTest {
 	}
 
 	@Override
-    protected RequestSpecification buildBaseRequestSpecification() {
+	protected RequestSpecification buildBaseRequestSpecification() {
 		if (auth == null) {
 			return RestAssured.given();
 		} else {

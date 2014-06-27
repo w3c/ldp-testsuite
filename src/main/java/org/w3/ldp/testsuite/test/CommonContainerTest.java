@@ -747,7 +747,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	}
 
 	@Override
-    protected boolean restrictionsOnContent() {
+	protected boolean restrictionsOnContent() {
 		return true;
 	}
 

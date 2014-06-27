@@ -175,7 +175,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	}
 
 	@Override
-    @Test(
+	@Test(
 			groups = {MUST},
 			description = "LDP servers MUST provide an RDF representation "
 					+ "for LDP-RSs. The HTTP Request-URI of the LDP-RS is "

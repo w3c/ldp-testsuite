@@ -55,7 +55,7 @@ public class MemberResourceTest extends RdfSourceTest {
 	}
 
 	@Override
-    protected String getResourceUri() {
+	protected String getResourceUri() {
 		return memberResource;
 	}
 
