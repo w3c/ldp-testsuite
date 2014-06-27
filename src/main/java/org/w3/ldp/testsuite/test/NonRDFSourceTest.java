@@ -56,7 +56,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 		} else {
 			throw new SkipException("No root container provided in testng.xml. Skipping LDP Non-RDF Source (LDP-NR) tests.");
 		}
-		
+
 		final String slug = "test",
 				file = slug + ".png",
 				mimeType = "image/png";
@@ -115,20 +115,23 @@ public class NonRDFSourceTest extends CommonResourceTest {
 
 		// Make sure we can post binary resources
 		Response response = postNonRDFSource(slug, file, mimeType);
-		List<Header> links = response.headers().getList("Link");
-		Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
+		try {
+			List<Header> links = response.headers().getList("Link");
+			Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
 
-		// Check the container contains the new resource
-		Model model = buildBaseRequestSpecification()
-				.header(ACCEPT, TEXT_TURTLE)
-			.expect()
-				.statusCode(HttpStatus.SC_OK)
-				.contentType(TEXT_TURTLE)
-			.get(container)
-				.body().as(Model.class, new RdfObjectMapper(container));
-		assertTrue(model.contains(model.createResource(container), model.createProperty(LDP.contains.stringValue()), model.createResource(response.getHeader(LOCATION))));
+			// Check the container contains the new resource
+			Model model = buildBaseRequestSpecification()
+					.header(ACCEPT, TEXT_TURTLE)
+				.expect()
+					.statusCode(HttpStatus.SC_OK)
+					.contentType(TEXT_TURTLE)
+				.get(container)
+					.body().as(Model.class, new RdfObjectMapper(container));
 
-		buildBaseRequestSpecification().delete(response.getHeader(LOCATION));
+			assertTrue(model.contains(model.createResource(container), model.createProperty(LDP.contains.stringValue()), model.createResource(response.getHeader(LOCATION))));
+		} finally {
+			buildBaseRequestSpecification().delete(response.getHeader(LOCATION));
+		}
 	}
 
 	@Test(
@@ -148,23 +151,25 @@ public class NonRDFSourceTest extends CommonResourceTest {
 
 		// Make sure we can post binary resources
 		Response response = postNonRDFSource(slug, file, mimeType);
-		List<Header> links = response.headers().getList("Link");
-		Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
+		try {
+			List<Header> links = response.headers().getList("Link");
+			Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
 
-		// And then check we get the binary back
-		final String expectedMD5 = HashUtils.md5sum(NonRDFSourceTest.class.getResourceAsStream("/" + file));
-		final byte[] binary = buildBaseRequestSpecification()
-				.header(ACCEPT, mimeType)
-			.expect()
-				.statusCode(HttpStatus.SC_OK)
-				.contentType(mimeType)
-				.header(ETAG, HeaderMatchers.isValidEntityTag())
-			.when()
-				.get(response.getHeader(LOCATION))
-				.body().asByteArray();
-		assertEquals(expectedMD5, HashUtils.md5sum(binary), "md5sum");
-
-		buildBaseRequestSpecification().delete(response.getHeader(LOCATION));
+			// And then check we get the binary back
+			final String expectedMD5 = HashUtils.md5sum(NonRDFSourceTest.class.getResourceAsStream("/" + file));
+			final byte[] binary = buildBaseRequestSpecification()
+					.header(ACCEPT, mimeType)
+				.expect()
+					.statusCode(HttpStatus.SC_OK)
+					.contentType(mimeType)
+					.header(ETAG, HeaderMatchers.isValidEntityTag())
+				.when()
+					.get(response.getHeader(LOCATION))
+					.body().asByteArray();
+			assertEquals(expectedMD5, HashUtils.md5sum(binary), "md5sum");
+		} finally {
+			buildBaseRequestSpecification().delete(response.getHeader(LOCATION));
+		}
 	}
 
 	@Test(
@@ -183,38 +188,40 @@ public class NonRDFSourceTest extends CommonResourceTest {
 
 		// Make sure we can post binary resources
 		Response response = postNonRDFSource(slug, file, mimeType);
-
 		String location = response.getHeader(LOCATION);
-		List<Header> links = response.getHeaders().getList(LINK);
-		String describedBy = getFirstLinkForRelation("describedby", links);
-		Assert.assertNotNull(describedBy, "Expected Link response header with relation 'describedby'");
-		Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
 
-		// And then check we get the metadata of back
-		buildBaseRequestSpecification()
-				.header(ACCEPT, TEXT_TURTLE)
-			.expect()
-				.statusCode(HttpStatus.SC_OK)
-				.contentType(TEXT_TURTLE)
-				.header(ETAG, HeaderMatchers.isValidEntityTag())
-			.when()
-				.get(describedBy)
-				.as(Model.class, new RdfObjectMapper(describedBy));
+		try {
+			List<Header> links = response.getHeaders().getList(LINK);
+			String describedBy = getFirstLinkForRelation("describedby", links);
+			Assert.assertNotNull(describedBy, "Expected Link response header with relation 'describedby'");
+			Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
 
-		// And the binary too
-		final String expectedMD5 = HashUtils.md5sum(NonRDFSourceTest.class.getResourceAsStream("/" + file));
-		final byte[] binary = buildBaseRequestSpecification()
-				.header(ACCEPT, mimeType)
-			.expect()
-				.statusCode(HttpStatus.SC_OK)
-				.contentType(mimeType)
-				.header(ETAG, HeaderMatchers.isValidEntityTag())
-			.when()
-				.get(location)
-				.body().asByteArray();
-		assertEquals(expectedMD5, HashUtils.md5sum(binary), "md5sum");
+			// And then check we get the metadata of back
+			buildBaseRequestSpecification()
+					.header(ACCEPT, TEXT_TURTLE)
+				.expect()
+					.statusCode(HttpStatus.SC_OK)
+					.contentType(TEXT_TURTLE)
+					.header(ETAG, HeaderMatchers.isValidEntityTag())
+				.when()
+					.get(describedBy)
+					.as(Model.class, new RdfObjectMapper(describedBy));
 
-		buildBaseRequestSpecification().delete(location);
+			// And the binary too
+			final String expectedMD5 = HashUtils.md5sum(NonRDFSourceTest.class.getResourceAsStream("/" + file));
+			final byte[] binary = buildBaseRequestSpecification()
+					.header(ACCEPT, mimeType)
+				.expect()
+					.statusCode(HttpStatus.SC_OK)
+					.contentType(mimeType)
+					.header(ETAG, HeaderMatchers.isValidEntityTag())
+				.when()
+					.get(location)
+					.body().asByteArray();
+			assertEquals(expectedMD5, HashUtils.md5sum(binary), "md5sum");
+		} finally {
+			buildBaseRequestSpecification().delete(location);
+		}
 	}
 
 	@Test(
@@ -235,20 +242,23 @@ public class NonRDFSourceTest extends CommonResourceTest {
 
 		// Make sure we can post binary resources
 		Response response = postNonRDFSource(slug, file, mimeType);
-		List<Header> links = response.headers().getList(LINK);
-		Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
 
-		// And then check the link when requesting the LDP-NR
-		List<Header> linksNR = buildBaseRequestSpecification()
-			.expect()
-				.statusCode(isSuccessful())
-				.header(ETAG, HeaderMatchers.isValidEntityTag())
-			.when()
-				.get(response.getHeader(LOCATION))
-				.headers().getList(LINK);
-		Assert.assertTrue(containsLinkHeader(LDP.NonRDFSource.stringValue(), "type", linksNR));
+		try {
+			List<Header> links = response.headers().getList(LINK);
+			Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
 
-		buildBaseRequestSpecification().delete(response.header(LOCATION));
+			// And then check the link when requesting the LDP-NR
+			List<Header> linksNR = buildBaseRequestSpecification()
+				.expect()
+					.statusCode(isSuccessful())
+					.header(ETAG, HeaderMatchers.isValidEntityTag())
+				.when()
+					.get(response.getHeader(LOCATION))
+					.headers().getList(LINK);
+			Assert.assertTrue(containsLinkHeader(LDP.NonRDFSource.stringValue(), "type", linksNR));
+		} finally {
+			buildBaseRequestSpecification().delete(response.header(LOCATION));
+		}
 	}
 
 	@Test(
@@ -271,33 +281,35 @@ public class NonRDFSourceTest extends CommonResourceTest {
 
 		// Make sure we can post binary resources
 		Response response = postNonRDFSource(slug, file, mimeType);
-		List<Header> links = response.headers().getList(LINK);
-		String describedBy = getFirstLinkForRelation("describedby", links);
-		Assert.assertNotNull(describedBy, "Expected Link response header with relation 'describedby'");
-		Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
 		String location = response.getHeader(LOCATION);
+		try {
+			List<Header> links = response.headers().getList(LINK);
+			String describedBy = getFirstLinkForRelation("describedby", links);
+			Assert.assertNotNull(describedBy, "Expected Link response header with relation 'describedby'");
+			Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
 
-		// Check the link when requesting the LDP-NS
-		List<Header> linksNR = buildBaseRequestSpecification()
-			.expect()
-				.statusCode(isSuccessful())
-				.header(ETAG, HeaderMatchers.headerPresent())
-			.when()
-				.get(location)
-				.headers().getList("Link");
-		Assert.assertTrue(containsLinkHeader(describedBy, "describedby", linksNR));
+			// Check the link when requesting the LDP-NS
+			List<Header> linksNR = buildBaseRequestSpecification()
+				.expect()
+					.statusCode(isSuccessful())
+					.header(ETAG, HeaderMatchers.headerPresent())
+				.when()
+					.get(location)
+					.headers().getList("Link");
+			Assert.assertTrue(containsLinkHeader(describedBy, "describedby", linksNR));
 
-		// And then check the associated LDP-RS is actually there
-		buildBaseRequestSpecification()
-				.header(ACCEPT, TEXT_TURTLE)
-			.expect()
-				.statusCode(isSuccessful())
-				.contentType(TEXT_TURTLE)
-				.header(ETAG, HeaderMatchers.isValidEntityTag())
-			.when()
-				.get(describedBy);
-
-		buildBaseRequestSpecification().delete(location);
+			// And then check the associated LDP-RS is actually there
+			buildBaseRequestSpecification()
+					.header(ACCEPT, TEXT_TURTLE)
+				.expect()
+					.statusCode(isSuccessful())
+					.contentType(TEXT_TURTLE)
+					.header(ETAG, HeaderMatchers.isValidEntityTag())
+				.when()
+					.get(describedBy);
+		} finally {
+			buildBaseRequestSpecification().delete(location);
+		}
 	}
 
 	@Test(
@@ -318,34 +330,44 @@ public class NonRDFSourceTest extends CommonResourceTest {
 
 		// Make sure we can post binary resources
 		Response postResponse = postNonRDFSource(slug, file, mimeType);
-		List<Header> links = postResponse.headers().getList(LINK);
-		String describedBy = getFirstLinkForRelation("describedby", links);
-		Assert.assertNotNull(describedBy, "Expected Link response header with relation 'describedby'");
 		String location = postResponse.getHeader(LOCATION);
+		boolean deleted = false;
 
-		// And then check the associated LDP-RS is actually there
-		buildBaseRequestSpecification()
-				.header(ACCEPT, TEXT_TURTLE)
-			.expect()
-				.statusCode(isSuccessful())
-				.contentType(TEXT_TURTLE)
-			.when()
-				.get(describedBy);
+		try {
+			List<Header> links = postResponse.headers().getList(LINK);
+			String describedBy = getFirstLinkForRelation("describedby", links);
+			Assert.assertNotNull(describedBy, "Expected Link response header with relation 'describedby'");
 
-		// Delete the LDP-NR.
-		buildBaseRequestSpecification()
-			.expect()
-				.statusCode(isSuccessful())
-			.when()
-				.delete(location);
+			// And then check the associated LDP-RS is actually there
+			buildBaseRequestSpecification()
+					.header(ACCEPT, TEXT_TURTLE)
+				.expect()
+					.statusCode(isSuccessful())
+					.contentType(TEXT_TURTLE)
+				.when()
+					.get(describedBy);
 
-		// Check that the associated LDP-RS is also deleted.
-		buildBaseRequestSpecification()
-				.header(ACCEPT, TEXT_TURTLE)
-			.expect()
-				.statusCode(isNotFoundOrGone())
-			.when()
-				.get(describedBy);
+			// Delete the LDP-NR.
+			deleted = true;
+			buildBaseRequestSpecification()
+				.expect()
+					.statusCode(isSuccessful())
+				.when()
+					.delete(location);
+
+			// Check that the associated LDP-RS is also deleted.
+			buildBaseRequestSpecification()
+					.header(ACCEPT, TEXT_TURTLE)
+				.expect()
+					.statusCode(isNotFoundOrGone())
+				.when()
+					.get(describedBy);
+		} finally {
+			// Clean up if an assertion failed before we could delete the resource.
+			if (!deleted) {
+				buildBaseRequestSpecification().delete(location);
+			}
+		}
 	}
 
 	protected Response postNonRDFSource(String slug, String file, String mimeType) throws IOException {
@@ -379,24 +401,26 @@ public class NonRDFSourceTest extends CommonResourceTest {
 
 		// Make sure we can post binary resources
 		Response postResponse = postNonRDFSource(slug, file, mimeType);
-
 		String location = postResponse.getHeader(LOCATION);
-		List<Header> links = postResponse.getHeaders().getList(LINK);
-		String describedBy = getFirstLinkForRelation("describedby", links);
-		Assert.assertNotNull(describedBy, "Expected Link response header with relation 'describedby' for LDP-NR POST request");
 
-		// Check the Link headers on an HTTP OPTIONS for the LDP-NR
-		List<Header> linksOPTIONS = buildBaseRequestSpecification()
-			.expect()
-				.statusCode(isSuccessful())
-			.when()
-				.options(location)
-				.getHeaders().getList(LINK);
-		Assert.assertTrue(containsLinkHeader(describedBy, "describedby", linksOPTIONS),
-				"Expected Link response header with relation 'describedby' and URI <"
-						+ describedBy + "> for LDP-NR OPTIONS request");
+		try {
+			List<Header> links = postResponse.getHeaders().getList(LINK);
+			String describedBy = getFirstLinkForRelation("describedby", links);
+			Assert.assertNotNull(describedBy, "Expected Link response header with relation 'describedby' for LDP-NR POST request");
 
-		buildBaseRequestSpecification().delete(location);
+			// Check the Link headers on an HTTP OPTIONS for the LDP-NR
+			List<Header> linksOPTIONS = buildBaseRequestSpecification()
+				.expect()
+					.statusCode(isSuccessful())
+				.when()
+					.options(location)
+					.getHeaders().getList(LINK);
+			Assert.assertTrue(containsLinkHeader(describedBy, "describedby", linksOPTIONS),
+					"Expected Link response header with relation 'describedby' and URI <"
+							+ describedBy + "> for LDP-NR OPTIONS request");
+		} finally {
+			buildBaseRequestSpecification().delete(location);
+		}
 	}
 
 }

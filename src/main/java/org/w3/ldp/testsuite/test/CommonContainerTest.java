@@ -229,21 +229,23 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 		String location = postResponse.getHeader(LOCATION);
 		assertNotNull(location, MSG_LOC_NOTFOUND);
 
-		Model containerModel = getAsModel(containerUri);
-		Resource container = containerModel.getResource(containerUri);
+		try {
+			Model containerModel = getAsModel(containerUri);
+			Resource container = containerModel.getResource(containerUri);
 
-		assertTrue(
-				container.hasProperty(containerModel
-								.createProperty(LDP.contains.stringValue()),
-						containerModel.getResource(location)
-				),
-				"Container <"
-						+ containerUri
-						+ "> does not have a containment triple for newly created resource <"
-						+ location + ">."
-		);
-
-		buildBaseRequestSpecification().delete(location);
+			assertTrue(
+					container.hasProperty(containerModel
+									.createProperty(LDP.contains.stringValue()),
+							containerModel.getResource(location)
+					),
+					"Container <"
+							+ containerUri
+							+ "> does not have a containment triple for newly created resource <"
+							+ location + ">."
+			);
+		} finally {
+			buildBaseRequestSpecification().delete(location);
+		}
 	}
 
 	@Test(
@@ -367,19 +369,21 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 		String location = postResponse.getHeader(LOCATION);
 		assertNotNull(location, "No Location response header on 201 Created response");
 
-		Response getResponse = buildBaseRequestSpecification()
-			.expect()
-				.statusCode(isSuccessful())
-				.contentType(not(TEXT_TURTLE))
-			.when()
-				.get(location);
+		try {
+			Response getResponse = buildBaseRequestSpecification()
+				.expect()
+					.statusCode(isSuccessful())
+					.contentType(not(TEXT_TURTLE))
+				.when()
+					.get(location);
 
-		// Also make sure there is no Link header indicating this is an RDF source.
-		assertFalse(containsLinkHeader(LDP.RDFSource.stringValue(), LINK_REL_TYPE, getResponse),
-				"Server should not responsd with RDF source Link header when content was created with non-RDF Content-Type");
-
-		// Clean up.
-		buildBaseRequestSpecification().delete(location);
+			// Also make sure there is no Link header indicating this is an RDF source.
+			assertFalse(containsLinkHeader(LDP.RDFSource.stringValue(), LINK_REL_TYPE, getResponse),
+					"Server should not responsd with RDF source Link header when content was created with non-RDF Content-Type");
+		} finally {
+			// Clean up.
+			buildBaseRequestSpecification().delete(location);
+		}
 	}
 
 	@Test(
@@ -404,30 +408,35 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 
 		// Do not pass a URI to RdfObjectMapper so that it stays as the null
 		// relative URI in the request body
-		Response postResponse = buildBaseRequestSpecification().contentType(TEXT_TURTLE)
-				.body(requestModel, new RdfObjectMapper()) // do not pass a URI
-				.expect().statusCode(HttpStatus.SC_CREATED).when()
-				.post(getResourceUri());
+		Response postResponse = buildBaseRequestSpecification()
+					.contentType(TEXT_TURTLE)
+					.body(requestModel, new RdfObjectMapper()) // do not pass a URI
+				.expect()
+					.statusCode(HttpStatus.SC_CREATED)
+				.when()
+					.post(getResourceUri());
 
 		String location = postResponse.getHeader(LOCATION);
 		assertNotNull(location, MSG_LOC_NOTFOUND);
 
-		// Get the resource to check that the resource with a null relative URI
-		// was assigned the URI in the Location response header.
-		Model responseModel = getAsModel(location);
-		Resource created = responseModel.getResource(location);
+		try {
+			// Get the resource to check that the resource with a null relative URI
+			// was assigned the URI in the Location response header.
+			Model responseModel = getAsModel(location);
+			Resource created = responseModel.getResource(location);
 
-		// TODO: Is this the best test? It's possible a server will assign its
-		// own dcterms:identifier.
-		assertTrue(
-				created.hasProperty(DCTerms.identifier, identifier),
-				"The resource created with URI <"
-						+ location
-						+ "> does not have the dcterms:identifier as the resource POSTed using the null relative URI."
-		);
-
-		// Delete the resource to clean up.
-		buildBaseRequestSpecification().delete(location);
+			// TODO: Is this the best test? It's possible a server will assign its
+			// own dcterms:identifier.
+			assertTrue(
+					created.hasProperty(DCTerms.identifier, identifier),
+					"The resource created with URI <"
+							+ location
+							+ "> does not have the dcterms:identifier as the resource POSTed using the null relative URI."
+			);
+		} finally {
+			// Delete the resource to clean up.
+			buildBaseRequestSpecification().delete(location);
+		}
 	}
 
 	@Test(
@@ -709,10 +718,12 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 		Model content = postContent();
 		String location = post(content, slug);
 
-		assertTrue(location.contains(slug), "Slug is not part of the return Location");
-
-		// Clean up.
-		buildBaseRequestSpecification().delete(location);
+		try {
+			assertTrue(location.contains(slug), "Slug is not part of the return Location");
+		} finally {
+			// Clean up.
+			buildBaseRequestSpecification().delete(location);
+		}
 	}
 
 	@Test(
@@ -778,9 +789,11 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 		buildBaseRequestSpecification().expect().statusCode(isSuccessful()).when().delete(loc1);
 
 		String loc2 = post(content, slug);
-		assertNotEquals(loc1, loc2, "Server reused URIs for POSTed resources.");
-
-		buildBaseRequestSpecification().delete(loc2);
+		try {
+			assertNotEquals(loc1, loc2, "Server reused URIs for POSTed resources.");
+		} finally {
+			buildBaseRequestSpecification().delete(loc2);
+		}
 	}
 
 	private String post(Model content, String slug) {
