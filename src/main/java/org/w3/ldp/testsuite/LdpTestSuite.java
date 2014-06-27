@@ -180,10 +180,16 @@ public class LdpTestSuite {
 				break;
 		}
 
-		final String post;
-		if (options.hasOption("post")) {
-			post = options.getOptionValue("post");
-			parameters.put("post", post);
+		final String postTtl;
+		if (options.hasOption("postTtl")) {
+			postTtl = options.getOptionValue("postTtl");
+			parameters.put("postTtl", postTtl);
+		}
+
+		final String memberTtl;
+		if (options.hasOption("memberTtl")) {
+			memberTtl = options.getOptionValue("memberTtl");
+			parameters.put("memberTtl", memberTtl);
 		}
 
 		final String memberResource;

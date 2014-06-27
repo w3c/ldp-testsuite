@@ -2,6 +2,7 @@ package org.w3.ldp.testsuite.test;
 
 import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
@@ -30,12 +31,37 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	/**
 	 * Alternate content to use on POST requests
 	 */
-	protected String post;
+	private static Model postModel;
+	
+	/**
+	 * Builds a model from a turtle representation in a file
+	 * @param path
+	 */
+	protected Model readModel(String path) {
+		Model model = null;
+		if (path != null) {
+			model = ModelFactory.createDefaultModel();
+			InputStream  inputStream = getClass().getClassLoader().getResourceAsStream(path);
+			model.read(inputStream, "", "TURTLE");
+			try {
+				inputStream.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return model;
+	}
 
+	/**
+	 * Initialization of generic resource model. This will run only once
+	 * at the beginning of the test suite, so postModel static field
+	 * will be assigned once too.
+	 * @param postTtl
+	 */
 	@BeforeSuite(alwaysRun = true)
-	@Parameters("post")
-	public void setPostContent(@Optional String post) {
-		this.post = post;
+	@Parameters("postTtl")
+	public void setPostContent(@Optional String postTtl) {
+		postModel = this.readModel(postTtl);
 	}
 
 	/**
@@ -111,16 +137,8 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 				.get(uri).as(Model.class, new RdfObjectMapper(uri));
 	}
 
-	protected Model postContent() {
+	protected Model getDefaultModel() {
 		Model model = ModelFactory.createDefaultModel();
-
-		if (this.post != null) {
-			InputStream inputStream = getClass().getClassLoader()
-					.getResourceAsStream(this.post);
-
-			return model.read(inputStream, "", "TURTLE");
-		}
-
 		Resource resource = model.createResource("",
 				model.createResource("http://example.com/ns#Bug"));
 		resource.addProperty(
@@ -129,6 +147,10 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 		resource.addProperty(DC_11.description, "Issues that need to be fixed.");
 
 		return model;
+	}
+
+	protected Model postContent() {
+		return postModel != null? postModel : getDefaultModel();
 	}
 
 	/**
