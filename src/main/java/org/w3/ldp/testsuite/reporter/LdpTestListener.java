@@ -2,6 +2,7 @@ package org.w3.ldp.testsuite.reporter;
 
 import java.util.Arrays;
 
+import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 
@@ -10,6 +11,20 @@ public class LdpTestListener extends TestListenerAdapter {
 	private static final String FAIL = "Failed";
 	private static final String SKIP = "Skipped";
 	private static final String PASSED = "Passed";
+
+	private long startTime;
+
+	@Override
+	public void onStart(ITestContext testContext) {
+		startTime = System.currentTimeMillis();
+	}
+
+	@Override
+	public void onFinish(ITestContext testContext) {
+		long now = System.currentTimeMillis();
+		double timeInSeconds = (double) (now - startTime) / 1000;
+		System.out.printf("%nTotal Time: %.2fs%n", timeInSeconds);
+	}
 
 	@Override
 	public void onTestFailure(ITestResult tr) {
