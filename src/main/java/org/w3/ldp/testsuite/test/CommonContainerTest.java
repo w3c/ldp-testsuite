@@ -191,16 +191,20 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	public void testPostResponseStatusAndLocation() throws URISyntaxException {
 		skipIfMethodNotAllowed(HttpMethod.POST);
 
-		Model model = postContent();
-		Response postResponse = buildBaseRequestSpecification().contentType(TEXT_TURTLE)
-				.body(model, new RdfObjectMapper()).expect()
-				.statusCode(HttpStatus.SC_CREATED).when()
-				.post(getResourceUri());
+		String location = null;
 
-		String location = postResponse.getHeader(LOCATION);
-		assertNotNull(location, MSG_LOC_NOTFOUND);
+		try {
+			Model model = postContent();
+			Response postResponse = buildBaseRequestSpecification().contentType(TEXT_TURTLE)
+					.body(model, new RdfObjectMapper()).expect()
+					.statusCode(HttpStatus.SC_CREATED).when()
+					.post(getResourceUri());
 
-		buildBaseRequestSpecification().delete(location);
+			location = postResponse.getHeader(LOCATION);
+			assertNotNull(location, MSG_LOC_NOTFOUND);
+		} finally {
+			buildBaseRequestSpecification().delete(location);
+		}
 	}
 
 	@Test(
