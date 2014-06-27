@@ -19,8 +19,10 @@
     <parameter name="containerAsResource" value="http://localhost:8080/ldp/resources/bc/" />
     
     <parameter name="language" value = "Java" />
-    <parameter name="homepage" value ="http://eclipse.org/lyo" />
+    <parameter name="homepage" value ="http://wiki.eclipse.org/Lyo/LDPImpl" />
+    <parameter name="referencePage" value="http://eclipse.org/lyo" />
     <parameter name="subjectName" value="Eclipse Lyo LDP Reference Implementation" />
+    <parameter name="software" value="Reference Implementation" />
 
     <!-- Optional RDF member resource parameter. If left out, the tests will
         try to create a resource in one of the containers. -->
