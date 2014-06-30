@@ -57,7 +57,7 @@ public class LdpTestListener extends TestListenerAdapter {
 		Throwable thrown = tr.getThrowable();
 		if (thrown != null) {
 			errors.append("\n");
-			errors.append(Utils.stackTrace(thrown, true)[0]);
+			errors.append(Utils.stackTrace(thrown, false)[0]);
 			errors.append("\n");
 		}
     }
