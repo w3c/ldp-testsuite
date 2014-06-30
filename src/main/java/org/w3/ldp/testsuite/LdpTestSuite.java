@@ -1,5 +1,9 @@
 package org.w3.ldp.testsuite;
 
+import java.net.URI;
+import java.util.*;
+import java.util.regex.Pattern;
+
 import org.apache.commons.cli.*;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -16,10 +20,6 @@ import org.w3.ldp.testsuite.reporter.LdpTestListener;
 import org.w3.ldp.testsuite.test.LdpTest;
 import org.w3.ldp.testsuite.transformer.MethodEnabler;
 import org.w3.ldp.testsuite.util.OptionsHandler;
-
-import java.net.URI;
-import java.util.*;
-import java.util.regex.Pattern;
 
 /**
  * LDP Test Suite Command-Line Interface, a wrapper to {@link org.testng.TestNG}
@@ -85,7 +85,7 @@ public class LdpTestSuite {
 			server = options.getOptionValue("server");
 			try {
 				URI uri = new URI(server);
-				if (!"http".equals(uri.getScheme())) {
+				if (!"http".equals(uri.getScheme()) && !"https".equals(uri.getScheme())) {
 					throw new IllegalArgumentException("non-http uri");
 				}
 			} catch (Exception e) {
