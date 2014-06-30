@@ -29,7 +29,9 @@ import com.github.jsonldjava.jena.JenaJSONLD;
 import com.github.jsonldjava.utils.JsonUtils;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.sparql.vocabulary.DOAP;
 import com.hp.hpl.jena.sparql.vocabulary.FOAF;
 import com.hp.hpl.jena.vocabulary.DCTerms;
@@ -73,6 +75,9 @@ public class LdpEarlReporter implements IReporter {
 	private static String language;
 	private static String mailBox;
 	private static String description;
+	
+	private static Property ranAsClass = ResourceFactory
+			.createProperty(LDPT_NAME + "ranAsClass");
 
 	static {
 		JenaJSONLD.init();
@@ -178,19 +183,12 @@ public class LdpEarlReporter implements IReporter {
 	}
 
 	private void makeResultResource(ITestResult result, String status) {
-		Resource assertionResource;
-
-		String declaringClass = result.getTestClass().getName();
+		String declaringClass = result.getMethod().getConstructorOrMethod().getMethod().getDeclaringClass().getName();
 		declaringClass = declaringClass.substring(declaringClass
 				.lastIndexOf(".") + 1);
-/*		if (refPage != null) {
-			String uri = refPage + "#" + declaringClass + "-"
-					+ result.getName();
-			assertionResource = model.createResource(uri, Earl.Assertion);
-		} else */
-			assertionResource = model.createResource(null, Earl.Assertion);
+		
+		Resource assertionResource = model.createResource(null, Earl.Assertion);
 
-		// Resource caseResource = model.createResource(null, Earl.TestCase);
 		Resource resultResource = model.createResource(null, Earl.TestResult);
 		
 		Resource subjectResource = model.getResource(refPage);
@@ -247,6 +245,7 @@ public class LdpEarlReporter implements IReporter {
 		}
 
 		assertionResource.addProperty(Earl.assertedBy, subjectResource);
+		assertionResource.addLiteral(ranAsClass, result.getTestClass().getRealClass().getSimpleName());
 
 		resultResource.addProperty(DCTerms.date, model.createTypedLiteral(GregorianCalendar.getInstance()));
 		
