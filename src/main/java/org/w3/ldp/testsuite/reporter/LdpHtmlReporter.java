@@ -18,6 +18,7 @@ import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.text.DecimalFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -35,7 +36,6 @@ public class LdpHtmlReporter implements IReporter {
 
 	private int passed = 0;
 	private int failed = 0;
-	private int warned = 0;
 	private int skipped = 0;
 	private int mustPass = 0;
 	private int mayPass = 0;
@@ -62,7 +62,7 @@ public class LdpHtmlReporter implements IReporter {
 			html.html().head();
 
 			writeCss();
-			html._head().body().title().content(LdpTestSuite.NAME + " Report");
+			html.title().content(LdpTestSuite.NAME + " Report")._head().body();
 			html.h1().content(LdpTestSuite.NAME + " Summary");
 
 			html.h2().content("Overall Coverage Bar Charts");
@@ -142,8 +142,6 @@ public class LdpHtmlReporter implements IReporter {
 						.getAllResults().iterator();
 				while (passedResults.hasNext()) {
 					ITestResult result = passedResults.next();
-					if (result.getAttribute("warn") != null)
-						warned++;
 
 					try {
 						Method m = result.getMethod().getConstructorOrMethod()
@@ -167,11 +165,8 @@ public class LdpHtmlReporter implements IReporter {
 						.getAllResults().iterator();
 				while (failedResults.hasNext()) {
 					ITestResult result = failedResults.next();
-					if (result.getAttribute("warn") != null)
-						warned++;
 
 					try {
-						// System.out.println(warning.getMethod().getConstructorOrMethod().getMethod().toString());
 						Method m = result.getMethod().getConstructorOrMethod()
 								.getMethod();
 						String[] groups = m.getAnnotation(Test.class).groups();
@@ -194,8 +189,7 @@ public class LdpHtmlReporter implements IReporter {
 			}
 			total = passed + failed + skipped;
 			generateSummaryTableStart(date, suite.getName());
-			generateSummaryTable(passed, skipped, warned, total, mayPass,
-					mustPass, shouldPass, mustFailed);
+			generateSummaryTable();
 			html._table();
 		}
 
@@ -205,30 +199,27 @@ public class LdpHtmlReporter implements IReporter {
 			throws IOException {
 		html.tr().th().content("Test Suite Name");
 		html.th().content("Report Date");
-		html.th().content("Passed with Warnings");
 		html.th().content("Skipped Tests");
 		html.th().content("Passed (MUST)");
 		html.th().content("Passed (MAY)");
 		html.th().content("Passed (SHOULD)");
-		html.th().content("Failed (MUST)")._tr();
+		// html.th().content("Failed (MUST)");
+		html._tr();
 
 		html.tr(class_("alt")).td().content(suiteName);
 		html.td().content(date.toString());
 	}
 
-	private void generateSummaryTable(int passed, int skipped, int warned,
-									  int total, int may, int must, int should, int mustFailed)
+	private void generateSummaryTable()
 			throws IOException {
-		printCellResult(warned, total);
-		printCellResult(skipped, total);
-		printCellResult(must, total);
-		printCellResult(may, total);
-		printCellResult(should, total);
-		printCellResult(mustFailed, total);
+		printCellResult(skipped, total, "");
+		printCellResult(mustPass, mustPass + mustFailed, "MUST");
+		printCellResult(mayPass, mayPass + mayFailed, "SHOULD");
+		printCellResult(shouldPass, shouldPass + shouldFailed, "MAY");
 		html._tr();
 	}
 
-	private void printCellResult(int value, int total) throws IOException {
+	private void printCellResult(int value, int total, String requirement) throws IOException {
 		if (value == 0)
 			html.td().i().write("No tests of this type called")._i()._td();
 		else {
@@ -236,7 +227,11 @@ public class LdpHtmlReporter implements IReporter {
 			double result = (((double) value / total) * 100);
 			String finalTotal = df.format(result);
 			html.td().b().write(finalTotal + "% ")._b();
-			html.write("of the total tests (");
+			if(requirement.equals(""))
+				html.write("of the total tests (");
+			else 
+				html.write(requirement + " Requirements (");
+			
 			html.b().write(value + "/" + total)._b();
 			html.write(")")._td();
 		}
@@ -288,17 +283,29 @@ public class LdpHtmlReporter implements IReporter {
 		IResultMap skipped = testContext.getSkippedTests();
 
 		html.h1(class_("center")).content("Methods called");
-		html.table(class_("indented"));
+		html.a(href("#Skipped")).write("Go To Skipped Tests").br()._a();
+		html.a(href("#Passed")).write("Go To Passed Tests").br()._a();
+		html.br();
+		
+		
 		makeMethodSummaryTable(failed, "Failed");
+		html.br();
+		toTop();
+		html.br();
 		makeMethodSummaryTable(skipped, "Skipped");
+		html.br();
+		toTop();
+		html.br();
 		makeMethodSummaryTable(passed, "Passed");
-		html._table();
+		html.br();
 
 	}
 
 	private void makeMethodSummaryTable(IResultMap tests, String title)
 			throws IOException {
-		html.tr().th(class_(title)).content(title + " Test Cases");
+		html.table(class_("indented"));
+		html.tr().th(class_(title)).a(id((title))).write(title + " Test Cases")._a()._th();
+		html.th(class_(title)).content("Groups");
 		html.th(class_(title)).content("Test Class");
 		html.th(class_(title)).content("Description of Test Method")._tr();
 		for (ITestResult result : tests.getAllResults()) {
@@ -308,6 +315,7 @@ public class LdpHtmlReporter implements IReporter {
 					.a(href("#" + method.getTestClass().getName() + "_"
 							+ method.getMethodName()))
 					.write(method.getMethodName(), NO_ESCAPE)._a()._td();
+			html.td().content(Arrays.toString(method.getGroups()));
 			html.td().content(method.getTestClass().getName());
 
 			html.td().content(
@@ -315,7 +323,7 @@ public class LdpHtmlReporter implements IReporter {
 							: "No Description found"));
 			html._tr();
 		}
-
+		html._table();
 	}
 
 	private void generateMethodDetails(List<ISuite> suites) throws IOException {
@@ -353,7 +361,7 @@ public class LdpHtmlReporter implements IReporter {
 			for (String group : method.getGroups()) {
 				groups += group + " ";
 			}
-			html.p(class_("indented")).b().write("Specifications: ")._b()
+			html.p(class_("indented")).b().write("Requirement Level: ")._b()
 					.write(groups)._p();
 
 			toTop();
@@ -399,7 +407,7 @@ public class LdpHtmlReporter implements IReporter {
 		html.table(class_("indented"));
 		html.tr(class_("center")).th(class_("Skipped"))
 				.content("[SKIPPED TEST]")._tr();
-		html.td().content(thrown.getMessage());
+		html.tr().td().content(thrown.getMessage())._tr();
 		html._table();
 
 	}
@@ -408,7 +416,7 @@ public class LdpHtmlReporter implements IReporter {
 		html.table(class_("indented"));
 		html.tr(class_("center")).th(class_("Failed")).content("[FAILED TEST]")
 				._tr();
-		html.td(class_("throw")).content(Utils.stackTrace(thrown, true)[0]);
+		html.tr().td(class_("throw")).content(Utils.stackTrace(thrown, true)[0])._tr();
 
 		html._table();
 
