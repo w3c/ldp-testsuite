@@ -1,5 +1,27 @@
 package org.w3.ldp.testsuite.reporter;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.StringWriter;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.testng.IReporter;
+import org.testng.IResultMap;
+import org.testng.ISuite;
+import org.testng.ISuiteResult;
+import org.testng.ITestContext;
+import org.testng.ITestResult;
+import org.testng.internal.Utils;
+import org.testng.xml.XmlSuite;
+import org.w3.ldp.testsuite.annotations.SpecTest;
+import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
+import org.w3.ldp.testsuite.vocab.Earl;
+
 import com.github.jsonldjava.core.JsonLdError;
 import com.github.jsonldjava.core.JsonLdOptions;
 import com.github.jsonldjava.core.JsonLdProcessor;
@@ -7,21 +29,13 @@ import com.github.jsonldjava.jena.JenaJSONLD;
 import com.github.jsonldjava.utils.JsonUtils;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.sparql.vocabulary.DOAP;
 import com.hp.hpl.jena.sparql.vocabulary.FOAF;
 import com.hp.hpl.jena.vocabulary.DCTerms;
-
-import org.testng.*;
-import org.testng.internal.Utils;
-import org.testng.xml.XmlSuite;
-import org.w3.ldp.testsuite.annotations.SpecTest;
-import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
-import org.w3.ldp.testsuite.vocab.Earl;
-
-import java.io.*;
-import java.util.*;
+import com.hp.hpl.jena.vocabulary.RDF;
 
 /**
  * Earl Reporter for the LDP Test Suite. Takes in the results of the test suite
@@ -60,6 +74,10 @@ public class LdpEarlReporter implements IReporter {
 	private static String refPage;
 	private static String language;
 	private static String mailBox;
+	private static String description;
+	
+	private static Property ranAsClass = ResourceFactory
+			.createProperty(LDPT_NAME + "ranAsClass");
 
 	static {
 		JenaJSONLD.init();
@@ -71,6 +89,8 @@ public class LdpEarlReporter implements IReporter {
 		try {
 			createWriter(outputDir);
 		} catch (IOException e) {
+			e.printStackTrace(System.err);
+			System.exit(1);
 		}
 		createModel();
 		createAssertions(suites);
@@ -78,6 +98,8 @@ public class LdpEarlReporter implements IReporter {
 		try {
 			endWriter();
 		} catch (IOException e) {
+			e.printStackTrace(System.err);
+			System.exit(1);
 		}
 	}
 
@@ -98,10 +120,14 @@ public class LdpEarlReporter implements IReporter {
 			language = suite.getParameter("language");
 
 			mailBox = suite.getParameter("mail");
+			description = suite.getParameter("description");
 
 			// Make the Assertor Resource
-			Resource assertor = model.createResource(refPage, Earl.Assertor);
-			assertor.addProperty(DOAP.description, suite.getName());
+			Resource assertor = model.createResource(refPage);
+			assertor.addProperty(RDF.type, Earl.Assertor);
+			
+			if (description != null)
+				assertor.addProperty(DOAP.description, description);
 
 			/* Developer Resource (Person) */
 			Resource personResource = model.createResource(null, FOAF.Person);
@@ -123,7 +149,8 @@ public class LdpEarlReporter implements IReporter {
 
 			Resource subjectResource = model.createResource(refPage,
 					Earl.TestSubject);
-			// String testClass = result.getTestClass().getName();
+			
+			subjectResource.addProperty(RDF.type, DOAP.Project);
 
 			if (homepage != null)
 				subjectResource.addProperty(DOAP.homepage, homepage);
@@ -156,30 +183,23 @@ public class LdpEarlReporter implements IReporter {
 	}
 
 	private void makeResultResource(ITestResult result, String status) {
-		Resource assertionResource;
-
-		String declaringClass = result.getTestClass().getName();
+		String declaringClass = result.getMethod().getConstructorOrMethod().getMethod().getDeclaringClass().getName();
 		declaringClass = declaringClass.substring(declaringClass
 				.lastIndexOf(".") + 1);
-		if (refPage != null) {
-			String uri = refPage + "#" + declaringClass + "."
-					+ result.getName();
-			assertionResource = model.createResource(uri, Earl.Assertion);
-		} else
-			assertionResource = model.createResource(null, Earl.Assertion);
+		
+		Resource assertionResource = model.createResource(null, Earl.Assertion);
 
-		// Resource caseResource = model.createResource(null, Earl.TestCase);
 		Resource resultResource = model.createResource(null, Earl.TestResult);
+		
+		Resource subjectResource = model.getResource(refPage);
 
-		assertionResource.addProperty(Earl.testSubject, refPage);
+		assertionResource.addProperty(Earl.testSubject, subjectResource);
 
 		assertionResource.addProperty(
 				Earl.test,
-				ResourceFactory.createProperty(LDPT_NAME + declaringClass + "."
-						+ result.getName()));
+				model.getResource(LdpEarlTestManifest.createTestCaseURL(declaringClass, result.getName())));
 
 		/* Test Result Resource */
-		resultResource.addProperty(DCTerms.title, status);
 		switch (status) {
 		case FAIL:
 			resultResource.addProperty(Earl.outcome, Earl.fail);
@@ -224,8 +244,11 @@ public class LdpEarlReporter implements IReporter {
 			}
 		}
 
-		assertionResource.addProperty(Earl.assertedBy, refPage);
+		assertionResource.addProperty(Earl.assertedBy, subjectResource);
+		assertionResource.addLiteral(ranAsClass, result.getTestClass().getRealClass().getSimpleName());
 
+		resultResource.addProperty(DCTerms.date, model.createTypedLiteral(GregorianCalendar.getInstance()));
+		
 		/*
 		 * Add the above resources to the Assertion Resource
 		 */
@@ -304,7 +327,7 @@ public class LdpEarlReporter implements IReporter {
 				"http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#");
 		model.setNsPrefix("rdft", "http://www.w3.org/ns/rdftest#");
 		model.setNsPrefix("dcterms", "http://purl.org/dc/terms/");
-		model.setNsPrefix("ldpt", "http://w3c.github.io/ldp-testsuite#");
+		model.setNsPrefix("ldpt", LDPT_NAME);
 	}
 
 }

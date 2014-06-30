@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -25,10 +24,12 @@ import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.ResIterator;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.sparql.vocabulary.EARL;
 import com.hp.hpl.jena.vocabulary.DCTerms;
+import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
 import com.hp.hpl.jena.vocabulary.TestManifest;
 
@@ -39,7 +40,6 @@ public class LdpEarlTestManifest {
 
 	private static Property declared;
 
-	private static ArrayList<String> entries = new ArrayList<String>();
 
 	private static Class<BasicContainerTest> bcTest = BasicContainerTest.class;
 	private static Class<RdfSourceTest> rdfSourceTest = RdfSourceTest.class;
@@ -63,6 +63,8 @@ public class LdpEarlTestManifest {
 		try {
 			createWriter(outputDir);
 		} catch (IOException e) {
+			e.printStackTrace(System.err);
+			System.exit(1);
 		}
 
 		model = ModelFactory.createDefaultModel();
@@ -70,21 +72,23 @@ public class LdpEarlTestManifest {
 				.createProperty(LDPT_NAME + "declaredInClass");
 
 		writePrefixes();
-		readTestClasses();
-		writeManifest();
+		ResIterator tests = writeTestClasses();
+		writeManifest(tests);
 
 		write();
 		try {
 			endWriter();
 		} catch (IOException e) {
+			e.printStackTrace(System.err);
+			System.exit(1);
 		}
 	}
 
-	private static void writeManifest() {
+	private static void writeManifest(ResIterator tests) {
 		Resource manifest = model.createResource(LDPT_NAME,
 				TestManifest.Manifest);
 		manifest.addProperty(RDFS.comment, "LDP tests");
-		manifest.addProperty(TestManifest.entries, entries.toString());
+		manifest.addProperty(TestManifest.entries, model.createList(tests));
 	}
 
 	private static void writePrefixes() {
@@ -97,7 +101,7 @@ public class LdpEarlTestManifest {
 				"http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#");
 		model.setNsPrefix("rdft", "http://www.w3.org/ns/rdftest#");
 		model.setNsPrefix("dcterms", "http://purl.org/dc/terms/");
-		model.setNsPrefix("ldpt", "http://w3c.github.io/ldp-testsuite#");
+		model.setNsPrefix(LDPT_PREFIX, LDPT_NAME);
 	}
 
 	private static <T> void writeInfo(Class<T> testClass) {
@@ -120,48 +124,54 @@ public class LdpEarlTestManifest {
 			String group = groups(test.groups());
 
 			Calendar cal = GregorianCalendar.getInstance();
-			Literal value = model.createTypedLiteral(cal);
+			Literal date = model.createTypedLiteral(cal);
 
-			String testList = parseTestListEntry(name, method.getName());
+			String testCaseName = createTestCaseName(name, method.getName());
+			String testCaseURL = LDPT_NAME + testCaseName;
 
-			Resource testCase = model.createResource(testList, EARL.TestCase);
-			testCase.addProperty(
-					TestManifest.name,
-					(name.substring(name.lastIndexOf(".") + 1)) + "-"
-							+ method.getName());
-			testCase.addProperty(DCTerms.date, value);
+			Resource testCaseResource = model.createResource(testCaseURL);
+			testCaseResource.addProperty(RDF.type, EARL.TestCase);
+			testCaseResource.addProperty(TestManifest.name,testCaseName);
+			testCaseResource.addProperty(DCTerms.date, date);
 
-			testCase.addProperty(RDFS.comment, test.description());
+			testCaseResource.addProperty(RDFS.comment, test.description());
 			if (group != null)
-				testCase.addProperty(DCTerms.subject, group);
+				testCaseResource.addProperty(DCTerms.subject, group);
 
-			// TODO: Determine what the action should be
-			testCase.addProperty(TestManifest.action, "");
+			// Leave action property only to make earl-report happy
+			testCaseResource.addProperty(TestManifest.action, "");
 
 			switch (testLdp.approval()) {
 			case WG_APPROVED:
-				testCase.addProperty(RdfLdp.Approval, RdfLdp.approved);
+				testCaseResource.addProperty(RdfLdp.Approval, RdfLdp.approved);
 				break;
 			case WG_PENDING:
-				testCase.addProperty(RdfLdp.Approval, RdfLdp.propopsed);
+				testCaseResource.addProperty(RdfLdp.Approval, RdfLdp.propopsed);
 				break;
 			default:
-				testCase.addProperty(RdfLdp.Approval, RdfLdp.propopsed);
+				testCaseResource.addProperty(RdfLdp.Approval, RdfLdp.propopsed);
 				break;
 			}
 
-			testCase.addProperty(declared, name);
+			testCaseResource.addProperty(declared, name);
 		}
 	}
 
-	private static String parseTestListEntry(String className, String methodName) {
+	public static String createTestCaseURL(String className, String methodName) {
+		return LDPT_NAME + createTestCaseName(className, methodName);
+	}
+	
+	public static String createTestCaseName(String className, String methodName) {
 
 		className = className.substring(className.lastIndexOf(".") + 1);
 
-		String testList = LDPT_PREFIX + ":" + className + "." + methodName;
-		entries.add(testList);
-
-		return testList;
+		if (className.endsWith("Test")) {
+			className = className.substring(0, className.length()-4);
+		}
+		if (methodName.startsWith("test")) {
+			methodName = methodName.substring(4, methodName.length());
+		}
+		return className + "-" + methodName;
 	}
 
 	private static String groups(String[] list) {
@@ -177,7 +187,7 @@ public class LdpEarlTestManifest {
 		return retList;
 	}
 
-	private static void readTestClasses() {
+	private static ResIterator writeTestClasses() {
 		writeInfo(rdfSourceTest);
 		writeInfo(bcTest);
 		writeInfo(commonContainerTest);
@@ -185,6 +195,8 @@ public class LdpEarlTestManifest {
 		writeInfo(nonRdfSourceTest);
 		writeInfo(indirectContainerTest);
 		writeInfo(directContianerTest);
+		
+		return 	model.listSubjectsWithProperty(RDF.type, EARL.TestCase);
 	}
 
 	private static void write() {

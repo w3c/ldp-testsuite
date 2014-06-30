@@ -16,16 +16,18 @@
            Link: <http://www.w3c.org/ldp/ns#Resource>;rel="type"
          See: http://www.w3.org/TR/ldp/#ldpc-post-createrdf
       -->
-    <parameter name="containerAsResource" value="http://localhost:8080/ldp/resources/bc/" />
+    <parameter name="containerAsResource" value="http://localhost:8080/ldp/resources/bc-asres/" />
     
     <!-- Default values to plug into Properties in the Earl Report  -->
     <parameter name="language" value = "Java" />
-    <parameter name="homepage" value ="http://wiki.eclipse.org/Lyo/LDPImpl" />
-    <parameter name="referencePage" value="http://eclipse.org/lyo" />
-    <parameter name="subjectName" value="Eclipse Lyo LDP Reference Implementation" />
+    <parameter name="homepage" value ="http://example.org/Lyo_impl" />
+    <parameter name="referencePage" value="http://example.org/lyo" />
+    <parameter name="subjectName" value="Example LDP Reference Implementation" />
     <parameter name="software" value="Reference Implementation" />
-    <parameter name="mail" value="sspeiche@gmail.com" />
-    <parameter name="developer" value="Steve Speicher" />
+    <parameter name="mail" value="jdoe@example.org" />
+    <parameter name="developer" value="Jane Doe" />
+    <parameter name="description" value="Testing against: BasicContainer, RDFSource, NonRDFSource, Prefer, Container as Resource interaction model." />
+    
 
     <!-- Optional RDF member resource parameter. If left out, the tests will
         try to create a resource in one of the containers. -->
