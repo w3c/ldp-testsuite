@@ -21,6 +21,7 @@ import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.util.ResourceUtils;
 import com.hp.hpl.jena.vocabulary.DC_11;
 import com.jayway.restassured.response.Header;
 import com.jayway.restassured.response.Response;
@@ -42,7 +43,19 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 		if (path != null) {
 			model = ModelFactory.createDefaultModel();
 			InputStream  inputStream = getClass().getClassLoader().getResourceAsStream(path);
-			model.read(inputStream, "", "TURTLE");
+
+			// Even though null relative URIs are used in the resource representation file,
+			// the resulting model doesn't keep them intact. They are changed to "file://..." if
+			// an empty string is passed as base to this method.
+			model.read(inputStream, "http://example.org", "TURTLE");
+
+			// At this point, the model should contain a resource named "http://example.org" if
+			// there was a null relative URI in the resource representation file.
+			Resource subject = model.getResource("http://example.org");
+			if (subject != null) {
+				ResourceUtils.renameResource(subject, "");
+			}
+
 			try {
 				inputStream.close();
 			} catch (IOException e) {
