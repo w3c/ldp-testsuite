@@ -1,12 +1,26 @@
 package org.w3.ldp.testsuite;
 
 import java.net.URI;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
-import org.apache.commons.cli.*;
+import org.apache.commons.cli.BasicParser;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.OptionBuilder;
+import org.apache.commons.cli.OptionGroup;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.testng.IMethodInstance;
 import org.testng.IMethodInterceptor;
 import org.testng.ITestContext;
@@ -269,6 +283,9 @@ public class LdpTestSuite {
 
 	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
+		// Disable log4j to avoid console warnings from the Jena logger.
+		Logger.getRootLogger().setLevel(Level.OFF);
+
 		Options options = new Options();
 
 		options.addOption(OptionBuilder.withLongOpt("server")
