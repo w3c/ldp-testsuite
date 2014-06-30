@@ -36,14 +36,6 @@
         <app.main.class>org.w3.ldp.testsuite.LdpTestSuite</app.main.class>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>rendersnake-repo</id>
-            <name>Repository for rendersnake</name>
-            <url>http://rendersnake.googlecode.com/svn/repo</url>
-        </repository>
-    </repositories>
-
     <build>
         <plugins>
             <plugin>
@@ -208,7 +200,7 @@
         <dependency>
             <groupId>org.rendersnake</groupId>
             <artifactId>rendersnake</artifactId>
-            <version>1.7.3</version>
+            <version>1.8</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
