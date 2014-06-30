@@ -34,6 +34,7 @@ import org.w3.ldp.testsuite.vocab.LDP;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.util.ResourceUtils;
 import com.hp.hpl.jena.vocabulary.DCTerms;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.jayway.restassured.response.Response;
@@ -401,10 +402,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	public void testNullRelativeUri() throws URISyntaxException {
 		skipIfMethodNotAllowed(HttpMethod.POST);
 
-		Model requestModel = ModelFactory.createDefaultModel();
-		Resource resource = requestModel.createResource("");
-		String identifier = UUID.randomUUID().toString();
-		resource.addProperty(DCTerms.identifier, identifier);
+		Model requestModel = postContent();
 
 		// Do not pass a URI to RdfObjectMapper so that it stays as the null
 		// relative URI in the request body
@@ -423,15 +421,18 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 			// Get the resource to check that the resource with a null relative URI
 			// was assigned the URI in the Location response header.
 			Model responseModel = getAsModel(location);
-			Resource created = responseModel.getResource(location);
 
-			// TODO: Is this the best test? It's possible a server will assign its
-			// own dcterms:identifier.
-			assertTrue(
-					created.hasProperty(DCTerms.identifier, identifier),
+			// Rename the subject of the request model so it matches the received location
+			// and intersect both models.
+			ResourceUtils.renameResource(
+					requestModel.getResource(""), location);
+			Model intersectionModel = requestModel.intersection(responseModel);
+
+			// OK if the result is not empty
+			assertTrue(intersectionModel.size() > 0,
 					"The resource created with URI <"
 							+ location
-							+ "> does not have the dcterms:identifier as the resource POSTed using the null relative URI."
+							+ "> has nothing in common with the resource POSTed using the null relative URI."
 			);
 		} finally {
 			// Delete the resource to clean up.
