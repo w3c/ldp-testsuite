@@ -23,7 +23,8 @@ td,tr {
 	width: 400px;
 	height: 300px;
 	padding-bottom: 15px;
-	padding-top: 10px
+	padding-top: 10px;
+	display: inline-block
 }
 
 .annotation {
