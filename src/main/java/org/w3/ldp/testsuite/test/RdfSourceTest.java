@@ -139,14 +139,17 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		// Replace the resource with something different.
 		Model differentContent = ModelFactory.createDefaultModel();
 		final String UPDATED_TITLE = "This resources content has been replaced";
-		differentContent.add(differentContent.getResource(resourceUri),
-				DCTerms.title, UPDATED_TITLE);
+		differentContent.add(differentContent.getResource(resourceUri), DCTerms.title, UPDATED_TITLE);
 
-		buildBaseRequestSpecification()
-				.given().contentType(TEXT_TURTLE).header(IF_MATCH, eTag)
-				.body(differentContent, new RdfObjectMapper(resourceUri)) // relative URI
-				.expect().statusCode(isSuccessful())
-				.when().put(resourceUri);
+		response = buildBaseRequestSpecification()
+					.contentType(TEXT_TURTLE)
+					.header(IF_MATCH, eTag)
+					.body(differentContent, new RdfObjectMapper(resourceUri)) // relative URI
+				.when()
+					.put(resourceUri);
+		if (!isSuccessful().matches(response.getStatusCode())) {
+			throw new SkipException("Skipping test because the PUT failed. The server may have restrictions on its content.");
+		}
 
 		// Get the resource again to see what's there.
 		response = buildBaseRequestSpecification()
