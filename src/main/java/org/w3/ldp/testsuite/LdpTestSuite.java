@@ -161,6 +161,10 @@ public class LdpTestSuite {
 			parameters.put("containerAsResource", containerAsResource);
 		}
 
+		if (options.hasOption("read-only-prop")) {
+			parameters.put("readOnlyProp", options.getOptionValue("read-only-prop"));
+		}
+
 		if (options.hasOptionWithValue("auth")) {
 			final String auth = options.getOptionValue("auth");
 			if (auth.contains(":")) {
@@ -336,6 +340,11 @@ public class LdpTestSuite {
 		options.addOption(OptionBuilder.withLongOpt("cont-res")
 				.withDescription("url of a container with interaction model of a resource").hasArg()
 				.withArgName("cont-res").create());
+
+		options.addOption(OptionBuilder.withLongOpt("read-only-prop")
+				.withDescription("a read-only property to test error conditions")
+				.hasArg().withArgName("uri")
+				.create());
 
 		options.addOption(OptionBuilder.withLongOpt("help")
 				.withDescription("prints this usage help").create());

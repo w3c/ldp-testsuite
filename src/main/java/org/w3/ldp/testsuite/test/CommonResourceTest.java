@@ -14,8 +14,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import com.google.common.collect.ImmutableMap;
-import com.jayway.restassured.specification.RequestSpecification;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
 import org.testng.SkipException;
@@ -31,8 +29,10 @@ import org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException;
 import org.w3.ldp.testsuite.http.HttpMethod;
 import org.w3.ldp.testsuite.vocab.LDP;
 
+import com.google.common.collect.ImmutableMap;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
+import com.jayway.restassured.specification.RequestSpecification;
 import com.jayway.restassured.specification.ResponseSpecification;
 
 /**
@@ -169,22 +169,6 @@ public abstract class CommonResourceTest extends LdpTest {
 		);
 	}
 
-
-	@Test(
-			enabled = false,
-			groups = {MUST},
-			description = "LDP servers MUST publish any constraints on LDP clients’ "
-					+ "ability to create or update LDPRs, by adding a Link header "
-					+ "with rel='describedby' [RFC5988] to all responses to requests "
-					+ "which fail due to violation of those constraints.")
-	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-pubclireqs",
-			testMethod = METHOD.NOT_IMPLEMENTED,
-			approval = STATUS.WG_PENDING)
-	public void testPublishConstraints() {
-		// TODO: Impl testPublishConstraints
-	}
-
 	@Test(
 			groups = {MUST},
 			description = "LDP servers MUST support the HTTP GET Method for LDPRs")
@@ -223,67 +207,8 @@ public abstract class CommonResourceTest extends LdpTest {
 		expectResponse.when().get(getResourceUri());
 	}
 
-	@Test(
-			enabled = false,
-			groups = {MUST},
-			description = "If an otherwise valid HTTP PUT request is received that "
-					+ "attempts to change properties the server does not allow "
-					+ "clients to modify, LDP servers MUST respond with a 4xx range "
-					+ "status code (typically 409 Conflict)")
-	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-put-servermanagedprops",
-			testMethod = METHOD.NOT_IMPLEMENTED,
-			approval = STATUS.WG_PENDING)
-	public void testPutReadOnlyProperties4xxStatus() {
-		// TODO: Impl testPutReadOnlyProperties4xxStatus
-	}
 
-	@Test(
-			enabled = false,
-			groups = {SHOULD},
-			dependsOnMethods = {"testInvalidPutPropertiesNotAllowed"},
-			description = "LDP servers SHOULD provide a corresponding response body containing "
-					+ "information about which properties could not be persisted. The "
-					+ "format of the 4xx response body is not constrained by LDP.")
-	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-put-servermanagedprops",
-			testMethod = METHOD.NOT_IMPLEMENTED,
-			approval = STATUS.WG_PENDING)
-	public void test4xxErrorHasResponseBody() {
-		// TODO: Impl test4xxErrorHasResponseBody
-	}
 
-	@Test(
-			enabled = false,
-			groups = {MUST},
-			description = "If an otherwise valid HTTP PUT request is received that "
-					+ "contains properties the server chooses not to persist, "
-					+ "e.g. unknown content, LDP servers MUST respond with an "
-					+ "appropriate 4xx range status code [HTTP11].")
-	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-put-failed",
-			testMethod = METHOD.NOT_IMPLEMENTED,
-			approval = STATUS.WG_PENDING)
-	public void testPutPropertiesNotPersisted() {
-		// TODO: Impl testPutPropertiesNotPersisted
-	}
-
-	@Test(
-			enabled = false,
-			groups = {SHOULD},
-			dependsOnMethods = {"testInvalidPutPropertiesNotPersisted"},
-			description = "LDP servers SHOULD provide a corresponding response body containing "
-					+ "information about which properties could not be persisted. The "
-					+ "format of the 4xx response body is not constrained by LDP. LDP "
-					+ "servers expose these application-specific constraints as described "
-					+ "in section 4.2.1 General.")
-	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-put-failed",
-			testMethod = METHOD.NOT_IMPLEMENTED,
-			approval = STATUS.WG_PENDING)
-	public void testResponsePropertiesNotPersisted() {
-		// TODO: Impl testResponsePropertiesNotPersisted
-	}
 
 	@Test(
 			groups = {SHOULD},
@@ -501,5 +426,4 @@ public abstract class CommonResourceTest extends LdpTest {
 			throw new SkipMethodNotAllowedException(getResourceUri(), method);
 		}
 	}
-
 }
