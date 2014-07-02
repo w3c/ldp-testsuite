@@ -9,7 +9,6 @@ import org.testng.xml.XmlSuite;
 import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 
-import java.awt.Color;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -26,8 +25,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Random;
 import java.util.Set;
 
 import static org.rendersnake.HtmlAttributesFactory.*;
@@ -338,7 +335,13 @@ public class LdpHtmlReporter implements IReporter {
 		html.th(class_(title)).content("Description of Test Method")._tr();
 		for (ITestResult result : tests.getAllResults()) {
 			ITestNGMethod method = result.getMethod();
-			html.tr();
+			List<String> groups = Arrays.asList(method.getGroups());
+			if (groups.contains("MUST") && result.getStatus() == ITestResult.FAILURE) {
+				html.tr(class_("critical"));
+			} else {
+				html.tr();
+			}
+
 			html.td()
 					.a(href("#" + method.getTestClass().getName() + "_"
 							+ method.getMethodName()))
