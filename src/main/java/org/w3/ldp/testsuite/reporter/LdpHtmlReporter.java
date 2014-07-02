@@ -335,7 +335,13 @@ public class LdpHtmlReporter implements IReporter {
 		html.th(class_(title)).content("Description of Test Method")._tr();
 		for (ITestResult result : tests.getAllResults()) {
 			ITestNGMethod method = result.getMethod();
-			html.tr();
+			List<String> groups = Arrays.asList(method.getGroups());
+			if (groups.contains("MUST") && result.getStatus() == ITestResult.FAILURE) {
+				html.tr(class_("critical"));
+			} else {
+				html.tr();
+			}
+
 			html.td()
 					.a(href("#" + method.getTestClass().getName() + "_"
 							+ method.getMethodName()))

@@ -29,9 +29,12 @@
     <parameter name="description" value="Testing against: BasicContainer, RDFSource, NonRDFSource, Prefer, Container as Resource interaction model." />
     
 
-    <!-- Optional RDF member resource parameter. If left out, the tests will
+    <!-- (Optional) RDF member resource parameter. If left out, the tests will
         try to create a resource in one of the containers. -->
     <parameter name="memberResource" value="http://localhost:8080/ldp/resources/diffmr1"/>
+
+    <!-- (Optional) Read only property to test server errors -->
+    <!-- <parameter name="readOnlyProp" value="http://purl.org/dc/terms/identifier" /> -->
 
     <test name="All Tests">
         <groups>
