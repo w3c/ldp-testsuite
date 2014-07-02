@@ -7,15 +7,31 @@ import java.lang.annotation.RetentionPolicy;
 public @interface SpecTest {
 
 	/**
-	 * WG_PENDING (default) - no official recommendation from the WG supporting
-	 * the specification being tested by this test suite.
-	 * WG_APPROVED - working group has approved this test case
-	 * WG_CLARIFICATION - requires further clarification from the working group
-	 * WG_DEPRECATED - no longer recommended by WG
-	 * WG_EXTENSION - valuable test case but not part of the WG approved set
+	 * Describes the status of the Test Case
 	 */
 	public static enum STATUS {
-		WG_PENDING, WG_APPROVED, WG_DEPRECATED, WG_EXTENSION, WG_CLARIFICATION
+
+		/**
+		 * WG_PENDING (default) - no official recommendation from the WG
+		 * supporting the specification being tested by this test suite.
+		 */
+		WG_PENDING,
+
+		/** WG_APPROVED - working group has approved this test case */
+		WG_APPROVED,
+
+		/** WG_DEPRECATED - no longer recommended by WG */
+		WG_DEPRECATED,
+
+		/**
+		 * WG_EXTENSION - valuable test case but not part of the WG approved set
+		 */
+		WG_EXTENSION,
+
+		/**
+		 * WG_CLARIFICATION - requires further clarification from the working group
+		 */
+		WG_CLARIFICATION
 	}
 
 	;
@@ -31,16 +47,20 @@ public @interface SpecTest {
 	public STATUS approval() default STATUS.WG_PENDING;
 
 	/**
-	 * Many of these values are used for reporting purposes and have these
-	 * meanings:
-	 * <p/>
-	 * NOT_IMPLEMENTED (default) - possible to implement, just not done
-	 * AUTOMATED - implementation complete
-	 * MANUAL - server test but not automated
-	 * CLIENT_ONLY - test is only client-side, this test suite doesn't test it.
+	 * For reporting purposes, the way the Test Case has been implemented
 	 */
 	public static enum METHOD {
-		NOT_IMPLEMENTED, AUTOMATED, MANUAL, CLIENT_ONLY
+		/** NOT_IMPLEMENTED (default) - possible to implement, just not done */
+		NOT_IMPLEMENTED,
+
+		/** AUTOMATED - implementation complete */
+		AUTOMATED,
+
+		/** MANUAL - server test but not automated */
+		MANUAL, 
+		
+		/** CLIENT_ONLY - test is only client-side, this test suite doesn't test it. */
+		CLIENT_ONLY
 	};
 
 	/**

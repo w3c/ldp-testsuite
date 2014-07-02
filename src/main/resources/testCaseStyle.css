@@ -27,6 +27,14 @@ td,tr {
 	display: inline-block
 }
 
+.smallBar {
+	width: 350px;
+	height: 250px;
+	padding-left: 15px;
+	padding-bottom: 10px;
+	display: inline-block
+}
+
 .annotation {
 	border-collapse: collapse;
 	border: 1px solid black;
