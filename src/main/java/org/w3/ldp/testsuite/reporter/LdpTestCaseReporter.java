@@ -139,12 +139,13 @@ public class LdpTestCaseReporter {
 
 	private static void createSummaryReport() throws IOException {
 
+		html.h2().content("Overall Specification Requirements Coverage");
+		
 		generateStatusGraph();
 		writeStatusLegend();
-
-		// TODO divide charts based on status and implementation
-		generateImplmntGraph(); // TODO
-		writeImplmntLegend(); // TODO
+		
+		generateImplmntGraph();
+		writeImplmntLegend();
 
 		initialRead = true;
 		html.h2().content("Summary of Test Methods");
@@ -236,8 +237,8 @@ public class LdpTestCaseReporter {
 	}
 
 	private static void generateStatusGraph() throws IOException {
-
-		html.h2().content("Overall Specification Requirements Coverage");
+		html.span(class_("chartStart"));
+		html.label(class_("label")).b().write("Test Case Status by Specification Requirements")._b()._label();
 		html.div(id("status_bar").class_("barChart"))._div();
 		graphs.write("<script>");
 		graphs.write("Event.observe(window, 'load', function() {");
@@ -267,10 +268,12 @@ public class LdpTestCaseReporter {
 		graphs.write("}); });");
 
 		graphs.write("</script>");
+		
 	}
 
 	private static void generateImplmntGraph() throws IOException {
-		// TODO Auto-generated method stub
+		html.span(class_("chartStart"));
+		html.label(class_("label")).b().write("Test Case Status by Specification Requirements")._b()._label();
 		html.div(id("implmnt_bar").class_("barChart"))._div();
 		graphs.write("<script>");
 		graphs.write("Event.observe(window, 'load', function() {");
@@ -507,7 +510,7 @@ public class LdpTestCaseReporter {
 	private static <T> void writeResourceGraph(Class<T> classType, int total,
 			int unimpl, int extend, int depre, int client, int manual)
 			throws IOException {
-
+		// FIXME
 		graphs.write("<script>");
 		graphs.write("Event.observe(window, 'load', function() {");
 
@@ -814,8 +817,9 @@ public class LdpTestCaseReporter {
 		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"60\" style=\"fill:#606060 \"/>", NO_ESCAPE);
 		html.write("<text x=\"20\" y=\"73\" fill=\"black\">Deprecated Tests</text>", NO_ESCAPE);
 		
-		
 		html.write("</svg>");
+
+		html._span();
 	}
 	
 	private static void writeImplmntLegend() throws IOException {
@@ -833,6 +837,8 @@ public class LdpTestCaseReporter {
 		html.write("<text x=\"20\" y=\"73\" fill=\"black\">Manual Tests</text>", NO_ESCAPE);		
 		
 		html.write("</svg>");
+		
+		html._span();
 	}
 
 	private static void toTop() throws IOException {

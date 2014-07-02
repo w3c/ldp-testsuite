@@ -33,10 +33,19 @@ td,tr {
 	margin-left: +3em
 }
 
+.chartStart {
+	display: inline-block
+}
+
 .classes {
 	border: 1px solid black;
 	padding: 10px;
 	border-collapse: collapse;
+	margin-left: +2em
+}
+
+.label {
+	display: block;
 	margin-left: +2em
 }
 
