@@ -1,6 +1,7 @@
 package org.w3.ldp.testsuite;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -75,6 +76,13 @@ public class LdpTestSuite {
 		this.setupSuite(new OptionsHandler(cmd));
 	}
 
+	public void checkUriScheme(String uri) throws URISyntaxException {
+		String scheme = new URI(uri).getScheme();
+		if (!"http".equals(scheme) && !"https".equals(scheme)) {
+			throw new IllegalArgumentException("non-http uri");
+		}
+	}
+
 	private void setupSuite(OptionsHandler options) {
 		testng.setDefaultSuiteName(NAME);
 
@@ -98,10 +106,7 @@ public class LdpTestSuite {
 		if (options.hasOption("server")) {
 			server = options.getOptionValue("server");
 			try {
-				URI uri = new URI(server);
-				if (!"http".equals(uri.getScheme()) && !"https".equals(uri.getScheme())) {
-					throw new IllegalArgumentException("non-http uri");
-				}
+				checkUriScheme(server);
 			} catch (Exception e) {
 				throw new IllegalArgumentException("ERROR: invalid server uri, " + e.getLocalizedMessage());
 			}
@@ -151,14 +156,15 @@ public class LdpTestSuite {
 		if (options.hasOptionWithValue("cont-res")) {
 			final String containerAsResource = options.getOptionValue("cont-res");
 			try {
-				URI uri = new URI(containerAsResource);
-				if (!"http".equals(uri.getScheme())) {
-					throw new IllegalArgumentException("ERROR: non-http uri");
-				}
+				checkUriScheme(containerAsResource);
 			} catch (Exception e) {
 				throw new IllegalArgumentException("ERROR: invalid containerAsResource uri, " + e.getLocalizedMessage());
 			}
 			parameters.put("containerAsResource", containerAsResource);
+		}
+
+		if (options.hasOption("read-only-prop")) {
+			parameters.put("readOnlyProp", options.getOptionValue("read-only-prop"));
 		}
 
 		if (options.hasOptionWithValue("auth")) {
@@ -336,6 +342,11 @@ public class LdpTestSuite {
 		options.addOption(OptionBuilder.withLongOpt("cont-res")
 				.withDescription("url of a container with interaction model of a resource").hasArg()
 				.withArgName("cont-res").create());
+
+		options.addOption(OptionBuilder.withLongOpt("read-only-prop")
+				.withDescription("a read-only property to test error conditions")
+				.hasArg().withArgName("uri")
+				.create());
 
 		options.addOption(OptionBuilder.withLongOpt("help")
 				.withDescription("prints this usage help").create());

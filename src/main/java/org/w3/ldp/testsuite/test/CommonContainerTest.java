@@ -480,16 +480,18 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	public void testCreateWithoutConstraints() throws URISyntaxException {
 		skipIfMethodNotAllowed(HttpMethod.POST);
 
-		// Create a resource with one statement (dcterms:identifier).
+		// Create a resource with one statement (dcterms:title).
 		Model requestModel = ModelFactory.createDefaultModel();
 		Resource resource = requestModel.createResource("");
-		String identifier = UUID.randomUUID().toString();
-		resource.addProperty(DCTerms.identifier, identifier);
+		resource.addProperty(DCTerms.title, "Created by the LDP test suite");
 
-		Response postResponse = buildBaseRequestSpecification().contentType(TEXT_TURTLE)
-				.body(requestModel, new RdfObjectMapper()).expect()
-				.statusCode(HttpStatus.SC_CREATED).when()
-				.post(getResourceUri());
+		Response postResponse = buildBaseRequestSpecification()
+					.contentType(TEXT_TURTLE)
+					.body(requestModel, new RdfObjectMapper())
+				.expect()
+					.statusCode(HttpStatus.SC_CREATED)
+				.when()
+					.post(getResourceUri());
 
 		// Delete the resource to clean up.
 		String location = postResponse.getHeader(LOCATION);

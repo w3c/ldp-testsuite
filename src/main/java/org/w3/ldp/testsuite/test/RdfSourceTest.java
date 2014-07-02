@@ -1,7 +1,12 @@
 package org.w3.ldp.testsuite.test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.text.IsEmptyString.isEmptyOrNullString;
+import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 import static org.w3.ldp.testsuite.matcher.HeaderMatchers.isValidEntityTag;
+import static org.w3.ldp.testsuite.matcher.HttpStatus4xxRangeMatcher.is4xxRange;
 import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
 import java.io.IOException;
@@ -27,6 +32,7 @@ import com.github.jsonldjava.core.JsonLdProcessor;
 import com.github.jsonldjava.utils.JsonUtils;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
@@ -39,6 +45,11 @@ import com.jayway.restassured.response.Response;
  * Tests all RDF source LDP resources, including containers and member resources.
  */
 public abstract class RdfSourceTest extends CommonResourceTest {
+
+	private static final String MSG_NO_READ_ONLY_PROPERTY = "Skipping test because we have no read-only properties to PUT."
+			+ " Server-managed properties are specified using the \"read-only-prop\" command-line parameter.";
+
+	private static final String UNKNOWN_PROPERTY = "http://example.com/ns#comment";
 
 	@Parameters("auth")
 	public RdfSourceTest(@Optional String auth) throws IOException {
@@ -128,14 +139,17 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		// Replace the resource with something different.
 		Model differentContent = ModelFactory.createDefaultModel();
 		final String UPDATED_TITLE = "This resources content has been replaced";
-		differentContent.add(differentContent.getResource(resourceUri),
-				DCTerms.title, UPDATED_TITLE);
+		differentContent.add(differentContent.getResource(resourceUri), DCTerms.title, UPDATED_TITLE);
 
-		buildBaseRequestSpecification()
-				.given().contentType(TEXT_TURTLE).header(IF_MATCH, eTag)
-				.body(differentContent, new RdfObjectMapper(resourceUri)) // relative URI
-				.expect().statusCode(isSuccessful())
-				.when().put(resourceUri);
+		response = buildBaseRequestSpecification()
+					.contentType(TEXT_TURTLE)
+					.header(IF_MATCH, eTag)
+					.body(differentContent, new RdfObjectMapper(resourceUri)) // relative URI
+				.when()
+					.put(resourceUri);
+		if (!isSuccessful().matches(response.getStatusCode())) {
+			throw new SkipException("Skipping test because the PUT failed. The server may have restrictions on its content.");
+		}
 
 		// Get the resource again to see what's there.
 		response = buildBaseRequestSpecification()
@@ -416,6 +430,116 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		JsonLdProcessor.toRDF(json); // throws JsonLdError if not valid
 	}
 
+	@Test(
+			groups = {MUST},
+			description = "LDP servers MUST publish any constraints on LDP clients’ "
+					+ "ability to create or update LDPRs, by adding a Link header "
+					+ "with rel='describedby' [RFC5988] to all responses to requests "
+					+ "which fail due to violation of those constraints.")
+	@Parameters({ "readOnlyProp" })
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-pubclireqs",
+			testMethod = METHOD.AUTOMATED,
+			approval = STATUS.WG_PENDING)
+	public void testPublishConstraintsReadOnlyProp(@Optional String readOnlyProp) {
+		skipIfMethodNotAllowed(HttpMethod.PUT);
+
+		if (readOnlyProp == null) {
+			throw new SkipException(MSG_NO_READ_ONLY_PROPERTY);
+		}
+
+		expectPut4xxDescriedBy(readOnlyProp);
+	}
+
+	@Test(
+			groups = {MUST},
+			description = "LDP servers MUST publish any constraints on LDP clients’ "
+					+ "ability to create or update LDPRs, by adding a Link header "
+					+ "with rel='describedby' [RFC5988] to all responses to requests "
+					+ "which fail due to violation of those constraints.")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-pubclireqs",
+			testMethod = METHOD.AUTOMATED,
+			approval = STATUS.WG_PENDING)
+	public void testPublishConstraintsUnknownProp() {
+		skipIfMethodNotAllowed(HttpMethod.PUT);
+		expectPut4xxDescriedBy(UNKNOWN_PROPERTY);
+	}
+
+
+	@Test(
+			enabled = false,
+			groups = {MUST},
+			description = "If an otherwise valid HTTP PUT request is received that "
+					+ "attempts to change properties the server does not allow "
+					+ "clients to modify, LDP servers MUST respond with a 4xx range "
+					+ "status code (typically 409 Conflict)")
+	@Parameters("readOnlyProp")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-put-servermanagedprops",
+			testMethod = METHOD.NOT_IMPLEMENTED,
+			approval = STATUS.WG_PENDING)
+	public void testPutReadOnlyProperties4xxStatus(@Optional String readOnlyProp) {
+		skipIfMethodNotAllowed(HttpMethod.PUT);
+
+		if (readOnlyProp == null) {
+			throw new SkipException(MSG_NO_READ_ONLY_PROPERTY);
+		}
+
+		expectPut4xxStatus(readOnlyProp);
+	}
+
+	@Test(
+			groups = {SHOULD},
+			description = "LDP servers SHOULD provide a corresponding response body containing "
+					+ "information about which properties could not be persisted. The "
+					+ "format of the 4xx response body is not constrained by LDP.")
+	@Parameters("readOnlyProp")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-put-servermanagedprops",
+			testMethod = METHOD.AUTOMATED,
+			approval = STATUS.WG_PENDING)
+	public void test4xxErrorHasResponseBody(@Optional String readOnlyProp) {
+		skipIfMethodNotAllowed(HttpMethod.PUT);
+
+		if (readOnlyProp == null) {
+			throw new SkipException(MSG_NO_READ_ONLY_PROPERTY);
+		}
+
+		expectPut4xxResponseBody(readOnlyProp);
+	}
+
+	@Test(
+			groups = {MUST},
+			description = "If an otherwise valid HTTP PUT request is received that "
+					+ "contains properties the server chooses not to persist, "
+					+ "e.g. unknown content, LDP servers MUST respond with an "
+					+ "appropriate 4xx range status code [HTTP11].")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-put-failed",
+			testMethod = METHOD.AUTOMATED,
+			approval = STATUS.WG_PENDING)
+	public void testPutPropertiesNotPersisted() {
+		skipIfMethodNotAllowed(HttpMethod.PUT);
+		expectPut4xxStatus(UNKNOWN_PROPERTY);
+	}
+
+	@Test(
+			groups = {SHOULD},
+			description = "LDP servers SHOULD provide a corresponding response body containing "
+					+ "information about which properties could not be persisted. The "
+					+ "format of the 4xx response body is not constrained by LDP. LDP "
+					+ "servers expose these application-specific constraints as described "
+					+ "in section 4.2.1 General.")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-put-failed",
+			testMethod = METHOD.NOT_IMPLEMENTED,
+			approval = STATUS.WG_PENDING)
+	public void testResponsePropertiesNotPersisted() {
+		skipIfMethodNotAllowed(HttpMethod.PUT);
+		expectPut4xxResponseBody(UNKNOWN_PROPERTY);
+	}
+
 	// Update a resource then later test if the updates were applied (i.e., on a subsequent GET).
 	// These methods could be overwritten by subclasses.
 	private final static String TITLE_FOR_UPDATE = "LDP Test Suite: This resource has been updated... " + System.currentTimeMillis();
@@ -456,4 +580,58 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		return false;
 	}
 
+	protected void modifyProperty(Model m, String resourceUri, String property) {
+		Resource r = m.getResource(resourceUri);
+		Property p = m.createProperty(property);
+		r.removeAll(p);
+		// Don't sweat the value or datatype since we expect the PUT to fail anyway.
+		r.addProperty(p, "modified");
+	}
+
+	protected void expectPut4xxDescriedBy(String invalidProp) {
+		Response putResponse = expectPut4xxStatus(invalidProp);
+		String describedby = getFirstLinkForRelation(LINK_REL_DESCRIBEDBY, putResponse.getHeaders().getList(LINK));
+		assertNotNull(describedby, "Response did not contain a Link header with rel=\"describedby\"");
+
+		// Make sure we can GET the describedby link.
+		buildBaseRequestSpecification()
+			.expect()
+				.statusCode(isSuccessful())
+			.when()
+				.get(describedby);
+	}
+
+	protected Response expectPut4xxStatus(String invalidProp) {
+		// Get the resource.
+		String resourceUri = getResourceUri();
+		Response getResponse = buildBaseRequestSpecification()
+			.expect()
+				.statusCode(isSuccessful())
+				.header(ETAG, isValidEntityTag())
+			.when()
+				.get(resourceUri);
+
+		String eTag = getResponse.getHeader(ETAG);
+		Model m = getResponse.as(Model.class, new RdfObjectMapper(resourceUri));
+		modifyProperty(m, resourceUri, invalidProp);
+
+		Response putResponse = buildBaseRequestSpecification()
+				.contentType(TEXT_TURTLE)
+				.header(IF_MATCH, eTag)
+				.body(m, new RdfObjectMapper(resourceUri))
+			.when()
+				.put(resourceUri);
+		if (isSuccessful().matches(putResponse.getStatusCode())) {
+			throw new SkipException("Skipping test because PUT request was successful.");
+		}
+
+		assertThat(putResponse.statusCode(), is4xxRange());
+
+		return putResponse;
+	}
+
+	protected void expectPut4xxResponseBody(String invalidProp) {
+		Response putResponse = expectPut4xxStatus(invalidProp);
+		assertThat(putResponse.body().asString(), not(isEmptyOrNullString()));
+	}
 }
