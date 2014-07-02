@@ -69,3 +69,7 @@ td {
 	font-family: monospace;
 	font-size: 90%
 }
+
+.critical {
+	background-color: rgb(255, 158, 158);
+}
