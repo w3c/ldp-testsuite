@@ -91,10 +91,26 @@ public class LdpTestSuite {
 		testsuite.setName(NAME);
 
 		// provide included/excluded groups
-		// TODO: dynamic groups
-		testsuite.addIncludedGroup(LdpTest.MUST);
-		testsuite.addIncludedGroup(LdpTest.SHOULD);
-		testsuite.addIncludedGroup(LdpTest.MAY);
+		// get groups to include
+		final String[] includedGroups;
+		if(options.hasOption("includedGroups")) {
+			includedGroups = options.getOptionValues("includedGroups");
+			for(String group : includedGroups){
+				testsuite.addIncludedGroup(group);
+			}
+		} else{
+			testsuite.addIncludedGroup(LdpTest.MUST);
+			testsuite.addIncludedGroup(LdpTest.SHOULD);
+			testsuite.addIncludedGroup(LdpTest.MAY);
+		}
+		// get groups to exclude
+		final String[] excludedGroups;
+		if(options.hasOption("excludedGroups")){
+			excludedGroups = options.getOptionValues("excludedGroups");
+			for(String group : excludedGroups){
+				testsuite.addExcludedGroup(group);
+			}
+		}
 
 		// create XmlTest instance
 		XmlTest test = new XmlTest(testsuite);
@@ -337,6 +353,16 @@ public class LdpTestSuite {
 		options.addOption(OptionBuilder.withLongOpt("test")
 				.withDescription("which tests to run (* is a wildcard)")
 				.hasArgs().withArgName("test names")
+				.create());
+
+		options.addOption(OptionBuilder.withLongOpt("includedGroups")
+				.withDescription("test groups to run, separated by a space").hasArgs()
+				.withArgName("includedGroups").isRequired(false)
+				.create());
+		
+		options.addOption(OptionBuilder.withLongOpt("excludedGroups")
+				.withDescription("test groups to not run, separated by a space").hasArgs()
+				.withArgName("excludedGroups").isRequired(false)
 				.create());
 
 		options.addOption(OptionBuilder.withLongOpt("cont-res")
