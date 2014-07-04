@@ -43,6 +43,10 @@ public class LdpHtmlReporter implements IReporter {
 	private int shouldPass = 0;
 
 	private int total;
+	
+	private int mustSkip = 0;
+	private int shouldSkip = 0;
+	private int maySkip = 0;
 
 	private int mustFailed = 0;
 	private int shouldFailed;
@@ -91,11 +95,21 @@ public class LdpHtmlReporter implements IReporter {
 				skipClasses = getClasses(skippedTests);
 				
 				html.h2().content("Overall Coverage Bar Charts");
+				
+				html.span(class_("chartStart"));
+				html.label(class_("label")).b().write("Test Results by Specification Requirement")._b()._label();
 				html.div(class_("barChart").id("overallChart1"))._div(); // svg chart
 				writePassFailLegend();
+				
+				html._span();
+				
+				html.span(class_("chartStart"));
+				html.label(class_("label")).b().write("Test Results by Test Class")._b()._label();
 				html.div(class_("barChart").id("resourcesChart"))._div();
-				writeTestClassLegend(); // FIXME
-
+				writeTestClassLegend();
+				html._span();
+				
+				html.br();
 				generateOverallSummaryReport(suites, "summary");
 				displayGroupsInfo(suites);
 				displayMethodsSummary(suites);
@@ -203,6 +217,29 @@ public class LdpHtmlReporter implements IReporter {
 								shouldFailed++;
 							if (groups[i].equals("MAY"))
 								mayFailed++;
+						}
+					} catch (SecurityException e) {
+						e.printStackTrace();
+					}
+
+				}
+				Iterator<ITestResult> skippedResults = tc.getSkippedTests()
+						.getAllResults().iterator();
+				while (skippedResults.hasNext()) {
+					ITestResult result = skippedResults.next();
+
+					try {
+						Method m = result.getMethod().getConstructorOrMethod()
+								.getMethod();
+						String[] groups = m.getAnnotation(Test.class).groups();
+						for (int i = 0; i < groups.length; i++) {
+							if (groups[i].equals("MUST"))
+								mustSkip++;
+							if (groups[i].equals("MAY"))
+								maySkip++;
+							if (groups[i].equals("SHOULD"))
+								shouldSkip++;
+
 						}
 					} catch (SecurityException e) {
 						e.printStackTrace();
@@ -463,16 +500,21 @@ public class LdpHtmlReporter implements IReporter {
 		graphs.write("{ passed: [ " + mustPass + ", " + shouldPass + ", "
 				+ mayPass + " ],");
 		graphs.write("failed: [" + mustFailed + ", " + shouldFailed + ", "
-				+ mayFailed + " ] },");
+				+ mayFailed + " ], ");
+		graphs.write("skipped: [" + mustSkip + ", " + shouldSkip + ", " + maySkip + " ]");
+		graphs.write("},");
 		graphs.write("{ labels: [ \"MUST\", \"SHOULD\", \"MAY\" ],");
-		graphs.write("colors: { passed: '#a2bf2f', failed: '#a80000' },");
+		graphs.write("colors: { passed: '#a2bf2f', failed: '#a80000', skipped: '#606060' },");
 		graphs.write("hover_color: \"#ccccff\",");
 
 		graphs.write("datalabels: { passed: [ \"" + mustPass + " Passed\", \""
 				+ shouldPass + " Passed\", \"" + mayPass + " Passed\"],");
 		graphs.write("failed: [ \"" + mustFailed + " Failed\" , \""
 				+ shouldFailed + " Failed\" , \"" + mayFailed
-				+ " Failed\" ] },");
+				+ " Failed\" ],");
+		graphs.write("skipped: [ \"" + mustSkip + " Skipped\", \"" + shouldSkip
+				+ " Skipped\", \"" + maySkip + " Skipped\" ]");
+		graphs.write("},");
 
 		graphs.write("}); });");
 		graphs.write("</script>");
@@ -498,7 +540,9 @@ public class LdpHtmlReporter implements IReporter {
 		html.write("<text x=\"20\" y=\"13\" fill=\"black\">Passed Tests</text>", NO_ESCAPE);
 		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"20\" style=\"fill:#a80000\"/>", NO_ESCAPE);
 		html.write("<text x=\"20\" y=\"33\" fill=\"black\">Failed Tests</text>", NO_ESCAPE);
-
+		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"40\" style=\"fill:#606060\"/>", NO_ESCAPE);
+		html.write("<text x=\"20\" y=\"53\" fill=\"black\">Skipped Tests</text>", NO_ESCAPE);
+		html.write("</svg>");
 	}
 	
 	private void writeTestClassLegend() throws IOException {
@@ -523,6 +567,7 @@ public class LdpHtmlReporter implements IReporter {
 			getColor++;
 		
 		}
+		html.write("</svg>");
 	}
 	
 	private void writeChartLabels(HashMap<String, Integer> passClasses,

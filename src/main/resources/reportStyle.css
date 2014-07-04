@@ -44,6 +44,15 @@ td {
 	display: inline-block
 }
 
+.chartStart {
+	display: inline-block
+}
+
+.label {
+	display: block;
+	margin-left: +2em
+}
+
 .center {
 	text-align: center
 }
