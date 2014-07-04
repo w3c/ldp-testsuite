@@ -44,14 +44,15 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 			model = ModelFactory.createDefaultModel();
 			InputStream  inputStream = getClass().getClassLoader().getResourceAsStream(path);
 
+			String fakeUri = "http://w3c.github.io/ldp-testsuite/fakesubject";
 			// Even though null relative URIs are used in the resource representation file,
 			// the resulting model doesn't keep them intact. They are changed to "file://..." if
 			// an empty string is passed as base to this method.
-			model.read(inputStream, "http://example.org", "TURTLE");
+			model.read(inputStream, fakeUri, "TURTLE");
 
 			// At this point, the model should contain a resource named "http://example.org" if
 			// there was a null relative URI in the resource representation file.
-			Resource subject = model.getResource("http://example.org");
+			Resource subject = model.getResource(fakeUri);
 			if (subject != null) {
 				ResourceUtils.renameResource(subject, "");
 			}
