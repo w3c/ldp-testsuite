@@ -8,30 +8,30 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix ldpt:  <http://w3c.github.io/ldp-testsuite#> .
 
+ldpt:RdfSource-4xxErrorHasResponseBody
+        a                     earl:TestCase ;
+        rdfs:comment          "LDP servers SHOULD provide a corresponding response body containing information about which properties could not be persisted. The format of the 4xx response body is not constrained by LDP." ;
+        dcterms:date          "2014-07-06T22:25:10.628Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject       "SHOULD" ;
+        ldpt:declaredInClass  "org.w3.ldp.testsuite.test.RdfSourceTest" ;
+        mf:action             "" ;
+        mf:name               "RdfSource-4xxErrorHasResponseBody" ;
+        rdft:Approval         rdft:Proposed .
+
 ldpt:RdfSource-RestrictClientInference
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers MUST NOT require LDP clients to implement inferencing in order to recognize the subset of content defined by LDP. Other specifications built on top of LDP may require clients to implement inferencing [rdf11-concepts]. The practical implication is that all content defined by LDP must be explicitly represented, unless noted otherwise within this document." ;
-        dcterms:date          "2014-06-28T20:54:11.985Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.619Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.RdfSourceTest" ;
         mf:action             "" ;
         mf:name               "RdfSource-RestrictClientInference" ;
         rdft:Approval         rdft:Approved .
 
-ldpt:CommonResource-PutReadOnlyProperties4xxStatus
-        a                     earl:TestCase ;
-        rdfs:comment          "If an otherwise valid HTTP PUT request is received that attempts to change properties the server does not allow clients to modify, LDP servers MUST respond with a 4xx range status code (typically 409 Conflict)" ;
-        dcterms:date          "2014-06-28T20:54:12.021Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-        dcterms:subject       "MUST" ;
-        ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonResourceTest" ;
-        mf:action             "" ;
-        mf:name               "CommonResource-PutReadOnlyProperties4xxStatus" ;
-        rdft:Approval         rdft:Proposed .
-
 ldpt:CommonContainer-RequestedInteractionModelHeaders
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers that successfully create a resource from a RDF representation in the request entity body MUST honor the client's requested interaction model(s). The created resource can be thought of as an RDF named graph [rdf11-concepts]. If any model cannot be honored, the server MUST fail the request." ;
-        dcterms:date          "2014-06-28T20:54:12.006Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.635Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonContainerTest" ;
         mf:action             "" ;
@@ -41,7 +41,7 @@ ldpt:CommonContainer-RequestedInteractionModelHeaders
 ldpt:CommonResource-IsHttp11Manual
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers MUST at least be HTTP/1.1 conformant servers [HTTP11]." ;
-        dcterms:date          "2014-06-28T20:54:12.018Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.599Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonResourceTest" ;
         mf:action             "" ;
@@ -51,7 +51,7 @@ ldpt:CommonResource-IsHttp11Manual
 ldpt:CommonContainer-PutToCreate
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers MAY choose to allow the creation of new resources using HTTP PUT." ;
-        dcterms:date          "2014-06-28T20:54:11.998Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.63Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MAY" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonContainerTest" ;
         mf:action             "" ;
@@ -61,37 +61,37 @@ ldpt:CommonContainer-PutToCreate
 ldpt:BasicContainer-ContainerSupportsHttpLinkHeader
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers exposing LDPCs MUST advertise their LDP support by exposing a HTTP Link header with a target URI matching the type of container (see below) the server supports, and a link relation type of type (that is, rel='type') in all responses to requests made to the LDPC's HTTP Request-URI." ;
-        dcterms:date          "2014-06-28T20:54:11.997Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.654Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.BasicContainerTest" ;
         mf:action             "" ;
         mf:name               "BasicContainer-ContainerSupportsHttpLinkHeader" ;
         rdft:Approval         rdft:Approved .
 
+ldpt:RdfSource-PutPropertiesNotPersisted
+        a                     earl:TestCase ;
+        rdfs:comment          "If an otherwise valid HTTP PUT request is received that contains properties the server chooses not to persist, e.g. unknown content, LDP servers MUST respond with an appropriate 4xx range status code [HTTP11]." ;
+        dcterms:date          "2014-07-06T22:25:10.628Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject       "MUST" ;
+        ldpt:declaredInClass  "org.w3.ldp.testsuite.test.RdfSourceTest" ;
+        mf:action             "" ;
+        mf:name               "RdfSource-PutPropertiesNotPersisted" ;
+        rdft:Approval         rdft:Proposed .
+
 ldpt:RdfSource-UseStandardVocabularies
         a                     earl:TestCase ;
         rdfs:comment          "LDP-RSs predicates SHOULD use standard vocabularies such as Dublin Core [DC-TERMS], RDF [rdf11-concepts] and RDF Schema [rdf-schema], whenever possible." ;
-        dcterms:date          "2014-06-28T20:54:11.983Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.617Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "SHOULD" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.RdfSourceTest" ;
         mf:action             "" ;
         mf:name               "RdfSource-UseStandardVocabularies" ;
         rdft:Approval         rdft:Approved .
 
-ldpt:CommonResource-4xxErrorHasResponseBody
-        a                     earl:TestCase ;
-        rdfs:comment          "LDP servers SHOULD provide a corresponding response body containing information about which properties could not be persisted. The format of the 4xx response body is not constrained by LDP." ;
-        dcterms:date          "2014-06-28T20:54:12.022Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-        dcterms:subject       "SHOULD" ;
-        ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonResourceTest" ;
-        mf:action             "" ;
-        mf:name               "CommonResource-4xxErrorHasResponseBody" ;
-        rdft:Approval         rdft:Proposed .
-
 ldpt:CommonContainer-PostContainer
         a                     earl:TestCase ;
         rdfs:comment          "When a successful HTTP POST request to an LDPC results in the creation of an LDPR, a containment triple MUST be added to the state of LDPC." ;
-        dcterms:date          "2014-06-28T20:54:12.002Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.634Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonContainerTest" ;
         mf:action             "" ;
@@ -101,7 +101,7 @@ ldpt:CommonContainer-PostContainer
 ldpt:DirectContainer-ActAsIfInsertedContentRelationTripleExists
         a                     earl:TestCase ;
         rdfs:comment          "LDP Direct Containers MUST behave as if they have a (LDPC URI, ldp:insertedContentRelation , ldp:MemberSubject) triple, but LDP imposes no requirement to materialize such a triple in the LDP-DC representation." ;
-        dcterms:date          "2014-06-28T20:54:12.042Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.657Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.DirectContainerTest" ;
         mf:action             "" ;
@@ -111,7 +111,7 @@ ldpt:DirectContainer-ActAsIfInsertedContentRelationTripleExists
 ldpt:BasicContainer-ContainerTypeIsBasicContainer
         a                     earl:TestCase ;
         rdfs:comment          "Each LDP Basic Container MUST also be a conforming LDP Container in section 5.2 Container along the following restrictions in this section." ;
-        dcterms:date          "2014-06-28T20:54:11.998Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.654Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.BasicContainerTest" ;
         mf:action             "" ;
@@ -121,7 +121,7 @@ ldpt:BasicContainer-ContainerTypeIsBasicContainer
 ldpt:CommonResource-PutRequiresIfMatch
         a                     earl:TestCase ;
         rdfs:comment          "LDP clients SHOULD use the HTTP If-Match header and HTTP ETags to ensure it isn’t modifying a resource that has changed since the client last retrieved its representation. LDP servers SHOULD require the HTTP If-Match header and HTTP ETags to detect collisions." ;
-        dcterms:date          "2014-06-28T20:54:12.024Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.602Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "SHOULD" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonResourceTest" ;
         mf:action             "" ;
@@ -131,7 +131,7 @@ ldpt:CommonResource-PutRequiresIfMatch
 ldpt:IndirectContainer-PostResource
         a                     earl:TestCase ;
         rdfs:comment          "LDPCs whose ldp:insertedContentRelation triple has an object other than ldp:MemberSubject and that create new resources MUST add a triple to the container whose subject is the container's URI, whose predicate is ldp:contains, and whose object is the newly created resource's URI (which will be different from the member-derived URI in this case). This ldp:contains triple can be the only link from the container to the newly created resource in certain cases." ;
-        dcterms:date          "2014-06-28T20:54:12.04Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.661Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.IndirectContainerTest" ;
         mf:action             "" ;
@@ -141,7 +141,7 @@ ldpt:IndirectContainer-PostResource
 ldpt:CommonContainer-PatchMethod
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers are RECOMMENDED to support HTTP PATCH as the preferred method for updating an LDPC's empty-container triples. " ;
-        dcterms:date          "2014-06-28T20:54:12.013Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.642Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "SHOULD" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonContainerTest" ;
         mf:action             "" ;
@@ -151,7 +151,7 @@ ldpt:CommonContainer-PatchMethod
 ldpt:CommonContainer-RequestedInteractionModelCreateNotAllowed
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers that successfully create a resource from a RDF representation in the request entity body MUST honor the client's requested interaction model(s). The created resource can be thought of as an RDF named graph [rdf11-concepts]. If any model cannot be honored, the server MUST fail the request." ;
-        dcterms:date          "2014-06-28T20:54:12.005Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.635Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonContainerTest" ;
         mf:action             "" ;
@@ -161,27 +161,17 @@ ldpt:CommonContainer-RequestedInteractionModelCreateNotAllowed
 ldpt:DirectContainer-MemberResourceTriple
         a                     earl:TestCase ;
         rdfs:comment          "Each LDP Direct Container representation MUST contain exactly one triple whose subject is the LDPC URI, whose predicate is the ldp:membershipResource, and whose object is the LDPC's membership-constant-URI. Commonly the LDPC's URI is the membership-constant-URI, but LDP does not require this." ;
-        dcterms:date          "2014-06-28T20:54:12.041Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.656Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.DirectContainerTest" ;
         mf:action             "" ;
         mf:name               "DirectContainer-MemberResourceTriple" ;
         rdft:Approval         rdft:Approved .
 
-ldpt:CommonResource-PutPropertiesNotPersisted
-        a                     earl:TestCase ;
-        rdfs:comment          "If an otherwise valid HTTP PUT request is received that contains properties the server chooses not to persist, e.g. unknown content, LDP servers MUST respond with an appropriate 4xx range status code [HTTP11]." ;
-        dcterms:date          "2014-06-28T20:54:12.023Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-        dcterms:subject       "MUST" ;
-        ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonResourceTest" ;
-        mf:action             "" ;
-        mf:name               "CommonResource-PutPropertiesNotPersisted" ;
-        rdft:Approval         rdft:Proposed .
-
 ldpt:RdfSource-PutReplacesResource
         a                     earl:TestCase ;
         rdfs:comment          "If a HTTP PUT is accepted on an existing resource, LDP servers MUST replace the entire persistent state of the identified resource with the entity representation in the body of the request." ;
-        dcterms:date          "2014-06-28T20:54:11.98Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.615Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.RdfSourceTest" ;
         mf:action             "" ;
@@ -191,7 +181,7 @@ ldpt:RdfSource-PutReplacesResource
 ldpt:CommonContainer-RdfTypeLdpContainer
         a                     earl:TestCase ;
         rdfs:comment          "The representation of a LDPC MAY have an rdf:type of ldp:Container for Linked Data Platform Container. Non-normative note: LDPCs might have additional types, like any LDP-RS. " ;
-        dcterms:date          "2014-06-28T20:54:12.013Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.643Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MAY" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonContainerTest" ;
         mf:action             "" ;
@@ -201,7 +191,7 @@ ldpt:CommonContainer-RdfTypeLdpContainer
 ldpt:CommonResource-PutBadETag
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers MUST respond with status code 412 (Condition Failed) if ETags fail to match when there are no other errors with the request [HTTP11]. LDP servers that require conditional requests MUST respond with status code 428 (Precondition Required) when the absence of a precondition is the only reason for rejecting the request [RFC6585]." ;
-        dcterms:date          "2014-06-28T20:54:12.026Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.606Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonResourceTest" ;
         mf:action             "" ;
@@ -211,7 +201,7 @@ ldpt:CommonResource-PutBadETag
 ldpt:CommonContainer-RestrictPutReUseUri
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers that allow LDPR creation via PUT SHOULD NOT re-use URIs. For RDF representations (LDP-RSs),the created resource can be thought of as an RDF named graph [rdf11-concepts]." ;
-        dcterms:date          "2014-06-28T20:54:12.011Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.641Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "SHOULD" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonContainerTest" ;
         mf:action             "" ;
@@ -221,7 +211,7 @@ ldpt:CommonContainer-RestrictPutReUseUri
 ldpt:CommonContainer-PostResponseStatusAndLocation
         a                     earl:TestCase ;
         rdfs:comment          "If the resource was created successfully, LDP servers MUST respond with status code 201 (Created) and the Location header set to the new resource’s URL. Clients shall not expect any representation in the response entity body on a 201 (Created) response." ;
-        dcterms:date          "2014-06-28T20:54:12.001Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.633Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonContainerTest" ;
         mf:action             "" ;
@@ -231,37 +221,37 @@ ldpt:CommonContainer-PostResponseStatusAndLocation
 ldpt:CommonResource-Head
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers MUST support the HTTP HEAD method. " ;
-        dcterms:date          "2014-06-28T20:54:12.026Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.607Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonResourceTest" ;
         mf:action             "" ;
         mf:name               "CommonResource-Head" ;
         rdft:Approval         rdft:Approved .
 
-ldpt:RdfSource-ReUseVocabularies
-        a                     earl:TestCase ;
-        rdfs:comment          "LDP-RSs SHOULD reuse existing vocabularies instead of creating their own duplicate vocabulary terms. In addition to this general rule, some specific cases are covered by other conformance rules." ;
-        dcterms:date          "2014-06-28T20:54:11.982Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-        dcterms:subject       "SHOULD" ;
-        ldpt:declaredInClass  "org.w3.ldp.testsuite.test.RdfSourceTest" ;
-        mf:action             "" ;
-        mf:name               "RdfSource-ReUseVocabularies" ;
-        rdft:Approval         rdft:Approved .
-
 ldpt:DirectContainer-PostResourceUpdatesTriples
         a                     earl:TestCase ;
         rdfs:comment          "When a successful HTTP POST request to an LDPC results in the creation of an LDPR, the LDPC MUST update its membership triples to reflect that addition, and the resulting membership triple MUST be consistent with any LDP-defined predicates it exposes." ;
-        dcterms:date          "2014-06-28T20:54:12.043Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.658Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.DirectContainerTest" ;
         mf:action             "" ;
         mf:name               "DirectContainer-PostResourceUpdatesTriples" ;
         rdft:Approval         rdft:Approved .
 
+ldpt:RdfSource-ReUseVocabularies
+        a                     earl:TestCase ;
+        rdfs:comment          "LDP-RSs SHOULD reuse existing vocabularies instead of creating their own duplicate vocabulary terms. In addition to this general rule, some specific cases are covered by other conformance rules." ;
+        dcterms:date          "2014-07-06T22:25:10.617Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject       "SHOULD" ;
+        ldpt:declaredInClass  "org.w3.ldp.testsuite.test.RdfSourceTest" ;
+        mf:action             "" ;
+        mf:name               "RdfSource-ReUseVocabularies" ;
+        rdft:Approval         rdft:Approved .
+
 ldpt:CommonResource-ETagHeadersHead
         a                     earl:TestCase ;
         rdfs:comment          "LDP server responses MUST use entity tags (either weak or strong ones) as response ETag header values." ;
-        dcterms:date          "2014-06-28T20:54:12.019Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.6Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonResourceTest" ;
         mf:action             "" ;
@@ -271,7 +261,7 @@ ldpt:CommonResource-ETagHeadersHead
 ldpt:CommonContainer-RestrictUriReUseSlug
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers that allow member creation via POST SHOULD NOT re-use URIs." ;
-        dcterms:date          "2014-06-28T20:54:12.009Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.639Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "SHOULD" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonContainerTest" ;
         mf:action             "" ;
@@ -281,37 +271,37 @@ ldpt:CommonContainer-RestrictUriReUseSlug
 ldpt:NonRDFSource-PostResourceAndCheckLink
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers exposing an LDP Non-RDF Source may advertise this by exposing a HTTP Link header with a target URI of http://www.w3.org/ns/ldp#NonRDFSource, and a link relation type of type (that is, rel='type') in responses to requests made to the LDP-NR's HTTP Request-URI." ;
-        dcterms:date          "2014-06-28T20:54:12.036Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.651Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MAY, NON-RDF" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.NonRDFSourceTest" ;
         mf:action             "" ;
         mf:name               "NonRDFSource-PostResourceAndCheckLink" ;
         rdft:Approval         rdft:Approved .
 
-ldpt:CommonResource-ETagHeadersGet
-        a                     earl:TestCase ;
-        rdfs:comment          "LDP server responses MUST use entity tags (either weak or strong ones) as response ETag header values." ;
-        dcterms:date          "2014-06-28T20:54:12.019Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-        dcterms:subject       "MUST" ;
-        ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonResourceTest" ;
-        mf:action             "" ;
-        mf:name               "CommonResource-ETagHeadersGet" ;
-        rdft:Approval         rdft:Proposed .
-
 ldpt:NonRDFSource-OptionsHasSameLinkHeader
         a                     earl:TestCase ;
         rdfs:comment          "When responding to requests whose request-URI is a LDP-NR with anassociated LDP-RS, a LDPC server must provide the same HTTP Link responseheader as is required in the create response" ;
-        dcterms:date          "2014-06-28T20:54:12.037Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.653Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST, NON-RDF" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.NonRDFSourceTest" ;
         mf:action             "" ;
         mf:name               "NonRDFSource-OptionsHasSameLinkHeader" ;
         rdft:Approval         rdft:Proposed .
 
+ldpt:CommonResource-ETagHeadersGet
+        a                     earl:TestCase ;
+        rdfs:comment          "LDP server responses MUST use entity tags (either weak or strong ones) as response ETag header values." ;
+        dcterms:date          "2014-07-06T22:25:10.599Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject       "MUST" ;
+        ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonResourceTest" ;
+        mf:action             "" ;
+        mf:name               "CommonResource-ETagHeadersGet" ;
+        rdft:Approval         rdft:Proposed .
+
 ldpt:CommonContainer-PreferContainmentTriples
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers SHOULD respect all of a client's LDP-defined hints, for example which subsets of LDP-defined state the client is interested in processing, to influence the set of triples returned in representations of an LDPC, particularly for large LDPCs. See also [LDP-PAGING]." ;
-        dcterms:date          "2014-06-28T20:54:12Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.632Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "SHOULD" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonContainerTest" ;
         mf:action             "" ;
@@ -321,7 +311,7 @@ ldpt:CommonContainer-PreferContainmentTriples
 ldpt:CommonResource-LdpLinkHeader
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers exposing LDPRs MUST advertise their LDP support by exposing a HTTP Link header with a target URI of http://www.w3.org/ns/ldp#Resource, and a link relation type of type (that is, rel='type') in all responses to requests made to the LDPR's HTTP Request-URI." ;
-        dcterms:date          "2014-06-28T20:54:12.02Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.601Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonResourceTest" ;
         mf:action             "" ;
@@ -331,7 +321,7 @@ ldpt:CommonResource-LdpLinkHeader
 ldpt:CommonResource-ConditionFailedStatusCode
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers MUST respond with status code 412 (Condition Failed) if ETags fail to match when there are no other errors with the request [HTTP11]. LDP servers that require conditional requests MUST respond with status code 428 (Precondition Required) when the absence of a precondition is the only reason for rejecting the request [RFC6585]." ;
-        dcterms:date          "2014-06-28T20:54:12.024Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.603Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonResourceTest" ;
         mf:action             "" ;
@@ -341,7 +331,7 @@ ldpt:CommonResource-ConditionFailedStatusCode
 ldpt:RdfSource-ContainsRdfType
         a                     earl:TestCase ;
         rdfs:comment          "LDP-RSs representations SHOULD have at least one rdf:type set explicitly. This makes the representations much more useful to client applications that don’t support inferencing." ;
-        dcterms:date          "2014-06-28T20:54:11.981Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.616Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "SHOULD" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.RdfSourceTest" ;
         mf:action             "" ;
@@ -351,7 +341,7 @@ ldpt:RdfSource-ContainsRdfType
 ldpt:CommonContainer-RelativeUriResolutionPost
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers MUST assign the default base-URI for [RFC3987] relative-URI resolution to be the HTTP Request-URI when the resource already exists, and to the URI of the created resource when the request results in the creation of a new resource." ;
-        dcterms:date          "2014-06-28T20:54:11.999Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.631Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonContainerTest" ;
         mf:action             "" ;
@@ -361,7 +351,7 @@ ldpt:CommonContainer-RelativeUriResolutionPost
 ldpt:RdfSource-ChangeRdfTypeValue
         a                     earl:TestCase ;
         rdfs:comment          "In the absence of special knowledge of the application or domain, LDP clients MUST assume that the rdf:type values of a given LDP-RS can change over time." ;
-        dcterms:date          "2014-06-28T20:54:11.984Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.618Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.RdfSourceTest" ;
         mf:action             "" ;
@@ -371,17 +361,27 @@ ldpt:RdfSource-ChangeRdfTypeValue
 ldpt:DirectContainer-UseMemberPredicate
         a                     earl:TestCase ;
         rdfs:comment          "LDP Direct Containers SHOULD use the ldp:member predicate as an LDPC's membership predicate if there is no obvious predicate from an application vocabulary to use." ;
-        dcterms:date          "2014-06-28T20:54:12.041Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.656Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "SHOULD, ldpMember" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.DirectContainerTest" ;
         mf:action             "" ;
         mf:name               "DirectContainer-UseMemberPredicate" ;
         rdft:Approval         rdft:Approved .
 
+ldpt:RdfSource-ResponsePropertiesNotPersisted
+        a                     earl:TestCase ;
+        rdfs:comment          "LDP servers SHOULD provide a corresponding response body containing information about which properties could not be persisted. The format of the 4xx response body is not constrained by LDP. LDP servers expose these application-specific constraints as described in section 4.2.1 General." ;
+        dcterms:date          "2014-07-06T22:25:10.629Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject       "SHOULD" ;
+        ldpt:declaredInClass  "org.w3.ldp.testsuite.test.RdfSourceTest" ;
+        mf:action             "" ;
+        mf:name               "RdfSource-ResponsePropertiesNotPersisted" ;
+        rdft:Approval         rdft:Proposed .
+
 ldpt:CommonContainer-AcceptTurtle
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers MUST accept a request entity body with a request header of Content-Type with value of text/turtle [turtle]." ;
-        dcterms:date          "2014-06-28T20:54:12.006Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.636Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonContainerTest" ;
         mf:action             "" ;
@@ -391,7 +391,7 @@ ldpt:CommonContainer-AcceptTurtle
 ldpt:CommonResource-PreconditionRequiredStatusCode
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers MUST respond with status code 412 (Condition Failed) if ETags fail to match when there are no other errors with the request [HTTP11]. LDP servers that require conditional requests MUST respond with status code 428 (Precondition Required) when the absence of a precondition is the only reason for rejecting the request [RFC6585]." ;
-        dcterms:date          "2014-06-28T20:54:12.025Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.603Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonResourceTest" ;
         mf:action             "" ;
@@ -401,7 +401,7 @@ ldpt:CommonResource-PreconditionRequiredStatusCode
 ldpt:CommonContainer-ContentTypeHeader
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers SHOULD use the Content-Type request header to determine the representation format when the request has an entity body." ;
-        dcterms:date          "2014-06-28T20:54:12.007Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.636Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "SHOULD" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonContainerTest" ;
         mf:action             "" ;
@@ -411,7 +411,7 @@ ldpt:CommonContainer-ContentTypeHeader
 ldpt:CommonResource-GetResource
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers MUST support the HTTP GET Method for LDPRs" ;
-        dcterms:date          "2014-06-28T20:54:12.017Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.473Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonResourceTest" ;
         mf:action             "" ;
@@ -421,7 +421,7 @@ ldpt:CommonResource-GetResource
 ldpt:CommonContainer-PostJsonLd
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers SHOULD accept a request entity body with a request header of Content-Type with value of application/ld+json [JSON-LD]." ;
-        dcterms:date          "2014-06-28T20:54:12.015Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.644Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "SHOULD" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonContainerTest" ;
         mf:action             "" ;
@@ -431,7 +431,7 @@ ldpt:CommonContainer-PostJsonLd
 ldpt:IndirectContainer-CreateIndirectContainer
         a                     earl:TestCase ;
         rdfs:comment          "Each LDP Indirect Container MUST also be a conforming LDP Direct Container in section 5.4 Direct along the following restrictions." ;
-        dcterms:date          "2014-06-28T20:54:12.039Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.66Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.IndirectContainerTest" ;
         mf:action             "" ;
@@ -441,27 +441,17 @@ ldpt:IndirectContainer-CreateIndirectContainer
 ldpt:CommonContainer-ClientPostToCreate
         a                     earl:TestCase ;
         rdfs:comment          "LDPC clients SHOULD create member resources by submitting a representation as the entity body of the HTTP POST to a known LDPC." ;
-        dcterms:date          "2014-06-28T20:54:12.001Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.633Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "SHOULD" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonContainerTest" ;
         mf:action             "" ;
         mf:name               "CommonContainer-ClientPostToCreate" ;
         rdft:Approval         rdft:Approved .
 
-ldpt:CommonResource-PublishConstraints
-        a                     earl:TestCase ;
-        rdfs:comment          "LDP servers MUST publish any constraints on LDP clients’ ability to create or update LDPRs, by adding a Link header with rel='describedby' [RFC5988] to all responses to requests which fail due to violation of those constraints." ;
-        dcterms:date          "2014-06-28T20:54:12.02Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-        dcterms:subject       "MUST" ;
-        ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonResourceTest" ;
-        mf:action             "" ;
-        mf:name               "CommonResource-PublishConstraints" ;
-        rdft:Approval         rdft:Proposed .
-
 ldpt:RdfSource-ServerOpen
         a                     earl:TestCase ;
         rdfs:comment          "LDP clients SHOULD always assume that the set of predicates for a LDP-RS of a particular type at an arbitrary server is open, in the sense that different resources of the same type may not all have the same set of predicates in their triples, and the set of predicates that are used in the state of any one LDP-RS is not limited to any pre-defined set." ;
-        dcterms:date          "2014-06-28T20:54:11.984Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.619Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "SHOULD" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.RdfSourceTest" ;
         mf:action             "" ;
@@ -471,7 +461,7 @@ ldpt:RdfSource-ServerOpen
 ldpt:NonRDFSource-PostResourceGetBinary
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers may host a mixture of LDP-RSs and LDP-NRs. For example, it is common for LDP servers to need to host binary or text resources that do not have useful RDF representations." ;
-        dcterms:date          "2014-06-28T20:54:12.035Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.65Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MAY, NON-RDF" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.NonRDFSourceTest" ;
         mf:action             "" ;
@@ -481,7 +471,7 @@ ldpt:NonRDFSource-PostResourceGetBinary
 ldpt:RdfSource-JsonLdRepresentation
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers SHOULD offer a application/ld+json representation of the requested LDP-RS [JSON-LD]. " ;
-        dcterms:date          "2014-06-28T20:54:11.99Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.622Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "SHOULD" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.RdfSourceTest" ;
         mf:action             "" ;
@@ -491,7 +481,7 @@ ldpt:RdfSource-JsonLdRepresentation
 ldpt:RdfSource-GetResourceAcceptTurtle
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers must provide a text/turtle representation of the requested LDP-RS whenever HTTP content negotiation does not force another outcome [turtle]. In other words, if the server receives a GET request whose Request-URI identifies a LDP-RS, and either text/turtle has the highest relative quality factor (q= value) in the Accept request header or that header is absent, then an LDP server has to respond with Turtle." ;
-        dcterms:date          "2014-06-28T20:54:11.989Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.621Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.RdfSourceTest" ;
         mf:action             "" ;
@@ -501,7 +491,7 @@ ldpt:RdfSource-GetResourceAcceptTurtle
 ldpt:RdfSource-RelativeUriResolutionPut
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers MUST assign the default base-URI for [RFC3987] relative-URI resolution to be the HTTP Request-URI when the resource already exists, and to the URI of the created resource when the request results in the creation of a new resource." ;
-        dcterms:date          "2014-06-28T20:54:11.893Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.614Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.RdfSourceTest" ;
         mf:action             "" ;
@@ -511,7 +501,7 @@ ldpt:RdfSource-RelativeUriResolutionPut
 ldpt:IndirectContainer-ContainerSupportsHttpLinkHeader
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers exposing LDPCs MUST advertise their LDP support by exposing a HTTP Link header with a target URI matching the type of container (see below) the server supports, and a link relation type of type (that is, rel='type') in all responses to requests made to the LDPC's HTTP Request-URI." ;
-        dcterms:date          "2014-06-28T20:54:12.038Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.659Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.IndirectContainerTest" ;
         mf:action             "" ;
@@ -521,7 +511,7 @@ ldpt:IndirectContainer-ContainerSupportsHttpLinkHeader
 ldpt:CommonContainer-NoRdfBagSeqOrList
         a                     earl:TestCase ;
         rdfs:comment          "LDPC representations SHOULD NOT use RDF container types rdf:Bag, rdf:Seq or rdf:List." ;
-        dcterms:date          "2014-06-28T20:54:12Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.631Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "SHOULD" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonContainerTest" ;
         mf:action             "" ;
@@ -531,7 +521,7 @@ ldpt:CommonContainer-NoRdfBagSeqOrList
 ldpt:CommonResource-Options
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers MUST support the HTTP OPTIONS method. " ;
-        dcterms:date          "2014-06-28T20:54:12.027Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.608Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonResourceTest" ;
         mf:action             "" ;
@@ -541,7 +531,7 @@ ldpt:CommonResource-Options
 ldpt:DirectContainer-DeleteResourceUpdatesTriples
         a                     earl:TestCase ;
         rdfs:comment          "When an LDPR identified by the object of a membership triple which was originally created by the LDP-DC is deleted, the LDPC server MUST also remove the corresponding membership triple." ;
-        dcterms:date          "2014-06-28T20:54:12.043Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.658Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.DirectContainerTest" ;
         mf:action             "" ;
@@ -551,7 +541,7 @@ ldpt:DirectContainer-DeleteResourceUpdatesTriples
 ldpt:NonRDFSource-PostResourceAndGetFromContainer
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers may accept an HTTP POST of non-RDF representations (LDP-NRs) for creation of any kind of resource, for example binary resources." ;
-        dcterms:date          "2014-06-28T20:54:12.035Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.649Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MAY, NON-RDF" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.NonRDFSourceTest" ;
         mf:action             "" ;
@@ -561,17 +551,27 @@ ldpt:NonRDFSource-PostResourceAndGetFromContainer
 ldpt:NonRDFSource-PostResourceAndCheckAssociatedResource
         a                     earl:TestCase ;
         rdfs:comment          "Upon successful creation of an LDP-NR (HTTP status code of 201-Created and URI indicated by Location response header), LDP servers may create an associated LDP-RS to contain data about the newly created LDP-NR. If a LDP server creates this associated LDP-RS it must indicate its location on the HTTP response using the HTTP Link response header with link relation describedby and href to be the URI of the associated LDP-RS resource." ;
-        dcterms:date          "2014-06-28T20:54:12.036Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.652Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MAY, NON-RDF" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.NonRDFSourceTest" ;
         mf:action             "" ;
         mf:name               "NonRDFSource-PostResourceAndCheckAssociatedResource" ;
         rdft:Approval         rdft:Approved .
 
+ldpt:RdfSource-PublishConstraintsUnknownProp
+        a                     earl:TestCase ;
+        rdfs:comment          "LDP servers MUST publish any constraints on LDP clients’ ability to create or update LDPRs, by adding a Link header with rel='describedby' [RFC5988] to all responses to requests which fail due to violation of those constraints." ;
+        dcterms:date          "2014-07-06T22:25:10.626Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject       "MUST" ;
+        ldpt:declaredInClass  "org.w3.ldp.testsuite.test.RdfSourceTest" ;
+        mf:action             "" ;
+        mf:name               "RdfSource-PublishConstraintsUnknownProp" ;
+        rdft:Approval         rdft:Proposed .
+
 ldpt:NonRDFSource-PostNonRDFSource
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers may accept an HTTP POST of non-RDF representations (LDP-NRs) for creation of any kind of resource, for example binary resources." ;
-        dcterms:date          "2014-06-28T20:54:12.034Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.649Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MAY, NON-RDF" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.NonRDFSourceTest" ;
         mf:action             "" ;
@@ -581,7 +581,7 @@ ldpt:NonRDFSource-PostNonRDFSource
 ldpt:CommonResource-GetResponseHeaders
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers MUST support the HTTP response headers defined in section 4.2.8 HTTP OPTIONS. " ;
-        dcterms:date          "2014-06-28T20:54:12.021Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.601Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonResourceTest" ;
         mf:action             "" ;
@@ -591,7 +591,7 @@ ldpt:CommonResource-GetResponseHeaders
 ldpt:DirectContainer-MemberRelationOrIsMemberOfRelationTripleExists
         a                     earl:TestCase ;
         rdfs:comment          "Each LDP Direct Container representation must contain exactly one triple whose subject is the LDPC URI, and whose predicate is either ldp:hasMemberRelation or ldp:isMemberOfRelation. The object of the triple is constrained by other sections, such as ldp:hasMemberRelation or ldp:isMemberOfRelation, based on the membership triple pattern used by the container." ;
-        dcterms:date          "2014-06-28T20:54:12.042Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.657Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.DirectContainerTest" ;
         mf:action             "" ;
@@ -601,7 +601,7 @@ ldpt:DirectContainer-MemberRelationOrIsMemberOfRelationTripleExists
 ldpt:RdfSource-AllowResponsesFromServer
         a                     earl:TestCase ;
         rdfs:comment          "LDP clients MUST be capable of processing responses formed by an LDP server that ignores hints, including LDP-defined hints." ;
-        dcterms:date          "2014-06-28T20:54:11.988Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.621Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.RdfSourceTest" ;
         mf:action             "" ;
@@ -611,7 +611,7 @@ ldpt:RdfSource-AllowResponsesFromServer
 ldpt:RdfSource-ClientMayProvideHints
         a                     earl:TestCase ;
         rdfs:comment          "LDP clients MAY provide LDP-defined hints that allow servers to optimize the content of responses. section 7.2 Preferences on the Prefer Request Header defines hints that apply to LDP-RSs. " ;
-        dcterms:date          "2014-06-28T20:54:11.989Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.622Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MAY" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.RdfSourceTest" ;
         mf:action             "" ;
@@ -621,7 +621,7 @@ ldpt:RdfSource-ClientMayProvideHints
 ldpt:CommonContainer-PostNoSlug
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers SHOULD assign the URI for the resource to be created using server application specific rules in the absence of a client hint." ;
-        dcterms:date          "2014-06-28T20:54:12.008Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.637Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "SHOULD" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonContainerTest" ;
         mf:action             "" ;
@@ -631,7 +631,7 @@ ldpt:CommonContainer-PostNoSlug
 ldpt:DirectContainer-PreferMembershipTriples
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers SHOULD respect all of a client's LDP-defined hints, for example which subsets of LDP-defined state the client is interested in processing, to influence the set of triples returned in representations of an LDPC, particularly for large LDPCs. See also [LDP-PAGING]." ;
-        dcterms:date          "2014-06-28T20:54:12.044Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.659Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "SHOULD" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.DirectContainerTest" ;
         mf:action             "" ;
@@ -641,7 +641,7 @@ ldpt:DirectContainer-PreferMembershipTriples
 ldpt:RdfSource-GetResourcePreservesTriples
         a                     earl:TestCase ;
         rdfs:comment          "A LDP client MUST preserve all triples retrieved from an LDP-RS using HTTP GET that it doesn’t change whether it understands the predicates or not, when its intent is to perform an update using HTTP PUT. The use of HTTP PATCH instead of HTTP PUT for update avoids this burden for clients [RFC5789]. " ;
-        dcterms:date          "2014-06-28T20:54:11.987Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.62Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.RdfSourceTest" ;
         mf:action             "" ;
@@ -650,12 +650,22 @@ ldpt:RdfSource-GetResourcePreservesTriples
 
 ldpt:   a             mf:Manifest ;
         rdfs:comment  "LDP tests" ;
-        mf:entries    ( ldpt:NonRDFSource-OptionsHasSameLinkHeader ldpt:CommonResource-OptionsAllowHeader ldpt:CommonResource-LdpLinkHeader ldpt:DirectContainer-MemberResourceTriple ldpt:RdfSource-ServerOpen ldpt:CommonResource-PutReadOnlyProperties4xxStatus ldpt:BasicContainer-ContainerSupportsHttpLinkHeader ldpt:CommonResource-PreconditionRequiredStatusCode ldpt:CommonContainer-RejectPutModifyingContainmentTriples ldpt:CommonContainer-PostJsonLd ldpt:CommonResource-PutPropertiesNotPersisted ldpt:CommonResource-ResponsePropertiesNotPersisted ldpt:DirectContainer-UseMemberPredicate ldpt:CommonContainer-PatchMethod ldpt:NonRDFSource-PostNonRDFSource ldpt:NonRDFSource-DeleteNonRDFSourceDeletesAssociatedResource ldpt:RdfSource-ClientMayProvideHints ldpt:CommonContainer-RelativeUriResolutionPost ldpt:CommonContainer-ClientPostToCreate ldpt:RdfSource-ReUseVocabularies ldpt:RdfSource-AllowResponsesFromServer ldpt:CommonContainer-RequestedInteractionModelHeaders ldpt:IndirectContainer-PostResource ldpt:RdfSource-JsonLdRepresentation ldpt:IndirectContainer-ContainsLdpcUri ldpt:RdfSource-RestrictClientInference ldpt:DirectContainer-PreferMembershipTriples ldpt:CommonResource-PutBadETag ldpt:RdfSource-ChangeRdfTypeValue ldpt:NonRDFSource-PostResourceAndGetFromContainer ldpt:CommonContainer-NullRelativeUri ldpt:CommonContainer-PostNoSlug ldpt:CommonContainer-PostResponseStatusAndLocation ldpt:CommonResource-Options ldpt:CommonResource-IsHttp11Manual ldpt:CommonResource-PutRequiresIfMatch ldpt:CommonResource-ETagHeadersGet ldpt:CommonContainer-AcceptTurtle ldpt:CommonResource-PublishConstraints ldpt:RdfSource-PutReplacesResource ldpt:CommonContainer-PutToCreate ldpt:CommonResource-GetResource ldpt:RdfSource-AllowMultipleRdfTypes ldpt:CommonResource-Head ldpt:CommonContainer-RequestedInteractionModelCreateNotAllowed ldpt:CommonContainer-ServerHonorsSlug ldpt:RdfSource-ContainsRdfType ldpt:RdfSource-RelativeUriResolutionPut ldpt:DirectContainer-ActAsIfInsertedContentRelationTripleExists ldpt:CommonContainer-CreateWithoutConstraints ldpt:CommonResource-ConditionFailedStatusCode ldpt:RdfSource-GetResourceAcceptTurtle ldpt:CommonContainer-ContentTypeHeader ldpt:CommonContainer-RestrictUriReUseNoSlug ldpt:CommonContainer-RdfTypeLdpContainer ldpt:RdfSource-GetResourcePreservesTriples ldpt:DirectContainer-DeleteResourceUpdatesTriples ldpt:NonRDFSource-PostResourceGetBinary ldpt:DirectContainer-HttpLinkHeader ldpt:CommonResource-GetResponseHeaders ldpt:RdfSource-GetResource ldpt:CommonResource-ETagHeadersHead ldpt:CommonContainer-RestrictPutReUseUri ldpt:NonRDFSource-PostResourceGetMetadataAndBinary ldpt:NonRDFSource-PostResourceAndCheckLink ldpt:NonRDFSource-PostResourceAndCheckAssociatedResource ldpt:IndirectContainer-CreateIndirectContainer ldpt:CommonResource-AcceptPatchHeader ldpt:DirectContainer-PostResourceUpdatesTriples ldpt:DirectContainer-MemberRelationOrIsMemberOfRelationTripleExists ldpt:CommonContainer-DeleteRemovesContainmentTriple ldpt:BasicContainer-ContainerTypeIsBasicContainer ldpt:CommonResource-4xxErrorHasResponseBody ldpt:CommonContainer-RestrictUriReUseSlug ldpt:CommonContainer-PostContainer ldpt:RdfSource-UseStandardVocabularies ldpt:CommonContainer-NoRdfBagSeqOrList ldpt:CommonContainer-AcceptPostResponseHeader ldpt:CommonResource-IsHttp11Server ldpt:CommonContainer-PreferContainmentTriples ldpt:IndirectContainer-ContainerSupportsHttpLinkHeader ) .
+        mf:entries    ( ldpt:CommonResource-GetResource ldpt:CommonResource-IsHttp11Server ldpt:CommonResource-IsHttp11Manual ldpt:CommonResource-ETagHeadersGet ldpt:CommonResource-ETagHeadersHead ldpt:CommonResource-LdpLinkHeader ldpt:CommonResource-GetResponseHeaders ldpt:CommonResource-PutRequiresIfMatch ldpt:CommonResource-ConditionFailedStatusCode ldpt:CommonResource-PreconditionRequiredStatusCode ldpt:CommonResource-PutBadETag ldpt:CommonResource-Head ldpt:CommonResource-AcceptPatchHeader ldpt:CommonResource-Options ldpt:CommonResource-OptionsAllowHeader ldpt:RdfSource-RelativeUriResolutionPut ldpt:RdfSource-PutReplacesResource ldpt:RdfSource-GetResource ldpt:RdfSource-ContainsRdfType ldpt:RdfSource-ReUseVocabularies ldpt:RdfSource-UseStandardVocabularies ldpt:RdfSource-AllowMultipleRdfTypes ldpt:RdfSource-ChangeRdfTypeValue ldpt:RdfSource-ServerOpen ldpt:RdfSource-RestrictClientInference ldpt:RdfSource-GetResourcePreservesTriples ldpt:RdfSource-AllowResponsesFromServer ldpt:RdfSource-GetResourceAcceptTurtle ldpt:RdfSource-ClientMayProvideHints ldpt:RdfSource-JsonLdRepresentation ldpt:RdfSource-PublishConstraintsReadOnlyProp ldpt:RdfSource-PublishConstraintsUnknownProp ldpt:RdfSource-PutReadOnlyProperties4xxStatus ldpt:RdfSource-4xxErrorHasResponseBody ldpt:RdfSource-PutPropertiesNotPersisted ldpt:RdfSource-ResponsePropertiesNotPersisted ldpt:CommonContainer-PutToCreate ldpt:CommonContainer-RelativeUriResolutionPost ldpt:CommonContainer-NoRdfBagSeqOrList ldpt:CommonContainer-PreferContainmentTriples ldpt:CommonContainer-ClientPostToCreate ldpt:CommonContainer-PostResponseStatusAndLocation ldpt:CommonContainer-PostContainer ldpt:CommonContainer-RequestedInteractionModelCreateNotAllowed ldpt:CommonContainer-RequestedInteractionModelHeaders ldpt:CommonContainer-AcceptTurtle ldpt:CommonContainer-ContentTypeHeader ldpt:CommonContainer-NullRelativeUri ldpt:CommonContainer-PostNoSlug ldpt:CommonContainer-CreateWithoutConstraints ldpt:CommonContainer-RestrictUriReUseSlug ldpt:CommonContainer-RestrictUriReUseNoSlug ldpt:CommonContainer-AcceptPostResponseHeader ldpt:CommonContainer-RejectPutModifyingContainmentTriples ldpt:CommonContainer-RestrictPutReUseUri ldpt:CommonContainer-DeleteRemovesContainmentTriple ldpt:CommonContainer-PatchMethod ldpt:CommonContainer-RdfTypeLdpContainer ldpt:CommonContainer-ServerHonorsSlug ldpt:CommonContainer-PostJsonLd ldpt:NonRDFSource-PostNonRDFSource ldpt:NonRDFSource-PostResourceAndGetFromContainer ldpt:NonRDFSource-PostResourceGetBinary ldpt:NonRDFSource-PostResourceGetMetadataAndBinary ldpt:NonRDFSource-PostResourceAndCheckLink ldpt:NonRDFSource-PostResourceAndCheckAssociatedResource ldpt:NonRDFSource-DeleteNonRDFSourceDeletesAssociatedResource ldpt:NonRDFSource-OptionsHasSameLinkHeader ldpt:BasicContainer-ContainerSupportsHttpLinkHeader ldpt:BasicContainer-ContainerTypeIsBasicContainer ldpt:DirectContainer-HttpLinkHeader ldpt:DirectContainer-UseMemberPredicate ldpt:DirectContainer-MemberResourceTriple ldpt:DirectContainer-MemberRelationOrIsMemberOfRelationTripleExists ldpt:DirectContainer-ActAsIfInsertedContentRelationTripleExists ldpt:DirectContainer-PostResourceUpdatesTriples ldpt:DirectContainer-DeleteResourceUpdatesTriples ldpt:DirectContainer-PreferMembershipTriples ldpt:IndirectContainer-ContainerSupportsHttpLinkHeader ldpt:IndirectContainer-CreateIndirectContainer ldpt:IndirectContainer-ContainsLdpcUri ldpt:IndirectContainer-PostResource ) .
+
+ldpt:RdfSource-PublishConstraintsReadOnlyProp
+        a                     earl:TestCase ;
+        rdfs:comment          "LDP servers MUST publish any constraints on LDP clients’ ability to create or update LDPRs, by adding a Link header with rel='describedby' [RFC5988] to all responses to requests which fail due to violation of those constraints." ;
+        dcterms:date          "2014-07-06T22:25:10.625Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject       "MUST" ;
+        ldpt:declaredInClass  "org.w3.ldp.testsuite.test.RdfSourceTest" ;
+        mf:action             "" ;
+        mf:name               "RdfSource-PublishConstraintsReadOnlyProp" ;
+        rdft:Approval         rdft:Proposed .
 
 ldpt:CommonContainer-ServerHonorsSlug
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers MAY allow clients to suggest the URI for a resource created through POST, using the HTTP Slug header as defined in [RFC5023]. LDP adds no new requirements to this usage, so its presence functions as a client hint to the server providing a desired string to be incorporated into the server's final choice of resource URI." ;
-        dcterms:date          "2014-06-28T20:54:12.014Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.643Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MAY" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonContainerTest" ;
         mf:action             "" ;
@@ -665,7 +675,7 @@ ldpt:CommonContainer-ServerHonorsSlug
 ldpt:NonRDFSource-PostResourceGetMetadataAndBinary
         a                     earl:TestCase ;
         rdfs:comment          "Each LDP Non-RDF Source must also be a conforming LDP Resource. LDP Non-RDF Sources may not be able to fully express their state using RDF." ;
-        dcterms:date          "2014-06-28T20:54:12.035Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.651Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MAY, NON-RDF" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.NonRDFSourceTest" ;
         mf:action             "" ;
@@ -675,7 +685,7 @@ ldpt:NonRDFSource-PostResourceGetMetadataAndBinary
 ldpt:DirectContainer-HttpLinkHeader
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers exposing LDPCs MUST advertise their LDP support by exposing a HTTP Link header with a target URI matching the type of container (see below) the server supports, and a link relation type of type (that is, rel='type') in all responses to requests made to the LDPC's HTTP Request-URI." ;
-        dcterms:date          "2014-06-28T20:54:12.041Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.655Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.DirectContainerTest" ;
         mf:action             "" ;
@@ -685,7 +695,7 @@ ldpt:DirectContainer-HttpLinkHeader
 ldpt:CommonContainer-RestrictUriReUseNoSlug
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers that allow member creation via POST SHOULD NOT re-use URIs." ;
-        dcterms:date          "2014-06-28T20:54:12.01Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.639Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "SHOULD" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonContainerTest" ;
         mf:action             "" ;
@@ -695,7 +705,7 @@ ldpt:CommonContainer-RestrictUriReUseNoSlug
 ldpt:CommonResource-IsHttp11Server
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers MUST at least be HTTP/1.1 conformant servers [HTTP11]." ;
-        dcterms:date          "2014-06-28T20:54:12.018Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.598Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonResourceTest" ;
         mf:action             "" ;
@@ -705,7 +715,7 @@ ldpt:CommonResource-IsHttp11Server
 ldpt:CommonResource-OptionsAllowHeader
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers MUST indicate their support for HTTP Methods by responding to a HTTP OPTIONS request on the LDPR’s URL with the HTTP Method tokens in the HTTP response header Allow. " ;
-        dcterms:date          "2014-06-28T20:54:12.028Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.609Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonResourceTest" ;
         mf:action             "" ;
@@ -715,7 +725,7 @@ ldpt:CommonResource-OptionsAllowHeader
 ldpt:NonRDFSource-DeleteNonRDFSourceDeletesAssociatedResource
         a                     earl:TestCase ;
         rdfs:comment          "When a contained LDPR is deleted, and the LDPC server created anassociated LDP-RS (see the LDPC POST section), the LDPC server must alsodelete the associated LDP-RS it created." ;
-        dcterms:date          "2014-06-28T20:54:12.037Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.652Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST, NON-RDF" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.NonRDFSourceTest" ;
         mf:action             "" ;
@@ -725,7 +735,7 @@ ldpt:NonRDFSource-DeleteNonRDFSourceDeletesAssociatedResource
 ldpt:CommonContainer-AcceptPostResponseHeader
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers that support POST MUST include an Accept-Post response header on HTTP OPTIONS responses, listing post document media type(s) supported by the server." ;
-        dcterms:date          "2014-06-28T20:54:12.01Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.64Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonContainerTest" ;
         mf:action             "" ;
@@ -735,7 +745,7 @@ ldpt:CommonContainer-AcceptPostResponseHeader
 ldpt:CommonContainer-NullRelativeUri
         a                     earl:TestCase ;
         rdfs:comment          "In RDF representations, LDP servers MUST interpret the null relative URI for the subject of triples in the LDPR representation in the request entity body as referring to the entity in the request body. Commonly, that entity is the model for the “to be created” LDPR, so triples whose subject is the null relative URI will usually result in triples in the created resource whose subject is the created resource." ;
-        dcterms:date          "2014-06-28T20:54:12.007Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.637Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonContainerTest" ;
         mf:action             "" ;
@@ -745,7 +755,7 @@ ldpt:CommonContainer-NullRelativeUri
 ldpt:RdfSource-AllowMultipleRdfTypes
         a                     earl:TestCase ;
         rdfs:comment          "In the absence of special knowledge of the application or domain, LDP clients MUST assume that any LDP-RS can have multiple values for rdf:type." ;
-        dcterms:date          "2014-06-28T20:54:11.983Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.618Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.RdfSourceTest" ;
         mf:action             "" ;
@@ -755,7 +765,7 @@ ldpt:RdfSource-AllowMultipleRdfTypes
 ldpt:CommonContainer-RejectPutModifyingContainmentTriples
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers SHOULD NOT allow HTTP PUT to update an LDPC’s containment triples; if the server receives such a request, it SHOULD respond with a 409 (Conflict) status code." ;
-        dcterms:date          "2014-06-28T20:54:12.011Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.64Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "SHOULD" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonContainerTest" ;
         mf:action             "" ;
@@ -765,7 +775,7 @@ ldpt:CommonContainer-RejectPutModifyingContainmentTriples
 ldpt:RdfSource-GetResource
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers MUST provide an RDF representation for LDP-RSs. The HTTP Request-URI of the LDP-RS is typically the subject of most triples in the response." ;
-        dcterms:date          "2014-06-28T20:54:11.981Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.615Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.RdfSourceTest" ;
         mf:action             "" ;
@@ -775,7 +785,7 @@ ldpt:RdfSource-GetResource
 ldpt:CommonResource-AcceptPatchHeader
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers that support PATCH MUST include an Accept-Patch HTTP response header [RFC5789] on HTTP OPTIONS requests, listing patch document media type(s) supported by the server. " ;
-        dcterms:date          "2014-06-28T20:54:12.027Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.607Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonResourceTest" ;
         mf:action             "" ;
@@ -785,37 +795,37 @@ ldpt:CommonResource-AcceptPatchHeader
 ldpt:CommonContainer-DeleteRemovesContainmentTriple
         a                     earl:TestCase ;
         rdfs:comment          "When an LDPR identified by the object of a containment triple is deleted, the LDPC server MUST also remove the LDPR from the containing LDPC by removing the corresponding containment triple." ;
-        dcterms:date          "2014-06-28T20:54:12.012Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.641Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonContainerTest" ;
         mf:action             "" ;
         mf:name               "CommonContainer-DeleteRemovesContainmentTriple" ;
         rdft:Approval         rdft:Approved .
 
+ldpt:RdfSource-PutReadOnlyProperties4xxStatus
+        a                     earl:TestCase ;
+        rdfs:comment          "If an otherwise valid HTTP PUT request is received that attempts to change properties the server does not allow clients to modify, LDP servers MUST respond with a 4xx range status code (typically 409 Conflict)" ;
+        dcterms:date          "2014-07-06T22:25:10.627Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject       "MUST" ;
+        ldpt:declaredInClass  "org.w3.ldp.testsuite.test.RdfSourceTest" ;
+        mf:action             "" ;
+        mf:name               "RdfSource-PutReadOnlyProperties4xxStatus" ;
+        rdft:Approval         rdft:Proposed .
+
 ldpt:CommonContainer-CreateWithoutConstraints
         a                     earl:TestCase ;
         rdfs:comment          "LDP servers SHOULD allow clients to create new resources without requiring detailed knowledge of application-specific constraints. This is a consequence of the requirement to enable simple creation and modification of LDPRs. LDP servers expose these application-specific constraints as described in section 4.2.1 General." ;
-        dcterms:date          "2014-06-28T20:54:12.009Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.638Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "SHOULD" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonContainerTest" ;
         mf:action             "" ;
         mf:name               "CommonContainer-CreateWithoutConstraints" ;
         rdft:Approval         rdft:Approved .
 
-ldpt:CommonResource-ResponsePropertiesNotPersisted
-        a                     earl:TestCase ;
-        rdfs:comment          "LDP servers SHOULD provide a corresponding response body containing information about which properties could not be persisted. The format of the 4xx response body is not constrained by LDP. LDP servers expose these application-specific constraints as described in section 4.2.1 General." ;
-        dcterms:date          "2014-06-28T20:54:12.023Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-        dcterms:subject       "SHOULD" ;
-        ldpt:declaredInClass  "org.w3.ldp.testsuite.test.CommonResourceTest" ;
-        mf:action             "" ;
-        mf:name               "CommonResource-ResponsePropertiesNotPersisted" ;
-        rdft:Approval         rdft:Proposed .
-
 ldpt:IndirectContainer-ContainsLdpcUri
         a                     earl:TestCase ;
         rdfs:comment          "LDP Indirect Containers MUST contain exactly one triple whose subject is the LDPC URI, whose predicate is ldp:insertedContentRelation, and whose object ICR describes how the member-derived-URI in the container's membership triples is chosen." ;
-        dcterms:date          "2014-06-28T20:54:12.039Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:date          "2014-07-06T22:25:10.66Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
         dcterms:subject       "MUST" ;
         ldpt:declaredInClass  "org.w3.ldp.testsuite.test.IndirectContainerTest" ;
         mf:action             "" ;

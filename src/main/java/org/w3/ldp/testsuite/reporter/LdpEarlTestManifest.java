@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -24,7 +25,7 @@ import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
-import com.hp.hpl.jena.rdf.model.ResIterator;
+import com.hp.hpl.jena.rdf.model.RDFList;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.sparql.vocabulary.EARL;
@@ -72,8 +73,10 @@ public class LdpEarlTestManifest {
 				.createProperty(LDPT_NAME + "declaredInClass");
 
 		writePrefixes();
-		ResIterator tests = writeTestClasses();
-		writeManifest(tests);
+		// Use ArrayList to preserve order
+		ArrayList<Resource> testcases = new ArrayList<Resource>();
+		writeTestClasses(testcases);
+		writeManifest(testcases);
 
 		write();
 		try {
@@ -84,11 +87,13 @@ public class LdpEarlTestManifest {
 		}
 	}
 
-	private static void writeManifest(ResIterator tests) {
+	private static void writeManifest(ArrayList<Resource> testcases) {
 		Resource manifest = model.createResource(LDPT_NAME,
 				TestManifest.Manifest);
 		manifest.addProperty(RDFS.comment, "LDP tests");
-		manifest.addProperty(TestManifest.entries, model.createList(tests));
+		Resource[] ra={};
+		RDFList l = model.createList(testcases.toArray(ra));
+		manifest.addProperty(TestManifest.entries, l);
 	}
 
 	private static void writePrefixes() {
@@ -104,17 +109,20 @@ public class LdpEarlTestManifest {
 		model.setNsPrefix(LDPT_PREFIX, LDPT_NAME);
 	}
 
-	private static <T> void writeInfo(Class<T> testClass) {
+	private static <T> void writeInfo(Class<T> testClass, ArrayList<Resource> testcases) {
 		String name = testClass.getCanonicalName();
 		Method[] bcMethods = testClass.getDeclaredMethods();
 		for (Method method : bcMethods) {
 			if (method.isAnnotationPresent(Test.class)) {
-				generateInformation(method, name);
+				Resource r = generateInformation(method, name);
+				if (r != null) {
+					testcases.add(r);
+				}
 			}
 		}
 	}
 
-	private static void generateInformation(Method method, String name) {
+	private static Resource generateInformation(Method method, String name) {
 		SpecTest testLdp = null;
 		Test test = null;
 		if (method.getAnnotation(SpecTest.class) != null
@@ -154,7 +162,10 @@ public class LdpEarlTestManifest {
 			}
 
 			testCaseResource.addProperty(declared, name);
+			
+			return testCaseResource;
 		}
+		return null;
 	}
 
 	public static String createTestCaseURL(String className, String methodName) {
@@ -187,16 +198,15 @@ public class LdpEarlTestManifest {
 		return retList;
 	}
 
-	private static ResIterator writeTestClasses() {
-		writeInfo(rdfSourceTest);
-		writeInfo(bcTest);
-		writeInfo(commonContainerTest);
-		writeInfo(commonResourceTest);
-		writeInfo(nonRdfSourceTest);
-		writeInfo(indirectContainerTest);
-		writeInfo(directContianerTest);
-		
-		return 	model.listSubjectsWithProperty(RDF.type, EARL.TestCase);
+	private static void writeTestClasses(ArrayList<Resource> testcases) {
+		// These are put in order so they are presented properly on earl-report
+		writeInfo(commonResourceTest, testcases);
+		writeInfo(rdfSourceTest, testcases);
+		writeInfo(commonContainerTest, testcases);
+		writeInfo(nonRdfSourceTest, testcases);
+		writeInfo(bcTest, testcases);
+		writeInfo(directContianerTest, testcases);
+		writeInfo(indirectContainerTest, testcases);
 	}
 
 	private static void write() {
