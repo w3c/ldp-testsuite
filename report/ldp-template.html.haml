@@ -69,9 +69,9 @@
 
           // if you want to have extra CSS, append them to this list
           // it is recommended that the respec.css stylesheet be kept
-          extraCSS:             [
-              "http://dev.w3.org/2009/dap/ReSpec.js/css/respec.css"
-          ],
+          //extraCSS:             [
+          //    "http://dev.w3.org/2009/dap/ReSpec.js/css/respec.css"
+          //],
 
           shortName:    "ldp-implreport",
           // subtitle: 	"Linked Data Platform Implementation Conformance Report",
@@ -135,10 +135,10 @@
         the Evaluation and Report Language (EARL) 1.0 Schema [[EARL10-SCHEMA]].
       %p
         This report is also available in alternate formats:
-        %a{:rel => "xhv:alternate", :href => "ldp-testsuite-coverage-earl.ttl"}
+        %a{:rel => "xhv:alternate", :href => "ldp.ttl"}
           Turtle
         and
-        %a{:rel => "xhv:alternate", :href => "ldp-testsuite-coverage-earl.jsonld"}
+        %a{:rel => "xhv:alternate", :href => "ldp.jsonld"}
           JSON-LD
     %section#sodt
     %section
@@ -168,7 +168,7 @@
                   %th
                     %a{:href => '#' + subject_refs[subject['@id']]}<=subject['name']
             - test_cases.each do |test|
-              - tid = "test_#{Digest::MD5.hexdigest(test['@id'])}"
+              - tid = "test-definitions"
               - (test_info[tid] ||= []) << test
               - test_refs[test['@id']] = tid
               %tr{:rel => "mf:entries", :typeof => test['@type'].join(" "), :resource => test['@id'], :inlist => true}
@@ -265,12 +265,12 @@
       %h2
         Test Definitions
       %p
-        Individual tests are defined in source code and hosted on GitHub
+        Individual tests are defined in source code and hosted on GitHub at <a href="http://w3c.github.io/ldp-testsuite/">http://w3c.github.io/ldp-testsuite/</a>
     %section#appendix{:property => "earl:generatedBy", :resource => tests['generatedBy']['@id'], :typeof => tests['generatedBy']['@type']}
       %h2
         Report Generation Software
       %p
-        The test suite, mostly automated, is available at <a href="http://w3c.github.io/ldp-testsuite/">http://w3c.github.io/ldp-testsuite/</a><p>
+        The test suite, mostly automated, is available at <a href="http://w3c.github.io/ldp-testsuite/">http://w3c.github.io/ldp-testsuite/</a>
       %p
         Software used to take EARL input files and generate a report is within the same GitHub repository.
       - doap = tests['generatedBy']
