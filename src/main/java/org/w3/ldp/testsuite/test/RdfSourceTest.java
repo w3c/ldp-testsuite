@@ -477,7 +477,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@Parameters("readOnlyProp")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-put-servermanagedprops",
-			testMethod = METHOD.NOT_IMPLEMENTED,
+			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_PENDING)
 	public void testPutReadOnlyProperties4xxStatus(@Optional String readOnlyProp) {
 		skipIfMethodNotAllowed(HttpMethod.PUT);
@@ -533,7 +533,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 					+ "in section 4.2.1 General.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-put-failed",
-			testMethod = METHOD.NOT_IMPLEMENTED,
+			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_PENDING)
 	public void testResponsePropertiesNotPersisted() {
 		skipIfMethodNotAllowed(HttpMethod.PUT);
