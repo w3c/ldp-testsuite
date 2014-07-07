@@ -1,0 +1,3156 @@
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix earl: <http://www.w3.org/ns/earl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix mf: <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xhv: <http://www.w3.org/1999/xhtml/vocab#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+<> a earl:Software, doap:Project;
+  doap:name "LDP";
+  dc:bibliographicCitation "[[LDP]]";
+  earl:generatedBy <http://rubygems.org/gems/earl-report>;
+  earl:assertions
+    <contrib/ldp-testsuite-execution-report-earl-eclipse-lyo-bc.ttl>,
+    <contrib/ldp-testsuite-execution-report-earl-eclipse-lyo-dc1.ttl>,
+    <contrib/ldp-testsuite-execution-report-earl-eclipse-lyo-dc2.ttl>,
+    <contrib/ldp-testsuite-execution-report-earl-eclipse-lyo-dc3.ttl>,
+    <contrib/ldp-testsuite-execution-report-earl-eclipse-lyo-dc4.ttl>;
+  earl:testSubjects (
+    <http://eclipse.org/lyo#bc>
+    <http://eclipse.org/lyo#dc1>
+    <http://eclipse.org/lyo#dc2>
+    <http://eclipse.org/lyo#dc3>
+    <http://eclipse.org/lyo#dc4>);
+  mf:entries (
+    <http://w3c.github.io/ldp-testsuite#>) .
+    
+
+<http://rubygems.org/gems/earl-report> a earl:Software, doap:Project;
+  doap:name "earl-report";
+  doap:shortdesc "Earl Report summary generator"@en;
+  doap:description "EarlReport generates HTML+RDFa rollups of multiple EARL reports"@en;
+  doap:homepage <https://github.com/gkellogg/earl-report>;
+  doap:programming-language "Ruby";
+  doap:license <http://unlicense.org>;
+  doap:release <https://github.com/gkellogg/earl-report/tree/0.3.4>;
+  doap:developer <http://greggkellogg.net/foaf#me> .
+
+    
+
+# Manifests
+<http://w3c.github.io/ldp-testsuite#> a earl:Report, mf:Manifest;
+  rdfs:comment "LDP tests";
+  mf:entries (
+    <http://w3c.github.io/ldp-testsuite#CommonResource-GetResource>
+    <http://w3c.github.io/ldp-testsuite#CommonResource-IsHttp11Server>
+    <http://w3c.github.io/ldp-testsuite#CommonResource-IsHttp11Manual>
+    <http://w3c.github.io/ldp-testsuite#CommonResource-ETagHeadersGet>
+    <http://w3c.github.io/ldp-testsuite#CommonResource-ETagHeadersHead>
+    <http://w3c.github.io/ldp-testsuite#CommonResource-LdpLinkHeader>
+    <http://w3c.github.io/ldp-testsuite#CommonResource-GetResponseHeaders>
+    <http://w3c.github.io/ldp-testsuite#CommonResource-PutRequiresIfMatch>
+    <http://w3c.github.io/ldp-testsuite#CommonResource-ConditionFailedStatusCode>
+    <http://w3c.github.io/ldp-testsuite#CommonResource-PreconditionRequiredStatusCode>
+    <http://w3c.github.io/ldp-testsuite#CommonResource-PutBadETag>
+    <http://w3c.github.io/ldp-testsuite#CommonResource-Head>
+    <http://w3c.github.io/ldp-testsuite#CommonResource-AcceptPatchHeader>
+    <http://w3c.github.io/ldp-testsuite#CommonResource-Options>
+    <http://w3c.github.io/ldp-testsuite#CommonResource-OptionsAllowHeader>
+    <http://w3c.github.io/ldp-testsuite#RdfSource-RelativeUriResolutionPut>
+    <http://w3c.github.io/ldp-testsuite#RdfSource-PutReplacesResource>
+    <http://w3c.github.io/ldp-testsuite#RdfSource-GetResource>
+    <http://w3c.github.io/ldp-testsuite#RdfSource-ContainsRdfType>
+    <http://w3c.github.io/ldp-testsuite#RdfSource-ReUseVocabularies>
+    <http://w3c.github.io/ldp-testsuite#RdfSource-UseStandardVocabularies>
+    <http://w3c.github.io/ldp-testsuite#RdfSource-AllowMultipleRdfTypes>
+    <http://w3c.github.io/ldp-testsuite#RdfSource-ChangeRdfTypeValue>
+    <http://w3c.github.io/ldp-testsuite#RdfSource-ServerOpen>
+    <http://w3c.github.io/ldp-testsuite#RdfSource-RestrictClientInference>
+    <http://w3c.github.io/ldp-testsuite#RdfSource-GetResourcePreservesTriples>
+    <http://w3c.github.io/ldp-testsuite#RdfSource-AllowResponsesFromServer>
+    <http://w3c.github.io/ldp-testsuite#RdfSource-GetResourceAcceptTurtle>
+    <http://w3c.github.io/ldp-testsuite#RdfSource-ClientMayProvideHints>
+    <http://w3c.github.io/ldp-testsuite#RdfSource-JsonLdRepresentation>
+    <http://w3c.github.io/ldp-testsuite#RdfSource-PublishConstraintsReadOnlyProp>
+    <http://w3c.github.io/ldp-testsuite#RdfSource-PublishConstraintsUnknownProp>
+    <http://w3c.github.io/ldp-testsuite#RdfSource-PutReadOnlyProperties4xxStatus>
+    <http://w3c.github.io/ldp-testsuite#RdfSource-4xxErrorHasResponseBody>
+    <http://w3c.github.io/ldp-testsuite#RdfSource-PutPropertiesNotPersisted>
+    <http://w3c.github.io/ldp-testsuite#RdfSource-ResponsePropertiesNotPersisted>
+    <http://w3c.github.io/ldp-testsuite#CommonContainer-PutToCreate>
+    <http://w3c.github.io/ldp-testsuite#CommonContainer-RelativeUriResolutionPost>
+    <http://w3c.github.io/ldp-testsuite#CommonContainer-NoRdfBagSeqOrList>
+    <http://w3c.github.io/ldp-testsuite#CommonContainer-PreferContainmentTriples>
+    <http://w3c.github.io/ldp-testsuite#CommonContainer-ClientPostToCreate>
+    <http://w3c.github.io/ldp-testsuite#CommonContainer-PostResponseStatusAndLocation>
+    <http://w3c.github.io/ldp-testsuite#CommonContainer-PostContainer>
+    <http://w3c.github.io/ldp-testsuite#CommonContainer-RequestedInteractionModelCreateNotAllowed>
+    <http://w3c.github.io/ldp-testsuite#CommonContainer-RequestedInteractionModelHeaders>
+    <http://w3c.github.io/ldp-testsuite#CommonContainer-AcceptTurtle>
+    <http://w3c.github.io/ldp-testsuite#CommonContainer-ContentTypeHeader>
+    <http://w3c.github.io/ldp-testsuite#CommonContainer-NullRelativeUri>
+    <http://w3c.github.io/ldp-testsuite#CommonContainer-PostNoSlug>
+    <http://w3c.github.io/ldp-testsuite#CommonContainer-CreateWithoutConstraints>
+    <http://w3c.github.io/ldp-testsuite#CommonContainer-RestrictUriReUseSlug>
+    <http://w3c.github.io/ldp-testsuite#CommonContainer-RestrictUriReUseNoSlug>
+    <http://w3c.github.io/ldp-testsuite#CommonContainer-AcceptPostResponseHeader>
+    <http://w3c.github.io/ldp-testsuite#CommonContainer-RejectPutModifyingContainmentTriples>
+    <http://w3c.github.io/ldp-testsuite#CommonContainer-RestrictPutReUseUri>
+    <http://w3c.github.io/ldp-testsuite#CommonContainer-DeleteRemovesContainmentTriple>
+    <http://w3c.github.io/ldp-testsuite#CommonContainer-PatchMethod>
+    <http://w3c.github.io/ldp-testsuite#CommonContainer-RdfTypeLdpContainer>
+    <http://w3c.github.io/ldp-testsuite#CommonContainer-ServerHonorsSlug>
+    <http://w3c.github.io/ldp-testsuite#CommonContainer-PostJsonLd>
+    <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostNonRDFSource>
+    <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceAndGetFromContainer>
+    <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceGetBinary>
+    <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceGetMetadataAndBinary>
+    <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceAndCheckLink>
+    <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceAndCheckAssociatedResource>
+    <http://w3c.github.io/ldp-testsuite#NonRDFSource-DeleteNonRDFSourceDeletesAssociatedResource>
+    <http://w3c.github.io/ldp-testsuite#NonRDFSource-OptionsHasSameLinkHeader>
+    <http://w3c.github.io/ldp-testsuite#BasicContainer-ContainerSupportsHttpLinkHeader>
+    <http://w3c.github.io/ldp-testsuite#BasicContainer-ContainerTypeIsBasicContainer>
+    <http://w3c.github.io/ldp-testsuite#DirectContainer-HttpLinkHeader>
+    <http://w3c.github.io/ldp-testsuite#DirectContainer-UseMemberPredicate>
+    <http://w3c.github.io/ldp-testsuite#DirectContainer-MemberResourceTriple>
+    <http://w3c.github.io/ldp-testsuite#DirectContainer-MemberRelationOrIsMemberOfRelationTripleExists>
+    <http://w3c.github.io/ldp-testsuite#DirectContainer-ActAsIfInsertedContentRelationTripleExists>
+    <http://w3c.github.io/ldp-testsuite#DirectContainer-PostResourceUpdatesTriples>
+    <http://w3c.github.io/ldp-testsuite#DirectContainer-DeleteResourceUpdatesTriples>
+    <http://w3c.github.io/ldp-testsuite#DirectContainer-PreferMembershipTriples>
+    <http://w3c.github.io/ldp-testsuite#IndirectContainer-ContainerSupportsHttpLinkHeader>
+    <http://w3c.github.io/ldp-testsuite#IndirectContainer-CreateIndirectContainer>
+    <http://w3c.github.io/ldp-testsuite#IndirectContainer-ContainsLdpcUri>
+    <http://w3c.github.io/ldp-testsuite#IndirectContainer-PostResource>) .
+
+#
+# Subject Definitions
+#
+<http://eclipse.org/lyo#bc> a earl:TestSubject, doap:Project;
+  doap:name "Eclipse Lyo - BC";
+  doap:description "Testing against: BasicContainer, RDFSource, NonRDFSource, Prefer, Container as Resource interaction model."@en;
+  doap:programming-language "Java";
+ .
+
+<http://eclipse.org/lyo#bc> doap:developer
+   [ a foaf:Person;
+     foaf:name "Steve Speicher" ] .
+
+<http://eclipse.org/lyo#bc> doap:developer
+   [ a foaf:Person;
+     foaf:name "Sam Padgett" ] .
+
+
+<http://eclipse.org/lyo#dc1> a earl:TestSubject, doap:Project;
+  doap:name "Eclipse Lyo-DC1";
+  doap:description "Testing against: DirectContainer, RDFSource, NonRDFSource, Prefer,         Container as Resource interaction model.         Configuration of DirectContainer:            ldp:membershipResource == container,            ldp:hasMemberRelation == ldp:member"@en;
+  doap:programming-language "Java";
+ .
+
+<http://eclipse.org/lyo#dc1> doap:developer
+   [ a foaf:Person;
+     foaf:name "Steve Speicher" ] .
+
+<http://eclipse.org/lyo#dc1> doap:developer
+   [ a foaf:Person;
+     foaf:name "Sam Padgett" ] .
+
+
+<http://eclipse.org/lyo#dc2> a earl:TestSubject, doap:Project;
+  doap:name "Eclipse Lyo-DC2";
+  doap:description "Testing against: DirectContainer, RDFSource, NonRDFSource, Prefer,         Container as Resource interaction model.         Configuration of DirectContainer:            ldp:membershipResource != container,            ldp:hasMemberRelation == ldp:member"@en;
+  doap:programming-language "Java";
+ .
+
+<http://eclipse.org/lyo#dc2> doap:developer
+   [ a foaf:Person;
+     foaf:name "Steve Speicher" ] .
+
+<http://eclipse.org/lyo#dc2> doap:developer
+   [ a foaf:Person;
+     foaf:name "Sam Padgett" ] .
+
+
+<http://eclipse.org/lyo#dc3> a earl:TestSubject, doap:Project;
+  doap:name "Eclipse Lyo-DC3";
+  doap:description "Testing against: DirectContainer, RDFSource, NonRDFSource, Prefer,         Container as Resource interaction model.         Configuration of DirectContainer:            ldp:membershipResource != container,            ldp:hasMemberRelation == skos:inScheme"@en;
+  doap:programming-language "Java";
+ .
+
+<http://eclipse.org/lyo#dc3> doap:developer
+   [ a foaf:Person;
+     foaf:name "Steve Speicher" ] .
+
+<http://eclipse.org/lyo#dc3> doap:developer
+   [ a foaf:Person;
+     foaf:name "Sam Padgett" ] .
+
+
+<http://eclipse.org/lyo#dc4> a earl:TestSubject, doap:Project;
+  doap:name "Eclipse Lyo-DC4 ";
+  doap:description "Testing against: DirectContainer, RDFSource, NonRDFSource, Prefer,         Container as Resource interaction model.         Configuration of DirectContainer:            ldp:membershipResource == container,            ldp:hasMemberRelation == skos:inScheme"@en;
+  doap:programming-language "Java";
+ .
+
+<http://eclipse.org/lyo#dc4> doap:developer
+   [ a foaf:Person;
+     foaf:name "Steve Speicher" ] .
+
+<http://eclipse.org/lyo#dc4> doap:developer
+   [ a foaf:Person;
+     foaf:name "Sam Padgett" ] .
+
+
+#
+# Test Case Definitions
+#
+<http://w3c.github.io/ldp-testsuite#CommonResource-GetResource> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonResource-GetResource";
+  dc:description "LDP servers MUST support the HTTP GET Method for LDPRs"@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-GetResource>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-GetResource>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-GetResource>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-GetResource>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-GetResource>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonResource-IsHttp11Server> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonResource-IsHttp11Server";
+  dc:description "LDP servers MUST at least be HTTP/1.1 conformant servers [HTTP11]."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-IsHttp11Server>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-IsHttp11Server>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-IsHttp11Server>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-IsHttp11Server>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-IsHttp11Server>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonResource-IsHttp11Manual> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonResource-IsHttp11Manual";
+  dc:description "LDP servers MUST at least be HTTP/1.1 conformant servers [HTTP11]."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-IsHttp11Manual>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-IsHttp11Manual>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-IsHttp11Manual>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-IsHttp11Manual>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-IsHttp11Manual>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonResource-ETagHeadersGet> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonResource-ETagHeadersGet";
+  dc:description "LDP server responses MUST use entity tags (either weak or strong ones) as response ETag header values."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-ETagHeadersGet>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-ETagHeadersGet>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-ETagHeadersGet>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-ETagHeadersGet>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-ETagHeadersGet>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonResource-ETagHeadersHead> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonResource-ETagHeadersHead";
+  dc:description "LDP server responses MUST use entity tags (either weak or strong ones) as response ETag header values."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-ETagHeadersHead>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-ETagHeadersHead>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-ETagHeadersHead>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-ETagHeadersHead>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-ETagHeadersHead>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonResource-LdpLinkHeader> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonResource-LdpLinkHeader";
+  dc:description "LDP servers exposing LDPRs MUST advertise their LDP support by exposing a HTTP Link header with a target URI of http://www.w3.org/ns/ldp#Resource, and a link relation type of type (that is, rel='type') in all responses to requests made to the LDPR's HTTP Request-URI."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-LdpLinkHeader>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-LdpLinkHeader>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-LdpLinkHeader>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-LdpLinkHeader>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-LdpLinkHeader>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonResource-GetResponseHeaders> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonResource-GetResponseHeaders";
+  dc:description "LDP servers MUST support the HTTP response headers defined in section 4.2.8 HTTP OPTIONS. "@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-GetResponseHeaders>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-GetResponseHeaders>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-GetResponseHeaders>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-GetResponseHeaders>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-GetResponseHeaders>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonResource-PutRequiresIfMatch> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonResource-PutRequiresIfMatch";
+  dc:description "LDP clients SHOULD use the HTTP If-Match header and HTTP ETags to ensure it isn’t modifying a resource that has changed since the client last retrieved its representation. LDP servers SHOULD require the HTTP If-Match header and HTTP ETags to detect collisions."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-PutRequiresIfMatch>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-PutRequiresIfMatch>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-PutRequiresIfMatch>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-PutRequiresIfMatch>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-PutRequiresIfMatch>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonResource-ConditionFailedStatusCode> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonResource-ConditionFailedStatusCode";
+  dc:description "LDP servers MUST respond with status code 412 (Condition Failed) if ETags fail to match when there are no other errors with the request [HTTP11]. LDP servers that require conditional requests MUST respond with status code 428 (Precondition Required) when the absence of a precondition is the only reason for rejecting the request [RFC6585]."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-ConditionFailedStatusCode>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-ConditionFailedStatusCode>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-ConditionFailedStatusCode>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-ConditionFailedStatusCode>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-ConditionFailedStatusCode>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonResource-PreconditionRequiredStatusCode> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonResource-PreconditionRequiredStatusCode";
+  dc:description "LDP servers MUST respond with status code 412 (Condition Failed) if ETags fail to match when there are no other errors with the request [HTTP11]. LDP servers that require conditional requests MUST respond with status code 428 (Precondition Required) when the absence of a precondition is the only reason for rejecting the request [RFC6585]."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-PreconditionRequiredStatusCode>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-PreconditionRequiredStatusCode>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-PreconditionRequiredStatusCode>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-PreconditionRequiredStatusCode>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-PreconditionRequiredStatusCode>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonResource-PutBadETag> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonResource-PutBadETag";
+  dc:description "LDP servers MUST respond with status code 412 (Condition Failed) if ETags fail to match when there are no other errors with the request [HTTP11]. LDP servers that require conditional requests MUST respond with status code 428 (Precondition Required) when the absence of a precondition is the only reason for rejecting the request [RFC6585]."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-PutBadETag>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-PutBadETag>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-PutBadETag>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-PutBadETag>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-PutBadETag>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonResource-Head> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonResource-Head";
+  dc:description "LDP servers MUST support the HTTP HEAD method. "@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-Head>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-Head>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-Head>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-Head>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-Head>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonResource-AcceptPatchHeader> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonResource-AcceptPatchHeader";
+  dc:description "LDP servers that support PATCH MUST include an Accept-Patch HTTP response header [RFC5789] on HTTP OPTIONS requests, listing patch document media type(s) supported by the server. "@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-AcceptPatchHeader>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-AcceptPatchHeader>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-AcceptPatchHeader>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-AcceptPatchHeader>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-AcceptPatchHeader>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonResource-Options> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonResource-Options";
+  dc:description "LDP servers MUST support the HTTP OPTIONS method. "@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-Options>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-Options>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-Options>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-Options>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-Options>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonResource-OptionsAllowHeader> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonResource-OptionsAllowHeader";
+  dc:description "LDP servers MUST indicate their support for HTTP Methods by responding to a HTTP OPTIONS request on the LDPR’s URL with the HTTP Method tokens in the HTTP response header Allow. "@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-OptionsAllowHeader>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-OptionsAllowHeader>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-OptionsAllowHeader>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-OptionsAllowHeader>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonResource-OptionsAllowHeader>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#RdfSource-RelativeUriResolutionPut> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "RdfSource-RelativeUriResolutionPut";
+  dc:description "LDP servers MUST assign the default base-URI for [RFC3987] relative-URI resolution to be the HTTP Request-URI when the resource already exists, and to the URI of the created resource when the request results in the creation of a new resource."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-RelativeUriResolutionPut>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-RelativeUriResolutionPut>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-RelativeUriResolutionPut>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-RelativeUriResolutionPut>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-RelativeUriResolutionPut>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#RdfSource-PutReplacesResource> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "RdfSource-PutReplacesResource";
+  dc:description "If a HTTP PUT is accepted on an existing resource, LDP servers MUST replace the entire persistent state of the identified resource with the entity representation in the body of the request."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-PutReplacesResource>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-PutReplacesResource>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-PutReplacesResource>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-PutReplacesResource>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-PutReplacesResource>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#RdfSource-GetResource> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "RdfSource-GetResource";
+  dc:description "LDP servers MUST provide an RDF representation for LDP-RSs. The HTTP Request-URI of the LDP-RS is typically the subject of most triples in the response."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-GetResource>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-GetResource>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-GetResource>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-GetResource>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-GetResource>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#RdfSource-ContainsRdfType> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "RdfSource-ContainsRdfType";
+  dc:description "LDP-RSs representations SHOULD have at least one rdf:type set explicitly. This makes the representations much more useful to client applications that don’t support inferencing."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ContainsRdfType>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ContainsRdfType>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ContainsRdfType>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ContainsRdfType>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ContainsRdfType>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#RdfSource-ReUseVocabularies> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "RdfSource-ReUseVocabularies";
+  dc:description "LDP-RSs SHOULD reuse existing vocabularies instead of creating their own duplicate vocabulary terms. In addition to this general rule, some specific cases are covered by other conformance rules."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ReUseVocabularies>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:manual;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ReUseVocabularies>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:manual;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ReUseVocabularies>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:manual;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ReUseVocabularies>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:manual;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ReUseVocabularies>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:manual;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#RdfSource-UseStandardVocabularies> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "RdfSource-UseStandardVocabularies";
+  dc:description "LDP-RSs predicates SHOULD use standard vocabularies such as Dublin Core [DC-TERMS], RDF [rdf11-concepts] and RDF Schema [rdf-schema], whenever possible."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-UseStandardVocabularies>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:manual;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-UseStandardVocabularies>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:manual;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-UseStandardVocabularies>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:manual;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-UseStandardVocabularies>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:manual;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-UseStandardVocabularies>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:manual;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#RdfSource-AllowMultipleRdfTypes> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "RdfSource-AllowMultipleRdfTypes";
+  dc:description "In the absence of special knowledge of the application or domain, LDP clients MUST assume that any LDP-RS can have multiple values for rdf:type."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-AllowMultipleRdfTypes>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:notTested;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-AllowMultipleRdfTypes>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:notTested;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-AllowMultipleRdfTypes>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:notTested;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-AllowMultipleRdfTypes>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:notTested;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-AllowMultipleRdfTypes>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:notTested;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#RdfSource-ChangeRdfTypeValue> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "RdfSource-ChangeRdfTypeValue";
+  dc:description "In the absence of special knowledge of the application or domain, LDP clients MUST assume that the rdf:type values of a given LDP-RS can change over time."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ChangeRdfTypeValue>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:notTested;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ChangeRdfTypeValue>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:notTested;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ChangeRdfTypeValue>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:notTested;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ChangeRdfTypeValue>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:notTested;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ChangeRdfTypeValue>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:notTested;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#RdfSource-ServerOpen> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "RdfSource-ServerOpen";
+  dc:description "LDP clients SHOULD always assume that the set of predicates for a LDP-RS of a particular type at an arbitrary server is open, in the sense that different resources of the same type may not all have the same set of predicates in their triples, and the set of predicates that are used in the state of any one LDP-RS is not limited to any pre-defined set."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ServerOpen>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:notTested;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ServerOpen>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:notTested;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ServerOpen>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:notTested;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ServerOpen>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:notTested;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ServerOpen>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:notTested;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#RdfSource-RestrictClientInference> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "RdfSource-RestrictClientInference";
+  dc:description "LDP servers MUST NOT require LDP clients to implement inferencing in order to recognize the subset of content defined by LDP. Other specifications built on top of LDP may require clients to implement inferencing [rdf11-concepts]. The practical implication is that all content defined by LDP must be explicitly represented, unless noted otherwise within this document."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-RestrictClientInference>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:manual;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-RestrictClientInference>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:manual;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-RestrictClientInference>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:manual;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-RestrictClientInference>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:manual;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-RestrictClientInference>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:manual;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#RdfSource-GetResourcePreservesTriples> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "RdfSource-GetResourcePreservesTriples";
+  dc:description "A LDP client MUST preserve all triples retrieved from an LDP-RS using HTTP GET that it doesn’t change whether it understands the predicates or not, when its intent is to perform an update using HTTP PUT. The use of HTTP PATCH instead of HTTP PUT for update avoids this burden for clients [RFC5789]. "@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-GetResourcePreservesTriples>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:manual;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-GetResourcePreservesTriples>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:manual;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-GetResourcePreservesTriples>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:manual;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-GetResourcePreservesTriples>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:manual;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-GetResourcePreservesTriples>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:manual;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#RdfSource-AllowResponsesFromServer> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "RdfSource-AllowResponsesFromServer";
+  dc:description "LDP clients MUST be capable of processing responses formed by an LDP server that ignores hints, including LDP-defined hints."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-AllowResponsesFromServer>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:manual;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-AllowResponsesFromServer>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:manual;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-AllowResponsesFromServer>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:manual;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-AllowResponsesFromServer>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:manual;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-AllowResponsesFromServer>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:manual;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#RdfSource-GetResourceAcceptTurtle> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "RdfSource-GetResourceAcceptTurtle";
+  dc:description "LDP servers must provide a text/turtle representation of the requested LDP-RS whenever HTTP content negotiation does not force another outcome [turtle]. In other words, if the server receives a GET request whose Request-URI identifies a LDP-RS, and either text/turtle has the highest relative quality factor (q= value) in the Accept request header or that header is absent, then an LDP server has to respond with Turtle."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-GetResourceAcceptTurtle>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-GetResourceAcceptTurtle>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-GetResourceAcceptTurtle>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-GetResourceAcceptTurtle>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-GetResourceAcceptTurtle>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#RdfSource-ClientMayProvideHints> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "RdfSource-ClientMayProvideHints";
+  dc:description "LDP clients MAY provide LDP-defined hints that allow servers to optimize the content of responses. section 7.2 Preferences on the Prefer Request Header defines hints that apply to LDP-RSs. "@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ClientMayProvideHints>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ClientMayProvideHints>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ClientMayProvideHints>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ClientMayProvideHints>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ClientMayProvideHints>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#RdfSource-JsonLdRepresentation> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "RdfSource-JsonLdRepresentation";
+  dc:description "LDP servers SHOULD offer a application/ld+json representation of the requested LDP-RS [JSON-LD]. "@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-JsonLdRepresentation>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-JsonLdRepresentation>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-JsonLdRepresentation>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-JsonLdRepresentation>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-JsonLdRepresentation>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#RdfSource-PublishConstraintsReadOnlyProp> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "RdfSource-PublishConstraintsReadOnlyProp";
+  dc:description "LDP servers MUST publish any constraints on LDP clients’ ability to create or update LDPRs, by adding a Link header with rel='describedby' [RFC5988] to all responses to requests which fail due to violation of those constraints."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-PublishConstraintsReadOnlyProp>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-PublishConstraintsReadOnlyProp>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-PublishConstraintsReadOnlyProp>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-PublishConstraintsReadOnlyProp>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-PublishConstraintsReadOnlyProp>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#RdfSource-PublishConstraintsUnknownProp> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "RdfSource-PublishConstraintsUnknownProp";
+  dc:description "LDP servers MUST publish any constraints on LDP clients’ ability to create or update LDPRs, by adding a Link header with rel='describedby' [RFC5988] to all responses to requests which fail due to violation of those constraints."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-PublishConstraintsUnknownProp>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-PublishConstraintsUnknownProp>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-PublishConstraintsUnknownProp>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-PublishConstraintsUnknownProp>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-PublishConstraintsUnknownProp>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#RdfSource-PutReadOnlyProperties4xxStatus> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "RdfSource-PutReadOnlyProperties4xxStatus";
+  dc:description "If an otherwise valid HTTP PUT request is received that attempts to change properties the server does not allow clients to modify, LDP servers MUST respond with a 4xx range status code (typically 409 Conflict)"@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-PutReadOnlyProperties4xxStatus>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-PutReadOnlyProperties4xxStatus>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-PutReadOnlyProperties4xxStatus>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-PutReadOnlyProperties4xxStatus>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-PutReadOnlyProperties4xxStatus>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#RdfSource-4xxErrorHasResponseBody> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "RdfSource-4xxErrorHasResponseBody";
+  dc:description "LDP servers SHOULD provide a corresponding response body containing information about which properties could not be persisted. The format of the 4xx response body is not constrained by LDP."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-4xxErrorHasResponseBody>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-4xxErrorHasResponseBody>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-4xxErrorHasResponseBody>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-4xxErrorHasResponseBody>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-4xxErrorHasResponseBody>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#RdfSource-PutPropertiesNotPersisted> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "RdfSource-PutPropertiesNotPersisted";
+  dc:description "If an otherwise valid HTTP PUT request is received that contains properties the server chooses not to persist, e.g. unknown content, LDP servers MUST respond with an appropriate 4xx range status code [HTTP11]."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-PutPropertiesNotPersisted>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-PutPropertiesNotPersisted>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-PutPropertiesNotPersisted>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-PutPropertiesNotPersisted>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-PutPropertiesNotPersisted>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#RdfSource-ResponsePropertiesNotPersisted> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "RdfSource-ResponsePropertiesNotPersisted";
+  dc:description "LDP servers SHOULD provide a corresponding response body containing information about which properties could not be persisted. The format of the 4xx response body is not constrained by LDP. LDP servers expose these application-specific constraints as described in section 4.2.1 General."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ResponsePropertiesNotPersisted>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ResponsePropertiesNotPersisted>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ResponsePropertiesNotPersisted>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ResponsePropertiesNotPersisted>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#RdfSource-ResponsePropertiesNotPersisted>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonContainer-PutToCreate> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonContainer-PutToCreate";
+  dc:description "LDP servers MAY choose to allow the creation of new resources using HTTP PUT."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PutToCreate>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PutToCreate>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PutToCreate>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PutToCreate>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PutToCreate>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonContainer-RelativeUriResolutionPost> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonContainer-RelativeUriResolutionPost";
+  dc:description "LDP servers MUST assign the default base-URI for [RFC3987] relative-URI resolution to be the HTTP Request-URI when the resource already exists, and to the URI of the created resource when the request results in the creation of a new resource."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RelativeUriResolutionPost>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RelativeUriResolutionPost>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RelativeUriResolutionPost>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RelativeUriResolutionPost>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RelativeUriResolutionPost>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonContainer-NoRdfBagSeqOrList> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonContainer-NoRdfBagSeqOrList";
+  dc:description "LDPC representations SHOULD NOT use RDF container types rdf:Bag, rdf:Seq or rdf:List."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-NoRdfBagSeqOrList>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-NoRdfBagSeqOrList>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-NoRdfBagSeqOrList>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-NoRdfBagSeqOrList>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-NoRdfBagSeqOrList>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonContainer-PreferContainmentTriples> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonContainer-PreferContainmentTriples";
+  dc:description "LDP servers SHOULD respect all of a client's LDP-defined hints, for example which subsets of LDP-defined state the client is interested in processing, to influence the set of triples returned in representations of an LDPC, particularly for large LDPCs. See also [LDP-PAGING]."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PreferContainmentTriples>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PreferContainmentTriples>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PreferContainmentTriples>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PreferContainmentTriples>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PreferContainmentTriples>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonContainer-ClientPostToCreate> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonContainer-ClientPostToCreate";
+  dc:description "LDPC clients SHOULD create member resources by submitting a representation as the entity body of the HTTP POST to a known LDPC."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-ClientPostToCreate>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:notTested;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-ClientPostToCreate>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:notTested;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-ClientPostToCreate>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:notTested;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-ClientPostToCreate>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:notTested;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-ClientPostToCreate>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:notTested;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonContainer-PostResponseStatusAndLocation> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonContainer-PostResponseStatusAndLocation";
+  dc:description "If the resource was created successfully, LDP servers MUST respond with status code 201 (Created) and the Location header set to the new resource’s URL. Clients shall not expect any representation in the response entity body on a 201 (Created) response."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PostResponseStatusAndLocation>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PostResponseStatusAndLocation>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PostResponseStatusAndLocation>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PostResponseStatusAndLocation>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PostResponseStatusAndLocation>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonContainer-PostContainer> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonContainer-PostContainer";
+  dc:description "When a successful HTTP POST request to an LDPC results in the creation of an LDPR, a containment triple MUST be added to the state of LDPC."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PostContainer>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PostContainer>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PostContainer>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PostContainer>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PostContainer>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonContainer-RequestedInteractionModelCreateNotAllowed> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonContainer-RequestedInteractionModelCreateNotAllowed";
+  dc:description "LDP servers that successfully create a resource from a RDF representation in the request entity body MUST honor the client's requested interaction model(s). The created resource can be thought of as an RDF named graph [rdf11-concepts]. If any model cannot be honored, the server MUST fail the request."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RequestedInteractionModelCreateNotAllowed>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RequestedInteractionModelCreateNotAllowed>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RequestedInteractionModelCreateNotAllowed>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RequestedInteractionModelCreateNotAllowed>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RequestedInteractionModelCreateNotAllowed>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonContainer-RequestedInteractionModelHeaders> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonContainer-RequestedInteractionModelHeaders";
+  dc:description "LDP servers that successfully create a resource from a RDF representation in the request entity body MUST honor the client's requested interaction model(s). The created resource can be thought of as an RDF named graph [rdf11-concepts]. If any model cannot be honored, the server MUST fail the request."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RequestedInteractionModelHeaders>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RequestedInteractionModelHeaders>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RequestedInteractionModelHeaders>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RequestedInteractionModelHeaders>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RequestedInteractionModelHeaders>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonContainer-AcceptTurtle> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonContainer-AcceptTurtle";
+  dc:description "LDP servers MUST accept a request entity body with a request header of Content-Type with value of text/turtle [turtle]."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-AcceptTurtle>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-AcceptTurtle>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-AcceptTurtle>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-AcceptTurtle>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-AcceptTurtle>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonContainer-ContentTypeHeader> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonContainer-ContentTypeHeader";
+  dc:description "LDP servers SHOULD use the Content-Type request header to determine the representation format when the request has an entity body."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-ContentTypeHeader>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-ContentTypeHeader>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-ContentTypeHeader>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-ContentTypeHeader>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-ContentTypeHeader>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonContainer-NullRelativeUri> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonContainer-NullRelativeUri";
+  dc:description "In RDF representations, LDP servers MUST interpret the null relative URI for the subject of triples in the LDPR representation in the request entity body as referring to the entity in the request body. Commonly, that entity is the model for the “to be created” LDPR, so triples whose subject is the null relative URI will usually result in triples in the created resource whose subject is the created resource."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-NullRelativeUri>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-NullRelativeUri>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-NullRelativeUri>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-NullRelativeUri>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-NullRelativeUri>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonContainer-PostNoSlug> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonContainer-PostNoSlug";
+  dc:description "LDP servers SHOULD assign the URI for the resource to be created using server application specific rules in the absence of a client hint."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PostNoSlug>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PostNoSlug>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PostNoSlug>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PostNoSlug>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PostNoSlug>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonContainer-CreateWithoutConstraints> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonContainer-CreateWithoutConstraints";
+  dc:description "LDP servers SHOULD allow clients to create new resources without requiring detailed knowledge of application-specific constraints. This is a consequence of the requirement to enable simple creation and modification of LDPRs. LDP servers expose these application-specific constraints as described in section 4.2.1 General."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-CreateWithoutConstraints>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-CreateWithoutConstraints>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-CreateWithoutConstraints>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-CreateWithoutConstraints>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-CreateWithoutConstraints>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonContainer-RestrictUriReUseSlug> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonContainer-RestrictUriReUseSlug";
+  dc:description "LDP servers that allow member creation via POST SHOULD NOT re-use URIs."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RestrictUriReUseSlug>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RestrictUriReUseSlug>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RestrictUriReUseSlug>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RestrictUriReUseSlug>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RestrictUriReUseSlug>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonContainer-RestrictUriReUseNoSlug> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonContainer-RestrictUriReUseNoSlug";
+  dc:description "LDP servers that allow member creation via POST SHOULD NOT re-use URIs."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RestrictUriReUseNoSlug>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RestrictUriReUseNoSlug>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RestrictUriReUseNoSlug>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RestrictUriReUseNoSlug>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RestrictUriReUseNoSlug>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonContainer-AcceptPostResponseHeader> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonContainer-AcceptPostResponseHeader";
+  dc:description "LDP servers that support POST MUST include an Accept-Post response header on HTTP OPTIONS responses, listing post document media type(s) supported by the server."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-AcceptPostResponseHeader>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-AcceptPostResponseHeader>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-AcceptPostResponseHeader>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-AcceptPostResponseHeader>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-AcceptPostResponseHeader>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonContainer-RejectPutModifyingContainmentTriples> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonContainer-RejectPutModifyingContainmentTriples";
+  dc:description "LDP servers SHOULD NOT allow HTTP PUT to update an LDPC’s containment triples; if the server receives such a request, it SHOULD respond with a 409 (Conflict) status code."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RejectPutModifyingContainmentTriples>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RejectPutModifyingContainmentTriples>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RejectPutModifyingContainmentTriples>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RejectPutModifyingContainmentTriples>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RejectPutModifyingContainmentTriples>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonContainer-RestrictPutReUseUri> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonContainer-RestrictPutReUseUri";
+  dc:description "LDP servers that allow LDPR creation via PUT SHOULD NOT re-use URIs. For RDF representations (LDP-RSs),the created resource can be thought of as an RDF named graph [rdf11-concepts]."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RestrictPutReUseUri>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RestrictPutReUseUri>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RestrictPutReUseUri>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RestrictPutReUseUri>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RestrictPutReUseUri>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonContainer-DeleteRemovesContainmentTriple> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonContainer-DeleteRemovesContainmentTriple";
+  dc:description "When an LDPR identified by the object of a containment triple is deleted, the LDPC server MUST also remove the LDPR from the containing LDPC by removing the corresponding containment triple."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-DeleteRemovesContainmentTriple>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-DeleteRemovesContainmentTriple>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-DeleteRemovesContainmentTriple>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-DeleteRemovesContainmentTriple>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-DeleteRemovesContainmentTriple>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonContainer-PatchMethod> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonContainer-PatchMethod";
+  dc:description "LDP servers are RECOMMENDED to support HTTP PATCH as the preferred method for updating an LDPC's empty-container triples. "@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PatchMethod>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PatchMethod>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PatchMethod>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PatchMethod>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PatchMethod>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonContainer-RdfTypeLdpContainer> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonContainer-RdfTypeLdpContainer";
+  dc:description "The representation of a LDPC MAY have an rdf:type of ldp:Container for Linked Data Platform Container. Non-normative note: LDPCs might have additional types, like any LDP-RS. "@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RdfTypeLdpContainer>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RdfTypeLdpContainer>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RdfTypeLdpContainer>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:fail ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RdfTypeLdpContainer>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:fail ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-RdfTypeLdpContainer>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonContainer-ServerHonorsSlug> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonContainer-ServerHonorsSlug";
+  dc:description "LDP servers MAY allow clients to suggest the URI for a resource created through POST, using the HTTP Slug header as defined in [RFC5023]. LDP adds no new requirements to this usage, so its presence functions as a client hint to the server providing a desired string to be incorporated into the server's final choice of resource URI."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-ServerHonorsSlug>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-ServerHonorsSlug>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-ServerHonorsSlug>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-ServerHonorsSlug>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-ServerHonorsSlug>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#CommonContainer-PostJsonLd> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "CommonContainer-PostJsonLd";
+  dc:description "LDP servers SHOULD accept a request entity body with a request header of Content-Type with value of application/ld+json [JSON-LD]."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PostJsonLd>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PostJsonLd>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PostJsonLd>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PostJsonLd>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#CommonContainer-PostJsonLd>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#NonRDFSource-PostNonRDFSource> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "NonRDFSource-PostNonRDFSource";
+  dc:description "LDP servers may accept an HTTP POST of non-RDF representations (LDP-NRs) for creation of any kind of resource, for example binary resources."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostNonRDFSource>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostNonRDFSource>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostNonRDFSource>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostNonRDFSource>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostNonRDFSource>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceAndGetFromContainer> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "NonRDFSource-PostResourceAndGetFromContainer";
+  dc:description "LDP servers may accept an HTTP POST of non-RDF representations (LDP-NRs) for creation of any kind of resource, for example binary resources."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceAndGetFromContainer>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceAndGetFromContainer>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceAndGetFromContainer>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceAndGetFromContainer>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceAndGetFromContainer>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceGetBinary> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "NonRDFSource-PostResourceGetBinary";
+  dc:description "LDP servers may host a mixture of LDP-RSs and LDP-NRs. For example, it is common for LDP servers to need to host binary or text resources that do not have useful RDF representations."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceGetBinary>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceGetBinary>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceGetBinary>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceGetBinary>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceGetBinary>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceGetMetadataAndBinary> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "NonRDFSource-PostResourceGetMetadataAndBinary";
+  dc:description "Each LDP Non-RDF Source must also be a conforming LDP Resource. LDP Non-RDF Sources may not be able to fully express their state using RDF."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceGetMetadataAndBinary>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceGetMetadataAndBinary>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceGetMetadataAndBinary>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceGetMetadataAndBinary>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceGetMetadataAndBinary>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceAndCheckLink> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "NonRDFSource-PostResourceAndCheckLink";
+  dc:description "LDP servers exposing an LDP Non-RDF Source may advertise this by exposing a HTTP Link header with a target URI of http://www.w3.org/ns/ldp#NonRDFSource, and a link relation type of type (that is, rel='type') in responses to requests made to the LDP-NR's HTTP Request-URI."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceAndCheckLink>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceAndCheckLink>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceAndCheckLink>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceAndCheckLink>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceAndCheckLink>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceAndCheckAssociatedResource> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "NonRDFSource-PostResourceAndCheckAssociatedResource";
+  dc:description "Upon successful creation of an LDP-NR (HTTP status code of 201-Created and URI indicated by Location response header), LDP servers may create an associated LDP-RS to contain data about the newly created LDP-NR. If a LDP server creates this associated LDP-RS it must indicate its location on the HTTP response using the HTTP Link response header with link relation describedby and href to be the URI of the associated LDP-RS resource."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceAndCheckAssociatedResource>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceAndCheckAssociatedResource>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceAndCheckAssociatedResource>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceAndCheckAssociatedResource>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-PostResourceAndCheckAssociatedResource>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#NonRDFSource-DeleteNonRDFSourceDeletesAssociatedResource> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "NonRDFSource-DeleteNonRDFSourceDeletesAssociatedResource";
+  dc:description "When a contained LDPR is deleted, and the LDPC server created anassociated LDP-RS (see the LDPC POST section), the LDPC server must alsodelete the associated LDP-RS it created."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-DeleteNonRDFSourceDeletesAssociatedResource>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-DeleteNonRDFSourceDeletesAssociatedResource>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-DeleteNonRDFSourceDeletesAssociatedResource>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-DeleteNonRDFSourceDeletesAssociatedResource>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-DeleteNonRDFSourceDeletesAssociatedResource>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#NonRDFSource-OptionsHasSameLinkHeader> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "NonRDFSource-OptionsHasSameLinkHeader";
+  dc:description "When responding to requests whose request-URI is a LDP-NR with anassociated LDP-RS, a LDPC server must provide the same HTTP Link responseheader as is required in the create response"@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-OptionsHasSameLinkHeader>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-OptionsHasSameLinkHeader>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-OptionsHasSameLinkHeader>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-OptionsHasSameLinkHeader>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#NonRDFSource-OptionsHasSameLinkHeader>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#BasicContainer-ContainerSupportsHttpLinkHeader> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "BasicContainer-ContainerSupportsHttpLinkHeader";
+  dc:description "LDP servers exposing LDPCs MUST advertise their LDP support by exposing a HTTP Link header with a target URI matching the type of container (see below) the server supports, and a link relation type of type (that is, rel='type') in all responses to requests made to the LDPC's HTTP Request-URI."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#BasicContainer-ContainerSupportsHttpLinkHeader>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#BasicContainer-ContainerSupportsHttpLinkHeader>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#BasicContainer-ContainerSupportsHttpLinkHeader>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#BasicContainer-ContainerSupportsHttpLinkHeader>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#BasicContainer-ContainerSupportsHttpLinkHeader>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#BasicContainer-ContainerTypeIsBasicContainer> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "BasicContainer-ContainerTypeIsBasicContainer";
+  dc:description "Each LDP Basic Container MUST also be a conforming LDP Container in section 5.2 Container along the following restrictions in this section."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#bc>;
+      earl:test <http://w3c.github.io/ldp-testsuite#BasicContainer-ContainerTypeIsBasicContainer>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#BasicContainer-ContainerTypeIsBasicContainer>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#BasicContainer-ContainerTypeIsBasicContainer>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#BasicContainer-ContainerTypeIsBasicContainer>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#BasicContainer-ContainerTypeIsBasicContainer>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#DirectContainer-HttpLinkHeader> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "DirectContainer-HttpLinkHeader";
+  dc:description "LDP servers exposing LDPCs MUST advertise their LDP support by exposing a HTTP Link header with a target URI matching the type of container (see below) the server supports, and a link relation type of type (that is, rel='type') in all responses to requests made to the LDPC's HTTP Request-URI."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-HttpLinkHeader>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-HttpLinkHeader>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-HttpLinkHeader>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-HttpLinkHeader>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-HttpLinkHeader>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#DirectContainer-UseMemberPredicate> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "DirectContainer-UseMemberPredicate";
+  dc:description "LDP Direct Containers SHOULD use the ldp:member predicate as an LDPC's membership predicate if there is no obvious predicate from an application vocabulary to use."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-UseMemberPredicate>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-UseMemberPredicate>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-UseMemberPredicate>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-UseMemberPredicate>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-UseMemberPredicate>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#DirectContainer-MemberResourceTriple> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "DirectContainer-MemberResourceTriple";
+  dc:description "Each LDP Direct Container representation MUST contain exactly one triple whose subject is the LDPC URI, whose predicate is the ldp:membershipResource, and whose object is the LDPC's membership-constant-URI. Commonly the LDPC's URI is the membership-constant-URI, but LDP does not require this."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-MemberResourceTriple>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-MemberResourceTriple>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-MemberResourceTriple>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-MemberResourceTriple>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-MemberResourceTriple>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#DirectContainer-MemberRelationOrIsMemberOfRelationTripleExists> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "DirectContainer-MemberRelationOrIsMemberOfRelationTripleExists";
+  dc:description "Each LDP Direct Container representation must contain exactly one triple whose subject is the LDPC URI, and whose predicate is either ldp:hasMemberRelation or ldp:isMemberOfRelation. The object of the triple is constrained by other sections, such as ldp:hasMemberRelation or ldp:isMemberOfRelation, based on the membership triple pattern used by the container."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-MemberRelationOrIsMemberOfRelationTripleExists>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-MemberRelationOrIsMemberOfRelationTripleExists>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-MemberRelationOrIsMemberOfRelationTripleExists>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-MemberRelationOrIsMemberOfRelationTripleExists>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-MemberRelationOrIsMemberOfRelationTripleExists>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#DirectContainer-ActAsIfInsertedContentRelationTripleExists> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "DirectContainer-ActAsIfInsertedContentRelationTripleExists";
+  dc:description "LDP Direct Containers MUST behave as if they have a (LDPC URI, ldp:insertedContentRelation , ldp:MemberSubject) triple, but LDP imposes no requirement to materialize such a triple in the LDP-DC representation."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-ActAsIfInsertedContentRelationTripleExists>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-ActAsIfInsertedContentRelationTripleExists>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-ActAsIfInsertedContentRelationTripleExists>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-ActAsIfInsertedContentRelationTripleExists>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-ActAsIfInsertedContentRelationTripleExists>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#DirectContainer-PostResourceUpdatesTriples> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "DirectContainer-PostResourceUpdatesTriples";
+  dc:description "When a successful HTTP POST request to an LDPC results in the creation of an LDPR, the LDPC MUST update its membership triples to reflect that addition, and the resulting membership triple MUST be consistent with any LDP-defined predicates it exposes."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-PostResourceUpdatesTriples>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-PostResourceUpdatesTriples>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-PostResourceUpdatesTriples>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-PostResourceUpdatesTriples>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-PostResourceUpdatesTriples>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#DirectContainer-DeleteResourceUpdatesTriples> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "DirectContainer-DeleteResourceUpdatesTriples";
+  dc:description "When an LDPR identified by the object of a membership triple which was originally created by the LDP-DC is deleted, the LDPC server MUST also remove the corresponding membership triple."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-DeleteResourceUpdatesTriples>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-DeleteResourceUpdatesTriples>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-DeleteResourceUpdatesTriples>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-DeleteResourceUpdatesTriples>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-DeleteResourceUpdatesTriples>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#DirectContainer-PreferMembershipTriples> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "DirectContainer-PreferMembershipTriples";
+  dc:description "LDP servers SHOULD respect all of a client's LDP-defined hints, for example which subsets of LDP-defined state the client is interested in processing, to influence the set of triples returned in representations of an LDPC, particularly for large LDPCs. See also [LDP-PAGING]."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-PreferMembershipTriples>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc1>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-PreferMembershipTriples>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc2>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-PreferMembershipTriples>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc3>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-PreferMembershipTriples>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+    [ a earl:Assertion;
+      earl:assertedBy <http://eclipse.org/lyo#dc4>;
+      earl:test <http://w3c.github.io/ldp-testsuite#DirectContainer-PreferMembershipTriples>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:automatic;
+      earl:result [ a earl:TestResult; earl:outcome earl:pass ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#IndirectContainer-ContainerSupportsHttpLinkHeader> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "IndirectContainer-ContainerSupportsHttpLinkHeader";
+  dc:description "LDP servers exposing LDPCs MUST advertise their LDP support by exposing a HTTP Link header with a target URI matching the type of container (see below) the server supports, and a link relation type of type (that is, rel='type') in all responses to requests made to the LDPC's HTTP Request-URI."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#IndirectContainer-ContainerSupportsHttpLinkHeader>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#IndirectContainer-ContainerSupportsHttpLinkHeader>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#IndirectContainer-ContainerSupportsHttpLinkHeader>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#IndirectContainer-ContainerSupportsHttpLinkHeader>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#IndirectContainer-ContainerSupportsHttpLinkHeader>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#IndirectContainer-CreateIndirectContainer> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "IndirectContainer-CreateIndirectContainer";
+  dc:description "Each LDP Indirect Container MUST also be a conforming LDP Direct Container in section 5.4 Direct along the following restrictions."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#IndirectContainer-CreateIndirectContainer>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#IndirectContainer-CreateIndirectContainer>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#IndirectContainer-CreateIndirectContainer>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#IndirectContainer-CreateIndirectContainer>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#IndirectContainer-CreateIndirectContainer>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#IndirectContainer-ContainsLdpcUri> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "IndirectContainer-ContainsLdpcUri";
+  dc:description "LDP Indirect Containers MUST contain exactly one triple whose subject is the LDPC URI, whose predicate is ldp:insertedContentRelation, and whose object ICR describes how the member-derived-URI in the container's membership triples is chosen."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#IndirectContainer-ContainsLdpcUri>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#IndirectContainer-ContainsLdpcUri>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#IndirectContainer-ContainsLdpcUri>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#IndirectContainer-ContainsLdpcUri>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#IndirectContainer-ContainsLdpcUri>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
+<http://w3c.github.io/ldp-testsuite#IndirectContainer-PostResource> a earl:TestCriterion, earl:TestCase, <http://www.w3.org/ns/earl#TestCase>;
+  dc:title "IndirectContainer-PostResource";
+  dc:description "LDPCs whose ldp:insertedContentRelation triple has an object other than ldp:MemberSubject and that create new resources MUST add a triple to the container whose subject is the container's URI, whose predicate is ldp:contains, and whose object is the newly created resource's URI (which will be different from the member-derived URI in this case). This ldp:contains triple can be the only link from the container to the newly created resource in certain cases."@en;
+  mf:action <>;
+  earl:assertions (
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#IndirectContainer-PostResource>;
+      earl:subject <http://eclipse.org/lyo#bc>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#IndirectContainer-PostResource>;
+      earl:subject <http://eclipse.org/lyo#dc1>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#IndirectContainer-PostResource>;
+      earl:subject <http://eclipse.org/lyo#dc2>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#IndirectContainer-PostResource>;
+      earl:subject <http://eclipse.org/lyo#dc3>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+    [ a earl:Assertion;
+      earl:test <http://w3c.github.io/ldp-testsuite#IndirectContainer-PostResource>;
+      earl:subject <http://eclipse.org/lyo#dc4>;
+      earl:mode earl:notAvailable;
+      earl:result [ a earl:TestResult; earl:outcome earl:untested ]]
+  ) .
+
