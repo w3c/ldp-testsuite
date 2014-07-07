@@ -6,7 +6,7 @@
 @prefix mf:    <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#> .
 @prefix doap:  <http://usefulinc.com/ns/doap#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix ldpt:  <http://w3c.github.io/ldp-testsuite#> .
+@prefix ldpt:  <http://www.w3c.org/ns/ldp/test#> .
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;

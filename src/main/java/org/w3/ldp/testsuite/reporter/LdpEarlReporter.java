@@ -21,6 +21,7 @@ import org.testng.xml.XmlSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.vocab.Earl;
+import org.w3.ldp.testsuite.vocab.LDP;
 
 import com.github.jsonldjava.core.JsonLdError;
 import com.github.jsonldjava.core.JsonLdOptions;
@@ -47,8 +48,6 @@ public class LdpEarlReporter implements IReporter {
 	private BufferedWriter writerTurtle;
 	private BufferedWriter writerJson;
 	private Model model;
-
-	private static final String LDPT_NAME = "http://w3c.github.io/ldp-testsuite#";
 
 	private static final String PASS = "TEST PASSED";
 	private static final String FAIL = "TEST FAILED";
@@ -77,7 +76,7 @@ public class LdpEarlReporter implements IReporter {
 	private static String description;
 	
 	private static Property ranAsClass = ResourceFactory
-			.createProperty(LDPT_NAME + "ranAsClass");
+			.createProperty(LDP.LDPT_NAMESPACE + "ranAsClass");
 
 	static {
 		JenaJSONLD.init();
@@ -314,20 +313,7 @@ public class LdpEarlReporter implements IReporter {
 
 	private void createModel() {
 		model = ModelFactory.createDefaultModel();
-		writePrefixes();
-	}
-
-	private void writePrefixes() {
-		model.setNsPrefix("doap", "http://usefulinc.com/ns/doap#");
-		model.setNsPrefix("foaf", "http://xmlns.com/foaf/0.1/");
-		model.setNsPrefix("earl", "http://www.w3.org/ns/earl#");
-		model.setNsPrefix("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
-		model.setNsPrefix("rdfs", "http://www.w3.org/2000/01/rdf-schema#");
-		model.setNsPrefix("mf",
-				"http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#");
-		model.setNsPrefix("rdft", "http://www.w3.org/ns/rdftest#");
-		model.setNsPrefix("dcterms", "http://purl.org/dc/terms/");
-		model.setNsPrefix("ldpt", LDPT_NAME);
+		LdpEarlTestManifest.writePrefixes(model);
 	}
 
 }

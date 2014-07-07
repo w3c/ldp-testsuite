@@ -18,7 +18,8 @@ import org.w3.ldp.testsuite.test.DirectContainerTest;
 import org.w3.ldp.testsuite.test.IndirectContainerTest;
 import org.w3.ldp.testsuite.test.NonRDFSourceTest;
 import org.w3.ldp.testsuite.test.RdfSourceTest;
-import org.w3.ldp.testsuite.vocab.RdfLdp;
+import org.w3.ldp.testsuite.vocab.LDP;
+import org.w3.ldp.testsuite.vocab.TestDescription;
 
 import com.github.jsonldjava.jena.JenaJSONLD;
 import com.hp.hpl.jena.rdf.model.Literal;
@@ -50,8 +51,6 @@ public class LdpEarlTestManifest {
 	private static Class<CommonResourceTest> commonResourceTest = CommonResourceTest.class;
 	private static Class<NonRDFSourceTest> nonRdfSourceTest = NonRDFSourceTest.class;
 
-	private static final String LDPT_PREFIX = "ldpt";
-	private static final String LDPT_NAME = "http://w3c.github.io/ldp-testsuite#";
 	private static final String TURTLE = "TURTLE";
 
 	private static final String outputDir = "report"; // directory where results
@@ -70,9 +69,9 @@ public class LdpEarlTestManifest {
 
 		model = ModelFactory.createDefaultModel();
 		declared = ResourceFactory
-				.createProperty(LDPT_NAME + "declaredInClass");
+				.createProperty(LDP.LDPT_NAMESPACE + "declaredInClass");
 
-		writePrefixes();
+		writePrefixes(model);
 		// Use ArrayList to preserve order
 		ArrayList<Resource> testcases = new ArrayList<Resource>();
 		writeTestClasses(testcases);
@@ -88,7 +87,7 @@ public class LdpEarlTestManifest {
 	}
 
 	private static void writeManifest(ArrayList<Resource> testcases) {
-		Resource manifest = model.createResource(LDPT_NAME,
+		Resource manifest = model.createResource(LDP.LDPT_NAMESPACE,
 				TestManifest.Manifest);
 		manifest.addProperty(RDFS.comment, "LDP tests");
 		Resource[] ra={};
@@ -96,7 +95,7 @@ public class LdpEarlTestManifest {
 		manifest.addProperty(TestManifest.entries, l);
 	}
 
-	private static void writePrefixes() {
+	public static void writePrefixes(Model model) {
 		model.setNsPrefix("doap", "http://usefulinc.com/ns/doap#");
 		model.setNsPrefix("foaf", "http://xmlns.com/foaf/0.1/");
 		model.setNsPrefix("earl", "http://www.w3.org/ns/earl#");
@@ -106,7 +105,8 @@ public class LdpEarlTestManifest {
 				"http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#");
 		model.setNsPrefix("rdft", "http://www.w3.org/ns/rdftest#");
 		model.setNsPrefix("dcterms", "http://purl.org/dc/terms/");
-		model.setNsPrefix(LDPT_PREFIX, LDPT_NAME);
+		model.setNsPrefix("td", "http://www.w3.org/2006/03/test-description#");
+		model.setNsPrefix(LDP.LDPT_PREFIX, LDP.LDPT_NAMESPACE);
 	}
 
 	private static <T> void writeInfo(Class<T> testClass, ArrayList<Resource> testcases) {
@@ -135,11 +135,12 @@ public class LdpEarlTestManifest {
 			Literal date = model.createTypedLiteral(cal);
 
 			String testCaseName = createTestCaseName(name, method.getName());
-			String testCaseURL = LDPT_NAME + testCaseName;
+			String testCaseURL = LDP.LDPT_NAMESPACE + testCaseName;
 
 			Resource testCaseResource = model.createResource(testCaseURL);
 			testCaseResource.addProperty(RDF.type, EARL.TestCase);
-			testCaseResource.addProperty(TestManifest.name,testCaseName);
+			testCaseResource.addProperty(RDFS.label, testCaseName);
+			testCaseResource.addProperty(TestManifest.name, testCaseName);
 			testCaseResource.addProperty(DCTerms.date, date);
 
 			testCaseResource.addProperty(RDFS.comment, test.description());
@@ -151,17 +152,31 @@ public class LdpEarlTestManifest {
 
 			switch (testLdp.approval()) {
 			case WG_APPROVED:
-				testCaseResource.addProperty(RdfLdp.Approval, RdfLdp.approved);
+				testCaseResource.addProperty(TestDescription.reviewStatus, TestDescription.approved);
 				break;
 			case WG_PENDING:
-				testCaseResource.addProperty(RdfLdp.Approval, RdfLdp.propopsed);
+				testCaseResource.addProperty(TestDescription.reviewStatus, TestDescription.unreviewed);
 				break;
 			default:
-				testCaseResource.addProperty(RdfLdp.Approval, RdfLdp.propopsed);
+				testCaseResource.addProperty(TestDescription.reviewStatus, TestDescription.unreviewed);
 				break;
 			}
 
 			testCaseResource.addProperty(declared, name);
+			Resource specRef = null;
+			if (testLdp.specRefUri() != null) {
+				specRef = model.createResource(testLdp.specRefUri());
+				testCaseResource.addProperty(RDFS.seeAlso, specRef);
+			}
+			
+			if (test.description() != null && test.description().length() > 0) {
+				Resource excerpt = model.createResource(TestDescription.Excerpt);
+				excerpt.addLiteral(TestDescription.includesText, test.description());
+				if (specRef != null) {
+					excerpt.addProperty(RDFS.seeAlso, specRef);
+				}
+				testCaseResource.addProperty(TestDescription.specificationReference, excerpt);
+			}
 			
 			return testCaseResource;
 		}
@@ -169,7 +184,7 @@ public class LdpEarlTestManifest {
 	}
 
 	public static String createTestCaseURL(String className, String methodName) {
-		return LDPT_NAME + createTestCaseName(className, methodName);
+		return LDP.LDPT_NAMESPACE + createTestCaseName(className, methodName);
 	}
 	
 	public static String createTestCaseName(String className, String methodName) {

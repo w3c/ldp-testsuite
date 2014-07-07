@@ -31,6 +31,9 @@ public class LDP {
 	 */
 	public static final String PREFIX = "ldp";
 
+	public static final String LDPT_PREFIX = "ldpt";
+	public static final String LDPT_NAMESPACE = "http://www.w3c.org/ns/ldp/test#";
+	
 	/**
 	 * BasicContainer
 	 * <p/>
