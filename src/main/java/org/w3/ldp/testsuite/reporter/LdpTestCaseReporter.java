@@ -43,7 +43,7 @@ public class LdpTestCaseReporter {
 	private static int clientTest = 0;
 
 	private static int manual = 0;
-	private static int disabled = 0;
+	// private static int disabled = 0;
 
 	private static int must = 0;
 	private static int should = 0;
@@ -170,7 +170,7 @@ public class LdpTestCaseReporter {
 			._li();
 		html._ul();
 
-		html.br().b().a(href("#tobeapproved")).write(mustPend + shouldPend + mayPend 
+		html.br().b().a(href("#tobeapproved")).write(readyToBeApproved.size()
 				+ " Ready for WG Approval")._a()._b();
 
 		html._td();
