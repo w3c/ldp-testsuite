@@ -39,12 +39,16 @@ public class LdpTestCaseReporter {
 	private static HashMap<String, String> readyToBeApproved = new HashMap<String, String>(); // key==method, value==class
 	private static HashMap<String, String> needCode = new HashMap<String, String>(); // key==method, value==class
 
+	private static final int MUST = 0;
+	private static final int SHOULD = 1;
+	private static final int MAY = 2;
+	
 	private static int totalTests = 0;
 	private static int automated = 0;
 
-	private static int must = 0;
-	private static int should = 0;
-	private static int may = 0;
+	private static int mustTotal = 0;
+	private static int shouldTotal = 0;
+	private static int mayTotal = 0;
 
 	private static int[] auto  = {0, 0, 0};
 	private static int[] unimplmnt  = {0, 0, 0};
@@ -159,9 +163,9 @@ public class LdpTestCaseReporter {
 		html.ul();
 		html.li().b().write("" + refURI.size())._b().write(" Requirements Covered")
 				._li();
-		html.ul().li().b().write("" + must)._b().write(" MUST")._li();
-		html.li().b().write("" + should)._b().write(" SHOULD")._li();
-		html.li().b().write("" + may)._b().write(" MAY")._li()._ul();
+		html.ul().li().b().write("" + mustTotal)._b().write(" MUST")._li();
+		html.li().b().write("" + shouldTotal)._b().write(" SHOULD")._li();
+		html.li().b().write("" + mayTotal)._b().write(" MAY")._li()._ul();
 		html._ul();
 
 		html.ul();
@@ -169,10 +173,10 @@ public class LdpTestCaseReporter {
 		html.li().b().write(implemented + " ")._b().write("Requirements Automated")
 				._li();
 		html.ul();
-		html.li().b().write(auto[0] + " / " + must)._b().write(" MUST")._li();
-		html.li().b().write(auto[1] + " / " + should)._b().write(" SHOULD")
+		html.li().b().write(auto[MUST] + " / " + mustTotal)._b().write(" MUST")._li();
+		html.li().b().write(auto[SHOULD] + " / " + shouldTotal)._b().write(" SHOULD")
 				._li();
-		html.li().b().write(auto[2] + " / " + may)._b().write(" MAY")._li();
+		html.li().b().write(auto[MAY] + " / " + mayTotal)._b().write(" MAY")._li();
 		html._ul();
 		html._ul();
 		
@@ -209,9 +213,9 @@ public class LdpTestCaseReporter {
 		html.li().b().write(unimplemented + " ")
 				._b().write("Requirements not Implemented")._li();
 		html.ul();
-		html.li().b().write(unimplmnt[0] + " ")._b().write("MUST")._li();
-		html.li().b().write(unimplmnt[1] + " ")._b().write("SHOULD")._li();
-		html.li().b().write(unimplmnt[2] + " ")._b().write("MAY")._li();
+		html.li().b().write(unimplmnt[MUST] + " ")._b().write("MUST")._li();
+		html.li().b().write(unimplmnt[SHOULD] + " ")._b().write("SHOULD")._li();
+		html.li().b().write(unimplmnt[MAY] + " ")._b().write("MAY")._li();
 		html._ul();
 		html._ul()._td();
 		html._tr();
@@ -351,19 +355,9 @@ public class LdpTestCaseReporter {
 			throws IOException {
 		int total = 0, must = 0, should = 0, may = 0;
 		
-		int auto = 0;
 		int[] autoReq = { 0, 0, 0 }, unimReq = { 0, 0, 0 }, clientReq = { 0, 0,	0 }, manReq = { 0, 0, 0 };
-		int unimpl = 0;
-		int client = 0;
-		int manual = 0;
-		
-		int approve = 0;
 		int[] apprReq = { 0, 0, 0 }, pendReq = { 0, 0, 0 }, extReq = { 0, 0, 0 }, 
 				depreReq = {0, 0, 0 }, clariReq = { 0, 0, 0 };
-		int pend = 0;
-		int extend = 0;
-		int depre = 0;
-		int clarify = 0;
 
 		Method[] methods = classType.getDeclaredMethods();
 
@@ -382,89 +376,80 @@ public class LdpTestCaseReporter {
 					may++;
 				switch (testLdp.testMethod()) {
 				case AUTOMATED:
-					auto++;
 					if (group.contains("MUST"))
-						autoReq[0] = ++autoReq[0];
+						++autoReq[MUST];
 					if (group.contains("SHOULD"))
-						autoReq[1] = ++autoReq[1];
+						++autoReq[SHOULD];
 					if (group.contains("MAY"))
-						autoReq[2] = ++autoReq[2];
+						++autoReq[MAY];
 					break;
 				case NOT_IMPLEMENTED:
-					unimpl++;
 					if (group.contains("MUST"))
-						unimReq[0] = ++unimReq[0];
+						++unimReq[MUST];
 					if (group.contains("SHOULD"))
-						unimReq[1] = ++unimReq[1];
+						++unimReq[SHOULD];
 					if (group.contains("MAY"))
-						unimReq[2] = ++unimReq[2];
+						++unimReq[MAY];
 					break;
 				case MANUAL:
 					if (group.contains("MUST"))
-						manReq[0] = ++manReq[0];
+						++manReq[MUST];
 					if (group.contains("SHOULD"))
-						manReq[1] = ++manReq[1];
+						++manReq[SHOULD];
 					if (group.contains("MAY"))
-						manReq[2] = ++manReq[2];
-					manual++;
+						++manReq[MAY];
 					break;
 				case CLIENT_ONLY:
-					client++;
 					if (group.contains("MUST"))
-						clientReq[0] = ++clientReq[0];
+						++clientReq[MUST];
 					if (group.contains("SHOULD"))
-						clientReq[1] = ++clientReq[1];
+						++clientReq[SHOULD];
 					if (group.contains("MAY"))
-						clientReq[2] = ++clientReq[2];
+						++clientReq[MAY];
 					break;
 				default:
 					break;
 				}
 				switch (testLdp.approval()) {
 				case WG_PENDING:
-					pend++;
 					if (group.contains("MUST"))
-						pendReq[0] = ++pendReq[0];
+						++pendReq[MUST];
 					if (group.contains("SHOULD"))
-						pendReq[1] = ++pendReq[1];
+						++pendReq[SHOULD];
 					if (group.contains("MAY"))
-						pendReq[2] = ++pendReq[2];
+						++pendReq[MAY];
 					break;
 				case WG_APPROVED:
-					approve++;
 					if (group.contains("MUST"))
-						apprReq[0] = ++apprReq[0];
+						++apprReq[MUST];
 					if (group.contains("SHOULD"))
-						apprReq[1] = ++apprReq[1];
+						++apprReq[SHOULD];
 					if (group.contains("MAY"))
-						apprReq[2] = ++apprReq[2];
+						++apprReq[MAY];
 					break;
 				case WG_EXTENSION:
-					extend++;
 					if (group.contains("MUST"))
-						extReq[0] = ++extReq[0];
+						++extReq[MUST];
 					if (group.contains("SHOULD"))
-						extReq[0] = ++extReq[0];
+						++extReq[SHOULD];
 					if (group.contains("MAY"))
-						extReq[1] = ++extReq[1];
+						++extReq[MAY];
 					break;
 				case WG_DEPRECATED:
-					depre++;
 					if (group.contains("MUST"))
-						depreReq[0] = ++depreReq[0];
+						++depreReq[MUST];
 					if (group.contains("SHOULD"))
-						depreReq[1] = ++depreReq[1];
+						++depreReq[SHOULD];
 					if (group.contains("MAY"))
-						depreReq[2] = ++depreReq[2];
+						++depreReq[MAY];
 					break;
 				case WG_CLARIFICATION:
-					clarify++;
 					if (group.contains("MUST"))
-						clariReq[0] = ++clariReq[0];
+						++clariReq[MUST];
 					if (group.contains("SHOULD"))
-						clariReq[1] = ++clariReq[1];
+						++clariReq[SHOULD];
 					if (group.contains("MAY"))
-						clariReq[2] = ++clariReq[2];
+						++clariReq[MAY];
 					break;
 				default:
 					break;
@@ -495,24 +480,33 @@ public class LdpTestCaseReporter {
 		html.br().br();
 
 		html._td().td();
+		int approve = getTotal(apprReq);
 		if(approve > 0)
 			html.b().write("APPROVED: ")._b().write("" + approve).br();
+		int pend = getTotal(pendReq);
 		if(pend > 0)
 			html.b().write("PENDING: ")._b().write("" + pend).br();
+		int extend = getTotal(extReq);
 		if (extend > 0)
 			html.b().write("EXTENDS: ")._b().write("" + extend).br();
+		int depre = getTotal(depreReq);
 		if (depre > 0)
 			html.b().write("DEPRECATED: ")._b().write("" + depre).br();
+		int clarify = getTotal(clariReq);
 		if(clarify > 0)
 			html.b().write("CLARIFICATION: ")._b().write("" + clarify).br();		
 
 		html._td().td();
+		int auto = getTotal(autoReq);
 		if (auto > 0)
 			html.b().write("AUTOMATED: ")._b().write("" + auto).br();
+		int unimpl = getTotal(unimReq);
 		if (unimpl > 0)
 			html.b().write("UNIMPLEMENTED: ")._b().write("" + unimpl).br();
+		int client = getTotal(clientReq);
 		if (client > 0)
 			html.b().write("CLIENT ONLY: ")._b().write("" + client).br();
+		int manual = getTotal(manReq);
 		if (manual > 0)
 			html.b().write("MANUAL: ")._b().write("" + manual).br();
 
@@ -630,26 +624,25 @@ public class LdpTestCaseReporter {
 				String group = Arrays.toString(test.groups());
 				if (!refURI.contains(testLdp.specRefUri())) { // for just the requirement testing
 					refURI.add(testLdp.specRefUri());
-					//coverage++;
 					if (group.contains("MUST")) {
-						must++;
+						mustTotal++;
 						switch (methodStatus) {
 						case AUTOMATED:
 							automated++;
-							auto[0] = ++auto[0];
+							++auto[MUST];
 							if (testApproval.equals(STATUS.WG_PENDING))
 								readyToBeApproved.put(method.getName(), method.getDeclaringClass().getCanonicalName());
 							break;
 						case CLIENT_ONLY:
 							clients.add(method.getName());
-							client[0] = ++client[0];
+							++client[MUST];
 							break;
 						case MANUAL:
 							manuals.add(method.getName());
-							manual[0] = ++manual[0];
+							++manual[MUST];
 							break;
 						case NOT_IMPLEMENTED:
-							unimplmnt[0] = ++unimplmnt[0];
+							++unimplmnt[MUST];
 							needCode.put(method.getName(), method.getDeclaringClass().getCanonicalName());
 							break;
 						default:
@@ -657,23 +650,23 @@ public class LdpTestCaseReporter {
 						}
 						switch (testApproval) {
 						case WG_APPROVED:
-							approve[0] = ++approve[0];
+							++approve[MUST];
 							approved++;
 							break;
 						case WG_CLARIFICATION:
 							clarification++;
-							clarify[0] = ++clarify[0];
+							++clarify[MUST];
 							break;
 						case WG_DEPRECATED:
 							deprecated++;;
-							deprctd[0] = ++deprctd[0];
+							++deprctd[MUST];
 							break;
 						case WG_EXTENSION:
 							extended++;
-							extnd[0] = ++extnd[0];
+							++extnd[MUST];
 							break;
 						case WG_PENDING:
-							pend[0] = ++pend[0];
+							++pend[MUST];
 							pending++;
 						default:
 							break;
@@ -681,24 +674,24 @@ public class LdpTestCaseReporter {
 
 					}
 					if (group.contains("SHOULD")) {
-						should++;
+						shouldTotal++;
 						switch (methodStatus) {
 						case AUTOMATED:
 							automated++;
-							auto[1] = ++auto[1];
+							++auto[SHOULD];
 							if (testApproval.equals(STATUS.WG_PENDING))
 								readyToBeApproved.put(method.getName(), method.getDeclaringClass().getCanonicalName());
 							break;
 						case CLIENT_ONLY:
 							clients.add(method.getName());
-							client[1] = ++client[1];
+							++client[SHOULD];
 							break;
 						case MANUAL:
 							manuals.add(method.getName());
-							manual[1] = ++manual[1];
+							++manual[SHOULD];
 							break;
 						case NOT_IMPLEMENTED:
-							unimplmnt[1] = ++unimplmnt[1];
+							++unimplmnt[SHOULD];
 							needCode.put(method.getName(), method.getDeclaringClass().getCanonicalName());
 							break;
 						default:
@@ -706,47 +699,47 @@ public class LdpTestCaseReporter {
 						}
 						switch (testApproval) {
 						case WG_APPROVED:
-							approve[1] = ++approve[1];
+							++approve[SHOULD];
 							approved++;
 							break;
 						case WG_CLARIFICATION:
 							clarification++;
-							clarify[1] = ++clarify[1];
+							++clarify[SHOULD];
 							break;
 						case WG_DEPRECATED:
 							deprecated++;
-							deprctd[1] = ++deprctd[1];
+							++deprctd[SHOULD];
 							break;
 						case WG_EXTENSION:
 							extended++;
-							extnd[1] = ++extnd[1];
+							++extnd[SHOULD];
 							break;
 						case WG_PENDING:
-							pend[1] = ++ pend[1];
+							++pend[SHOULD];
 							pending++;
 						default:
 							break;
 						}
 					}
 					if (group.contains("MAY")) {
-						may++;
+						mayTotal++;
 						switch (methodStatus) {
 						case AUTOMATED:
 							automated++;
-							auto[2] = ++auto[2];
+							++auto[MAY];
 							if (testApproval.equals(STATUS.WG_PENDING))
 								readyToBeApproved.put(method.getName(), method.getDeclaringClass().getCanonicalName());
 							break;
 						case CLIENT_ONLY:
 							clients.add(method.getName());
-							client[2] = ++client[2];
+							++client[MAY];
 							break;
 						case MANUAL:
 							manuals.add(method.getName());
-							manual[2] = ++manual[2];
+							++manual[MAY];
 							break;
 						case NOT_IMPLEMENTED:
-							unimplmnt[2] = ++unimplmnt[2];
+							++unimplmnt[MAY];
 							needCode.put(method.getName(), method.getDeclaringClass().getCanonicalName());
 							break;
 						default:
@@ -754,23 +747,23 @@ public class LdpTestCaseReporter {
 						}
 						switch (testApproval) {
 						case WG_APPROVED:
-							approve[2] = ++approve[2];
+							++approve[MAY];
 							approved++;
 							break;
 						case WG_CLARIFICATION:
 							clarification++;
-							clarify[2] = ++clarify[2];
+							++clarify[MAY];
 							break;
 						case WG_DEPRECATED:
 							deprecated++;
-							deprctd[2] = ++deprctd[2];
+							++deprctd[MAY];
 							break;
 						case WG_EXTENSION:
 							extended++;
-							extnd[2] = ++extnd[2];
+							++extnd[MAY];
 							break;
 						case WG_PENDING:
-							pend[2] = ++pend[2];
+							++pend[MAY];
 							pending++;
 						default:
 							break;
