@@ -126,14 +126,16 @@ public class LdpTestCaseReporter {
 
 		html.tr();
 		html.td().b().write("" + totalTests)._b().write(" Total Tests");
-		html.ul().li().b().write(approved + " ")._b().write("WG Approved")
-				._li();
-		html.li().b().write(pending + " ")._b().write("Incomplete")._li();
-		html.li().b().write(extended + " ")._b().write("Extension")._li();
-		html.li().b().write(deprecated + " ")._b().write("No longer valid")
-				._li();
-		html.li().b().write(clarification + " ")._b().write("Needs to be clarified with WG")
-			._li();
+		html.ul().li().span(style("background-color:#a2bf2f; height:15px; width:15px; float:left"))._span()
+			.b().write(approved + " ")._b().write("WG Approved")._li();
+		html.li().span(style("background-color:#1cbfbb; height:15px; width:15px; float:left"))._span()
+			.b().write(pending + " ")._b().write("Incomplete")._li();
+		html.li().span(style("background-color:#bfa22f; height:15px; width:15px; float:left"))._span()
+			.b().write(extended + " ")._b().write("Extension")._li();
+		html.li().span(style("background-color:#606060; height:15px; width:15px; float:left"))._span()
+			.b().write(deprecated + " ")._b().write("No longer valid")._li();
+		html.li().span(style("background-color:#1bff95; height:15px; width:15px; float:left"))._span()
+			.b().write(clarification + " ")._b().write("Needs to be clarified with WG")._li();
 		html._ul();
 
 		html.br().b().a(href("#tobeapproved")).write(readyToBeApproved.size()
@@ -144,20 +146,13 @@ public class LdpTestCaseReporter {
 		// html.label(class_("label")).b().write("Test Case Implementation for Totals")._b()._label();
 		html.div(class_("barChart").id("overall_statusbar"))._div();
 		writeStatusGraph("overall", approve, pend, extnd, deprctd, clarify);
-		writeStatusLegendHoriz();
-		
+		html._span();
 		html._td();
 
 		html.td();
 
 		html.b().write(automated + " / " + totalTests)._b()
 				.write(" of Total Tests Automated").br();
-		//<div style="bg-color:green; height:4px; width:8px;"></div>
-		// TODO See if the legend can be put into the table itself
-		// html.span(style("bg-color:green; height:10px; width:10px;"))._span()
-		// .span().b().write(automated + " / " + (automated +
-		// needCode.size()))._b()
-		// .write(" of Tests Possible to Automate")._span();
 		html.b().write(automated + " / " + (automated + needCode.size()))._b()
 				.write(" of Tests Possible to Automate");
 		html.ul();
@@ -170,8 +165,8 @@ public class LdpTestCaseReporter {
 
 		html.ul();
 		int implemented = getTotal(auto);
-		html.li().b().write(implemented + " ")._b().write("Requirements Automated")
-				._li();
+		html.li().span(style("background-color:#0099cc; height:15px; width:15px; float:left"))._span()
+			.b().write(implemented + " ")._b().write("Requirements Automated")._li();
 		html.ul();
 		html.li().b().write(auto[MUST] + " / " + mustTotal)._b().write(" MUST")._li();
 		html.li().b().write(auto[SHOULD] + " / " + shouldTotal)._b().write(" SHOULD")
@@ -184,7 +179,7 @@ public class LdpTestCaseReporter {
 		// html.label(class_("label")).b().write("Test Case Status for Coverage")._b()._label();
 		html.div(class_("barChart").id("overall_implmtbar"))._div();
 		writeImplementationGraph("overall", auto, unimplmnt, client, manual);
-		writeImplmntLegendHoriz();
+		html._span();
 		html._td();
 
 		// html.td().content(totalImplemented + " Tests");
@@ -200,18 +195,21 @@ public class LdpTestCaseReporter {
 		 * html.li().b().write(disabled +
 		 * " ")._b().write("of the Tests not enabled")._li();
 		 */
-		html.li().b().write(clients.size() + " ")._b().write("of the Total are ")
-				.a(href("#clientTests")).write("Client-Based Tests")._a()._li();
-		html.li().b().write(manuals.size() + " ")._b().write("of the Total must be ")
-				.a(href("#manualTests")).write("Tested Manually")._a()._li();
+		html.li().span(style("background-color:#8d1cbf; height:15px; width:15px; float:left"))._span()
+			.b().write(clients.size() + " ")._b().write("of the Total are ")
+			.a(href("#clientTests")).write("Client-Based Tests")._a()._li();
+		html.li().span(style("background-color:#3300cc; height:15px; width:15px; float:left"))._span()
+			.b().write(manuals.size() + " ")._b().write("of the Total must be ")
+			.a(href("#manualTests")).write("Tested Manually")._a()._li();
 		html._ul();
 
 		html.write("From the Total, ");
 
 		html.ul();
 		int unimplemented = getTotal(unimplmnt);
-		html.li().b().write(unimplemented + " ")
-				._b().write("Requirements not Implemented")._li();
+		html.li().span(style("background-color:#bf1c56; height:15px; width:15px; float:left"))._span()
+			.b().write(unimplemented + " ")
+			._b().write("Requirements not Implemented")._li();
 		html.ul();
 		html.li().b().write(unimplmnt[MUST] + " ")._b().write("MUST")._li();
 		html.li().b().write(unimplmnt[SHOULD] + " ")._b().write("SHOULD")._li();
@@ -870,47 +868,6 @@ public class LdpTestCaseReporter {
 		
 		html.write("</svg>");
 		
-		html._span();
-	}
-	
-	private static void writeImplmntLegendHoriz() throws IOException {
-		html.write("<svg width=\"285\" height=\"50\">", NO_ESCAPE);
-		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"0\" style=\"fill:#0099cc\"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"13\" fill=\"black\">Automated</text>", NO_ESCAPE);
-		
-		html.write("<rect width=\"15\" height=\"15\" x=\"150\" y=\"0\" style=\"fill:#bf1c56\"/>", NO_ESCAPE);
-		html.write("<text x=\"170\" y=\"13\" fill=\"black\">Not Implemented</text>", NO_ESCAPE);
-		
-		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"20\" style=\"fill:#8d1cbf\"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"33\" fill=\"black\">Client Only</text>", NO_ESCAPE);
-		
-		html.write("<rect width=\"15\" height=\"15\" x=\"150\" y=\"20\" style=\"fill:#3300cc\"/>", NO_ESCAPE);
-		html.write("<text x=\"170\" y=\"33\" fill=\"black\">Manual</text>", NO_ESCAPE);		
-		
-		html.write("</svg>");
-
-		html._span();
-	}
-
-	private static void writeStatusLegendHoriz() throws IOException {
-		html.write("<svg width=\"300\" height=\"60\">", NO_ESCAPE);
-		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"0\" style=\"fill:#a2bf2f\"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"13\" fill=\"black\">WG Approved</text>", NO_ESCAPE);
-		
-		html.write("<rect width=\"15\" height=\"15\" x=\"170\" y=\"0\" style=\"fill:#1cbfbb\"/>", NO_ESCAPE);
-		html.write("<text x=\"190\" y=\"13\" fill=\"black\">WG Pending</text>", NO_ESCAPE);
-		
-		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"20\" style=\"fill:#bfa22f\"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"33\" fill=\"black\">WG Extension</text>", NO_ESCAPE);
-		
-		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"40\" style=\"fill:#606060 \"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"53\" fill=\"black\">WG Deprecated</text>", NO_ESCAPE);
-		
-		html.write("<rect width=\"15\" height=\"15\" x=\"170\" y=\"20\" style=\"fill:#1bff95 \"/>", NO_ESCAPE);
-		html.write("<text x=\"190\" y=\"33\" fill=\"black\">WG Clarification</text>", NO_ESCAPE);
-		
-		html.write("</svg>");
-
 		html._span();
 	}
 
