@@ -22,7 +22,6 @@ td,tr {
 .barChart {
 	width: 400px;
 	height: 300px;
-	padding-bottom: 15px;
 	padding-top: 10px;
 	display: inline-block
 }
@@ -65,8 +64,7 @@ td,tr {
 .summary {
 	border: 1px solid black;
 	padding: 20px;
-	border-collapse: collapse;
-	margin-left: +5em
+	border-collapse: collapse
 }
 
 .totop {

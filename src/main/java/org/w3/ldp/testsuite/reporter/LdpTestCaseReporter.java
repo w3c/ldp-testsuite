@@ -16,7 +16,10 @@ import java.io.StringWriter;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import static org.rendersnake.HtmlAttributesFactory.*;
@@ -33,29 +36,18 @@ public class LdpTestCaseReporter {
 
 	private static ArrayList<String> clients = new ArrayList<String>();
 	private static ArrayList<String> manuals = new ArrayList<String>();
-	private static ArrayList<String> readyToBeApproved = new ArrayList<String>();
-	private static ArrayList<String> needCode = new ArrayList<String>();
+	private static HashMap<String, String> readyToBeApproved = new HashMap<String, String>(); // key==method, value==class
+	private static HashMap<String, String> needCode = new HashMap<String, String>(); // key==method, value==class
 
 	private static int totalTests = 0;
 	private static int automated = 0;
-	private static int unimplemented = 0;
-	private static int coverage = 0;
-	private static int clientTest = 0;
-
-	private static int manual = 0;
-	// private static int disabled = 0;
 
 	private static int must = 0;
 	private static int should = 0;
 	private static int may = 0;
 
-	private static int mustImpl = 0;
-	private static int shouldImpl = 0;
-	private static int mayImpl = 0;
-
-	private static int mustNotImpl = 0;
-	private static int mayNotImpl = 0;
-	private static int shouldNotImpl = 0;
+	private static int[] auto  = {0, 0, 0};
+	private static int[] unimplmnt  = {0, 0, 0};
 
 	private static int pending = 0;
 	private static int approved = 0;
@@ -71,29 +63,13 @@ public class LdpTestCaseReporter {
 	private static Class<CommonResourceTest> commonResourceTest = CommonResourceTest.class;
 	private static Class<NonRDFSourceTest> nonRdfSourceTest = NonRDFSourceTest.class;
 
-	private static int mustex = 0;
-	private static int shouldex = 0;
-	private static int mayex = 0;
-
-	private static int mustdep = 0;
-	private static int shoulddep = 0;
-	private static int maydep = 0;
-
-	private static int mustPend = 0;
-	private static int shouldPend = 0;
-	private static int mayPend = 0;
-
-	private static int mustMan;
-	private static int shouldMan;
-	private static int mayMan;
-
-	private static int mustClient;
-	private static int shouldClient;
-	private static int mayClient;
-
-	private static int mayAppr;
-	private static int shouldAppr;
-	private static int mustAppr;
+	private static int[] extnd = {0, 0, 0};
+	private static int[] deprctd  = {0, 0, 0};
+	private static int[] pend  = {0, 0, 0};
+	private static int[] manual = {0, 0, 0};
+	private static int[] client = {0, 0, 0};
+	private static int[] approve = {0, 0, 0};	
+	private static int[] clarify = {0, 0, 0};
 
 	public static void main(String[] args) throws IOException {
 		initialRead = false;
@@ -126,29 +102,15 @@ public class LdpTestCaseReporter {
 	}
 
 	private static void endReport() throws IOException {
-		html.script().content(StringResource.get("/raphael/raphael-min.js"),
-				NO_ESCAPE);
-		html.script().content(StringResource.get("/prototype/prototype.js"),
-				NO_ESCAPE);
-		html.script().content(StringResource.get("/grafico/grafico-min.js"),
-				NO_ESCAPE);
+		html.script().content(StringResource.get("/raphael/raphael-min.js"), NO_ESCAPE);
+		html.script().content(StringResource.get("/prototype/prototype.js"), NO_ESCAPE);
+		html.script().content(StringResource.get("/grafico/grafico-min.js"), NO_ESCAPE);
 		html.write(graphs.toString(), NO_ESCAPE);
 
 		html._body()._html();
 	}
 
 	private static void createSummaryReport() throws IOException {
-
-		html.h2().content("Overall Specification Requirements Coverage");
-		
-		generateStatusGraph();
-		writeStatusLegend();
-		
-		generateImplmntGraph();
-		writeImplmntLegend();
-		
-		html.br();
-		writeGraphDescription();
 
 		initialRead = true;
 		html.h2().content("Summary of Test Methods");
@@ -172,17 +134,30 @@ public class LdpTestCaseReporter {
 
 		html.br().b().a(href("#tobeapproved")).write(readyToBeApproved.size()
 				+ " Ready for WG Approval")._a()._b();
-
+		
+		html.br();
+		html.span(class_("chartStart"));
+		// html.label(class_("label")).b().write("Test Case Implementation for Totals")._b()._label();
+		html.div(class_("barChart").id("overall_statusbar"))._div();
+		writeStatusGraph("overall", approve, pend, extnd, deprctd, clarify);
+		writeStatusLegendHoriz();
+		
 		html._td();
 
 		html.td();
 
 		html.b().write(automated + " / " + totalTests)._b()
 				.write(" of Total Tests Automated").br();
-		html.b().write(automated + " / " + (automated + unimplemented))._b()
+		//<div style="bg-color:green; height:4px; width:8px;"></div>
+		// TODO See if the legend can be put into the table itself
+		// html.span(style("bg-color:green; height:10px; width:10px;"))._span()
+		// .span().b().write(automated + " / " + (automated +
+		// needCode.size()))._b()
+		// .write(" of Tests Possible to Automate")._span();
+		html.b().write(automated + " / " + (automated + needCode.size()))._b()
 				.write(" of Tests Possible to Automate");
 		html.ul();
-		html.li().b().write("" + coverage)._b().write(" Requirements Covered")
+		html.li().b().write("" + refURI.size())._b().write(" Requirements Covered")
 				._li();
 		html.ul().li().b().write("" + must)._b().write(" MUST")._li();
 		html.li().b().write("" + should)._b().write(" SHOULD")._li();
@@ -190,126 +165,69 @@ public class LdpTestCaseReporter {
 		html._ul();
 
 		html.ul();
-		html.li().b().write((mustImpl+shouldImpl+mayImpl) + " ")._b().write("Requirements Automated")
+		int implemented = getTotal(auto);
+		html.li().b().write(implemented + " ")._b().write("Requirements Automated")
 				._li();
 		html.ul();
-		html.li().b().write(mustImpl + " / " + must)._b().write(" MUST")._li();
-		html.li().b().write(shouldImpl + " / " + should)._b().write(" SHOULD")
+		html.li().b().write(auto[0] + " / " + must)._b().write(" MUST")._li();
+		html.li().b().write(auto[1] + " / " + should)._b().write(" SHOULD")
 				._li();
-		html.li().b().write(mayImpl + " / " + may)._b().write(" MAY")._li();
+		html.li().b().write(auto[2] + " / " + may)._b().write(" MAY")._li();
 		html._ul();
 		html._ul();
-
+		
+		html.span(class_("chartStart"));
+		// html.label(class_("label")).b().write("Test Case Status for Coverage")._b()._label();
+		html.div(class_("barChart").id("overall_implmtbar"))._div();
+		writeImplementationGraph("overall", auto, unimplmnt, client, manual);
+		writeImplmntLegendHoriz();
 		html._td();
 
 		// html.td().content(totalImplemented + " Tests");
 		html.td();
-		html.b().write((unimplemented + clientTest + manual) + " ")._b()
+		html.b().write((needCode.size() + clients.size() + manuals.size()) + " ")._b()
 				.write("of the Total Tests");
 		html.ul();
 
-		html.li().b().write(unimplemented + " ")._b().write("of the Tests ")
+		html.li().b().write(needCode.size() + " ")._b().write("of the Tests ")
 				.a(href("#needCode")).write("Yet to be Coded")._a()._li();
 		/*
 		 * TODO: Determine if disabled is really valuable or not
 		 * html.li().b().write(disabled +
 		 * " ")._b().write("of the Tests not enabled")._li();
 		 */
-		html.li().b().write(clientTest + " ")._b().write("of the Total are ")
+		html.li().b().write(clients.size() + " ")._b().write("of the Total are ")
 				.a(href("#clientTests")).write("Client-Based Tests")._a()._li();
-		html.li().b().write(manual + " ")._b().write("of the Total must be ")
+		html.li().b().write(manuals.size() + " ")._b().write("of the Total must be ")
 				.a(href("#manualTests")).write("Tested Manually")._a()._li();
 		html._ul();
 
 		html.write("From the Total, ");
 
 		html.ul();
-		html.li().b().write((mustNotImpl + shouldNotImpl + mayNotImpl) + " ")
+		int unimplemented = getTotal(unimplmnt);
+		html.li().b().write(unimplemented + " ")
 				._b().write("Requirements not Implemented")._li();
 		html.ul();
-		html.li().b().write(mustNotImpl + " ")._b().write("MUST")._li();
-		html.li().b().write(shouldNotImpl + " ")._b().write("SHOULD")._li();
-		html.li().b().write(mayNotImpl + " ")._b().write("MAY")._li();
+		html.li().b().write(unimplmnt[0] + " ")._b().write("MUST")._li();
+		html.li().b().write(unimplmnt[1] + " ")._b().write("SHOULD")._li();
+		html.li().b().write(unimplmnt[2] + " ")._b().write("MAY")._li();
 		html._ul();
 		html._ul()._td();
 		html._tr();
 		html._table();
 
+		writeGraphDescription();
 		generateListOfTestCases();
 
 	}
 
-	private static void generateStatusGraph() throws IOException {
-		html.span(class_("chartStart"));
-		html.label(class_("label")).b().write("Test Case Status by Specification Requirements")._b()._label();
-		html.div(id("status_bar").class_("barChart"))._div();
-		graphs.write("<script>");
-		graphs.write("Event.observe(window, 'load', function() {");
-		graphs.write("var status_bar = new Grafico.StackedBarGraph($('status_bar'), {");
-		graphs.write("approved: [ " + mustAppr + ", " + shouldAppr + ", "
-				+ mayAppr + "],");
-		graphs.write("pending: [" + mustPend + ", " + shouldPend + ", "
-				+ mayPend + " ],");
-		graphs.write("extended: [" + mustex + ", " + shouldex + ", " + mayex
-				+ "],");
-		graphs.write("deprecated: [" + mustdep + ", " + shoulddep + ", "
-				+ maydep + "] },");
-		graphs.write("{ labels: [ \"MUST\", \"SHOULD\", \"MAY\" ],");
-		graphs.write("colors: { approved: '#a2bf2f', pending:'#1cbfbb', extended: '#bfa22f', deprecated: '#606060' },");
-		graphs.write("hover_color: \"#ccccff\",");
-		graphs.write("datalabels: { ");
-		graphs.write("approved: [ \"" + mustAppr + " Approved\", \""
-				+ shouldAppr + " Approved\", \"" + mayAppr + " Approved\" ],");
-		graphs.write("pending: [ \"" + mustPend + " Pending\", \""
-				+ shouldPend + " Pending\", \"" + mayPend
-				+ " Pending\" ],");
-		graphs.write("extended: [ \"" + mustex + " Extends\" , \"" + shouldex
-				+ " Extends\" , \"" + mayex + " Extends\"],");
-		graphs.write("deprecated: [ \"" + mustdep + " Deprecated\" , \""
-				+ shoulddep + " Deprecated\" , \"" + maydep
-				+ " Deprecated\" ] },");
-		graphs.write("}); });");
-
-		graphs.write("</script>");
-		
+	private static int getTotal(int[] array) {
+		int total = 0;
+		for(int i = 0; i < array.length; i++)
+			total += array[i];
+		return total;
 	}
-
-	private static void generateImplmntGraph() throws IOException {
-		html.span(class_("chartStart"));
-		html.label(class_("label")).b().write("Test Case Status by Specification Requirements")._b()._label();
-		html.div(id("implmnt_bar").class_("barChart"))._div();
-		graphs.write("<script>");
-		graphs.write("Event.observe(window, 'load', function() {");
-		graphs.write("var implmnt_bar = new Grafico.StackedBarGraph($('implmnt_bar'), {");
-		graphs.write("automated: [ " + mustImpl + ", " + shouldImpl + ", "
-				+ mayImpl + "],");
-		graphs.write("unimplemented: [" + mustNotImpl + ", " + shouldNotImpl
-				+ ", " + mayNotImpl + " ],");
-		graphs.write("client: [" + mustClient + ", " + shouldClient + ", "
-				+ mayClient + " ],");
-		graphs.write("manual: [" + mustMan + ", " + shouldMan + ", " + mayMan
-				+ " ],");
-		graphs.write("},");
-		graphs.write("{ labels: [ \"MUST\", \"SHOULD\", \"MAY\" ],");
-		graphs.write("colors: { automated: '#0099cc', unimplemented: '#bf1c56', client: '#8d1cbf', manual: '#3300cc' },");
-		graphs.write("hover_color: \"#ccccff\",");
-		graphs.write("datalabels: { ");
-		graphs.write("automated: [ \"" + mustImpl + " Automated\", \""
-				+ shouldImpl + " Automated\", \"" + mayImpl
-				+ " Automated\" ],");
-		graphs.write("unimplemented: [ \"" + mustNotImpl
-				+ " Unimplemented\", \"" + shouldNotImpl
-				+ " Unimplemented\", \"" + mayNotImpl + " Unimplemented\" ],");
-		graphs.write("client: [ \"" + mustClient + " Client-Based\", \""
-				+ shouldClient + " Client-Based\", \"" + mayClient
-				+ " Client-Based\" ],");
-		graphs.write("manual: [ \"" + mustMan + " Manual\", \"" + shouldMan
-				+ " Manual\", \"" + mayMan + " Manual\" ],");
-		graphs.write(" },");
-		graphs.write("}); });");
-
-		graphs.write("</script>");
-	}	
 
 	private static void firstRead() throws IOException {
 		acquireTestCases(rdfSourceTest);
@@ -331,9 +249,7 @@ public class LdpTestCaseReporter {
 					.a(href("https://github.com/w3c/ldp-testsuite"))
 					.write("see source in GitHub")._a()._p();
 			html.ul();
-			for (String tc : readyToBeApproved) {
-				html.li().write(tc)._li();
-			}
+			iterateList(readyToBeApproved);
 			html._ul();
 		}
 		toTop();
@@ -344,8 +260,7 @@ public class LdpTestCaseReporter {
 					.br();
 		else {
 			html.ul();
-			for (String tc : needCode)
-				html.li().content(tc);
+			iterateList(needCode);
 			html._ul();
 		}
 		toTop();
@@ -403,19 +318,30 @@ public class LdpTestCaseReporter {
 
 	}
 
+	private static void iterateList(HashMap<String, String> list) throws IOException {
+		String className;
+		String methodName;
+		Iterator<Entry<String, String>> codeIter = list.entrySet().iterator();
+		while(codeIter.hasNext()){
+			Entry<String, String> entry = codeIter.next();
+			className = entry.getValue();
+			className = className.substring(className.lastIndexOf(".") + 1);
+			methodName = entry.getKey();
+			html.li().a(href("#" + methodName)).b().write(className + "::")._b().write(methodName)._a()._li();
+		}
+	}
+
 	private static <T> void writeTestClassTable(Class<T> classType)
 			throws IOException {
 		html.span(class_("chartStart"));
 		html.label(class_("label")).b().write("Test Case Status")._b()._label();
-		html.div(class_("smallBar").id(classType.getSimpleName() + "_statusbar"))
-				._div();
-		writeStatusSmallLegend();
+		html.div(class_("smallBar").id(classType.getSimpleName() + "_statusbar"))._div();
+		writeStatusLegend();
 
 		html.span(class_("chartStart"));
 		html.label(class_("label")).b().write("Test Case Implementation")._b()._label();
-		html.div(class_("smallBar").id(classType.getSimpleName() + "_implmtbar"))
-				._div();
-		writeImplmntSmallLegend();
+		html.div(class_("smallBar").id(classType.getSimpleName() + "_implmtbar"))._div();
+		writeImplmntLegend();
 
 		acquireTestInfo(classType);
 
@@ -547,8 +473,8 @@ public class LdpTestCaseReporter {
 		}
 
 		// write information into Grafico bar charts
-		writeStatusGraph(classType, apprReq, pendReq, extReq, depreReq, clariReq);
-		writeImplementationGraph(classType, autoReq, unimReq, clientReq, manReq);
+		writeStatusGraph(classType.getSimpleName(), apprReq, pendReq, extReq, depreReq, clariReq);
+		writeImplementationGraph(classType.getSimpleName(), autoReq, unimReq, clientReq, manReq);
 
 		html.table(class_("classes"));
 
@@ -597,13 +523,13 @@ public class LdpTestCaseReporter {
 
 	}
 
-	private static <T> void writeStatusGraph(Class<T> classType, int[] apprReq, int[] pendReq, int[] extReq, int[] depreReq, int[] clariReq)
+	private static void writeStatusGraph(String type, int[] apprReq, int[] pendReq, int[] extReq, int[] depreReq, int[] clariReq)
 			throws IOException {
 		graphs.write("<script>");
 		graphs.write("Event.observe(window, 'load', function() {");
 
-		graphs.write("var " + classType.getSimpleName() + "_statusbar"
-				+ " = new Grafico.StackedBarGraph($('" + classType.getSimpleName()
+		graphs.write("var " + type + "_statusbar"
+				+ " = new Grafico.StackedBarGraph($('" + type
 				+ "_statusbar'),{");
 		graphs.write("approved: [" + apprReq[0] + ", " + apprReq[1] + ", " + apprReq[2] + " ],");
 		graphs.write("pending: [" + pendReq[0] + ", " + pendReq[1] + ", " + pendReq[2] + " ],");
@@ -611,14 +537,14 @@ public class LdpTestCaseReporter {
 		graphs.write("deprecated: [" + depreReq[0] + ", " + depreReq[1] + ", " + depreReq[2] + " ],");
 		graphs.write("clarify: [" + clariReq[0] + ", " + clariReq[1] + ", " + clariReq[2] + "] },");
 		graphs.write("{ labels: [ \"MUST\", \"SHOULD\", \"MAY\" ],");
-		graphs.write("colors: { approved: '#501cbf', pending:'#bf1c76', extends: '#bf571c', deprecated: '#606060', client: '#1cbf95' },");
+		graphs.write("colors: { approved: '#a2bf2f', pending:'#1cbfbb', extends: '#bfa22f', deprecated: '#606060', clarify: '#1bff95' },");
 		graphs.write("hover_color: \"#ccccff\",");
 		graphs.write("datalabels: { ");
-		graphs.write("approved: [ \"" + apprReq[0] + " Approved\", \"" + apprReq[1] + " Approved\", \"" + apprReq[2] + " Approved\" ],");
-		graphs.write("pending: [ \"" + pendReq[0] + " Pending\", \"" + pendReq[1] + " Pending\", \"" + pendReq[2] + " Pending\" ],");
-		graphs.write("extends: [ \"" + extReq[0] + " Extends\", \"" + extReq[1] + " Extends\", \"" + extReq[2] + " Extends\" ],");
-		graphs.write("deprecated: [ \"" + depreReq[0] + " Deprecated\", \"" + depreReq[1] + " Deprecated\", \"" + depreReq[2] + " Deprecated\" ],");
-		graphs.write("clarify: [ \"" + clariReq[0] + " Clarification\", \"" + clariReq[1] + " Clarification\", \"" + clariReq[2] + " Clarification\" ] },");
+		graphs.write("approved: [ \"" + apprReq[0] + " WG Approved\", \"" + apprReq[1] + " WG Approved\", \"" + apprReq[2] + " WG Approved\" ],");
+		graphs.write("pending: [ \"" + pendReq[0] + " WG Pending\", \"" + pendReq[1] + " WG Pending\", \"" + pendReq[2] + " WG Pending\" ],");
+		graphs.write("extends: [ \"" + extReq[0] + " WG Extension\", \"" + extReq[1] + " WG Extension\", \"" + extReq[2] + " WG Extension\" ],");
+		graphs.write("deprecated: [ \"" + depreReq[0] + " WG Deprecated\", \"" + depreReq[1] + " WG Deprecated\", \"" + depreReq[2] + " WG Deprecated\" ],");
+		graphs.write("clarify: [ \"" + clariReq[0] + " WG Clarification\", \"" + clariReq[1] + " WG Clarification\", \"" + clariReq[2] + " WG Clarification\" ] },");
 
 		graphs.write(" }); });");
 
@@ -627,25 +553,25 @@ public class LdpTestCaseReporter {
 		
 	}
 	
-	private static <T> void writeImplementationGraph(Class<T> classType,
+	private static void writeImplementationGraph(String classType,
 			int[] autoReq, int[] unimReq, int[] clientReq, int[] manReq) {
 		graphs.write("<script>");
 		graphs.write("Event.observe(window, 'load', function() {");
 
-		graphs.write("var " + classType.getSimpleName() + "_implmtbar"
-				+ " = new Grafico.StackedBarGraph($('" + classType.getSimpleName()
+		graphs.write("var " + classType + "_implmtbar"
+				+ " = new Grafico.StackedBarGraph($('" + classType
 				+ "_implmtbar'), {");
 		graphs.write("automated: [" + autoReq[0] + ", " + autoReq[1] + ", " + autoReq[2] + " ],");
 		graphs.write("unimplemented: [" + unimReq[0] + ", " + unimReq[1] + ", " + unimReq[2] + " ],");
 		graphs.write("client: [" + clientReq[0] + ", " + clientReq[1] + ", " + clientReq[2] + " ],");
 		graphs.write("manual: [" + manReq[0] + ", " + manReq[1] + ", " + manReq[2] + "] },");
 		graphs.write("{ labels: [ \"MUST\", \"SHOULD\", \"MAY\" ],");
-		graphs.write("colors: { automated: '#0099cc', unimplemented:'#bf1c21', client: '#bcbf1c', manual: '#3300cc' },");
+		graphs.write("colors: { automated: '#0099cc', unimplemented:'#bf1c21', client: '#8d1cbf', manual: '#3300cc' },");
 		graphs.write("hover_color: \"#ccccff\",");
 		graphs.write("datalabels: { ");
 		graphs.write("automated: [ \"" + autoReq[0] + " Automated\", \"" + autoReq[1] + " Automated\", \"" + autoReq[2] + " Automated\" ],");
-		graphs.write("unimplemented: [ \"" + unimReq[0] + " Unimplemented\", \"" + unimReq[1] + " Unimplemented\", \"" + unimReq[2] + " Unimplemented\" ],");
-		graphs.write("client: [ \"" + clientReq[0] + " Client-Based\", \"" + clientReq[1] + " Client-Based\", \"" + clientReq[2] + " Client-Based\" ],");
+		graphs.write("unimplemented: [ \"" + unimReq[0] + " Not Implemented\", \"" + unimReq[1] + " Not Implemented\", \"" + unimReq[2] + " Not Implemented\" ],");
+		graphs.write("client: [ \"" + clientReq[0] + " Client Only\", \"" + clientReq[1] + " Client Only\", \"" + clientReq[2] + " Client Only\" ],");
 		graphs.write("manual: [ \"" + manReq[0] + " Manual\", \"" + manReq[1] + " Manual\", \"" + manReq[2] + " Manual\" ] },");
 
 		graphs.write(" }); });");
@@ -666,11 +592,11 @@ public class LdpTestCaseReporter {
 		String name = classType.getCanonicalName();
 		if (initialRead)
 			html.h2().a(id(name)).write("Test Class: " + name)._a()._h2();
-		Method[] bcMethods = classType.getDeclaredMethods();
+		Method[] declaredMethods = classType.getDeclaredMethods();
 
 		if (initialRead)
 			html.ul();
-		for (Method method : bcMethods) {
+		for (Method method : declaredMethods) {
 			if (method.isAnnotationPresent(Test.class)) {
 				if (!initialRead) {
 					generateInformation(method, name);
@@ -704,52 +630,50 @@ public class LdpTestCaseReporter {
 				String group = Arrays.toString(test.groups());
 				if (!refURI.contains(testLdp.specRefUri())) { // for just the requirement testing
 					refURI.add(testLdp.specRefUri());
-					coverage++;
+					//coverage++;
 					if (group.contains("MUST")) {
 						must++;
 						switch (methodStatus) {
 						case AUTOMATED:
 							automated++;
-							mustImpl++;
+							auto[0] = ++auto[0];
 							if (testApproval.equals(STATUS.WG_PENDING))
-								readyToBeApproved.add(method.getName());
+								readyToBeApproved.put(method.getName(), method.getDeclaringClass().getCanonicalName());
 							break;
 						case CLIENT_ONLY:
 							clients.add(method.getName());
-							clientTest++;
-							mustClient++;
+							client[0] = ++client[0];
 							break;
 						case MANUAL:
 							manuals.add(method.getName());
-							manual++;
-							mustMan++;
+							manual[0] = ++manual[0];
 							break;
 						case NOT_IMPLEMENTED:
-							mustNotImpl++;
-							unimplemented++;
-							needCode.add(method.getName());
+							unimplmnt[0] = ++unimplmnt[0];
+							needCode.put(method.getName(), method.getDeclaringClass().getCanonicalName());
 							break;
 						default:
 							break;
 						}
 						switch (testApproval) {
 						case WG_APPROVED:
-							mustAppr++;
+							approve[0] = ++approve[0];
 							approved++;
 							break;
 						case WG_CLARIFICATION:
 							clarification++;
+							clarify[0] = ++clarify[0];
 							break;
 						case WG_DEPRECATED:
-							deprecated++;
-							mustdep++;
+							deprecated++;;
+							deprctd[0] = ++deprctd[0];
 							break;
 						case WG_EXTENSION:
 							extended++;
-							mustex++;
+							extnd[0] = ++extnd[0];
 							break;
 						case WG_PENDING:
-							mustPend++;
+							pend[0] = ++pend[0];
 							pending++;
 						default:
 							break;
@@ -761,46 +685,44 @@ public class LdpTestCaseReporter {
 						switch (methodStatus) {
 						case AUTOMATED:
 							automated++;
-							shouldImpl++;
+							auto[1] = ++auto[1];
 							if (testApproval.equals(STATUS.WG_PENDING))
-								readyToBeApproved.add(method.getName());
+								readyToBeApproved.put(method.getName(), method.getDeclaringClass().getCanonicalName());
 							break;
 						case CLIENT_ONLY:
 							clients.add(method.getName());
-							clientTest++;
-							shouldClient++;
+							client[1] = ++client[1];
 							break;
 						case MANUAL:
 							manuals.add(method.getName());
-							manual++;
-							shouldMan++;
+							manual[1] = ++manual[1];
 							break;
 						case NOT_IMPLEMENTED:
-							shouldNotImpl++;
-							unimplemented++;
-							needCode.add(method.getName());
+							unimplmnt[1] = ++unimplmnt[1];
+							needCode.put(method.getName(), method.getDeclaringClass().getCanonicalName());
 							break;
 						default:
 							break;
 						}
 						switch (testApproval) {
 						case WG_APPROVED:
-							shouldAppr++;
+							approve[1] = ++approve[1];
 							approved++;
 							break;
 						case WG_CLARIFICATION:
 							clarification++;
+							clarify[1] = ++clarify[1];
 							break;
 						case WG_DEPRECATED:
 							deprecated++;
-							shoulddep++;
+							deprctd[1] = ++deprctd[1];
 							break;
 						case WG_EXTENSION:
 							extended++;
-							shouldex++;
+							extnd[1] = ++extnd[1];
 							break;
 						case WG_PENDING:
-							shouldPend++;
+							pend[1] = ++ pend[1];
 							pending++;
 						default:
 							break;
@@ -811,46 +733,44 @@ public class LdpTestCaseReporter {
 						switch (methodStatus) {
 						case AUTOMATED:
 							automated++;
-							mayImpl++;
+							auto[2] = ++auto[2];
 							if (testApproval.equals(STATUS.WG_PENDING))
-								readyToBeApproved.add(method.getName());
+								readyToBeApproved.put(method.getName(), method.getDeclaringClass().getCanonicalName());
 							break;
 						case CLIENT_ONLY:
 							clients.add(method.getName());
-							clientTest++;
-							mayClient++;
+							client[2] = ++client[2];
 							break;
 						case MANUAL:
 							manuals.add(method.getName());
-							manual++;
-							mayMan++;
+							manual[2] = ++manual[2];
 							break;
 						case NOT_IMPLEMENTED:
-							mayNotImpl++;
-							unimplemented++;
-							needCode.add(method.getName());
+							unimplmnt[2] = ++unimplmnt[2];
+							needCode.put(method.getName(), method.getDeclaringClass().getCanonicalName());
 							break;
 						default:
 							break;
 						}
 						switch (testApproval) {
 						case WG_APPROVED:
-							mayAppr++;
+							approve[2] = ++approve[2];
 							approved++;
 							break;
 						case WG_CLARIFICATION:
 							clarification++;
+							clarify[2] = ++clarify[2];
 							break;
 						case WG_DEPRECATED:
 							deprecated++;
-							maydep++;
+							deprctd[2] = ++deprctd[2];
 							break;
 						case WG_EXTENSION:
 							extended++;
-							mayex++;
+							extnd[2] = ++extnd[2];
 							break;
 						case WG_PENDING:
-							mayPend++;
+							pend[2] = ++pend[2];
 							pending++;
 						default:
 							break;
@@ -861,21 +781,17 @@ public class LdpTestCaseReporter {
 					case AUTOMATED:
 						automated++;
 						if (testApproval.equals(STATUS.WG_APPROVED))
-						if (testApproval.equals(STATUS.WG_PENDING)) {
-							readyToBeApproved.add(method.getName());
-						}
+						if (testApproval.equals(STATUS.WG_PENDING))
+							readyToBeApproved.put(method.getName(), method.getDeclaringClass().getCanonicalName());
 						break;
 					case CLIENT_ONLY:
 						clients.add(method.getName());
-						clientTest++;
 						break;
 					case MANUAL:
 						manuals.add(method.getName());
-						manual++;
 						break;
 					case NOT_IMPLEMENTED:
-						unimplemented++;
-						needCode.add(method.getName());
+						needCode.put(method.getName(), method.getDeclaringClass().getCanonicalName());
 						break;
 					default:
 						break;
@@ -924,18 +840,21 @@ public class LdpTestCaseReporter {
 	}
 	
 	private static void writeStatusLegend() throws IOException {
-		html.write("<svg id=\"graphLegend\" width=\"200\" height=\"225\">", NO_ESCAPE);
+		html.write("<svg width=\"200\" height=\"200\">", NO_ESCAPE);
 		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"0\" style=\"fill:#a2bf2f\"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"13\" fill=\"black\">Approved Tests</text>", NO_ESCAPE);
+		html.write("<text x=\"20\" y=\"13\" fill=\"black\">WG Approved</text>", NO_ESCAPE);
 		
 		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"20\" style=\"fill:#1cbfbb\"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"33\" fill=\"black\">Pending</text>", NO_ESCAPE);
+		html.write("<text x=\"20\" y=\"33\" fill=\"black\">WG Pending</text>", NO_ESCAPE);
 		
 		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"40\" style=\"fill:#bfa22f\"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"53\" fill=\"black\">Extending Tests</text>", NO_ESCAPE);
+		html.write("<text x=\"20\" y=\"53\" fill=\"black\">WG Extension</text>", NO_ESCAPE);
 		
 		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"60\" style=\"fill:#606060 \"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"73\" fill=\"black\">Deprecated Tests</text>", NO_ESCAPE);
+		html.write("<text x=\"20\" y=\"73\" fill=\"black\">WG Deprecated</text>", NO_ESCAPE);
+		
+		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"80\" style=\"fill:#1bff95 \"/>", NO_ESCAPE);
+		html.write("<text x=\"20\" y=\"93\" fill=\"black\">WG Clarification</text>", NO_ESCAPE);
 		
 		html.write("</svg>");
 
@@ -943,82 +862,83 @@ public class LdpTestCaseReporter {
 	}
 	
 	private static void writeImplmntLegend() throws IOException {
-		html.write("<svg id=\"graphLegend\" width=\"200\" height=\"225\">", NO_ESCAPE);
+		html.write("<svg width=\"200\" height=\"200\">", NO_ESCAPE);
 		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"0\" style=\"fill:#0099cc\"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"13\" fill=\"black\">Automated Tests</text>", NO_ESCAPE);
+		html.write("<text x=\"20\" y=\"13\" fill=\"black\">Automated</text>", NO_ESCAPE);
 		
 		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"20\" style=\"fill:#bf1c56\"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"33\" fill=\"black\">Unimplemented Tests</text>", NO_ESCAPE);
+		html.write("<text x=\"20\" y=\"33\" fill=\"black\">Not Implemented</text>", NO_ESCAPE);
 		
 		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"40\" style=\"fill:#8d1cbf\"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"53\" fill=\"black\">Client-Based Tests</text>", NO_ESCAPE);
+		html.write("<text x=\"20\" y=\"53\" fill=\"black\">Client Only</text>", NO_ESCAPE);
 		
 		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"60\" style=\"fill:#3300cc\"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"73\" fill=\"black\">Manual Tests</text>", NO_ESCAPE);		
+		html.write("<text x=\"20\" y=\"73\" fill=\"black\">Manual</text>", NO_ESCAPE);		
 		
 		html.write("</svg>");
 		
 		html._span();
 	}
-
-	private static void writeStatusSmallLegend() throws IOException {
-		html.write("<svg id=\"graphLegend\" width=\"150\" height=\"225\">", NO_ESCAPE);
-		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"0\" style=\"fill:#501cbf\"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"13\" fill=\"black\">Approved Tests</text>", NO_ESCAPE);
-		
-		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"20\" style=\"fill:#bf1c76\"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"33\" fill=\"black\">Pending Tests</text>", NO_ESCAPE);
-		
-		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"40\" style=\"fill:#bf571c\"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"53\" fill=\"black\">Extending Tests</text>", NO_ESCAPE);
-		
-		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"60\" style=\"fill:#606060\"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"73\" fill=\"black\">Deprecated Tests</text>", NO_ESCAPE);	
-		
-		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"80\" style=\"fill:#1cbf95\"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"93\" fill=\"black\">Client Tests</text>", NO_ESCAPE);
-		
-		html.write("</svg>");
-		
-		html._span();
-	}
-
-	private static void writeImplmntSmallLegend() throws IOException {
-		html.write("<svg id=\"graphLegend\" width=\"175\" height=\"225\">", NO_ESCAPE);
+	
+	private static void writeImplmntLegendHoriz() throws IOException {
+		html.write("<svg width=\"285\" height=\"50\">", NO_ESCAPE);
 		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"0\" style=\"fill:#0099cc\"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"13\" fill=\"black\">Automated Tests</text>", NO_ESCAPE);
+		html.write("<text x=\"20\" y=\"13\" fill=\"black\">Automated</text>", NO_ESCAPE);
 		
-		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"20\" style=\"fill:#bf1c21\"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"33\" fill=\"black\">Unimplemented Tests</text>", NO_ESCAPE);
+		html.write("<rect width=\"15\" height=\"15\" x=\"150\" y=\"0\" style=\"fill:#bf1c56\"/>", NO_ESCAPE);
+		html.write("<text x=\"170\" y=\"13\" fill=\"black\">Not Implemented</text>", NO_ESCAPE);
 		
-		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"40\" style=\"fill:#bcbf1c\"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"53\" fill=\"black\">Client-Based Tests</text>", NO_ESCAPE);
+		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"20\" style=\"fill:#8d1cbf\"/>", NO_ESCAPE);
+		html.write("<text x=\"20\" y=\"33\" fill=\"black\">Client Only</text>", NO_ESCAPE);
 		
-		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"60\" style=\"fill:#3300cc\"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"73\" fill=\"black\">Manual Tests</text>", NO_ESCAPE);		
+		html.write("<rect width=\"15\" height=\"15\" x=\"150\" y=\"20\" style=\"fill:#3300cc\"/>", NO_ESCAPE);
+		html.write("<text x=\"170\" y=\"33\" fill=\"black\">Manual</text>", NO_ESCAPE);		
 		
 		html.write("</svg>");
-		
+
 		html._span();
 	}
+
+	private static void writeStatusLegendHoriz() throws IOException {
+		html.write("<svg width=\"300\" height=\"60\">", NO_ESCAPE);
+		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"0\" style=\"fill:#a2bf2f\"/>", NO_ESCAPE);
+		html.write("<text x=\"20\" y=\"13\" fill=\"black\">WG Approved</text>", NO_ESCAPE);
+		
+		html.write("<rect width=\"15\" height=\"15\" x=\"170\" y=\"0\" style=\"fill:#1cbfbb\"/>", NO_ESCAPE);
+		html.write("<text x=\"190\" y=\"13\" fill=\"black\">WG Pending</text>", NO_ESCAPE);
+		
+		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"20\" style=\"fill:#bfa22f\"/>", NO_ESCAPE);
+		html.write("<text x=\"20\" y=\"33\" fill=\"black\">WG Extension</text>", NO_ESCAPE);
+		
+		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"40\" style=\"fill:#606060 \"/>", NO_ESCAPE);
+		html.write("<text x=\"20\" y=\"53\" fill=\"black\">WG Deprecated</text>", NO_ESCAPE);
+		
+		html.write("<rect width=\"15\" height=\"15\" x=\"170\" y=\"20\" style=\"fill:#1bff95 \"/>", NO_ESCAPE);
+		html.write("<text x=\"190\" y=\"33\" fill=\"black\">WG Clarification</text>", NO_ESCAPE);
+		
+		html.write("</svg>");
+
+		html._span();
+	}
+
 	private static void writeGraphDescription() throws IOException {
 		html.h3().content("Description of the Chart Information");
 		
 		html.h4().content("Test Status");
 		html.ul();
-		html.li().b().write("Approved: ")._b().write("WG_APPROVED - working group has approved this test case")._li();
-		html.li().b().write("Pending: ")._b().write("WG_PENDING (default) - no official recommendation from the WG supporting the specification being tested by this test suite")._li();
-		html.li().b().write("Extends: ")._b().write("WG_EXTENSION - valuable test case but not part of the WG approved set")._li();
-		html.li().b().write("Deprecated: ")._b().write("WG_DEPRECATED - no longer recommended by WG")._li();
-		html.li().b().write("Clarification: ")._b().write("WG_CLARIFICATION - requires further clarification from the working group")._li();
+		html.li().b().write("WG Approved")._b().write(" - working group has approved this test case")._li();
+		html.li().b().write("WG Pending")._b().write(" (default) - no official recommendation from the WG supporting the specification being tested by this test suite")._li();
+		html.li().b().write("WG Extension")._b().write(" - valuable test case but not part of the WG approved set")._li();
+		html.li().b().write("WG Deprecated")._b().write(" - no longer recommended by WG")._li();
+		html.li().b().write("WG Clarification")._b().write(" - requires further clarification from the working group")._li();
 		html._ul();
 		
 		html.h4().content("Test Implementation");
 		html.ul();
-		html.li().b().write("Automated: ")._b().write("AUTOMATED - implementation complete")._li();
-		html.li().b().write("Not Implemented: ")._b().write("NOT_IMPLEMENTED (default) - possible to implement, just not done")._li();
-		html.li().b().write("Client-Based: ")._b().write("CLIENT_ONLY - test is only client-side, this test suite doesn't test it")._li();
-		html.li().b().write("Manual: ")._b().write("MANUAL - server test but not automated")._li();
+		html.li().b().write("Automated")._b().write(" - implementation complete")._li();
+		html.li().b().write("Not Implemented")._b().write(" (default) - possible to implement, just not done")._li();
+		html.li().b().write("Client Only")._b().write(" - test is only client-side, this test suite doesn't test it")._li();
+		html.li().b().write("Manual")._b().write(" - server test but not automated")._li();
 		html._ul();
 	}
 
