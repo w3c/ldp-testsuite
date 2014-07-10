@@ -374,7 +374,8 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 		// Otherwise, we still might be OK if the server supports non-RDF source,
 		// in which case it might have treated the POST content as binary. Check
 		// the response Content-Type if we ask for the new resource.
-		assertEquals(postResponse.getStatusCode(), HttpStatus.SC_CREATED,
+		assertTrue(postResponse.getStatusCode() == HttpStatus.SC_CREATED ||
+                        postResponse.getStatusCode() == HttpStatus.SC_UNSUPPORTED_MEDIA_TYPE,
 				"Expected either 415 Unsupported Media Type or 201 Created in response to POST");
 
 		String location = postResponse.getHeader(LOCATION);
@@ -390,7 +391,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 
 			// Also make sure there is no Link header indicating this is an RDF source.
 			assertFalse(containsLinkHeader(LDP.RDFSource.stringValue(), LINK_REL_TYPE, getResponse),
-					"Server should not responsd with RDF source Link header when content was created with non-RDF Content-Type");
+					"Server should not respond with RDF source Link header when content was created with non-RDF Content-Type");
 		} finally {
 			// Clean up.
 			buildBaseRequestSpecification().delete(location);
