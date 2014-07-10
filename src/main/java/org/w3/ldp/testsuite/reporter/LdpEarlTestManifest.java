@@ -16,6 +16,7 @@ import org.w3.ldp.testsuite.test.CommonContainerTest;
 import org.w3.ldp.testsuite.test.CommonResourceTest;
 import org.w3.ldp.testsuite.test.DirectContainerTest;
 import org.w3.ldp.testsuite.test.IndirectContainerTest;
+import org.w3.ldp.testsuite.test.MemberResourceTest;
 import org.w3.ldp.testsuite.test.NonRDFSourceTest;
 import org.w3.ldp.testsuite.test.RdfSourceTest;
 import org.w3.ldp.testsuite.vocab.LDP;
@@ -40,7 +41,7 @@ public class LdpEarlTestManifest {
 	private static BufferedWriter writer;
 	private static Model model;
 
-	private static Property declared;
+	private static Property declaredInClass, declaredTestCase, conformanceLevel;
 
 
 	private static Class<BasicContainerTest> bcTest = BasicContainerTest.class;
@@ -49,6 +50,7 @@ public class LdpEarlTestManifest {
 	private static Class<DirectContainerTest> directContianerTest = DirectContainerTest.class;
 	private static Class<CommonContainerTest> commonContainerTest = CommonContainerTest.class;
 	private static Class<CommonResourceTest> commonResourceTest = CommonResourceTest.class;
+	private static Class<MemberResourceTest> memberResourceTest = MemberResourceTest.class;
 	private static Class<NonRDFSourceTest> nonRdfSourceTest = NonRDFSourceTest.class;
 
 	private static final String TURTLE = "TURTLE";
@@ -68,8 +70,12 @@ public class LdpEarlTestManifest {
 		}
 
 		model = ModelFactory.createDefaultModel();
-		declared = ResourceFactory
+		declaredInClass = ResourceFactory
 				.createProperty(LDP.LDPT_NAMESPACE + "declaredInClass");
+		declaredTestCase = ResourceFactory
+				.createProperty(LDP.LDPT_NAMESPACE + "declaredTestCase");
+		conformanceLevel = ResourceFactory
+				.createProperty(LDP.LDPT_NAMESPACE + "conformanceLevel");
 
 		writePrefixes(model);
 		// Use ArrayList to preserve order
@@ -89,7 +95,7 @@ public class LdpEarlTestManifest {
 	private static void writeManifest(ArrayList<Resource> testcases) {
 		Resource manifest = model.createResource(LDP.LDPT_NAMESPACE,
 				TestManifest.Manifest);
-		manifest.addProperty(RDFS.comment, "LDP tests");
+		manifest.addProperty(RDFS.comment, "LDP 1.0 Test Cases");
 		Resource[] ra={};
 		RDFList l = model.createList(testcases.toArray(ra));
 		manifest.addProperty(TestManifest.entries, l);
@@ -111,7 +117,7 @@ public class LdpEarlTestManifest {
 
 	private static <T> void writeInfo(Class<T> testClass, ArrayList<Resource> testcases) {
 		String name = testClass.getCanonicalName();
-		Method[] bcMethods = testClass.getDeclaredMethods();
+		Method[] bcMethods = testClass.getMethods();
 		for (Method method : bcMethods) {
 			if (method.isAnnotationPresent(Test.class)) {
 				Resource r = generateInformation(method, name);
@@ -122,20 +128,22 @@ public class LdpEarlTestManifest {
 		}
 	}
 
-	private static Resource generateInformation(Method method, String name) {
+	private static Resource generateInformation(Method method, String className) {
 		SpecTest testLdp = null;
 		Test test = null;
 		if (method.getAnnotation(SpecTest.class) != null
 				&& method.getAnnotation(Test.class) != null) {
 			testLdp = method.getAnnotation(SpecTest.class);
 			test = method.getAnnotation(Test.class);
-			String group = groups(test.groups());
+			String allGroups = groups(test.groups());
 
 			Calendar cal = GregorianCalendar.getInstance();
 			Literal date = model.createTypedLiteral(cal);
 
-			String testCaseName = createTestCaseName(name, method.getName());
+			String testCaseName = createTestCaseName(className, method.getName());
+			String testCaseDeclaringName = createTestCaseName(method.getDeclaringClass().getCanonicalName(), method.getName());
 			String testCaseURL = LDP.LDPT_NAMESPACE + testCaseName;
+			String testCaseDeclaringURL = LDP.LDPT_NAMESPACE + testCaseDeclaringName;
 
 			Resource testCaseResource = model.createResource(testCaseURL);
 			testCaseResource.addProperty(RDF.type, EARL.TestCase);
@@ -144,11 +152,15 @@ public class LdpEarlTestManifest {
 			testCaseResource.addProperty(DCTerms.date, date);
 
 			testCaseResource.addProperty(RDFS.comment, test.description());
-			if (group != null)
-				testCaseResource.addProperty(DCTerms.subject, group);
+			if (allGroups != null)
+				testCaseResource.addProperty(DCTerms.subject, allGroups);
 
 			// Leave action property only to make earl-report happy
 			testCaseResource.addProperty(TestManifest.action, "");
+			
+			for (String group: test.groups()) {
+				 testCaseResource.addProperty(conformanceLevel, model.createResource(LDP.LDPT_NAMESPACE + group.trim()));
+			}
 
 			switch (testLdp.approval()) {
 			case WG_APPROVED:
@@ -162,7 +174,8 @@ public class LdpEarlTestManifest {
 				break;
 			}
 
-			testCaseResource.addProperty(declared, name);
+			testCaseResource.addProperty(declaredInClass, className);
+			testCaseResource.addProperty(declaredTestCase, model.createResource(testCaseDeclaringURL));
 			Resource specRef = null;
 			if (testLdp.specRefUri() != null) {
 				specRef = model.createResource(testLdp.specRefUri());
@@ -218,6 +231,7 @@ public class LdpEarlTestManifest {
 		writeInfo(commonResourceTest, testcases);
 		writeInfo(rdfSourceTest, testcases);
 		writeInfo(commonContainerTest, testcases);
+		writeInfo(memberResourceTest, testcases);
 		writeInfo(nonRdfSourceTest, testcases);
 		writeInfo(bcTest, testcases);
 		writeInfo(directContianerTest, testcases);

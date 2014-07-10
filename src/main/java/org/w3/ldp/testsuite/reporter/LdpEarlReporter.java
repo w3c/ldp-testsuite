@@ -182,8 +182,8 @@ public class LdpEarlReporter implements IReporter {
 	}
 
 	private void makeResultResource(ITestResult result, String status) {
-		String declaringClass = result.getMethod().getConstructorOrMethod().getMethod().getDeclaringClass().getName();
-		declaringClass = declaringClass.substring(declaringClass
+		String className = result.getTestClass().getName();
+		className = className.substring(className
 				.lastIndexOf(".") + 1);
 		
 		Resource assertionResource = model.createResource(null, Earl.Assertion);
@@ -196,7 +196,7 @@ public class LdpEarlReporter implements IReporter {
 
 		assertionResource.addProperty(
 				Earl.test,
-				model.getResource(LdpEarlTestManifest.createTestCaseURL(declaringClass, result.getName())));
+				model.getResource(LdpEarlTestManifest.createTestCaseURL(className, result.getName())));
 
 		/* Test Result Resource */
 		switch (status) {
