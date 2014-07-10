@@ -6,7 +6,6 @@ import static org.w3.ldp.testsuite.matcher.HttpStatusNotFoundOrGoneMatcher.isNot
 import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -28,7 +27,6 @@ import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.matcher.HeaderMatchers;
 
 import com.hp.hpl.jena.rdf.model.Model;
-import com.jayway.restassured.response.Header;
 import com.jayway.restassured.response.Response;
 
 /**
@@ -93,8 +91,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 
 		// Make sure we can post binary resources
 		Response response = postNonRDFSource(slug, file, mimeType);
-		List<Header> links = response.headers().getList("Link");
-		Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
+		Assert.assertTrue(containsLinkHeader(containerType.stringValue(), LINK_REL_TYPE, response));
 		buildBaseRequestSpecification().delete(response.getHeader(LOCATION));
 	}
 
@@ -116,8 +113,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 		// Make sure we can post binary resources
 		Response response = postNonRDFSource(slug, file, mimeType);
 		try {
-			List<Header> links = response.headers().getList("Link");
-			Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
+			Assert.assertTrue(containsLinkHeader(containerType.stringValue(), LINK_REL_TYPE, response));
 
 			// Check the container contains the new resource
 			Model model = buildBaseRequestSpecification()
@@ -152,8 +148,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 		// Make sure we can post binary resources
 		Response response = postNonRDFSource(slug, file, mimeType);
 		try {
-			List<Header> links = response.headers().getList("Link");
-			Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
+			Assert.assertTrue(containsLinkHeader(containerType.stringValue(), LINK_REL_TYPE, response));
 
 			// And then check we get the binary back
 			final String expectedMD5 = HashUtils.md5sum(NonRDFSourceTest.class.getResourceAsStream("/" + file));
@@ -191,10 +186,9 @@ public class NonRDFSourceTest extends CommonResourceTest {
 		String location = response.getHeader(LOCATION);
 
 		try {
-			List<Header> links = response.getHeaders().getList(LINK);
-			String describedBy = getFirstLinkForRelation("describedby", links);
+			String describedBy = getFirstLinkForRelation(LINK_REL_DESCRIBEDBY, container, response);
 			Assert.assertNotNull(describedBy, "Expected Link response header with relation 'describedby'");
-			Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
+			Assert.assertTrue(containsLinkHeader(containerType.stringValue(), LINK_REL_TYPE, response));
 
 			// And then check we get the metadata of back
 			buildBaseRequestSpecification()
@@ -241,23 +235,21 @@ public class NonRDFSourceTest extends CommonResourceTest {
 				mimeType = "image/png";
 
 		// Make sure we can post binary resources
-		Response response = postNonRDFSource(slug, file, mimeType);
+		Response postResponse = postNonRDFSource(slug, file, mimeType);
 
 		try {
-			List<Header> links = response.headers().getList(LINK);
-			Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
+			Assert.assertTrue(containsLinkHeader(containerType.stringValue(), LINK_REL_TYPE, postResponse));
 
 			// And then check the link when requesting the LDP-NR
-			List<Header> linksNR = buildBaseRequestSpecification()
+			Response getResponse = buildBaseRequestSpecification()
 				.expect()
 					.statusCode(isSuccessful())
 					.header(ETAG, HeaderMatchers.isValidEntityTag())
 				.when()
-					.get(response.getHeader(LOCATION))
-					.headers().getList(LINK);
-			Assert.assertTrue(containsLinkHeader(LDP.NonRDFSource.stringValue(), "type", linksNR));
+					.get(postResponse.getHeader(LOCATION));
+			Assert.assertTrue(containsLinkHeader(LDP.NonRDFSource.stringValue(), LINK_REL_TYPE, getResponse));
 		} finally {
-			buildBaseRequestSpecification().delete(response.header(LOCATION));
+			buildBaseRequestSpecification().delete(postResponse.header(LOCATION));
 		}
 	}
 
@@ -280,23 +272,21 @@ public class NonRDFSourceTest extends CommonResourceTest {
 				mimeType = "image/png";
 
 		// Make sure we can post binary resources
-		Response response = postNonRDFSource(slug, file, mimeType);
-		String location = response.getHeader(LOCATION);
+		Response postResponse = postNonRDFSource(slug, file, mimeType);
+		String location = postResponse.getHeader(LOCATION);
 		try {
-			List<Header> links = response.headers().getList(LINK);
-			String describedBy = getFirstLinkForRelation("describedby", links);
+			String describedBy = getFirstLinkForRelation(LINK_REL_DESCRIBEDBY, location, postResponse);
 			Assert.assertNotNull(describedBy, "Expected Link response header with relation 'describedby'");
-			Assert.assertTrue(containsLinkHeader(containerType.stringValue(), "type", links));
+			Assert.assertTrue(containsLinkHeader(containerType.stringValue(), LINK_REL_TYPE, postResponse));
 
 			// Check the link when requesting the LDP-NS
-			List<Header> linksNR = buildBaseRequestSpecification()
+			Response getResponse = buildBaseRequestSpecification()
 				.expect()
 					.statusCode(isSuccessful())
 					.header(ETAG, HeaderMatchers.headerPresent())
 				.when()
-					.get(location)
-					.headers().getList("Link");
-			Assert.assertTrue(containsLinkHeader(describedBy, "describedby", linksNR));
+					.get(location);
+			Assert.assertTrue(containsLinkHeader(describedBy, LINK_REL_DESCRIBEDBY, getResponse));
 
 			// And then check the associated LDP-RS is actually there
 			buildBaseRequestSpecification()
@@ -334,8 +324,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 		boolean deleted = false;
 
 		try {
-			List<Header> links = postResponse.headers().getList(LINK);
-			String describedBy = getFirstLinkForRelation("describedby", links);
+			String describedBy = getFirstLinkForRelation(LINK_REL_DESCRIBEDBY, container, postResponse);
 			Assert.assertNotNull(describedBy, "Expected Link response header with relation 'describedby'");
 
 			// And then check the associated LDP-RS is actually there
@@ -404,18 +393,16 @@ public class NonRDFSourceTest extends CommonResourceTest {
 		String location = postResponse.getHeader(LOCATION);
 
 		try {
-			List<Header> links = postResponse.getHeaders().getList(LINK);
-			String describedBy = getFirstLinkForRelation("describedby", links);
+			String describedBy = getFirstLinkForRelation(LINK_REL_DESCRIBEDBY, container, postResponse);
 			Assert.assertNotNull(describedBy, "Expected Link response header with relation 'describedby' for LDP-NR POST request");
 
 			// Check the Link headers on an HTTP OPTIONS for the LDP-NR
-			List<Header> linksOPTIONS = buildBaseRequestSpecification()
+			Response optionsResponse = buildBaseRequestSpecification()
 				.expect()
 					.statusCode(isSuccessful())
 				.when()
-					.options(location)
-					.getHeaders().getList(LINK);
-			Assert.assertTrue(containsLinkHeader(describedBy, "describedby", linksOPTIONS),
+					.options(location);
+			Assert.assertTrue(containsLinkHeader(describedBy, LINK_REL_DESCRIBEDBY, location, optionsResponse),
 					"Expected Link response header with relation 'describedby' and URI <"
 							+ describedBy + "> for LDP-NR OPTIONS request");
 		} finally {
