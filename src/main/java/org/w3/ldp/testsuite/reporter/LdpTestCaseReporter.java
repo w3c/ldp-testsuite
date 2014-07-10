@@ -286,46 +286,13 @@ public class LdpTestCaseReporter {
 
 		html.h2().content("Implemented Test Classes");
 
-		html.b().a(href("#" + rdfSourceTest.getCanonicalName()))
-				.content(rdfSourceTest.getCanonicalName())._b();
-		html.br();
-		writeTestClassTable(rdfSourceTest);
-		html.br();
-
-		html.b().a(href("#" + bcTest.getCanonicalName()))
-				.content(bcTest.getCanonicalName())._b();
-		html.br();
-		writeTestClassTable(bcTest);
-		html.br();
-
-		html.b().a(href("#" + commonContainerTest.getCanonicalName()))
-				.content(commonContainerTest.getCanonicalName())._b();
-		html.br();
-		writeTestClassTable(commonContainerTest);
-		html.br();
-
-		html.b().a(href("#" + commonResourceTest.getCanonicalName()))
-				.content(commonResourceTest.getCanonicalName())._b();
-		html.br();
-		writeTestClassTable(commonResourceTest);
-		html.br();
-
-		html.b().a(href("#" + indirectContainerTest.getCanonicalName()))
-				.content(indirectContainerTest.getCanonicalName())._b();
-		html.br();
-		writeTestClassTable(indirectContainerTest);
-		html.br();
-
-		html.b().a(href("#" + directContianerTest.getCanonicalName()))
-				.content(directContianerTest.getCanonicalName())._b();
-		html.br();
-		writeTestClassTable(directContianerTest);
-		html.br();
-
-		html.b().a(href("#" + nonRdfSourceTest.getCanonicalName()))
-				.content(nonRdfSourceTest.getCanonicalName())._b();
-		html.br();
-		writeTestClassTable(nonRdfSourceTest);
+		writeTestTables(rdfSourceTest);
+		writeTestTables(bcTest);
+		writeTestTables(commonContainerTest);
+		writeTestTables(commonResourceTest);
+		writeTestTables(indirectContainerTest);
+		writeTestTables(directContianerTest);
+		writeTestTables(nonRdfSourceTest);
 
 		toTop();
 
@@ -335,6 +302,14 @@ public class LdpTestCaseReporter {
 		html.h2().a(id("clientTests")).content("Client-Based Test Cases")._h2();
 		generateList(clients);
 
+	}
+
+	private static <T> void writeTestTables(Class<T> testClass) throws IOException {
+		html.b().a(href("#" + testClass.getCanonicalName()))
+				.content(testClass.getCanonicalName())._b();
+		html.br();
+		writeTestClassTable(testClass);
+		html.br();
 	}
 
 	private static void iterateTableList(HashMap<String, String> list) throws IOException {
