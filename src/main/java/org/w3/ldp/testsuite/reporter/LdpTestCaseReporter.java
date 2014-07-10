@@ -38,7 +38,20 @@ public class LdpTestCaseReporter {
 	private static ArrayList<String> manuals = new ArrayList<String>();
 	private static HashMap<String, String> readyToBeApproved = new HashMap<String, String>(); // key==method, value==class
 	private static HashMap<String, String> needCode = new HashMap<String, String>(); // key==method, value==class
-
+	
+	private static final HashMap<String, String> implmColor = new HashMap<String, String>(); // key==label value==color
+	private static final HashMap<String, String> statusColor = new HashMap<String, String>();
+	static{
+		implmColor.put("automated", "#0099cc");
+		implmColor.put("unimplemented", "#bf1c56");
+		implmColor.put("client", "#8d1cbf");
+		implmColor.put("manual", "#3300cc");
+		statusColor.put("approved", "#a2bf2f");
+		statusColor.put("pending", "#1cbfbb");
+		statusColor.put("extends", "#bfa22f");
+		statusColor.put("deprecated", "#606060");
+		statusColor.put("clarify", "#1bff95");
+	}
 	private static final int MUST = 0;
 	private static final int SHOULD = 1;
 	private static final int MAY = 2;
@@ -126,15 +139,15 @@ public class LdpTestCaseReporter {
 
 		html.tr();
 		html.td().b().write("" + totalTests)._b().write(" Total Tests");
-		html.ul().li().span(style("background-color:#a2bf2f; height:15px; width:15px; float:left"))._span()
+		html.ul().li().span(style(writeBlockStyle(statusColor, "approved")))._span()
 			.b().write(approved + " ")._b().write("WG Approved")._li();
-		html.li().span(style("background-color:#1cbfbb; height:15px; width:15px; float:left"))._span()
+		html.li().span(style(writeBlockStyle(statusColor, "pending")))._span()
 			.b().write(pending + " ")._b().write("Incomplete")._li();
-		html.li().span(style("background-color:#bfa22f; height:15px; width:15px; float:left"))._span()
+		html.li().span(style(writeBlockStyle(statusColor, "extends")))._span()
 			.b().write(extended + " ")._b().write("Extension")._li();
-		html.li().span(style("background-color:#606060; height:15px; width:15px; float:left"))._span()
+		html.li().span(style(writeBlockStyle(statusColor, "deprecated")))._span()
 			.b().write(deprecated + " ")._b().write("No longer valid")._li();
-		html.li().span(style("background-color:#1bff95; height:15px; width:15px; float:left"))._span()
+		html.li().span(style(writeBlockStyle(statusColor, "clarify")))._span()
 			.b().write(clarification + " ")._b().write("Needs to be clarified with WG")._li();
 		html._ul();
 
@@ -165,7 +178,7 @@ public class LdpTestCaseReporter {
 
 		html.ul();
 		int implemented = getTotal(auto);
-		html.li().span(style("background-color:#0099cc; height:15px; width:15px; float:left"))._span()
+		html.li().span(style(writeBlockStyle(implmColor, "automated")))._span()
 			.b().write(implemented + " ")._b().write("Requirements Automated")._li();
 		html.ul();
 		html.li().b().write(auto[MUST] + " / " + mustTotal)._b().write(" MUST")._li();
@@ -195,10 +208,10 @@ public class LdpTestCaseReporter {
 		 * html.li().b().write(disabled +
 		 * " ")._b().write("of the Tests not enabled")._li();
 		 */
-		html.li().span(style("background-color:#8d1cbf; height:15px; width:15px; float:left"))._span()
+		html.li().span(style(writeBlockStyle(implmColor, "client")))._span()
 			.b().write(clients.size() + " ")._b().write("of the Total are ")
 			.a(href("#clientTests")).write("Client-Based Tests")._a()._li();
-		html.li().span(style("background-color:#3300cc; height:15px; width:15px; float:left"))._span()
+		html.li().span(style(writeBlockStyle(implmColor, "manual")))._span()
 			.b().write(manuals.size() + " ")._b().write("of the Total must be ")
 			.a(href("#manualTests")).write("Tested Manually")._a()._li();
 		html._ul();
@@ -207,7 +220,7 @@ public class LdpTestCaseReporter {
 
 		html.ul();
 		int unimplemented = getTotal(unimplmnt);
-		html.li().span(style("background-color:#bf1c56; height:15px; width:15px; float:left"))._span()
+		html.li().span(style(writeBlockStyle(implmColor, "unimplemented")))._span()
 			.b().write(unimplemented + " ")
 			._b().write("Requirements not Implemented")._li();
 		html.ul();
@@ -222,6 +235,10 @@ public class LdpTestCaseReporter {
 		writeGraphDescription();
 		generateListOfTestCases();
 
+	}
+
+	private static String writeBlockStyle(HashMap<String, String> list, String string) {
+		return "background-color:" + list.get(string) + "; height:15px; width:15px; float:left";
 	}
 
 	private static int getTotal(int[] array) {
@@ -251,7 +268,7 @@ public class LdpTestCaseReporter {
 					.a(href("https://github.com/w3c/ldp-testsuite"))
 					.write("see source in GitHub")._a()._p();
 			html.ul();
-			iterateList(readyToBeApproved);
+			iterateTableList(readyToBeApproved);
 			html._ul();
 		}
 		toTop();
@@ -262,7 +279,7 @@ public class LdpTestCaseReporter {
 					.br();
 		else {
 			html.ul();
-			iterateList(needCode);
+			iterateTableList(needCode);
 			html._ul();
 		}
 		toTop();
@@ -320,7 +337,7 @@ public class LdpTestCaseReporter {
 
 	}
 
-	private static void iterateList(HashMap<String, String> list) throws IOException {
+	private static void iterateTableList(HashMap<String, String> list) throws IOException {
 		String className;
 		String methodName;
 		Iterator<Entry<String, String>> codeIter = list.entrySet().iterator();
@@ -529,7 +546,9 @@ public class LdpTestCaseReporter {
 		graphs.write("deprecated: [" + depreReq[0] + ", " + depreReq[1] + ", " + depreReq[2] + " ],");
 		graphs.write("clarify: [" + clariReq[0] + ", " + clariReq[1] + ", " + clariReq[2] + "] },");
 		graphs.write("{ labels: [ \"MUST\", \"SHOULD\", \"MAY\" ],");
-		graphs.write("colors: { approved: '#a2bf2f', pending:'#1cbfbb', extends: '#bfa22f', deprecated: '#606060', clarify: '#1bff95' },");
+		graphs.write("colors: { ");
+		writeColors(statusColor);
+		graphs.write(" },");
 		graphs.write("hover_color: \"#ccccff\",");
 		graphs.write("datalabels: { ");
 		graphs.write("approved: [ \"" + apprReq[0] + " WG Approved\", \"" + apprReq[1] + " WG Approved\", \"" + apprReq[2] + " WG Approved\" ],");
@@ -544,7 +563,7 @@ public class LdpTestCaseReporter {
 		
 		
 	}
-	
+
 	private static void writeImplementationGraph(String classType,
 			int[] autoReq, int[] unimReq, int[] clientReq, int[] manReq) {
 		graphs.write("<script>");
@@ -558,7 +577,9 @@ public class LdpTestCaseReporter {
 		graphs.write("client: [" + clientReq[0] + ", " + clientReq[1] + ", " + clientReq[2] + " ],");
 		graphs.write("manual: [" + manReq[0] + ", " + manReq[1] + ", " + manReq[2] + "] },");
 		graphs.write("{ labels: [ \"MUST\", \"SHOULD\", \"MAY\" ],");
-		graphs.write("colors: { automated: '#0099cc', unimplemented:'#bf1c21', client: '#8d1cbf', manual: '#3300cc' },");
+		graphs.write("colors: { ");
+		writeColors(implmColor);
+		graphs.write("},");
 		graphs.write("hover_color: \"#ccccff\",");
 		graphs.write("datalabels: { ");
 		graphs.write("automated: [ \"" + autoReq[0] + " Automated\", \"" + autoReq[1] + " Automated\", \"" + autoReq[2] + " Automated\" ],");
@@ -569,6 +590,17 @@ public class LdpTestCaseReporter {
 		graphs.write(" }); });");
 
 		graphs.write("</script>");
+	}
+	
+	private static void writeColors(HashMap<String, String> colorList) {
+		Iterator<Entry<String, String>> codeIter = colorList.entrySet().iterator();
+		Entry<String, String> value;
+		while(codeIter.hasNext()){
+			value = codeIter.next();
+				graphs.write(value.getKey() + ": '" + value.getValue() + "' ");
+			if(codeIter.hasNext())
+				graphs.write(", ");
+		}
 	}
 
 	private static void generateList(ArrayList<String> list) throws IOException {
