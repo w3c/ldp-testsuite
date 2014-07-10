@@ -6,6 +6,7 @@ import org.testng.*;
 import org.testng.annotations.Test;
 import org.testng.internal.Utils;
 import org.testng.xml.XmlSuite;
+import org.w3.ldp.testsuite.BuildProperties;
 import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 
@@ -17,6 +18,7 @@ import java.io.StringWriter;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,6 +26,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -77,7 +80,7 @@ public class LdpHtmlReporter implements IReporter {
 				html.title().content(LdpTestSuite.NAME + " Report")._head()
 						.body();
 				html.h1().content(LdpTestSuite.NAME + " Summary");
-			
+
 				// Getting the results for the said suite
 				Map<String, ISuiteResult> suiteResults = suite.getResults();
 
@@ -261,6 +264,7 @@ public class LdpHtmlReporter implements IReporter {
 	private void generateSummaryTableStart(Date date, String suiteName)
 			throws IOException {
 		html.tr().th().content("Test Suite Name");
+		html.th().content("Revision");
 		html.th().content("Report Date");
 		html.th().content("Skipped Tests");
 		html.th().content("Passed (MUST)");
@@ -270,6 +274,12 @@ public class LdpHtmlReporter implements IReporter {
 		html._tr();
 
 		html.tr(class_("alt")).td().content(suiteName);
+		final String commit = BuildProperties.getRevision();
+		if (commit == null) {
+			html.td().content("<UNKNOWN>");
+		} else {
+			html.td().a(href("https://github.com/w3c/ldp-testsuite/commit/" + commit)).content(commit)._td();
+		}
 		html.td().content(date.toString());
 	}
 
