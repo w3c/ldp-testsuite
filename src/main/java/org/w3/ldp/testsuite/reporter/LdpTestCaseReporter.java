@@ -1,28 +1,44 @@
 package org.w3.ldp.testsuite.reporter;
 
-import org.rendersnake.HtmlCanvas;
-import org.rendersnake.StringResource;
-import org.rendersnake.tools.PrettyWriter;
-import org.testng.annotations.Test;
-import org.w3.ldp.testsuite.annotations.SpecTest;
-import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
-import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
-import org.w3.ldp.testsuite.test.*;
+import static org.rendersnake.HtmlAttributesFactory.NO_ESCAPE;
+import static org.rendersnake.HtmlAttributesFactory.class_;
+import static org.rendersnake.HtmlAttributesFactory.colspan;
+import static org.rendersnake.HtmlAttributesFactory.href;
+import static org.rendersnake.HtmlAttributesFactory.id;
+import static org.rendersnake.HtmlAttributesFactory.rowspan;
+import static org.rendersnake.HtmlAttributesFactory.style;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.lang.reflect.Method;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import static org.rendersnake.HtmlAttributesFactory.*;
+import org.rendersnake.HtmlCanvas;
+import org.rendersnake.StringResource;
+import org.rendersnake.tools.PrettyWriter;
+import org.testng.annotations.Test;
+import org.w3.ldp.testsuite.BuildProperties;
+import org.w3.ldp.testsuite.annotations.SpecTest;
+import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
+import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
+import org.w3.ldp.testsuite.test.BasicContainerTest;
+import org.w3.ldp.testsuite.test.CommonContainerTest;
+import org.w3.ldp.testsuite.test.CommonResourceTest;
+import org.w3.ldp.testsuite.test.DirectContainerTest;
+import org.w3.ldp.testsuite.test.IndirectContainerTest;
+import org.w3.ldp.testsuite.test.NonRDFSourceTest;
+import org.w3.ldp.testsuite.test.RdfSourceTest;
 
 public class LdpTestCaseReporter {
 
@@ -103,7 +119,16 @@ public class LdpTestCaseReporter {
 		html.title().content("LDP: Test Cases Coverage Report")._head().body();
 
 		html.h1().content("W3C Linked Data Platform (LDP) Test Suite: Test Cases Coverage Report");
-		html.p().a(href("http://www.w3.org/2012/ldp/")).write("See also W3C Linked Data Platform WG")._a()._p();
+		html.p().a(href("http://www.w3.org/2012/ldp/")).content("See also W3C Linked Data Platform WG")._p();
+
+		final String commit = BuildProperties.getRevision();
+		if (commit != null) {
+			html.div()
+				.write("Test Suite Revision: ")
+				.a(href("https://github.com/w3c/ldp-testsuite/commit/" + commit)).content(commit)._div();
+		}
+		DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.ENGLISH);
+		html.div().content("Updated: " + dateFormat.format(new Date()));
 
 		createSummaryReport();
 		toTop();
