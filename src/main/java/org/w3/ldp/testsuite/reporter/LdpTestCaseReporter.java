@@ -52,9 +52,10 @@ public class LdpTestCaseReporter {
 		statusColor.put("deprecated", "#606060");
 		statusColor.put("clarify", "#1bff95");
 	}
-	private static final int MUST = 0;
-	private static final int SHOULD = 1;
-	private static final int MAY = 2;
+	public static final int MUST = 0;
+	public static final int SHOULD = 1;
+	public static final int MAY = 2;
+	public static final int OTHER = 3;
 	
 	private static int totalTests = 0;
 	private static int automated = 0;
@@ -932,6 +933,14 @@ public class LdpTestCaseReporter {
 				e.printStackTrace(System.err);
 			}
 		}
+	}
+	
+	public static int getConformanceIndex(String conformance) {
+		String c = conformance.toUpperCase();
+		if (c.equals("MUST")) return MUST;
+		if (c.equals("SHOULD")) return SHOULD;
+		if (c.contains("MAY")) return MAY;
+		return OTHER;
 	}
 
 }

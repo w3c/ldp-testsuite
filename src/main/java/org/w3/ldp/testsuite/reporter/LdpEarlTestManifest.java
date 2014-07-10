@@ -12,13 +12,10 @@ import java.util.GregorianCalendar;
 import org.testng.annotations.Test;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.test.BasicContainerTest;
-import org.w3.ldp.testsuite.test.CommonContainerTest;
-import org.w3.ldp.testsuite.test.CommonResourceTest;
 import org.w3.ldp.testsuite.test.DirectContainerTest;
 import org.w3.ldp.testsuite.test.IndirectContainerTest;
 import org.w3.ldp.testsuite.test.MemberResourceTest;
 import org.w3.ldp.testsuite.test.NonRDFSourceTest;
-import org.w3.ldp.testsuite.test.RdfSourceTest;
 import org.w3.ldp.testsuite.vocab.LDP;
 import org.w3.ldp.testsuite.vocab.TestDescription;
 
@@ -31,6 +28,7 @@ import com.hp.hpl.jena.rdf.model.RDFList;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.sparql.vocabulary.EARL;
+import com.hp.hpl.jena.vocabulary.DC;
 import com.hp.hpl.jena.vocabulary.DCTerms;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
@@ -45,11 +43,8 @@ public class LdpEarlTestManifest {
 
 
 	private static Class<BasicContainerTest> bcTest = BasicContainerTest.class;
-	private static Class<RdfSourceTest> rdfSourceTest = RdfSourceTest.class;
 	private static Class<IndirectContainerTest> indirectContainerTest = IndirectContainerTest.class;
 	private static Class<DirectContainerTest> directContianerTest = DirectContainerTest.class;
-	private static Class<CommonContainerTest> commonContainerTest = CommonContainerTest.class;
-	private static Class<CommonResourceTest> commonResourceTest = CommonResourceTest.class;
 	private static Class<MemberResourceTest> memberResourceTest = MemberResourceTest.class;
 	private static Class<NonRDFSourceTest> nonRdfSourceTest = NonRDFSourceTest.class;
 
@@ -81,7 +76,6 @@ public class LdpEarlTestManifest {
 		// Use ArrayList to preserve order
 		ArrayList<Resource> testcases = new ArrayList<Resource>();
 		writeTestClasses(testcases);
-		writeManifest(testcases);
 
 		write();
 		try {
@@ -92,10 +86,14 @@ public class LdpEarlTestManifest {
 		}
 	}
 
-	private static void writeManifest(ArrayList<Resource> testcases) {
-		Resource manifest = model.createResource(LDP.LDPT_NAMESPACE,
+	private static void writeManifest(ArrayList<Resource> testcases, String localName, String label, String description) {
+		if (testcases.size() == 0) return;
+		
+		Resource manifest = model.createResource(LDP.LDPT_NAMESPACE + localName+"Manifest",
 				TestManifest.Manifest);
-		manifest.addProperty(RDFS.comment, "LDP 1.0 Test Cases");
+		manifest.addProperty(DC.title, label);
+		manifest.addProperty(TestManifest.name, label);
+		manifest.addProperty(RDFS.comment, description);
 		Resource[] ra={};
 		RDFList l = model.createList(testcases.toArray(ra));
 		manifest.addProperty(TestManifest.entries, l);
@@ -115,20 +113,36 @@ public class LdpEarlTestManifest {
 		model.setNsPrefix(LDP.LDPT_PREFIX, LDP.LDPT_NAMESPACE);
 	}
 
-	private static <T> void writeInfo(Class<T> testClass, ArrayList<Resource> testcases) {
-		String name = testClass.getCanonicalName();
-		Method[] bcMethods = testClass.getMethods();
-		for (Method method : bcMethods) {
+	private static <T> void writeInfo(Class<T> testClass, String title, String description) {
+		ArrayList<ArrayList<Resource>> conformanceClasses = new ArrayList<ArrayList<Resource>>();
+        conformanceClasses.add(new ArrayList<Resource>());
+        conformanceClasses.add(new ArrayList<Resource>());
+        conformanceClasses.add(new ArrayList<Resource>());
+        conformanceClasses.add(new ArrayList<Resource>());
+        
+		String className = testClass.getCanonicalName();
+		Method[] methods = testClass.getMethods();
+		for (Method method : methods) {
 			if (method.isAnnotationPresent(Test.class)) {
-				Resource r = generateInformation(method, name);
-				if (r != null) {
-					testcases.add(r);
-				}
+				generateInformation(method, className, conformanceClasses);
 			}
 		}
+		writeManifest(conformanceClasses.get(LdpTestCaseReporter.MUST), title
+				+ "-MUST", title + " (MUST)", description
+				+ " MUST conformance tests.");
+		writeManifest(conformanceClasses.get(LdpTestCaseReporter.SHOULD), title
+				+ "-SHOULD", title + " (SHOULD)", description
+				+ " SHOULD conformance tests.");
+		writeManifest(conformanceClasses.get(LdpTestCaseReporter.MAY), title
+				+ "-MAY", title + " (MAY)", description
+				+ " MAY conformance tests.");
+		writeManifest(conformanceClasses.get(LdpTestCaseReporter.OTHER), title
+				+ "-OTHER", title + " (OTHER)", description
+				+ " No official conformance status.");
 	}
 
-	private static Resource generateInformation(Method method, String className) {
+	private static Resource generateInformation(Method method, String className, 
+			ArrayList<ArrayList<Resource>> conformanceClasses) {
 		SpecTest testLdp = null;
 		Test test = null;
 		if (method.getAnnotation(SpecTest.class) != null
@@ -154,14 +168,18 @@ public class LdpEarlTestManifest {
 			testCaseResource.addProperty(RDFS.comment, test.description());
 			if (allGroups != null)
 				testCaseResource.addProperty(DCTerms.subject, allGroups);
+			else
+				conformanceClasses.get(LdpTestCaseReporter.OTHER).add(testCaseResource);
 
+			for (String group: test.groups()) {
+				group = group.trim();
+				testCaseResource.addProperty(conformanceLevel, model.createResource(LDP.LDPT_NAMESPACE + group));
+				conformanceClasses.get(LdpTestCaseReporter.getConformanceIndex(group)).add(testCaseResource);
+			}
+			
 			// Leave action property only to make earl-report happy
 			testCaseResource.addProperty(TestManifest.action, "");
 			
-			for (String group: test.groups()) {
-				 testCaseResource.addProperty(conformanceLevel, model.createResource(LDP.LDPT_NAMESPACE + group.trim()));
-			}
-
 			switch (testLdp.approval()) {
 			case WG_APPROVED:
 				testCaseResource.addProperty(TestDescription.reviewStatus, TestDescription.approved);
@@ -228,14 +246,14 @@ public class LdpEarlTestManifest {
 
 	private static void writeTestClasses(ArrayList<Resource> testcases) {
 		// These are put in order so they are presented properly on earl-report
-		writeInfo(commonResourceTest, testcases);
-		writeInfo(rdfSourceTest, testcases);
-		writeInfo(commonContainerTest, testcases);
-		writeInfo(memberResourceTest, testcases);
-		writeInfo(nonRdfSourceTest, testcases);
-		writeInfo(bcTest, testcases);
-		writeInfo(directContianerTest, testcases);
-		writeInfo(indirectContainerTest, testcases);
+//		writeInfo(commonResourceTest, testcases);
+//		writeInfo(rdfSourceTest, testcases);
+//		writeInfo(commonContainerTest, testcases);
+		writeInfo(memberResourceTest, "RDFSource", "LDP RDF Source tests.");
+		writeInfo(nonRdfSourceTest, "Non-RDFSource", "LDP Non-RDF Source tests.");
+		writeInfo(bcTest, "BasicContainer", "LDP Basic Container tests.");
+		writeInfo(directContianerTest, "DirectContainer", "LDP Direct Container tests.");
+		writeInfo(indirectContainerTest, "IndirectContainer", "LDP Indirect Container tests.");
 	}
 
 	private static void write() {
