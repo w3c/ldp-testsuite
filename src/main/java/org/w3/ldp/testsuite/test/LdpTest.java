@@ -4,6 +4,8 @@ import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 import javax.ws.rs.core.Link;
@@ -33,7 +35,7 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	 * Alternate content to use on POST requests
 	 */
 	private static Model postModel;
-	
+
 	/**
 	 * Builds a model from a turtle representation in a file
 	 * @param path
@@ -50,8 +52,10 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 			// an empty string is passed as base to this method.
 			model.read(inputStream, fakeUri, "TURTLE");
 
-			// At this point, the model should contain a resource named "http://example.org" if
-			// there was a null relative URI in the resource representation file.
+			// At this point, the model should contain a resource named
+			// "http://w3c.github.io/ldp-testsuite/fakesubject" if
+			// there was a null relative URI in the resource representation
+			// file.
 			Resource subject = model.getResource(fakeUri);
 			if (subject != null) {
 				ResourceUtils.renameResource(subject, "");
@@ -119,19 +123,6 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	}
 
 	/**
-	 * Tests if a Link response header with the expected URI and relation
-	 * is present in an HTTP response.
-	 *
-	 * @param uri		   the expected URI
-	 * @param linkRelation the expected link relation (rel)
-	 * @param response	   the HTTP response
-	 * @see <a href="http://tools.ietf.org/html/rfc5988">RFC 5988</a>
-	 */
-	protected boolean containsLinkHeader(String uri, String linkRelation, Response response) {
-		return containsLinkHeader(uri, linkRelation, response.getHeaders().getList(LINK));
-	}
-
-	/**
 	 * Build a base RestAssured {@link com.jayway.restassured.specification.RequestSpecification}.
 	 *
 	 * @return RestAssured Request Specification
@@ -168,64 +159,82 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	}
 
 	/**
-	 * Check if the header is contained in the headers list
-	 * (becase RestAssured only checks the FIRST header)
+	 * Tests if a Link response header with the expected URI and relation is
+	 * present in an HTTP response. Does not resolve relative URIs. If a Link
+	 * URI might be relative, use {@link #containsLinkHeader(String, String,
+	 * String, Response)}.
 	 *
-	 * @param header  header to look for
-	 * @param headers list of headers
-	 * @return header is contained
+	 * @param expectedUri
+	 *            the expected URI
+	 * @param expectedRel
+	 *            the expected link relation (rel)
+	 * @param response
+	 *            the HTTP response
+	 * @see <a href="http://tools.ietf.org/html/rfc5988">RFC 5988</a>
+	 * @see #getFirstLinkForRelation(String, String, Response)
 	 */
-	protected boolean containsLinkHeader(Header header, List<Header> headers) {
-		for (Header h : headers) {
-			if (header.equals(h)) {
-				return true;
-			}
-		}
-		return false;
+	protected boolean containsLinkHeader(String expectedUri, String expectedRel, Response response) {
+		return containsLinkHeader(expectedUri, expectedRel, null, response);
 	}
 
 	/**
-	 * Check if the link is contained in the headers list
-	 * (becase RestAssured only checks the FIRST header)
+	 * Tests if a Link response header with the expected URI and relation is
+	 * present in an HTTP response. Resolves relative URIs against the request
+	 * URI if necessary.
 	 *
-	 * @param link	  header to look for
-	 * @param headers list of headers
-	 * @return link is contained
+	 * @param expectedLinkUri
+	 *            the expected URI
+	 * @param expectedRel
+	 *            the expected link relation (rel)
+	 * @param requestUri
+	 *            the HTTP request URI (for resolving relative URIs)
+	 * @param response
+	 *            the HTTP response
+	 * @see <a href="http://tools.ietf.org/html/rfc5988">RFC 5988</a>
+	 * @see #getFirstLinkForRelation(String, String, Response)
 	 */
-	protected boolean containsLinkHeader(Link link, List<Header> headers) {
-		for (Header header : headers) {
-			for (String s : header.getValue().split(",")) {
-				Link l = new LinkDelegate().fromString(s);
-				if (link.equals(l)) {
-					return true;
+	protected boolean containsLinkHeader(String expectedLinkUri, String expectedRel, String requestUri, Response response) {
+		List<Header> linkHeaders = response.getHeaders().getList(LINK);
+		for (Header linkHeader : linkHeaders) {
+			for (String s : linkHeader.getValue().split(",")) {
+				Link nextLink = new LinkDelegate().fromString(s);
+				if (expectedRel.equals(nextLink.getRel())) {
+					String actualLinkUri = resolveIfRelative(requestUri, nextLink.getUri());
+					if (expectedLinkUri.equals(actualLinkUri)) {
+						return true;
+					}
 				}
 			}
 		}
+
 		return false;
 	}
 
 	/**
-	 * Check if the link is contained in the headers list
-	 * (becase RestAssured only checks the FIRST header)
+	 * Gets the first link from {@code response} with link relation {@code rel}.
+	 * Resolves relative URIs against the request URI if necessary.
 	 *
-	 * @param uri	  link uri
-	 * @param rel	  link rel
-	 * @param headers list of headers
-	 * @return link is contained
+	 * @param rel
+	 *            the expected link relation
+	 * @param requestUri
+	 *            the HTTP request URI (for resolving relative URIs)
+	 * @param response
+	 *            the HTTP response
+	 * @return the first link or {@code null} if none was found
+	 * @see <a href="http://tools.ietf.org/html/rfc5988">RFC 5988</a>
+	 * @see #containsLinkHeader(String, String, Response)
 	 */
-	protected boolean containsLinkHeader(String uri, String rel, List<Header> headers) {
-		return containsLinkHeader(Link.fromUri(uri).rel(rel).build(), headers);
-	}
-
-	protected String getFirstLinkForRelation(String rel, List<Header> headers) {
-		for (Header header : headers) {
+	protected String getFirstLinkForRelation(String rel, String requestUri, Response response) {
+		List<Header> linkHeaders = response.getHeaders().getList(LINK);
+		for (Header header : linkHeaders) {
 			for (String s : header.getValue().split(",")) {
 				Link l = new LinkDelegate().fromString(s);
 				if (rel.equals(l.getRel())) {
-					return l.getUri().toString();
+					return resolveIfRelative(requestUri, l.getUri());
 				}
 			}
 		}
+
 		return null;
 	}
 
@@ -239,16 +248,16 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	 *		   <code>Preference-Applied</code> header
 	 */
 	protected boolean isPreferenceApplied(Response response) {
-	   List<Header> preferenceAppliedHeaders = response.getHeaders().getList(PREFERNCE_APPLIED);
-	   for (Header h : preferenceAppliedHeaders) {
+		List<Header> preferenceAppliedHeaders = response.getHeaders().getList(PREFERNCE_APPLIED);
+		for (Header h : preferenceAppliedHeaders) {
 			// Handle optional whitespace, quoted preference token values, and
 			// other tokens in the Preference-Applied response header.
-		   if (h.getValue().matches("(^|[ ;])return *= *\"?representation\"?($|[ ;])")) {
-			   return true;
-		   }
-	   }
+			if (h.getValue().matches("(^|[ ;])return *= *\"?representation\"?($|[ ;])")) {
+				return true;
+			}
+		}
 
-	   return false;
+		return false;
 	}
 
 	public static String include(String... preferences) {
@@ -263,4 +272,35 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 		return "return=representation; " + name + "=\"" + StringUtils.join(values, " ") + "\"";
 	}
 
+	/**
+	 * Resolves a URI if it's a relative path.
+	 *
+	 * @param base
+	 *            the base URI to use
+	 * @param toResolve
+	 *            a URI that might be relative
+	 * @return the resolved URI
+	 * @throws URISyntaxException
+	 *             on bad URIs (but relative URIs are OK)
+	 */
+	public static String resolveIfRelative(String base, String toResolve) {
+		try {
+			// The URI constructor accepts relative paths
+			return resolveIfRelative(base, new URI(toResolve));
+		} catch (URISyntaxException e) {
+			throw new IllegalArgumentException(e);
+		}
+	}
+
+	protected static String resolveIfRelative(String base, URI toResolve) {
+		if (toResolve.isAbsolute()) {
+			return toResolve.toString();
+		}
+
+		try {
+			return new URI(base).resolve(toResolve).toString();
+		} catch (URISyntaxException e) {
+			throw new IllegalArgumentException(e);
+		}
+	}
 }

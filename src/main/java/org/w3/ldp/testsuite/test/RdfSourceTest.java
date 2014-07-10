@@ -590,7 +590,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 
 	protected void expectPut4xxDescriedBy(String invalidProp) {
 		Response putResponse = expectPut4xxStatus(invalidProp);
-		String describedby = getFirstLinkForRelation(LINK_REL_DESCRIBEDBY, putResponse.getHeaders().getList(LINK));
+		String describedby = getFirstLinkForRelation(LINK_REL_DESCRIBEDBY, getResourceUri(), putResponse);
 		assertNotNull(describedby, "Response did not contain a Link header with rel=\"describedby\"");
 
 		// Make sure we can GET the describedby link.
