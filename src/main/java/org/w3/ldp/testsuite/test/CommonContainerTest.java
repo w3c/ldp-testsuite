@@ -222,16 +222,26 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 
 		Model model = postContent();
 		String containerUri = getResourceUri();
-		Response postResponse = buildBaseRequestSpecification().contentType(TEXT_TURTLE)
-				.body(model, new RdfObjectMapper()).expect()
-				.statusCode(HttpStatus.SC_CREATED).when()
-				.post(getResourceUri());
+		Response postResponse = buildBaseRequestSpecification()
+					.contentType(TEXT_TURTLE)
+					.body(model, new RdfObjectMapper())
+				.expect()
+					.statusCode(HttpStatus.SC_CREATED)
+					.header(LOCATION, HeaderMatchers.headerPresent())
+				.when()
+					.post(containerUri);
 
 		String location = postResponse.getHeader(LOCATION);
-		assertNotNull(location, MSG_LOC_NOTFOUND);
 
 		try {
-			Model containerModel = getAsModel(containerUri);
+			Response getResponse = buildBaseRequestSpecification()
+					.header(ACCEPT, TEXT_TURTLE)
+					.header(PREFER, include(PREFER_CONTAINMENT)) // hint to the server that we want containment triples
+				.expect()
+					.statusCode(isSuccessful())
+				.when()
+					.get(containerUri);
+			Model containerModel = getResponse.as(Model.class, new RdfObjectMapper(containerUri));
 			Resource container = containerModel.getResource(containerUri);
 
 			assertTrue(
@@ -623,10 +633,14 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 		skipIfMethodNotAllowed(HttpMethod.POST);
 
 		Model model = postContent();
-		Response postResponse = buildBaseRequestSpecification().contentType(TEXT_TURTLE)
-				.body(model, new RdfObjectMapper()).expect()
-				.statusCode(HttpStatus.SC_CREATED).when()
-				.post(getResourceUri());
+		String containerUri = getResourceUri();
+		Response postResponse = buildBaseRequestSpecification()
+					.contentType(TEXT_TURTLE)
+					.body(model, new RdfObjectMapper())
+				.expect()
+					.statusCode(HttpStatus.SC_CREATED)
+				.when()
+					.post(getResourceUri());
 
 		// POST support is optional. Only test delete if the POST succeeded.
 		if (postResponse.getStatusCode() != HttpStatus.SC_CREATED) {
@@ -640,12 +654,22 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 		// TODO: Check if delete is supported on location.....
 
 		// Delete the resource
-		buildBaseRequestSpecification().expect().statusCode(isSuccessful()).when()
+		buildBaseRequestSpecification()
+			.expect()
+				.statusCode(isSuccessful())
+			.when()
 				.delete(location);
 
 		// Test the membership triple
-		Model containerModel = getAsModel(getResourceUri());
-		Resource container = containerModel.getResource(getResourceUri());
+		Response getResponse = buildBaseRequestSpecification()
+				.header(ACCEPT, TEXT_TURTLE)
+				.header(PREFER, include(PREFER_CONTAINMENT)) // hint to the server that we want containment triples
+			.expect()
+				.statusCode(isSuccessful())
+			.when()
+				.get(containerUri);
+		Model containerModel = getResponse.as(Model.class, new RdfObjectMapper(containerUri));
+		Resource container = containerModel.getResource(containerUri);
 
 		assertFalse(
 				container.hasProperty(containerModel
