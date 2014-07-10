@@ -1,7 +1,6 @@
 package org.w3.ldp.testsuite.test;
 
 import static org.hamcrest.core.IsNot.not;
-import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertNotEquals;
 import static org.testng.Assert.assertNotNull;
