@@ -15,7 +15,8 @@ import org.apache.marmotta.commons.vocabulary.LDP;
 import org.openrdf.model.URI;
 import org.testng.Assert;
 import org.testng.SkipException;
-import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -34,14 +35,20 @@ import com.jayway.restassured.response.Response;
  */
 public class NonRDFSourceTest extends CommonResourceTest {
 
-	private final String container;
-	private final URI containerType;
+	private String container;
+	private URI containerType;
 	/** Resource for CommonResourceTest */
-	private final String nonRdfSource;
+	private String nonRdfSource;
 
-	@Parameters({ "basicContainer", "directContainer", "indirectContainer", "auth"})
-	public NonRDFSourceTest(@Optional String basicContainer, @Optional String directContainer, @Optional String indirectContainer, @Optional String auth) throws IOException {
+	@Parameters("auth")
+	public NonRDFSourceTest(@Optional String auth) throws IOException {
 		super(auth);
+	}
+
+	@Parameters({ "basicContainer", "directContainer", "indirectContainer" })
+	@BeforeSuite(alwaysRun = true)
+	public void setup(@Optional String basicContainer, @Optional String directContainer, @Optional String indirectContainer) {
+		System.err.println("SETUP!!");
 		if (StringUtils.isNotBlank(basicContainer)) {
 			container = basicContainer;
 			containerType = LDP.BasicContainer;
@@ -60,17 +67,28 @@ public class NonRDFSourceTest extends CommonResourceTest {
 				mimeType = "image/png";
 
 		// Create a resource to use for CommonResourceTest.
-		Response response = postNonRDFSource(slug, file, mimeType);
-		nonRdfSource = response.getHeader(LOCATION);
+		try {
+			Response response = postNonRDFSource(slug, file, mimeType);
+			nonRdfSource = response.getHeader(LOCATION);
+		} catch (Exception e) {
+			System.err.println("ERROR: Could not create test resource for NonRDFSourceTest. Skipping tests.");
+			e.printStackTrace();
+		}
 	}
 
-	@AfterClass(alwaysRun = true)
-	public void deleteTestResource() {
-		buildBaseRequestSpecification().delete(nonRdfSource);
+	@AfterSuite(alwaysRun = true)
+	public void tearDown() {
+		if (nonRdfSource != null) {
+			buildBaseRequestSpecification().delete(nonRdfSource);
+		}
 	}
 
 	@Override
 	protected String getResourceUri() {
+		if (nonRdfSource == null) {
+			throw new SkipException("Skipping test because test resource is null.");
+		}
+
 		return nonRdfSource;
 	}
 
