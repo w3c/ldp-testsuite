@@ -2,13 +2,13 @@ package org.w3.ldp.testsuite.reporter;
 
 import org.rendersnake.HtmlCanvas;
 import org.rendersnake.StringResource;
+import org.rendersnake.tools.PrettyWriter;
 import org.testng.annotations.Test;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.test.*;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -93,7 +93,6 @@ public class LdpTestCaseReporter {
 		firstRead();
 		makeReport();
 		endReport();
-		
 		createWriter("report", html.toHtml());
 	}
 
@@ -103,7 +102,7 @@ public class LdpTestCaseReporter {
 		writeCss();
 		html.title().content("LDP: Test Cases Coverage Report")._head().body();
 
-		html.h1().content("W3C Linked Data Platform (LDP) Test Suite: Test Cases Coverate Report");
+		html.h1().content("W3C Linked Data Platform (LDP) Test Suite: Test Cases Coverage Report");
 		html.p().a(href("http://www.w3.org/2012/ldp/")).write("See also W3C Linked Data Platform WG")._a()._p();
 
 		createSummaryReport();
@@ -138,7 +137,7 @@ public class LdpTestCaseReporter {
 		html._tr();
 
 		html.tr();
-		html.td().b().write("" + totalTests)._b().write(" Total Tests");
+		html.td(rowspan("2")).b().write("" + totalTests)._b().write(" Total Tests");
 		html.ul().li().span(style(writeBlockStyle(statusColor, "approved")))._span()
 			.b().write(approved + " ")._b().write("WG Approved")._li();
 		html.li().span(style(writeBlockStyle(statusColor, "pending")))._span()
@@ -187,18 +186,12 @@ public class LdpTestCaseReporter {
 		html.li().b().write(auto[MAY] + " / " + mayTotal)._b().write(" MAY")._li();
 		html._ul();
 		html._ul();
-		
-		html.span(class_("chartStart"));
-		// html.label(class_("label")).b().write("Test Case Status for Coverage")._b()._label();
-		html.div(class_("barChart").id("overall_implmtbar"))._div();
-		writeImplementationGraph("overall", auto, unimplmnt, client, manual);
-		html._span();
 		html._td();
 
 		// html.td().content(totalImplemented + " Tests");
 		html.td();
 		html.b().write((needCode.size() + clients.size() + manuals.size()) + " ")._b()
-				.write("of the Total Tests");
+				.write("of the Unimplemented Tests");
 		html.ul();
 
 		html.li().b().write(needCode.size() + " ")._b().write("of the Tests ")
@@ -230,6 +223,14 @@ public class LdpTestCaseReporter {
 		html._ul();
 		html._ul()._td();
 		html._tr();
+		
+		html.tr().td(colspan("2"));
+		html.span(class_("chartStart"));
+		// html.label(class_("label")).b().write("Test Case Status for Coverage")._b()._label();
+		html.div(class_("barChart").id("overall_implmtbar"))._div();
+		writeImplementationGraph("overall", auto, unimplmnt, client, manual);
+		html._span();
+		html._td()._tr();
 		html._table();
 
 		writeGraphDescription();
@@ -479,7 +480,7 @@ public class LdpTestCaseReporter {
 		html.table(class_("classes"));
 
 		html.tr().th().content("Total Tests");
-		html.th().content("Test Case Information");
+		html.th().content("Coverage");
 		html.th().content("Status");
 		html.th().content("Implementation");
 		html._tr();
@@ -487,43 +488,42 @@ public class LdpTestCaseReporter {
 		html.tr().td().content(total + "");
 		html.td();
 		if (must > 0)
-			html.b().write("MUST: ")._b().write(must + "   ");
+			html.b().write("MUST: ")._b().write(must).br();
 		if (should > 0)
-			html.b().write("SHOULD: ")._b().write(should + "   ");
+			html.b().write("SHOULD: ")._b().write(should).br();
 		if (may > 0)
-			html.b().write("MAY: ")._b().write(may + "   ");
-		html.br().br();
+			html.b().write("MAY: ")._b().write(may).br();
 
 		html._td().td();
 		int approve = getTotal(apprReq);
 		if(approve > 0)
-			html.b().write("APPROVED: ")._b().write("" + approve).br();
+			html.b().write("WG Approved: ")._b().write("" + approve).br();
 		int pend = getTotal(pendReq);
 		if(pend > 0)
-			html.b().write("PENDING: ")._b().write("" + pend).br();
+			html.b().write("Pending: ")._b().write("" + pend).br();
 		int extend = getTotal(extReq);
 		if (extend > 0)
-			html.b().write("EXTENDS: ")._b().write("" + extend).br();
+			html.b().write("Extension: ")._b().write("" + extend).br();
 		int depre = getTotal(depreReq);
 		if (depre > 0)
-			html.b().write("DEPRECATED: ")._b().write("" + depre).br();
+			html.b().write("Deprecated: ")._b().write("" + depre).br();
 		int clarify = getTotal(clariReq);
 		if(clarify > 0)
-			html.b().write("CLARIFICATION: ")._b().write("" + clarify).br();		
+			html.b().write("Clarification: ")._b().write("" + clarify).br();		
 
 		html._td().td();
 		int auto = getTotal(autoReq);
 		if (auto > 0)
-			html.b().write("AUTOMATED: ")._b().write("" + auto).br();
+			html.b().write("Automated: ")._b().write("" + auto).br();
 		int unimpl = getTotal(unimReq);
 		if (unimpl > 0)
-			html.b().write("UNIMPLEMENTED: ")._b().write("" + unimpl).br();
+			html.b().write("Not Implemented: ")._b().write("" + unimpl).br();
 		int client = getTotal(clientReq);
 		if (client > 0)
-			html.b().write("CLIENT ONLY: ")._b().write("" + client).br();
+			html.b().write("Client Only: ")._b().write("" + client).br();
 		int manual = getTotal(manReq);
 		if (manual > 0)
-			html.b().write("MANUAL: ")._b().write("" + manual).br();
+			html.b().write("Manual: ")._b().write("" + manual).br();
 
 		html._td();
 
@@ -552,10 +552,10 @@ public class LdpTestCaseReporter {
 		graphs.write("hover_color: \"#ccccff\",");
 		graphs.write("datalabels: { ");
 		graphs.write("approved: [ \"" + apprReq[0] + " WG Approved\", \"" + apprReq[1] + " WG Approved\", \"" + apprReq[2] + " WG Approved\" ],");
-		graphs.write("pending: [ \"" + pendReq[0] + " WG Pending\", \"" + pendReq[1] + " WG Pending\", \"" + pendReq[2] + " WG Pending\" ],");
-		graphs.write("extends: [ \"" + extReq[0] + " WG Extension\", \"" + extReq[1] + " WG Extension\", \"" + extReq[2] + " WG Extension\" ],");
-		graphs.write("deprecated: [ \"" + depreReq[0] + " WG Deprecated\", \"" + depreReq[1] + " WG Deprecated\", \"" + depreReq[2] + " WG Deprecated\" ],");
-		graphs.write("clarify: [ \"" + clariReq[0] + " WG Clarification\", \"" + clariReq[1] + " WG Clarification\", \"" + clariReq[2] + " WG Clarification\" ] },");
+		graphs.write("pending: [ \"" + pendReq[0] + " Pending\", \"" + pendReq[1] + " Pending\", \"" + pendReq[2] + " Pending\" ],");
+		graphs.write("extends: [ \"" + extReq[0] + " Extension\", \"" + extReq[1] + " Extension\", \"" + extReq[2] + " Extension\" ],");
+		graphs.write("deprecated: [ \"" + depreReq[0] + " Deprecated\", \"" + depreReq[1] + " Deprecated\", \"" + depreReq[2] + " Deprecated\" ],");
+		graphs.write("clarify: [ \"" + clariReq[0] + " Clarification\", \"" + clariReq[1] + " Clarification\", \"" + clariReq[2] + " Clarification\" ] },");
 
 		graphs.write(" }); });");
 
@@ -868,16 +868,16 @@ public class LdpTestCaseReporter {
 		html.write("<text x=\"20\" y=\"13\" fill=\"black\">WG Approved</text>", NO_ESCAPE);
 		
 		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"20\" style=\"fill:#1cbfbb\"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"33\" fill=\"black\">WG Pending</text>", NO_ESCAPE);
+		html.write("<text x=\"20\" y=\"33\" fill=\"black\">Pending</text>", NO_ESCAPE);
 		
 		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"40\" style=\"fill:#bfa22f\"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"53\" fill=\"black\">WG Extension</text>", NO_ESCAPE);
+		html.write("<text x=\"20\" y=\"53\" fill=\"black\">Extension</text>", NO_ESCAPE);
 		
 		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"60\" style=\"fill:#606060 \"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"73\" fill=\"black\">WG Deprecated</text>", NO_ESCAPE);
+		html.write("<text x=\"20\" y=\"73\" fill=\"black\">Deprecated</text>", NO_ESCAPE);
 		
 		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"80\" style=\"fill:#1bff95 \"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"93\" fill=\"black\">WG Clarification</text>", NO_ESCAPE);
+		html.write("<text x=\"20\" y=\"93\" fill=\"black\">Clarification</text>", NO_ESCAPE);
 		
 		html.write("</svg>");
 
@@ -909,10 +909,10 @@ public class LdpTestCaseReporter {
 		html.h4().content("Test Status");
 		html.ul();
 		html.li().b().write("WG Approved")._b().write(" - working group has approved this test case")._li();
-		html.li().b().write("WG Pending")._b().write(" (default) - no official recommendation from the WG supporting the specification being tested by this test suite")._li();
-		html.li().b().write("WG Extension")._b().write(" - valuable test case but not part of the WG approved set")._li();
-		html.li().b().write("WG Deprecated")._b().write(" - no longer recommended by WG")._li();
-		html.li().b().write("WG Clarification")._b().write(" - requires further clarification from the working group")._li();
+		html.li().b().write("Pending approval")._b().write(" (default) - no official recommendation from the WG supporting the specification being tested by this test suite")._li();
+		html.li().b().write("Extension")._b().write(" - valuable test case but not part of the WG approved set")._li();
+		html.li().b().write("Deprecated")._b().write(" - no longer recommended by WG")._li();
+		html.li().b().write("Clarification")._b().write(" - requires further clarification from the working group")._li();
 		html._ul();
 		
 		html.h4().content("Test Implementation");
@@ -940,19 +940,21 @@ public class LdpTestCaseReporter {
 	}
 
 	private static void createWriter(String directory, String output) {
-		BufferedWriter writer = null;
+		PrettyWriter writer = null;
 		new File(directory).mkdirs();
 		try {
-			writer = new BufferedWriter(new FileWriter(directory
+			writer = new PrettyWriter(new FileWriter(directory
 					+ "/ldp-testsuite-coverage-report.html"));
 			writer.write(output);
 
 		} catch (IOException e) {
+			e.printStackTrace(System.err);
 		} finally {
 			try {
 				if (writer != null)
 					writer.close();
 			} catch (IOException e) {
+				e.printStackTrace(System.err);
 			}
 		}
 	}
