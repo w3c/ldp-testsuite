@@ -48,7 +48,6 @@ public class NonRDFSourceTest extends CommonResourceTest {
 	@Parameters({ "basicContainer", "directContainer", "indirectContainer" })
 	@BeforeSuite(alwaysRun = true)
 	public void setup(@Optional String basicContainer, @Optional String directContainer, @Optional String indirectContainer) {
-		System.err.println("SETUP!!");
 		if (StringUtils.isNotBlank(basicContainer)) {
 			container = basicContainer;
 			containerType = LDP.BasicContainer;
