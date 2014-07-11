@@ -291,13 +291,14 @@
                         <version>1.1.1</version>
                         <executions>
                             <execution>
-                                <id>generate-earl-test-manifest</id>
+                                <id>generate-test-manifest</id>
                                 <phase>package</phase>
                                 <goals>
                                     <goal>java</goal>
                                 </goals>
                                 <configuration>
                                     <mainClass>org.w3.ldp.testsuite.reporter.LdpEarlTestManifest</mainClass>
+                                    <mainClass>org.w3.ldp.testsuite.reporter.LdpTestCaseReporter</mainClass>
                                 </configuration>
                             </execution>
                         </executions>
