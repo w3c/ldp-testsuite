@@ -159,6 +159,25 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	}
 
 	/**
+	 * Are there any restrictions on content when creating resources? This is
+	 * assumed to be true if POST content was provided using the {@code postTtl}
+	 * test parameter.
+	 *
+	 * <p>
+	 * This method is used for
+	 * {@link CommonContainerTest#testRelativeUriResolutionPost()}.
+	 * </p>
+	 *
+	 * @return true if there are restrictions on what triples are allowed; false
+	 *         if the server allows most any RDF
+	 * @see #setPostContent(String)
+	 * @see RdfSourceTest#restrictionsOnTestResourceContent()
+	 */
+	protected boolean restrictionsOnPostContent() {
+		return postModel != null;
+	}
+
+	/**
 	 * Tests if a Link response header with the expected URI and relation is
 	 * present in an HTTP response. Does not resolve relative URIs. If a Link
 	 * URI might be relative, use {@link #containsLinkHeader(String, String,

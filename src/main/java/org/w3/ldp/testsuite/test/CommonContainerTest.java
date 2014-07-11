@@ -67,7 +67,6 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	}
 
 	@Test(
-			enabled = false,
 			groups = {MUST},
 			description = "LDP servers MUST assign the default base-URI "
 					+ "for [RFC3987] relative-URI resolution to be the HTTP "
@@ -76,10 +75,56 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					+ "in the creation of a new resource.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-defbaseuri",
-			testMethod = METHOD.NOT_IMPLEMENTED,
+			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_PENDING)
 	public void testRelativeUriResolutionPost() {
-		// TODO: Impl testRelativeUriResolutionPost
+		skipIfMethodNotAllowed(HttpMethod.POST);
+
+		if (restrictionsOnPostContent()) {
+			throw new SkipException("Skipping test because there are restrictions on POST content. "
+					+ "The requirement needs to be tested manually.");
+		}
+
+		// POST content with a relative URI (other than the null relative URI).
+		Model requestModel = postContent();
+		Resource r = requestModel.getResource("");
+		r.addProperty(DCTerms.relation, requestModel.createResource(RELATIVE_URI));
+
+		String containerUri = getResourceUri();
+		Response postResponse = buildBaseRequestSpecification()
+					.contentType(TEXT_TURTLE)
+					.body(requestModel, new RdfObjectMapper())
+				.expect()
+					.statusCode(HttpStatus.SC_CREATED)
+					.header(LOCATION, HeaderMatchers.headerPresent())
+				.when()
+					.post(containerUri);
+
+		String location = postResponse.getHeader(LOCATION);
+
+		try {
+			Response getResponse = buildBaseRequestSpecification()
+					.header(ACCEPT, TEXT_TURTLE)
+				.expect()
+					.statusCode(isSuccessful())
+				.when()
+					.get(location);
+
+			// Check that the dcterms:relation URI was resolved relative to the
+			// URI assigned to the new resource (location).
+			Model responseModel = getResponse.as(Model.class, new RdfObjectMapper(location));
+			String relationAbsoluteUri = resolveIfRelative(location, RELATIVE_URI);
+			assertTrue(
+					responseModel.contains(
+							responseModel.getResource(location),
+							DCTerms.relation,
+							responseModel.getResource(relationAbsoluteUri)
+					),
+					"Response does not have expected triple: <" + location + "> dcterms:relation <" + relationAbsoluteUri + ">."
+			);
+		} finally {
+			buildBaseRequestSpecification().delete(location);
+		}
 	}
 
 	@Test(
@@ -409,7 +454,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-rdfnullrel",
 			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_APPROVED)
-	public void testNullRelativeUri() throws URISyntaxException {
+	public void testNullRelativeUriPost() throws URISyntaxException {
 		skipIfMethodNotAllowed(HttpMethod.POST);
 
 		Model requestModel = postContent();
@@ -789,7 +834,9 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	}
 
 	@Override
-	protected boolean restrictionsOnContent() {
+	protected boolean restrictionsOnTestResourceContent() {
+		// Always true for containers because their containment triples can't be
+		// modified via PUT.
 		return true;
 	}
 

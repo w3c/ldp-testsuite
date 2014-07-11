@@ -36,7 +36,6 @@ import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
-import com.hp.hpl.jena.util.ResourceUtils;
 import com.hp.hpl.jena.vocabulary.DCTerms;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.jayway.restassured.response.Response;
@@ -48,8 +47,13 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 
 	private static final String MSG_NO_READ_ONLY_PROPERTY = "Skipping test because we have no read-only properties to PUT."
 			+ " Server-managed properties are specified using the \"read-only-prop\" command-line parameter.";
+	private static final String MSG_PUT_RESTRICTIONS = "Skipping test because there are restrictions on PUT content for this resource. "
+			+ "The requirement needs to be tested manually.";
 
 	private static final String UNKNOWN_PROPERTY = "http://example.com/ns#comment";
+
+	/** A relative URI to use for testing. */
+	protected static final String RELATIVE_URI = "relatedResource";
 
 	@Parameters("auth")
 	public RdfSourceTest(@Optional String auth) throws IOException {
@@ -66,9 +70,13 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-defbaseuri",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_APPROVED)
+			approval = STATUS.WG_PENDING)
 	public void testRelativeUriResolutionPut() {
 		skipIfMethodNotAllowed(HttpMethod.PUT);
+
+		if (restrictionsOnTestResourceContent()) {
+			throw new SkipException(MSG_PUT_RESTRICTIONS);
+		}
 
 		String resourceUri = getResourceUri();
 		Response response = buildBaseRequestSpecification()
@@ -82,28 +90,36 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		String eTag = response.getHeader(ETAG);
 		Model model = response.as(Model.class, new RdfObjectMapper(resourceUri));
 
-		// Make sure the resource is specified using a relative URI
-		ResourceUtils.renameResource(model.getResource(resourceUri), "");
-
-		// Update a property
-		updateResource(model.getResource(""));
+		// Add a statement with a relative URI.
+		model.getResource(resourceUri).addProperty(DCTerms.relation, model.getResource(RELATIVE_URI));
 
 		// Put the resource back using relative URIs.
 		Response put = buildBaseRequestSpecification()
 				.contentType(TEXT_TURTLE).header(IF_MATCH, eTag)
-				.body(model, new RdfObjectMapper("")) // relative URI
+				.body(model, new RdfObjectMapper("")) // keep URIs relative
 				.when().put(resourceUri);
 		if (!isSuccessful().matches(put.getStatusCode())) {
-		   throw new SkipException("Cannot verify relative URI resolution because the PUT request failed. Skipping test.");
+			throw new SkipException("Cannot verify relative URI resolution because the PUT request failed. Skipping test.");
 		}
 
 		// Get the resource again to verify its content.
-		model = buildBaseRequestSpecification().header(ACCEPT, TEXT_TURTLE)
-				.expect().statusCode(isSuccessful())
-				.when().get(resourceUri).as(Model.class, new RdfObjectMapper(resourceUri));
+		model = buildBaseRequestSpecification()
+				.header(ACCEPT, TEXT_TURTLE)
+			.expect()
+				.statusCode(isSuccessful())
+			.when()
+				.get(resourceUri).as(Model.class, new RdfObjectMapper(resourceUri));
 
 		// Verify the change.
-		verifyUpdatedResource(model.getResource(resourceUri));
+		String relationAbsoluteUri = resolveIfRelative(resourceUri, RELATIVE_URI);
+		assertTrue(
+				model.contains(
+						model.getResource(resourceUri),
+						DCTerms.relation,
+						model.getResource(relationAbsoluteUri)
+				),
+				"Response does not have expected triple: <" + resourceUri + "> dcterms:relation <" + relationAbsoluteUri + ">."
+		);
 	}
 
 	@Test(
@@ -119,8 +135,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	public void testPutReplacesResource() {
 		skipIfMethodNotAllowed(HttpMethod.PUT);
 
-		if (restrictionsOnContent()) {
-			throw new SkipException("Skipping test because there are restrictions on PUT content for this resource");
+		if (restrictionsOnTestResourceContent()) {
+			throw new SkipException(MSG_PUT_RESTRICTIONS);
 		}
 
 		// TODO: Is there a better way to test this requirement?
@@ -540,46 +556,6 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		expectPut4xxResponseBody(UNKNOWN_PROPERTY);
 	}
 
-	// Update a resource then later test if the updates were applied (i.e., on a subsequent GET).
-	// These methods could be overwritten by subclasses.
-	private final static String TITLE_FOR_UPDATE = "LDP Test Suite: This resource has been updated... " + System.currentTimeMillis();
-
-	/**
-	 * Update a resource then later test if the updates were applied (i.e., on a
-	 * subsequent GET). These methods could be overwritten by subclasses.
-	 *
-	 * @see #verifyUpdatedResource(Resource)
-	 */
-	protected void updateResource(Resource r) {
-		// Set a title.
-		r.removeAll(DCTerms.title);
-		r.addProperty(DCTerms.title, TITLE_FOR_UPDATE);
-	}
-
-	/**
-	 * Update a resource then later test if the updates were applied (i.e., on a
-	 * subsequent GET). These methods could be overwritten by subclasses.
-	 *
-	 * @see #updateResource(Resource)
-	 */
-	protected void verifyUpdatedResource(Resource r) {
-		// Test the resource has the title we set.
-		assertTrue(r.hasProperty(DCTerms.title, TITLE_FOR_UPDATE), "Expected resource to have title \"" + TITLE_FOR_UPDATE + "\"");
-	}
-
-	/**
-	 * Are there any restrictions on resource content? This should be true for
-	 * LDP containers since PUT is not allowed to modify containment triples.
-	 *
-	 * @return true if there are restrictions on what triples are allowed; false
-	 * if the entire resource can be replaced with any triples
-	 * @see #testPutReplacesResource
-	 * @see CommonContainerTest#testRejectPutModifyingContainmentTriples
-	 */
-	protected boolean restrictionsOnContent() {
-		return false;
-	}
-
 	protected void modifyProperty(Model m, String resourceUri, String property) {
 		Resource r = m.getResource(resourceUri);
 		Property p = m.createProperty(property);
@@ -633,5 +609,27 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	protected void expectPut4xxResponseBody(String invalidProp) {
 		Response putResponse = expectPut4xxStatus(invalidProp);
 		assertThat(putResponse.body().asString(), not(isEmptyOrNullString()));
+	}
+
+	/**
+	 * Are there any restrictions on the content of the resource being tested
+	 * (i.e., the resource returned by {@link #getResourceUri()}). Should be
+	 * true for LDP containers since PUT can't directly modify containment
+	 * triples.
+	 *
+	 * <p>
+	 * This method is used for {@link #testPutReplacesResource()} and
+	 * {@link #testRelativeUriResolutionPut()}.
+	 * </p>
+	 *
+	 * @return true if there are restrictions on what triples are allowed; false
+	 *         otherwise
+	 * @see #setPostContent(String)
+	 * @see #restrictionsOnPostContent()
+	 */
+	protected boolean restrictionsOnTestResourceContent() {
+		// Should be the same as POST content unless this is a container.
+		// (Overridden by subclasses as necessary.)
+		return restrictionsOnPostContent();
 	}
 }
