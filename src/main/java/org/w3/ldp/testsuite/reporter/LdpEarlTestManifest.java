@@ -1,8 +1,5 @@
 package org.w3.ldp.testsuite.reporter;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -19,10 +16,7 @@ import org.w3.ldp.testsuite.test.NonRDFSourceTest;
 import org.w3.ldp.testsuite.vocab.LDP;
 import org.w3.ldp.testsuite.vocab.TestDescription;
 
-import com.github.jsonldjava.jena.JenaJSONLD;
 import com.hp.hpl.jena.rdf.model.Literal;
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFList;
 import com.hp.hpl.jena.rdf.model.Resource;
@@ -34,51 +28,31 @@ import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
 import com.hp.hpl.jena.vocabulary.TestManifest;
 
-public class LdpEarlTestManifest {
+public class LdpEarlTestManifest extends AbstractEarlReporter {
 
-	private static BufferedWriter writer;
-	private static Model model;
+	private static final Property declaredInClass = ResourceFactory
+			.createProperty(LDP.LDPT_NAMESPACE + "declaredInClass");
+	private static final Property declaredTestCase = ResourceFactory
+			.createProperty(LDP.LDPT_NAMESPACE + "declaredTestCase");
+	private static final Property conformanceLevel = ResourceFactory
+			.createProperty(LDP.LDPT_NAMESPACE + "conformanceLevel");
 
-	private static Property declaredInClass, declaredTestCase, conformanceLevel;
-
-
-	private static Class<BasicContainerTest> bcTest = BasicContainerTest.class;
-	private static Class<IndirectContainerTest> indirectContainerTest = IndirectContainerTest.class;
-	private static Class<DirectContainerTest> directContianerTest = DirectContainerTest.class;
-	private static Class<MemberResourceTest> memberResourceTest = MemberResourceTest.class;
-	private static Class<NonRDFSourceTest> nonRdfSourceTest = NonRDFSourceTest.class;
-
-	private static final String TURTLE = "TURTLE";
-
-	private static final String outputDir = "report"; // directory where results
-
-	static {
-		JenaJSONLD.init();
-	}
+	private static final Class<BasicContainerTest> bcTest = BasicContainerTest.class;
+	private static final Class<IndirectContainerTest> indirectContainerTest = IndirectContainerTest.class;
+	private static final Class<DirectContainerTest> directContianerTest = DirectContainerTest.class;
+	private static final Class<MemberResourceTest> memberResourceTest = MemberResourceTest.class;
+	private static final Class<NonRDFSourceTest> nonRdfSourceTest = NonRDFSourceTest.class;
 
 	public static void main(String[] args) throws IOException {
+		new LdpEarlTestManifest().generate();
+	}
+
+	public void generate() {
 		try {
-			createWriter(outputDir);
-		} catch (IOException e) {
-			e.printStackTrace(System.err);
-			System.exit(1);
-		}
-
-		model = ModelFactory.createDefaultModel();
-		declaredInClass = ResourceFactory
-				.createProperty(LDP.LDPT_NAMESPACE + "declaredInClass");
-		declaredTestCase = ResourceFactory
-				.createProperty(LDP.LDPT_NAMESPACE + "declaredTestCase");
-		conformanceLevel = ResourceFactory
-				.createProperty(LDP.LDPT_NAMESPACE + "conformanceLevel");
-
-		writePrefixes(model);
-		// Use ArrayList to preserve order
-		ArrayList<Resource> testcases = new ArrayList<Resource>();
-		writeTestClasses(testcases);
-
-		write();
-		try {
+			createWriter(OUTPUT_DIR);
+			createModel();
+			writeTestClasses();
+			write();
 			endWriter();
 		} catch (IOException e) {
 			e.printStackTrace(System.err);
@@ -86,9 +60,9 @@ public class LdpEarlTestManifest {
 		}
 	}
 
-	private static void writeManifest(ArrayList<Resource> testcases, String localName, String label, String description) {
+	private void writeManifest(ArrayList<Resource> testcases, String localName, String label, String description) {
 		if (testcases.size() == 0) return;
-		
+
 		Resource manifest = model.createResource(LDP.LDPT_NAMESPACE + localName+"Manifest",
 				TestManifest.Manifest);
 		manifest.addProperty(DC.title, label);
@@ -99,27 +73,13 @@ public class LdpEarlTestManifest {
 		manifest.addProperty(TestManifest.entries, l);
 	}
 
-	public static void writePrefixes(Model model) {
-		model.setNsPrefix("doap", "http://usefulinc.com/ns/doap#");
-		model.setNsPrefix("foaf", "http://xmlns.com/foaf/0.1/");
-		model.setNsPrefix("earl", "http://www.w3.org/ns/earl#");
-		model.setNsPrefix("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
-		model.setNsPrefix("rdfs", "http://www.w3.org/2000/01/rdf-schema#");
-		model.setNsPrefix("mf",
-				"http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#");
-		model.setNsPrefix("rdft", "http://www.w3.org/ns/rdftest#");
-		model.setNsPrefix("dcterms", "http://purl.org/dc/terms/");
-		model.setNsPrefix("td", "http://www.w3.org/2006/03/test-description#");
-		model.setNsPrefix(LDP.LDPT_PREFIX, LDP.LDPT_NAMESPACE);
-	}
-
-	private static <T> void writeInfo(Class<T> testClass, String title, String description) {
+	private <T> void writeInfo(Class<T> testClass, String title, String description) {
 		ArrayList<ArrayList<Resource>> conformanceClasses = new ArrayList<ArrayList<Resource>>();
-        conformanceClasses.add(new ArrayList<Resource>());
-        conformanceClasses.add(new ArrayList<Resource>());
-        conformanceClasses.add(new ArrayList<Resource>());
-        conformanceClasses.add(new ArrayList<Resource>());
-        
+		conformanceClasses.add(new ArrayList<Resource>());
+		conformanceClasses.add(new ArrayList<Resource>());
+		conformanceClasses.add(new ArrayList<Resource>());
+		conformanceClasses.add(new ArrayList<Resource>());
+
 		String className = testClass.getCanonicalName();
 		Method[] methods = testClass.getMethods();
 		for (Method method : methods) {
@@ -141,7 +101,7 @@ public class LdpEarlTestManifest {
 				+ " No official conformance status.");
 	}
 
-	private static Resource generateInformation(Method method, String className, 
+	private Resource generateInformation(Method method, String className,
 			ArrayList<ArrayList<Resource>> conformanceClasses) {
 		SpecTest testLdp = null;
 		Test test = null;
@@ -176,10 +136,10 @@ public class LdpEarlTestManifest {
 				testCaseResource.addProperty(conformanceLevel, model.createResource(LDP.LDPT_NAMESPACE + group));
 				conformanceClasses.get(LdpTestCaseReporter.getConformanceIndex(group)).add(testCaseResource);
 			}
-			
+
 			// Leave action property only to make earl-report happy
 			testCaseResource.addProperty(TestManifest.action, "");
-			
+
 			switch (testLdp.approval()) {
 			case WG_APPROVED:
 				testCaseResource.addProperty(TestDescription.reviewStatus, TestDescription.approved);
@@ -199,7 +159,7 @@ public class LdpEarlTestManifest {
 				specRef = model.createResource(testLdp.specRefUri());
 				testCaseResource.addProperty(RDFS.seeAlso, specRef);
 			}
-			
+
 			if (test.description() != null && test.description().length() > 0) {
 				Resource excerpt = model.createResource(TestDescription.Excerpt);
 				excerpt.addLiteral(TestDescription.includesText, test.description());
@@ -208,30 +168,13 @@ public class LdpEarlTestManifest {
 				}
 				testCaseResource.addProperty(TestDescription.specificationReference, excerpt);
 			}
-			
+
 			return testCaseResource;
 		}
 		return null;
 	}
 
-	public static String createTestCaseURL(String className, String methodName) {
-		return LDP.LDPT_NAMESPACE + createTestCaseName(className, methodName);
-	}
-	
-	public static String createTestCaseName(String className, String methodName) {
-
-		className = className.substring(className.lastIndexOf(".") + 1);
-
-		if (className.endsWith("Test")) {
-			className = className.substring(0, className.length()-4);
-		}
-		if (methodName.startsWith("test")) {
-			methodName = methodName.substring(4, methodName.length());
-		}
-		return className + "-" + methodName;
-	}
-
-	private static String groups(String[] list) {
+	private String groups(String[] list) {
 		if (list.length == 0)
 			return null;
 		String retList = "";
@@ -244,11 +187,11 @@ public class LdpEarlTestManifest {
 		return retList;
 	}
 
-	private static void writeTestClasses(ArrayList<Resource> testcases) {
+	private void writeTestClasses() {
 		// These are put in order so they are presented properly on earl-report
-//		writeInfo(commonResourceTest, testcases);
-//		writeInfo(rdfSourceTest, testcases);
-//		writeInfo(commonContainerTest, testcases);
+		//		writeInfo(commonResourceTest, testcases);
+		//		writeInfo(rdfSourceTest, testcases);
+		//		writeInfo(commonContainerTest, testcases);
 		writeInfo(memberResourceTest, "RDFSource", "LDP RDF Source tests.");
 		writeInfo(nonRdfSourceTest, "Non-RDFSource", "LDP Non-RDF Source tests.");
 		writeInfo(bcTest, "BasicContainer", "LDP Basic Container tests.");
@@ -256,19 +199,8 @@ public class LdpEarlTestManifest {
 		writeInfo(indirectContainerTest, "IndirectContainer", "LDP Indirect Container tests.");
 	}
 
-	private static void write() {
-		model.write(writer, TURTLE);
-	}
-
-	private static void createWriter(String directory) throws IOException {
-		writer = null;
-		new File(directory).mkdirs();
-		writer = new BufferedWriter(new FileWriter(directory
-				+ "/ldp-earl-manifest.ttl"));
-	}
-
-	private static void endWriter() throws IOException {
-		writer.flush();
-		writer.close();
-	}
+	@Override
+    protected String getFilename() {
+	    return "ldp-earl-manifest";
+    }
 }
