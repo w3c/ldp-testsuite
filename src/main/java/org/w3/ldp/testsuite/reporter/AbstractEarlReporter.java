@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 import org.w3.ldp.testsuite.vocab.LDP;
 
@@ -25,9 +26,21 @@ public abstract class AbstractEarlReporter {
 	protected static final String TURTLE = "TURTLE";
 	protected static final String JSON_LD = "JSON-LD";
 	protected static final String OUTPUT_DIR = "report";
+	protected static final HashMap<String, String> prefixes = new HashMap<String, String>();
 
 	static {
 		JenaJSONLD.init();
+
+		prefixes.put("doap", "http://usefulinc.com/ns/doap#");
+		prefixes.put("foaf", "http://xmlns.com/foaf/0.1/");
+		prefixes.put("earl", "http://www.w3.org/ns/earl#");
+		prefixes.put("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
+		prefixes.put("rdfs", "http://www.w3.org/2000/01/rdf-schema#");
+		prefixes.put("mf", "http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#");
+		prefixes.put("rdft", "http://www.w3.org/ns/rdftest#");
+		prefixes.put("dcterms", "http://purl.org/dc/terms/");
+		prefixes.put("td", "http://www.w3.org/2006/03/test-description#");
+		prefixes.put(LDP.LDPT_PREFIX, LDP.LDPT_NAMESPACE);
 	}
 
 	protected abstract String getFilename();
@@ -45,27 +58,12 @@ public abstract class AbstractEarlReporter {
 		StringWriter sw = new StringWriter();
 		model.write(sw, JSON_LD);
 		try {
-
 			Object jsonObject = JsonUtils.fromString(sw.toString());
-
-			HashMap<String, String> context = new HashMap<String, String>();
-			// Customise context
-			context.put("dcterms", "http://purl.org/dc/terms/");
-			context.put("earl", "http://www.w3.org/ns/earl#");
-			context.put("foaf", "http://xmlns.com/foaf/0.1/");
-			context.put("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
-
-			// Create an instance of JsonLdOptions with the standard JSON-LD
-			// options (will just be default for now)
-			JsonLdOptions options = new JsonLdOptions();
-			Object compact = JsonLdProcessor.compact(jsonObject, context,
-					options);
-
+			Object compact = JsonLdProcessor.compact(jsonObject, prefixes, new JsonLdOptions());
 			writerJson.write(JsonUtils.toPrettyString(compact));
 		} catch (IOException | JsonLdError e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	protected void endWriter() throws IOException {
@@ -73,26 +71,18 @@ public abstract class AbstractEarlReporter {
 		writerTurtle.close();
 
 		writerJson.flush();
-		writerTurtle.close();
+		writerJson.close();
 	}
 
 	protected void createModel() {
 		model = ModelFactory.createDefaultModel();
 		writePrefixes(model);
 	}
-
+	
 	public void writePrefixes(Model model) {
-		model.setNsPrefix("doap", "http://usefulinc.com/ns/doap#");
-		model.setNsPrefix("foaf", "http://xmlns.com/foaf/0.1/");
-		model.setNsPrefix("earl", "http://www.w3.org/ns/earl#");
-		model.setNsPrefix("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
-		model.setNsPrefix("rdfs", "http://www.w3.org/2000/01/rdf-schema#");
-		model.setNsPrefix("mf",
-				"http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#");
-		model.setNsPrefix("rdft", "http://www.w3.org/ns/rdftest#");
-		model.setNsPrefix("dcterms", "http://purl.org/dc/terms/");
-		model.setNsPrefix("td", "http://www.w3.org/2006/03/test-description#");
-		model.setNsPrefix(LDP.LDPT_PREFIX, LDP.LDPT_NAMESPACE);
+		for (Entry<String, String> prefix : prefixes.entrySet()) {
+			model.setNsPrefix(prefix.getKey(), prefix.getValue());
+		}
 	}
 
 	public String createTestCaseName(String className, String methodName) {
