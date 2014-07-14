@@ -1,12 +1,7 @@
 package org.w3.ldp.testsuite.reporter;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.StringWriter;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,13 +18,6 @@ import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.vocab.Earl;
 import org.w3.ldp.testsuite.vocab.LDP;
 
-import com.github.jsonldjava.core.JsonLdError;
-import com.github.jsonldjava.core.JsonLdOptions;
-import com.github.jsonldjava.core.JsonLdProcessor;
-import com.github.jsonldjava.jena.JenaJSONLD;
-import com.github.jsonldjava.utils.JsonUtils;
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.ResourceFactory;
@@ -43,18 +31,11 @@ import com.hp.hpl.jena.vocabulary.RDF;
  * and reports the information to a Turtle file and a JSON-LD file, both of
  * which contains Earl vocabulary.
  */
-public class LdpEarlReporter implements IReporter {
-
-	private BufferedWriter writerTurtle;
-	private BufferedWriter writerJson;
-	private Model model;
+public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 
 	private static final String PASS = "TEST PASSED";
 	private static final String FAIL = "TEST FAILED";
 	private static final String SKIP = "TEST SKIPPED";
-	private static final String TURTLE = "TURTLE";
-	private static final String JSON_LD = "JSON-LD";
-	private static final String outputDir = "report"; // directory for results
 
 	// private static final String DIRECT_TEST = "DirectContainerTest";
 	// private static final String MEMBER_TEST = "MemberResourceTest";
@@ -78,15 +59,11 @@ public class LdpEarlReporter implements IReporter {
 	private static Property ranAsClass = ResourceFactory
 			.createProperty(LDP.LDPT_NAMESPACE + "ranAsClass");
 
-	static {
-		JenaJSONLD.init();
-	}
-
 	@Override
 	public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites,
 			String outputDirectory) {
 		try {
-			createWriter(outputDir);
+			createWriter(OUTPUT_DIR);
 		} catch (IOException e) {
 			e.printStackTrace(System.err);
 			System.exit(1);
@@ -196,7 +173,7 @@ public class LdpEarlReporter implements IReporter {
 
 		assertionResource.addProperty(
 				Earl.test,
-				model.getResource(LdpEarlTestManifest.createTestCaseURL(className, result.getName())));
+				model.getResource(createTestCaseURL(className, result.getName())));
 
 		/* Test Result Resource */
 		switch (status) {
@@ -263,57 +240,8 @@ public class LdpEarlReporter implements IReporter {
 					Utils.stackTrace(thrown, false)[0]);
 	}
 
-	private void createWriter(String directory) throws IOException {
-		writerTurtle = null;
-		writerJson = null;
-		new File(directory).mkdirs();
-		writerTurtle = new BufferedWriter(new FileWriter(directory
-				+ "/ldp-testsuite-execution-report-earl.ttl"));
-		writerJson = new BufferedWriter(new FileWriter(directory
-				+ "/ldp-testsuite-execution-report-earl.jsonld", false));
-
-	}
-
-	private void write() {
-		model.write(writerTurtle, TURTLE);
-
-		StringWriter sw = new StringWriter();
-		model.write(sw, JSON_LD);
-		try {
-
-			Object jsonObject = JsonUtils.fromString(sw.toString());
-
-			HashMap<String, String> context = new HashMap<String, String>();
-			// Customise context
-			context.put("dcterms", "http://purl.org/dc/terms/");
-			context.put("earl", "http://www.w3.org/ns/earl#");
-			context.put("foaf", "http://xmlns.com/foaf/0.1/");
-			context.put("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
-
-			// Create an instance of JsonLdOptions with the standard JSON-LD
-			// options (will just be default for now)
-			JsonLdOptions options = new JsonLdOptions();
-			Object compact = JsonLdProcessor.compact(jsonObject, context,
-					options);
-
-			writerJson.write(JsonUtils.toPrettyString(compact));
-		} catch (IOException | JsonLdError e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	private void endWriter() throws IOException {
-		writerTurtle.flush();
-		writerTurtle.close();
-
-		writerJson.flush();
-		writerTurtle.close();
-	}
-
-	private void createModel() {
-		model = ModelFactory.createDefaultModel();
-		LdpEarlTestManifest.writePrefixes(model);
-	}
-
+	@Override
+    protected String getFilename() {
+	    return "ldp-testsuite-execution-report-earl";
+    }
 }
