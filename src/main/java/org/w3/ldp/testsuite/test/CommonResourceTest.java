@@ -79,7 +79,7 @@ public abstract class CommonResourceTest extends LdpTest {
 		if (auth == null) {
 			return RestAssured.given();
 		} else {
-			return RestAssured.given().auth().basic(auth.get("username"), auth.get("password"));
+			return RestAssured.given().auth().preemptive().basic(auth.get("username"), auth.get("password"));
 		}
 	}
 
