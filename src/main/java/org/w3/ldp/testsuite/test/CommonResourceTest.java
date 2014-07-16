@@ -403,13 +403,12 @@ public abstract class CommonResourceTest extends LdpTest {
 	}
 
 	@Test(
-			// enabled = false,
 			groups = {MUST},
 			description = "LDP servers MUST indicate their support for HTTP Methods "
 					+ "by responding to a HTTP OPTIONS request on the LDPR’s URL "
 					+ "with the HTTP Method tokens in the HTTP response header Allow. ")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "ldpr-options-allow",
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-options-allow",
 			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_APPROVED)
 	public void testOptionsAllowHeader() {
