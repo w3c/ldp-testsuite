@@ -204,6 +204,21 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 				.when().put(resourceUri);
 	}
 
+	@Test(
+			enabled = false,
+			groups = {MUST},
+			description = "LDP servers SHOULD allow clients to update resources "
+					+ "without requiring detailed knowledge of server-specific "
+					+ "constraints. This is a consequence of the requirement to "
+					+ "enable simple creation and modification of LDPRs.")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-simpleupdate",
+			testMethod = METHOD.NOT_IMPLEMENTED,
+			approval = STATUS.WG_PENDING)
+	public void testPutSimpleUpdate() {
+		// TODO: implement testPutSimpleUpdate()
+	}
+
 	@Override
 	@Test(
 			groups = {MUST},
