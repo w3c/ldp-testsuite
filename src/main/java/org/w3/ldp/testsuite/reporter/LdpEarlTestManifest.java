@@ -37,6 +37,46 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 	private static final Property conformanceLevel = ResourceFactory
 			.createProperty(LDP.LDPT_NAMESPACE + "conformanceLevel");
 
+	/**
+	 * The test method: {@link #automated}, {@link #manual}, {@link #clientOnly},
+	 * or {@link #notImplemented}.
+	 *
+	 * <p>
+	 * earl:mode is inappropriate here since its domain is earl:Assertion.
+	 * </p>
+	 *
+	 * @see SpecTest#testMethod()
+	 * @see <a href="http://www.w3.org/TR/EARL10-Schema/#mode">EARL schema -
+	 *      earl:mode</a>
+	 */
+	private static final Property testMethod = ResourceFactory
+			.createProperty(LDP.LDPT_NAMESPACE + "testMethod");
+
+	/**
+	 * @see SpecTest.METHOD#AUTOMATED
+	 */
+	private static final Resource automated = ResourceFactory
+			.createResource(LDP.LDPT_NAMESPACE + "automated");
+
+	/**
+	 * @see SpecTest.METHOD#MANUAL
+	 */
+	private static final Resource manual = ResourceFactory
+			.createResource(LDP.LDPT_NAMESPACE + "manual");
+
+	/**
+	 * @see SpecTest.METHOD#CLIENT_ONLY
+	 */
+	private static final Resource clientOnly = ResourceFactory
+			.createResource(LDP.LDPT_NAMESPACE + "clientOnly");
+
+	/**
+	 * @see SpecTest.METHOD#NOT_IMPLEMENTED
+	 */
+	private static final Resource notImplemented = ResourceFactory
+			.createResource(LDP.LDPT_NAMESPACE + "notImplemented");
+
+
 	private static final Class<BasicContainerTest> bcTest = BasicContainerTest.class;
 	private static final Class<IndirectContainerTest> indirectContainerTest = IndirectContainerTest.class;
 	private static final Class<DirectContainerTest> directContianerTest = DirectContainerTest.class;
@@ -167,6 +207,21 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 					excerpt.addProperty(RDFS.seeAlso, specRef);
 				}
 				testCaseResource.addProperty(TestDescription.specificationReference, excerpt);
+			}
+
+			switch (testLdp.testMethod()) {
+			case AUTOMATED:
+				testCaseResource.addProperty(testMethod, automated);
+				break;
+			case MANUAL:
+				testCaseResource.addProperty(testMethod, manual);
+				break;
+			case NOT_IMPLEMENTED:
+				testCaseResource.addProperty(testMethod, notImplemented);
+				break;
+			case CLIENT_ONLY:
+				testCaseResource.addProperty(testMethod, clientOnly);
+				break;
 			}
 
 			return testCaseResource;
