@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 import org.apache.http.HttpStatus;
+import org.apache.marmotta.commons.vocabulary.LDP;
 import org.testng.SkipException;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -242,8 +243,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@Test(
 			groups = {SHOULD},
 			description = "LDP-RSs representations SHOULD have at least one "
-					+ "rdf:type set explicitly. This makes the representations"
-					+ " much more useful to client applications that don’t "
+					+ "rdf:type set explicitly. This makes the representations "
+					+ "much more useful to client applications that don’t "
 					+ "support inferencing.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-gen-atleast1rdftype",
@@ -253,6 +254,25 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		Model containerModel = getAsModel(getResourceUri());
 		Resource r = containerModel.getResource(getResourceUri());
 		assertTrue(r.hasProperty(RDF.type), "LDP-RS representation has no explicit rdf:type");
+	}
+
+	@Test(
+			groups = {MAY},
+			description = "The representation of a LDP-RS MAY have an rdf:type "
+					+ "of ldp:RDFSource for Linked Data Platform RDF Source.")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-rdftype",
+			testMethod = METHOD.AUTOMATED,
+			approval = STATUS.WG_PENDING)
+	public void testTypeRdfSource() {
+		Model containerModel = getAsModel(getResourceUri());
+		Resource r = containerModel.getResource(getResourceUri());
+		assertTrue(
+				r.hasProperty(
+						RDF.type,
+						containerModel.createResource(LDP.RDFSource.stringValue())
+				),
+				"LDP-RS representation does not have rdf:type ldp:RDFSource");
 	}
 
 	@Test(
