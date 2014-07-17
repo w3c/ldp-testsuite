@@ -51,7 +51,7 @@ public abstract class CommonResourceTest extends LdpTest {
 		String uri = getResourceUri();
 		if (StringUtils.isNotBlank(uri)) {
 			// Use HTTP OPTIONS, which MUST be supported by LDP servers, to determine what methods are supported on this container.
-			Response optionsResponse = RestAssured.options(uri);
+			Response optionsResponse = buildBaseRequestSpecification().options(uri);
 			String allow = optionsResponse.header(ALLOW);
 			if (allow != null) {
 				String[] methods = allow.split("\\s*,\\s*");
