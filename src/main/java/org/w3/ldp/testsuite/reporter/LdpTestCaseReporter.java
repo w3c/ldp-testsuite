@@ -626,8 +626,11 @@ public class LdpTestCaseReporter {
 				if (!initialRead) {
 					generateInformation(method, name);
 				} else {
-					html.li().b().a(id(method.getName()))
-							.write(method.getName() + ": ")._a()._b();
+					html.li(id(method.getName()));
+					html.b();
+					html.a(href(ReportUtils.getJavadocLink(method)))
+							.content(method.getName());
+					html._b();
 					generateInformation(method, name);
 					html._li();
 				}
