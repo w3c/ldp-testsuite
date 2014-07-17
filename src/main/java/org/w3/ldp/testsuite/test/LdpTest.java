@@ -11,6 +11,7 @@ import java.util.List;
 import javax.ws.rs.core.Link;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.marmotta.commons.vocabulary.LDP;
 import org.jboss.resteasy.plugins.delegates.LinkDelegate;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
@@ -25,6 +26,7 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.util.ResourceUtils;
 import com.hp.hpl.jena.vocabulary.DC_11;
+import com.hp.hpl.jena.vocabulary.RDF;
 import com.jayway.restassured.response.Header;
 import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.RequestSpecification;
@@ -146,6 +148,7 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 		Model model = ModelFactory.createDefaultModel();
 		Resource resource = model.createResource("",
 				model.createResource("http://example.com/ns#Bug"));
+		resource.addProperty(RDF.type, model.createResource(LDP.RDFSource.stringValue()));
 		resource.addProperty(
 				model.createProperty("http://example.com/ns#severity"), "High");
 		resource.addProperty(DC_11.title, "Another bug to test.");
