@@ -62,28 +62,6 @@ public class BasicContainerTest extends CommonContainerTest {
 		);
 	}
 
-	@Test(
-			groups = {MUST},
-			description = "Each LDP Basic Container MUST also be a "
-					+ "conforming LDP Container in section 5.2 Container "
-					+ "along the following restrictions in this section.")
-	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpbc-are-ldpcs",
-			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_APPROVED)
-	public void testContainerTypeIsBasicContainer() {
-		// FIXME: We're just testing the RDF type here. We're not really testing
-		// the requirement.
-		Model containerModel = getAsModel(basicContainer);
-		Resource container = containerModel.getResource(basicContainer);
-		assertTrue(
-				container.hasProperty(RDF.type,
-						containerModel.createResource(LDP.BasicContainer.stringValue())),
-				"Could not locate LDP BasicContainer rdf:type for <"
-						+ basicContainer + ">"
-		);
-	}
-
 	@Override
 	protected String getResourceUri() {
 		return basicContainer;
