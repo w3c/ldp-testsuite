@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<title>Source code</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css" title="Style">
+</head>
+<body>
+<div class="sourceContainer">
+<pre><span class="sourceLineNo">001</span>package org.w3.ldp.testsuite.reporter;<a name="line.1"></a>
+<span class="sourceLineNo">002</span><a name="line.2"></a>
+<span class="sourceLineNo">003</span>import java.io.BufferedWriter;<a name="line.3"></a>
+<span class="sourceLineNo">004</span>import java.io.File;<a name="line.4"></a>
+<span class="sourceLineNo">005</span>import java.io.FileWriter;<a name="line.5"></a>
+<span class="sourceLineNo">006</span>import java.io.IOException;<a name="line.6"></a>
+<span class="sourceLineNo">007</span>import java.io.StringWriter;<a name="line.7"></a>
+<span class="sourceLineNo">008</span>import java.util.HashMap;<a name="line.8"></a>
+<span class="sourceLineNo">009</span>import java.util.Map.Entry;<a name="line.9"></a>
+<span class="sourceLineNo">010</span><a name="line.10"></a>
+<span class="sourceLineNo">011</span>import org.w3.ldp.testsuite.vocab.LDP;<a name="line.11"></a>
+<span class="sourceLineNo">012</span><a name="line.12"></a>
+<span class="sourceLineNo">013</span>import com.github.jsonldjava.core.JsonLdError;<a name="line.13"></a>
+<span class="sourceLineNo">014</span>import com.github.jsonldjava.core.JsonLdOptions;<a name="line.14"></a>
+<span class="sourceLineNo">015</span>import com.github.jsonldjava.core.JsonLdProcessor;<a name="line.15"></a>
+<span class="sourceLineNo">016</span>import com.github.jsonldjava.jena.JenaJSONLD;<a name="line.16"></a>
+<span class="sourceLineNo">017</span>import com.github.jsonldjava.utils.JsonUtils;<a name="line.17"></a>
+<span class="sourceLineNo">018</span>import com.hp.hpl.jena.rdf.model.Model;<a name="line.18"></a>
+<span class="sourceLineNo">019</span>import com.hp.hpl.jena.rdf.model.ModelFactory;<a name="line.19"></a>
+<span class="sourceLineNo">020</span><a name="line.20"></a>
+<span class="sourceLineNo">021</span>public abstract class AbstractEarlReporter {<a name="line.21"></a>
+<span class="sourceLineNo">022</span><a name="line.22"></a>
+<span class="sourceLineNo">023</span>        protected BufferedWriter writerTurtle;<a name="line.23"></a>
+<span class="sourceLineNo">024</span>        protected BufferedWriter writerJson;<a name="line.24"></a>
+<span class="sourceLineNo">025</span>        protected Model model;<a name="line.25"></a>
+<span class="sourceLineNo">026</span>        protected static final String TURTLE = "TURTLE";<a name="line.26"></a>
+<span class="sourceLineNo">027</span>        protected static final String JSON_LD = "JSON-LD";<a name="line.27"></a>
+<span class="sourceLineNo">028</span>        protected static final String OUTPUT_DIR = "report";<a name="line.28"></a>
+<span class="sourceLineNo">029</span>        protected static final HashMap&lt;String, String&gt; prefixes = new HashMap&lt;String, String&gt;();<a name="line.29"></a>
+<span class="sourceLineNo">030</span><a name="line.30"></a>
+<span class="sourceLineNo">031</span>        static {<a name="line.31"></a>
+<span class="sourceLineNo">032</span>                JenaJSONLD.init();<a name="line.32"></a>
+<span class="sourceLineNo">033</span><a name="line.33"></a>
+<span class="sourceLineNo">034</span>                prefixes.put("doap", "http://usefulinc.com/ns/doap#");<a name="line.34"></a>
+<span class="sourceLineNo">035</span>                prefixes.put("foaf", "http://xmlns.com/foaf/0.1/");<a name="line.35"></a>
+<span class="sourceLineNo">036</span>                prefixes.put("earl", "http://www.w3.org/ns/earl#");<a name="line.36"></a>
+<span class="sourceLineNo">037</span>                prefixes.put("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");<a name="line.37"></a>
+<span class="sourceLineNo">038</span>                prefixes.put("rdfs", "http://www.w3.org/2000/01/rdf-schema#");<a name="line.38"></a>
+<span class="sourceLineNo">039</span>                prefixes.put("mf", "http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#");<a name="line.39"></a>
+<span class="sourceLineNo">040</span>                prefixes.put("rdft", "http://www.w3.org/ns/rdftest#");<a name="line.40"></a>
+<span class="sourceLineNo">041</span>                prefixes.put("dcterms", "http://purl.org/dc/terms/");<a name="line.41"></a>
+<span class="sourceLineNo">042</span>                prefixes.put("td", "http://www.w3.org/2006/03/test-description#");<a name="line.42"></a>
+<span class="sourceLineNo">043</span>                prefixes.put(LDP.LDPT_PREFIX, LDP.LDPT_NAMESPACE);<a name="line.43"></a>
+<span class="sourceLineNo">044</span>        }<a name="line.44"></a>
+<span class="sourceLineNo">045</span><a name="line.45"></a>
+<span class="sourceLineNo">046</span>        protected abstract String getFilename();<a name="line.46"></a>
+<span class="sourceLineNo">047</span><a name="line.47"></a>
+<span class="sourceLineNo">048</span>        protected void createWriter(String directory) throws IOException {<a name="line.48"></a>
+<span class="sourceLineNo">049</span>                File dir = new File(directory);<a name="line.49"></a>
+<span class="sourceLineNo">050</span>                dir.mkdirs();<a name="line.50"></a>
+<span class="sourceLineNo">051</span>                writerTurtle = new BufferedWriter(new FileWriter(new File(dir, getFilename() + ".ttl")));<a name="line.51"></a>
+<span class="sourceLineNo">052</span>                writerJson = new BufferedWriter(new FileWriter(new File(dir, getFilename() + ".jsonld")));<a name="line.52"></a>
+<span class="sourceLineNo">053</span>        }<a name="line.53"></a>
+<span class="sourceLineNo">054</span><a name="line.54"></a>
+<span class="sourceLineNo">055</span>        protected void write() {<a name="line.55"></a>
+<span class="sourceLineNo">056</span>                model.write(writerTurtle, TURTLE);<a name="line.56"></a>
+<span class="sourceLineNo">057</span><a name="line.57"></a>
+<span class="sourceLineNo">058</span>                StringWriter sw = new StringWriter();<a name="line.58"></a>
+<span class="sourceLineNo">059</span>                model.write(sw, JSON_LD);<a name="line.59"></a>
+<span class="sourceLineNo">060</span>                try {<a name="line.60"></a>
+<span class="sourceLineNo">061</span>                        Object jsonObject = JsonUtils.fromString(sw.toString());<a name="line.61"></a>
+<span class="sourceLineNo">062</span>                        Object compact = JsonLdProcessor.compact(jsonObject, prefixes, new JsonLdOptions());<a name="line.62"></a>
+<span class="sourceLineNo">063</span>                        writerJson.write(JsonUtils.toPrettyString(compact));<a name="line.63"></a>
+<span class="sourceLineNo">064</span>                } catch (IOException | JsonLdError e) {<a name="line.64"></a>
+<span class="sourceLineNo">065</span>                        e.printStackTrace();<a name="line.65"></a>
+<span class="sourceLineNo">066</span>                }<a name="line.66"></a>
+<span class="sourceLineNo">067</span>        }<a name="line.67"></a>
+<span class="sourceLineNo">068</span><a name="line.68"></a>
+<span class="sourceLineNo">069</span>        protected void endWriter() throws IOException {<a name="line.69"></a>
+<span class="sourceLineNo">070</span>                writerTurtle.flush();<a name="line.70"></a>
+<span class="sourceLineNo">071</span>                writerTurtle.close();<a name="line.71"></a>
+<span class="sourceLineNo">072</span><a name="line.72"></a>
+<span class="sourceLineNo">073</span>                writerJson.flush();<a name="line.73"></a>
+<span class="sourceLineNo">074</span>                writerJson.close();<a name="line.74"></a>
+<span class="sourceLineNo">075</span>        }<a name="line.75"></a>
+<span class="sourceLineNo">076</span><a name="line.76"></a>
+<span class="sourceLineNo">077</span>        protected void createModel() {<a name="line.77"></a>
+<span class="sourceLineNo">078</span>                model = ModelFactory.createDefaultModel();<a name="line.78"></a>
+<span class="sourceLineNo">079</span>                writePrefixes(model);<a name="line.79"></a>
+<span class="sourceLineNo">080</span>        }<a name="line.80"></a>
+<span class="sourceLineNo">081</span>        <a name="line.81"></a>
+<span class="sourceLineNo">082</span>        public void writePrefixes(Model model) {<a name="line.82"></a>
+<span class="sourceLineNo">083</span>                for (Entry&lt;String, String&gt; prefix : prefixes.entrySet()) {<a name="line.83"></a>
+<span class="sourceLineNo">084</span>                        model.setNsPrefix(prefix.getKey(), prefix.getValue());<a name="line.84"></a>
+<span class="sourceLineNo">085</span>                }<a name="line.85"></a>
+<span class="sourceLineNo">086</span>        }<a name="line.86"></a>
+<span class="sourceLineNo">087</span><a name="line.87"></a>
+<span class="sourceLineNo">088</span>        public String createTestCaseName(String className, String methodName) {<a name="line.88"></a>
+<span class="sourceLineNo">089</span><a name="line.89"></a>
+<span class="sourceLineNo">090</span>                className = className.substring(className.lastIndexOf(".") + 1);<a name="line.90"></a>
+<span class="sourceLineNo">091</span><a name="line.91"></a>
+<span class="sourceLineNo">092</span>                if (className.endsWith("Test")) {<a name="line.92"></a>
+<span class="sourceLineNo">093</span>                        className = className.substring(0, className.length()-4);<a name="line.93"></a>
+<span class="sourceLineNo">094</span>                }<a name="line.94"></a>
+<span class="sourceLineNo">095</span>                if (methodName.startsWith("test")) {<a name="line.95"></a>
+<span class="sourceLineNo">096</span>                        methodName = methodName.substring(4, methodName.length());<a name="line.96"></a>
+<span class="sourceLineNo">097</span>                }<a name="line.97"></a>
+<span class="sourceLineNo">098</span>                return className + "-" + methodName;<a name="line.98"></a>
+<span class="sourceLineNo">099</span>        }<a name="line.99"></a>
+<span class="sourceLineNo">100</span><a name="line.100"></a>
+<span class="sourceLineNo">101</span>        public String createTestCaseURL(String className, String methodName) {<a name="line.101"></a>
+<span class="sourceLineNo">102</span>                return LDP.LDPT_NAMESPACE + createTestCaseName(className, methodName);<a name="line.102"></a>
+<span class="sourceLineNo">103</span>        }<a name="line.103"></a>
+<span class="sourceLineNo">104</span>}<a name="line.104"></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+</body>
+</html>

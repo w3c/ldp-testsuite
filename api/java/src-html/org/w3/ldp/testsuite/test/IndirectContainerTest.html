@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<title>Source code</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css" title="Style">
+</head>
+<body>
+<div class="sourceContainer">
+<pre><span class="sourceLineNo">001</span>package org.w3.ldp.testsuite.test;<a name="line.1"></a>
+<span class="sourceLineNo">002</span><a name="line.2"></a>
+<span class="sourceLineNo">003</span>import com.jayway.restassured.response.Response;<a name="line.3"></a>
+<span class="sourceLineNo">004</span>import org.apache.http.HttpStatus;<a name="line.4"></a>
+<span class="sourceLineNo">005</span>import org.testng.SkipException;<a name="line.5"></a>
+<span class="sourceLineNo">006</span>import org.testng.annotations.BeforeClass;<a name="line.6"></a>
+<span class="sourceLineNo">007</span>import org.testng.annotations.Optional;<a name="line.7"></a>
+<span class="sourceLineNo">008</span>import org.testng.annotations.Parameters;<a name="line.8"></a>
+<span class="sourceLineNo">009</span>import org.testng.annotations.Test;<a name="line.9"></a>
+<span class="sourceLineNo">010</span>import org.w3.ldp.testsuite.LdpTestSuite;<a name="line.10"></a>
+<span class="sourceLineNo">011</span>import org.w3.ldp.testsuite.annotations.SpecTest;<a name="line.11"></a>
+<span class="sourceLineNo">012</span>import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;<a name="line.12"></a>
+<span class="sourceLineNo">013</span>import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;<a name="line.13"></a>
+<span class="sourceLineNo">014</span>import org.w3.ldp.testsuite.vocab.LDP;<a name="line.14"></a>
+<span class="sourceLineNo">015</span><a name="line.15"></a>
+<span class="sourceLineNo">016</span>import java.io.IOException;<a name="line.16"></a>
+<span class="sourceLineNo">017</span><a name="line.17"></a>
+<span class="sourceLineNo">018</span>import static org.testng.Assert.assertTrue;<a name="line.18"></a>
+<span class="sourceLineNo">019</span><a name="line.19"></a>
+<span class="sourceLineNo">020</span>public class IndirectContainerTest extends CommonContainerTest {<a name="line.20"></a>
+<span class="sourceLineNo">021</span><a name="line.21"></a>
+<span class="sourceLineNo">022</span>        private String indirectContainer;<a name="line.22"></a>
+<span class="sourceLineNo">023</span><a name="line.23"></a>
+<span class="sourceLineNo">024</span>        @Parameters({"indirectContainer", "auth"})<a name="line.24"></a>
+<span class="sourceLineNo">025</span>        public IndirectContainerTest(@Optional String indirectContainer, @Optional String auth) throws IOException {<a name="line.25"></a>
+<span class="sourceLineNo">026</span>                super(auth);<a name="line.26"></a>
+<span class="sourceLineNo">027</span>                this.indirectContainer = indirectContainer;<a name="line.27"></a>
+<span class="sourceLineNo">028</span>        }<a name="line.28"></a>
+<span class="sourceLineNo">029</span><a name="line.29"></a>
+<span class="sourceLineNo">030</span>        @BeforeClass(alwaysRun = true)<a name="line.30"></a>
+<span class="sourceLineNo">031</span>        public void hasIndirectContainer() {<a name="line.31"></a>
+<span class="sourceLineNo">032</span>                if (indirectContainer == null) {<a name="line.32"></a>
+<span class="sourceLineNo">033</span>                        throw new SkipException(<a name="line.33"></a>
+<span class="sourceLineNo">034</span>                                        "No indirectContainer parameter provided in testng.xml. Skipping ldp:IndirectContainer tests.");<a name="line.34"></a>
+<span class="sourceLineNo">035</span>                }<a name="line.35"></a>
+<span class="sourceLineNo">036</span>        }<a name="line.36"></a>
+<span class="sourceLineNo">037</span><a name="line.37"></a>
+<span class="sourceLineNo">038</span>        // TODO implement tests, signatures are from LDP spec<a name="line.38"></a>
+<span class="sourceLineNo">039</span>        @Test(<a name="line.39"></a>
+<span class="sourceLineNo">040</span>                        groups = {MUST},<a name="line.40"></a>
+<span class="sourceLineNo">041</span>                        description = "LDP servers exposing LDPCs MUST advertise their "<a name="line.41"></a>
+<span class="sourceLineNo">042</span>                                        + "LDP support by exposing a HTTP Link header with a "<a name="line.42"></a>
+<span class="sourceLineNo">043</span>                                        + "target URI matching the type of container (see below) "<a name="line.43"></a>
+<span class="sourceLineNo">044</span>                                        + "the server supports, and a link relation type of type "<a name="line.44"></a>
+<span class="sourceLineNo">045</span>                                        + "(that is, rel='type') in all responses to requests made "<a name="line.45"></a>
+<span class="sourceLineNo">046</span>                                        + "to the LDPC's HTTP Request-URI.")<a name="line.46"></a>
+<span class="sourceLineNo">047</span>        @SpecTest(<a name="line.47"></a>
+<span class="sourceLineNo">048</span>                        specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-linktypehdr",<a name="line.48"></a>
+<span class="sourceLineNo">049</span>                        testMethod = METHOD.AUTOMATED,<a name="line.49"></a>
+<span class="sourceLineNo">050</span>                        approval = STATUS.WG_APPROVED)<a name="line.50"></a>
+<span class="sourceLineNo">051</span>        public void testContainerSupportsHttpLinkHeader() {<a name="line.51"></a>
+<span class="sourceLineNo">052</span>                Response response = buildBaseRequestSpecification().header(ACCEPT, TEXT_TURTLE)<a name="line.52"></a>
+<span class="sourceLineNo">053</span>                                .expect().statusCode(HttpStatus.SC_OK).when()<a name="line.53"></a>
+<span class="sourceLineNo">054</span>                                .get(indirectContainer);<a name="line.54"></a>
+<span class="sourceLineNo">055</span>                assertTrue(<a name="line.55"></a>
+<span class="sourceLineNo">056</span>                                containsLinkHeader(LDP.IndirectContainer.stringValue(), LINK_REL_TYPE,<a name="line.56"></a>
+<span class="sourceLineNo">057</span>                                                response),<a name="line.57"></a>
+<span class="sourceLineNo">058</span>                                "LDP DirectContainers must advertise their LDP support by exposing a HTTP Link header with a URI matching &lt;"<a name="line.58"></a>
+<span class="sourceLineNo">059</span>                                                + LDP.IndirectContainer.stringValue()<a name="line.59"></a>
+<span class="sourceLineNo">060</span>                                                + "&gt; and rel='type'"<a name="line.60"></a>
+<span class="sourceLineNo">061</span>                );<a name="line.61"></a>
+<span class="sourceLineNo">062</span>        }<a name="line.62"></a>
+<span class="sourceLineNo">063</span><a name="line.63"></a>
+<span class="sourceLineNo">064</span>        @Test(<a name="line.64"></a>
+<span class="sourceLineNo">065</span>                        groups = {MUST},<a name="line.65"></a>
+<span class="sourceLineNo">066</span>                        enabled = false,<a name="line.66"></a>
+<span class="sourceLineNo">067</span>                        description = "Each LDP Indirect Container MUST also be a conforming "<a name="line.67"></a>
+<span class="sourceLineNo">068</span>                                        + "LDP Direct Container in section 5.4 Direct along "<a name="line.68"></a>
+<span class="sourceLineNo">069</span>                                        + "the following restrictions.")<a name="line.69"></a>
+<span class="sourceLineNo">070</span>        @SpecTest(<a name="line.70"></a>
+<span class="sourceLineNo">071</span>                        specRefUri = LdpTestSuite.SPEC_URI + "#ldpic-are-ldpcs",<a name="line.71"></a>
+<span class="sourceLineNo">072</span>                        testMethod = METHOD.NOT_IMPLEMENTED,<a name="line.72"></a>
+<span class="sourceLineNo">073</span>                        approval = STATUS.WG_PENDING)<a name="line.73"></a>
+<span class="sourceLineNo">074</span>        public void testCreateIndirectContainer() {<a name="line.74"></a>
+<span class="sourceLineNo">075</span>                // TODO: Impl testCreateIndirectContainer<a name="line.75"></a>
+<span class="sourceLineNo">076</span>        }<a name="line.76"></a>
+<span class="sourceLineNo">077</span><a name="line.77"></a>
+<span class="sourceLineNo">078</span>        @Test(<a name="line.78"></a>
+<span class="sourceLineNo">079</span>                        groups = {MUST},<a name="line.79"></a>
+<span class="sourceLineNo">080</span>                        enabled = false,<a name="line.80"></a>
+<span class="sourceLineNo">081</span>                        description = "LDP Indirect Containers MUST contain exactly one "<a name="line.81"></a>
+<span class="sourceLineNo">082</span>                                        + "triple whose subject is the LDPC URI, whose predicate "<a name="line.82"></a>
+<span class="sourceLineNo">083</span>                                        + "is ldp:insertedContentRelation, and whose object ICR "<a name="line.83"></a>
+<span class="sourceLineNo">084</span>                                        + "describes how the member-derived-URI in the container's "<a name="line.84"></a>
+<span class="sourceLineNo">085</span>                                        + "membership triples is chosen.")<a name="line.85"></a>
+<span class="sourceLineNo">086</span>        @SpecTest(<a name="line.86"></a>
+<span class="sourceLineNo">087</span>                        specRefUri = LdpTestSuite.SPEC_URI + "#ldpic-indirectmbr",<a name="line.87"></a>
+<span class="sourceLineNo">088</span>                        testMethod = METHOD.NOT_IMPLEMENTED,<a name="line.88"></a>
+<span class="sourceLineNo">089</span>                        approval = STATUS.WG_PENDING)<a name="line.89"></a>
+<span class="sourceLineNo">090</span>        public void testContainsLdpcUri() {<a name="line.90"></a>
+<span class="sourceLineNo">091</span>                // TODO: Impl testContainsLdpcUri<a name="line.91"></a>
+<span class="sourceLineNo">092</span>        }<a name="line.92"></a>
+<span class="sourceLineNo">093</span><a name="line.93"></a>
+<span class="sourceLineNo">094</span>        @Test(<a name="line.94"></a>
+<span class="sourceLineNo">095</span>                        groups = {MUST},<a name="line.95"></a>
+<span class="sourceLineNo">096</span>                        enabled = false,<a name="line.96"></a>
+<span class="sourceLineNo">097</span>                        description = "LDPCs whose ldp:insertedContentRelation triple has an "<a name="line.97"></a>
+<span class="sourceLineNo">098</span>                                        + "object other than ldp:MemberSubject and that create new "<a name="line.98"></a>
+<span class="sourceLineNo">099</span>                                        + "resources MUST add a triple to the container whose subject is "<a name="line.99"></a>
+<span class="sourceLineNo">100</span>                                        + "the container's URI, whose predicate is ldp:contains, and whose "<a name="line.100"></a>
+<span class="sourceLineNo">101</span>                                        + "object is the newly created resource's URI (which will be "<a name="line.101"></a>
+<span class="sourceLineNo">102</span>                                        + "different from the member-derived URI in this case). This "<a name="line.102"></a>
+<span class="sourceLineNo">103</span>                                        + "ldp:contains triple can be the only link from the container to the "<a name="line.103"></a>
+<span class="sourceLineNo">104</span>                                        + "newly created resource in certain cases.")<a name="line.104"></a>
+<span class="sourceLineNo">105</span>        @SpecTest(<a name="line.105"></a>
+<span class="sourceLineNo">106</span>                        specRefUri = LdpTestSuite.SPEC_URI + "#ldpic-post-indirectmbrrel",<a name="line.106"></a>
+<span class="sourceLineNo">107</span>                        testMethod = METHOD.NOT_IMPLEMENTED,<a name="line.107"></a>
+<span class="sourceLineNo">108</span>                        approval = STATUS.WG_PENDING)<a name="line.108"></a>
+<span class="sourceLineNo">109</span>        public void testPostResource() {<a name="line.109"></a>
+<span class="sourceLineNo">110</span>                // TODO: Impl testPostResource<a name="line.110"></a>
+<span class="sourceLineNo">111</span>        }<a name="line.111"></a>
+<span class="sourceLineNo">112</span><a name="line.112"></a>
+<span class="sourceLineNo">113</span>        @Override<a name="line.113"></a>
+<span class="sourceLineNo">114</span>        protected String getResourceUri() {<a name="line.114"></a>
+<span class="sourceLineNo">115</span>                return indirectContainer;<a name="line.115"></a>
+<span class="sourceLineNo">116</span>        }<a name="line.116"></a>
+<span class="sourceLineNo">117</span><a name="line.117"></a>
+<span class="sourceLineNo">118</span>}<a name="line.118"></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+</body>
+</html>
