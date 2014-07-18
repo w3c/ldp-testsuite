@@ -178,13 +178,13 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 		/* Test Result Resource */
 		switch (status) {
 		case FAIL:
-			resultResource.addProperty(Earl.outcome, Earl.fail);
+			resultResource.addProperty(Earl.outcome, Earl.failed);
 			break;
 		case PASS:
-			resultResource.addProperty(Earl.outcome, Earl.pass);
+			resultResource.addProperty(Earl.outcome, Earl.passed);
 			break;
 		case SKIP:
-			resultResource.addProperty(Earl.outcome, Earl.skip);
+			resultResource.addProperty(Earl.outcome, Earl.untested);
 			break;
 		default:
 			break;

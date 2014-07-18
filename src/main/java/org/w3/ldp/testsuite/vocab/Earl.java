@@ -39,10 +39,14 @@ public class Earl {
 	public final static Property assertedBy = property(EARL.ASSERTEDBY
 			.toString());
 
-	public final static Property pass = property(EARL.PASS.toString());
-	public final static Property fail = property(EARL.FAIL.toString());
-	public final static Property skip = property(EARL.NAMESPACE + "untested");
-
+	// Note, this string values from org.openrdf...EARL are wrong compared to
+	// the spec at http://www.w3.org/TR/EARL10-Schema/#OutcomeValue
+	public final static Property passed = property(EARL.NAMESPACE + "passed");
+	public final static Property failed = property(EARL.NAMESPACE + "failed");
+	public final static Property untested = property(EARL.NAMESPACE + "untested");
+	public final static Property inapplicable = property(EARL.NAMESPACE + "inapplicable");
+	public final static Property cantTess = property(EARL.NAMESPACE + "cantTell");
+	
 	protected static final Property property(String name) {
 		return ResourceFactory.createProperty(name);
 	}

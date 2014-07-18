@@ -284,7 +284,11 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-gen-reusevocab",
 			testMethod = METHOD.MANUAL,
-			approval = STATUS.WG_APPROVED)
+			approval = STATUS.WG_APPROVED,
+			steps = {"Given a URL for a RDF Source, perform a GET using an RDF content type",
+				"Inspect the content to ensure standard terms are used.  For example, if things like "
+				+ "ex:label or ex:title are used, instead of DCTERMS or RDFS, then the test "
+				+ "should fail."})
 	public void testReUseVocabularies() {
 		throw new SkipNotTestableException();
 	}
@@ -297,7 +301,11 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-gen-reusevocabsuchas",
 			testMethod = METHOD.MANUAL,
-			approval = STATUS.WG_APPROVED)
+			approval = STATUS.WG_APPROVED,
+			steps = {"Given a URL for a RDF Source, perform a GET using an RDF content type",
+					"Inspect the content to ensure standard terms are used.  For example, if things like "
+					+ "ex:label or ex:title are used, instead of DCTERMS or RDFS, then the test "
+					+ "should fail."})
 	public void testUseStandardVocabularies() throws URISyntaxException {
 		// TODO: Consider ideas for testUseStandardVocabularies (see comment)
 		/* Possible ideas:
@@ -318,7 +326,12 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldp-cli-multitype",
 			testMethod = METHOD.CLIENT_ONLY,
-			approval = STATUS.WG_APPROVED)
+			approval = STATUS.WG_APPROVED,
+			steps = {"Given a client and a known RDF Source at a given URL",
+				"Via some means, alter the rdf:type of the RDF Source by adding another rdf:type. "
+				+ "Note it may be implementation dependent on what the server will "
+				+ "allow and also when changed, what different behavior the client will have",
+				"Verify that the client continues to operate as expected"})
 	public void testAllowMultipleRdfTypes() {
 		throw new SkipClientTestException();
 	}
@@ -332,7 +345,12 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-cli-typeschange",
 			testMethod = METHOD.CLIENT_ONLY,
-			approval = STATUS.WG_APPROVED)
+			approval = STATUS.WG_APPROVED,
+			steps = {"Given a client and a known RDF Source at a given URL",
+					"Via some means, alter the rdf:type of the RDF Source by adding or removing a rdf:type triple. "
+					+ "Note it may be implementation dependent on what the server will "
+					+ "allow and also when changed, what different behavior the client will have",
+					"Verify that the client continues to operate as expected"})
 	public void testChangeRdfTypeValue() {
 		throw new SkipClientTestException();
 	}
@@ -349,7 +367,12 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-cli-openpreds",
 			testMethod = METHOD.CLIENT_ONLY,
-			approval = STATUS.WG_APPROVED)
+			approval = STATUS.WG_APPROVED,
+			steps = {"Given a client and a known RDF Source at a given URL",
+					"Via some means, alter the rdf:type of the RDF Source (either adding, changing "
+					+ "or removing).  Note it may be implementation dependent on what the server will "
+					+ "allow and also when changed, what different behavior the client will have",
+					"Verify that the client continues to operate as expected"})
 	public void testServerOpen() {
 		throw new SkipClientTestException();
 	}
@@ -365,7 +388,11 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-gen-noinferencing",
 			testMethod = METHOD.MANUAL,
-			approval = STATUS.WG_APPROVED)
+			approval = STATUS.WG_APPROVED,
+			steps = {"Perform a GET on a URL for the reource requesting an RDF content type",
+					"Inspect the results (both headers and content) for missing terms.  Additionally "
+					+ "could run an inferencing tool and compare results, seeing if needed information"
+					+ "should have been explicitly listed by the server."})
 	public void testRestrictClientInference() {
 		throw new SkipNotTestableException();
 	}
@@ -380,8 +407,13 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 					+ "burden for clients [RFC5789]. ")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-cli-preservetriples",
-			testMethod = METHOD.MANUAL,
-			approval = STATUS.WG_APPROVED)
+			testMethod = METHOD.CLIENT_ONLY,
+			approval = STATUS.WG_APPROVED,
+			steps = {"Given a URL for a RDF Source, have client fetch a representation",
+					"Observe the results of the fetch, either by application provided means or monitoring the network",
+					"Given the client application interface, modify a limited amount of the resource",
+					"Initiate action to save resource back to server",
+					"Monitor request compare represetention sent, versus what was received and delta should only be changes made"})
 	public void testGetResourcePreservesTriples() throws URISyntaxException {
 		throw new SkipNotTestableException();
 	}
@@ -393,7 +425,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 					+ "LDP-defined hints.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-cli-hints-ignorable",
-			testMethod = METHOD.MANUAL,
+			testMethod = METHOD.CLIENT_ONLY,
 			approval = STATUS.WG_APPROVED,
 			steps = {"Determine certain hints that your server would ignore", 
 					"Form a client request that uses this hint",
@@ -458,7 +490,14 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-cli-can-hint",
 			testMethod = METHOD.CLIENT_ONLY,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_PENDING,
+			steps = {"Given a URL to a known RDF Source",
+					"Configure the client application, if needed, to use the Prefer header "
+					+ "to omit either containment or membership triples",
+					"Use the client to send the GET request",
+					"Monitor to ensure the server receives the hint",
+					"Monitor to ensure the server honors the hing",
+					"Verify the client behavior receives the optimized response"})
 	public void testClientMayProvideHints() {
 		throw new SkipClientTestException();
 	}

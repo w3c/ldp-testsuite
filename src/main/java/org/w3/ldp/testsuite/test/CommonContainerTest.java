@@ -217,7 +217,10 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-created201",
 			testMethod = METHOD.CLIENT_ONLY,
-			approval = STATUS.WG_APPROVED)
+			approval = STATUS.WG_APPROVED,
+			steps = {"Given a container URL and POST is supported",
+					"Monitor the client's request to ensure a POST request is sent",
+					"Verify the response has a response status code of 201-Created and Location header with URL of created resource"})
 	public void testClientPostToCreate() {
 		throw new SkipClientTestException();
 	}

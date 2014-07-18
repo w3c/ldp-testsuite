@@ -8,6 +8,7 @@ import java.util.GregorianCalendar;
 
 import org.testng.annotations.Test;
 import org.w3.ldp.testsuite.annotations.SpecTest;
+import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.test.BasicContainerTest;
 import org.w3.ldp.testsuite.test.DirectContainerTest;
 import org.w3.ldp.testsuite.test.IndirectContainerTest;
@@ -154,6 +155,12 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 		if (method.getAnnotation(SpecTest.class) != null
 				&& method.getAnnotation(Test.class) != null) {
 			testLdp = method.getAnnotation(SpecTest.class);
+			
+			// Just generate this EARL for server related content
+			if (testLdp.testMethod() == METHOD.CLIENT_ONLY) {
+				return null;
+			}
+			
 			test = method.getAnnotation(Test.class);
 			String allGroups = groups(test.groups());
 
