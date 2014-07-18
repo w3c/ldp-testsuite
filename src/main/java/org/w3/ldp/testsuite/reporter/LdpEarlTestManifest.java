@@ -155,10 +155,12 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 		if (method.getAnnotation(SpecTest.class) != null
 				&& method.getAnnotation(Test.class) != null) {
 			testLdp = method.getAnnotation(SpecTest.class);
+			String testCaseName = createTestCaseName(className, method.getName());
 			
-			// Just generate this EARL for server related content
+			// Client only tests should be managed in separate EARL manifest
 			if (testLdp.testMethod() == METHOD.CLIENT_ONLY) {
-				return null;
+				System.err.println("Wrongly received CLIENT_ONLY test for "+testCaseName+
+						". Client-only tests should be defined in separate RDF manifest file.");
 			}
 			
 			test = method.getAnnotation(Test.class);
@@ -167,7 +169,7 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 			Calendar cal = GregorianCalendar.getInstance();
 			Literal date = model.createTypedLiteral(cal);
 
-			String testCaseName = createTestCaseName(className, method.getName());
+
 			String testCaseDeclaringName = createTestCaseName(method.getDeclaringClass().getCanonicalName(), method.getName());
 			String testCaseURL = LDP.LDPT_NAMESPACE + testCaseName;
 			String testCaseDeclaringURL = LDP.LDPT_NAMESPACE + testCaseDeclaringName;

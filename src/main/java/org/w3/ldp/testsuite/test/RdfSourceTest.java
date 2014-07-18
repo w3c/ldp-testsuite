@@ -22,7 +22,6 @@ import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
-import org.w3.ldp.testsuite.exception.SkipClientTestException;
 import org.w3.ldp.testsuite.exception.SkipNotTestableException;
 import org.w3.ldp.testsuite.http.HttpMethod;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
@@ -320,65 +319,6 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 
 	@Test(
 			groups = {MUST},
-			description = "In the absence of special knowledge of the application "
-					+ "or domain, LDP clients MUST assume that any LDP-RS can "
-					+ "have multiple values for rdf:type.")
-	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldp-cli-multitype",
-			testMethod = METHOD.CLIENT_ONLY,
-			approval = STATUS.WG_APPROVED,
-			steps = {"Given a client and a known RDF Source at a given URL",
-				"Via some means, alter the rdf:type of the RDF Source by adding another rdf:type. "
-				+ "Note it may be implementation dependent on what the server will "
-				+ "allow and also when changed, what different behavior the client will have",
-				"Verify that the client continues to operate as expected"})
-	public void testAllowMultipleRdfTypes() {
-		throw new SkipClientTestException();
-	}
-
-	@Test(
-			groups = {MUST},
-			description = "In the absence of special knowledge of the "
-					+ "application or domain, LDP clients MUST assume "
-					+ "that the rdf:type values of a given LDP-RS can "
-					+ "change over time.")
-	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-cli-typeschange",
-			testMethod = METHOD.CLIENT_ONLY,
-			approval = STATUS.WG_APPROVED,
-			steps = {"Given a client and a known RDF Source at a given URL",
-					"Via some means, alter the rdf:type of the RDF Source by adding or removing a rdf:type triple. "
-					+ "Note it may be implementation dependent on what the server will "
-					+ "allow and also when changed, what different behavior the client will have",
-					"Verify that the client continues to operate as expected"})
-	public void testChangeRdfTypeValue() {
-		throw new SkipClientTestException();
-	}
-
-	@Test(
-			groups = {SHOULD},
-			description = "LDP clients SHOULD always assume that the set "
-					+ "of predicates for a LDP-RS of a particular type at "
-					+ "an arbitrary server is open, in the sense that different "
-					+ "resources of the same type may not all have the same set "
-					+ "of predicates in their triples, and the set of predicates "
-					+ "that are used in the state of any one LDP-RS is not limited "
-					+ "to any pre-defined set.")
-	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-cli-openpreds",
-			testMethod = METHOD.CLIENT_ONLY,
-			approval = STATUS.WG_APPROVED,
-			steps = {"Given a client and a known RDF Source at a given URL",
-					"Via some means, alter the rdf:type of the RDF Source (either adding, changing "
-					+ "or removing).  Note it may be implementation dependent on what the server will "
-					+ "allow and also when changed, what different behavior the client will have",
-					"Verify that the client continues to operate as expected"})
-	public void testServerOpen() {
-		throw new SkipClientTestException();
-	}
-
-	@Test(
-			groups = {MUST},
 			description = "LDP servers MUST NOT require LDP clients to implement inferencing "
 					+ "in order to recognize the subset of content defined by LDP. Other "
 					+ "specifications built on top of LDP may require clients to implement "
@@ -394,44 +334,6 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 					+ "could run an inferencing tool and compare results, seeing if needed information"
 					+ "should have been explicitly listed by the server."})
 	public void testRestrictClientInference() {
-		throw new SkipNotTestableException();
-	}
-
-	@Test(
-			groups = {MUST},
-			description = "A LDP client MUST preserve all triples retrieved "
-					+ "from an LDP-RS using HTTP GET that it doesn’t change "
-					+ "whether it understands the predicates or not, when its "
-					+ "intent is to perform an update using HTTP PUT. The use of "
-					+ "HTTP PATCH instead of HTTP PUT for update avoids this "
-					+ "burden for clients [RFC5789]. ")
-	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-cli-preservetriples",
-			testMethod = METHOD.CLIENT_ONLY,
-			approval = STATUS.WG_APPROVED,
-			steps = {"Given a URL for a RDF Source, have client fetch a representation",
-					"Observe the results of the fetch, either by application provided means or monitoring the network",
-					"Given the client application interface, modify a limited amount of the resource",
-					"Initiate action to save resource back to server",
-					"Monitor request compare represetention sent, versus what was received and delta should only be changes made"})
-	public void testGetResourcePreservesTriples() throws URISyntaxException {
-		throw new SkipNotTestableException();
-	}
-
-	@Test(
-			groups = {MUST},
-			description = "LDP clients MUST be capable of processing responses "
-					+ "formed by an LDP server that ignores hints, including "
-					+ "LDP-defined hints.")
-	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-cli-hints-ignorable",
-			testMethod = METHOD.CLIENT_ONLY,
-			approval = STATUS.WG_APPROVED,
-			steps = {"Determine certain hints that your server would ignore", 
-					"Form a client request that uses this hint",
-					"Execute the request and analyze the result",
-					"Verify that client processes request as expected"})
-	public void testAllowResponsesFromServer() {
 		throw new SkipNotTestableException();
 	}
 
@@ -474,32 +376,6 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		buildBaseRequestSpecification().header(ACCEPT, "text/turtle;q=0.9,application/json;q=0.8")
 				.expect().statusCode(isSuccessful()).contentType(TEXT_TURTLE)
 				.when().get(getResourceUri()).as(Model.class, new RdfObjectMapper(getResourceUri()));
-	}
-
-	/**
-	 * This is a client-only test. Server tests are covered by
-	 * {@link CommonContainerTest#testPreferContainmentTriples()} and
-	 * {@link DirectContainerTest#testPreferMembershipTriples()}.
-	 */
-	@Test(
-			enabled = false,
-			groups = {MAY},
-			description = "LDP clients MAY provide LDP-defined hints that allow servers "
-					+ "to optimize the content of responses. section 7.2 Preferences on "
-					+ "the Prefer Request Header defines hints that apply to LDP-RSs. ")
-	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-cli-can-hint",
-			testMethod = METHOD.CLIENT_ONLY,
-			approval = STATUS.WG_PENDING,
-			steps = {"Given a URL to a known RDF Source",
-					"Configure the client application, if needed, to use the Prefer header "
-					+ "to omit either containment or membership triples",
-					"Use the client to send the GET request",
-					"Monitor to ensure the server receives the hint",
-					"Monitor to ensure the server honors the hing",
-					"Verify the client behavior receives the optimized response"})
-	public void testClientMayProvideHints() {
-		throw new SkipClientTestException();
 	}
 
 	@Test(

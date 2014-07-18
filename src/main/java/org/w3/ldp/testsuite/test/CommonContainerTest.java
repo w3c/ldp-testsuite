@@ -24,7 +24,6 @@ import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
-import org.w3.ldp.testsuite.exception.SkipClientTestException;
 import org.w3.ldp.testsuite.http.HttpMethod;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.matcher.HeaderMatchers;
@@ -207,22 +206,6 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 		// Assumes the container is not empty.
 		assertFalse(model.contains(model.getResource(containerUri), model.createProperty(LDP.contains.stringValue())),
 				"Container has containment triples when client requested server omit them");
-	}
-
-	@Test(
-			groups = {SHOULD},
-			description = "LDPC clients SHOULD create member resources by "
-					+ "submitting a representation as the entity body of the "
-					+ "HTTP POST to a known LDPC.")
-	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-created201",
-			testMethod = METHOD.CLIENT_ONLY,
-			approval = STATUS.WG_APPROVED,
-			steps = {"Given a container URL and POST is supported",
-					"Monitor the client's request to ensure a POST request is sent",
-					"Verify the response has a response status code of 201-Created and Location header with URL of created resource"})
-	public void testClientPostToCreate() {
-		throw new SkipClientTestException();
 	}
 
 	@Test(

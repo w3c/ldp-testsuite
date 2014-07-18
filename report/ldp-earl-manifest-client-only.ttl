@@ -1,0 +1,646 @@
+@prefix rdft:  <http://www.w3.org/ns/rdftest#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix earl:  <http://www.w3.org/ns/earl#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix td:    <http://www.w3.org/2006/03/test-description#> .
+@prefix mf:    <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#> .
+@prefix doap:  <http://usefulinc.com/ns/doap#> .
+@prefix ldpt:  <http://www.w3c.org/ns/ldp/test#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+ldpt:MemberResource-ChangeRdfTypeValue
+        a                          earl:TestCase ;
+        rdfs:comment               "In the absence of special knowledge of the application or domain, LDP clients MUST assume that the rdf:type values of a given LDP-RS can change over time." ;
+        rdfs:label                 "MemberResource-ChangeRdfTypeValue" ;
+        rdfs:seeAlso               <http://www.w3.org/TR/ldp#ldpr-cli-typeschange> ;
+        dcterms:date               "2014-07-18T15:57:05.152Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject            "MUST" ;
+        mf:action                  "" ;
+        mf:name                    "MemberResource-ChangeRdfTypeValue" ;
+        td:reviewStatus            td:approved ;
+        td:specificationReference  [ a                td:Excerpt ;
+                                     rdfs:seeAlso     <http://www.w3.org/TR/ldp#ldpr-cli-typeschange> ;
+                                     td:includesText  "In the absence of special knowledge of the application or domain, LDP clients MUST assume that the rdf:type values of a given LDP-RS can change over time."^^<http://www.w3.org/2001/XMLSchema#string>
+                                   ] ;
+        ldpt:conformanceLevel      ldpt:MUST ;
+        ldpt:declaredInClass       "org.w3.ldp.testsuite.test.MemberResourceTest" ;
+        ldpt:declaredTestCase      ldpt:RdfSource-ChangeRdfTypeValue ;
+        ldpt:steps                 ( "Given a client and a known RDF Source at a given URL" "Via some means, alter the rdf:type of the RDF Source by adding or removing a rdf:type triple. Note it may be implementation dependent on what the server will allow and also when changed, what different behavior the client will have" "Verify that the client continues to operate as expected" ) ;
+        ldpt:testMethod            ldpt:clientOnly .
+
+ldpt:BasicContainer-ClientPostToCreate
+        a                          earl:TestCase ;
+        rdfs:comment               "LDPC clients SHOULD create member resources by submitting a representation as the entity body of the HTTP POST to a known LDPC." ;
+        rdfs:label                 "BasicContainer-ClientPostToCreate" ;
+        rdfs:seeAlso               <http://www.w3.org/TR/ldp#ldpc-post-created201> ;
+        dcterms:date               "2014-07-18T15:57:05.188Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject            "SHOULD" ;
+        mf:action                  "" ;
+        mf:name                    "BasicContainer-ClientPostToCreate" ;
+        td:reviewStatus            td:approved ;
+        td:specificationReference  [ a                td:Excerpt ;
+                                     rdfs:seeAlso     <http://www.w3.org/TR/ldp#ldpc-post-created201> ;
+                                     td:includesText  "LDPC clients SHOULD create member resources by submitting a representation as the entity body of the HTTP POST to a known LDPC."^^<http://www.w3.org/2001/XMLSchema#string>
+                                   ] ;
+        ldpt:conformanceLevel      ldpt:SHOULD ;
+        ldpt:declaredInClass       "org.w3.ldp.testsuite.test.BasicContainerTest" ;
+        ldpt:declaredTestCase      ldpt:CommonContainer-ClientPostToCreate ;
+        ldpt:steps                 ( "Given a container URL and POST is supported" "Monitor the client's request to ensure a POST request is sent" "Verify the response has a response status code of 201-Created and Location header with URL of created resource" ) ;
+        ldpt:testMethod            ldpt:clientOnly .
+
+ldpt:RDFSource-SHOULDManifest
+        a             mf:Manifest ;
+        rdfs:comment  "LDP RDF Source tests. SHOULD conformance tests." ;
+        <http://purl.org/dc/elements/1.1/title>
+                "RDFSource (SHOULD)" ;
+        mf:entries    ( ldpt:MemberResource-ServerOpen ) ;
+        mf:name       "RDFSource (SHOULD)" .
+
+ldpt:IndirectContainer-MAYManifest
+        a             mf:Manifest ;
+        rdfs:comment  "LDP Indirect Container tests. MAY conformance tests." ;
+        <http://purl.org/dc/elements/1.1/title>
+                "IndirectContainer (MAY)" ;
+        mf:entries    ( ldpt:IndirectContainer-ClientMayProvideHints ) ;
+        mf:name       "IndirectContainer (MAY)" .
+
+ldpt:BasicContainer-GetResourcePreservesTriples
+        a                          earl:TestCase ;
+        rdfs:comment               "A LDP client MUST preserve all triples retrieved from an LDP-RS using HTTP GET that it doesn’t change whether it understands the predicates or not, when its intent is to perform an update using HTTP PUT. The use of HTTP PATCH instead of HTTP PUT for update avoids this burden for clients [RFC5789]. " ;
+        rdfs:label                 "BasicContainer-GetResourcePreservesTriples" ;
+        rdfs:seeAlso               <http://www.w3.org/TR/ldp#ldpr-cli-preservetriples> ;
+        dcterms:date               "2014-07-18T15:57:05.201Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject            "MUST" ;
+        mf:action                  "" ;
+        mf:name                    "BasicContainer-GetResourcePreservesTriples" ;
+        td:reviewStatus            td:approved ;
+        td:specificationReference  [ a                td:Excerpt ;
+                                     rdfs:seeAlso     <http://www.w3.org/TR/ldp#ldpr-cli-preservetriples> ;
+                                     td:includesText  "A LDP client MUST preserve all triples retrieved from an LDP-RS using HTTP GET that it doesn’t change whether it understands the predicates or not, when its intent is to perform an update using HTTP PUT. The use of HTTP PATCH instead of HTTP PUT for update avoids this burden for clients [RFC5789]. "^^<http://www.w3.org/2001/XMLSchema#string>
+                                   ] ;
+        ldpt:conformanceLevel      ldpt:MUST ;
+        ldpt:declaredInClass       "org.w3.ldp.testsuite.test.BasicContainerTest" ;
+        ldpt:declaredTestCase      ldpt:RdfSource-GetResourcePreservesTriples ;
+        ldpt:steps                 ( "Given a URL for a RDF Source, have client fetch a representation" "Observe the results of the fetch, either by application provided means or monitoring the network" "Given the client application interface, modify a limited amount of the resource" "Initiate action to save resource back to server" "Monitor request compare represetention sent, versus what was received and delta should only be changes made" ) ;
+        ldpt:testMethod            ldpt:clientOnly .
+
+ldpt:IndirectContainer-GetResourcePreservesTriples
+        a                          earl:TestCase ;
+        rdfs:comment               "A LDP client MUST preserve all triples retrieved from an LDP-RS using HTTP GET that it doesn’t change whether it understands the predicates or not, when its intent is to perform an update using HTTP PUT. The use of HTTP PATCH instead of HTTP PUT for update avoids this burden for clients [RFC5789]. " ;
+        rdfs:label                 "IndirectContainer-GetResourcePreservesTriples" ;
+        rdfs:seeAlso               <http://www.w3.org/TR/ldp#ldpr-cli-preservetriples> ;
+        dcterms:date               "2014-07-18T15:57:05.25Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject            "MUST" ;
+        mf:action                  "" ;
+        mf:name                    "IndirectContainer-GetResourcePreservesTriples" ;
+        td:reviewStatus            td:approved ;
+        td:specificationReference  [ a                td:Excerpt ;
+                                     rdfs:seeAlso     <http://www.w3.org/TR/ldp#ldpr-cli-preservetriples> ;
+                                     td:includesText  "A LDP client MUST preserve all triples retrieved from an LDP-RS using HTTP GET that it doesn’t change whether it understands the predicates or not, when its intent is to perform an update using HTTP PUT. The use of HTTP PATCH instead of HTTP PUT for update avoids this burden for clients [RFC5789]. "^^<http://www.w3.org/2001/XMLSchema#string>
+                                   ] ;
+        ldpt:conformanceLevel      ldpt:MUST ;
+        ldpt:declaredInClass       "org.w3.ldp.testsuite.test.IndirectContainerTest" ;
+        ldpt:declaredTestCase      ldpt:RdfSource-GetResourcePreservesTriples ;
+        ldpt:steps                 ( "Given a URL for a RDF Source, have client fetch a representation" "Observe the results of the fetch, either by application provided means or monitoring the network" "Given the client application interface, modify a limited amount of the resource" "Initiate action to save resource back to server" "Monitor request compare represetention sent, versus what was received and delta should only be changes made" ) ;
+        ldpt:testMethod            ldpt:clientOnly .
+
+ldpt:DirectContainer-GetResourcePreservesTriples
+        a                          earl:TestCase ;
+        rdfs:comment               "A LDP client MUST preserve all triples retrieved from an LDP-RS using HTTP GET that it doesn’t change whether it understands the predicates or not, when its intent is to perform an update using HTTP PUT. The use of HTTP PATCH instead of HTTP PUT for update avoids this burden for clients [RFC5789]. " ;
+        rdfs:label                 "DirectContainer-GetResourcePreservesTriples" ;
+        rdfs:seeAlso               <http://www.w3.org/TR/ldp#ldpr-cli-preservetriples> ;
+        dcterms:date               "2014-07-18T15:57:05.226Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject            "MUST" ;
+        mf:action                  "" ;
+        mf:name                    "DirectContainer-GetResourcePreservesTriples" ;
+        td:reviewStatus            td:approved ;
+        td:specificationReference  [ a                td:Excerpt ;
+                                     rdfs:seeAlso     <http://www.w3.org/TR/ldp#ldpr-cli-preservetriples> ;
+                                     td:includesText  "A LDP client MUST preserve all triples retrieved from an LDP-RS using HTTP GET that it doesn’t change whether it understands the predicates or not, when its intent is to perform an update using HTTP PUT. The use of HTTP PATCH instead of HTTP PUT for update avoids this burden for clients [RFC5789]. "^^<http://www.w3.org/2001/XMLSchema#string>
+                                   ] ;
+        ldpt:conformanceLevel      ldpt:MUST ;
+        ldpt:declaredInClass       "org.w3.ldp.testsuite.test.DirectContainerTest" ;
+        ldpt:declaredTestCase      ldpt:RdfSource-GetResourcePreservesTriples ;
+        ldpt:steps                 ( "Given a URL for a RDF Source, have client fetch a representation" "Observe the results of the fetch, either by application provided means or monitoring the network" "Given the client application interface, modify a limited amount of the resource" "Initiate action to save resource back to server" "Monitor request compare represetention sent, versus what was received and delta should only be changes made" ) ;
+        ldpt:testMethod            ldpt:clientOnly .
+
+ldpt:IndirectContainer-SHOULDManifest
+        a             mf:Manifest ;
+        rdfs:comment  "LDP Indirect Container tests. SHOULD conformance tests." ;
+        <http://purl.org/dc/elements/1.1/title>
+                "IndirectContainer (SHOULD)" ;
+        mf:entries    ( ldpt:IndirectContainer-ClientPostToCreate ldpt:IndirectContainer-ServerOpen ) ;
+        mf:name       "IndirectContainer (SHOULD)" .
+
+ldpt:DirectContainer-ServerOpen
+        a                          earl:TestCase ;
+        rdfs:comment               "LDP clients SHOULD always assume that the set of predicates for a LDP-RS of a particular type at an arbitrary server is open, in the sense that different resources of the same type may not all have the same set of predicates in their triples, and the set of predicates that are used in the state of any one LDP-RS is not limited to any pre-defined set." ;
+        rdfs:label                 "DirectContainer-ServerOpen" ;
+        rdfs:seeAlso               <http://www.w3.org/TR/ldp#ldpr-cli-openpreds> ;
+        dcterms:date               "2014-07-18T15:57:05.224Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject            "SHOULD" ;
+        mf:action                  "" ;
+        mf:name                    "DirectContainer-ServerOpen" ;
+        td:reviewStatus            td:approved ;
+        td:specificationReference  [ a                td:Excerpt ;
+                                     rdfs:seeAlso     <http://www.w3.org/TR/ldp#ldpr-cli-openpreds> ;
+                                     td:includesText  "LDP clients SHOULD always assume that the set of predicates for a LDP-RS of a particular type at an arbitrary server is open, in the sense that different resources of the same type may not all have the same set of predicates in their triples, and the set of predicates that are used in the state of any one LDP-RS is not limited to any pre-defined set."^^<http://www.w3.org/2001/XMLSchema#string>
+                                   ] ;
+        ldpt:conformanceLevel      ldpt:SHOULD ;
+        ldpt:declaredInClass       "org.w3.ldp.testsuite.test.DirectContainerTest" ;
+        ldpt:declaredTestCase      ldpt:RdfSource-ServerOpen ;
+        ldpt:steps                 ( "Given a client and a known RDF Source at a given URL" "Via some means, alter the rdf:type of the RDF Source (either adding, changing or removing).  Note it may be implementation dependent on what the server will allow and also when changed, what different behavior the client will have" "Verify that the client continues to operate as expected" ) ;
+        ldpt:testMethod            ldpt:clientOnly .
+
+ldpt:MemberResource-GetResourcePreservesTriples
+        a                          earl:TestCase ;
+        rdfs:comment               "A LDP client MUST preserve all triples retrieved from an LDP-RS using HTTP GET that it doesn’t change whether it understands the predicates or not, when its intent is to perform an update using HTTP PUT. The use of HTTP PATCH instead of HTTP PUT for update avoids this burden for clients [RFC5789]. " ;
+        rdfs:label                 "MemberResource-GetResourcePreservesTriples" ;
+        rdfs:seeAlso               <http://www.w3.org/TR/ldp#ldpr-cli-preservetriples> ;
+        dcterms:date               "2014-07-18T15:57:05.154Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject            "MUST" ;
+        mf:action                  "" ;
+        mf:name                    "MemberResource-GetResourcePreservesTriples" ;
+        td:reviewStatus            td:approved ;
+        td:specificationReference  [ a                td:Excerpt ;
+                                     rdfs:seeAlso     <http://www.w3.org/TR/ldp#ldpr-cli-preservetriples> ;
+                                     td:includesText  "A LDP client MUST preserve all triples retrieved from an LDP-RS using HTTP GET that it doesn’t change whether it understands the predicates or not, when its intent is to perform an update using HTTP PUT. The use of HTTP PATCH instead of HTTP PUT for update avoids this burden for clients [RFC5789]. "^^<http://www.w3.org/2001/XMLSchema#string>
+                                   ] ;
+        ldpt:conformanceLevel      ldpt:MUST ;
+        ldpt:declaredInClass       "org.w3.ldp.testsuite.test.MemberResourceTest" ;
+        ldpt:declaredTestCase      ldpt:RdfSource-GetResourcePreservesTriples ;
+        ldpt:steps                 ( "Given a URL for a RDF Source, have client fetch a representation" "Observe the results of the fetch, either by application provided means or monitoring the network" "Given the client application interface, modify a limited amount of the resource" "Initiate action to save resource back to server" "Monitor request compare represetention sent, versus what was received and delta should only be changes made" ) ;
+        ldpt:testMethod            ldpt:clientOnly .
+
+ldpt:BasicContainer-ClientMayProvideHints
+        a                          earl:TestCase ;
+        rdfs:comment               "LDP clients MAY provide LDP-defined hints that allow servers to optimize the content of responses. section 7.2 Preferences on the Prefer Request Header defines hints that apply to LDP-RSs. " ;
+        rdfs:label                 "BasicContainer-ClientMayProvideHints" ;
+        rdfs:seeAlso               <http://www.w3.org/TR/ldp#ldpr-cli-can-hint> ;
+        dcterms:date               "2014-07-18T15:57:05.204Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject            "MAY" ;
+        mf:action                  "" ;
+        mf:name                    "BasicContainer-ClientMayProvideHints" ;
+        td:reviewStatus            td:unreviewed ;
+        td:specificationReference  [ a                td:Excerpt ;
+                                     rdfs:seeAlso     <http://www.w3.org/TR/ldp#ldpr-cli-can-hint> ;
+                                     td:includesText  "LDP clients MAY provide LDP-defined hints that allow servers to optimize the content of responses. section 7.2 Preferences on the Prefer Request Header defines hints that apply to LDP-RSs. "^^<http://www.w3.org/2001/XMLSchema#string>
+                                   ] ;
+        ldpt:conformanceLevel      ldpt:MAY ;
+        ldpt:declaredInClass       "org.w3.ldp.testsuite.test.BasicContainerTest" ;
+        ldpt:declaredTestCase      ldpt:RdfSource-ClientMayProvideHints ;
+        ldpt:steps                 ( "Given a URL to a known RDF Source" "Configure the client application, if needed, to use the Prefer header to omit either containment or membership triples" "Use the client to send the GET request" "Monitor to ensure the server receives the hint" "Monitor to ensure the server honors the hing" "Verify the client behavior receives the optimized response" ) ;
+        ldpt:testMethod            ldpt:clientOnly .
+
+ldpt:MemberResource-AllowResponsesFromServer
+        a                          earl:TestCase ;
+        rdfs:comment               "LDP clients MUST be capable of processing responses formed by an LDP server that ignores hints, including LDP-defined hints." ;
+        rdfs:label                 "MemberResource-AllowResponsesFromServer" ;
+        rdfs:seeAlso               <http://www.w3.org/TR/ldp#ldpr-cli-hints-ignorable> ;
+        dcterms:date               "2014-07-18T15:57:05.156Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject            "MUST" ;
+        mf:action                  "" ;
+        mf:name                    "MemberResource-AllowResponsesFromServer" ;
+        td:reviewStatus            td:approved ;
+        td:specificationReference  [ a                td:Excerpt ;
+                                     rdfs:seeAlso     <http://www.w3.org/TR/ldp#ldpr-cli-hints-ignorable> ;
+                                     td:includesText  "LDP clients MUST be capable of processing responses formed by an LDP server that ignores hints, including LDP-defined hints."^^<http://www.w3.org/2001/XMLSchema#string>
+                                   ] ;
+        ldpt:conformanceLevel      ldpt:MUST ;
+        ldpt:declaredInClass       "org.w3.ldp.testsuite.test.MemberResourceTest" ;
+        ldpt:declaredTestCase      ldpt:RdfSource-AllowResponsesFromServer ;
+        ldpt:steps                 ( "Determine certain hints that your server would ignore" "Form a client request that uses this hint" "Execute the request and analyze the result" "Verify that client processes request as expected" ) ;
+        ldpt:testMethod            ldpt:clientOnly .
+
+ldpt:IndirectContainer-ChangeRdfTypeValue
+        a                          earl:TestCase ;
+        rdfs:comment               "In the absence of special knowledge of the application or domain, LDP clients MUST assume that the rdf:type values of a given LDP-RS can change over time." ;
+        rdfs:label                 "IndirectContainer-ChangeRdfTypeValue" ;
+        rdfs:seeAlso               <http://www.w3.org/TR/ldp#ldpr-cli-typeschange> ;
+        dcterms:date               "2014-07-18T15:57:05.247Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject            "MUST" ;
+        mf:action                  "" ;
+        mf:name                    "IndirectContainer-ChangeRdfTypeValue" ;
+        td:reviewStatus            td:approved ;
+        td:specificationReference  [ a                td:Excerpt ;
+                                     rdfs:seeAlso     <http://www.w3.org/TR/ldp#ldpr-cli-typeschange> ;
+                                     td:includesText  "In the absence of special knowledge of the application or domain, LDP clients MUST assume that the rdf:type values of a given LDP-RS can change over time."^^<http://www.w3.org/2001/XMLSchema#string>
+                                   ] ;
+        ldpt:conformanceLevel      ldpt:MUST ;
+        ldpt:declaredInClass       "org.w3.ldp.testsuite.test.IndirectContainerTest" ;
+        ldpt:declaredTestCase      ldpt:RdfSource-ChangeRdfTypeValue ;
+        ldpt:steps                 ( "Given a client and a known RDF Source at a given URL" "Via some means, alter the rdf:type of the RDF Source by adding or removing a rdf:type triple. Note it may be implementation dependent on what the server will allow and also when changed, what different behavior the client will have" "Verify that the client continues to operate as expected" ) ;
+        ldpt:testMethod            ldpt:clientOnly .
+
+ldpt:DirectContainer-MUSTManifest
+        a             mf:Manifest ;
+        rdfs:comment  "LDP Direct Container tests. MUST conformance tests." ;
+        <http://purl.org/dc/elements/1.1/title>
+                "DirectContainer (MUST)" ;
+        mf:entries    ( ldpt:DirectContainer-AllowMultipleRdfTypes ldpt:DirectContainer-ChangeRdfTypeValue ldpt:DirectContainer-GetResourcePreservesTriples ldpt:DirectContainer-AllowResponsesFromServer ) ;
+        mf:name       "DirectContainer (MUST)" .
+
+ldpt:BasicContainer-SHOULDManifest
+        a             mf:Manifest ;
+        rdfs:comment  "LDP Basic Container tests. SHOULD conformance tests." ;
+        <http://purl.org/dc/elements/1.1/title>
+                "BasicContainer (SHOULD)" ;
+        mf:entries    ( ldpt:BasicContainer-ClientPostToCreate ldpt:BasicContainer-ServerOpen ) ;
+        mf:name       "BasicContainer (SHOULD)" .
+
+ldpt:BasicContainer-AllowMultipleRdfTypes
+        a                          earl:TestCase ;
+        rdfs:comment               "In the absence of special knowledge of the application or domain, LDP clients MUST assume that any LDP-RS can have multiple values for rdf:type." ;
+        rdfs:label                 "BasicContainer-AllowMultipleRdfTypes" ;
+        rdfs:seeAlso               <http://www.w3.org/TR/ldp#ldp-cli-multitype> ;
+        dcterms:date               "2014-07-18T15:57:05.197Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject            "MUST" ;
+        mf:action                  "" ;
+        mf:name                    "BasicContainer-AllowMultipleRdfTypes" ;
+        td:reviewStatus            td:approved ;
+        td:specificationReference  [ a                td:Excerpt ;
+                                     rdfs:seeAlso     <http://www.w3.org/TR/ldp#ldp-cli-multitype> ;
+                                     td:includesText  "In the absence of special knowledge of the application or domain, LDP clients MUST assume that any LDP-RS can have multiple values for rdf:type."^^<http://www.w3.org/2001/XMLSchema#string>
+                                   ] ;
+        ldpt:conformanceLevel      ldpt:MUST ;
+        ldpt:declaredInClass       "org.w3.ldp.testsuite.test.BasicContainerTest" ;
+        ldpt:declaredTestCase      ldpt:RdfSource-AllowMultipleRdfTypes ;
+        ldpt:steps                 ( "Given a client and a known RDF Source at a given URL" "Via some means, alter the rdf:type of the RDF Source by adding another rdf:type. Note it may be implementation dependent on what the server will allow and also when changed, what different behavior the client will have" "Verify that the client continues to operate as expected" ) ;
+        ldpt:testMethod            ldpt:clientOnly .
+
+ldpt:DirectContainer-ClientPostToCreate
+        a                          earl:TestCase ;
+        rdfs:comment               "LDPC clients SHOULD create member resources by submitting a representation as the entity body of the HTTP POST to a known LDPC." ;
+        rdfs:label                 "DirectContainer-ClientPostToCreate" ;
+        rdfs:seeAlso               <http://www.w3.org/TR/ldp#ldpc-post-created201> ;
+        dcterms:date               "2014-07-18T15:57:05.215Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject            "SHOULD" ;
+        mf:action                  "" ;
+        mf:name                    "DirectContainer-ClientPostToCreate" ;
+        td:reviewStatus            td:approved ;
+        td:specificationReference  [ a                td:Excerpt ;
+                                     rdfs:seeAlso     <http://www.w3.org/TR/ldp#ldpc-post-created201> ;
+                                     td:includesText  "LDPC clients SHOULD create member resources by submitting a representation as the entity body of the HTTP POST to a known LDPC."^^<http://www.w3.org/2001/XMLSchema#string>
+                                   ] ;
+        ldpt:conformanceLevel      ldpt:SHOULD ;
+        ldpt:declaredInClass       "org.w3.ldp.testsuite.test.DirectContainerTest" ;
+        ldpt:declaredTestCase      ldpt:CommonContainer-ClientPostToCreate ;
+        ldpt:steps                 ( "Given a container URL and POST is supported" "Monitor the client's request to ensure a POST request is sent" "Verify the response has a response status code of 201-Created and Location header with URL of created resource" ) ;
+        ldpt:testMethod            ldpt:clientOnly .
+
+ldpt:IndirectContainer-MUSTManifest
+        a             mf:Manifest ;
+        rdfs:comment  "LDP Indirect Container tests. MUST conformance tests." ;
+        <http://purl.org/dc/elements/1.1/title>
+                "IndirectContainer (MUST)" ;
+        mf:entries    ( ldpt:IndirectContainer-AllowMultipleRdfTypes ldpt:IndirectContainer-ChangeRdfTypeValue ldpt:IndirectContainer-GetResourcePreservesTriples ldpt:IndirectContainer-AllowResponsesFromServer ) ;
+        mf:name       "IndirectContainer (MUST)" .
+
+ldpt:BasicContainer-ServerOpen
+        a                          earl:TestCase ;
+        rdfs:comment               "LDP clients SHOULD always assume that the set of predicates for a LDP-RS of a particular type at an arbitrary server is open, in the sense that different resources of the same type may not all have the same set of predicates in their triples, and the set of predicates that are used in the state of any one LDP-RS is not limited to any pre-defined set." ;
+        rdfs:label                 "BasicContainer-ServerOpen" ;
+        rdfs:seeAlso               <http://www.w3.org/TR/ldp#ldpr-cli-openpreds> ;
+        dcterms:date               "2014-07-18T15:57:05.199Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject            "SHOULD" ;
+        mf:action                  "" ;
+        mf:name                    "BasicContainer-ServerOpen" ;
+        td:reviewStatus            td:approved ;
+        td:specificationReference  [ a                td:Excerpt ;
+                                     rdfs:seeAlso     <http://www.w3.org/TR/ldp#ldpr-cli-openpreds> ;
+                                     td:includesText  "LDP clients SHOULD always assume that the set of predicates for a LDP-RS of a particular type at an arbitrary server is open, in the sense that different resources of the same type may not all have the same set of predicates in their triples, and the set of predicates that are used in the state of any one LDP-RS is not limited to any pre-defined set."^^<http://www.w3.org/2001/XMLSchema#string>
+                                   ] ;
+        ldpt:conformanceLevel      ldpt:SHOULD ;
+        ldpt:declaredInClass       "org.w3.ldp.testsuite.test.BasicContainerTest" ;
+        ldpt:declaredTestCase      ldpt:RdfSource-ServerOpen ;
+        ldpt:steps                 ( "Given a client and a known RDF Source at a given URL" "Via some means, alter the rdf:type of the RDF Source (either adding, changing or removing).  Note it may be implementation dependent on what the server will allow and also when changed, what different behavior the client will have" "Verify that the client continues to operate as expected" ) ;
+        ldpt:testMethod            ldpt:clientOnly .
+
+ldpt:BasicContainer-ChangeRdfTypeValue
+        a                          earl:TestCase ;
+        rdfs:comment               "In the absence of special knowledge of the application or domain, LDP clients MUST assume that the rdf:type values of a given LDP-RS can change over time." ;
+        rdfs:label                 "BasicContainer-ChangeRdfTypeValue" ;
+        rdfs:seeAlso               <http://www.w3.org/TR/ldp#ldpr-cli-typeschange> ;
+        dcterms:date               "2014-07-18T15:57:05.198Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject            "MUST" ;
+        mf:action                  "" ;
+        mf:name                    "BasicContainer-ChangeRdfTypeValue" ;
+        td:reviewStatus            td:approved ;
+        td:specificationReference  [ a                td:Excerpt ;
+                                     rdfs:seeAlso     <http://www.w3.org/TR/ldp#ldpr-cli-typeschange> ;
+                                     td:includesText  "In the absence of special knowledge of the application or domain, LDP clients MUST assume that the rdf:type values of a given LDP-RS can change over time."^^<http://www.w3.org/2001/XMLSchema#string>
+                                   ] ;
+        ldpt:conformanceLevel      ldpt:MUST ;
+        ldpt:declaredInClass       "org.w3.ldp.testsuite.test.BasicContainerTest" ;
+        ldpt:declaredTestCase      ldpt:RdfSource-ChangeRdfTypeValue ;
+        ldpt:steps                 ( "Given a client and a known RDF Source at a given URL" "Via some means, alter the rdf:type of the RDF Source by adding or removing a rdf:type triple. Note it may be implementation dependent on what the server will allow and also when changed, what different behavior the client will have" "Verify that the client continues to operate as expected" ) ;
+        ldpt:testMethod            ldpt:clientOnly .
+
+ldpt:MemberResource-ServerOpen
+        a                          earl:TestCase ;
+        rdfs:comment               "LDP clients SHOULD always assume that the set of predicates for a LDP-RS of a particular type at an arbitrary server is open, in the sense that different resources of the same type may not all have the same set of predicates in their triples, and the set of predicates that are used in the state of any one LDP-RS is not limited to any pre-defined set." ;
+        rdfs:label                 "MemberResource-ServerOpen" ;
+        rdfs:seeAlso               <http://www.w3.org/TR/ldp#ldpr-cli-openpreds> ;
+        dcterms:date               "2014-07-18T15:57:05.153Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject            "SHOULD" ;
+        mf:action                  "" ;
+        mf:name                    "MemberResource-ServerOpen" ;
+        td:reviewStatus            td:approved ;
+        td:specificationReference  [ a                td:Excerpt ;
+                                     rdfs:seeAlso     <http://www.w3.org/TR/ldp#ldpr-cli-openpreds> ;
+                                     td:includesText  "LDP clients SHOULD always assume that the set of predicates for a LDP-RS of a particular type at an arbitrary server is open, in the sense that different resources of the same type may not all have the same set of predicates in their triples, and the set of predicates that are used in the state of any one LDP-RS is not limited to any pre-defined set."^^<http://www.w3.org/2001/XMLSchema#string>
+                                   ] ;
+        ldpt:conformanceLevel      ldpt:SHOULD ;
+        ldpt:declaredInClass       "org.w3.ldp.testsuite.test.MemberResourceTest" ;
+        ldpt:declaredTestCase      ldpt:RdfSource-ServerOpen ;
+        ldpt:steps                 ( "Given a client and a known RDF Source at a given URL" "Via some means, alter the rdf:type of the RDF Source (either adding, changing or removing).  Note it may be implementation dependent on what the server will allow and also when changed, what different behavior the client will have" "Verify that the client continues to operate as expected" ) ;
+        ldpt:testMethod            ldpt:clientOnly .
+
+ldpt:DirectContainer-SHOULDManifest
+        a             mf:Manifest ;
+        rdfs:comment  "LDP Direct Container tests. SHOULD conformance tests." ;
+        <http://purl.org/dc/elements/1.1/title>
+                "DirectContainer (SHOULD)" ;
+        mf:entries    ( ldpt:DirectContainer-ClientPostToCreate ldpt:DirectContainer-ServerOpen ) ;
+        mf:name       "DirectContainer (SHOULD)" .
+
+ldpt:BasicContainer-AllowResponsesFromServer
+        a                          earl:TestCase ;
+        rdfs:comment               "LDP clients MUST be capable of processing responses formed by an LDP server that ignores hints, including LDP-defined hints." ;
+        rdfs:label                 "BasicContainer-AllowResponsesFromServer" ;
+        rdfs:seeAlso               <http://www.w3.org/TR/ldp#ldpr-cli-hints-ignorable> ;
+        dcterms:date               "2014-07-18T15:57:05.202Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject            "MUST" ;
+        mf:action                  "" ;
+        mf:name                    "BasicContainer-AllowResponsesFromServer" ;
+        td:reviewStatus            td:approved ;
+        td:specificationReference  [ a                td:Excerpt ;
+                                     rdfs:seeAlso     <http://www.w3.org/TR/ldp#ldpr-cli-hints-ignorable> ;
+                                     td:includesText  "LDP clients MUST be capable of processing responses formed by an LDP server that ignores hints, including LDP-defined hints."^^<http://www.w3.org/2001/XMLSchema#string>
+                                   ] ;
+        ldpt:conformanceLevel      ldpt:MUST ;
+        ldpt:declaredInClass       "org.w3.ldp.testsuite.test.BasicContainerTest" ;
+        ldpt:declaredTestCase      ldpt:RdfSource-AllowResponsesFromServer ;
+        ldpt:steps                 ( "Determine certain hints that your server would ignore" "Form a client request that uses this hint" "Execute the request and analyze the result" "Verify that client processes request as expected" ) ;
+        ldpt:testMethod            ldpt:clientOnly .
+
+ldpt:DirectContainer-ClientMayProvideHints
+        a                          earl:TestCase ;
+        rdfs:comment               "LDP clients MAY provide LDP-defined hints that allow servers to optimize the content of responses. section 7.2 Preferences on the Prefer Request Header defines hints that apply to LDP-RSs. " ;
+        rdfs:label                 "DirectContainer-ClientMayProvideHints" ;
+        rdfs:seeAlso               <http://www.w3.org/TR/ldp#ldpr-cli-can-hint> ;
+        dcterms:date               "2014-07-18T15:57:05.229Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject            "MAY" ;
+        mf:action                  "" ;
+        mf:name                    "DirectContainer-ClientMayProvideHints" ;
+        td:reviewStatus            td:unreviewed ;
+        td:specificationReference  [ a                td:Excerpt ;
+                                     rdfs:seeAlso     <http://www.w3.org/TR/ldp#ldpr-cli-can-hint> ;
+                                     td:includesText  "LDP clients MAY provide LDP-defined hints that allow servers to optimize the content of responses. section 7.2 Preferences on the Prefer Request Header defines hints that apply to LDP-RSs. "^^<http://www.w3.org/2001/XMLSchema#string>
+                                   ] ;
+        ldpt:conformanceLevel      ldpt:MAY ;
+        ldpt:declaredInClass       "org.w3.ldp.testsuite.test.DirectContainerTest" ;
+        ldpt:declaredTestCase      ldpt:RdfSource-ClientMayProvideHints ;
+        ldpt:steps                 ( "Given a URL to a known RDF Source" "Configure the client application, if needed, to use the Prefer header to omit either containment or membership triples" "Use the client to send the GET request" "Monitor to ensure the server receives the hint" "Monitor to ensure the server honors the hing" "Verify the client behavior receives the optimized response" ) ;
+        ldpt:testMethod            ldpt:clientOnly .
+
+ldpt:DirectContainer-AllowResponsesFromServer
+        a                          earl:TestCase ;
+        rdfs:comment               "LDP clients MUST be capable of processing responses formed by an LDP server that ignores hints, including LDP-defined hints." ;
+        rdfs:label                 "DirectContainer-AllowResponsesFromServer" ;
+        rdfs:seeAlso               <http://www.w3.org/TR/ldp#ldpr-cli-hints-ignorable> ;
+        dcterms:date               "2014-07-18T15:57:05.227Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject            "MUST" ;
+        mf:action                  "" ;
+        mf:name                    "DirectContainer-AllowResponsesFromServer" ;
+        td:reviewStatus            td:approved ;
+        td:specificationReference  [ a                td:Excerpt ;
+                                     rdfs:seeAlso     <http://www.w3.org/TR/ldp#ldpr-cli-hints-ignorable> ;
+                                     td:includesText  "LDP clients MUST be capable of processing responses formed by an LDP server that ignores hints, including LDP-defined hints."^^<http://www.w3.org/2001/XMLSchema#string>
+                                   ] ;
+        ldpt:conformanceLevel      ldpt:MUST ;
+        ldpt:declaredInClass       "org.w3.ldp.testsuite.test.DirectContainerTest" ;
+        ldpt:declaredTestCase      ldpt:RdfSource-AllowResponsesFromServer ;
+        ldpt:steps                 ( "Determine certain hints that your server would ignore" "Form a client request that uses this hint" "Execute the request and analyze the result" "Verify that client processes request as expected" ) ;
+        ldpt:testMethod            ldpt:clientOnly .
+
+ldpt:BasicContainer-MAYManifest
+        a             mf:Manifest ;
+        rdfs:comment  "LDP Basic Container tests. MAY conformance tests." ;
+        <http://purl.org/dc/elements/1.1/title>
+                "BasicContainer (MAY)" ;
+        mf:entries    ( ldpt:BasicContainer-ClientMayProvideHints ) ;
+        mf:name       "BasicContainer (MAY)" .
+
+ldpt:MemberResource-ClientMayProvideHints
+        a                          earl:TestCase ;
+        rdfs:comment               "LDP clients MAY provide LDP-defined hints that allow servers to optimize the content of responses. section 7.2 Preferences on the Prefer Request Header defines hints that apply to LDP-RSs. " ;
+        rdfs:label                 "MemberResource-ClientMayProvideHints" ;
+        rdfs:seeAlso               <http://www.w3.org/TR/ldp#ldpr-cli-can-hint> ;
+        dcterms:date               "2014-07-18T15:57:05.159Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject            "MAY" ;
+        mf:action                  "" ;
+        mf:name                    "MemberResource-ClientMayProvideHints" ;
+        td:reviewStatus            td:unreviewed ;
+        td:specificationReference  [ a                td:Excerpt ;
+                                     rdfs:seeAlso     <http://www.w3.org/TR/ldp#ldpr-cli-can-hint> ;
+                                     td:includesText  "LDP clients MAY provide LDP-defined hints that allow servers to optimize the content of responses. section 7.2 Preferences on the Prefer Request Header defines hints that apply to LDP-RSs. "^^<http://www.w3.org/2001/XMLSchema#string>
+                                   ] ;
+        ldpt:conformanceLevel      ldpt:MAY ;
+        ldpt:declaredInClass       "org.w3.ldp.testsuite.test.MemberResourceTest" ;
+        ldpt:declaredTestCase      ldpt:RdfSource-ClientMayProvideHints ;
+        ldpt:steps                 ( "Given a URL to a known RDF Source" "Configure the client application, if needed, to use the Prefer header to omit either containment or membership triples" "Use the client to send the GET request" "Monitor to ensure the server receives the hint" "Monitor to ensure the server honors the hing" "Verify the client behavior receives the optimized response" ) ;
+        ldpt:testMethod            ldpt:clientOnly .
+
+ldpt:IndirectContainer-ClientMayProvideHints
+        a                          earl:TestCase ;
+        rdfs:comment               "LDP clients MAY provide LDP-defined hints that allow servers to optimize the content of responses. section 7.2 Preferences on the Prefer Request Header defines hints that apply to LDP-RSs. " ;
+        rdfs:label                 "IndirectContainer-ClientMayProvideHints" ;
+        rdfs:seeAlso               <http://www.w3.org/TR/ldp#ldpr-cli-can-hint> ;
+        dcterms:date               "2014-07-18T15:57:05.253Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject            "MAY" ;
+        mf:action                  "" ;
+        mf:name                    "IndirectContainer-ClientMayProvideHints" ;
+        td:reviewStatus            td:unreviewed ;
+        td:specificationReference  [ a                td:Excerpt ;
+                                     rdfs:seeAlso     <http://www.w3.org/TR/ldp#ldpr-cli-can-hint> ;
+                                     td:includesText  "LDP clients MAY provide LDP-defined hints that allow servers to optimize the content of responses. section 7.2 Preferences on the Prefer Request Header defines hints that apply to LDP-RSs. "^^<http://www.w3.org/2001/XMLSchema#string>
+                                   ] ;
+        ldpt:conformanceLevel      ldpt:MAY ;
+        ldpt:declaredInClass       "org.w3.ldp.testsuite.test.IndirectContainerTest" ;
+        ldpt:declaredTestCase      ldpt:RdfSource-ClientMayProvideHints ;
+        ldpt:steps                 ( "Given a URL to a known RDF Source" "Configure the client application, if needed, to use the Prefer header to omit either containment or membership triples" "Use the client to send the GET request" "Monitor to ensure the server receives the hint" "Monitor to ensure the server honors the hing" "Verify the client behavior receives the optimized response" ) ;
+        ldpt:testMethod            ldpt:clientOnly .
+
+ldpt:DirectContainer-MAYManifest
+        a             mf:Manifest ;
+        rdfs:comment  "LDP Direct Container tests. MAY conformance tests." ;
+        <http://purl.org/dc/elements/1.1/title>
+                "DirectContainer (MAY)" ;
+        mf:entries    ( ldpt:DirectContainer-ClientMayProvideHints ) ;
+        mf:name       "DirectContainer (MAY)" .
+
+ldpt:DirectContainer-AllowMultipleRdfTypes
+        a                          earl:TestCase ;
+        rdfs:comment               "In the absence of special knowledge of the application or domain, LDP clients MUST assume that any LDP-RS can have multiple values for rdf:type." ;
+        rdfs:label                 "DirectContainer-AllowMultipleRdfTypes" ;
+        rdfs:seeAlso               <http://www.w3.org/TR/ldp#ldp-cli-multitype> ;
+        dcterms:date               "2014-07-18T15:57:05.222Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject            "MUST" ;
+        mf:action                  "" ;
+        mf:name                    "DirectContainer-AllowMultipleRdfTypes" ;
+        td:reviewStatus            td:approved ;
+        td:specificationReference  [ a                td:Excerpt ;
+                                     rdfs:seeAlso     <http://www.w3.org/TR/ldp#ldp-cli-multitype> ;
+                                     td:includesText  "In the absence of special knowledge of the application or domain, LDP clients MUST assume that any LDP-RS can have multiple values for rdf:type."^^<http://www.w3.org/2001/XMLSchema#string>
+                                   ] ;
+        ldpt:conformanceLevel      ldpt:MUST ;
+        ldpt:declaredInClass       "org.w3.ldp.testsuite.test.DirectContainerTest" ;
+        ldpt:declaredTestCase      ldpt:RdfSource-AllowMultipleRdfTypes ;
+        ldpt:steps                 ( "Given a client and a known RDF Source at a given URL" "Via some means, alter the rdf:type of the RDF Source by adding another rdf:type. Note it may be implementation dependent on what the server will allow and also when changed, what different behavior the client will have" "Verify that the client continues to operate as expected" ) ;
+        ldpt:testMethod            ldpt:clientOnly .
+
+ldpt:IndirectContainer-ClientPostToCreate
+        a                          earl:TestCase ;
+        rdfs:comment               "LDPC clients SHOULD create member resources by submitting a representation as the entity body of the HTTP POST to a known LDPC." ;
+        rdfs:label                 "IndirectContainer-ClientPostToCreate" ;
+        rdfs:seeAlso               <http://www.w3.org/TR/ldp#ldpc-post-created201> ;
+        dcterms:date               "2014-07-18T15:57:05.239Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject            "SHOULD" ;
+        mf:action                  "" ;
+        mf:name                    "IndirectContainer-ClientPostToCreate" ;
+        td:reviewStatus            td:approved ;
+        td:specificationReference  [ a                td:Excerpt ;
+                                     rdfs:seeAlso     <http://www.w3.org/TR/ldp#ldpc-post-created201> ;
+                                     td:includesText  "LDPC clients SHOULD create member resources by submitting a representation as the entity body of the HTTP POST to a known LDPC."^^<http://www.w3.org/2001/XMLSchema#string>
+                                   ] ;
+        ldpt:conformanceLevel      ldpt:SHOULD ;
+        ldpt:declaredInClass       "org.w3.ldp.testsuite.test.IndirectContainerTest" ;
+        ldpt:declaredTestCase      ldpt:CommonContainer-ClientPostToCreate ;
+        ldpt:steps                 ( "Given a container URL and POST is supported" "Monitor the client's request to ensure a POST request is sent" "Verify the response has a response status code of 201-Created and Location header with URL of created resource" ) ;
+        ldpt:testMethod            ldpt:clientOnly .
+
+ldpt:MemberResource-AllowMultipleRdfTypes
+        a                          earl:TestCase ;
+        rdfs:comment               "In the absence of special knowledge of the application or domain, LDP clients MUST assume that any LDP-RS can have multiple values for rdf:type." ;
+        rdfs:label                 "MemberResource-AllowMultipleRdfTypes" ;
+        rdfs:seeAlso               <http://www.w3.org/TR/ldp#ldp-cli-multitype> ;
+        dcterms:date               "2014-07-18T15:57:05.038Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject            "MUST" ;
+        mf:action                  "" ;
+        mf:name                    "MemberResource-AllowMultipleRdfTypes" ;
+        td:reviewStatus            td:approved ;
+        td:specificationReference  [ a                td:Excerpt ;
+                                     rdfs:seeAlso     <http://www.w3.org/TR/ldp#ldp-cli-multitype> ;
+                                     td:includesText  "In the absence of special knowledge of the application or domain, LDP clients MUST assume that any LDP-RS can have multiple values for rdf:type."^^<http://www.w3.org/2001/XMLSchema#string>
+                                   ] ;
+        ldpt:conformanceLevel      ldpt:MUST ;
+        ldpt:declaredInClass       "org.w3.ldp.testsuite.test.MemberResourceTest" ;
+        ldpt:declaredTestCase      ldpt:RdfSource-AllowMultipleRdfTypes ;
+        ldpt:steps                 ( "Given a client and a known RDF Source at a given URL" "Via some means, alter the rdf:type of the RDF Source by adding another rdf:type. Note it may be implementation dependent on what the server will allow and also when changed, what different behavior the client will have" "Verify that the client continues to operate as expected" ) ;
+        ldpt:testMethod            ldpt:clientOnly .
+
+ldpt:IndirectContainer-AllowResponsesFromServer
+        a                          earl:TestCase ;
+        rdfs:comment               "LDP clients MUST be capable of processing responses formed by an LDP server that ignores hints, including LDP-defined hints." ;
+        rdfs:label                 "IndirectContainer-AllowResponsesFromServer" ;
+        rdfs:seeAlso               <http://www.w3.org/TR/ldp#ldpr-cli-hints-ignorable> ;
+        dcterms:date               "2014-07-18T15:57:05.251Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject            "MUST" ;
+        mf:action                  "" ;
+        mf:name                    "IndirectContainer-AllowResponsesFromServer" ;
+        td:reviewStatus            td:approved ;
+        td:specificationReference  [ a                td:Excerpt ;
+                                     rdfs:seeAlso     <http://www.w3.org/TR/ldp#ldpr-cli-hints-ignorable> ;
+                                     td:includesText  "LDP clients MUST be capable of processing responses formed by an LDP server that ignores hints, including LDP-defined hints."^^<http://www.w3.org/2001/XMLSchema#string>
+                                   ] ;
+        ldpt:conformanceLevel      ldpt:MUST ;
+        ldpt:declaredInClass       "org.w3.ldp.testsuite.test.IndirectContainerTest" ;
+        ldpt:declaredTestCase      ldpt:RdfSource-AllowResponsesFromServer ;
+        ldpt:steps                 ( "Determine certain hints that your server would ignore" "Form a client request that uses this hint" "Execute the request and analyze the result" "Verify that client processes request as expected" ) ;
+        ldpt:testMethod            ldpt:clientOnly .
+
+ldpt:IndirectContainer-AllowMultipleRdfTypes
+        a                          earl:TestCase ;
+        rdfs:comment               "In the absence of special knowledge of the application or domain, LDP clients MUST assume that any LDP-RS can have multiple values for rdf:type." ;
+        rdfs:label                 "IndirectContainer-AllowMultipleRdfTypes" ;
+        rdfs:seeAlso               <http://www.w3.org/TR/ldp#ldp-cli-multitype> ;
+        dcterms:date               "2014-07-18T15:57:05.246Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject            "MUST" ;
+        mf:action                  "" ;
+        mf:name                    "IndirectContainer-AllowMultipleRdfTypes" ;
+        td:reviewStatus            td:approved ;
+        td:specificationReference  [ a                td:Excerpt ;
+                                     rdfs:seeAlso     <http://www.w3.org/TR/ldp#ldp-cli-multitype> ;
+                                     td:includesText  "In the absence of special knowledge of the application or domain, LDP clients MUST assume that any LDP-RS can have multiple values for rdf:type."^^<http://www.w3.org/2001/XMLSchema#string>
+                                   ] ;
+        ldpt:conformanceLevel      ldpt:MUST ;
+        ldpt:declaredInClass       "org.w3.ldp.testsuite.test.IndirectContainerTest" ;
+        ldpt:declaredTestCase      ldpt:RdfSource-AllowMultipleRdfTypes ;
+        ldpt:steps                 ( "Given a client and a known RDF Source at a given URL" "Via some means, alter the rdf:type of the RDF Source by adding another rdf:type. Note it may be implementation dependent on what the server will allow and also when changed, what different behavior the client will have" "Verify that the client continues to operate as expected" ) ;
+        ldpt:testMethod            ldpt:clientOnly .
+
+ldpt:IndirectContainer-ServerOpen
+        a                          earl:TestCase ;
+        rdfs:comment               "LDP clients SHOULD always assume that the set of predicates for a LDP-RS of a particular type at an arbitrary server is open, in the sense that different resources of the same type may not all have the same set of predicates in their triples, and the set of predicates that are used in the state of any one LDP-RS is not limited to any pre-defined set." ;
+        rdfs:label                 "IndirectContainer-ServerOpen" ;
+        rdfs:seeAlso               <http://www.w3.org/TR/ldp#ldpr-cli-openpreds> ;
+        dcterms:date               "2014-07-18T15:57:05.249Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject            "SHOULD" ;
+        mf:action                  "" ;
+        mf:name                    "IndirectContainer-ServerOpen" ;
+        td:reviewStatus            td:approved ;
+        td:specificationReference  [ a                td:Excerpt ;
+                                     rdfs:seeAlso     <http://www.w3.org/TR/ldp#ldpr-cli-openpreds> ;
+                                     td:includesText  "LDP clients SHOULD always assume that the set of predicates for a LDP-RS of a particular type at an arbitrary server is open, in the sense that different resources of the same type may not all have the same set of predicates in their triples, and the set of predicates that are used in the state of any one LDP-RS is not limited to any pre-defined set."^^<http://www.w3.org/2001/XMLSchema#string>
+                                   ] ;
+        ldpt:conformanceLevel      ldpt:SHOULD ;
+        ldpt:declaredInClass       "org.w3.ldp.testsuite.test.IndirectContainerTest" ;
+        ldpt:declaredTestCase      ldpt:RdfSource-ServerOpen ;
+        ldpt:steps                 ( "Given a client and a known RDF Source at a given URL" "Via some means, alter the rdf:type of the RDF Source (either adding, changing or removing).  Note it may be implementation dependent on what the server will allow and also when changed, what different behavior the client will have" "Verify that the client continues to operate as expected" ) ;
+        ldpt:testMethod            ldpt:clientOnly .
+
+ldpt:BasicContainer-MUSTManifest
+        a             mf:Manifest ;
+        rdfs:comment  "LDP Basic Container tests. MUST conformance tests." ;
+        <http://purl.org/dc/elements/1.1/title>
+                "BasicContainer (MUST)" ;
+        mf:entries    ( ldpt:BasicContainer-AllowMultipleRdfTypes ldpt:BasicContainer-ChangeRdfTypeValue ldpt:BasicContainer-GetResourcePreservesTriples ldpt:BasicContainer-AllowResponsesFromServer ) ;
+        mf:name       "BasicContainer (MUST)" .
+
+ldpt:RDFSource-MAYManifest
+        a             mf:Manifest ;
+        rdfs:comment  "LDP RDF Source tests. MAY conformance tests." ;
+        <http://purl.org/dc/elements/1.1/title>
+                "RDFSource (MAY)" ;
+        mf:entries    ( ldpt:MemberResource-ClientMayProvideHints ) ;
+        mf:name       "RDFSource (MAY)" .
+
+ldpt:DirectContainer-ChangeRdfTypeValue
+        a                          earl:TestCase ;
+        rdfs:comment               "In the absence of special knowledge of the application or domain, LDP clients MUST assume that the rdf:type values of a given LDP-RS can change over time." ;
+        rdfs:label                 "DirectContainer-ChangeRdfTypeValue" ;
+        rdfs:seeAlso               <http://www.w3.org/TR/ldp#ldpr-cli-typeschange> ;
+        dcterms:date               "2014-07-18T15:57:05.223Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+        dcterms:subject            "MUST" ;
+        mf:action                  "" ;
+        mf:name                    "DirectContainer-ChangeRdfTypeValue" ;
+        td:reviewStatus            td:approved ;
+        td:specificationReference  [ a                td:Excerpt ;
+                                     rdfs:seeAlso     <http://www.w3.org/TR/ldp#ldpr-cli-typeschange> ;
+                                     td:includesText  "In the absence of special knowledge of the application or domain, LDP clients MUST assume that the rdf:type values of a given LDP-RS can change over time."^^<http://www.w3.org/2001/XMLSchema#string>
+                                   ] ;
+        ldpt:conformanceLevel      ldpt:MUST ;
+        ldpt:declaredInClass       "org.w3.ldp.testsuite.test.DirectContainerTest" ;
+        ldpt:declaredTestCase      ldpt:RdfSource-ChangeRdfTypeValue ;
+        ldpt:steps                 ( "Given a client and a known RDF Source at a given URL" "Via some means, alter the rdf:type of the RDF Source by adding or removing a rdf:type triple. Note it may be implementation dependent on what the server will allow and also when changed, what different behavior the client will have" "Verify that the client continues to operate as expected" ) ;
+        ldpt:testMethod            ldpt:clientOnly .
+
+ldpt:RDFSource-MUSTManifest
+        a             mf:Manifest ;
+        rdfs:comment  "LDP RDF Source tests. MUST conformance tests." ;
+        <http://purl.org/dc/elements/1.1/title>
+                "RDFSource (MUST)" ;
+        mf:entries    ( ldpt:MemberResource-AllowMultipleRdfTypes ldpt:MemberResource-ChangeRdfTypeValue ldpt:MemberResource-GetResourcePreservesTriples ldpt:MemberResource-AllowResponsesFromServer ) ;
+        mf:name       "RDFSource (MUST)" .
