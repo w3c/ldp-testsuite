@@ -38,6 +38,13 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 			.createProperty(LDP.LDPT_NAMESPACE + "conformanceLevel");
 
 	/**
+	 * A link to the published Javadoc for the test case (which in turn links to
+	 * the source code).
+	 */
+	private static final Property documentation = ResourceFactory
+			.createProperty(LDP.LDPT_NAMESPACE + "documentation");
+
+	/**
 	 * The test method: {@link #automated}, {@link #manual}, {@link #clientOnly},
 	 * or {@link #notImplemented}.
 	 *
@@ -240,6 +247,9 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 				testCaseResource.addProperty(testMethod, clientOnly);
 				break;
 			}
+
+			testCaseResource.addProperty(documentation,
+					model.createResource(ReportUtils.getJavadocLink(method)));
 
 			return testCaseResource;
 		}
