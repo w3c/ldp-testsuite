@@ -4,17 +4,12 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
 import org.w3.ldp.testsuite.vocab.LDP;
 
-import com.github.jsonldjava.core.JsonLdError;
-import com.github.jsonldjava.core.JsonLdOptions;
-import com.github.jsonldjava.core.JsonLdProcessor;
 import com.github.jsonldjava.jena.JenaJSONLD;
-import com.github.jsonldjava.utils.JsonUtils;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 
@@ -54,22 +49,12 @@ public abstract class AbstractEarlReporter {
 
 	protected void write() {
 		model.write(writerTurtle, TURTLE);
-
-		StringWriter sw = new StringWriter();
-		model.write(sw, JSON_LD);
-		try {
-			Object jsonObject = JsonUtils.fromString(sw.toString());
-			Object compact = JsonLdProcessor.compact(jsonObject, prefixes, new JsonLdOptions());
-			writerJson.write(JsonUtils.toPrettyString(compact));
-		} catch (IOException | JsonLdError e) {
-			e.printStackTrace();
-		}
+		model.write(writerJson, JSON_LD);
 	}
 
 	protected void endWriter() throws IOException {
 		writerTurtle.flush();
 		writerTurtle.close();
-
 		writerJson.flush();
 		writerJson.close();
 	}
