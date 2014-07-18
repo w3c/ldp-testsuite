@@ -769,7 +769,6 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	}
 
 	@Test(
-			enabled = false,
 			groups = {MAY},
 			description = "LDP servers MAY allow clients to suggest "
 					+ "the URI for a resource created through POST, "

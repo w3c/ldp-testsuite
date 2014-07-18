@@ -383,15 +383,14 @@ public abstract class CommonResourceTest extends LdpTest {
 			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_APPROVED)
 	public void testAcceptPatchHeader() {
-		skipIfMethodNotAllowed(HttpMethod.PATCH);
-
-		buildBaseRequestSpecification()
+		if (supports(HttpMethod.PATCH)) {
+			buildBaseRequestSpecification()
 				.expect().statusCode(isSuccessful()).header(ACCEPT_PATCH, notNullValue())
 				.when().options(getResourceUri());
+		}
 	}
 
 	@Test(
-			// enabled = false,
 			groups = {MUST},
 			description = "LDP servers MUST support the HTTP OPTIONS method. ")
 	@SpecTest(
