@@ -27,7 +27,7 @@
     <parameter name="mail" value="jdoe@example.org" />
     <parameter name="developer" value="Jane Doe" />
     <parameter name="description" value="Testing against: BasicContainer, RDFSource, NonRDFSource, Prefer, Container as Resource interaction model." />
-    <parameter name="auth" value="admin:admin" />
+    <parameter name="auth" value="ldpuser:ldpuser" />
     
 
     <!-- (Optional) RDF member resource parameter. If left out, the tests will
