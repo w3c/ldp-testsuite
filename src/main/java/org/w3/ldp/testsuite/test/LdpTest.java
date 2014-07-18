@@ -108,6 +108,14 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	 * @see <a href="https://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>
 	 */
 	public static final String MAY = "MAY";
+	
+
+	/**
+	 * A grouping of tests that may not need to run as part of the regular
+	 * TestNG runs.  Though by including it, it will allow for the generation
+	 * via various reporters.
+	 */
+	public static final String MANUAL = "MANUAL";
 
 	/**
 	 * A Linked Data Platform Non-RDF Source (LDP-NR). An LDPR whose state

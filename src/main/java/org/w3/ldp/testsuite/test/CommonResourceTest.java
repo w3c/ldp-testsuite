@@ -26,6 +26,7 @@ import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException;
+import org.w3.ldp.testsuite.exception.SkipNotTestableException;
 import org.w3.ldp.testsuite.http.HttpMethod;
 import org.w3.ldp.testsuite.vocab.LDP;
 
@@ -97,8 +98,7 @@ public abstract class CommonResourceTest extends LdpTest {
 	}
 
 	@Test(
-			enabled = false,
-			groups = {MUST},
+			groups = {MUST, MANUAL},
 			description = "LDP servers MUST at least be"
 					+ " HTTP/1.1 conformant servers [HTTP11].")
 	@SpecTest(
@@ -106,7 +106,7 @@ public abstract class CommonResourceTest extends LdpTest {
 			testMethod = METHOD.MANUAL,
 			approval = STATUS.WG_APPROVED)
 	public void testIsHttp11Manual() throws URISyntaxException {
-		// TODO: Impl testIsHttp11Manual
+		throw new SkipNotTestableException();
 	}
 
 	@Test(
@@ -360,7 +360,6 @@ public abstract class CommonResourceTest extends LdpTest {
 	}
 
 	@Test(
-			// enabled = false,
 			groups = {MUST},
 			description = "LDP servers MUST support the HTTP HEAD method. ")
 	@SpecTest(

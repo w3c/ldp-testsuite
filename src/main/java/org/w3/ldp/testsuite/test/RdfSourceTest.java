@@ -275,7 +275,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	}
 
 	@Test(
-			groups = {SHOULD},
+			groups = {SHOULD, MANUAL},
 			description = "LDP-RSs SHOULD reuse existing vocabularies instead of "
 					+ "creating their own duplicate vocabulary terms. In addition "
 					+ "to this general rule, some specific cases are covered by "
@@ -293,7 +293,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	}
 
 	@Test(
-			groups = {SHOULD},
+			groups = {SHOULD, MANUAL},
 			description = "LDP-RSs predicates SHOULD use standard vocabularies such "
 					+ "as Dublin Core [DC-TERMS], RDF [rdf11-concepts] and RDF "
 					+ "Schema [rdf-schema], whenever possible.")
@@ -318,7 +318,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	}
 
 	@Test(
-			groups = {MUST},
+			groups = {MUST, MANUAL},
 			description = "LDP servers MUST NOT require LDP clients to implement inferencing "
 					+ "in order to recognize the subset of content defined by LDP. Other "
 					+ "specifications built on top of LDP may require clients to implement "
@@ -438,7 +438,6 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 
 
 	@Test(
-			enabled = false,
 			groups = {MUST},
 			description = "If an otherwise valid HTTP PUT request is received that "
 					+ "attempts to change properties the server does not allow "
