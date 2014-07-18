@@ -394,7 +394,11 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-cli-hints-ignorable",
 			testMethod = METHOD.MANUAL,
-			approval = STATUS.WG_APPROVED)
+			approval = STATUS.WG_APPROVED,
+			steps = {"Determine certain hints that your server would ignore", 
+					"Form a client request that uses this hint",
+					"Execute the request and analyze the result",
+					"Verify that client processes request as expected"})
 	public void testAllowResponsesFromServer() {
 		throw new SkipNotTestableException();
 	}

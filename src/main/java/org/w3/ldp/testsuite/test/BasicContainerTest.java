@@ -1,8 +1,5 @@
 package org.w3.ldp.testsuite.test;
 
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.vocabulary.RDF;
 import com.jayway.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.testng.SkipException;

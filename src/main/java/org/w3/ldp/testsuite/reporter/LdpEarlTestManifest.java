@@ -75,6 +75,12 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 	 */
 	private static final Resource notImplemented = ResourceFactory
 			.createResource(LDP.LDPT_NAMESPACE + "notImplemented");
+	
+	/**
+	 * @see SpecTest.steps
+	 */
+	private static final Property steps = ResourceFactory
+			.createProperty(LDP.LDPT_NAMESPACE + "steps");
 
 
 	private static final Class<BasicContainerTest> bcTest = BasicContainerTest.class;
@@ -176,6 +182,17 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 				testCaseResource.addProperty(conformanceLevel, model.createResource(LDP.LDPT_NAMESPACE + group));
 				conformanceClasses.get(LdpTestCaseReporter.getConformanceIndex(group)).add(testCaseResource);
 			}
+			
+			String[] stepsArr = testLdp.steps();
+			if (stepsArr != null && stepsArr.length > 0) {
+				ArrayList<Literal> arr = new ArrayList<Literal>();
+				for (String s: stepsArr) {
+					arr.add(model.createLiteral(s));
+				}
+				RDFList l = model.createList(arr.iterator());
+				testCaseResource.addProperty(steps, l);
+			}
+
 
 			// Leave action property only to make earl-report happy
 			testCaseResource.addProperty(TestManifest.action, "");
