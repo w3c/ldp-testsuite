@@ -14,6 +14,7 @@ import java.net.URISyntaxException;
 
 import org.apache.http.HttpStatus;
 import org.apache.marmotta.commons.vocabulary.LDP;
+import org.jboss.resteasy.spi.Failure;
 import org.testng.SkipException;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -26,15 +27,14 @@ import org.w3.ldp.testsuite.exception.SkipNotTestableException;
 import org.w3.ldp.testsuite.http.HttpMethod;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.matcher.HeaderMatchers;
+import org.w3.ldp.testsuite.util.RDFModelUtils;
 
 import com.github.jsonldjava.core.JsonLdError;
 import com.github.jsonldjava.core.JsonLdProcessor;
 import com.github.jsonldjava.utils.JsonUtils;
 import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.vocabulary.DCTerms;
 import com.hp.hpl.jena.vocabulary.RDF;
@@ -133,79 +133,10 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_APPROVED)
 	public void testPutReplacesResource() {
-		skipIfMethodNotAllowed(HttpMethod.PUT);
-
-		if (restrictionsOnTestResourceContent()) {
-			throw new SkipException(MSG_PUT_RESTRICTIONS);
-		}
-
-		// TODO: Is there a better way to test this requirement?
-		String resourceUri = getResourceUri();
-		Response response = buildBaseRequestSpecification()
-						.header(ACCEPT, TEXT_TURTLE)
-				.expect()
-						.statusCode(isSuccessful())
-						.header(ETAG, isValidEntityTag())
-				.when()
-						.get(resourceUri);
-
-		String eTag = response.getHeader(ETAG);
-		Model originalModel = response.as(Model.class, new RdfObjectMapper(resourceUri));
-
-		// Replace the resource with something different.
-		Model differentContent = ModelFactory.createDefaultModel();
-		final String UPDATED_TITLE = "This resources content has been replaced";
-		differentContent.add(differentContent.getResource(resourceUri), DCTerms.title, UPDATED_TITLE);
-
-		response = buildBaseRequestSpecification()
-					.contentType(TEXT_TURTLE)
-					.header(IF_MATCH, eTag)
-					.body(differentContent, new RdfObjectMapper(resourceUri)) // relative URI
-				.when()
-					.put(resourceUri);
-		if (!isSuccessful().matches(response.getStatusCode())) {
-			throw new SkipException("Skipping test because the PUT failed. The server may have restrictions on its content.");
-		}
-
-		// Get the resource again to see what's there.
-		response = buildBaseRequestSpecification()
-				.header(ACCEPT, TEXT_TURTLE)
-			.expect()
-				.statusCode(isSuccessful())
-				.header(ETAG, isValidEntityTag())
-			.when()
-				.get(resourceUri);
-		eTag = response.getHeader(ETAG);
-		Model updatedModel = response.as(Model.class, new RdfObjectMapper(resourceUri));
-
-		// Validate the updated resource content. The LDP server is allowed to add in
-		// some triples (for instance, dcterms:lastModified), so we can't just compare
-		// that it's exactly what we posted. Let's make sure not all of the triples
-		// from the original resource are there since we've completely replaced it,
-		// however. Also check that the title is as expected.
-		Resource updatedResource = updatedModel.getResource(resourceUri);
-		assertTrue(updatedResource.hasProperty(DCTerms.title, UPDATED_TITLE), "Expected updated resource to have title: " + UPDATED_TITLE);
-		boolean hasDifferentProperties = false;
-		Resource originalResource = originalModel.getResource(resourceUri);
-		StmtIterator iter = originalResource.listProperties();
-		while (iter.hasNext()) {
-			Statement s = iter.next();
-			if (!updatedResource.hasProperty(s.getPredicate())) {
-				hasDifferentProperties = true;
-			}
-		}
-		assertTrue(hasDifferentProperties, "The updated resource has the same properties as the original. Was it really replaced?");
-
-		// Replace the resource with its original content to clean up.
-		buildBaseRequestSpecification()
-				.contentType(TEXT_TURTLE).header(IF_MATCH, eTag)
-				.body(originalModel, new RdfObjectMapper(resourceUri)) // relative URI
-				.expect().statusCode(isSuccessful())
-				.when().put(resourceUri);
+		putReplaceResource(true);
 	}
-
+	
 	@Test(
-			enabled = false,
 			groups = {MUST},
 			description = "LDP servers SHOULD allow clients to update resources "
 					+ "without requiring detailed knowledge of server-specific "
@@ -213,10 +144,10 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 					+ "enable simple creation and modification of LDPRs.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-simpleupdate",
-			testMethod = METHOD.NOT_IMPLEMENTED,
+			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_PENDING)
 	public void testPutSimpleUpdate() {
-		// TODO: implement testPutSimpleUpdate()
+		putReplaceResource(false);
 	}
 
 	@Override
@@ -584,5 +515,92 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		// Should be the same as POST content unless this is a container.
 		// (Overridden by subclasses as necessary.)
 		return restrictionsOnPostContent();
+	}
+	
+	protected void putReplaceResource(boolean continueOnError) {
+		skipIfMethodNotAllowed(HttpMethod.PUT);
+
+		if (restrictionsOnTestResourceContent()) {
+			throw new SkipException(MSG_PUT_RESTRICTIONS);
+		}
+
+		// TODO: Is there a better way to test this requirement?
+		String resourceUri = getResourceUri();
+		Response response = buildBaseRequestSpecification()
+						.header(ACCEPT, TEXT_TURTLE)
+				.expect()
+						.statusCode(isSuccessful())
+						.header(ETAG, isValidEntityTag())
+				.when()
+						.get(resourceUri);
+
+		String eTag = response.getHeader(ETAG);
+		Model originalModel = response.as(Model.class, new RdfObjectMapper(resourceUri));
+		Model cloneModel = RDFModelUtils.cloneModel(originalModel);
+		Resource resource = originalModel.getResource(resourceUri);
+		
+		assertNotNull(resource, "Expected to location resource in response for "+resourceUri);
+
+		// Update the model with updated title
+		StmtIterator propsOrig = resource.listProperties(DCTerms.title);
+		int origNumTitles = propsOrig.toSet().size();
+		if (propsOrig.hasNext()) {
+			resource.removeAll(DCTerms.title);
+		}
+		final String UPDATED_TITLE = "This resources content has been replaced";
+		originalModel.add(resource, DCTerms.title, UPDATED_TITLE);
+
+		response = buildBaseRequestSpecification()
+					.contentType(TEXT_TURTLE)
+					.header(IF_MATCH, eTag)
+					.body(originalModel, new RdfObjectMapper(resourceUri)) // relative URI
+				.when()
+					.put(resourceUri);
+		
+		if (!isSuccessful().matches(response.getStatusCode())) {
+			if (continueOnError) {
+				throw new SkipException("Skipping test because the PUT failed. The server may have restrictions on its content.");
+			} else {
+				throw new Failure("Unable to do simple update on resource, received code: "+response.getStatusLine());
+			}
+		}
+
+		// Get the resource again to see what's there.
+		response = buildBaseRequestSpecification()
+				.header(ACCEPT, TEXT_TURTLE)
+			.expect()
+				.statusCode(isSuccessful())
+				.header(ETAG, isValidEntityTag())
+			.when()
+				.get(resourceUri);
+		eTag = response.getHeader(ETAG);
+		Model updatedModel = response.as(Model.class, new RdfObjectMapper(resourceUri));
+
+		// Validate the updated statement/triple is there.
+		Resource updatedResource = updatedModel.getResource(resourceUri);
+		assertTrue(updatedResource.hasProperty(DCTerms.title, UPDATED_TITLE), "Expected updated resource to have title: " + UPDATED_TITLE);
+		
+		// Compare the two models updated one, from the very first one received
+		Model diffModel = updatedModel.difference(cloneModel);
+		Resource diffResource = diffModel.getResource(resourceUri);
+		StmtIterator diffProps = diffResource.listProperties();
+		StmtIterator diffTitleProps = diffResource.listProperties(DCTerms.title);
+		int diffSize = diffProps.toSet().size();
+		int diffTitlePropSize = diffTitleProps.toSet().size();
+		
+		// First make sure the number of statement's for 'title' is as expected.
+		if (origNumTitles > 0) {
+			assertTrue(diffTitlePropSize != origNumTitles-1, "Updated resource contains additional unexspected dcterms:title changes.");
+		}
+		// Next make sure there wheren't other statement's unexpectedly added.
+		assertTrue(diffSize - diffTitlePropSize > 0, "Additional properties were unintentially added, a side-effect.");
+
+		// Replace the resource with its original content to clean up.
+		/* TODO: Not realistic to set back, as if read-only property (like dcterms:modified), the previous modification would be different
+		buildBaseRequestSpecification()
+				.contentType(TEXT_TURTLE).header(IF_MATCH, eTag)
+				.body(cloneModel, new RdfObjectMapper(resourceUri)) // relative URI
+				.expect().statusCode(isSuccessful())
+				.when().put(resourceUri); */
 	}
 }
