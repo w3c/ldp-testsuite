@@ -1,4 +1,4 @@
-package org.w3.ldp.testsuite.reporter;
+package org.w3.ldp.testsuite.util;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

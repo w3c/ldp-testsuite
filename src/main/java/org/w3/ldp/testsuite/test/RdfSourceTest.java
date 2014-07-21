@@ -349,7 +349,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 			throw new SkipException(MSG_NO_READ_ONLY_PROPERTY);
 		}
 
-		expectPut4xxDescriedBy(readOnlyProp);
+		expectPut4xxDescribedBy(readOnlyProp);
 	}
 
 	@Test(
@@ -364,7 +364,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 			approval = STATUS.WG_PENDING)
 	public void testPublishConstraintsUnknownProp() {
 		skipIfMethodNotAllowed(HttpMethod.PUT);
-		expectPut4xxDescriedBy(UNKNOWN_PROPERTY);
+		expectPut4xxDescribedBy(UNKNOWN_PROPERTY);
 	}
 
 
@@ -448,7 +448,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		r.addProperty(p, "modified");
 	}
 
-	protected void expectPut4xxDescriedBy(String invalidProp) {
+	protected void expectPut4xxDescribedBy(String invalidProp) {
 		Response putResponse = expectPut4xxStatus(invalidProp);
 		String describedby = getFirstLinkForRelation(LINK_REL_DESCRIBEDBY, getResourceUri(), putResponse);
 		assertNotNull(describedby, "Response did not contain a Link header with rel=\"describedby\"");
