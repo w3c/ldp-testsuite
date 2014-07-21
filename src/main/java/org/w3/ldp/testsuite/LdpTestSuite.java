@@ -320,11 +320,11 @@ public class LdpTestSuite {
 
 		options.addOption(OptionBuilder.withLongOpt("software")
 				.withDescription("title of the software test suite runs on")
-				.hasArg().withArgName("software").isRequired(false).create());
+				.hasArg().withArgName("software").isRequired(true).create());
 
 		options.addOption(OptionBuilder.withLongOpt("developer")
 				.withDescription("the name of the software developer").hasArg()
-				.withArgName("dev-name").isRequired(false).create());
+				.withArgName("dev-name").isRequired(true).create());
 
 		options.addOption(OptionBuilder
 				.withLongOpt("language")
