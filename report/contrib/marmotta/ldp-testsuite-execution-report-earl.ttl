@@ -1,0 +1,1409 @@
+@prefix td:    <http://www.w3.org/2006/03/test-description#> .
+@prefix doap:  <http://usefulinc.com/ns/doap#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdft:  <http://www.w3.org/ns/rdftest#> .
+@prefix earl:  <http://www.w3.org/ns/earl#> .
+@prefix mf:    <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix ldpt:  <http://www.w3c.org/ns/ldp/test#> .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b0 ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.804Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testUseStandardVocabularies(RdfSourceTest.java:275)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b0 ;
+  earl:test        ldpt:MemberResource-UseStandardVocabularies ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b1 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.807Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://localhost:8080/ldp> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:428)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.test4xxErrorHasResponseBody(RdfSourceTest.java:519)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b1 ;
+  earl:test        ldpt:BasicContainer-4xxErrorHasResponseBody ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b2 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.809Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b2 ;
+  earl:test        ldpt:BasicContainer-ETagHeadersHead ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b3 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.809Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b3 ;
+  earl:test        ldpt:BasicContainer-CreateWithoutConstraints ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b4 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.811Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b4 ;
+  earl:test        ldpt:MemberResource-Options ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b5 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.81Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b5 ;
+  earl:test        ldpt:BasicContainer-RdfTypeLdpContainer ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b6 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.812Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b6 ;
+  earl:test        ldpt:BasicContainer-RestrictUriReUseNoSlug ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a       [ a       earl:Software ] ] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b7 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.791Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: 2 expectations failed.\nExpected status code between 200 and 209 doesn't match actual status code <400>.\n\nExpected content-type application/ld+json or application/json doesn't match actual content-type \"text/html\".\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:557)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:868)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1282)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy:140)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.get(ResponseSpecificationImpl.groovy:264)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.get(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testJsonLdRepresentation(RdfSourceTest.java:436)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 39 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:fail
+                   ] ;
+  earl:subject     _:b7 ;
+  earl:test        ldpt:MemberResource-JsonLdRepresentation ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b8 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.797Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://localhost:8080/ldp/test.png> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:428)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testConditionFailedStatusCode(CommonResourceTest.java:259)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b8 ;
+  earl:test        ldpt:NonRDFSource-ConditionFailedStatusCode ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b9 ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.797Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testReUseVocabularies(RdfSourceTest.java:254)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b9 ;
+  earl:test        ldpt:BasicContainer-ReUseVocabularies ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b10 ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.8Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testUseStandardVocabularies(RdfSourceTest.java:275)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b10 ;
+  earl:test        ldpt:BasicContainer-UseStandardVocabularies ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b11 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.8Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://localhost:8080/ldp/e967c279-c201-493f-8cb0-38c7ea921f12> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:428)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutPropertiesNotPersisted(RdfSourceTest.java:539)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b11 ;
+  earl:test        ldpt:MemberResource-PutPropertiesNotPersisted ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b12 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.813Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b12 ;
+  earl:test        ldpt:NonRDFSource-PostResourceGetBinary ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b13 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.814Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b13 ;
+  earl:test        ldpt:BasicContainer-PatchMethod ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b14 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.816Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b14 ;
+  earl:test        ldpt:MemberResource-LdpLinkHeader ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b15 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.816Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b15 ;
+  earl:test        ldpt:BasicContainer-RestrictPutReUseUri ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b16 ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.804Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testGetResourcePreservesTriples(RdfSourceTest.java:351)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b16 ;
+  earl:test        ldpt:MemberResource-GetResourcePreservesTriples ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b17 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.804Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     _:b17 ;
+  earl:test        ldpt:NonRDFSource-OptionsHasSameLinkHeader ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b18 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.807Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://localhost:8080/ldp> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:428)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testResponsePropertiesNotPersisted(RdfSourceTest.java:555)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b18 ;
+  earl:test        ldpt:BasicContainer-ResponsePropertiesNotPersisted ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b19 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.809Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b19 ;
+  earl:test        ldpt:BasicContainer-RejectPutModifyingContainmentTriples ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b20 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.81Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b20 ;
+  earl:test        ldpt:BasicContainer-IsHttp11Server ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b21 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.812Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b21 ;
+  earl:test        ldpt:BasicContainer-PostContainer ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a               earl:Assertor ;
+  doap:developer  [ a  foaf:Person ]
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b22 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.796Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: 2 expectations failed.\nExpected status code between 200 and 209 doesn't match actual status code <400>.\n\nExpected content-type application/ld+json or application/json doesn't match actual content-type \"text/html\".\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:557)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:868)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1282)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy:140)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.get(ResponseSpecificationImpl.groovy:264)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.get(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testJsonLdRepresentation(RdfSourceTest.java:436)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 39 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:fail
+                   ] ;
+  earl:subject     _:b22 ;
+  earl:test        ldpt:BasicContainer-JsonLdRepresentation ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b23 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.795Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: 3 expectations failed.\nExpected header \"Allow\" was not not null, was \"null\". Headers are:\nServer=Apache Marmotta/3.3.0-SNAPSHOT (build 2+)\nETag=W/\"1405948888000\"\nLast-Modified=Mon, 21 Jul 2014 13:21:28 GMT\nLink=<https://wiki.apache.org/marmotta/LDPImplementationReport/2014-03-11>; rel=\"describedby\"\nLink=<http://www.w3.org/ns/ldp#Resource>; rel=\"type\"\nLink=<http://www.w3.org/ns/ldp#RDFSource>; rel=\"type\"\nContent-Type=text/plain\nTransfer-Encoding=chunked\nDate=Mon, 21 Jul 2014 13:21:30 GMT\n\nExpected header \"Accept-Patch\" was not not null, was \"null\". Headers are:\nServer=Apache Marmotta/3.3.0-SNAPSHOT (build 2+)\nETag=W/\"1405948888000\"\nLast-Modified=Mon, 21 Jul 2014 13:21:28 GMT\nLink=<https://wiki.apache.org/marmotta/LDPImplementationReport/2014-03-11>; rel=\"describedby\"\nLink=<http://www.w3.org/ns/ldp#Resource>; rel=\"type\"\nLink=<http://www.w3.org/ns/ldp#RDFSource>; rel=\"type\"\nContent-Type=text/plain\nTransfer-Encoding=chunked\nDate=Mon, 21 Jul 2014 13:21:30 GMT\n\nExpected header \"Accept-Post\" was not not null, was \"null\". Headers are:\nServer=Apache Marmotta/3.3.0-SNAPSHOT (build 2+)\nETag=W/\"1405948888000\"\nLast-Modified=Mon, 21 Jul 2014 13:21:28 GMT\nLink=<https://wiki.apache.org/marmotta/LDPImplementationReport/2014-03-11>; rel=\"describedby\"\nLink=<http://www.w3.org/ns/ldp#Resource>; rel=\"type\"\nLink=<http://www.w3.org/ns/ldp#RDFSource>; rel=\"type\"\nContent-Type=text/plain\nTransfer-Encoding=chunked\nDate=Mon, 21 Jul 2014 13:21:30 GMT\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:557)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:868)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1282)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy:140)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.get(ResponseSpecificationImpl.groovy:264)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.get(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testGetResponseHeaders(CommonResourceTest.java:209)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 39 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:fail
+                   ] ;
+  earl:subject     _:b23 ;
+  earl:test        ldpt:MemberResource-GetResponseHeaders ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b24 ;
+  earl:mode        earl:notTested ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.799Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipClientTestException: Skipping test. This is a client requirement, not a server requirement.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testServerOpen(RdfSourceTest.java:319)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b24 ;
+  earl:test        ldpt:BasicContainer-ServerOpen ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b25 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.799Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://localhost:8080/ldp> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:428)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutPropertiesNotPersisted(RdfSourceTest.java:539)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b25 ;
+  earl:test        ldpt:BasicContainer-PutPropertiesNotPersisted ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b26 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.812Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b26 ;
+  earl:test        ldpt:BasicContainer-PostNoSlug ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b27 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.813Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b27 ;
+  earl:test        ldpt:NonRDFSource-PostNonRDFSource ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b28 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.814Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b28 ;
+  earl:test        ldpt:BasicContainer-Options ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b29 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.816Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b29 ;
+  earl:test        ldpt:BasicContainer-ETagHeadersGet ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a       [ a                          doap:Project , earl:TestSubject ;
+            doap:homepage              "http://marmotta.apache.org" ;
+            doap:programming-language  "Java"
+          ] ] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b30 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.803Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://localhost:8080/ldp> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:428)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsReadOnlyProp(RdfSourceTest.java:461)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b30 ;
+  earl:test        ldpt:BasicContainer-PublishConstraintsReadOnlyProp ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b31 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.803Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://localhost:8080/ldp> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:428)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testPutRequiresIfMatch(CommonResourceTest.java:226)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b31 ;
+  earl:test        ldpt:BasicContainer-PutRequiresIfMatch ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b32 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.806Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: containerAsResource is null\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testRequestedInteractionModelHeaders(CommonContainerTest.java:353)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b32 ;
+  earl:test        ldpt:BasicContainer-RequestedInteractionModelHeaders ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b33 ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.806Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testAllowResponsesFromServer(RdfSourceTest.java:364)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b33 ;
+  earl:test        ldpt:MemberResource-AllowResponsesFromServer ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b34 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.808Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b34 ;
+  earl:test        ldpt:NonRDFSource-PostResourceAndCheckLink ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b35 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.808Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b35 ;
+  earl:test        ldpt:NonRDFSource-ETagHeadersGet ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b36 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.81Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b36 ;
+  earl:test        ldpt:MemberResource-ETagHeadersHead ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b37 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.81Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b37 ;
+  earl:test        ldpt:NonRDFSource-IsHttp11Server ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b38 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.812Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b38 ;
+  earl:test        ldpt:MemberResource-IsHttp11Server ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b39 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.795Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: 2 expectations failed.\nExpected header \"ETAG\" was not a valid EntityTag value as defined in RFC2616 section 14.19 (did you quote the value?), was \"null\". Headers are:\nDate=Mon, 21 Jul 2014 13:21:32 GMT\nServer=Apache/2.4.10 (Unix) mod_wsgi/3.5 Python/2.7.5 OpenSSL/1.0.1h\nVary=Cookie,User-Agent,Accept-Encoding\nContent-Encoding=gzip\nContent-Length=6510\nKeep-Alive=timeout=5, max=100\nConnection=Keep-Alive\nContent-Type=text/html; charset=utf-8\n\nExpected content-type \"text/turtle\" doesn't match actual content-type \"text/html; charset=utf-8\".\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:557)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:868)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1282)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy:140)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.get(ResponseSpecificationImpl.groovy:264)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.get(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.NonRDFSourceTest.testPostResourceAndCheckAssociatedResource(NonRDFSourceTest.java:309)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 39 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:fail
+                   ] ;
+  earl:subject     _:b39 ;
+  earl:test        ldpt:NonRDFSource-PostResourceAndCheckAssociatedResource ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b40 ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.799Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testReUseVocabularies(RdfSourceTest.java:254)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b40 ;
+  earl:test        ldpt:MemberResource-ReUseVocabularies ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b41 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.802Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://localhost:8080/ldp> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:428)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testPutBadETag(CommonResourceTest.java:345)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b41 ;
+  earl:test        ldpt:BasicContainer-PutBadETag ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b42 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.812Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b42 ;
+  earl:test        ldpt:NonRDFSource-Options ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b43 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.814Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b43 ;
+  earl:test        ldpt:NonRDFSource-Head ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b44 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.814Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b44 ;
+  earl:test        ldpt:MemberResource-AcceptPatchHeader ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b45 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.816Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b45 ;
+  earl:test        ldpt:BasicContainer-NullRelativeUriPost ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b46 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.816Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b46 ;
+  earl:test        ldpt:BasicContainer-PutToCreate ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b47 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.803Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://localhost:8080/ldp/test.png> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:428)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testPreconditionRequiredStatusCode(CommonResourceTest.java:293)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b47 ;
+  earl:test        ldpt:NonRDFSource-PreconditionRequiredStatusCode ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b48 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.806Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://localhost:8080/ldp/e967c279-c201-493f-8cb0-38c7ea921f12> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:428)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsReadOnlyProp(RdfSourceTest.java:461)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b48 ;
+  earl:test        ldpt:MemberResource-PublishConstraintsReadOnlyProp ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b49 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.806Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://localhost:8080/ldp/e967c279-c201-493f-8cb0-38c7ea921f12> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:428)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRelativeUriResolutionPut(RdfSourceTest.java:75)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b49 ;
+  earl:test        ldpt:MemberResource-RelativeUriResolutionPut ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b50 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.808Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://localhost:8080/ldp/e967c279-c201-493f-8cb0-38c7ea921f12> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:428)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.test4xxErrorHasResponseBody(RdfSourceTest.java:519)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b50 ;
+  earl:test        ldpt:MemberResource-4xxErrorHasResponseBody ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b51 ;
+  earl:mode        earl:notTested ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.808Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipClientTestException: Skipping test. This is a client requirement, not a server requirement.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testChangeRdfTypeValue(RdfSourceTest.java:302)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b51 ;
+  earl:test        ldpt:BasicContainer-ChangeRdfTypeValue ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b52 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.81Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b52 ;
+  earl:test        ldpt:BasicContainer-AcceptPostResponseHeader ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b53 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.81Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b53 ;
+  earl:test        ldpt:BasicContainer-Head ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b54 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.812Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b54 ;
+  earl:test        ldpt:BasicContainer-PostResponseStatusAndLocation ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b55 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.812Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b55 ;
+  earl:test        ldpt:BasicContainer-PostJsonLd ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b56 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.794Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: 3 expectations failed.\nExpected header \"Allow\" was not not null, was \"null\". Headers are:\nServer=Apache Marmotta/3.3.0-SNAPSHOT (build 2+)\nETag=W/\"1405948890000\"\nLast-Modified=Mon, 21 Jul 2014 13:21:30 GMT\nLink=<https://wiki.apache.org/marmotta/LDPImplementationReport/2014-03-11>; rel=\"describedby\"\nLink=<http://www.w3.org/ns/ldp#Resource>; rel=\"type\"\nLink=<http://www.w3.org/ns/ldp#RDFSource>; rel=\"type\"\nLink=<http://www.w3.org/ns/ldp#Container>; rel=\"type\"\nLink=<http://www.w3.org/ns/ldp#BasicContainer>; rel=\"type\"\nContent-Type=text/plain\nTransfer-Encoding=chunked\nDate=Mon, 21 Jul 2014 13:21:29 GMT\n\nExpected header \"Accept-Patch\" was not not null, was \"null\". Headers are:\nServer=Apache Marmotta/3.3.0-SNAPSHOT (build 2+)\nETag=W/\"1405948890000\"\nLast-Modified=Mon, 21 Jul 2014 13:21:30 GMT\nLink=<https://wiki.apache.org/marmotta/LDPImplementationReport/2014-03-11>; rel=\"describedby\"\nLink=<http://www.w3.org/ns/ldp#Resource>; rel=\"type\"\nLink=<http://www.w3.org/ns/ldp#RDFSource>; rel=\"type\"\nLink=<http://www.w3.org/ns/ldp#Container>; rel=\"type\"\nLink=<http://www.w3.org/ns/ldp#BasicContainer>; rel=\"type\"\nContent-Type=text/plain\nTransfer-Encoding=chunked\nDate=Mon, 21 Jul 2014 13:21:29 GMT\n\nExpected header \"Accept-Post\" was not not null, was \"null\". Headers are:\nServer=Apache Marmotta/3.3.0-SNAPSHOT (build 2+)\nETag=W/\"1405948890000\"\nLast-Modified=Mon, 21 Jul 2014 13:21:30 GMT\nLink=<https://wiki.apache.org/marmotta/LDPImplementationReport/2014-03-11>; rel=\"describedby\"\nLink=<http://www.w3.org/ns/ldp#Resource>; rel=\"type\"\nLink=<http://www.w3.org/ns/ldp#RDFSource>; rel=\"type\"\nLink=<http://www.w3.org/ns/ldp#Container>; rel=\"type\"\nLink=<http://www.w3.org/ns/ldp#BasicContainer>; rel=\"type\"\nContent-Type=text/plain\nTransfer-Encoding=chunked\nDate=Mon, 21 Jul 2014 13:21:29 GMT\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:57)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:182)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:557)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:868)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1282)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy:140)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.get(ResponseSpecificationImpl.groovy:264)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.get(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testGetResponseHeaders(CommonResourceTest.java:209)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 40 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:fail
+                   ] ;
+  earl:subject     _:b56 ;
+  earl:test        ldpt:BasicContainer-GetResponseHeaders ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b57 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.794Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: 1 expectation failed.\nExpected header \"Allow\" was not not null, was \"null\". Headers are:\nServer=Apache Marmotta/3.3.0-SNAPSHOT (build 2+)\nETag=\"dae8b23b7f0115acb74e0d9a6c593ce3\"\nLast-Modified=Mon, 21 Jul 2014 13:21:28 GMT\nLink=<https://wiki.apache.org/marmotta/LDPImplementationReport/2014-03-11>; rel=\"describedby\"\nLink=<http://www.w3.org/ns/ldp#Resource>; rel=\"type\"\nLink=<http://www.w3.org/ns/ldp#NonRDFSource>; rel=\"type\"\nContent-Type=text/plain\nTransfer-Encoding=chunked\nDate=Mon, 21 Jul 2014 13:21:30 GMT\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:557)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:868)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1282)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy:140)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.get(ResponseSpecificationImpl.groovy:264)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.get(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testGetResponseHeaders(CommonResourceTest.java:209)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 39 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:fail
+                   ] ;
+  earl:subject     _:b57 ;
+  earl:test        ldpt:NonRDFSource-GetResponseHeaders ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b58 ;
+  earl:mode        earl:notTested ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.799Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipClientTestException: Skipping test. This is a client requirement, not a server requirement.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testServerOpen(RdfSourceTest.java:319)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b58 ;
+  earl:test        ldpt:MemberResource-ServerOpen ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b59 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.801Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://localhost:8080/ldp/e967c279-c201-493f-8cb0-38c7ea921f12> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:428)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testPreconditionRequiredStatusCode(CommonResourceTest.java:293)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b59 ;
+  earl:test        ldpt:MemberResource-PreconditionRequiredStatusCode ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b60 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.814Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b60 ;
+  earl:test        ldpt:BasicContainer-ContainerSupportsHttpLinkHeader ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b61 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.814Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b61 ;
+  earl:test        ldpt:NonRDFSource-OptionsAllowHeader ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b62 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.815Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b62 ;
+  earl:test        ldpt:BasicContainer-LdpLinkHeader ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b63 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.815Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b63 ;
+  earl:test        ldpt:NonRDFSource-ETagHeadersHead ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b64 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.803Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://localhost:8080/ldp/e967c279-c201-493f-8cb0-38c7ea921f12> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:428)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsUnknownProp(RdfSourceTest.java:481)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b64 ;
+  earl:test        ldpt:MemberResource-PublishConstraintsUnknownProp ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b65 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.806Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     _:b65 ;
+  earl:test        ldpt:NonRDFSource-DeleteNonRDFSourceDeletesAssociatedResource ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b66 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.808Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://localhost:8080/ldp/e967c279-c201-493f-8cb0-38c7ea921f12> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:428)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutReplacesResource(RdfSourceTest.java:136)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b66 ;
+  earl:test        ldpt:MemberResource-PutReplacesResource ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b67 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.81Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b67 ;
+  earl:test        ldpt:MemberResource-ETagHeadersGet ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b68 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.811Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b68 ;
+  earl:test        ldpt:BasicContainer-RestrictUriReUseSlug ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b69 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.811Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b69 ;
+  earl:test        ldpt:MemberResource-GetResource ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b70 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.793Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: 2 expectations failed.\nExpected header \"ETAG\" was not a valid EntityTag value as defined in RFC2616 section 14.19 (did you quote the value?), was \"null\". Headers are:\nDate=Mon, 21 Jul 2014 13:21:34 GMT\nServer=Apache/2.4.10 (Unix) mod_wsgi/3.5 Python/2.7.5 OpenSSL/1.0.1h\nVary=Cookie,User-Agent,Accept-Encoding\nContent-Encoding=gzip\nContent-Length=6510\nKeep-Alive=timeout=5, max=100\nConnection=Keep-Alive\nContent-Type=text/html; charset=utf-8\n\nExpected content-type \"text/turtle\" doesn't match actual content-type \"text/html; charset=utf-8\".\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:557)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:868)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1282)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy:140)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.get(ResponseSpecificationImpl.groovy:264)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.get(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.NonRDFSourceTest.testPostResourceGetMetadataAndBinary(NonRDFSourceTest.java:211)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 39 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:fail
+                   ] ;
+  earl:subject     _:b70 ;
+  earl:test        ldpt:NonRDFSource-PostResourceGetMetadataAndBinary ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b71 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.793Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: 1 expectation failed.\nExpected content-type \"text/turtle\" doesn't match actual content-type \"text/plain\".\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:557)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:868)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1282)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy:140)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.get(ResponseSpecificationImpl.groovy:264)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.get(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testGetResourceAcceptTurtle(RdfSourceTest.java:393)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 39 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:fail
+                   ] ;
+  earl:subject     _:b71 ;
+  earl:test        ldpt:BasicContainer-GetResourceAcceptTurtle ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b72 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.798Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://localhost:8080/ldp/e967c279-c201-493f-8cb0-38c7ea921f12> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:428)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testPutBadETag(CommonResourceTest.java:345)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b72 ;
+  earl:test        ldpt:MemberResource-PutBadETag ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b73 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.798Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://localhost:8080/ldp/e967c279-c201-493f-8cb0-38c7ea921f12> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:428)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testResponsePropertiesNotPersisted(RdfSourceTest.java:555)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b73 ;
+  earl:test        ldpt:MemberResource-ResponsePropertiesNotPersisted ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b74 ;
+  earl:mode        earl:notTested ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.801Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipClientTestException: Skipping test. This is a client requirement, not a server requirement.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testAllowMultipleRdfTypes(RdfSourceTest.java:288)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b74 ;
+  earl:test        ldpt:MemberResource-AllowMultipleRdfTypes ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b75 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.801Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://localhost:8080/ldp/test.png> has not advertised PATCH support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:428)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testAcceptPatchHeader(CommonResourceTest.java:388)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b75 ;
+  earl:test        ldpt:NonRDFSource-AcceptPatchHeader ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b76 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.814Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b76 ;
+  earl:test        ldpt:BasicContainer-ContainsRdfType ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b77 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.815Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b77 ;
+  earl:test        ldpt:BasicContainer-OptionsAllowHeader ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b78 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.802Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://localhost:8080/ldp> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:428)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testConditionFailedStatusCode(CommonResourceTest.java:259)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b78 ;
+  earl:test        ldpt:BasicContainer-ConditionFailedStatusCode ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b79 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.802Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://localhost:8080/ldp> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:428)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsUnknownProp(RdfSourceTest.java:481)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b79 ;
+  earl:test        ldpt:BasicContainer-PublishConstraintsUnknownProp ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b80 ;
+  earl:mode        earl:notTested ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.805Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipClientTestException: Skipping test. This is a client requirement, not a server requirement.\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testClientPostToCreate(CommonContainerTest.java:222)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b80 ;
+  earl:test        ldpt:BasicContainer-ClientPostToCreate ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b81 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.805Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://localhost:8080/ldp/test.png> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:428)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testPutRequiresIfMatch(CommonResourceTest.java:226)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b81 ;
+  earl:test        ldpt:NonRDFSource-PutRequiresIfMatch ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b82 ;
+  earl:mode        earl:notTested ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.807Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipClientTestException: Skipping test. This is a client requirement, not a server requirement.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testChangeRdfTypeValue(RdfSourceTest.java:302)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b82 ;
+  earl:test        ldpt:MemberResource-ChangeRdfTypeValue ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b83 ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.807Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRestrictClientInference(RdfSourceTest.java:335)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b83 ;
+  earl:test        ldpt:MemberResource-RestrictClientInference ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b84 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.809Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b84 ;
+  earl:test        ldpt:MemberResource-ContainsRdfType ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b85 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.811Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b85 ;
+  earl:test        ldpt:BasicContainer-AcceptTurtle ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b86 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.792Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: 1 expectation failed.\nExpected content-type \"text/turtle\" doesn't match actual content-type \"text/plain\".\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:557)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:868)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1282)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy:140)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.get(ResponseSpecificationImpl.groovy:264)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.get(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testGetResourceAcceptTurtle(RdfSourceTest.java:393)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 39 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:fail
+                   ] ;
+  earl:subject     _:b86 ;
+  earl:test        ldpt:MemberResource-GetResourceAcceptTurtle ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b87 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.798Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://localhost:8080/ldp> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:428)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutReplacesResource(RdfSourceTest.java:136)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b87 ;
+  earl:test        ldpt:BasicContainer-PutReplacesResource ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b88 ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.797Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testGetResourcePreservesTriples(RdfSourceTest.java:351)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b88 ;
+  earl:test        ldpt:BasicContainer-GetResourcePreservesTriples ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b89 ;
+  earl:mode        earl:notTested ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.801Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipClientTestException: Skipping test. This is a client requirement, not a server requirement.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testAllowMultipleRdfTypes(RdfSourceTest.java:288)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b89 ;
+  earl:test        ldpt:BasicContainer-AllowMultipleRdfTypes ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b90 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.8Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://localhost:8080/ldp> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:428)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testPreconditionRequiredStatusCode(CommonResourceTest.java:293)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b90 ;
+  earl:test        ldpt:BasicContainer-PreconditionRequiredStatusCode ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b91 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.813Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b91 ;
+  earl:test        ldpt:BasicContainer-ContentTypeHeader ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b92 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.813Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b92 ;
+  earl:test        ldpt:BasicContainer-ContainerTypeIsBasicContainer ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b93 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.815Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b93 ;
+  earl:test        ldpt:BasicContainer-DeleteRemovesContainmentTriple ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b94 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.815Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b94 ;
+  earl:test        ldpt:NonRDFSource-LdpLinkHeader ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b95 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.802Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://localhost:8080/ldp/e967c279-c201-493f-8cb0-38c7ea921f12> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:428)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testPutRequiresIfMatch(CommonResourceTest.java:226)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b95 ;
+  earl:test        ldpt:MemberResource-PutRequiresIfMatch ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b96 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.805Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://localhost:8080/ldp/test.png> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:428)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testPutBadETag(CommonResourceTest.java:345)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b96 ;
+  earl:test        ldpt:NonRDFSource-PutBadETag ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b97 ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.805Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testAllowResponsesFromServer(RdfSourceTest.java:364)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b97 ;
+  earl:test        ldpt:BasicContainer-AllowResponsesFromServer ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b98 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.807Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: containerAsResource is null\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testRequestedInteractionModelCreateNotAllowed(CommonContainerTest.java:320)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b98 ;
+  earl:test        ldpt:BasicContainer-RequestedInteractionModelCreateNotAllowed ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b99 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.807Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://localhost:8080/ldp> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:428)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRelativeUriResolutionPut(RdfSourceTest.java:75)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b99 ;
+  earl:test        ldpt:BasicContainer-RelativeUriResolutionPut ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b100 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.809Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b100 ;
+  earl:test        ldpt:MemberResource-Head ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b101 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.809Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b101 ;
+  earl:test        ldpt:BasicContainer-RelativeUriResolutionPost ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b102 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.811Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b102 ;
+  earl:test        ldpt:NonRDFSource-PostResourceAndGetFromContainer ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b103 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.811Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b103 ;
+  earl:test        ldpt:NonRDFSource-GetResource ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b104 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.792Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: Server did not return Preference-Applied: return=representation response header expected [true] but found [false]\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testPreferContainmentTriples(CommonContainerTest.java:175)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:fail
+                   ] ;
+  earl:subject     _:b104 ;
+  earl:test        ldpt:BasicContainer-PreferContainmentTriples ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b105 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.797Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://localhost:8080/ldp/e967c279-c201-493f-8cb0-38c7ea921f12> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:428)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testConditionFailedStatusCode(CommonResourceTest.java:259)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b105 ;
+  earl:test        ldpt:MemberResource-ConditionFailedStatusCode ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b106 ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T13:21:35.8Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRestrictClientInference(RdfSourceTest.java:335)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:396)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     _:b106 ;
+  earl:test        ldpt:BasicContainer-RestrictClientInference ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b107 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.813Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b107 ;
+  earl:test        ldpt:BasicContainer-AcceptPatchHeader ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b108 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.813Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b108 ;
+  earl:test        ldpt:BasicContainer-NoRdfBagSeqOrList ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b109 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.815Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b109 ;
+  earl:test        ldpt:MemberResource-OptionsAllowHeader ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  _:b110 ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T13:21:35.815Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:pass
+                   ] ;
+  earl:subject     _:b110 ;
+  earl:test        ldpt:BasicContainer-GetResource ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
