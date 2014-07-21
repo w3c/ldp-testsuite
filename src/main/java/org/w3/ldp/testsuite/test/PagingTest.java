@@ -180,7 +180,9 @@ public abstract class PagingTest extends LdpTest{
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-notify-changes",
 			testMethod = METHOD.NOT_IMPLEMENTED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_PENDING,
+			comment = "testDetectChange covers only part of the specification requirement. "
+					+ "testPagingHeaders covers the rest.")
 	public void testDetectChange() {
 		// TODO: Impl testDetectChange
 	}
@@ -197,7 +199,9 @@ public abstract class PagingTest extends LdpTest{
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-notify-changes",
 			testMethod = METHOD.NOT_IMPLEMENTED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_PENDING,
+			comment = "testPagingHeaders covers only part of the specification requirement. "
+					+ "testDetectChange covers the rest.")
 	public void testPagingHeaders() {
 		// TODO: Impl testPagingHeaders
 	}
@@ -210,7 +214,9 @@ public abstract class PagingTest extends LdpTest{
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-pagingGET-sequences-change",
 			testMethod = METHOD.NOT_IMPLEMENTED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_PENDING,
+			comment = "testInSequencePaging covers only part of the specification requirement. "
+					+ "testPageAddEnd covers the rest.")
 	public void testInSequencePaging() {
 		// TODO: Impl testInSequencePaging
 	}
@@ -222,7 +228,9 @@ public abstract class PagingTest extends LdpTest{
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-pagingGET-sequences-change",
 			testMethod = METHOD.NOT_IMPLEMENTED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_PENDING,
+			comment = "testPageAddEnd covers only part of the specification requirement. "
+					+ "testInSequencePaging covers the rest.")
 	public void testPageAddEnd() {
 		// TODO: Impl testPageAddEnd
 	}
@@ -360,7 +368,9 @@ public abstract class PagingTest extends LdpTest{
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-sortcriteriaobj",
 			testMethod = METHOD.NOT_IMPLEMENTED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_PENDING,
+			comment = "testSortTriples covers only part of the specification requirement. "
+					+ "testPageAddEnd covers the rest.")
 	public void testSortMembers() {
 		// TODO: Impl testSortMembers
 	}
@@ -377,7 +387,9 @@ public abstract class PagingTest extends LdpTest{
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-sortcriteriaobj",
 			testMethod = METHOD.NOT_IMPLEMENTED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_PENDING,
+			comment = "testSortTriples covers only part of the specification requirement. "
+					+ "testSortMembers covers the rest.")
 	public void testSortTriples() {
 		// TODO: Impl testSortTriples
 	}
@@ -422,7 +434,9 @@ public abstract class PagingTest extends LdpTest{
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-sortcollation",
 			testMethod = METHOD.NOT_IMPLEMENTED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_PENDING,
+			comment = "testSortCollation covers only part of the specification requirement. "
+					+ "testRestrictCollation covers the rest.")
 	public void testSortCollation() {
 		// TODO: Impl testSortCollation
 	}
@@ -434,7 +448,9 @@ public abstract class PagingTest extends LdpTest{
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-sortcollation",
 			testMethod = METHOD.NOT_IMPLEMENTED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_PENDING,
+			comment = "testRestrictCollation covers only part of the specification requirement. "
+					+ "testSortCollation covers the rest.")
 	public void testRestrictCollation() {
 		// TODO: Impl testRestrictCollation
 	}
