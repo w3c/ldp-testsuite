@@ -1,14 +1,10 @@
 package org.w3.ldp.testsuite.reporter;
 
-import org.rendersnake.HtmlCanvas;
-import org.rendersnake.StringResource;
-import org.testng.*;
-import org.testng.annotations.Test;
-import org.testng.internal.Utils;
-import org.testng.xml.XmlSuite;
-import org.w3.ldp.testsuite.BuildProperties;
-import org.w3.ldp.testsuite.LdpTestSuite;
-import org.w3.ldp.testsuite.annotations.SpecTest;
+import static org.rendersnake.HtmlAttributesFactory.NO_ESCAPE;
+import static org.rendersnake.HtmlAttributesFactory.class_;
+import static org.rendersnake.HtmlAttributesFactory.href;
+import static org.rendersnake.HtmlAttributesFactory.id;
+import static org.rendersnake.HtmlAttributesFactory.style;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -18,7 +14,6 @@ import java.io.StringWriter;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,11 +21,24 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-import static org.rendersnake.HtmlAttributesFactory.*;
+import org.rendersnake.HtmlCanvas;
+import org.rendersnake.StringResource;
+import org.testng.IReporter;
+import org.testng.IResultMap;
+import org.testng.ISuite;
+import org.testng.ISuiteResult;
+import org.testng.ITestContext;
+import org.testng.ITestNGMethod;
+import org.testng.ITestResult;
+import org.testng.annotations.Test;
+import org.testng.internal.Utils;
+import org.testng.xml.XmlSuite;
+import org.w3.ldp.testsuite.BuildProperties;
+import org.w3.ldp.testsuite.LdpTestSuite;
+import org.w3.ldp.testsuite.annotations.SpecTest;
 
 /**
  * HTML reporter for the LDP test suite. Takes the results of the test methods
