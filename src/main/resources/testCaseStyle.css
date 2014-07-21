@@ -82,3 +82,11 @@ td,tr {
 .pad-left {
 	margin-left: 4em;
 }
+
+.color-block {
+	height: 15px;
+	width: 15px;
+	display:inline-block;
+	margin-right:5px;
+	vertical-align: text-top;
+}

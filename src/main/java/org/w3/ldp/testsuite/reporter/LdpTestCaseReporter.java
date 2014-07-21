@@ -285,7 +285,7 @@ public class LdpTestCaseReporter {
 		html._ul()._td();
 		html._tr();
 
-		html.tr().td(colspan("2"));
+		html.tr().td(colspan("2").style("text-align:center;"));
 		html.span(class_("chartStart"));
 		// html.label(class_("label")).b().write("Test Case Status for Coverage")._b()._label();
 		html.div(class_("barChart").id("overall_implmtbar"))._div();
@@ -301,7 +301,7 @@ public class LdpTestCaseReporter {
 
 	private static void writeColorBlock(HashMap<String, String> list, String string) throws IOException {
 		// TODO: Create a class for this style in our stylesheet.
-		html.div(style("background-color:" + list.get(string) + "; height:15px; width:15px; display:inline-block; margin-right:5px;"))._div();
+		html.div(style("background-color:" + list.get(string) + ";").class_("color-block"))._div();
 	}
 
 	private static int getTotal(int[] array) {
