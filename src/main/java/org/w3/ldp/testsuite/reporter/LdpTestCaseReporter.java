@@ -194,7 +194,7 @@ public class LdpTestCaseReporter {
 		html._ul();
 
 		html.br().b().a(href("#tobeapproved")).write(readyToBeApproved.size()
-				+ " Ready for WG Approval")._a()._b();
+				+ " Ready for Approval")._a()._b();
 
 		html.br();
 		html.span(class_("chartStart"));
@@ -322,10 +322,10 @@ public class LdpTestCaseReporter {
 	}
 
 	private static void generateListOfTestCases() throws IOException {
-		html.h2(id("tobeapproved")).content("Test Cases Ready for WG Approval");
+		html.h2(id("tobeapproved")).content("Test Cases Ready for Approval");
 
 		if (readyToBeApproved.size() == 0) {
-			html.b().write("No test cases awaiting WG approval.")._b().br();
+			html.b().write("No test cases awaiting approval.")._b().br();
 		} else {
 			html.p().write("For details of test cases, ")
 					.a(href("https://github.com/w3c/ldp-testsuite"))
@@ -534,7 +534,7 @@ public class LdpTestCaseReporter {
 		html._td().td();
 		int approve = getTotal(apprReq);
 		if(approve > 0)
-			html.b().write("WG Approved: ")._b().write("" + approve).br();
+			html.b().write("Approved: ")._b().write("" + approve).br();
 		int pend = getTotal(pendReq);
 		if(pend > 0)
 			html.b().write("Pending: ")._b().write("" + pend).br();
@@ -588,7 +588,7 @@ public class LdpTestCaseReporter {
 		graphs.write(" },");
 		graphs.write("hover_color: \"#ccccff\",");
 		graphs.write("datalabels: { ");
-		graphs.write("approved: [ \"" + apprReq[0] + " WG Approved\", \"" + apprReq[1] + " WG Approved\", \"" + apprReq[2] + " WG Approved\" ],");
+		graphs.write("approved: [ \"" + apprReq[0] + " Approved\", \"" + apprReq[1] + " Approved\", \"" + apprReq[2] + " Approved\" ],");
 		graphs.write("pending: [ \"" + pendReq[0] + " Pending\", \"" + pendReq[1] + " Pending\", \"" + pendReq[2] + " Pending\" ],");
 		graphs.write("extends: [ \"" + extReq[0] + " Extension\", \"" + extReq[1] + " Extension\", \"" + extReq[2] + " Extension\" ],");
 		graphs.write("deprecated: [ \"" + depreReq[0] + " Deprecated\", \"" + depreReq[1] + " Deprecated\", \"" + depreReq[2] + " Deprecated\" ],");
@@ -905,7 +905,7 @@ public class LdpTestCaseReporter {
 	private static void writeStatusLegend() throws IOException {
 		html.write("<svg width=\"200\" height=\"200\">", NO_ESCAPE);
 		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"0\" style=\"fill:#a2bf2f\"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"13\" fill=\"black\">WG Approved</text>", NO_ESCAPE);
+		html.write("<text x=\"20\" y=\"13\" fill=\"black\">Approved</text>", NO_ESCAPE);
 
 		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"20\" style=\"fill:#1cbfbb\"/>", NO_ESCAPE);
 		html.write("<text x=\"20\" y=\"33\" fill=\"black\">Pending</text>", NO_ESCAPE);
@@ -948,10 +948,10 @@ public class LdpTestCaseReporter {
 
 		html.h4().content("Test Status");
 		html.ul();
-		html.li().b().write("WG Approved")._b().write(" - working group has approved this test case")._li();
-		html.li().b().write("Pending approval")._b().write(" (default) - no official recommendation from the WG supporting the specification being tested by this test suite")._li();
-		html.li().b().write("Extension")._b().write(" - valuable test case but not part of the WG approved set")._li();
-		html.li().b().write("Deprecated")._b().write(" - no longer recommended by WG")._li();
+		html.li().b().write("Approved")._b().write(" - the working group has approved this test case")._li();
+		html.li().b().write("Pending approval")._b().write(" (default) - no official recommendation from the working group supporting the specification being tested by this test suite")._li();
+		html.li().b().write("Extension")._b().write(" - valuable test case but not part of the approved set")._li();
+		html.li().b().write("Deprecated")._b().write(" - no longer recommended by the working group")._li();
 		html.li().b().write("Clarification")._b().write(" - requires further clarification from the working group")._li();
 		html._ul();
 
