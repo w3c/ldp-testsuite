@@ -1,0 +1,1355 @@
+@prefix rdft:  <http://www.w3.org/ns/rdftest#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix earl:  <http://www.w3.org/ns/earl#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix td:    <http://www.w3.org/2006/03/test-description#> .
+@prefix mf:    <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#> .
+@prefix doap:  <http://usefulinc.com/ns/doap#> .
+@prefix ldpt:  <http://www.w3c.org/ns/ldp/test#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.084Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:NonRDFSource-ConditionFailedStatusCode ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.089Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-PutBadETag ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.094Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-PublishConstraintsReadOnlyProp ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.102Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-Head ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T00:50:19.076Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testReUseVocabularies(RdfSourceTest.java:223)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-ReUseVocabularies ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.082Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-ServerHonorsSlug ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.086Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-ContentTypeHeader ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.092Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-PostJsonLd ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.101Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-PutToCreate ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T00:50:19.073Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testUseStandardVocabularies(RdfSourceTest.java:248)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-UseStandardVocabularies ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.081Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-ContainsRdfType ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.084Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-ConditionFailedStatusCode ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.09Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-GetResource ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.095Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:NonRDFSource-PutRequiresIfMatch ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.099Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-IsHttp11Server ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.103Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-LdpLinkHeader ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T00:50:19.078Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because PUT request was successful.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:485)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxResponseBody(RdfSourceTest.java:494)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testResponsePropertiesNotPersisted(RdfSourceTest.java:440)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-ResponsePropertiesNotPersisted ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.087Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:NonRDFSource-ETagHeadersHead ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.093Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:NonRDFSource-PostResourceAndCheckLink ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.098Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:NonRDFSource-AcceptPatchHeader ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.102Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:NonRDFSource-Head ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+<http://eclipse.org/lyo#bc>
+        a                          doap:Project , earl:TestSubject , earl:Software , earl:Assertor ;
+        doap:description           "Testing against: BasicContainer, RDFSource, NonRDFSource, Prefer, Container as Resource interaction model." ;
+        doap:developer             [ a          foaf:Person ;
+                                     foaf:mbox  "sspeiche@gmail.com" ;
+                                     foaf:name  "Steve Speicher"
+                                   ] ;
+        doap:developer             [ a          foaf:Person ;
+                                     foaf:mbox  "spadgett@us.ibm.com" ;
+                                     foaf:name  "Sam Padgett"
+                                   ];
+        doap:homepage              "http://wiki.eclipse.org/Lyo/LDPImpl" ;
+        doap:name                  "Eclipse Lyo-BC" ;
+        doap:programming-language  "Java" .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T00:50:19.075Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testIsHttp11Manual(CommonResourceTest.java:109)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-IsHttp11Manual ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.085Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-PostNoSlug ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.091Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-RestrictUriReUseSlug ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.096Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:NonRDFSource-PostResourceAndCheckAssociatedResource ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.104Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:NonRDFSource-LdpLinkHeader ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T00:50:19.08Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testIsHttp11Manual(CommonResourceTest.java:109)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-IsHttp11Manual ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.084Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-ETagHeadersHead ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.094Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-IsHttp11Server ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.103Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-PutRequiresIfMatch ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T00:50:19.077Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because PUT request was successful.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:485)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutPropertiesNotPersisted(RdfSourceTest.java:424)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-PutPropertiesNotPersisted ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.083Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-PutSimpleUpdate ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.087Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-PutReadOnlyProperties4xxStatus ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.092Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-NoRdfBagSeqOrList ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.097Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:NonRDFSource-IsHttp11Server ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.101Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-TypeRdfSource ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T00:50:19.074Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because PUT request was successful.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:485)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxDescriedBy(RdfSourceTest.java:452)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsUnknownProp(RdfSourceTest.java:367)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-PublishConstraintsUnknownProp ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.081Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-ETagHeadersGet ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.09Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-GetResourceAcceptTurtle ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.095Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:NonRDFSource-OptionsAllowHeader ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.1Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-AcceptTurtle ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.104Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-GetResponseHeaders ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T00:50:19.079Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testReUseVocabularies(RdfSourceTest.java:223)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-ReUseVocabularies ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.089Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-Options ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.088Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-TypeRdfSource ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.093Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-PatchMethod ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.098Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-PreconditionRequiredStatusCode ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T00:50:19.075Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because there are restrictions on PUT content for this resource. The requirement needs to be tested manually.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRelativeUriResolutionPut(RdfSourceTest.java:78)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-RelativeUriResolutionPut ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.082Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:NonRDFSource-GetResponseHeaders ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.086Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-LdpLinkHeader ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.097Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-CreateWithoutConstraints ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a       <http://eclipse.org/lyo#bc> ] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T00:50:19.08Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because PUT request was successful.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:485)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxDescriedBy(RdfSourceTest.java:452)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsUnknownProp(RdfSourceTest.java:367)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-PublishConstraintsUnknownProp ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.085Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-RelativeUriResolutionPost ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.094Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-PutRequiresIfMatch ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.099Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-PostContainer ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.103Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:NonRDFSource-PostResourceGetMetadataAndBinary ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T00:50:19.077Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testIsHttp11Manual(CommonResourceTest.java:109)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:NonRDFSource-IsHttp11Manual ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.083Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-GetResponseHeaders ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.088Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-GetResourceAcceptTurtle ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.092Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:NonRDFSource-PreconditionRequiredStatusCode ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.098Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:NonRDFSource-PostResourceGetBinary ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.102Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:NonRDFSource-PostResourceAndGetFromContainer ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.081Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:NonRDFSource-PostNonRDFSource ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.091Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-RequestedInteractionModelCreateNotAllowed ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.096Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:NonRDFSource-GetResource ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.1Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-PutReadOnlyProperties4xxStatus ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T00:50:19.079Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRestrictClientInference(RdfSourceTest.java:268)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-RestrictClientInference ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.084Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-OptionsAllowHeader ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.09Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:NonRDFSource-DeleteNonRDFSourceDeletesAssociatedResource ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.088Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-PreferContainmentTriples ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.099Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-PostResponseStatusAndLocation ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T00:50:19.076Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because PUT request was successful.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:485)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxResponseBody(RdfSourceTest.java:494)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testResponsePropertiesNotPersisted(RdfSourceTest.java:440)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-ResponsePropertiesNotPersisted ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.082Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:NonRDFSource-OptionsHasSameLinkHeader ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.087Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-GetResource ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.097Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-AcceptPatchHeader ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.101Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-PutReplacesResource ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T00:50:19.074Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRestrictClientInference(RdfSourceTest.java:268)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-RestrictClientInference ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T00:50:19.081Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testUseStandardVocabularies(RdfSourceTest.java:248)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-UseStandardVocabularies ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.085Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-JsonLdRepresentation ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.091Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-ETagHeadersHead ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.095Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-Options ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.1Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-ContainerSupportsHttpLinkHeader ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.104Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-OptionsAllowHeader ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.083Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-Head ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.088Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-RejectPutModifyingContainmentTriples ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.094Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-PublishConstraintsReadOnlyProp ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.098Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-PreconditionRequiredStatusCode ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.102Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-RestrictUriReUseNoSlug ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.082Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-NullRelativeUriPost ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.086Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-JsonLdRepresentation ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.092Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-ContainsRdfType ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.101Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:NonRDFSource-Options ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a       <http://eclipse.org/lyo#bc> ] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T00:50:19.079Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because there are restrictions on PUT content for this resource. The requirement needs to be tested manually.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.putReplaceResource(RdfSourceTest.java:524)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutSimpleUpdate(RdfSourceTest.java:150)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-PutSimpleUpdate ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.084Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:NonRDFSource-PutBadETag ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.09Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-RdfTypeLdpContainer ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.099Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-AcceptPatchHeader ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.103Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-4xxErrorHasResponseBody ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T00:50:19.078Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because there are restrictions on PUT content for this resource. The requirement needs to be tested manually.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.putReplaceResource(RdfSourceTest.java:524)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutReplacesResource(RdfSourceTest.java:136)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-PutReplacesResource ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.083Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:NonRDFSource-ETagHeadersGet ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.087Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-RestrictPutReUseUri ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.093Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-ETagHeadersGet ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.097Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-PutBadETag ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.101Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-RequestedInteractionModelHeaders ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-07-21T00:50:19.075Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because PUT request was successful.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:485)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutPropertiesNotPersisted(RdfSourceTest.java:424)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-PutPropertiesNotPersisted ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.085Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-RelativeUriResolutionPut ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.091Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-AcceptPostResponseHeader ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.096Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-ConditionFailedStatusCode ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.1Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-4xxErrorHasResponseBody ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://eclipse.org/lyo#bc> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-07-21T00:50:19.104Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-DeleteRemovesContainmentTriple ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
