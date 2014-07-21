@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import org.testng.annotations.Test;
 import org.w3.ldp.testsuite.annotations.SpecTest;
@@ -12,6 +13,7 @@ import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.test.BasicContainerTest;
 import org.w3.ldp.testsuite.test.DirectContainerTest;
 import org.w3.ldp.testsuite.test.IndirectContainerTest;
+import org.w3.ldp.testsuite.test.LdpTest;
 import org.w3.ldp.testsuite.test.MemberResourceTest;
 import org.w3.ldp.testsuite.test.NonRDFSourceTest;
 import org.w3.ldp.testsuite.vocab.LDP;
@@ -90,14 +92,22 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 	private static final Property steps = ResourceFactory
 			.createProperty(LDP.LDPT_NAMESPACE + "steps");
 
-
 	private static final Class<BasicContainerTest> bcTest = BasicContainerTest.class;
 	private static final Class<IndirectContainerTest> indirectContainerTest = IndirectContainerTest.class;
 	private static final Class<DirectContainerTest> directContianerTest = DirectContainerTest.class;
 	private static final Class<MemberResourceTest> memberResourceTest = MemberResourceTest.class;
 	private static final Class<NonRDFSourceTest> nonRdfSourceTest = NonRDFSourceTest.class;
+	
+	/**
+	 * List of GROUPS to include in reporting
+	 */
+	private static final List<String> conformanceLevels = new ArrayList<String>();
 
 	public static void main(String[] args) throws IOException {
+		conformanceLevels.add(LdpTest.MUST);
+		conformanceLevels.add(LdpTest.SHOULD);
+		conformanceLevels.add(LdpTest.MAY);
+		
 		new LdpEarlTestManifest().generate();
 	}
 
@@ -152,7 +162,7 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 				+ " MAY conformance tests.");
 		writeManifest(conformanceClasses.get(LdpTestCaseReporter.OTHER), title
 				+ "-OTHER", title + " (OTHER)", description
-				+ " No official conformance status.");
+				+ " No official conformance status or test case is extension or incomplete.");
 	}
 
 	private Resource generateInformation(Method method, String className,
@@ -169,7 +179,7 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 				System.err.println("Wrongly received CLIENT_ONLY test for "+testCaseName+
 						". Client-only tests should be defined in separate RDF manifest file.");
 			}
-			
+
 			test = method.getAnnotation(Test.class);
 			String allGroups = groups(test.groups());
 
@@ -190,15 +200,23 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 			testCaseResource.addProperty(RDFS.comment, test.description());
 			if (allGroups != null)
 				testCaseResource.addProperty(DCTerms.subject, allGroups);
-			else
-				conformanceClasses.get(LdpTestCaseReporter.OTHER).add(testCaseResource);
-
-			for (String group: test.groups()) {
-				group = group.trim();
-				testCaseResource.addProperty(conformanceLevel, model.createResource(LDP.LDPT_NAMESPACE + group));
-				conformanceClasses.get(LdpTestCaseReporter.getConformanceIndex(group)).add(testCaseResource);
-			}
 			
+			boolean added = false;		
+			if (testLdp.approval() != SpecTest.STATUS.WG_EXTENSION) {
+				for (String group: test.groups()) {
+					group = group.trim();
+					if (conformanceLevels.contains(group))  {
+						testCaseResource.addProperty(conformanceLevel, model.createResource(LDP.LDPT_NAMESPACE + group));
+						conformanceClasses.get(LdpTestCaseReporter.getConformanceIndex(group)).add(testCaseResource);
+						added = true;
+					}
+				}
+			}
+			// If not in a conformance group, add to general other bucket
+			if (!added) {
+				conformanceClasses.get(LdpTestCaseReporter.OTHER).add(testCaseResource);
+			}
+			 
 			String[] stepsArr = testLdp.steps();
 			if (stepsArr != null && stepsArr.length > 0) {
 				ArrayList<Literal> arr = new ArrayList<Literal>();
@@ -208,7 +226,6 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 				RDFList l = model.createList(arr.iterator());
 				testCaseResource.addProperty(steps, l);
 			}
-
 
 			// Leave action property only to make earl-report happy
 			testCaseResource.addProperty(TestManifest.action, "");
