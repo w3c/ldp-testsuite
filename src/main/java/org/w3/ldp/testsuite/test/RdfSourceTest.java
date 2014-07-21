@@ -341,7 +341,9 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-pubclireqs",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_PENDING,
+			comment = "testPublishConstraintsReadOnlyProp covers only part of the specification requirement. "
+					+ "testPublishConstraintsUnknownProp covers the rest.")
 	public void testPublishConstraintsReadOnlyProp(@Optional String readOnlyProp) {
 		skipIfMethodNotAllowed(HttpMethod.PUT);
 
@@ -361,7 +363,9 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-pubclireqs",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_PENDING,
+			comment = "testPublishConstraintsUnknownProp covers only part of the specification requirement. "
+					+ "testPublishConstraintsReadOnlyProp covers the rest.")
 	public void testPublishConstraintsUnknownProp() {
 		skipIfMethodNotAllowed(HttpMethod.PUT);
 		expectPut4xxDescribedBy(UNKNOWN_PROPERTY);
@@ -378,7 +382,9 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-put-servermanagedprops",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_PENDING,
+			comment = "testPutReadOnlyProperties4xxStatus covers only part of the specification requirement. "
+					+ "test4xxErrorHasResponseBody covers the rest.")
 	public void testPutReadOnlyProperties4xxStatus(@Optional String readOnlyProp) {
 		skipIfMethodNotAllowed(HttpMethod.PUT);
 
@@ -398,7 +404,9 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-put-servermanagedprops",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_PENDING,
+			comment = "test4xxErrorHasResponseBody covers only part of the specification requirement. "
+					+ "testPutReadOnlyProperties4xxStatus covers the rest.")
 	public void test4xxErrorHasResponseBody(@Optional String readOnlyProp) {
 		skipIfMethodNotAllowed(HttpMethod.PUT);
 
@@ -418,7 +426,9 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-put-failed",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_PENDING,
+			comment = "testPutPropertiesNotPersisted covers only part of the specification requirement. "
+					+ "testResponsePropertiesNotPersisted covers the rest.")
 	public void testPutPropertiesNotPersisted() {
 		skipIfMethodNotAllowed(HttpMethod.PUT);
 		expectPut4xxStatus(UNKNOWN_PROPERTY);
@@ -434,7 +444,9 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-put-failed",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_PENDING,
+			comment = "testResponsePropertiesNotPersisted covers only part of the specification requirement. "
+					+ "testPutPropertiesNotPersisted covers the rest.")
 	public void testResponsePropertiesNotPersisted() {
 		skipIfMethodNotAllowed(HttpMethod.PUT);
 		expectPut4xxResponseBody(UNKNOWN_PROPERTY);

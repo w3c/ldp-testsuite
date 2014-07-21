@@ -60,7 +60,8 @@ public class DirectContainerTest extends CommonContainerTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-linktypehdr",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_APPROVED)
+			approval = STATUS.WG_APPROVED,
+			comment = "testHttpLinkHeader covers only part of the specification requirement.")
 	public void testHttpLinkHeader() {
 		Response response = buildBaseRequestSpecification().header(ACCEPT, TEXT_TURTLE)
 				.expect().statusCode(HttpStatus.SC_OK).when()
@@ -315,7 +316,8 @@ public class DirectContainerTest extends CommonContainerTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-prefer",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_PENDING,
+			comment = "testPreferMembershipTriples covers only part of the specification requirement. ")
 	public void testPreferMembershipTriples() {
 		Response response;
 		Model model;
