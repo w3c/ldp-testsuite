@@ -894,12 +894,24 @@ public class LdpTestCaseReporter {
 						.write("" + testLdp.testMethod());
 				html.br().b().write("Enabled: ")._b()
 						.write("" + test.enabled());
-
+				if(testLdp.steps().length != 0)
+					writeSteps(testLdp.steps(), method.getName());
+				if(!testLdp.comment().equals(""))
+					html.p(class_("note")).b().write("NOTE: ")._b()
+						.write(testLdp.comment())._p();
 				html._div();
 				toTestClass(name);
 			}
 		}
 
+	}
+
+	private static void writeSteps(String[] steps, String title) throws IOException {
+		html.p().content("How to Run " + title);
+		html.ul();
+		for(String step : steps)
+			html.li().content(step);
+		html._ul();
 	}
 
 	private static void writeStatusLegend() throws IOException {
