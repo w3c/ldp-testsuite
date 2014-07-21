@@ -21,10 +21,10 @@
     <!-- Default values to plug into Properties in the Earl Report  -->
     <parameter name="language" value = "Java" />
     <parameter name="homepage" value ="http://example.org/Lyo_impl" />
-    <parameter name="referencePage" value="http://example.org/lyo" />
+    <parameter name="assertor" value="http://example.org/lyo" />
     <parameter name="subjectName" value="Example LDP Reference Implementation" />
     <parameter name="software" value="Reference Implementation" />
-    <parameter name="mail" value="jdoe@example.org" />
+    <parameter name="mbox" value="jdoe@example.org" />
     <parameter name="developer" value="Jane Doe" />
     <parameter name="description" value="Testing against: BasicContainer, RDFSource, NonRDFSource, Prefer, Container as Resource interaction model." />
     <parameter name="auth" value="ldpuser:ldpuser" />

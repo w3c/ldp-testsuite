@@ -148,26 +148,42 @@ public class LdpTestSuite {
 		}
 
 		testng.addListener(new LdpTestListener());
-		testng.addListener(new LdpEarlReporter());
 		testng.addListener(new LdpHtmlReporter());
 
 		// Add method enabler (Annotation Transformer)
 		testng.addListener(new MethodEnabler());
-
 		// Test suite parameters
 		final Map<String, String> parameters = new HashMap<>();
+		
+		if (options.hasOption("earl")) {
+			testng.addListener(new LdpEarlReporter());
 
-		if (options.hasOptionWithValue("software"))
-			parameters.put("software", options.getOptionValue("software"));
-
-		if (options.hasOptionWithValue("developer"))
-			parameters.put("software", options.getOptionValue("developer"));
-
-		if (options.hasOptionWithValue("language"))
-			parameters.put("language", options.getOptionValue("language"));
-
-		if (options.hasOptionWithValue("homepage"))
-			parameters.put("homepage", options.getOptionValue("homepage"));
+			if (options.hasOptionWithValue("software"))
+				parameters.put("software", options.getOptionValue("software"));
+			else
+				printEarlUsage();
+	
+			if (options.hasOptionWithValue("developer"))
+				parameters.put("developer", options.getOptionValue("developer"));
+			else
+				printEarlUsage();
+			
+			if (options.hasOptionWithValue("language"))
+				parameters.put("language", options.getOptionValue("language"));
+			else
+				printEarlUsage();
+	
+			if (options.hasOptionWithValue("homepage"))
+				parameters.put("homepage", options.getOptionValue("homepage"));
+			else
+				printEarlUsage();
+			
+			if (options.hasOptionWithValue("assertor"))
+				parameters.put("assertor", options.getOptionValue("assertor"));
+			else
+				printEarlUsage();
+		
+		}
 
 		if (options.hasOptionWithValue("cont-res")) {
 			final String containerAsResource = options.getOptionValue("cont-res");
@@ -317,22 +333,39 @@ public class LdpTestSuite {
 		options.addOption(OptionBuilder.withLongOpt("auth")
 				.withDescription("server basic authentication credentials following the syntax username:password").hasArg()
 				.withArgName("username:password").create());
-
+		
+		options.addOption(OptionBuilder.withLongOpt("earl")
+				.withDescription("General EARL ttl file").withArgName("earl")
+				.isRequired(false).create());
+		
+		// --earl dependent values
 		options.addOption(OptionBuilder.withLongOpt("software")
-				.withDescription("title of the software test suite runs on")
-				.hasArg().withArgName("software").isRequired(true).create());
+				.withDescription("title of the software test suite runs on: required with --earl")
+				.hasArg().withArgName("software").isRequired(false).create());
 
 		options.addOption(OptionBuilder.withLongOpt("developer")
-				.withDescription("the name of the software developer").hasArg()
-				.withArgName("dev-name").isRequired(true).create());
+				.withDescription("the name of the software developer: required with --earl").hasArg()
+				.withArgName("dev-name").isRequired(false).create());
+
+		options.addOption(OptionBuilder.withLongOpt("mbox")
+				.withDescription("email of the sofware developer: optional with --earl")
+				.hasArg().withArgName("mbox").isRequired(false).create());
 
 		options.addOption(OptionBuilder
 				.withLongOpt("language")
-				.withDescription("primary programming language of the software")
+				.withDescription("primary programming language of the software: required with --earl")
 				.hasArg().withArgName("language").isRequired(false).create());
+
 		options.addOption(OptionBuilder.withLongOpt("homepage")
-				.withDescription("the homepage of the suite runs against")
+				.withDescription("the homepage of the suite runs against: required with --earl")
 				.hasArg().withArgName("homepage").isRequired(false).create());
+		
+		options.addOption(OptionBuilder.withLongOpt("assertor")
+				.withDescription("the URL of the person or agent that asserts the results: required with --earl")
+				.hasArg().withArgName("assertor").isRequired(false).create());
+		// end of --earl dependent values
+		
+
 
 		OptionGroup containerType = new OptionGroup();
 		containerType.addOption(OptionBuilder.withLongOpt("basic")
@@ -432,6 +465,15 @@ public class LdpTestSuite {
 		formatter.printHelp("java -jar ldp-testsuite.jar", options);
 		System.out.println();
 		System.exit(-1);
+	}
+	
+	private static void printEarlUsage() {
+		String[] earlDepArgs = {"software", "developer", "language", "homepage", "assertor"};
+		System.out.println("--earl depends on additional args:");
+		for (String arg: earlDepArgs) {
+			System.out.println("\t--"+arg);
+		}
+		System.exit(1);
 	}
 
 }

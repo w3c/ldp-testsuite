@@ -51,7 +51,7 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 	private static String subjectDev;
 	private static String homepage;
 	private static String subjectName;
-	private static String refPage;
+	private static String assertor;
 	private static String language;
 	private static String mailBox;
 	private static String description;
@@ -88,22 +88,22 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 			// indirect = suite.getParameter("indirectContainer");
 
 			homepage = suite.getParameter("homepage");
-			refPage = suite.getParameter("referencePage");
+			assertor = suite.getParameter("assertor");
 			subjectName = suite.getParameter("subjectName");
 
 			softwareTitle = suite.getParameter("software");
 			subjectDev = suite.getParameter("developer");
 			language = suite.getParameter("language");
 
-			mailBox = suite.getParameter("mail");
+			mailBox = suite.getParameter("mbox");
 			description = suite.getParameter("description");
 
 			// Make the Assertor Resource
-			Resource assertor = model.createResource(refPage);
-			assertor.addProperty(RDF.type, Earl.Assertor);
+			Resource assertorRes = model.createResource(assertor);
+			assertorRes.addProperty(RDF.type, Earl.Assertor);
 			
 			if (description != null)
-				assertor.addProperty(DOAP.description, description);
+				assertorRes.addProperty(DOAP.description, description);
 
 			/* Developer Resource (Person) */
 			Resource personResource = model.createResource(null, FOAF.Person);
@@ -113,17 +113,17 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 				personResource.addProperty(FOAF.name, subjectDev);
 			}
 
-			assertor.addProperty(DOAP.developer, personResource);
+			assertorRes.addProperty(DOAP.developer, personResource);
 
 			/* Software Resource */
 			Resource softResource = model
-					.createResource(refPage, Earl.Software);
+					.createResource(assertor, Earl.Software);
 			if (softwareTitle != null)
 				model.createResource(null, softResource);
 
 			/* Add properties to the Test Subject Resource */
 
-			Resource subjectResource = model.createResource(refPage,
+			Resource subjectResource = model.createResource(assertor,
 					Earl.TestSubject);
 			
 			subjectResource.addProperty(RDF.type, DOAP.Project);
@@ -167,7 +167,7 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 
 		Resource resultResource = model.createResource(null, Earl.TestResult);
 		
-		Resource subjectResource = model.getResource(refPage);
+		Resource subjectResource = model.getResource(assertor);
 
 		assertionResource.addProperty(Earl.testSubject, subjectResource);
 
