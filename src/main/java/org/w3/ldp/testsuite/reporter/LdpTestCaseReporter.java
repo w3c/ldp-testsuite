@@ -54,7 +54,7 @@ public class LdpTestCaseReporter {
 	private static ArrayList<String> manuals = new ArrayList<String>();
 	private static HashMap<String, String> readyToBeApproved = new HashMap<String, String>(); // key==method, value==class
 	private static HashMap<String, String> needCode = new HashMap<String, String>(); // key==method, value==class
-	
+
 	private static final HashMap<String, String> implmColor = new HashMap<String, String>(); // key==label value==color
 	private static final HashMap<String, String> statusColor = new HashMap<String, String>();
 	static{
@@ -72,7 +72,7 @@ public class LdpTestCaseReporter {
 	public static final int SHOULD = 1;
 	public static final int MAY = 2;
 	public static final int OTHER = 3;
-	
+
 	private static int totalTests = 0;
 	private static int automated = 0;
 
@@ -102,7 +102,7 @@ public class LdpTestCaseReporter {
 	private static int[] pend  = {0, 0, 0};
 	private static int[] manual = {0, 0, 0};
 	private static int[] client = {0, 0, 0};
-	private static int[] approve = {0, 0, 0};	
+	private static int[] approve = {0, 0, 0};
 	private static int[] clarify = {0, 0, 0};
 
 	public static void main(String[] args) throws IOException {
@@ -164,21 +164,38 @@ public class LdpTestCaseReporter {
 
 		html.tr();
 		html.td(rowspan("2")).b().write("" + totalTests)._b().write(" Total Tests");
-		html.ul().li().span(style(writeBlockStyle(statusColor, "approved")))._span()
-			.b().write(approved + " ")._b().write("WG Approved")._li();
-		html.li().span(style(writeBlockStyle(statusColor, "pending")))._span()
-			.b().write(pending + " ")._b().write("Incomplete")._li();
-		html.li().span(style(writeBlockStyle(statusColor, "extends")))._span()
-			.b().write(extended + " ")._b().write("Extension")._li();
-		html.li().span(style(writeBlockStyle(statusColor, "deprecated")))._span()
-			.b().write(deprecated + " ")._b().write("No longer valid")._li();
-		html.li().span(style(writeBlockStyle(statusColor, "clarify")))._span()
-			.b().write(clarification + " ")._b().write("Needs to be clarified with WG")._li();
+		html.ul();
+
+		html.li();
+		writeColorBlock(statusColor, "approved");
+		html.b().write(approved + " ")._b().write("Approved");
+		html._li();
+
+		html.li();
+		writeColorBlock(statusColor, "pending");
+		html.b().write(pending + " ")._b().write("Pending");
+		html._li();
+
+		html.li();
+		writeColorBlock(statusColor, "extends");
+		html.b().write(extended + " ")._b().write("Extension");
+		html._li();
+
+		html.li();
+		writeColorBlock(statusColor, "deprecated");
+		html.b().write(deprecated + " ")._b().write("No longer valid");
+		html._li();
+
+		html.li();
+		writeColorBlock(statusColor, "clarify");
+		html.b().write(clarification + " ")._b().write("Needs to be clarified with WG");
+		html._li();
+
 		html._ul();
 
 		html.br().b().a(href("#tobeapproved")).write(readyToBeApproved.size()
 				+ " Ready for WG Approval")._a()._b();
-		
+
 		html.br();
 		html.span(class_("chartStart"));
 		// html.label(class_("label")).b().write("Test Case Implementation for Totals")._b()._label();
@@ -203,8 +220,11 @@ public class LdpTestCaseReporter {
 
 		html.ul();
 		int implemented = getTotal(auto);
-		html.li().span(style(writeBlockStyle(implmColor, "automated")))._span()
-			.b().write(implemented + " ")._b().write("Requirements Automated")._li();
+		html.li();
+		writeColorBlock(implmColor, "automated");
+		html.b().write(implemented + " ")._b().write("Requirements Automated");
+		html._li();
+
 		html.ul();
 		html.li().b().write(auto[MUST] + " / " + mustTotal)._b().write(" MUST")._li();
 		html.li().b().write(auto[SHOULD] + " / " + shouldTotal)._b().write(" SHOULD")
@@ -227,21 +247,36 @@ public class LdpTestCaseReporter {
 		 * html.li().b().write(disabled +
 		 * " ")._b().write("of the Tests not enabled")._li();
 		 */
-		html.li().span(style(writeBlockStyle(implmColor, "client")))._span()
-			.b().write(clients.size() + " ")._b().write("of the Total are ")
-			.a(href("#clientTests")).write("Client-Based Tests")._a()._li();
-		html.li().span(style(writeBlockStyle(implmColor, "manual")))._span()
-			.b().write(manuals.size() + " ")._b().write("of the Total must be ")
-			.a(href("#manualTests")).write("Tested Manually")._a()._li();
+		html.li();
+		writeColorBlock(implmColor, "client");
+		html.b().write(clients.size() + " ")._b().write("of the Total are ")
+				.a(href("#clientTests")).write("Client-Based Tests")._a();
+		html._li();
+
+		html.li();
+		writeColorBlock(implmColor, "manual");
+		html.b().write(manuals.size() + " ")._b().write("of the Total must be ")
+				.a(href("#manualTests")).write("Tested Manually")._a();
+		html._li();
+
 		html._ul();
 
 		html.write("From the Total, ");
 
 		html.ul();
 		int unimplemented = getTotal(unimplmnt);
-		html.li().span(style(writeBlockStyle(implmColor, "unimplemented")))._span()
-			.b().write(unimplemented + " ")
-			._b().write("Requirements not Implemented")._li();
+
+		html.li();
+		writeColorBlock(implmColor, "client");
+		html.b().write(clients.size() + " ")._b().write("of the Total are ")
+				.a(href("#clientTests")).write("Client-Based Tests")._a();
+		html._li();
+
+		html.li();
+		writeColorBlock(implmColor, "unimplemented");
+		html.b().write(unimplemented + " ")._b().write("Requirements not Implemented");
+		html._li();
+
 		html.ul();
 		html.li().b().write(unimplmnt[MUST] + " ")._b().write("MUST")._li();
 		html.li().b().write(unimplmnt[SHOULD] + " ")._b().write("SHOULD")._li();
@@ -249,7 +284,7 @@ public class LdpTestCaseReporter {
 		html._ul();
 		html._ul()._td();
 		html._tr();
-		
+
 		html.tr().td(colspan("2"));
 		html.span(class_("chartStart"));
 		// html.label(class_("label")).b().write("Test Case Status for Coverage")._b()._label();
@@ -264,8 +299,9 @@ public class LdpTestCaseReporter {
 
 	}
 
-	private static String writeBlockStyle(HashMap<String, String> list, String string) {
-		return "background-color:" + list.get(string) + "; height:15px; width:15px; float:left";
+	private static void writeColorBlock(HashMap<String, String> list, String string) throws IOException {
+		// TODO: Create a class for this style in our stylesheet.
+		html.div(style("background-color:" + list.get(string) + "; height:15px; width:15px; display:inline-block; margin-right:5px;"))._div();
 	}
 
 	private static int getTotal(int[] array) {
@@ -371,9 +407,9 @@ public class LdpTestCaseReporter {
 	private static <T> void acquireTestInfo(Class<T> classType)
 			throws IOException {
 		int total = 0, must = 0, should = 0, may = 0;
-		
+
 		int[] autoReq = { 0, 0, 0 }, unimReq = { 0, 0, 0 }, clientReq = { 0, 0,	0 }, manReq = { 0, 0, 0 };
-		int[] apprReq = { 0, 0, 0 }, pendReq = { 0, 0, 0 }, extReq = { 0, 0, 0 }, 
+		int[] apprReq = { 0, 0, 0 }, pendReq = { 0, 0, 0 }, extReq = { 0, 0, 0 },
 				depreReq = {0, 0, 0 }, clariReq = { 0, 0, 0 };
 
 		Method[] methods = classType.getDeclaredMethods();
@@ -510,7 +546,7 @@ public class LdpTestCaseReporter {
 			html.b().write("Deprecated: ")._b().write("" + depre).br();
 		int clarify = getTotal(clariReq);
 		if(clarify > 0)
-			html.b().write("Clarification: ")._b().write("" + clarify).br();		
+			html.b().write("Clarification: ")._b().write("" + clarify).br();
 
 		html._td().td();
 		int auto = getTotal(autoReq);
@@ -561,8 +597,8 @@ public class LdpTestCaseReporter {
 		graphs.write(" }); });");
 
 		graphs.write("</script>");
-		
-		
+
+
 	}
 
 	private static void writeImplementationGraph(String classType,
@@ -592,7 +628,7 @@ public class LdpTestCaseReporter {
 
 		graphs.write("</script>");
 	}
-	
+
 	private static void writeColors(HashMap<String, String> colorList) {
 		Iterator<Entry<String, String>> codeIter = colorList.entrySet().iterator();
 		Entry<String, String> value;
@@ -865,51 +901,51 @@ public class LdpTestCaseReporter {
 		}
 
 	}
-	
+
 	private static void writeStatusLegend() throws IOException {
 		html.write("<svg width=\"200\" height=\"200\">", NO_ESCAPE);
 		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"0\" style=\"fill:#a2bf2f\"/>", NO_ESCAPE);
 		html.write("<text x=\"20\" y=\"13\" fill=\"black\">WG Approved</text>", NO_ESCAPE);
-		
+
 		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"20\" style=\"fill:#1cbfbb\"/>", NO_ESCAPE);
 		html.write("<text x=\"20\" y=\"33\" fill=\"black\">Pending</text>", NO_ESCAPE);
-		
+
 		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"40\" style=\"fill:#bfa22f\"/>", NO_ESCAPE);
 		html.write("<text x=\"20\" y=\"53\" fill=\"black\">Extension</text>", NO_ESCAPE);
-		
+
 		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"60\" style=\"fill:#606060 \"/>", NO_ESCAPE);
 		html.write("<text x=\"20\" y=\"73\" fill=\"black\">Deprecated</text>", NO_ESCAPE);
-		
+
 		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"80\" style=\"fill:#1bff95 \"/>", NO_ESCAPE);
 		html.write("<text x=\"20\" y=\"93\" fill=\"black\">Clarification</text>", NO_ESCAPE);
-		
+
 		html.write("</svg>");
 
 		html._span();
 	}
-	
+
 	private static void writeImplmntLegend() throws IOException {
 		html.write("<svg width=\"200\" height=\"200\">", NO_ESCAPE);
 		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"0\" style=\"fill:#0099cc\"/>", NO_ESCAPE);
 		html.write("<text x=\"20\" y=\"13\" fill=\"black\">Automated</text>", NO_ESCAPE);
-		
+
 		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"20\" style=\"fill:#bf1c56\"/>", NO_ESCAPE);
 		html.write("<text x=\"20\" y=\"33\" fill=\"black\">Not Implemented</text>", NO_ESCAPE);
-		
+
 		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"40\" style=\"fill:#8d1cbf\"/>", NO_ESCAPE);
 		html.write("<text x=\"20\" y=\"53\" fill=\"black\">Client Only</text>", NO_ESCAPE);
-		
+
 		html.write("<rect width=\"15\" height=\"15\" x=\"0\" y=\"60\" style=\"fill:#3300cc\"/>", NO_ESCAPE);
-		html.write("<text x=\"20\" y=\"73\" fill=\"black\">Manual</text>", NO_ESCAPE);		
-		
+		html.write("<text x=\"20\" y=\"73\" fill=\"black\">Manual</text>", NO_ESCAPE);
+
 		html.write("</svg>");
-		
+
 		html._span();
 	}
 
 	private static void writeGraphDescription() throws IOException {
 		html.h3().content("Description of the Chart Information");
-		
+
 		html.h4().content("Test Status");
 		html.ul();
 		html.li().b().write("WG Approved")._b().write(" - working group has approved this test case")._li();
@@ -918,7 +954,7 @@ public class LdpTestCaseReporter {
 		html.li().b().write("Deprecated")._b().write(" - no longer recommended by WG")._li();
 		html.li().b().write("Clarification")._b().write(" - requires further clarification from the working group")._li();
 		html._ul();
-		
+
 		html.h4().content("Test Implementation");
 		html.ul();
 		html.li().b().write("Automated")._b().write(" - implementation complete")._li();
@@ -962,7 +998,7 @@ public class LdpTestCaseReporter {
 			}
 		}
 	}
-	
+
 	public static int getConformanceIndex(String conformance) {
 		String c = conformance.toUpperCase();
 		if (c.equals("MUST")) return MUST;
