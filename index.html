@@ -63,8 +63,9 @@ it to check your implementation and send some early feedback to the <a href="htt
 
 <p>You can run the test suite against an arbitrary server:</p>
 
-<pre><code>mvn package
-java -jar target/ldp-testsuite-1.0.0-SNAPSHOT-shaded.jar --server http://localhost --basic
+<pre><code>$ mvn package
+$ java -jar target/ldp-testsuite-1.0.0-SNAPSHOT-shaded.jar \
+    --server http://localhost --basic
 </code></pre>
 
 <p>Use <code>--basic</code>, <code>--direct</code>, or <code>--indirect</code> for the type of container
@@ -74,7 +75,8 @@ you want to test; <code>--help</code> for getting some more help.</p>
 <a href="http://marmotta.apache.org/installation.html#source">have it installed</a> the command to use
 would be:</p>
 
-<pre><code>java -jar ldp-testsuite-1.0.0-SNAPSHOT-shaded.jar --server http://localhost:8080/ldp --basic
+<pre><code>$ java -jar ldp-testsuite-1.0.0-SNAPSHOT-shaded.jar \
+    --server http://localhost:8080/ldp --basic
 </code></pre>
 
 <h2><a name="maven" class="anchor" href="#maven"><span class="octicon octicon-link"></span></a>Maven</h2>
@@ -103,7 +105,12 @@ System.out.println(testSuite.getStatus());
 
 <p>For reporting the status of a concrete implemetation, please use a command like:</p>
 
-<pre><code>java -jar target/ldp-testsuite-1.0.0-SNAPSHOT-shaded.jar --server http://ldp.example.org --basic --earl --developer "Your Name" --homepage http://ldp.example.org --language Java --software "Your Software" --assertor http://ldp.example.org#ldp
+<pre><code>$ java -jar target/ldp-testsuite-1.0.0-SNAPSHOT-shaded.jar \
+    --server http://localhost --basic --non-rdf --earl \
+    --software "Your Software" --shortname "Yours" --language "Java" \
+    --homepage http://ldp.example.org  \
+    --assertor http://ldp.example.org \
+    --developer "Your Name"
 </code></pre>
 
 Please, submit the generated reports, (both <code>ldp-testsuite-execution-report-earl.ttl</code> and 
