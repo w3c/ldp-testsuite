@@ -64,7 +64,7 @@ it to check your implementation and send some early feedback to the <a href="htt
 <p>You can run the test suite against an arbitrary server:</p>
 
 <pre><code>mvn package
-java -jar target/ldp-testsuite-1.0.0-SNAPSHOT-shaded.jar --server http://ldp.example.org --basic
+java -jar target/ldp-testsuite-1.0.0-SNAPSHOT-shaded.jar --server http://localhost --basic
 </code></pre>
 
 <p>Use <code>--basic</code>, <code>--direct</code>, or <code>--indirect</code> for the type of container
@@ -92,12 +92,23 @@ test suite as dependency for your tests:</p>
 
 <p>And then you can programmatically execute the test suite with a code like:</p>
 
-<pre><code>LdpTestSuite testSuite = new LdpTestSuite("http://ldp.example.org");
+<pre><code>LdpTestSuite testSuite = new LdpTestSuite("http://localhost");
 testSuite.run();
 System.out.println(testSuite.getStatus());
 </code></pre>
 
 <p>For further details and advance usage, please check the <a href="api/java/index.html?org/w3/ldp/testsuite/LdpTestSuite.html">javadoc</a>.</p>
+
+<h1><a name="reporting" class="anchor" href="#contributors"><span class="octicon octicon-link"></span></a>Reporting</h1>
+
+<p>For reporting the status of a concrete implemetation, please use a command like:</p>
+
+<pre><code>java -jar target/ldp-testsuite-1.0.0-SNAPSHOT-shaded.jar --server http://ldp.example.org --basic --earl --developer "Your Name" --homepage http://ldp.example.org --language Java --software "Your Software" --assertor http://ldp.example.org#ldp
+</code></pre>
+
+Please, submit the generated reports, (both <code>ldp-testsuite-execution-report-earl.ttl</code> and <code>ldp-testsuite-execution-report.html</code> located at the <code>report</code> directory, 
+to the working group (<a href="mailto:public-ldp@w3.org?subject=LDP Implementation Report for Your Project">public-ldp@w3.org</a>) to be included to the official
+<a href="https://dvcs.w3.org/hg/ldpwg/raw-file/default/tests/reports/ldp.html">LDP Implementation Conformance Report</a>.
 
 <h1><a name="contributors" class="anchor" href="#contributors"><span class="octicon octicon-link"></span></a>Contributors</h1>
 
