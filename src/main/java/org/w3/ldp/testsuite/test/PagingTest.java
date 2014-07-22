@@ -183,6 +183,8 @@ public abstract class PagingTest extends LdpTest{
 			approval = STATUS.WG_PENDING)
 	public void testDetectChange() {
 		// TODO: Impl testDetectChange
+		// "Covers only part of the specification requirement.
+		// testPagingHeaders covers the rest."
 	}
 	
 	@Test(
@@ -200,6 +202,7 @@ public abstract class PagingTest extends LdpTest{
 			approval = STATUS.WG_PENDING)
 	public void testPagingHeaders() {
 		// TODO: Impl testPagingHeaders
+		// "Covers only part of the specification requirement. testDetectChange covers the rest."
 	}
 	
 	@Test(
@@ -213,6 +216,8 @@ public abstract class PagingTest extends LdpTest{
 			approval = STATUS.WG_PENDING)
 	public void testInSequencePaging() {
 		// TODO: Impl testInSequencePaging
+		// "Covers only part of the specification requirement.
+		// testPageAddEnd covers the rest."
 	}
 	
 	@Test(
@@ -225,6 +230,8 @@ public abstract class PagingTest extends LdpTest{
 			approval = STATUS.WG_PENDING)
 	public void testPageAddEnd() {
 		// TODO: Impl testPageAddEnd
+		// "Covers only part of the specification requirement.
+		// testInSequencePaging covers the rest."
 	}
 	
 	@Test(
@@ -363,6 +370,8 @@ public abstract class PagingTest extends LdpTest{
 			approval = STATUS.WG_PENDING)
 	public void testSortMembers() {
 		// TODO: Impl testSortMembers
+		// "Covers only part of the specification requirement.
+		// testPageAddEnd covers the rest."
 	}
 	
 	@Test(
@@ -380,6 +389,8 @@ public abstract class PagingTest extends LdpTest{
 			approval = STATUS.WG_PENDING)
 	public void testSortTriples() {
 		// TODO: Impl testSortTriples
+		// "Covers only part of the specification requirement.
+		// testSortMembers covers the rest."
 	}
 	
 	@Test(
@@ -425,6 +436,8 @@ public abstract class PagingTest extends LdpTest{
 			approval = STATUS.WG_PENDING)
 	public void testSortCollation() {
 		// TODO: Impl testSortCollation
+		// "Covers only part of the specification requirement.
+		// testRestrictCollation covers the rest."
 	}
 	
 	@Test(
@@ -437,6 +450,8 @@ public abstract class PagingTest extends LdpTest{
 			approval = STATUS.WG_PENDING)
 	public void testRestrictCollation() {
 		// TODO: Impl testRestrictCollation
+		// "Covers only part of the specification
+		// requirement. testSortCollation covers the rest."
 	}
 	
 }

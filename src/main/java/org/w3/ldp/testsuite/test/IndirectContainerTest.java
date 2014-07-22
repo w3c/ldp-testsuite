@@ -47,7 +47,11 @@ public class IndirectContainerTest extends CommonContainerTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-linktypehdr",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_APPROVED)
+			approval = STATUS.WG_APPROVED,
+			comment = "Covers only part of the specification requirement. "
+					+ "DirectContainerTest.testHttpLinkHeader and "
+					+ "BasicContainerTest.testContainerSupportsHttpLinkHeader "
+					+ "covers the rest.")
 	public void testContainerSupportsHttpLinkHeader() {
 		Response response = buildBaseRequestSpecification().header(ACCEPT, TEXT_TURTLE)
 				.expect().statusCode(HttpStatus.SC_OK).when()

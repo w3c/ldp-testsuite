@@ -91,7 +91,9 @@ public abstract class CommonResourceTest extends LdpTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-http",
 			testMethod = METHOD.MANUAL,
-			approval = STATUS.WG_APPROVED)
+			approval = STATUS.WG_APPROVED,
+			comment = "Covers only part of the specification requirement. "
+					+ "testIsHttp11Server covers the rest.")
 	public void testIsHttp11Manual() throws URISyntaxException {
 		throw new SkipNotTestableException();
 	}
@@ -104,7 +106,9 @@ public abstract class CommonResourceTest extends LdpTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-etags",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_PENDING,
+			comment = "Covers only part of the specification requirement. "
+					+ "testETagHeadersHead covers the rest.")
 	public void testETagHeadersGet() {
 		// GET requests
 		buildBaseRequestSpecification()
@@ -123,7 +127,9 @@ public abstract class CommonResourceTest extends LdpTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-etags",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_APPROVED)
+			approval = STATUS.WG_APPROVED,
+			comment = "Covers only part of the specification requirement. "
+					+ "testETagHeadersGet covers the rest.")
 	public void testETagHeadersHead() {
 		// GET requests
 		buildBaseRequestSpecification()
@@ -206,7 +212,10 @@ public abstract class CommonResourceTest extends LdpTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-precond",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_APPROVED)
+			approval = STATUS.WG_APPROVED,
+			comment = "Covers only part of the specification requirement. "
+					+ "testConditionFailedStatusCode, testPreconditionRequiredStatusCode "
+					+ "and testPutBadETag covers the rest.")
 	public void testPutRequiresIfMatch() throws URISyntaxException {
 		skipIfMethodNotAllowed(HttpMethod.PUT);
 
@@ -239,7 +248,10 @@ public abstract class CommonResourceTest extends LdpTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-precond",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_APPROVED)
+			approval = STATUS.WG_APPROVED,
+			comment = "Covers only part of the specification requirement. "
+					+ "testPutBadETag, testPreconditionRequiredStatusCode "
+					+ "and testPutRequiresIfMatch covers the rest.")
 	public void testConditionFailedStatusCode() {
 		skipIfMethodNotAllowed(HttpMethod.PUT);
 
@@ -273,7 +285,10 @@ public abstract class CommonResourceTest extends LdpTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-precond",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_APPROVED)
+			approval = STATUS.WG_APPROVED,
+			comment = "Covers only part of the specification requirement. "
+					+ "testConditionFailedStatusCode,  testPutBadETag"
+					+ "and testPutRequiresIfMatch covers the rest.")
 	public void testPreconditionRequiredStatusCode() {
 		skipIfMethodNotAllowed(HttpMethod.PUT);
 
@@ -325,7 +340,10 @@ public abstract class CommonResourceTest extends LdpTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-precond",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_APPROVED)
+			approval = STATUS.WG_APPROVED,
+			comment = "Covers only part of the specification requirement. "
+					+ "testConditionFailedStatusCode, testPreconditionRequiredStatusCode "
+					+ "and testPutRequiresIfMatch covers the rest.")
 	public void testPutBadETag() {
 		skipIfMethodNotAllowed(HttpMethod.PUT);
 

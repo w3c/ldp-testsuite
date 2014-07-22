@@ -72,6 +72,10 @@ public @interface SpecTest {
 
 	/**
 	 * Whether further comment that can be useful
+	 * The description property matches the spec requirement,
+	 * the comment can be used to describe whether the test only
+	 * covers part of the spec requirement
+	 * ie) Shared specRefUri
 	 */
 	public String comment() default "";
 	

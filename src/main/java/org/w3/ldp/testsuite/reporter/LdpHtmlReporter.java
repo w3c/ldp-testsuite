@@ -478,15 +478,29 @@ public class LdpHtmlReporter implements IReporter {
 					.write(parameters)._p();
 		}
 
-		String reference = "";
 		if (m.getMethod().getConstructorOrMethod().getMethod()
 				.getAnnotation(SpecTest.class) != null) {
-			reference = m.getMethod().getConstructorOrMethod().getMethod()
-					.getAnnotation(SpecTest.class).specRefUri();
+			SpecTest testLdp = m.getMethod().getConstructorOrMethod().getMethod()
+					.getAnnotation(SpecTest.class);
+			if(!testLdp.comment().equals(""))
+				html.p(class_("note")).b().write("NOTE: ")._b()
+					.write(testLdp.comment())._p();
+			if(testLdp.steps().length != 0)
+				writeSteps(testLdp.steps(), m.getName());
 			html.p(class_("indented")).b().write("Reference URI: ")._b()
-					.a(href(reference)).write(reference)._a()._p();
+					.a(href(testLdp.specRefUri())).write(testLdp.specRefUri())._a()._p();
+			
+			
 		}
+		
+	}
 
+	private void writeSteps(String[] steps, String title) throws IOException {
+		html.p().content("How to Run " + title);
+		html.ul();
+		for(String step : steps)
+			html.li().content(step);
+		html._ul();
 	}
 
 	private void createSkipExceptionTable(Throwable thrown) throws IOException {

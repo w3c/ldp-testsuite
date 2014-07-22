@@ -61,6 +61,11 @@ td,tr {
 	border: none
 }
 
+.note { 
+	border-style: solid;
+    border-color: gray;
+}
+
 .summary {
 	border: 1px solid black;
 	padding: 20px;

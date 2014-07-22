@@ -75,7 +75,8 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-defbaseuri",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_PENDING,
+			comment = "Covers only part of the specification requirement. ")
 	public void testRelativeUriResolutionPost() {
 		skipIfMethodNotAllowed(HttpMethod.POST);
 
@@ -300,7 +301,9 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-createrdf",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_PENDING,
+			comment = "Covers only part of the specification requirement. "
+					+ "testRequestedInteractionModelHeaders covers the rest.")
 	public void testRequestedInteractionModelCreateNotAllowed(@Optional String containerAsResource) {
 		if (containerAsResource == null)
 			throw new SkipException("containerAsResource is null");
@@ -333,7 +336,9 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-createrdf",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_PENDING,
+			comment = "Covers only part of the specification requirement. "
+					+ "testRequestedInteractionModelCreateNotAllowed covers the rest.")
 	public void testRequestedInteractionModelHeaders(@Optional String containerAsResource) {
 		if (containerAsResource == null)
 			throw new SkipException("containerAsResource is null");
@@ -548,7 +553,9 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-dontreuseuris",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_APPROVED)
+			approval = STATUS.WG_APPROVED,
+			comment = "Covers only part of the specification requirement. "
+					+ "testRestrictUriReUseNoSlug covers the rest.")
 	public void testRestrictUriReUseSlug() throws URISyntaxException {
 		testRestrictUriReUse("uritest");
 	}
@@ -559,7 +566,9 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-dontreuseuris",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_APPROVED)
+			approval = STATUS.WG_APPROVED,
+			comment = "Covers only part of the specification requirement. "
+					+ "testRestrictUriReUseSlug covers the rest.")
 	public void testRestrictUriReUseNoSlug() throws URISyntaxException {
 		testRestrictUriReUse(null);
 	}

@@ -57,6 +57,11 @@ td {
 	text-align: center
 }
 
+.note { 
+	border-style: solid;
+    border-color: gray;
+}
+
 .Passed {
 	background-color: rgb(0, 170, 0)
 }
