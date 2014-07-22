@@ -85,21 +85,6 @@ public abstract class CommonResourceTest extends LdpTest {
 	}
 
 	@Test(
-			groups = {MUST},
-			description = "LDP servers MUST at least be"
-					+ " HTTP/1.1 conformant servers [HTTP11].")
-	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-http",
-			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_EXTENSION,
-			comment = "testIsHttp11Server covers only part of the specification requirement. "
-					+ "testIsHttp11Manual covers the rest.")
-	public void testIsHttp11Server() {
-		// TODO: Consider a more extensive test for HTTP/1.1
-		buildBaseRequestSpecification().expect().statusLine(containsString("HTTP/1.1")).when().head(getResourceUri());
-	}
-
-	@Test(
 			groups = {MUST, MANUAL},
 			description = "LDP servers MUST at least be"
 					+ " HTTP/1.1 conformant servers [HTTP11].")
@@ -107,7 +92,7 @@ public abstract class CommonResourceTest extends LdpTest {
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-http",
 			testMethod = METHOD.MANUAL,
 			approval = STATUS.WG_APPROVED,
-			comment = "testIsHttp11Manual covers only part of the specification requirement. "
+			comment = "Covers only part of the specification requirement. "
 					+ "testIsHttp11Server covers the rest.")
 	public void testIsHttp11Manual() throws URISyntaxException {
 		throw new SkipNotTestableException();
@@ -122,7 +107,7 @@ public abstract class CommonResourceTest extends LdpTest {
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-etags",
 			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_PENDING,
-			comment = "testETagHeadersGet covers only part of the specification requirement. "
+			comment = "Covers only part of the specification requirement. "
 					+ "testETagHeadersHead covers the rest.")
 	public void testETagHeadersGet() {
 		// GET requests
@@ -143,7 +128,7 @@ public abstract class CommonResourceTest extends LdpTest {
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-etags",
 			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_APPROVED,
-			comment = "testETagHeadersHead covers only part of the specification requirement. "
+			comment = "Covers only part of the specification requirement. "
 					+ "testETagHeadersGet covers the rest.")
 	public void testETagHeadersHead() {
 		// GET requests
@@ -228,7 +213,7 @@ public abstract class CommonResourceTest extends LdpTest {
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-precond",
 			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_APPROVED,
-			comment = "testPutRequiresIfMatch covers only part of the specification requirement. "
+			comment = "Covers only part of the specification requirement. "
 					+ "testConditionFailedStatusCode, testPreconditionRequiredStatusCode "
 					+ "and testPutBadETag covers the rest.")
 	public void testPutRequiresIfMatch() throws URISyntaxException {
@@ -264,7 +249,7 @@ public abstract class CommonResourceTest extends LdpTest {
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-precond",
 			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_APPROVED,
-			comment = "testConditionFailedStatusCode covers only part of the specification requirement. "
+			comment = "Covers only part of the specification requirement. "
 					+ "testPutBadETag, testPreconditionRequiredStatusCode "
 					+ "and testPutRequiresIfMatch covers the rest.")
 	public void testConditionFailedStatusCode() {
@@ -301,7 +286,7 @@ public abstract class CommonResourceTest extends LdpTest {
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-precond",
 			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_APPROVED,
-			comment = "testPreconditionRequiredStatusCode covers only part of the specification requirement. "
+			comment = "Covers only part of the specification requirement. "
 					+ "testConditionFailedStatusCode,  testPutBadETag"
 					+ "and testPutRequiresIfMatch covers the rest.")
 	public void testPreconditionRequiredStatusCode() {
@@ -356,7 +341,7 @@ public abstract class CommonResourceTest extends LdpTest {
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-precond",
 			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_APPROVED,
-			comment = "testPutBadETag covers only part of the specification requirement. "
+			comment = "Covers only part of the specification requirement. "
 					+ "testConditionFailedStatusCode, testPreconditionRequiredStatusCode "
 					+ "and testPutRequiresIfMatch covers the rest.")
 	public void testPutBadETag() {

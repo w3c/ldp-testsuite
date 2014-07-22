@@ -48,6 +48,8 @@ public class LdpTestSuite {
 	public static final String NAME = "LDP Test Suite";
 
 	public static final String SPEC_URI = "http://www.w3.org/TR/ldp";
+	
+	static final String[] EARLDEPEDENTARGS = {"software", "developer", "language", "homepage", "assertor", "shortname"};
 
 	private final TestNG testng;
 
@@ -157,31 +159,18 @@ public class LdpTestSuite {
 		
 		if (options.hasOption("earl")) {
 			testng.addListener(new LdpEarlReporter());
-
-			if (options.hasOptionWithValue("software"))
-				parameters.put("software", options.getOptionValue("software"));
-			else
-				printEarlUsage();
-	
-			if (options.hasOptionWithValue("developer"))
-				parameters.put("developer", options.getOptionValue("developer"));
-			else
-				printEarlUsage();
 			
-			if (options.hasOptionWithValue("language"))
-				parameters.put("language", options.getOptionValue("language"));
-			else
-				printEarlUsage();
-	
-			if (options.hasOptionWithValue("homepage"))
-				parameters.put("homepage", options.getOptionValue("homepage"));
-			else
-				printEarlUsage();
+			// required --earl args
+			for (String arg: EARLDEPEDENTARGS) {
+				if (options.hasOptionWithValue(arg))
+					parameters.put(arg, options.getOptionValue(arg));
+				else
+					printEarlUsage(arg);
+			}
 			
-			if (options.hasOptionWithValue("assertor"))
-				parameters.put("assertor", options.getOptionValue("assertor"));
-			else
-				printEarlUsage();
+			// optional --earl args
+			if (options.hasOptionWithValue("mbox"))
+				parameters.put("mbox", options.getOptionValue("mbox"));
 		
 		}
 
@@ -363,6 +352,10 @@ public class LdpTestSuite {
 		options.addOption(OptionBuilder.withLongOpt("assertor")
 				.withDescription("the URL of the person or agent that asserts the results: required with --earl")
 				.hasArg().withArgName("assertor").isRequired(false).create());
+		
+		options.addOption(OptionBuilder.withLongOpt("shortname")
+				.withDescription("a simple short name: required with --earl")
+				.hasArg().withArgName("shortname").isRequired(false).create());
 		// end of --earl dependent values
 		
 
@@ -467,10 +460,10 @@ public class LdpTestSuite {
 		System.exit(-1);
 	}
 	
-	private static void printEarlUsage() {
-		String[] earlDepArgs = {"software", "developer", "language", "homepage", "assertor"};
-		System.out.println("--earl depends on additional args:");
-		for (String arg: earlDepArgs) {
+	private static void printEarlUsage(String missingArg) {
+		System.out.println("--earl missing arg: "+missingArg);
+		System.out.println("Required additional args:");
+		for (String arg: EARLDEPEDENTARGS) {
 			System.out.println("\t--"+arg);
 		}
 		System.exit(1);

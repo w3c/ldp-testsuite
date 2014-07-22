@@ -100,7 +100,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-createbins",
 			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_APPROVED,
-			comment = "testPostNonRDFSource covers only part of the specification requirement. "
+			comment = "Covers only part of the specification requirement. "
 					+ "testPostResourceAndGetFromContainer covers the rest.")
 	public void testPostNonRDFSource() throws IOException {
 		// Test constants
@@ -123,7 +123,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-createbins",
 			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_PENDING,
-			comment = "testPostResourceAndGetFromContainer covers only part of the specification requirement. "
+			comment = "Covers only part of the specification requirement. "
 					+ "testPostNonRDFSource covers the rest.")
 	public void testPostResourceAndGetFromContainer() throws IOException {
 		// Test constants

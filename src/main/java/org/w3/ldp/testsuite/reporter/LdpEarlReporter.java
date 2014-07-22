@@ -89,7 +89,7 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 
 			homepage = suite.getParameter("homepage");
 			assertor = suite.getParameter("assertor");
-			subjectName = suite.getParameter("subjectName");
+			subjectName = suite.getParameter("subjectname");
 
 			softwareTitle = suite.getParameter("software");
 			subjectDev = suite.getParameter("developer");
