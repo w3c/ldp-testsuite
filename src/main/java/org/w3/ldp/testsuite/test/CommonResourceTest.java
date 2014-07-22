@@ -85,19 +85,6 @@ public abstract class CommonResourceTest extends LdpTest {
 	}
 
 	@Test(
-			groups = {MUST},
-			description = "LDP servers MUST at least be"
-					+ " HTTP/1.1 conformant servers [HTTP11].")
-	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-http",
-			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_EXTENSION)
-	public void testIsHttp11Server() {
-		// TODO: Consider a more extensive test for HTTP/1.1
-		buildBaseRequestSpecification().expect().statusLine(containsString("HTTP/1.1")).when().head(getResourceUri());
-	}
-
-	@Test(
 			groups = {MUST, MANUAL},
 			description = "LDP servers MUST at least be"
 					+ " HTTP/1.1 conformant servers [HTTP11].")
