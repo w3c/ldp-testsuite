@@ -55,6 +55,7 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 	private static String language;
 	private static String mailBox;
 	private static String description;
+	private static String shortname;
 	
 	private static Property ranAsClass = ResourceFactory
 			.createProperty(LDP.LDPT_NAMESPACE + "ranAsClass");
@@ -97,6 +98,8 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 
 			mailBox = suite.getParameter("mbox");
 			description = suite.getParameter("description");
+			
+			shortname = suite.getParameter("shortname");
 
 			// Make the Assertor Resource
 			Resource assertorRes = model.createResource(assertor);
@@ -107,11 +110,10 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 
 			/* Developer Resource (Person) */
 			Resource personResource = model.createResource(null, FOAF.Person);
-			if (mailBox != null && subjectDev != null) {
-				personResource.addProperty(FOAF.mbox, mailBox); // FIXME: Add in
-																// the mailto
+			if (mailBox != null)
+				personResource.addProperty(FOAF.mbox, mailBox);
+			if(subjectDev != null) 
 				personResource.addProperty(FOAF.name, subjectDev);
-			}
 
 			assertorRes.addProperty(DOAP.developer, personResource);
 
@@ -119,7 +121,10 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 			Resource softResource = model
 					.createResource(assertor, Earl.Software);
 			if (softwareTitle != null)
-				model.createResource(null, softResource);
+				softResource.addProperty(DCTerms.title, softwareTitle);
+			
+			if(shortname != null)
+				softResource.addProperty(DOAP.name, shortname);
 
 			/* Add properties to the Test Subject Resource */
 
