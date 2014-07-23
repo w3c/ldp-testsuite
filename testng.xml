@@ -22,7 +22,7 @@
     <parameter name="language" value = "Java" />
     <parameter name="homepage" value ="http://example.org/Lyo_impl" />
     <parameter name="assertor" value="http://example.org/lyo" />
-    <parameter name="shortName" value="LDP Ref Impl" />
+    <parameter name="shortname" value="LDP Ref Impl" />
     <parameter name="software" value="Reference Implementation" />
     <parameter name="mbox" value="jdoe@example.org" />
     <parameter name="developer" value="Jane Doe" />

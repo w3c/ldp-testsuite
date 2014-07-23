@@ -50,7 +50,6 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 	private static String softwareTitle;
 	private static String subjectDev;
 	private static String homepage;
-	private static String subjectName;
 	private static String assertor;
 	private static String language;
 	private static String mailBox;
@@ -90,7 +89,6 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 
 			homepage = suite.getParameter("homepage");
 			assertor = suite.getParameter("assertor");
-			subjectName = suite.getParameter("subjectname");
 
 			softwareTitle = suite.getParameter("software");
 			subjectDev = suite.getParameter("developer");
@@ -135,9 +133,6 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 
 			if (homepage != null)
 				subjectResource.addProperty(DOAP.homepage, homepage);
-
-			if (subjectName != null)
-				subjectResource.addProperty(DOAP.name, subjectName);
 
 			if (language != null)
 				subjectResource
