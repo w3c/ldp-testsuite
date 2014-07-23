@@ -32,7 +32,6 @@ import org.w3.ldp.testsuite.BuildProperties;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
-import org.w3.ldp.testsuite.paging.PagingTest;
 import org.w3.ldp.testsuite.test.BasicContainerTest;
 import org.w3.ldp.testsuite.test.CommonContainerTest;
 import org.w3.ldp.testsuite.test.CommonResourceTest;
@@ -46,8 +45,6 @@ public class LdpTestCaseReporter {
 	private static HtmlCanvas html;
 
 	private static boolean initialRead;
-	
-	private static boolean runPaging = false;
 
 	private static StringWriter graphs = new StringWriter();
 
@@ -99,7 +96,16 @@ public class LdpTestCaseReporter {
 	private static Class<CommonContainerTest> commonContainerTest = CommonContainerTest.class;
 	private static Class<CommonResourceTest> commonResourceTest = CommonResourceTest.class;
 	private static Class<NonRDFSourceTest> nonRdfSourceTest = NonRDFSourceTest.class;
-	private static Class<PagingTest> pagingTest = PagingTest.class;
+	
+	@SuppressWarnings("rawtypes")
+	private static Class[] defaultTestClasses = {
+		rdfSourceTest,
+		bcTest,
+		commonContainerTest,
+		commonResourceTest,
+		nonRdfSourceTest,
+		indirectContainerTest,
+		directContianerTest};
 
 	private static int[] extnd = {0, 0, 0};
 	private static int[] deprctd  = {0, 0, 0};
@@ -108,26 +114,36 @@ public class LdpTestCaseReporter {
 	private static int[] client = {0, 0, 0};
 	private static int[] approve = {0, 0, 0};
 	private static int[] clarify = {0, 0, 0};
+	
+	@SuppressWarnings("rawtypes")
+	protected Class[] testClasses;
+	
+	public LdpTestCaseReporter() {
+		this.testClasses = defaultTestClasses;
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public LdpTestCaseReporter(Class[] inTestClasses) {
+		this.testClasses = inTestClasses;
+	}
 
 	public static void main(String[] args) throws IOException {
-		if(args.length == 1 && args[0].equals("runPagingTest")){
-			runPaging = true;
-		} else {
-			System.out.println("Optional Usage: java org.w3.ldp.testsuite.reporter.LdpTestCaseReporter <runPagingTest>");
-			System.out.println("Run arguments if you wish to run coverage report with Paging Tests.");
-			System.out.println();
-		}
+		LdpTestCaseReporter reporter = new LdpTestCaseReporter();
+		reporter.generateReport();
+	}
+	
+	public void generateReport() throws IOException {
 		System.out.println("Executing coverage report...");
 		initialRead = false;
-		firstRead();
-		makeReport();
+		this.firstRead();
+		this.makeReport();
 		endReport();
 		createWriter("report", html.toHtml());
 		System.out.println("Done!");
-
 	}
 
-	private static void makeReport() throws IOException {
+	@SuppressWarnings("unchecked")
+	protected void makeReport() throws IOException {
 		html = new HtmlCanvas();
 		html.html().head();
 		writeCss();
@@ -148,15 +164,9 @@ public class LdpTestCaseReporter {
 		createSummaryReport();
 		toTop();
 
-		acquireTestCases(rdfSourceTest);
-		acquireTestCases(bcTest);
-		acquireTestCases(commonContainerTest);
-		acquireTestCases(commonResourceTest);
-		acquireTestCases(nonRdfSourceTest);
-		acquireTestCases(indirectContainerTest);
-		acquireTestCases(directContianerTest);
-		if(runPaging)
-			acquireTestCases(pagingTest);
+		for (@SuppressWarnings("rawtypes") Class testcaseClass: testClasses) {
+			acquireTestCases(testcaseClass);
+		}
 	}
 
 	private static void endReport() throws IOException {
@@ -168,7 +178,7 @@ public class LdpTestCaseReporter {
 		html._body()._html();
 	}
 
-	private static void createSummaryReport() throws IOException {
+	protected void createSummaryReport() throws IOException {
 
 		initialRead = true;
 		html.h2().content("Summary of Test Methods");
@@ -327,19 +337,15 @@ public class LdpTestCaseReporter {
 		return total;
 	}
 
-	private static void firstRead() throws IOException {
-		acquireTestCases(rdfSourceTest);
-		acquireTestCases(bcTest);
-		acquireTestCases(commonContainerTest);
-		acquireTestCases(commonResourceTest);
-		acquireTestCases(nonRdfSourceTest);
-		acquireTestCases(indirectContainerTest);
-		acquireTestCases(directContianerTest);
-		if(runPaging)
-			acquireTestCases(pagingTest);
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	protected void firstRead() throws IOException {
+		for (Class testcaseClass: testClasses) {
+			acquireTestCases(testcaseClass);
+		}
 	}
 
-	private static void generateListOfTestCases() throws IOException {
+	@SuppressWarnings("unchecked")
+	protected void generateListOfTestCases() throws IOException {
 		html.h2(id("tobeapproved")).content("Test Cases Ready for Approval");
 
 		if (readyToBeApproved.size() == 0) {
@@ -367,15 +373,9 @@ public class LdpTestCaseReporter {
 
 		html.h2().content("Implemented Test Classes");
 
-		writeTestTables(rdfSourceTest);
-		writeTestTables(bcTest);
-		writeTestTables(commonContainerTest);
-		writeTestTables(commonResourceTest);
-		writeTestTables(indirectContainerTest);
-		writeTestTables(directContianerTest);
-		writeTestTables(nonRdfSourceTest);
-		if(runPaging)
-			writeTestTables(pagingTest);
+		for (@SuppressWarnings("rawtypes") Class testcaseClass: testClasses) {
+			writeTestTables(testcaseClass);
+		}
 
 		toTop();
 
