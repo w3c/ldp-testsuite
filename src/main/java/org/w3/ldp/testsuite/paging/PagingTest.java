@@ -1,4 +1,4 @@
-package org.w3.ldp.testsuite.test;
+package org.w3.ldp.testsuite.paging;
 
 import org.testng.annotations.Test;
 import org.w3.ldp.testsuite.LdpTestSuite;
