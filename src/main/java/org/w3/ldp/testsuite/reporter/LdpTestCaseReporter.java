@@ -32,6 +32,7 @@ import org.w3.ldp.testsuite.BuildProperties;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
+import org.w3.ldp.testsuite.paging.PagingTest;
 import org.w3.ldp.testsuite.test.BasicContainerTest;
 import org.w3.ldp.testsuite.test.CommonContainerTest;
 import org.w3.ldp.testsuite.test.CommonResourceTest;
@@ -45,6 +46,8 @@ public class LdpTestCaseReporter {
 	private static HtmlCanvas html;
 
 	private static boolean initialRead;
+	
+	private static boolean runPaging = false;
 
 	private static StringWriter graphs = new StringWriter();
 
@@ -96,6 +99,7 @@ public class LdpTestCaseReporter {
 	private static Class<CommonContainerTest> commonContainerTest = CommonContainerTest.class;
 	private static Class<CommonResourceTest> commonResourceTest = CommonResourceTest.class;
 	private static Class<NonRDFSourceTest> nonRdfSourceTest = NonRDFSourceTest.class;
+	private static Class<PagingTest> pagingTest = PagingTest.class;
 
 	private static int[] extnd = {0, 0, 0};
 	private static int[] deprctd  = {0, 0, 0};
@@ -106,11 +110,21 @@ public class LdpTestCaseReporter {
 	private static int[] clarify = {0, 0, 0};
 
 	public static void main(String[] args) throws IOException {
+		if(args.length == 1 && args[0].equals("runPagingTest")){
+			runPaging = true;
+		} else {
+			System.out.println("Optional Usage: java org.w3.ldp.testsuite.reporter.LdpTestCaseReporter <runPagingTest>");
+			System.out.println("Run arguments if you wish to run coverage report with Paging Tests.");
+			System.out.println();
+		}
+		System.out.println("Executing coverage report...");
 		initialRead = false;
 		firstRead();
 		makeReport();
 		endReport();
 		createWriter("report", html.toHtml());
+		System.out.println("Done!");
+
 	}
 
 	private static void makeReport() throws IOException {
@@ -141,6 +155,8 @@ public class LdpTestCaseReporter {
 		acquireTestCases(nonRdfSourceTest);
 		acquireTestCases(indirectContainerTest);
 		acquireTestCases(directContianerTest);
+		if(runPaging)
+			acquireTestCases(pagingTest);
 	}
 
 	private static void endReport() throws IOException {
@@ -319,6 +335,8 @@ public class LdpTestCaseReporter {
 		acquireTestCases(nonRdfSourceTest);
 		acquireTestCases(indirectContainerTest);
 		acquireTestCases(directContianerTest);
+		if(runPaging)
+			acquireTestCases(pagingTest);
 	}
 
 	private static void generateListOfTestCases() throws IOException {
@@ -356,6 +374,8 @@ public class LdpTestCaseReporter {
 		writeTestTables(indirectContainerTest);
 		writeTestTables(directContianerTest);
 		writeTestTables(nonRdfSourceTest);
+		if(runPaging)
+			writeTestTables(pagingTest);
 
 		toTop();
 
