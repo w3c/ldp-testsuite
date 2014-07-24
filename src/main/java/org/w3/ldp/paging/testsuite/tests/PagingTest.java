@@ -9,7 +9,7 @@ import org.w3.ldp.testsuite.test.LdpTest;
 
 public abstract class PagingTest extends LdpTest{
 	
-	private static final String PAGING = "PAGING";
+	public static final String PAGING = "PAGING";
 
 	@Test(
 			groups = {MUST, PAGING},

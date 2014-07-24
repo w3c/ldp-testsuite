@@ -20,8 +20,6 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 import org.testng.IMethodInstance;
 import org.testng.IMethodInterceptor;
 import org.testng.ITestContext;
@@ -29,6 +27,7 @@ import org.testng.TestNG;
 import org.testng.xml.XmlClass;
 import org.testng.xml.XmlSuite;
 import org.testng.xml.XmlTest;
+import org.w3.ldp.paging.testsuite.tests.PagingTest;
 import org.w3.ldp.testsuite.reporter.LdpEarlReporter;
 import org.w3.ldp.testsuite.reporter.LdpHtmlReporter;
 import org.w3.ldp.testsuite.reporter.LdpTestListener;
@@ -246,6 +245,11 @@ public class LdpTestSuite {
 			classes.add(new XmlClass("org.w3.ldp.testsuite.test.NonRDFSourceTest"));
 			testsuite.addIncludedGroup(LdpTest.NR);
 		}
+		
+		if (options.hasOption("paging")) {
+			classes.add(new XmlClass("org.w3.ldp.paging.testsuite.tests.PagingTest"));
+			testsuite.addIncludedGroup(PagingTest.PAGING);
+		}
 
 		test.setXmlClasses(classes);
 
@@ -308,101 +312,7 @@ public class LdpTestSuite {
 		return testng.getStatus();
 	}
 
-	@SuppressWarnings("static-access")
-	public static void main(String[] args) {
-		// Disable log4j to avoid console warnings from the Jena logger.
-		Logger.getRootLogger().setLevel(Level.OFF);
-
-		Options options = new Options();
-
-		options.addOption(OptionBuilder.withLongOpt("server")
-				.withDescription("server url to run the test suite").hasArg()
-				.withArgName("server").isRequired().create());
-
-		options.addOption(OptionBuilder.withLongOpt("auth")
-				.withDescription("server basic authentication credentials following the syntax username:password").hasArg()
-				.withArgName("username:password").create());
-		
-		options.addOption(OptionBuilder.withLongOpt("earl")
-				.withDescription("General EARL ttl file").withArgName("earl")
-				.isRequired(false).create());
-		
-		// --earl dependent values
-		options.addOption(OptionBuilder.withLongOpt("software")
-				.withDescription("title of the software test suite runs on: required with --earl")
-				.hasArg().withArgName("software").isRequired(false).create());
-
-		options.addOption(OptionBuilder.withLongOpt("developer")
-				.withDescription("the name of the software developer: required with --earl").hasArg()
-				.withArgName("dev-name").isRequired(false).create());
-
-		options.addOption(OptionBuilder.withLongOpt("mbox")
-				.withDescription("email of the sofware developer: optional with --earl")
-				.hasArg().withArgName("mbox").isRequired(false).create());
-
-		options.addOption(OptionBuilder
-				.withLongOpt("language")
-				.withDescription("primary programming language of the software: required with --earl")
-				.hasArg().withArgName("language").isRequired(false).create());
-
-		options.addOption(OptionBuilder.withLongOpt("homepage")
-				.withDescription("the homepage of the suite runs against: required with --earl")
-				.hasArg().withArgName("homepage").isRequired(false).create());
-		
-		options.addOption(OptionBuilder.withLongOpt("assertor")
-				.withDescription("the URL of the person or agent that asserts the results: required with --earl")
-				.hasArg().withArgName("assertor").isRequired(false).create());
-		
-		options.addOption(OptionBuilder.withLongOpt("shortname")
-				.withDescription("a simple short name: required with --earl")
-				.hasArg().withArgName("shortname").isRequired(false).create());
-		// end of --earl dependent values
-		
-
-
-		OptionGroup containerType = new OptionGroup();
-		containerType.addOption(OptionBuilder.withLongOpt("basic")
-				.withDescription("the server url is a basic container")
-				.create());
-		containerType.addOption(OptionBuilder.withLongOpt("direct")
-				.withDescription("the server url is a direct container")
-				.create());
-		containerType.addOption(OptionBuilder.withLongOpt("indirect")
-				.withDescription("the server url is an indirect container")
-				.create());
-		containerType.setRequired(true);
-		options.addOptionGroup(containerType);
-
-		options.addOption(OptionBuilder.withLongOpt("non-rdf")
-				.withDescription("include LDP-NR testing").create());
-
-		options.addOption(OptionBuilder.withLongOpt("test")
-				.withDescription("which tests to run (* is a wildcard)")
-				.hasArgs().withArgName("test names")
-				.create());
-
-		options.addOption(OptionBuilder.withLongOpt("includedGroups")
-				.withDescription("test groups to run, separated by a space").hasArgs()
-				.withArgName("includedGroups").isRequired(false)
-				.create());
-		
-		options.addOption(OptionBuilder.withLongOpt("excludedGroups")
-				.withDescription("test groups to not run, separated by a space").hasArgs()
-				.withArgName("excludedGroups").isRequired(false)
-				.create());
-
-		options.addOption(OptionBuilder.withLongOpt("cont-res")
-				.withDescription("url of a container with interaction model of a resource").hasArg()
-				.withArgName("cont-res").create());
-
-		options.addOption(OptionBuilder.withLongOpt("read-only-prop")
-				.withDescription("a read-only property to test error conditions")
-				.hasArg().withArgName("uri")
-				.create());
-
-		options.addOption(OptionBuilder.withLongOpt("help")
-				.withDescription("prints this usage help").create());
-
+	public static void executeTestSuite(Options options, String[] args){
 		CommandLineParser parser = new BasicParser();
 		CommandLine cmd = null;
 		try {
@@ -468,5 +378,86 @@ public class LdpTestSuite {
 		}
 		System.exit(1);
 	}
+	
+	@SuppressWarnings("static-access")
+	public static OptionGroup addCommonOptions() {
+		OptionGroup common = new OptionGroup();
+		common.addOption(OptionBuilder.withLongOpt("server")
+				.withDescription("server url to run the test suite").hasArg()
+				.withArgName("server").isRequired().create());
 
+		common.addOption(OptionBuilder.withLongOpt("auth")
+				.withDescription("server basic authentication credentials following the syntax username:password").hasArg()
+				.withArgName("username:password").create());
+		
+		common.addOption(OptionBuilder.withLongOpt("earl")
+				.withDescription("General EARL ttl file").withArgName("earl")
+				.isRequired(false).create());
+		
+		common.addOption(OptionBuilder.withLongOpt("includedGroups")
+				.withDescription("test groups to run, separated by a space").hasArgs()
+				.withArgName("includedGroups").isRequired(false)
+				.create());
+		
+		common.addOption(OptionBuilder.withLongOpt("excludedGroups")
+				.withDescription("test groups to not run, separated by a space").hasArgs()
+				.withArgName("excludedGroups").isRequired(false)
+				.create());
+		
+		common.addOption(OptionBuilder.withLongOpt("test")
+				.withDescription("which tests to run (* is a wildcard)")
+				.hasArgs().withArgName("test names")
+				.create());
+		
+		common.addOption(OptionBuilder.withLongOpt("help")
+				.withDescription("prints this usage help").create());
+		return common;
+	}
+	
+	@SuppressWarnings("static-access")
+	public static OptionGroup addEarlOptions() {
+		OptionGroup earl = new OptionGroup();
+		// --earl dependent values
+		earl.addOption(OptionBuilder
+				.withLongOpt("software")
+				.withDescription(
+						"title of the software test suite runs on: required with --earl")
+				.hasArg().withArgName("software").isRequired(false).create());
+
+		earl.addOption(OptionBuilder
+				.withLongOpt("developer")
+				.withDescription(
+						"the name of the software developer: required with --earl")
+				.hasArg().withArgName("dev-name").isRequired(false).create());
+
+		earl.addOption(OptionBuilder
+				.withLongOpt("mbox")
+				.withDescription(
+						"email of the sofware developer: optional with --earl")
+				.hasArg().withArgName("mbox").isRequired(false).create());
+
+		earl.addOption(OptionBuilder
+				.withLongOpt("language")
+				.withDescription(
+						"primary programming language of the software: required with --earl")
+				.hasArg().withArgName("language").isRequired(false).create());
+
+		earl.addOption(OptionBuilder
+				.withLongOpt("homepage")
+				.withDescription(
+						"the homepage of the suite runs against: required with --earl")
+				.hasArg().withArgName("homepage").isRequired(false).create());
+
+		earl.addOption(OptionBuilder
+				.withLongOpt("assertor")
+				.withDescription(
+						"the URL of the person or agent that asserts the results: required with --earl")
+				.hasArg().withArgName("assertor").isRequired(false).create());
+
+		earl.addOption(OptionBuilder.withLongOpt("shortname")
+				.withDescription("a simple short name: required with --earl")
+				.hasArg().withArgName("shortname").isRequired(false).create());
+		// end of --earl dependent values
+		return earl;
+	}
 }
