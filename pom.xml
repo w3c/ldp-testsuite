@@ -45,7 +45,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <app.main.class>org.w3.ldp.testsuite.LdpTestSuite</app.main.class>
+        <app.main.class>org.w3.ldp.testsuite.RunLdpTestSuite</app.main.class>
     </properties>
 
     <build>
