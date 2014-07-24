@@ -23,7 +23,7 @@ public class RunPagingTest {
 	@SuppressWarnings("static-access")
 	protected static void addPagingOption() {
 		options.addOption(OptionBuilder.withLongOpt("paging")
-				.withDescription("inclue paging tests").create());
+				.withDescription("include paging tests").create());
 	}
 	
 }
