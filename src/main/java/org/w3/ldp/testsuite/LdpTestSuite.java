@@ -51,6 +51,8 @@ public class LdpTestSuite {
 	static final String[] EARLDEPEDENTARGS = {"software", "developer", "language", "homepage", "assertor", "shortname"};
 
 	private final TestNG testng;
+	
+	private static boolean page = false;
 
 	enum ContainerType {
 		BASIC, DIRECT, INDIRECT
@@ -246,7 +248,7 @@ public class LdpTestSuite {
 			testsuite.addIncludedGroup(LdpTest.NR);
 		}
 		
-		if (options.hasOption("paging")) {
+		if (page) {
 			classes.add(new XmlClass("org.w3.ldp.paging.testsuite.tests.PagingTest"));
 			testsuite.addIncludedGroup(PagingTest.PAGING);
 		}
@@ -312,7 +314,9 @@ public class LdpTestSuite {
 		return testng.getStatus();
 	}
 
-	public static void executeTestSuite(Options options, String[] args){
+	public static void executeTestSuite(Options options, String[] args, boolean runPage){
+		if(runPage)
+			page = true;
 		CommandLineParser parser = new BasicParser();
 		CommandLine cmd = null;
 		try {
