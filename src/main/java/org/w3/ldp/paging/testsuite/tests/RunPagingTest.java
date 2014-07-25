@@ -15,7 +15,7 @@ public class RunPagingTest {
 		options.addOptionGroup(LdpTestSuite.addCommonOptions());
 		options.addOptionGroup(LdpTestSuite.addEarlOptions());
 
-		LdpTestSuite.executeTestSuite(options, args, true);
+		LdpTestSuite.executeTestSuite(options, args, PagingTest.class);
 	}
 	
 }
