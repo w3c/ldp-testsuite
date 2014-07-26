@@ -27,7 +27,6 @@ import org.testng.TestNG;
 import org.testng.xml.XmlClass;
 import org.testng.xml.XmlSuite;
 import org.testng.xml.XmlTest;
-import org.w3.ldp.paging.testsuite.tests.PagingTest;
 import org.w3.ldp.testsuite.reporter.LdpEarlReporter;
 import org.w3.ldp.testsuite.reporter.LdpHtmlReporter;
 import org.w3.ldp.testsuite.reporter.LdpTestListener;
@@ -51,6 +50,8 @@ public class LdpTestSuite {
 	static final String[] EARLDEPEDENTARGS = {"software", "developer", "language", "homepage", "assertor", "shortname"};
 
 	private final TestNG testng;
+	
+	private static Class<?> classAdd; //if other test types should be added in
 
 	enum ContainerType {
 		BASIC, DIRECT, INDIRECT
@@ -218,6 +219,8 @@ public class LdpTestSuite {
 				classes.add(new XmlClass("org.w3.ldp.testsuite.test.IndirectContainerTest"));
 				parameters.put("indirectContainer", server);
 				break;
+			default:
+				break;
 		}
 
 		final String postTtl;
@@ -246,10 +249,8 @@ public class LdpTestSuite {
 			testsuite.addIncludedGroup(LdpTest.NR);
 		}
 		
-		if (options.hasOption("paging")) {
-			classes.add(new XmlClass("org.w3.ldp.paging.testsuite.tests.PagingTest"));
-			testsuite.addIncludedGroup(PagingTest.PAGING);
-		}
+		if(classAdd != null) // pass in class to test
+				classes.add(new XmlClass(classAdd.getCanonicalName()));
 
 		test.setXmlClasses(classes);
 
@@ -312,7 +313,8 @@ public class LdpTestSuite {
 		return testng.getStatus();
 	}
 
-	public static void executeTestSuite(Options options, String[] args){
+	public static void executeTestSuite(Options options, String[] args, Class<?> className){
+		classAdd = className;
 		CommandLineParser parser = new BasicParser();
 		CommandLine cmd = null;
 		try {

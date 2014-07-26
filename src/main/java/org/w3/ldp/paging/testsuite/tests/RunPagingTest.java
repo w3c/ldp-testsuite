@@ -1,6 +1,5 @@
 package org.w3.ldp.paging.testsuite.tests;
 
-import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -14,16 +13,9 @@ public class RunPagingTest {
 		Logger.getRootLogger().setLevel(Level.OFF);
 		
 		options.addOptionGroup(LdpTestSuite.addCommonOptions());
-		options.addOptionGroup(LdpTestSuite.addEarlOptions());	
-		addPagingOption();
+		options.addOptionGroup(LdpTestSuite.addEarlOptions());
 
-		LdpTestSuite.executeTestSuite(options, args);
-	}
-	
-	@SuppressWarnings("static-access")
-	protected static void addPagingOption() {
-		options.addOption(OptionBuilder.withLongOpt("paging")
-				.withDescription("include paging tests").create());
+		LdpTestSuite.executeTestSuite(options, args, PagingTest.class);
 	}
 	
 }

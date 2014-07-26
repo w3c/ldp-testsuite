@@ -22,7 +22,7 @@ public class RunLdpTestSuite {
 		addContResOption();
 		addReadOnlyOption();
 
-		LdpTestSuite.executeTestSuite(options, args);
+		LdpTestSuite.executeTestSuite(options, args, null); // null since it will just run the normal suite
 	}
 	
 	@SuppressWarnings("static-access")
