@@ -3,6 +3,7 @@ package org.w3.ldp.testsuite.test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.text.IsEmptyString.isEmptyOrNullString;
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 import static org.w3.ldp.testsuite.matcher.HeaderMatchers.isValidEntityTag;
@@ -554,12 +555,9 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		assertNotNull(resource, "Expected to location resource in response for "+resourceUri);
 
 		// Update the model with updated title
-		StmtIterator propsOrig = resource.listProperties(DCTerms.title);
-		int origNumTitles = propsOrig.toSet().size();
-		if (propsOrig.hasNext()) {
-			resource.removeAll(DCTerms.title);
-		}
-		final String UPDATED_TITLE = "This resources content has been replaced";
+		resource.removeAll(DCTerms.title);
+		// Make sure the title is unique
+		final String UPDATED_TITLE = "This resources content has been replaced (" + System.currentTimeMillis() + ")";
 		originalModel.add(resource, DCTerms.title, UPDATED_TITLE);
 
 		response = buildBaseRequestSpecification()
@@ -568,7 +566,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 					.body(originalModel, new RdfObjectMapper(resourceUri)) // relative URI
 				.when()
 					.put(resourceUri);
-		
+
 		if (!isSuccessful().matches(response.getStatusCode())) {
 			if (continueOnError) {
 				throw new SkipException("Skipping test because the PUT failed. The server may have restrictions on its content.");
@@ -601,11 +599,10 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		int diffTitlePropSize = diffTitleProps.toSet().size();
 		
 		// First make sure the number of statement's for 'title' is as expected.
-		if (origNumTitles > 0) {
-			assertTrue(diffTitlePropSize != origNumTitles-1, "Updated resource contains additional unexspected dcterms:title changes.");
-		}
+		assertEquals(diffTitlePropSize, 1, "Updated resource contains additional unexpected dcterms:title changes.");
+
 		// Next make sure there wheren't other statement's unexpectedly added.
-		assertTrue(diffSize - diffTitlePropSize > 0, "Additional properties were unintentially added, a side-effect.");
+		assertEquals(diffSize - diffTitlePropSize, 0, "Additional properties were unintentionally added, a side-effect.");
 
 		// Replace the resource with its original content to clean up.
 		/* TODO: Not realistic to set back, as if read-only property (like dcterms:modified), the previous modification would be different
