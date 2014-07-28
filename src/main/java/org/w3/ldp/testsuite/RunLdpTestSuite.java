@@ -1,10 +1,17 @@
 package org.w3.ldp.testsuite;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.OptionGroup;
 import org.apache.commons.cli.Options;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.testng.xml.XmlClass;
+import org.w3.ldp.testsuite.LdpTestSuite.ContainerType;
+import org.w3.ldp.testsuite.util.OptionsHandler;
 
 public class RunLdpTestSuite {
 
@@ -22,7 +29,39 @@ public class RunLdpTestSuite {
 		addContResOption();
 		addReadOnlyOption();
 
-		LdpTestSuite.executeTestSuite(options, args, null); // null since it will just run the normal suite
+		// Add classes we want to test
+		final List<XmlClass> classes = new ArrayList<>();
+		
+		ArrayList<String> params = new ArrayList<>();
+
+		ContainerType type = getSelectedType(LdpTestSuite.getOptionsHandler(LdpTestSuite
+				.getCommandLine(options, args, null)));
+		switch (type) {
+		case BASIC:
+			classes.add(new XmlClass("org.w3.ldp.testsuite.test.BasicContainerTest"));
+			params.add("basicContainer");
+			break;
+		case DIRECT:
+			classes.add(new XmlClass("org.w3.ldp.testsuite.test.DirectContainerTest"));
+			params.add("directContainer");
+			break;
+		case INDIRECT:
+			classes.add(new XmlClass("org.w3.ldp.testsuite.test.IndirectContainerTest"));
+			params.add("indirectContainer");
+			break;
+		}
+		LdpTestSuite.addParameter(params);
+		LdpTestSuite.executeTestSuite(LdpTestSuite.getCommandLine(options, args, classes), options);
+	}
+	
+	private static ContainerType getSelectedType(OptionsHandler options) {
+		if (options.hasOption("direct")) {
+			return ContainerType.DIRECT;
+		} else if (options.hasOption("indirect")) {
+			return ContainerType.INDIRECT;
+		} else {
+			return ContainerType.BASIC;
+		}
 	}
 	
 	@SuppressWarnings("static-access")

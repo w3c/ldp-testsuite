@@ -51,7 +51,10 @@ public class LdpTestSuite {
 
 	private final TestNG testng;
 	
-	private static Class<?> classAdd; //if other test types should be added in
+	private static List<XmlClass> classList; // for test types to add in
+//	private static Options optionUse;
+	
+	private static ArrayList<String> addParams = new ArrayList<String>();
 
 	enum ContainerType {
 		BASIC, DIRECT, INDIRECT
@@ -76,6 +79,10 @@ public class LdpTestSuite {
 		// see: http://testng.org/doc/documentation-main.html#running-testng-programmatically
 		testng = new TestNG();
 		this.setupSuite(new OptionsHandler(cmd));
+	}
+	
+	public static OptionsHandler getOptionsHandler(CommandLine options) {
+		return new OptionsHandler(options);
 	}
 
 	public void checkUriScheme(String uri) throws URISyntaxException {
@@ -119,10 +126,14 @@ public class LdpTestSuite {
 		test.setName("W3C Linked Data Platform Tests");
 
 		// Add any parameters that you want to set to the Test.
+		// Test suite parameters
+		final Map<String, String> parameters = new HashMap<>(); 
 
 		final String server;
 		if (options.hasOption("server")) {
 			server = options.getOptionValue("server");
+			for(String add : addParams) // add parameters from main
+				parameters.put(add, server);
 			try {
 				checkUriScheme(server);
 			} catch (Exception e) {
@@ -154,8 +165,6 @@ public class LdpTestSuite {
 
 		// Add method enabler (Annotation Transformer)
 		testng.addListener(new MethodEnabler());
-		// Test suite parameters
-		final Map<String, String> parameters = new HashMap<>();
 		
 		if (options.hasOption("earl")) {
 			testng.addListener(new LdpEarlReporter());
@@ -202,27 +211,6 @@ public class LdpTestSuite {
 			}
 		}
 
-		// Add classes we want to test
-		final List<XmlClass> classes = new ArrayList<>();
-
-		final ContainerType type = getSelectedType(options);
-		switch (type) {
-			case BASIC:
-				classes.add(new XmlClass( "org.w3.ldp.testsuite.test.BasicContainerTest"));
-				parameters.put("basicContainer", server);
-				break;
-			case DIRECT:
-				classes.add(new XmlClass("org.w3.ldp.testsuite.test.DirectContainerTest"));
-				parameters.put("directContainer", server);
-				break;
-			case INDIRECT:
-				classes.add(new XmlClass("org.w3.ldp.testsuite.test.IndirectContainerTest"));
-				parameters.put("indirectContainer", server);
-				break;
-			default:
-				break;
-		}
-
 		final String postTtl;
 		if (options.hasOption("postTtl")) {
 			postTtl = options.getOptionValue("postTtl");
@@ -241,22 +229,19 @@ public class LdpTestSuite {
 			parameters.put("memberResource", memberResource);
 		}
 
-		classes.add(new XmlClass("org.w3.ldp.testsuite.test.MemberResourceTest"));
+		classList.add(new XmlClass("org.w3.ldp.testsuite.test.MemberResourceTest"));
 		testsuite.addIncludedGroup("ldpMember");
 
 		if (options.hasOption("non-rdf")) {
-			classes.add(new XmlClass("org.w3.ldp.testsuite.test.NonRDFSourceTest"));
+			classList.add(new XmlClass("org.w3.ldp.testsuite.test.NonRDFSourceTest"));
 			testsuite.addIncludedGroup(LdpTest.NR);
 		}
 		
-		if(classAdd != null) // pass in class to test
-				classes.add(new XmlClass(classAdd.getCanonicalName()));
-
-		test.setXmlClasses(classes);
-
+		test.setXmlClasses(classList);
+		
 		final List<XmlTest> tests = new ArrayList<>();
 		tests.add(test);
-
+		
 		testsuite.setParameters(parameters);
 		testsuite.setTests(tests);
 
@@ -289,6 +274,10 @@ public class LdpTestSuite {
 			});
 		}
 	}
+	
+	public static void addParameter(ArrayList<String> params) {
+		addParams = params;
+	}
 
 	public String wildcardPatternToRegex(String wildcardPattern) {
 		// use lookarounds and zero-width matches to include the * delimeter in the result
@@ -313,8 +302,8 @@ public class LdpTestSuite {
 		return testng.getStatus();
 	}
 
-	public static void executeTestSuite(Options options, String[] args, Class<?> className){
-		classAdd = className;
+	public static CommandLine getCommandLine(Options options, String[] args, List<XmlClass> list){
+		classList = list;
 		CommandLineParser parser = new BasicParser();
 		CommandLine cmd = null;
 		try {
@@ -327,7 +316,10 @@ public class LdpTestSuite {
 		if (cmd.hasOption("help")) {
 			printUsage(options);
 		}
+		return cmd;
+	}
 
+	public static void executeTestSuite(CommandLine cmd, Options options) {
 		// actual test suite execution
 		try {
 			LdpTestSuite ldpTestSuite = new LdpTestSuite(cmd);
@@ -338,17 +330,6 @@ public class LdpTestSuite {
 			Throwable cause = ExceptionUtils.getRootCause(e);
 			System.err.println("ERROR: " + (cause != null ? cause.getMessage() : e.getMessage()));
 			printUsage(options);
-		}
-
-	}
-
-	private static ContainerType getSelectedType(OptionsHandler options) {
-		if (options.hasOption("direct")) {
-			return ContainerType.DIRECT;
-		} else if (options.hasOption("indirect")) {
-			return ContainerType.INDIRECT;
-		} else {
-			return ContainerType.BASIC;
 		}
 	}
 
