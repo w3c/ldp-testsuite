@@ -5,17 +5,12 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 import java.util.List;
-
+import java.util.Map;
 import org.testng.annotations.Test;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
-import org.w3.ldp.testsuite.test.BasicContainerTest;
-import org.w3.ldp.testsuite.test.DirectContainerTest;
-import org.w3.ldp.testsuite.test.IndirectContainerTest;
-import org.w3.ldp.testsuite.test.LdpTest;
-import org.w3.ldp.testsuite.test.MemberResourceTest;
-import org.w3.ldp.testsuite.test.NonRDFSourceTest;
 import org.w3.ldp.testsuite.vocab.LDP;
 import org.w3.ldp.testsuite.vocab.TestDescription;
 
@@ -91,31 +86,21 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 	 */
 	private static final Property steps = ResourceFactory
 			.createProperty(LDP.LDPT_NAMESPACE + "steps");
-
-	private static final Class<BasicContainerTest> bcTest = BasicContainerTest.class;
-	private static final Class<IndirectContainerTest> indirectContainerTest = IndirectContainerTest.class;
-	private static final Class<DirectContainerTest> directContianerTest = DirectContainerTest.class;
-	private static final Class<MemberResourceTest> memberResourceTest = MemberResourceTest.class;
-	private static final Class<NonRDFSourceTest> nonRdfSourceTest = NonRDFSourceTest.class;
 	
 	/**
 	 * List of GROUPS to include in reporting
 	 */
-	private static final List<String> conformanceLevels = new ArrayList<String>();
-
-	public static void main(String[] args) throws IOException {
-		conformanceLevels.add(LdpTest.MUST);
-		conformanceLevels.add(LdpTest.SHOULD);
-		conformanceLevels.add(LdpTest.MAY);
-		
-		new LdpEarlTestManifest().generate();
+	private static List<String> conformanceLevels = new ArrayList<String>();
+	
+	public void setConformanceLevels(List<String> list){
+		conformanceLevels = list;
 	}
 
-	public void generate() {
+	public void generate(Map<Class<?>, String> classes, String title) {
 		try {
-			createWriter(OUTPUT_DIR);
+			createWriter(OUTPUT_DIR, title);
 			createModel();
-			writeTestClasses();
+			writeTestClasses(classes);
 			write();
 			endWriter();
 		} catch (IOException e) {
@@ -295,16 +280,19 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 		return retList;
 	}
 
-	private void writeTestClasses() {
+	private void writeTestClasses(Map<Class<?>, String> classes) {
 		// These are put in order so they are presented properly on earl-report
 		//		writeInfo(commonResourceTest, testcases);
 		//		writeInfo(rdfSourceTest, testcases);
 		//		writeInfo(commonContainerTest, testcases);
-		writeInfo(memberResourceTest, "RDFSource", "LDP RDF Source tests.");
-		writeInfo(nonRdfSourceTest, "Non-RDFSource", "LDP Non-RDF Source tests.");
-		writeInfo(bcTest, "BasicContainer", "LDP Basic Container tests.");
-		writeInfo(directContianerTest, "DirectContainer", "LDP Direct Container tests.");
-		writeInfo(indirectContainerTest, "IndirectContainer", "LDP Indirect Container tests.");
+		Iterator<Class<?>> classNames = classes.keySet().iterator();
+		String info = "";
+		while(classNames.hasNext()){
+			Class<?> classVal = classNames.next();
+			info = classes.get(classVal);
+			String[] split = info.split(":");
+			writeInfo(classVal, split[0], split[1]);
+		}
 	}
 
 	@Override

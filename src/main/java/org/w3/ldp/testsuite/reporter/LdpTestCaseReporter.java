@@ -129,16 +129,16 @@ public class LdpTestCaseReporter {
 
 	public static void main(String[] args) throws IOException {
 		LdpTestCaseReporter reporter = new LdpTestCaseReporter();
-		reporter.generateReport();
+		reporter.generateReport("ldp-testsuite");
 	}
 	
-	public void generateReport() throws IOException {
+	public void generateReport(String title) throws IOException {
 		System.out.println("Executing coverage report...");
 		initialRead = false;
 		this.firstRead();
 		this.makeReport();
 		endReport();
-		createWriter("report", html.toHtml());
+		createWriter("report", title, html.toHtml());
 		System.out.println("Done!");
 	}
 
@@ -1011,12 +1011,12 @@ public class LdpTestCaseReporter {
 				._style();
 	}
 
-	private static void createWriter(String directory, String output) {
+	private static void createWriter(String directory, String title, String output) {
 		PrettyWriter writer = null;
 		new File(directory).mkdirs();
 		try {
 			writer = new PrettyWriter(new FileWriter(directory
-					+ "/ldp-testsuite-coverage-report.html"));
+					+ "/" + title + "-coverage-report.html"));
 			writer.write(output);
 
 		} catch (IOException e) {

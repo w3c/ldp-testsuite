@@ -10,7 +10,7 @@ public class TestCaseReporter extends LdpTestCaseReporter {
 		@SuppressWarnings("rawtypes")
 		Class[] classes = {PagingTest.class};
 		LdpTestCaseReporter reporter = new LdpTestCaseReporter(classes);
-		reporter.generateReport();
+		reporter.generateReport("paging");
 	}
 
 }

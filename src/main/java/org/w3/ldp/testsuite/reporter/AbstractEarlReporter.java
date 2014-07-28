@@ -40,11 +40,11 @@ public abstract class AbstractEarlReporter {
 
 	protected abstract String getFilename();
 
-	protected void createWriter(String directory) throws IOException {
+	protected void createWriter(String directory, String title) throws IOException {
 		File dir = new File(directory);
 		dir.mkdirs();
-		writerTurtle = new BufferedWriter(new FileWriter(new File(dir, getFilename() + ".ttl")));
-		writerJson = new BufferedWriter(new FileWriter(new File(dir, getFilename() + ".jsonld")));
+		writerTurtle = new BufferedWriter(new FileWriter(new File(dir, getFilename() + title + ".ttl")));
+		writerJson = new BufferedWriter(new FileWriter(new File(dir, getFilename() + title + ".jsonld")));
 	}
 
 	protected void write() {
