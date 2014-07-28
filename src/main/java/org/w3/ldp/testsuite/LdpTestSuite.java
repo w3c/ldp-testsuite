@@ -52,7 +52,6 @@ public class LdpTestSuite {
 	private final TestNG testng;
 	
 	private static List<XmlClass> classList; // for test types to add in
-//	private static Options optionUse;
 	
 	private static ArrayList<String> addParams = new ArrayList<String>();
 
@@ -79,10 +78,6 @@ public class LdpTestSuite {
 		// see: http://testng.org/doc/documentation-main.html#running-testng-programmatically
 		testng = new TestNG();
 		this.setupSuite(new OptionsHandler(cmd));
-	}
-	
-	public static OptionsHandler getOptionsHandler(CommandLine options) {
-		return new OptionsHandler(options);
 	}
 
 	public void checkUriScheme(String uri) throws URISyntaxException {

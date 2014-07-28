@@ -3,7 +3,6 @@ package org.w3.ldp.testsuite;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.OptionGroup;
 import org.apache.commons.cli.Options;
@@ -34,7 +33,7 @@ public class RunLdpTestSuite {
 		
 		ArrayList<String> params = new ArrayList<>();
 
-		ContainerType type = getSelectedType(LdpTestSuite.getOptionsHandler(LdpTestSuite
+		ContainerType type = getSelectedType(new OptionsHandler(LdpTestSuite
 				.getCommandLine(options, args, null)));
 		switch (type) {
 		case BASIC:
