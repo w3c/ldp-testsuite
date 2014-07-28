@@ -15,6 +15,7 @@ import java.util.UUID;
 
 import javax.ws.rs.core.UriBuilder;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.http.HttpStatus;
 import org.testng.SkipException;
 import org.testng.annotations.Optional;
@@ -760,6 +761,9 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 				"LDPC does not have an rdf:type of ldp:Container");
 	}
 
+	/**
+	 * @see <a href="http://tools.ietf.org/html/rfc5023#page-30">RFC 5023 - The Atom Publishing Protocol: 9.7. The Slug Header</a>
+	 */
 	@Test(
 			groups = {MAY},
 			description = "LDP servers MAY allow clients to suggest "
@@ -776,16 +780,18 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	public void testServerHonorsSlug() {
 		skipIfMethodNotAllowed(HttpMethod.POST);
 
-		// Come up with a unique slug header.
-		String slug = UUID.randomUUID().toString();
-
-		// POST two resources with the same Slug header and content to make sure
-		// they have different URIs.
+		// Come up with a (probably) unique slug header. Try to find one that
+		// the server will accept unchanged, so avoid special characters or very
+		// long strings.
+		String slug = RandomStringUtils.randomAlphabetic(6);
 		Model content = postContent();
 		String location = post(content, slug);
 
 		try {
-			assertTrue(location.contains(slug), "Slug is not part of the return Location");
+			// Per RFC 5023, the server may change the slug so this isn't a
+			// perfect test. We can at least ignore case when looking at the
+			// return location.
+			assertTrue(location.toLowerCase().contains(slug.toLowerCase()), "Slug is not part of the return Location");
 		} finally {
 			// Clean up.
 			buildBaseRequestSpecification().delete(location);
