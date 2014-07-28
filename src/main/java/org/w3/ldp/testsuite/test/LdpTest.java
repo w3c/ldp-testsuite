@@ -25,7 +25,7 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.util.ResourceUtils;
-import com.hp.hpl.jena.vocabulary.DC_11;
+import com.hp.hpl.jena.vocabulary.DCTerms;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.jayway.restassured.response.Header;
 import com.jayway.restassured.response.Response;
@@ -159,8 +159,8 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 		resource.addProperty(RDF.type, model.createResource(LDP.RDFSource.stringValue()));
 		resource.addProperty(
 				model.createProperty("http://example.com/ns#severity"), "High");
-		resource.addProperty(DC_11.title, "Another bug to test.");
-		resource.addProperty(DC_11.description, "Issues that need to be fixed.");
+		resource.addProperty(DCTerms.title, "Another bug to test.");
+		resource.addProperty(DCTerms.description, "Issues that need to be fixed.");
 
 		return model;
 	}
