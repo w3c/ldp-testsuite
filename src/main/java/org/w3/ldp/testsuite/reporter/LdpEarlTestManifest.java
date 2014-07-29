@@ -99,9 +99,11 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 	public void generate(Map<Class<?>, String> classes, String title) {
 		try {
 			createWriter(OUTPUT_DIR, title);
+			System.out.println("Writing test manifest...");
 			createModel();
 			writeTestClasses(classes);
 			write();
+			System.out.println("Done!");
 			endWriter();
 		} catch (IOException e) {
 			e.printStackTrace(System.err);
