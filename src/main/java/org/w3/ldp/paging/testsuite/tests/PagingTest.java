@@ -1,7 +1,6 @@
 package org.w3.ldp.paging.testsuite.tests;
 
 import org.testng.annotations.Test;
-import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;

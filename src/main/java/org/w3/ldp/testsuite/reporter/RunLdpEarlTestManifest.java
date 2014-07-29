@@ -22,7 +22,6 @@ private static Map<Class<?>, String> classes = new HashMap<Class<?>, String>();
 		conformanceLevels.add(LdpTest.MUST);
 		conformanceLevels.add(LdpTest.SHOULD);
 		conformanceLevels.add(LdpTest.MAY);
-		conformanceLevels.add(PagingTest.PAGING);
 
 		Class<BasicContainerTest> bcTest = BasicContainerTest.class;
 		Class<IndirectContainerTest> indirectContainerTest = IndirectContainerTest.class;
