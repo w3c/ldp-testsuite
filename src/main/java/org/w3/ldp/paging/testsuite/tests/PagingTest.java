@@ -10,6 +10,7 @@ import org.w3.ldp.testsuite.test.LdpTest;
 public abstract class PagingTest extends LdpTest{
 	
 	public static final String PAGING = "PAGING";
+	public static final String SPEC_URI = "https://dvcs.w3.org/hg/ldpwg/raw-file/default/ldp-paging.html";
 
 	@Test(
 			groups = {MUST, PAGING},
@@ -17,7 +18,7 @@ public abstract class PagingTest extends LdpTest{
 				+ "to support LDP Paging on all retrieval requests that normally "
 				+ "result in a response containing a representation.")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpp-client-advertise",
+			specRefUri = SPEC_URI + "#ldpp-client-advertise",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testClientAdvertise() {
@@ -29,7 +30,7 @@ public abstract class PagingTest extends LdpTest{
 			description = "LDP Paging clients MUST be capable of at least " 
 				+ "one of forward traversal and/or backward traversal.")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpp-client-traversal",
+			specRefUri = SPEC_URI + "#ldpp-client-traversal",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testPagingTraversal() {
@@ -45,7 +46,7 @@ public abstract class PagingTest extends LdpTest{
 				+ "server's ability to add pages to a sequence as the paged "
 				+ "resource changes, for example.")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-pagingGET-sequences-change",
+			specRefUri = SPEC_URI + "#ldpr-pagingGET-sequences-change",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testSequenceChange() {
@@ -57,7 +58,7 @@ public abstract class PagingTest extends LdpTest{
 			description = " LDP Paging clients MUST NOT assume that any in-sequence " 
 				+ "page resource's paging links will always be accessible. ")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#dfn-ldp-paging-client",
+			specRefUri = SPEC_URI + "#dfn-ldp-paging-client",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testPagingAccess() {
@@ -69,7 +70,7 @@ public abstract class PagingTest extends LdpTest{
 			description = "LDP Paging clients SHOULD NOT present paged resources "
 				+ "as coherent or complete, or make assumptions to that effect.")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpp-client-paging-incomplete",
+			specRefUri = SPEC_URI + "#ldpp-client-paging-incomplete",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testResourcePresentation() {
@@ -80,7 +81,7 @@ public abstract class PagingTest extends LdpTest{
 			groups = {SHOULD, PAGING},
 			description = "LDP Paging servers SHOULD allow clients to retrieve large LDP-RSs in pages.")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-page-large",
+			specRefUri = SPEC_URI + "#ldpr-page-large",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testLargePage() {
@@ -91,7 +92,7 @@ public abstract class PagingTest extends LdpTest{
 			groups = {MAY, PAGING},
 			description = "LDP Paging servers MAY treat any resource (LDP-RS or not) as a paged resource.")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#dfn-ldp-paging-server",
+			specRefUri = SPEC_URI + "#dfn-ldp-paging-server",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testResourcePaging() {
@@ -107,7 +108,7 @@ public abstract class PagingTest extends LdpTest{
 				+ "one time and of the entire resource at a different time. Clients distinguish "
 				+ "between these cases based on the status code and response headers.")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-split-any-time",
+			specRefUri = SPEC_URI + "#ldpr-split-any-time",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testSplitPaging() {
@@ -120,7 +121,7 @@ public abstract class PagingTest extends LdpTest{
 				+ "hints, for example the largest page size the client is interested in processing, "
 				+ "to influence the amount of data returned in representations.")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpp-prefer",
+			specRefUri = SPEC_URI + "#ldpp-prefer",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testPreferredPaging() {
@@ -134,7 +135,7 @@ public abstract class PagingTest extends LdpTest{
 				+ "in the latter case the server can select whatever page size it deems appropriate, "
 				+ "or choose not to page the resource at all.")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpp-prefer-unrecognized",
+			specRefUri = SPEC_URI + "#ldpp-prefer-unrecognized",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testPreferUnrecognized() {
@@ -149,7 +150,7 @@ public abstract class PagingTest extends LdpTest{
 				+ "that status code [2NN], although any appropriate code such as "
 				+ "303 See Other MAY be used.")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-status-code",
+			specRefUri = SPEC_URI + "#ldpr-status-code",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testPagingGet() {
@@ -165,7 +166,7 @@ public abstract class PagingTest extends LdpTest{
 				+ "removed during the client's traversal of its pages has to be present "
 				+ "in one of the pages. ")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-guarantee-show-unchanged",
+			specRefUri = SPEC_URI + "#ldpr-guarantee-show-unchanged",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testShowUnchanged() {
@@ -178,7 +179,7 @@ public abstract class PagingTest extends LdpTest{
 					+ "to the paged resource that occurs while the client is retrieving "
 					+ "pages by including a HTTP Link header on all successful HTTP GET responses. ")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-notify-changes",
+			specRefUri = SPEC_URI + "#ldpr-notify-changes",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testDetectChange() {
@@ -197,7 +198,7 @@ public abstract class PagingTest extends LdpTest{
 					+ "corresponding parameter value identical to the ETag [RFC7232] of "
 					+ "the paged resource.")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-notify-changes",
+			specRefUri = SPEC_URI + "#ldpr-notify-changes",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testPagingHeaders() {
@@ -211,7 +212,7 @@ public abstract class PagingTest extends LdpTest{
 					+ "to a paged resource's sequence over time, but SHOULD only add pages "
 					+ "to the end of a sequence.")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-pagingGET-sequences-change",
+			specRefUri = SPEC_URI + "#ldpr-pagingGET-sequences-change",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testInSequencePaging() {
@@ -225,7 +226,7 @@ public abstract class PagingTest extends LdpTest{
 			description = "LDP Paging servers SHOULD only add pages "
 					+ "to the end of a sequence.")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-pagingGET-sequences-change",
+			specRefUri = SPEC_URI + "#ldpr-pagingGET-sequences-change",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testPageAddEnd() {
@@ -240,7 +241,7 @@ public abstract class PagingTest extends LdpTest{
 					+ "responding to requests with any in-sequence page resource "
 					+ "as the Request-URI.")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-pagingGET-first-allowed-onpages",
+			specRefUri = SPEC_URI + "#ldpr-pagingGET-first-allowed-onpages",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testAllowFirstLink() {
@@ -252,7 +253,7 @@ public abstract class PagingTest extends LdpTest{
 			description = "LDP Paging servers MAY provide a last page link in responses "
 					+ "to GET requests with any in-sequence page resource as the Request-URI.")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-pagingGET-last-allowed-onpages",
+			specRefUri = SPEC_URI + "#ldpr-pagingGET-last-allowed-onpages",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testAllowLastLink() {
@@ -266,7 +267,7 @@ public abstract class PagingTest extends LdpTest{
 					+ "page as the Request-URI. This is the mechanism by which clients can "
 					+ "discover the URL of the next page.")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#dfn-in-sequence-page-resource",
+			specRefUri = SPEC_URI + "#dfn-in-sequence-page-resource",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testSequenced() {
@@ -280,7 +281,7 @@ public abstract class PagingTest extends LdpTest{
 					+ "Request-URI. This is the mechanism by which clients can discover the end "
 					+ "of the page sequence as currently known by the server.")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-pagingGET-lastnext-prohibited",
+			specRefUri = SPEC_URI + "#ldpr-pagingGET-lastnext-prohibited",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testRestrictFinalLink() {
@@ -294,7 +295,7 @@ public abstract class PagingTest extends LdpTest{
 					+ "as the Request-URI. This is one mechanism by which clients can discover "
 					+ "the URL of the previous page.")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-pagingGET-prev-allowed",
+			specRefUri = SPEC_URI + "#ldpr-pagingGET-prev-allowed",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testGetPreviousLink() {
@@ -308,7 +309,7 @@ public abstract class PagingTest extends LdpTest{
 					+ "This is one mechanism by which clients can discover the beginning of the page "
 					+ "sequence as currently known by the server.")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-pagingGET-firstprev-prohibited",
+			specRefUri = SPEC_URI + "#ldpr-pagingGET-firstprev-prohibited",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testRestrictFirstLink() {
@@ -323,7 +324,7 @@ public abstract class PagingTest extends LdpTest{
 					+ "as the Request-URI. This is one mechanism by which clients know that the "
 					+ "resource is one of a sequence of pages.")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-pagingGET-page-type-reqd",
+			specRefUri = SPEC_URI + "#ldpr-pagingGET-page-type-reqd",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testGetPageReq() {
@@ -338,7 +339,7 @@ public abstract class PagingTest extends LdpTest{
 					+ "is via the client preference defined for this purpose; other "
 					+ "implementation-specific means could also be used.")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-pagingGET-only-paging-clients",
+			specRefUri = SPEC_URI + "#ldpr-pagingGET-only-paging-clients",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testGetOnlyPagingClients() {
@@ -352,7 +353,7 @@ public abstract class PagingTest extends LdpTest{
 					+ "page resource, whenever both triples are present in the page "
 					+ "sequence for a paged LDPC.")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-onsamepage",
+			specRefUri = SPEC_URI + "#ldpc-onsamepage",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testMembershipSequence() {
@@ -365,7 +366,7 @@ public abstract class PagingTest extends LdpTest{
 					+ "in-sequence page resources as part of the pages' representations; "
 					+ "LDP Paging does not specify ordering for pages of LDPRs in other cases.")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-sortcriteriaobj",
+			specRefUri = SPEC_URI + "#ldpc-sortcriteriaobj",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testSortMembers() {
@@ -384,7 +385,7 @@ public abstract class PagingTest extends LdpTest{
 					+ "if the criteria were allowed to vary, the ordering among members of a container "
 					+ "across pages would be undefined.")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-sortcriteriaobj",
+			specRefUri = SPEC_URI + "#ldpc-sortcriteriaobj",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testSortTriples() {
@@ -401,7 +402,7 @@ public abstract class PagingTest extends LdpTest{
 					+ "is the predicate whose value is used to order members between pages "
 					+ "(the page-ordering values).")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-sortliteraltype",
+			specRefUri = SPEC_URI + "#ldpc-sortliteraltype",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testSortCriteria() {
@@ -417,7 +418,7 @@ public abstract class PagingTest extends LdpTest{
 					+ "for use as the object of this triple. Other values can be used, but LDP assigns no "
 					+ "meaning to them and interoperability will be limited.")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-sortorder",
+			specRefUri = SPEC_URI + "#ldpc-sortorder",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testSortOrder() {
@@ -431,7 +432,7 @@ public abstract class PagingTest extends LdpTest{
 					+ "criterion identifier, whose predicate is ldp:containerSortCollation and whose object "
 					+ "identifies the collation used.")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-sortcollation",
+			specRefUri = SPEC_URI + "#ldpc-sortcollation",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testSortCollation() {
@@ -445,7 +446,7 @@ public abstract class PagingTest extends LdpTest{
 			description = "The ldp:containerSortCollation triple MUST be omitted for comparisons involving "
 					+ "page-ordering values for which [sparql11-query] does not use collations.")
 	@SpecTest(
-			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-sortcollation",
+			specRefUri = SPEC_URI + "#ldpc-sortcollation",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
 	public void testRestrictCollation() {

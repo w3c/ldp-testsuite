@@ -29,6 +29,7 @@ import org.rendersnake.StringResource;
 import org.rendersnake.tools.PrettyWriter;
 import org.testng.annotations.Test;
 import org.w3.ldp.testsuite.BuildProperties;
+import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
@@ -118,13 +119,18 @@ public class LdpTestCaseReporter {
 	@SuppressWarnings("rawtypes")
 	protected Class[] testClasses;
 	
+	private String title = "LDP";
+	private String specUri = LdpTestSuite.SPEC_URI;
+	
 	public LdpTestCaseReporter() {
 		this.testClasses = defaultTestClasses;
 	}
 	
 	@SuppressWarnings("rawtypes")
-	public LdpTestCaseReporter(Class[] inTestClasses) {
+	public LdpTestCaseReporter(Class[] inTestClasses, String title, String uri) {
 		this.testClasses = inTestClasses;
+		this.title = title;
+		this.specUri = uri;
 	}
 
 	public static void main(String[] args) throws IOException {
@@ -147,10 +153,11 @@ public class LdpTestCaseReporter {
 		html = new HtmlCanvas();
 		html.html().head();
 		writeCss();
-		html.title().content("LDP: Test Cases Coverage Report")._head().body();
+		html.title().content(title + ": Test Cases Coverage Report")._head().body();
 
-		html.h1().content("W3C Linked Data Platform (LDP) Test Suite: Test Cases Coverage Report");
+		html.h1().content("W3C Linked Data Platform (" + title + ") Test Suite: Test Cases Coverage Report");
 		html.p().a(href("http://www.w3.org/2012/ldp/")).content("See also W3C Linked Data Platform WG")._p();
+		html.p().a(href(specUri)).content("Specification Requirements Page")._p();
 
 		final String commit = BuildProperties.getRevision();
 		if (commit != null) {

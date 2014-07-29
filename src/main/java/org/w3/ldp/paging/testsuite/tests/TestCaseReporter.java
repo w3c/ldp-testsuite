@@ -9,7 +9,7 @@ public class TestCaseReporter extends LdpTestCaseReporter {
 	public static void main(String[] args) throws IOException{
 		@SuppressWarnings("rawtypes")
 		Class[] classes = {PagingTest.class};
-		LdpTestCaseReporter reporter = new LdpTestCaseReporter(classes);
+		LdpTestCaseReporter reporter = new LdpTestCaseReporter(classes, PagingTest.PAGING, PagingTest.SPEC_URI);
 		reporter.generateReport("paging");
 	}
 
