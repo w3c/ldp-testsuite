@@ -79,6 +79,15 @@ would be:</p>
     --server http://localhost:8080/ldp --basic
 </code></pre>
 
+<p>You can also run the test suite against the 
+<a href="https://dvcs.w3.org/hg/ldpwg/raw-file/default/ldp-paging.html">Paging Specification Requirements</a> by using
+the following command (paging tests are still <em>work-in-progress</em>):</p>
+<pre><code>$ java -classpath target/ldp-testsuite-1.0.0-SNAPSHOT-shaded.jar \
+	org.w3.ldp.paging.testsuite.tests.RunPagingTest</code></pre>
+<p>Use <code>--help</code> for getting some more help.</p>
+<p>The <code>-classpath</code> format can also be used if you want to run the normal Test Suite 
+against a server, but this is not necessary.</p>
+
 <h2><a name="maven" class="anchor" href="#maven"><span class="octicon octicon-link"></span></a>Maven</h2>
 
 <p>If you are using <a href="http://maven.apache.org">Maven</a> for building your project, you can use the 
