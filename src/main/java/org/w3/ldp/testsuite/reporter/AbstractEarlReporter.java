@@ -43,8 +43,15 @@ public abstract class AbstractEarlReporter {
 	protected void createWriter(String directory, String title) throws IOException {
 		File dir = new File(directory);
 		dir.mkdirs();
-		writerTurtle = new BufferedWriter(new FileWriter(new File(dir, getFilename() + title + ".ttl")));
-		writerJson = new BufferedWriter(new FileWriter(new File(dir, getFilename() + title + ".jsonld")));
+		System.out.println("Writing EARL results:");
+		String fileName = getFilename() + title + ".ttl";
+		File file = new File(dir, fileName);
+		writerTurtle = new BufferedWriter(new FileWriter(file));
+		System.out.println("\t"+file.getAbsolutePath());
+		fileName = getFilename() + title + ".jsonld";
+		file = new File(dir, fileName);
+		writerJson = new BufferedWriter(new FileWriter(file));
+		System.out.println("\t"+file.getAbsolutePath());
 	}
 
 	protected void write() {

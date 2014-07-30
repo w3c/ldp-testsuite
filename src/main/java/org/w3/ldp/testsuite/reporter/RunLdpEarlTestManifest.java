@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.w3.ldp.paging.testsuite.tests.PagingTest;
 import org.w3.ldp.testsuite.test.BasicContainerTest;
 import org.w3.ldp.testsuite.test.DirectContainerTest;
 import org.w3.ldp.testsuite.test.IndirectContainerTest;
