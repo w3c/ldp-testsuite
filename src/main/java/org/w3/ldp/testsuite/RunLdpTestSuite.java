@@ -50,7 +50,7 @@ public class RunLdpTestSuite {
 			break;
 		}
 		LdpTestSuite.addParameter(params);
-		LdpTestSuite.executeTestSuite(LdpTestSuite.getCommandLine(options, args, classes), options);
+		LdpTestSuite.executeTestSuite(LdpTestSuite.getCommandLine(options, args, classes), options, "ldp-testsuite");
 	}
 	
 	private static ContainerType getSelectedType(OptionsHandler options) {

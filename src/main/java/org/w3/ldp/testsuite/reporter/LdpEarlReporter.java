@@ -59,13 +59,13 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 	private static Property ranAsClass = ResourceFactory
 			.createProperty(LDP.LDPT_NAMESPACE + "ranAsClass");
 	
-	private static final String TITLE = "-ldp-testsuite";
+	private static String TITLE = "ldp-testsuite";
 
 	@Override
 	public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites,
 			String outputDirectory) {
 		try {
-			createWriter(OUTPUT_DIR, TITLE);
+			createWriter(OUTPUT_DIR, "");
 		} catch (IOException e) {
 			e.printStackTrace(System.err);
 			System.exit(1);
@@ -244,6 +244,10 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 
 	@Override
     protected String getFilename() {
-	    return "ldp-testsuite-execution-report-earl";
+	    return TITLE + "-execution-report-earl";
     }
+	
+	public void setTitle(String title){
+		TITLE = title;
+	}
 }

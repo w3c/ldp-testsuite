@@ -72,6 +72,8 @@ public class LdpHtmlReporter implements IReporter {
 	HashMap<String, Integer> skipClasses;
 
 	private HtmlCanvas html;
+	
+	private String outputName = "ldp-testsuite";
 
 	private static StringWriter graphs = new StringWriter();
 	
@@ -141,7 +143,7 @@ public class LdpHtmlReporter implements IReporter {
 				html._body()._html();
 
 				// send html to a file
-				createWriter("report", html.toHtml());
+				createWriter("report", html.toHtml(), outputName);
 
 				Files.copy(getClass().getResourceAsStream("/testng-reports.css"),
 						new File(outputDirectory, "testng-reports.css").toPath(),
@@ -152,6 +154,10 @@ public class LdpHtmlReporter implements IReporter {
 			e.printStackTrace();
 		}
 	}
+	
+	public void setTitle(String title) {
+		this.outputName = title;
+	}
 
 	private void writeCss() throws IOException {
 
@@ -159,12 +165,12 @@ public class LdpHtmlReporter implements IReporter {
 				._style();
 	}
 
-	private void createWriter(String directory, String output) {
+	private void createWriter(String directory, String output, String title) {
 		BufferedWriter writer = null;
 		new File(directory).mkdirs();
 		try {
 			writer = new BufferedWriter(new FileWriter(directory
-					+ "/ldp-testsuite-execution-report.html"));
+					+ "/" + title + "-execution-report.html"));
 			writer.write(output);
 
 		} catch (IOException e) {

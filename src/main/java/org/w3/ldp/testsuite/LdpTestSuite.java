@@ -53,6 +53,8 @@ public class LdpTestSuite {
 	
 	private static List<XmlClass> classList; // for test types to add in
 	
+	private static String report;
+	
 	private static ArrayList<String> addParams = new ArrayList<String>();
 
 	enum ContainerType {
@@ -156,13 +158,17 @@ public class LdpTestSuite {
 		}
 
 		testng.addListener(new LdpTestListener());
-		testng.addListener(new LdpHtmlReporter());
+		LdpHtmlReporter reporter = new LdpHtmlReporter();
+		reporter.setTitle(report);
+		testng.addListener(reporter);
 
 		// Add method enabler (Annotation Transformer)
 		testng.addListener(new MethodEnabler());
 		
 		if (options.hasOption("earl")) {
-			testng.addListener(new LdpEarlReporter());
+			LdpEarlReporter earlReport = new LdpEarlReporter();
+			earlReport.setTitle(report);
+			testng.addListener(earlReport);
 			
 			// required --earl args
 			for (String arg: EARLDEPEDENTARGS) {
@@ -314,9 +320,10 @@ public class LdpTestSuite {
 		return cmd;
 	}
 
-	public static void executeTestSuite(CommandLine cmd, Options options) {
+	public static void executeTestSuite(CommandLine cmd, Options options, String type) {
 		// actual test suite execution
 		try {
+			report = type;
 			LdpTestSuite ldpTestSuite = new LdpTestSuite(cmd);
 			ldpTestSuite.run();
 			System.exit(ldpTestSuite.getStatus());
