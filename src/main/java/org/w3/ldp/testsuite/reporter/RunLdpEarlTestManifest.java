@@ -36,7 +36,7 @@ private static Map<Class<?>, String> classes = new HashMap<Class<?>, String>();
 		
 		LdpEarlTestManifest manifest = new LdpEarlTestManifest();
 		manifest.setConformanceLevels(conformanceLevels);
-		manifest.generate(classes, "-ldp-testsuite");
+		manifest.generate(classes, ""); // gives the default filename for Earl Manifest
 	}
 
 }
