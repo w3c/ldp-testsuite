@@ -57,18 +57,13 @@ public abstract class CommonResourceTest extends LdpTest {
 			Response optionsResponse = buildBaseRequestSpecification().options(uri);
 			Headers headers = optionsResponse.getHeaders();
 			List<Header> allowHeaders = headers.getList(ALLOW);
-			if (allowHeaders.size() == 1) {
-				Header allowHeader = allowHeaders.get(0);
+			for (Header allowHeader : allowHeaders) {
 				String allow = allowHeader.getValue();
 				if (allow != null) {
 					String[] methods = allow.split("\\s*,\\s*");
 					for (String method : methods) {
 						options.add(method);
 					}
-				}
-			} else {
-				for (Header allowHeader : allowHeaders) {
-					options.add(allowHeader.getValue());
 				}
 			}
 		}
