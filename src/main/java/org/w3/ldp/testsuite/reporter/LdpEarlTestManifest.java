@@ -192,7 +192,6 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 				indirectResource.addProperty(RDF.type, EARL.TestRequirement);
 				indirectResource.addProperty(testMethod, indirect);
 				if(testLdp.coveredByTests().length > 0 && testLdp.coveredByGroups().length > 0) {
-					// TODO
 					for(Class<?> coverTest : testLdp.coveredByTests()) {
 						Method[] classMethod = coverTest.getDeclaredMethods();
 						for(Method m : classMethod) {

@@ -33,8 +33,7 @@ public @interface SpecTest {
 		/**
 		 * WG_CLARIFICATION - requires further clarification from the working group
 		 */
-		WG_CLARIFICATION,
-		
+		WG_CLARIFICATION		
 	}
 
 	;
