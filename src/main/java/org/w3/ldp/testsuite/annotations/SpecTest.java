@@ -33,7 +33,8 @@ public @interface SpecTest {
 		/**
 		 * WG_CLARIFICATION - requires further clarification from the working group
 		 */
-		WG_CLARIFICATION
+		WG_CLARIFICATION,
+		
 	}
 
 	;
@@ -62,7 +63,12 @@ public @interface SpecTest {
 		MANUAL, 
 		
 		/** CLIENT_ONLY - test is only client-side, this test suite doesn't test it. */
-		CLIENT_ONLY
+		CLIENT_ONLY,
+		
+		/**
+		 * INDIRECT - other test cases indirectly cover this test case
+		 */
+		INDIRECT
 	};
 
 	/**
@@ -86,5 +92,15 @@ public @interface SpecTest {
 	 * @return
 	 */
 	public String[] steps() default {};
+	
+	/**
+	 * List out the test class that covers an indirect test.
+	 */
+	public Class<?>[] coveredByTests() default {};
+	
+	/**
+	 * List out the group values that covers the indirect test.
+	 */
+	public String[] coveredByGroups() default {};
 
 }

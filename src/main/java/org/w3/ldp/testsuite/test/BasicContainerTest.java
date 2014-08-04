@@ -26,6 +26,21 @@ public class BasicContainerTest extends CommonContainerTest {
 		super(auth);
 		this.basicContainer = basicContainer;
 	}
+	
+	@Test(
+			groups = {MUST},
+			description = "Each LDP Basic Container MUST also be a "
+					+ "conforming LDP Container in section 5.2 Container "
+					+ "along with the following restrictions in this section.")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldpbc-are-ldpcs",
+			testMethod = METHOD.INDIRECT,
+			approval = STATUS.WG_PENDING,
+			coveredByTests = {CommonContainerTest.class},
+			coveredByGroups = {MUST})
+	public void testConformsBcLdpContainer() {
+		// TODO impl testConformsBcLdpResource
+	}
 
 	@BeforeClass(alwaysRun = true)
 	public void hasBasicContainer() {

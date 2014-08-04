@@ -832,6 +832,20 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 		assertFalse(containsLinkHeader(LDP.NonRDFSource.stringValue(), LINK_REL_TYPE, getResponse),
 				"Resources POSTed using JSON-LD should be treated as RDF source");
 	}
+	
+	@Test(
+			groups = {MUST},
+			description = "Each Linked Data Platform Container MUST "
+					+ "also be a conforming Linked Data Platform RDF Source.")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-isldpr",
+			testMethod = METHOD.INDIRECT,
+			approval = STATUS.WG_PENDING,
+			coveredByTests = {RdfSourceTest.class},
+			coveredByGroups = {MUST})
+	public void testConformsContainerRdfResource() {
+		// TODO impl testConformsBcLdpResource
+	}
 
 	@Override
 	protected boolean restrictionsOnTestResourceContent() {

@@ -292,6 +292,21 @@ public class DirectContainerTest extends CommonContainerTest {
 			}
 		}
 	}
+	
+	@Test(
+			groups = {MUST},
+			description = "Each LDP Direct Container MUST also be a "
+					+ "conforming LDP Container in section 5.2 "
+					+ "Container along the following restrictions.")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldpdc-are-ldpcs",
+			testMethod = METHOD.INDIRECT,
+			approval = STATUS.WG_PENDING,
+			coveredByTests = {CommonContainerTest.class},
+			coveredByGroups = {MUST})
+	public void testConformsDcLdpContainer() {
+		// TODO impl testConformsDcLdpResource
+	}
 
 	private boolean hasMembershipTriples(Model containerModel) {
 		Resource container = containerModel.getResource(directContainer);

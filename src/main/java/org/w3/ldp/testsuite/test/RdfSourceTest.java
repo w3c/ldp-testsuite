@@ -452,6 +452,21 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		skipIfMethodNotAllowed(HttpMethod.PUT);
 		expectPut4xxResponseBody(UNKNOWN_PROPERTY);
 	}
+	
+	@Test(
+			groups = {MUST},
+			description = "Each LDP RDF Source MUST also be a conforming LDP "
+					+ "Resource as defined in section 4.2 Resource, along "
+					+ "with the restrictions in this section.")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-are-ldpr",
+			testMethod = METHOD.INDIRECT,
+			approval = STATUS.WG_PENDING,
+			coveredByTests = {CommonResourceTest.class},
+			coveredByGroups = {MUST})
+	public void testConformsRdfSourceLdpResource() {
+		// TODO impl testConformsRdfSourceLdpResource
+	}
 
 	protected void modifyProperty(Model m, String resourceUri, String property) {
 		Resource r = m.getResource(resourceUri);
