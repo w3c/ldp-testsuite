@@ -493,6 +493,26 @@ public class LdpHtmlReporter implements IReporter {
 					.write(testLdp.comment())._p();
 			if(testLdp.steps().length != 0)
 				writeSteps(testLdp.steps(), m.getName());
+			if(testLdp.coveredByTests().length > 0 && testLdp.coveredByGroups().length > 0){
+				html.p().b().content("Test Case is covered Indirectly by the following:")._p();
+				html.ul();
+				for(Class<?> className : testLdp.coveredByTests()){
+					Method[] classMethod = className.getDeclaredMethods();
+					for(Method methodName : classMethod) {
+						if(methodName.getAnnotation(Test.class) != null) {
+							String group = Arrays.toString(methodName.getAnnotation(Test.class).groups()); 
+							for(String groupCover : testLdp.coveredByGroups()) {
+								if(group.contains(groupCover)) {
+									String testCaseName = methodName.getDeclaringClass().getCanonicalName();
+									testCaseName = testCaseName.substring(testCaseName.lastIndexOf(".") + 1);
+									html.li().b().write(testCaseName)._b().write("::" +  methodName.getName())._li();
+								}								
+							}
+						}
+					}
+				}
+				html._ul();
+			}
 			html.p(class_("indented")).b().write("Reference URI: ")._b()
 					.a(href(testLdp.specRefUri())).write(testLdp.specRefUri())._a()._p();
 			
