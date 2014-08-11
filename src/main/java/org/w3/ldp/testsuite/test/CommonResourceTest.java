@@ -1,6 +1,5 @@
 package org.w3.ldp.testsuite.test;
 
-import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.testng.Assert.assertEquals;
@@ -11,6 +10,7 @@ import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -32,6 +32,8 @@ import org.w3.ldp.testsuite.vocab.LDP;
 
 import com.google.common.collect.ImmutableMap;
 import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.response.Header;
+import com.jayway.restassured.response.Headers;
 import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.RequestSpecification;
 import com.jayway.restassured.specification.ResponseSpecification;
@@ -53,11 +55,15 @@ public abstract class CommonResourceTest extends LdpTest {
 		if (StringUtils.isNotBlank(uri)) {
 			// Use HTTP OPTIONS, which MUST be supported by LDP servers, to determine what methods are supported on this container.
 			Response optionsResponse = buildBaseRequestSpecification().options(uri);
-			String allow = optionsResponse.header(ALLOW);
-			if (allow != null) {
-				String[] methods = allow.split("\\s*,\\s*");
-				for (String method : methods) {
-					options.add(method);
+			Headers headers = optionsResponse.getHeaders();
+			List<Header> allowHeaders = headers.getList(ALLOW);
+			for (Header allowHeader : allowHeaders) {
+				String allow = allowHeader.getValue();
+				if (allow != null) {
+					String[] methods = allow.split("\\s*,\\s*");
+					for (String method : methods) {
+						options.add(method);
+					}
 				}
 			}
 		}
