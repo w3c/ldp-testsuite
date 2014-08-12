@@ -1,7 +1,13 @@
 package org.w3.ldp.testsuite.reporter;
 
+import static org.rendersnake.HtmlAttributesFactory.class_;
+
 import java.io.IOException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +16,9 @@ import org.testng.IResultMap;
 import org.testng.ISuite;
 import org.testng.ISuiteResult;
 import org.testng.ITestContext;
+import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
+import org.testng.annotations.Test;
 import org.testng.internal.Utils;
 import org.testng.xml.XmlSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
@@ -60,6 +68,10 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 			.createProperty(LDP.LDPT_NAMESPACE + "ranAsClass");
 	
 	private static String TITLE = "ldp-testsuite";
+	
+	private IResultMap passedTests;
+	private IResultMap failedTests;
+	private IResultMap skippedTests;
 
 	@Override
 	public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites,
@@ -145,9 +157,12 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 
 			for (ISuiteResult results : tests.values()) {
 				ITestContext testContext = results.getTestContext();
-				getResultProperties(testContext.getFailedTests(), FAIL);
-				getResultProperties(testContext.getSkippedTests(), SKIP);
-				getResultProperties(testContext.getPassedTests(), PASS);
+				passedTests = testContext.getPassedTests();
+				failedTests = testContext.getFailedTests();
+				skippedTests = testContext.getSkippedTests();
+				getResultProperties(failedTests, FAIL);
+				getResultProperties(skippedTests, SKIP);
+				getResultProperties(passedTests, PASS);
 			}
 
 		}
@@ -178,6 +193,35 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 				model.getResource(createTestCaseURL(className, result.getName())));
 
 		/* Test Result Resource */
+		// TODO fix to add in indirect
+		Method method = result.getMethod().getConstructorOrMethod().getMethod();
+		if(method.getAnnotation(SpecTest.class) != null){
+			SpecTest specTest = method.getAnnotation(SpecTest.class);
+			if(specTest.coveredByGroups().length > 0 && specTest.coveredByGroups().length > 0){
+				ArrayList<String> testResults = new ArrayList<String>();
+				for(Class<?> classVal : specTest.coveredByTests()){
+					Method[] classMethod = classVal.getDeclaredMethods();
+					for(Method methodName : classMethod) {
+						if(methodName.getAnnotation(Test.class) != null) {
+							String group = Arrays.toString(methodName.getAnnotation(Test.class).groups()); 
+							for(String groupCover : specTest.coveredByGroups()) {
+								if(group.contains(groupCover) && !methodName.getName().contains("Conforms")) {
+									testResults.add(findTestResult(methodName.getName()));
+								}								
+							}
+						}
+					}
+				}
+				if(testResults.size() > 0){
+					if(testResults.contains("failed"))
+						status = FAIL;
+					else if(testResults.contains("passed") && !testResults.contains("failed"))
+						status = PASS;
+					else if(testResults.contains("skipped") && !testResults.contains("failed") && !testResults.contains("passed"))
+						status = SKIP;
+				}
+			}
+		}
 		switch (status) {
 		case FAIL:
 			resultResource.addProperty(Earl.outcome, Earl.failed);
@@ -216,9 +260,8 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 			case CLIENT_ONLY:
 				assertionResource.addProperty(Earl.mode, Earl.notTested);
 				break;
-			default:
-				assertionResource.addProperty(Earl.mode, Earl.notTested);
-				break;
+			case INDIRECT:
+				assertionResource.addProperty(Earl.mode, Earl.automatic);
 			}
 		}
 
@@ -240,6 +283,35 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 		else
 			resource.addLiteral(DCTerms.description,
 					Utils.stackTrace(thrown, false)[0]);
+	}
+	
+	private String  findTestResult(String methodName) {		
+		Iterator<ITestNGMethod> passed = passedTests.getAllMethods().iterator();
+		while(passed.hasNext()){
+			ITestNGMethod method = passed.next();
+			if(method.getMethodName().equals(methodName)){
+				return "passed";
+			}
+		}
+		
+		Iterator<ITestNGMethod> skipped = skippedTests.getAllMethods().iterator();
+		while(skipped.hasNext()){
+			ITestNGMethod method = skipped.next();
+			if(method.getMethodName().equals(methodName)){
+				return "skipped";
+			}
+		}
+		
+		Iterator<ITestNGMethod> failed = failedTests.getAllMethods().iterator();
+		while(failed.hasNext()){
+			ITestNGMethod method = failed.next();
+			if(method.getMethodName().equals(methodName)){
+				return "failed";
+			}
+		}
+		
+		return null;
+		// TODO Auto-generated method stub
 	}
 
 	@Override
