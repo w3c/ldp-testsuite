@@ -76,6 +76,10 @@ public class LdpHtmlReporter implements IReporter {
 	
 	private String outputName = "ldp-testsuite";
 
+	private static final String PASS = "Passed";
+	private static final String FAIL = "Failed";
+	private static final String SKIP = "Skipped";
+
 	private List<ITestNGMethod> indirect = new ArrayList<ITestNGMethod>();
 	
 	private static StringWriter graphs = new StringWriter();
@@ -432,7 +436,6 @@ public class LdpHtmlReporter implements IReporter {
 	}
 	
 	private void makeIndirectSummaryTable() throws IOException {
-		// TODO implement
 		html.table(class_("indented"));
 		html.tr().th().a(id(("Indirect"))).write("Indirect Test Cases")._a()._th();
 		html.th().content("Overall Test Result");
@@ -461,12 +464,12 @@ public class LdpHtmlReporter implements IReporter {
 				}
 			}
 			if(result.size() > 0){
-				if(result.contains("failed"))
-					html.td(class_("Failed")).content("Failed");
-				else if(result.contains("passed") && !result.contains("failed"))
-					html.td(class_("Passed")).content("Passed");
-				else if(result.contains("skipped") && !result.contains("failed") && !result.contains("passed"))
-					html.td(class_("Skipped")).content("Skipped");
+				if(result.contains(FAIL))
+					html.td(class_("Failed")).content(FAIL);
+				else if(result.contains(PASS) && !result.contains(FAIL))
+					html.td(class_("Passed")).content(PASS);
+				else if(result.contains(SKIP) && !result.contains(FAIL) && !result.contains(PASS))
+					html.td(class_("Skipped")).content(SKIP);
 			}
 			html.td().content(method.getTestClass().getName());
 			html.td().content(
@@ -586,7 +589,7 @@ public class LdpHtmlReporter implements IReporter {
 		while(passed.hasNext()){
 			ITestNGMethod method = passed.next();
 			if(method.getMethodName().equals(methodName)){
-				return "passed";
+				return PASS;
 			}
 		}
 		
@@ -594,7 +597,7 @@ public class LdpHtmlReporter implements IReporter {
 		while(skipped.hasNext()){
 			ITestNGMethod method = skipped.next();
 			if(method.getMethodName().equals(methodName)){
-				return "skipped";
+				return SKIP;
 			}
 		}
 		
@@ -602,12 +605,11 @@ public class LdpHtmlReporter implements IReporter {
 		while(failed.hasNext()){
 			ITestNGMethod method = failed.next();
 			if(method.getMethodName().equals(methodName)){
-				return "failed";
+				return FAIL;
 			}
 		}
 		
 		return null;
-		// TODO Auto-generated method stub
 		
 	}
 

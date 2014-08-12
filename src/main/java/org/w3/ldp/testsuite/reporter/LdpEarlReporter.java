@@ -1,7 +1,5 @@
 package org.w3.ldp.testsuite.reporter;
 
-import static org.rendersnake.HtmlAttributesFactory.class_;
-
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -193,7 +191,6 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 				model.getResource(createTestCaseURL(className, result.getName())));
 
 		/* Test Result Resource */
-		// TODO fix to add in indirect
 		Method method = result.getMethod().getConstructorOrMethod().getMethod();
 		if(method.getAnnotation(SpecTest.class) != null){
 			SpecTest specTest = method.getAnnotation(SpecTest.class);
@@ -213,11 +210,11 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 					}
 				}
 				if(testResults.size() > 0){
-					if(testResults.contains("failed"))
+					if(testResults.contains(FAIL))
 						status = FAIL;
-					else if(testResults.contains("passed") && !testResults.contains("failed"))
+					else if(testResults.contains(PASS) && !testResults.contains(FAIL))
 						status = PASS;
-					else if(testResults.contains("skipped") && !testResults.contains("failed") && !testResults.contains("passed"))
+					else if(testResults.contains(SKIP) && !testResults.contains(FAIL) && !testResults.contains(PASS))
 						status = SKIP;
 				}
 			}
@@ -290,7 +287,7 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 		while(passed.hasNext()){
 			ITestNGMethod method = passed.next();
 			if(method.getMethodName().equals(methodName)){
-				return "passed";
+				return PASS;
 			}
 		}
 		
@@ -298,7 +295,7 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 		while(skipped.hasNext()){
 			ITestNGMethod method = skipped.next();
 			if(method.getMethodName().equals(methodName)){
-				return "skipped";
+				return SKIP;
 			}
 		}
 		
@@ -306,12 +303,11 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 		while(failed.hasNext()){
 			ITestNGMethod method = failed.next();
 			if(method.getMethodName().equals(methodName)){
-				return "failed";
+				return FAIL;
 			}
 		}
 		
 		return null;
-		// TODO Auto-generated method stub
 	}
 
 	@Override
