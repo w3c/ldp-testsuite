@@ -39,6 +39,7 @@ import org.testng.xml.XmlSuite;
 import org.w3.ldp.testsuite.BuildProperties;
 import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
+import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 
 /**
  * HTML reporter for the LDP test suite. Takes the results of the test methods
@@ -75,6 +76,12 @@ public class LdpHtmlReporter implements IReporter {
 	
 	private String outputName = "ldp-testsuite";
 
+	private static final String PASS = "Passed";
+	private static final String FAIL = "Failed";
+	private static final String SKIP = "Skipped";
+
+	private List<ITestNGMethod> indirect = new ArrayList<ITestNGMethod>();
+	
 	private static StringWriter graphs = new StringWriter();
 	
 	private static ArrayList<String> colors = new ArrayList<String>(Arrays.asList("#42d992", "#1cbfbb", "#1d0b4e", "#bf1c56"));
@@ -372,6 +379,7 @@ public class LdpHtmlReporter implements IReporter {
 		html.h1(class_("center")).content("Methods called");
 		html.a(href("#Skipped")).write("Go To Skipped Tests").br()._a();
 		html.a(href("#Passed")).write("Go To Passed Tests").br()._a();
+		html.a(href("#Indirect")).write("Go To Indirect Tests").br()._a();
 		html.br();
 		
 		makeMethodSummaryTable(failed, "Failed");
@@ -383,6 +391,9 @@ public class LdpHtmlReporter implements IReporter {
 		toTop();
 		html.br();
 		makeMethodSummaryTable(passed, "Passed");
+		html.br();
+		toTop();
+		makeIndirectSummaryTable();
 		html.br();
 
 	}
@@ -396,25 +407,77 @@ public class LdpHtmlReporter implements IReporter {
 		html.th(class_(title)).content("Description of Test Method")._tr();
 		for (ITestResult result : tests.getAllResults()) {
 			ITestNGMethod method = result.getMethod();
-			List<String> groups = Arrays.asList(method.getGroups());
-			if (groups.contains("MUST") && result.getStatus() == ITestResult.FAILURE) {
-				html.tr(class_("critical"));
+			if(method.getConstructorOrMethod().getMethod().getAnnotation(SpecTest.class).testMethod().equals(METHOD.INDIRECT)){
+				// do nothing, will add this in a separate table that specifically defines indirect tests
+				indirect.add(method);
+				
 			} else {
-				html.tr();
-			}
+				List<String> groups = Arrays.asList(method.getGroups());
+				if (groups.contains("MUST") && result.getStatus() == ITestResult.FAILURE) {
+					html.tr(class_("critical"));
+				} else {
+					html.tr();
+				}
 
-			html.td()
+				html.td()
 					.a(href("#" + method.getTestClass().getName() + "_"
 							+ method.getMethodName()))
 					.write(method.getMethodName(), NO_ESCAPE)._a()._td();
-			html.td().content(Arrays.toString(method.getGroups()));
-			html.td().content(method.getTestClass().getName());
+				html.td().content(Arrays.toString(method.getGroups()));
+				html.td().content(method.getTestClass().getName());
 
+				html.td().content(
+					(method.getDescription() != null ? method.getDescription()
+							: "No Description found"));
+				html._tr();
+			}
+		}
+		html._table();
+	}
+	
+	private void makeIndirectSummaryTable() throws IOException {
+		html.table(class_("indented"));
+		html.tr().th().a(id(("Indirect"))).write("Indirect Test Cases")._a()._th();
+		html.th().content("Overall Test Result");
+		html.th().content("Test Class");
+		html.th().content("Description of Test Method")._tr();
+
+		for(ITestNGMethod method : indirect){
+			html.tr();
+			html.td()
+				.a(href("#" + method.getTestClass().getName() + "_"
+				+ method.getMethodName())).write(method.getMethodName(), NO_ESCAPE)._a()._td();
+			ArrayList<String> result = new ArrayList<String>();
+			Method m = method.getConstructorOrMethod().getMethod();
+			SpecTest spec = m.getAnnotation(SpecTest.class);
+			for(Class<?> className : spec.coveredByTests()){
+				Method[] classMethod = className.getDeclaredMethods();
+				for(Method methodName : classMethod) {
+					if(methodName.getAnnotation(Test.class) != null) {
+						String group = Arrays.toString(methodName.getAnnotation(Test.class).groups()); 
+						for(String groupCover : spec.coveredByGroups()) {
+							if(group.contains(groupCover) && !methodName.getName().contains("Conforms")) {
+								result.add(findTestResult(methodName.getName()));
+							}								
+						}
+					}
+				}
+			}
+			if(result.size() > 0){
+				if(result.contains(FAIL))
+					html.td(class_("Failed")).content(FAIL);
+				else if(result.contains(PASS) && !result.contains(FAIL))
+					html.td(class_("Passed")).content(PASS);
+				else if(result.contains(SKIP) && !result.contains(FAIL) && !result.contains(PASS))
+					html.td(class_("Skipped")).content(SKIP);
+			}
+			html.td().content(method.getTestClass().getName());
 			html.td().content(
 					(method.getDescription() != null ? method.getDescription()
 							: "No Description found"));
 			html._tr();
 		}
+		
 		html._table();
 	}
 
@@ -457,7 +520,8 @@ public class LdpHtmlReporter implements IReporter {
 					.write(groups)._p();
 
 			toTop();
-		}
+		
+		}	
 
 	}
 
@@ -502,10 +566,11 @@ public class LdpHtmlReporter implements IReporter {
 						if(methodName.getAnnotation(Test.class) != null) {
 							String group = Arrays.toString(methodName.getAnnotation(Test.class).groups()); 
 							for(String groupCover : testLdp.coveredByGroups()) {
-								if(group.contains(groupCover)) {
-									String testCaseName = methodName.getDeclaringClass().getCanonicalName();
-									testCaseName = testCaseName.substring(testCaseName.lastIndexOf(".") + 1);
-									html.li().b().write(testCaseName)._b().write("::" +  methodName.getName())._li();
+								if(group.contains(groupCover) && !methodName.getName().contains("Conforms")) {
+									String testCaseName = methodName.getDeclaringClass().getSimpleName();
+									html.li().b().write(testCaseName)._b().write("::" +  methodName.getName());
+									html.write(" - [Test " + findTestResult(methodName.getName()) + "]");
+									html._li();
 								}								
 							}
 						}
@@ -515,9 +580,36 @@ public class LdpHtmlReporter implements IReporter {
 			}
 			html.p(class_("indented")).b().write("Reference URI: ")._b()
 					.a(href(testLdp.specRefUri())).write(testLdp.specRefUri())._a()._p();
-			
-			
 		}
+		
+	}
+
+	private String  findTestResult(String methodName) {
+		Iterator<ITestNGMethod> passed = passedTests.getAllMethods().iterator();
+		while(passed.hasNext()){
+			ITestNGMethod method = passed.next();
+			if(method.getMethodName().equals(methodName)){
+				return PASS;
+			}
+		}
+		
+		Iterator<ITestNGMethod> skipped = skippedTests.getAllMethods().iterator();
+		while(skipped.hasNext()){
+			ITestNGMethod method = skipped.next();
+			if(method.getMethodName().equals(methodName)){
+				return SKIP;
+			}
+		}
+		
+		Iterator<ITestNGMethod> failed = failedTests.getAllMethods().iterator();
+		while(failed.hasNext()){
+			ITestNGMethod method = failed.next();
+			if(method.getMethodName().equals(methodName)){
+				return FAIL;
+			}
+		}
+		
+		return null;
 		
 	}
 
