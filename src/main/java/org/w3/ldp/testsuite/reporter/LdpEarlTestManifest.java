@@ -3,11 +3,13 @@ package org.w3.ldp.testsuite.reporter;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
 import org.testng.annotations.Test;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
@@ -80,6 +82,11 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 	 */
 	private static final Resource notImplemented = ResourceFactory
 			.createResource(LDP.LDPT_NAMESPACE + "notImplemented");
+	/**
+	 * @see SpecTest.METHOD#INDIRECT
+	 */
+	private static final Resource indirect = ResourceFactory
+			.createResource(LDP.LDPT_NAMESPACE + "indirect");
 	
 	/**
 	 * @see SpecTest.steps
@@ -152,6 +159,7 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 				+ " No official conformance status or test case is extension or incomplete.");
 	}
 
+	@SuppressWarnings("incomplete-switch")
 	private Resource generateInformation(Method method, String className,
 			ArrayList<ArrayList<Resource>> conformanceClasses) {
 		SpecTest testLdp = null;
@@ -159,114 +167,146 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 		if (method.getAnnotation(SpecTest.class) != null
 				&& method.getAnnotation(Test.class) != null) {
 			testLdp = method.getAnnotation(SpecTest.class);
-			String testCaseName = createTestCaseName(className, method.getName());
-			
-			// Client only tests should be managed in separate EARL manifest
-			if (testLdp.testMethod() == METHOD.CLIENT_ONLY) {
-				System.err.println("Wrongly received CLIENT_ONLY test for "+testCaseName+
-						". Client-only tests should be defined in separate RDF manifest file.");
-			}
-
 			test = method.getAnnotation(Test.class);
-			String allGroups = groups(test.groups());
-
-			Calendar cal = GregorianCalendar.getInstance();
-			Literal date = model.createTypedLiteral(cal);
-
-
-			String testCaseDeclaringName = createTestCaseName(method.getDeclaringClass().getCanonicalName(), method.getName());
-			String testCaseURL = LDP.LDPT_NAMESPACE + testCaseName;
-			String testCaseDeclaringURL = LDP.LDPT_NAMESPACE + testCaseDeclaringName;
-
-			Resource testCaseResource = model.createResource(testCaseURL);
-			testCaseResource.addProperty(RDF.type, EARL.TestCase);
-			testCaseResource.addProperty(RDFS.label, testCaseName);
-			testCaseResource.addProperty(TestManifest.name, testCaseName);
-			testCaseResource.addProperty(DCTerms.date, date);
-
-			testCaseResource.addProperty(RDFS.comment, test.description());
-			if (allGroups != null)
-				testCaseResource.addProperty(DCTerms.subject, allGroups);
-			
-			boolean added = false;		
-			if (testLdp.approval() != SpecTest.STATUS.WG_EXTENSION) {
-				for (String group: test.groups()) {
-					group = group.trim();
-					if (conformanceLevels.contains(group))  {
-						testCaseResource.addProperty(conformanceLevel, model.createResource(LDP.LDPT_NAMESPACE + group));
-						conformanceClasses.get(LdpTestCaseReporter.getConformanceIndex(group)).add(testCaseResource);
-						added = true;
+			if(!testLdp.testMethod().equals(METHOD.INDIRECT)){
+				
+				Resource testCaseResource = createResource(className, method, test, testLdp, conformanceClasses);
+				testCaseResource.addProperty(RDF.type, EARL.TestCase);
+				switch (testLdp.testMethod()) {
+				case AUTOMATED:
+					testCaseResource.addProperty(testMethod, automated);
+					break;
+				case MANUAL:
+					testCaseResource.addProperty(testMethod, manual);
+					break;
+				case NOT_IMPLEMENTED:
+					testCaseResource.addProperty(testMethod, notImplemented);
+					break;
+				case CLIENT_ONLY:
+					testCaseResource.addProperty(testMethod, clientOnly);
+					break;
+				}
+				return testCaseResource;
+			} else { // for Indirect Tests
+				Resource indirectResource = createResource(className, method, test, testLdp, conformanceClasses);
+				indirectResource.addProperty(RDF.type, EARL.TestRequirement);
+				indirectResource.addProperty(testMethod, indirect);
+				if(testLdp.coveredByTests().length > 0 && testLdp.coveredByGroups().length > 0) {
+					for(Class<?> coverTest : testLdp.coveredByTests()) {
+						Method[] classMethod = coverTest.getDeclaredMethods();
+						for(Method m : classMethod) {
+							if(m.getAnnotation(Test.class) != null) {
+								String group = Arrays.toString(m.getAnnotation(Test.class).groups()); 
+								for(String groupCover : testLdp.coveredByGroups()) {
+									if(group.contains(groupCover)) {
+										String testCaseName = createTestCaseName(m.getDeclaringClass().getCanonicalName(), m.getName());
+										String testCaseURL = LDP.LDPT_NAMESPACE + testCaseName;
+										indirectResource.addProperty(DCTerms.hasPart, testCaseURL);
+										
+									}									
+								}
+							}
+						}
 					}
 				}
+				return indirectResource;
 			}
-			// If not in a conformance group, add to general other bucket
-			if (!added) {
-				conformanceClasses.get(LdpTestCaseReporter.OTHER).add(testCaseResource);
-			}
-			 
-			String[] stepsArr = testLdp.steps();
-			if (stepsArr != null && stepsArr.length > 0) {
-				ArrayList<Literal> arr = new ArrayList<Literal>();
-				for (String s: stepsArr) {
-					arr.add(model.createLiteral(s));
-				}
-				RDFList l = model.createList(arr.iterator());
-				testCaseResource.addProperty(steps, l);
-			}
-
-			// Leave action property only to make earl-report happy
-			testCaseResource.addProperty(TestManifest.action, "");
-
-			switch (testLdp.approval()) {
-			case WG_APPROVED:
-				testCaseResource.addProperty(TestDescription.reviewStatus, TestDescription.approved);
-				break;
-			case WG_PENDING:
-				testCaseResource.addProperty(TestDescription.reviewStatus, TestDescription.unreviewed);
-				break;
-			default:
-				testCaseResource.addProperty(TestDescription.reviewStatus, TestDescription.unreviewed);
-				break;
-			}
-
-			testCaseResource.addProperty(declaredInClass, className);
-			testCaseResource.addProperty(declaredTestCase, model.createResource(testCaseDeclaringURL));
-			Resource specRef = null;
-			if (testLdp.specRefUri() != null) {
-				specRef = model.createResource(testLdp.specRefUri());
-				testCaseResource.addProperty(RDFS.seeAlso, specRef);
-			}
-
-			if (test.description() != null && test.description().length() > 0) {
-				Resource excerpt = model.createResource(TestDescription.Excerpt);
-				excerpt.addLiteral(TestDescription.includesText, test.description());
-				if (specRef != null) {
-					excerpt.addProperty(RDFS.seeAlso, specRef);
-				}
-				testCaseResource.addProperty(TestDescription.specificationReference, excerpt);
-			}
-
-			switch (testLdp.testMethod()) {
-			case AUTOMATED:
-				testCaseResource.addProperty(testMethod, automated);
-				break;
-			case MANUAL:
-				testCaseResource.addProperty(testMethod, manual);
-				break;
-			case NOT_IMPLEMENTED:
-				testCaseResource.addProperty(testMethod, notImplemented);
-				break;
-			case CLIENT_ONLY:
-				testCaseResource.addProperty(testMethod, clientOnly);
-				break;
-			}
-
-			testCaseResource.addProperty(documentation,
-					model.createResource(ReportUtils.getJavadocLink(method)));
-
-			return testCaseResource;
 		}
 		return null;
+	}
+	
+	private Resource createResource(String className, Method method, Test test, SpecTest testLdp,
+			ArrayList<ArrayList<Resource>> conformanceClasses) {
+		String testCaseName = createTestCaseName(className, method.getName());
+		
+		// Client only tests should be managed in separate EARL manifest
+		if (testLdp.testMethod() == METHOD.CLIENT_ONLY) {
+			System.err.println("Wrongly received CLIENT_ONLY test for "+testCaseName+
+					". Client-only tests should be defined in separate RDF manifest file.");
+		}
+
+		String allGroups = groups(test.groups());
+
+		Calendar cal = GregorianCalendar.getInstance();
+		Literal date = model.createTypedLiteral(cal);
+
+
+		String testCaseDeclaringName = createTestCaseName(method.getDeclaringClass().getCanonicalName(), method.getName());
+		String testCaseURL = LDP.LDPT_NAMESPACE + testCaseName;
+		String testCaseDeclaringURL = LDP.LDPT_NAMESPACE + testCaseDeclaringName;
+
+		Resource resource = model.createResource(testCaseURL);
+		resource.addProperty(RDFS.label, testCaseName);
+		resource.addProperty(TestManifest.name, testCaseName);
+		resource.addProperty(DCTerms.date, date);
+
+		resource.addProperty(RDFS.comment, test.description());
+		if (allGroups != null)
+			resource.addProperty(DCTerms.subject, allGroups);
+	
+		boolean added = false;		
+		if (testLdp.approval() != SpecTest.STATUS.WG_EXTENSION) {
+			for (String group: test.groups()) {
+				group = group.trim();
+				if (conformanceLevels.contains(group))  {
+					resource.addProperty(conformanceLevel, model.createResource(LDP.LDPT_NAMESPACE + group));
+					conformanceClasses.get(LdpTestCaseReporter.getConformanceIndex(group)).add(resource);
+					added = true;
+				}
+			}
+		}
+		// If not in a conformance group, add to general other bucket
+		if (!added) {
+			conformanceClasses.get(LdpTestCaseReporter.OTHER).add(resource);
+		}
+	 
+		String[] stepsArr = testLdp.steps();
+		if (stepsArr != null && stepsArr.length > 0) {
+			ArrayList<Literal> arr = new ArrayList<Literal>();
+			for (String s: stepsArr) {
+				arr.add(model.createLiteral(s));
+			}
+			RDFList l = model.createList(arr.iterator());
+			resource.addProperty(steps, l);
+		}
+
+		// 	Leave action property only to make earl-report happy
+		resource.addProperty(TestManifest.action, "");
+	
+		switch (testLdp.approval()) {
+		case WG_APPROVED:
+			resource.addProperty(TestDescription.reviewStatus, TestDescription.approved);
+			break;
+		case WG_PENDING:
+			resource.addProperty(TestDescription.reviewStatus, TestDescription.unreviewed);
+			break;
+		default:
+			resource.addProperty(TestDescription.reviewStatus, TestDescription.unreviewed);
+			break;
+		}
+
+		resource.addProperty(declaredInClass, className);
+		resource.addProperty(declaredTestCase, model.createResource(testCaseDeclaringURL));
+		Resource specRef = null;
+		if (testLdp.specRefUri() != null) {
+			specRef = model.createResource(testLdp.specRefUri());
+			resource.addProperty(RDFS.seeAlso, specRef);
+		}
+		
+		if (test.description() != null && test.description().length() > 0) {
+			Resource excerpt = model.createResource(TestDescription.Excerpt);
+			excerpt.addLiteral(TestDescription.includesText, test.description());
+			if (specRef != null) {
+				excerpt.addProperty(RDFS.seeAlso, specRef);
+			}
+			resource.addProperty(TestDescription.specificationReference, excerpt);
+		}
+
+		resource.addProperty(documentation,
+				model.createResource(ReportUtils.getJavadocLink(method)));
+		
+		return resource;
+		
 	}
 
 	private String groups(String[] list) {
