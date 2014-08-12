@@ -463,6 +463,10 @@ public class LdpHtmlReporter implements IReporter {
 					}
 				}
 			}
+			// evaluate the testResults for the Indirect Test
+			// if one of the tests fails, then the entire indirect test fails
+			// if there are only pass and skipped tests (none failed), then it passes
+			// if there are only skipped (none passed or failed), then it is skipped
 			if(result.size() > 0){
 				if(result.contains(FAIL))
 					html.td(class_("Failed")).content(FAIL);

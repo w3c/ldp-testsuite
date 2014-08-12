@@ -209,6 +209,10 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 						}
 					}
 				}
+				// evaluate the testResults for the Indirect Test
+				// if one of the tests fails, then the entire indirect test fails
+				// if there are only pass and skipped tests (none failed), then it passes
+				// if there are only skipped (none passed or failed), then it is skipped
 				if(testResults.size() > 0){
 					if(testResults.contains(FAIL))
 						status = FAIL;
@@ -251,14 +255,12 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 			case MANUAL:
 				assertionResource.addProperty(Earl.mode, Earl.manual);
 				break;
-			case NOT_IMPLEMENTED:
-				assertionResource.addProperty(Earl.mode, Earl.notTested);
-				break;
-			case CLIENT_ONLY:
-				assertionResource.addProperty(Earl.mode, Earl.notTested);
-				break;
 			case INDIRECT:
 				assertionResource.addProperty(Earl.mode, Earl.automatic);
+				break;
+			default:
+				assertionResource.addProperty(Earl.mode, Earl.notTested);
+				break;
 			}
 		}
 
