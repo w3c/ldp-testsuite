@@ -28,7 +28,6 @@ import org.w3.ldp.testsuite.exception.SkipNotTestableException;
 import org.w3.ldp.testsuite.http.HttpMethod;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.matcher.HeaderMatchers;
-import org.w3.ldp.testsuite.util.RDFModelUtils;
 
 import com.github.jsonldjava.core.JsonLdError;
 import com.github.jsonldjava.core.JsonLdProcessor;
@@ -136,7 +135,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	public void testPutReplacesResource() {
 		putReplaceResource(true);
 	}
-	
+
 	@Test(
 			groups = {MUST},
 			description = "LDP servers SHOULD allow clients to update resources "
@@ -452,7 +451,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		skipIfMethodNotAllowed(HttpMethod.PUT);
 		expectPut4xxResponseBody(UNKNOWN_PROPERTY);
 	}
-	
+
 	@Test(
 			groups = {MUST},
 			description = "Each LDP RDF Source MUST also be a conforming LDP "
@@ -544,7 +543,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		// (Overridden by subclasses as necessary.)
 		return restrictionsOnPostContent();
 	}
-	
+
 	protected void putReplaceResource(boolean continueOnError) {
 		skipIfMethodNotAllowed(HttpMethod.PUT);
 
@@ -552,7 +551,6 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 			throw new SkipException(MSG_PUT_RESTRICTIONS);
 		}
 
-		// TODO: Is there a better way to test this requirement?
 		String resourceUri = getResourceUri();
 		Response response = buildBaseRequestSpecification()
 						.header(ACCEPT, TEXT_TURTLE)
@@ -564,9 +562,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 
 		String eTag = response.getHeader(ETAG);
 		Model originalModel = response.as(Model.class, new RdfObjectMapper(resourceUri));
-		Model cloneModel = RDFModelUtils.cloneModel(originalModel);
 		Resource resource = originalModel.getResource(resourceUri);
-		
+
 		assertNotNull(resource, "Expected to location resource in response for "+resourceUri);
 
 		// Update the model with updated title
@@ -604,27 +601,11 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		// Validate the updated statement/triple is there.
 		Resource updatedResource = updatedModel.getResource(resourceUri);
 		assertTrue(updatedResource.hasProperty(DCTerms.title, UPDATED_TITLE), "Expected updated resource to have title: " + UPDATED_TITLE);
-		
-		// Compare the two models updated one, from the very first one received
-		Model diffModel = updatedModel.difference(cloneModel);
-		Resource diffResource = diffModel.getResource(resourceUri);
-		StmtIterator diffProps = diffResource.listProperties();
+
+		// Make sure it's the only title
+		Resource diffResource = updatedModel.getResource(resourceUri);
 		StmtIterator diffTitleProps = diffResource.listProperties(DCTerms.title);
-		int diffSize = diffProps.toSet().size();
 		int diffTitlePropSize = diffTitleProps.toSet().size();
-		
-		// First make sure the number of statement's for 'title' is as expected.
 		assertEquals(diffTitlePropSize, 1, "Updated resource contains additional unexpected dcterms:title changes.");
-
-		// Next make sure there wheren't other statement's unexpectedly added.
-		assertEquals(diffSize - diffTitlePropSize, 0, "Additional properties were unintentionally added, a side-effect.");
-
-		// Replace the resource with its original content to clean up.
-		/* TODO: Not realistic to set back, as if read-only property (like dcterms:modified), the previous modification would be different
-		buildBaseRequestSpecification()
-				.contentType(TEXT_TURTLE).header(IF_MATCH, eTag)
-				.body(cloneModel, new RdfObjectMapper(resourceUri)) // relative URI
-				.expect().statusCode(isSuccessful())
-				.when().put(resourceUri); */
 	}
 }
