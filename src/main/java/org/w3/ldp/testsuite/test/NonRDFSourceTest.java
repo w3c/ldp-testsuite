@@ -34,6 +34,7 @@ import com.jayway.restassured.response.Response;
  * Tests Non-RDF Source LDP resources.
  */
 public class NonRDFSourceTest extends CommonResourceTest {
+	private final static String SETUP_ERROR = "ERROR: Could not create test resource for NonRDFSourceTest. Skipping tests.";
 
 	private String container;
 	private URI containerType;
@@ -67,10 +68,27 @@ public class NonRDFSourceTest extends CommonResourceTest {
 
 		// Create a resource to use for CommonResourceTest.
 		try {
-			Response response = postNonRDFSource(slug, file, mimeType);
+			Response response = buildBaseRequestSpecification()
+					.header(SLUG, slug)
+					.body(IOUtils.toByteArray(getClass().getResourceAsStream("/" + file)))
+					.contentType(mimeType)
+					.post(container);
+			if (response.getStatusCode() != HttpStatus.SC_CREATED) {
+				System.err.println(SETUP_ERROR);
+				System.err.println("POST failed with status code: " + response.getStatusCode());
+				System.err.println();
+				return;
+			}
+
 			nonRdfSource = response.getHeader(LOCATION);
+			if (nonRdfSource == null) {
+				System.err.println(SETUP_ERROR);
+				System.err.println("Location response header missing");
+				System.err.println();
+				return;
+			}
 		} catch (Exception e) {
-			System.err.println("ERROR: Could not create test resource for NonRDFSourceTest. Skipping tests.");
+			System.err.println(SETUP_ERROR);
 			e.printStackTrace();
 		}
 	}
