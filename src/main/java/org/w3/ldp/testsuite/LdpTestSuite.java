@@ -34,6 +34,8 @@ import org.w3.ldp.testsuite.test.LdpTest;
 import org.w3.ldp.testsuite.transformer.MethodEnabler;
 import org.w3.ldp.testsuite.util.OptionsHandler;
 
+import com.jayway.restassured.RestAssured;
+
 /**
  * LDP Test Suite Command-Line Interface, a wrapper to {@link org.testng.TestNG}
  *
@@ -46,15 +48,15 @@ public class LdpTestSuite {
 	public static final String NAME = "LDP Test Suite";
 
 	public static final String SPEC_URI = "http://www.w3.org/TR/ldp";
-	
+
 	static final String[] EARLDEPEDENTARGS = {"software", "developer", "language", "homepage", "assertor", "shortname"};
 
 	private final TestNG testng;
-	
+
 	private static List<XmlClass> classList; // for test types to add in
-	
+
 	private static String report;
-	
+
 	private static ArrayList<String> addParams = new ArrayList<String>();
 
 	enum ContainerType {
@@ -90,6 +92,9 @@ public class LdpTestSuite {
 	}
 
 	private void setupSuite(OptionsHandler options) {
+		// allow self-signed certifcates for development servers
+		RestAssured.useRelaxedHTTPSValidation();
+
 		testng.setDefaultSuiteName(NAME);
 
 		// create XmlSuite instance
@@ -124,7 +129,7 @@ public class LdpTestSuite {
 
 		// Add any parameters that you want to set to the Test.
 		// Test suite parameters
-		final Map<String, String> parameters = new HashMap<>(); 
+		final Map<String, String> parameters = new HashMap<>();
 
 		final String server;
 		if (options.hasOption("server")) {
@@ -164,12 +169,12 @@ public class LdpTestSuite {
 
 		// Add method enabler (Annotation Transformer)
 		testng.addListener(new MethodEnabler());
-		
+
 		if (options.hasOption("earl")) {
 			LdpEarlReporter earlReport = new LdpEarlReporter();
 			earlReport.setTitle(report);
 			testng.addListener(earlReport);
-			
+
 			// required --earl args
 			for (String arg: EARLDEPEDENTARGS) {
 				if (options.hasOptionWithValue(arg))
@@ -177,11 +182,11 @@ public class LdpTestSuite {
 				else
 					printEarlUsage(arg);
 			}
-			
+
 			// optional --earl args
 			if (options.hasOptionWithValue("mbox"))
 				parameters.put("mbox", options.getOptionValue("mbox"));
-		
+
 		}
 
 		if (options.hasOptionWithValue("cont-res")) {
@@ -237,12 +242,12 @@ public class LdpTestSuite {
 			classList.add(new XmlClass("org.w3.ldp.testsuite.test.NonRDFSourceTest"));
 			testsuite.addIncludedGroup(LdpTest.NR);
 		}
-		
+
 		test.setXmlClasses(classList);
-		
+
 		final List<XmlTest> tests = new ArrayList<>();
 		tests.add(test);
-		
+
 		testsuite.setParameters(parameters);
 		testsuite.setTests(tests);
 
@@ -275,7 +280,7 @@ public class LdpTestSuite {
 			});
 		}
 	}
-	
+
 	public static void addParameter(ArrayList<String> params) {
 		addParams = params;
 	}
@@ -354,7 +359,7 @@ public class LdpTestSuite {
 		System.out.println();
 		System.exit(-1);
 	}
-	
+
 	private static void printEarlUsage(String missingArg) {
 		System.out.println("--earl missing arg: "+missingArg);
 		System.out.println("Required additional args:");
@@ -363,7 +368,7 @@ public class LdpTestSuite {
 		}
 		System.exit(1);
 	}
-	
+
 	@SuppressWarnings("static-access")
 	public static OptionGroup addCommonOptions() {
 		OptionGroup common = new OptionGroup();
@@ -374,31 +379,31 @@ public class LdpTestSuite {
 		common.addOption(OptionBuilder.withLongOpt("auth")
 				.withDescription("server basic authentication credentials following the syntax username:password").hasArg()
 				.withArgName("username:password").create());
-		
+
 		common.addOption(OptionBuilder.withLongOpt("earl")
 				.withDescription("General EARL ttl file").withArgName("earl")
 				.isRequired(false).create());
-		
+
 		common.addOption(OptionBuilder.withLongOpt("includedGroups")
 				.withDescription("test groups to run, separated by a space").hasArgs()
 				.withArgName("includedGroups").isRequired(false)
 				.create());
-		
+
 		common.addOption(OptionBuilder.withLongOpt("excludedGroups")
 				.withDescription("test groups to not run, separated by a space").hasArgs()
 				.withArgName("excludedGroups").isRequired(false)
 				.create());
-		
+
 		common.addOption(OptionBuilder.withLongOpt("test")
 				.withDescription("which tests to run (* is a wildcard)")
 				.hasArgs().withArgName("test names")
 				.create());
-		
+
 		common.addOption(OptionBuilder.withLongOpt("help")
 				.withDescription("prints this usage help").create());
 		return common;
 	}
-	
+
 	@SuppressWarnings("static-access")
 	public static OptionGroup addEarlOptions() {
 		OptionGroup earl = new OptionGroup();
