@@ -1,7 +1,5 @@
 package org.w3.ldp.testsuite.test;
 
-import static org.hamcrest.Matchers.notNullValue;
-
 import java.io.IOException;
 
 import org.apache.http.HttpStatus;
@@ -19,6 +17,7 @@ import com.jayway.restassured.response.Response;
  * Tests that run on an LDP-RS that is not a container.
  */
 public class MemberResourceTest extends RdfSourceTest {
+	private static final String SETUP_ERROR = "ERROR: Could not create test resource for MemberResourceTest. Skipping tests.";
 
 	private String container;
 	private String memberResource;
@@ -55,16 +54,24 @@ public class MemberResourceTest extends RdfSourceTest {
 
 				Response postResponse = buildBaseRequestSpecification()
 						.contentType(TEXT_TURTLE)
-							.body(model, new RdfObjectMapper())
-						.expect()
-							.statusCode(HttpStatus.SC_CREATED)
-							.header(LOCATION, notNullValue())
-						.when()
-							.post(this.container);
+						.body(model, new RdfObjectMapper())
+						.post(this.container);
+				if (postResponse.getStatusCode() != HttpStatus.SC_CREATED) {
+					System.err.println(SETUP_ERROR);
+					System.err.println("POST failed with status code: " + postResponse.getStatusCode());
+					System.err.println();
+					return;
+				}
 
 				this.memberResource = postResponse.getHeader(LOCATION);
+				if (this.memberResource == null) {
+					System.err.println(SETUP_ERROR);
+					System.err.println("Location response header missing");
+					System.err.println();
+					return;
+				}
 			} catch (Exception e) {
-				System.err.println("ERROR: Could not create test resource for MemberResourceTest. Skipping tests.");
+				System.err.println(SETUP_ERROR);
 				e.printStackTrace();
 			}
 		}
