@@ -1,0 +1,1983 @@
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/description>
+                    "java.lang.AssertionError: Server reused URIs for POSTed resources.\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testRestrictUriReUse(CommonContainerTest.java:602)\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testRestrictUriReUseSlug(CommonContainerTest.java:346)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 23 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST FAILED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#fail>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.787Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers that allow member creation via POST SHOULD NOT re-use URIs." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: SHOULD"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.806Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers MUST support the HTTP HEAD method. " ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#notTested> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/description>
+                    "org.w3.ldp.testsuite.exception.SkipClientTestException: Skipping test. This is a client requirement, not a server requirement.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testChangeRdfTypeValue(RdfSourceTest.java:120)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST SKIPPED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#untested>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.798Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - In the absence of special knowledge of the application or domain, LDP clients MUST assume that the rdf:type values of a given LDP-RS can change over time." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/description>
+                    "org.testng.SkipException: Skipping test because there are restrictions on PUT content for this resource\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testPutReplacesResource(CommonResourceTest.java:273)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST SKIPPED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#untested>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.792Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - If a HTTP PUT is accepted on an existing resource, LDP servers MUST replace the entire persistent state of the identified resource with the entity representation in the body of the request." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.808Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers MUST provide an RDF representation for LDP-RSs. The HTTP Request-URI of the LDP-RS is typically the subject of most triples in the response." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.8Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers MUST support the HTTP response headers defined in section 4.2.8 HTTP OPTIONS. " ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.802Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers MUST provide a text/turtle representation of the requested LDP-RS [turtle]." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.805Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers that support POST MUST include an Accept-Post response header on HTTP OPTIONS responses, listing post document media type(s) supported by the server." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#manual> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/description>
+                    "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testGetResourcePreservesTriples(RdfSourceTest.java:169)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST SKIPPED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#untested>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.796Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - A LDP client MUST preserve all triples retrieved from an LDP-RS using HTTP GET that it doesn?t change whether it understands the predicates or not, when its intent is to perform an update using HTTP PUT. The use of HTTP PATCH instead of HTTP PUT for update avoids this burden for clients [RFC5789]. " ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.808Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers exposing LDPRs MUST advertise their LDP support by exposing a HTTP Link header with a target URI of http://www.w3.org/ns/ldp#Resource, and a link relation type of type (that is, rel='type') in all responses to requests made to the LDPR's HTTP Request-URI." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.799Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers MAY choose to allow the creation of new resources using HTTP PUT." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MAY"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.801Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers MUST accept a request entity body with a request header of Content-Type with value of text/turtle [turtle]." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.804Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers SHOULD allow clients to update resources without requiring detailed knowledge of server-specific constraints. This is a consequence of the requirement to enable simple creation and modification of LDPRs." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: SHOULD"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.804Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers SHOULD allow clients to create new resources without requiring detailed knowledge of application-specific constraints. This is a consequence of the requirement to enable simple creation and modification of LDPRs. LDP servers expose these application-specific constraints as described in section 4.2.1 General." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: SHOULD"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.807Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers MUST at least be HTTP/1.1 conformant servers [HTTP11]." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.798Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers exposing LDPCs MUST advertise their LDP support by exposing a HTTP Link header with a target URI matching the type of container (see below) the server supports, and a link relation type of type (that is, rel='type') in all responses to requests made to the LDPC's HTTP Request-URI." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.801Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - When a successful HTTP POST request to an LDPC results in the creation of an LDPR, a containment triple MUST be added to the state of LDPC." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.803Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP clients SHOULD use the HTTP If-Match header and HTTP ETags to ensure it isn?t modifying a resource that has changed since the client last retrieved its representation. LDP servers SHOULD require the HTTP If-Match header and HTTP ETags to detect collisions." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: SHOULD"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.809Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers that support PATCH MUST include an Accept-Patch HTTP response header [RFC5789] on HTTP OPTIONS requests, listing patch document media type(s) supported by the server. " ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.806Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP server responses MUST use entity tags (either weak or strong ones) as response ETag header values." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#notTested> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/description>
+                    "org.w3.ldp.testsuite.exception.SkipClientTestException: Skipping test. This is a client requirement, not a server requirement.\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testClientPostToCreate(CommonContainerTest.java:121)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST SKIPPED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#untested>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.797Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDPC clients SHOULD create member resources by submitting a representation as the entity body of the HTTP POST to a known LDPC." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: SHOULD"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.808Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers MUST support the HTTP OPTIONS method. " ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.8Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers exposing LDPRs MUST advertise their LDP support by exposing a HTTP Link header with a target URI of http://www.w3.org/ns/ldp#Resource, and a link relation type of type (that is, rel='type') in all responses to requests made to the LDPR's HTTP Request-URI." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.802Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers MUST respond with status code 412 (Condition Failed) if ETags fail to match when there are no other errors with the request [HTTP11]. LDP servers that require conditional requests MUST respond with status code 428 (Precondition Required) when the absence of a precondition is the only reason for rejecting the request [RFC6585]." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#manual> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/description>
+                    "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testGetResourcePreservesTriples(RdfSourceTest.java:169)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST SKIPPED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#untested>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.796Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - A LDP client MUST preserve all triples retrieved from an LDP-RS using HTTP GET that it doesn?t change whether it understands the predicates or not, when its intent is to perform an update using HTTP PUT. The use of HTTP PATCH instead of HTTP PUT for update avoids this burden for clients [RFC5789]. " ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.811Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers MUST indicate their support for HTTP Methods by responding to a HTTP OPTIONS request on the LDPR?s URL with the HTTP Method tokens in the HTTP response header Allow. " ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.799Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers SHOULD NOT allow HTTP PUT to update an LDPC?s containment triples; if the server receives such a request, it SHOULD respond with a 409 (Conflict) status code." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: SHOULD"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.801Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers MUST provide an RDF representation for LDP-RSs. The HTTP Request-URI of the LDP-RS is typically the subject of most triples in the response." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.804Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP server responses MUST use entity tags (either weak or strong ones) as response ETag header values." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#notTested> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/description>
+                    "org.w3.ldp.testsuite.exception.SkipClientTestException: Skipping test. This is a client requirement, not a server requirement.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testServerOpen(RdfSourceTest.java:137)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST SKIPPED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#untested>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.79Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP clients SHOULD always assume that the set of predicates for a LDP-RS of a particular type at an arbitrary server is open, in the sense that different resources of the same type may not all have the same set of predicates in their triples, and the set of predicates that are used in the state of any one LDP-RS is not limited to any pre-defined set." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: SHOULD"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.81Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP-RSs representations SHOULD have at least one rdf:type set explicitly. This makes the representations much more useful to client applications that don?t support inferencing." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: SHOULD"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#manual> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/description>
+                    "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testUseStandardVocabularies(RdfSourceTest.java:93)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST SKIPPED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#untested>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.794Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP-RSs predicates SHOULD use standard vocabularies such as Dublin Core [DC-TERMS], RDF [rdf11-concepts] and RDF Schema [rdf-schema], whenever possible." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: SHOULD"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.809Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - When an LDPR identified by the object of a containment triple is deleted, the LDPC server MUST also remove the LDPR from the containing LDPC by removing the corresponding containment triple." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/description>
+                    "java.lang.AssertionError: 1 expectation failed.\nExpected status code not between 200 and 209 doesn't match actual status code <201>.\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:557)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:868)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1282)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy:148)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy:272)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testRestrictPutReUseUri(CommonContainerTest.java:466)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 40 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST FAILED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#fail>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.788Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers that allow LDPR creation via PUT SHOULD NOT re-use URIs. For RDF representations (LDP-RSs),the created resource can be thought of as an RDF named graph [rdf11-concepts]." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: SHOULD"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#notTested> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/description>
+                    "org.w3.ldp.testsuite.exception.SkipClientTestException: Skipping test. This is a client requirement, not a server requirement.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testAllowMultipleRdfTypes(RdfSourceTest.java:106)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST SKIPPED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#untested>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.793Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - In the absence of special knowledge of the application or domain, LDP clients MUST assume that any LDP-RS can have multiple values for rdf:type." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.811Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDPC representations SHOULD NOT use RDF container types rdf:Bag, rdf:Seq or rdf:List." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: SHOULD"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/description>
+                    "java.lang.AssertionError: 1 expectation failed.\nExpected status code between 200 and 209 doesn't match actual status code <409>.\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:557)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:868)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1282)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy:148)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy:272)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testAllowUpdateResources(CommonResourceTest.java:353)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 40 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST FAILED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#fail>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.784Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers SHOULD allow clients to update resources without requiring detailed knowledge of server-specific constraints. This is a consequence of the requirement to enable simple creation and modification of LDPRs." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: SHOULD"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#manual> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/description>
+                    "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testUseStandardVocabularies(RdfSourceTest.java:93)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST SKIPPED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#untested>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.791Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP-RSs predicates SHOULD use standard vocabularies such as Dublin Core [DC-TERMS], RDF [rdf11-concepts] and RDF Schema [rdf-schema], whenever possible." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: SHOULD"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.81Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers are RECOMMENDED to support HTTP PATCH as the preferred method for updating an LDPC's empty-container triples. " ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: SHOULD"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.805Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers that support PATCH MUST include an Accept-Patch HTTP response header [RFC5789] on HTTP OPTIONS requests, listing patch document media type(s) supported by the server. " ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.807Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers MUST respond with status code 412 (Condition Failed) if ETags fail to match when there are no other errors with the request [HTTP11]. LDP servers that require conditional requests MUST respond with status code 428 (Precondition Required) when the absence of a precondition is the only reason for rejecting the request [RFC6585]." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.804Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers MUST indicate their support for HTTP Methods by responding to a HTTP OPTIONS request on the LDPR?s URL with the HTTP Method tokens in the HTTP response header Allow. " ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.806Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP server responses MUST use entity tags (either weak or strong ones) as response ETag header values." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#manual> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/description>
+                    "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRestrictClientInference(RdfSourceTest.java:153)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST SKIPPED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#untested>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.798Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers MUST NOT require LDP clients to implement inferencing in order to recognize the subset of content defined by LDP. Other specifications built on top of LDP may require clients to implement inferencing [rdf11-concepts]. The practical implication is that all content defined by LDP must be explicitly represented, unless noted otherwise within this document." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.8Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers MUST support the HTTP HEAD method. " ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.802Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers MUST assign the default base-URI for [RFC3987] relative-URI resolution to be the HTTP Request-URI when the resource already exists, and to the URI of the created resource when the request results in the creation of a new resource." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.805Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP server responses MUST use entity tags (either weak or strong ones) as response ETag header values." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#manual> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/description>
+                    "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testReUseVocabularies(RdfSourceTest.java:72)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST SKIPPED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#untested>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.797Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP-RSs SHOULD reuse existing vocabularies instead of creating their own duplicate vocabulary terms. In addition to this general rule, some specific cases are covered by other conformance rules." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: SHOULD"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.808Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers MUST respond with status code 412 (Condition Failed) if ETags fail to match when there are no other errors with the request [HTTP11]. LDP servers that require conditional requests MUST respond with status code 428 (Precondition Required) when the absence of a precondition is the only reason for rejecting the request [RFC6585]." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.799Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers MUST provide a text/turtle representation of the requested LDP-RS [turtle]." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.802Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP clients SHOULD use the HTTP If-Match header and HTTP ETags to ensure it isn?t modifying a resource that has changed since the client last retrieved its representation. LDP servers SHOULD require the HTTP If-Match header and HTTP ETags to detect collisions." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: SHOULD"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#manual> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/description>
+                    "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testReUseVocabularies(RdfSourceTest.java:72)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST SKIPPED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#untested>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.795Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP-RSs SHOULD reuse existing vocabularies instead of creating their own duplicate vocabulary terms. In addition to this general rule, some specific cases are covered by other conformance rules." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: SHOULD"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.799Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers MUST support the HTTP OPTIONS method. " ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.801Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers MUST at least be HTTP/1.1 conformant servers [HTTP11]." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.803Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - If a HTTP PUT is accepted on an existing resource, LDP servers MUST replace the entire persistent state of the identified resource with the entity representation in the body of the request." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.81Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - Each LDP Basic Container MUST also be a conforming LDP Container in section 5.2 Container along the following restrictions in this section." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertor> ;
+  <http://purl.org/dc/terms/title>
+          "LDP Test Suite"
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.809Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers that allow member creation via POST SHOULD NOT re-use URIs." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: SHOULD"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.811Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers MUST respond with status code 412 (Condition Failed) if ETags fail to match when there are no other errors with the request [HTTP11]. LDP servers that require conditional requests MUST respond with status code 428 (Precondition Required) when the absence of a precondition is the only reason for rejecting the request [RFC6585]." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.81Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP-RSs representations SHOULD have at least one rdf:type set explicitly. This makes the representations much more useful to client applications that don?t support inferencing." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: SHOULD"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#notTested> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/description>
+                    "org.w3.ldp.testsuite.exception.SkipClientTestException: Skipping test. This is a client requirement, not a server requirement.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testAllowMultipleRdfTypes(RdfSourceTest.java:106)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST SKIPPED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#untested>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.789Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - In the absence of special knowledge of the application or domain, LDP clients MUST assume that any LDP-RS can have multiple values for rdf:type." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#manual> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/description>
+                    "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRestrictClientInference(RdfSourceTest.java:153)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST SKIPPED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#untested>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.794Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers MUST NOT require LDP clients to implement inferencing in order to recognize the subset of content defined by LDP. Other specifications built on top of LDP may require clients to implement inferencing [rdf11-concepts]. The practical implication is that all content defined by LDP must be explicitly represented, unless noted otherwise within this document." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/description>
+                    "java.lang.AssertionError: The resource created with URI <http://localhost:8080/DAV/ldp/1e22ea61cc4a2069> does not have the dcterms:identifier as the resource POSTed using the null relative URI. expected [true] but found [false]\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testNullRelativeUri(CommonContainerTest.java:280)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST FAILED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#fail>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.787Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - In RDF representations, LDP servers MUST interpret the null relative URI for the subject of triples in the LDPR representation in the request entity body as referring to the entity in the request body. Commonly, that entity is the model for the ?to be created? LDPR, so triples whose subject is the null relative URI will usually result in triples in the created resource whose subject is the created resource." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#notTested> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/description>
+                    "org.w3.ldp.testsuite.exception.SkipClientTestException: Skipping test. This is a client requirement, not a server requirement.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testServerOpen(RdfSourceTest.java:137)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST SKIPPED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#untested>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.792Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP clients SHOULD always assume that the set of predicates for a LDP-RS of a particular type at an arbitrary server is open, in the sense that different resources of the same type may not all have the same set of predicates in their triples, and the set of predicates that are used in the state of any one LDP-RS is not limited to any pre-defined set." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: SHOULD"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#manual> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/description>
+                    "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testAllowResponsesFromServer(RdfSourceTest.java:182)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST SKIPPED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#untested>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.791Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP clients MUST be capable of processing responses formed by an LDP server that ignores hints, including LDP-defined hints." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#notTested> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/description>
+                    "org.w3.ldp.testsuite.exception.SkipClientTestException: Skipping test. This is a client requirement, not a server requirement.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testChangeRdfTypeValue(RdfSourceTest.java:120)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST SKIPPED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#untested>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.795Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - In the absence of special knowledge of the application or domain, LDP clients MUST assume that the rdf:type values of a given LDP-RS can change over time." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.805Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers MUST support the HTTP response headers defined in section 4.2.8 HTTP OPTIONS. " ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/description>
+                    "java.lang.AssertionError: 1 expectation failed.\nExpected status code between 200 and 209 doesn't match actual status code <409>.\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:57)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:182)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:557)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:868)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1282)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy:148)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy:272)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testRelativeUriResolutionPut(CommonResourceTest.java:191)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 40 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST FAILED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#fail>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.789Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers MUST assign the default base-URI for [RFC3987] relative-URI resolution to be the HTTP Request-URI when the resource already exists, and to the URI of the created resource when the request results in the creation of a new resource." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#automatic> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST PASSED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#pass>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.807Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - If the resource was created successfully, LDP servers MUST respond with status code 201 (Created) and the Location header set to the new resource?s URL. Clients shall not expect any representation in the response entity body on a 201 (Created) response." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+
+[ a       <http://www.w3.org/ns/earl#Assertion> ;
+  <http://www.w3.org/ns/earl#assertedBy>
+          [ a       <http://www.w3.org/ns/earl#Software> ] ;
+  <http://www.w3.org/ns/earl#mode>
+          [ a       <http://www.w3.org/ns/earl#manual> ] ;
+  <http://www.w3.org/ns/earl#result>
+          [ a       <http://www.w3.org/ns/earl#TestResult> ;
+            <http://purl.org/dc/terms/description>
+                    "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testAllowResponsesFromServer(RdfSourceTest.java:182)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            <http://purl.org/dc/terms/title>
+                    "TEST SKIPPED" ;
+            <http://www.w3.org/ns/earl#outcome>
+                    <http://www.w3.org/ns/earl#untested>
+          ] ;
+  <http://www.w3.org/ns/earl#subject>
+          [ a       <http://www.w3.org/ns/earl#TestSubject> ;
+            <http://purl.org/dc/terms/title>
+                    "http://localhost:8080/DAV/ldp/"
+          ] ;
+  <http://www.w3.org/ns/earl#test>
+          [ a       <http://www.w3.org/ns/earl#TestCase> ;
+            <http://purl.org/dc/terms/date>
+                    "2014-07-17T16:50:52.793Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            <http://purl.org/dc/terms/description>
+                    "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP clients MUST be capable of processing responses formed by an LDP server that ignores hints, including LDP-defined hints." ;
+            <http://purl.org/dc/terms/subject>
+                    "Groups: MUST"
+          ]
+] .
+

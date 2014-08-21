@@ -1,0 +1,3902 @@
+{
+  "@graph" : [ {
+    "@id" : "_:t1",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.798Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers MUST NOT require LDP clients to implement inferencing in order to recognize the subset of content defined by LDP. Other specifications built on top of LDP may require clients to implement inferencing [rdf11-concepts]. The practical implication is that all content defined by LDP must be explicitly represented, unless noted otherwise within this document.",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t10",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.787Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers that allow member creation via POST SHOULD NOT re-use URIs.",
+    "dcterms:subject" : "Groups: SHOULD",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t100",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t101",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.804Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers SHOULD allow clients to create new resources without requiring detailed knowledge of application-specific constraints. This is a consequence of the requirement to enable simple creation and modification of LDPRs. LDP servers expose these application-specific constraints as described in section 4.2.1 General.",
+    "dcterms:subject" : "Groups: SHOULD",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t102",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t103",
+    "rdf:type" : {
+      "@id" : "earl:manual"
+    }
+  }, {
+    "@id" : "_:t104",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t105"
+    },
+    "earl:mode" : {
+      "@id" : "_:t109"
+    },
+    "earl:result" : {
+      "@id" : "_:t106"
+    },
+    "earl:subject" : {
+      "@id" : "_:t107"
+    },
+    "earl:test" : {
+      "@id" : "_:t108"
+    }
+  }, {
+    "@id" : "_:t105",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t106",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t107",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t108",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.807Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers MUST at least be HTTP/1.1 conformant servers [HTTP11].",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t109",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t11",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t110",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t111"
+    },
+    "earl:mode" : {
+      "@id" : "_:t115"
+    },
+    "earl:result" : {
+      "@id" : "_:t112"
+    },
+    "earl:subject" : {
+      "@id" : "_:t113"
+    },
+    "earl:test" : {
+      "@id" : "_:t114"
+    }
+  }, {
+    "@id" : "_:t111",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t112",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t113",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t114",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.798Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers exposing LDPCs MUST advertise their LDP support by exposing a HTTP Link header with a target URI matching the type of container (see below) the server supports, and a link relation type of type (that is, rel='type') in all responses to requests made to the LDPC's HTTP Request-URI.",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t115",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t116",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.789Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - In the absence of special knowledge of the application or domain, LDP clients MUST assume that any LDP-RS can have multiple values for rdf:type.",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t117",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.81Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - Each LDP Basic Container MUST also be a conforming LDP Container in section 5.2 Container along the following restrictions in this section.",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t118",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t119"
+    },
+    "earl:mode" : {
+      "@id" : "_:t123"
+    },
+    "earl:result" : {
+      "@id" : "_:t120"
+    },
+    "earl:subject" : {
+      "@id" : "_:t121"
+    },
+    "earl:test" : {
+      "@id" : "_:t122"
+    }
+  }, {
+    "@id" : "_:t119",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t12",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t13"
+    },
+    "earl:mode" : {
+      "@id" : "_:t17"
+    },
+    "earl:result" : {
+      "@id" : "_:t14"
+    },
+    "earl:subject" : {
+      "@id" : "_:t15"
+    },
+    "earl:test" : {
+      "@id" : "_:t16"
+    }
+  }, {
+    "@id" : "_:t120",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t121",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t122",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.801Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - When a successful HTTP POST request to an LDPC results in the creation of an LDPR, a containment triple MUST be added to the state of LDPC.",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t123",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t124",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.794Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers MUST NOT require LDP clients to implement inferencing in order to recognize the subset of content defined by LDP. Other specifications built on top of LDP may require clients to implement inferencing [rdf11-concepts]. The practical implication is that all content defined by LDP must be explicitly represented, unless noted otherwise within this document.",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t125",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t126",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t127"
+    },
+    "earl:mode" : {
+      "@id" : "_:t131"
+    },
+    "earl:result" : {
+      "@id" : "_:t128"
+    },
+    "earl:subject" : {
+      "@id" : "_:t129"
+    },
+    "earl:test" : {
+      "@id" : "_:t130"
+    }
+  }, {
+    "@id" : "_:t127",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t128",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t129",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t13",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t130",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.803Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP clients SHOULD use the HTTP If-Match header and HTTP ETags to ensure it isn?t modifying a resource that has changed since the client last retrieved its representation. LDP servers SHOULD require the HTTP If-Match header and HTTP ETags to detect collisions.",
+    "dcterms:subject" : "Groups: SHOULD",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t131",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t132",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t133"
+    },
+    "earl:mode" : {
+      "@id" : "_:t137"
+    },
+    "earl:result" : {
+      "@id" : "_:t134"
+    },
+    "earl:subject" : {
+      "@id" : "_:t135"
+    },
+    "earl:test" : {
+      "@id" : "_:t136"
+    }
+  }, {
+    "@id" : "_:t133",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t134",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t135",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t136",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.809Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers that support PATCH MUST include an Accept-Patch HTTP response header [RFC5789] on HTTP OPTIONS requests, listing patch document media type(s) supported by the server. ",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t137",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t138",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t139"
+    },
+    "earl:mode" : {
+      "@id" : "_:t143"
+    },
+    "earl:result" : {
+      "@id" : "_:t140"
+    },
+    "earl:subject" : {
+      "@id" : "_:t141"
+    },
+    "earl:test" : {
+      "@id" : "_:t142"
+    }
+  }, {
+    "@id" : "_:t139",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t14",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t140",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t141",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t142",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.806Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP server responses MUST use entity tags (either weak or strong ones) as response ETag header values.",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t143",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t144",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.804Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers MUST indicate their support for HTTP Methods by responding to a HTTP OPTIONS request on the LDPR?s URL with the HTTP Method tokens in the HTTP response header Allow. ",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t145",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t146"
+    },
+    "earl:mode" : {
+      "@id" : "_:t150"
+    },
+    "earl:result" : {
+      "@id" : "_:t147"
+    },
+    "earl:subject" : {
+      "@id" : "_:t148"
+    },
+    "earl:test" : {
+      "@id" : "_:t149"
+    }
+  }, {
+    "@id" : "_:t146",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t147",
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipClientTestException: Skipping test. This is a client requirement, not a server requirement.\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testClientPostToCreate(CommonContainerTest.java:121)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames",
+    "dcterms:title" : "TEST SKIPPED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:untested"
+    }
+  }, {
+    "@id" : "_:t148",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t149",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.797Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDPC clients SHOULD create member resources by submitting a representation as the entity body of the HTTP POST to a known LDPC.",
+    "dcterms:subject" : "Groups: SHOULD",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t15",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t150",
+    "rdf:type" : {
+      "@id" : "earl:notTested"
+    }
+  }, {
+    "@id" : "_:t151",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t152"
+    },
+    "earl:mode" : {
+      "@id" : "_:t156"
+    },
+    "earl:result" : {
+      "@id" : "_:t153"
+    },
+    "earl:subject" : {
+      "@id" : "_:t154"
+    },
+    "earl:test" : {
+      "@id" : "_:t155"
+    }
+  }, {
+    "@id" : "_:t152",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t153",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t154",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t155",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.808Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers MUST support the HTTP OPTIONS method. ",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t156",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t157",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.806Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP server responses MUST use entity tags (either weak or strong ones) as response ETag header values.",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t158",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t159"
+    },
+    "earl:mode" : {
+      "@id" : "_:t163"
+    },
+    "earl:result" : {
+      "@id" : "_:t160"
+    },
+    "earl:subject" : {
+      "@id" : "_:t161"
+    },
+    "earl:test" : {
+      "@id" : "_:t162"
+    }
+  }, {
+    "@id" : "_:t159",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t16",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.806Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers MUST support the HTTP HEAD method. ",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t160",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t161",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t162",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.8Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers exposing LDPRs MUST advertise their LDP support by exposing a HTTP Link header with a target URI of http://www.w3.org/ns/ldp#Resource, and a link relation type of type (that is, rel='type') in all responses to requests made to the LDPR's HTTP Request-URI.",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t163",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t164",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t165"
+    },
+    "earl:mode" : {
+      "@id" : "_:t169"
+    },
+    "earl:result" : {
+      "@id" : "_:t166"
+    },
+    "earl:subject" : {
+      "@id" : "_:t167"
+    },
+    "earl:test" : {
+      "@id" : "_:t168"
+    }
+  }, {
+    "@id" : "_:t165",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t166",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t167",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t168",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.802Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers MUST respond with status code 412 (Condition Failed) if ETags fail to match when there are no other errors with the request [HTTP11]. LDP servers that require conditional requests MUST respond with status code 428 (Precondition Required) when the absence of a precondition is the only reason for rejecting the request [RFC6585].",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t169",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t17",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t170",
+    "rdf:type" : {
+      "@id" : "earl:notTested"
+    }
+  }, {
+    "@id" : "_:t171",
+    "rdf:type" : {
+      "@id" : "earl:manual"
+    }
+  }, {
+    "@id" : "_:t172",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t173"
+    },
+    "earl:mode" : {
+      "@id" : "_:t177"
+    },
+    "earl:result" : {
+      "@id" : "_:t174"
+    },
+    "earl:subject" : {
+      "@id" : "_:t175"
+    },
+    "earl:test" : {
+      "@id" : "_:t176"
+    }
+  }, {
+    "@id" : "_:t173",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t174",
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testGetResourcePreservesTriples(RdfSourceTest.java:169)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames",
+    "dcterms:title" : "TEST SKIPPED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:untested"
+    }
+  }, {
+    "@id" : "_:t175",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t176",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.796Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - A LDP client MUST preserve all triples retrieved from an LDP-RS using HTTP GET that it doesn?t change whether it understands the predicates or not, when its intent is to perform an update using HTTP PUT. The use of HTTP PATCH instead of HTTP PUT for update avoids this burden for clients [RFC5789]. ",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t177",
+    "rdf:type" : {
+      "@id" : "earl:manual"
+    }
+  }, {
+    "@id" : "_:t178",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t179"
+    },
+    "earl:mode" : {
+      "@id" : "_:t183"
+    },
+    "earl:result" : {
+      "@id" : "_:t180"
+    },
+    "earl:subject" : {
+      "@id" : "_:t181"
+    },
+    "earl:test" : {
+      "@id" : "_:t182"
+    }
+  }, {
+    "@id" : "_:t179",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t18",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.809Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - When an LDPR identified by the object of a containment triple is deleted, the LDPC server MUST also remove the LDPR from the containing LDPC by removing the corresponding containment triple.",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t180",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t181",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t182",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.811Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers MUST indicate their support for HTTP Methods by responding to a HTTP OPTIONS request on the LDPR?s URL with the HTTP Method tokens in the HTTP response header Allow. ",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t183",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t184",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.805Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP server responses MUST use entity tags (either weak or strong ones) as response ETag header values.",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t185",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t186"
+    },
+    "earl:mode" : {
+      "@id" : "_:t190"
+    },
+    "earl:result" : {
+      "@id" : "_:t187"
+    },
+    "earl:subject" : {
+      "@id" : "_:t188"
+    },
+    "earl:test" : {
+      "@id" : "_:t189"
+    }
+  }, {
+    "@id" : "_:t186",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t187",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t188",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t189",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.799Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers SHOULD NOT allow HTTP PUT to update an LDPC?s containment triples; if the server receives such a request, it SHOULD respond with a 409 (Conflict) status code.",
+    "dcterms:subject" : "Groups: SHOULD",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t19",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.802Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers MUST assign the default base-URI for [RFC3987] relative-URI resolution to be the HTTP Request-URI when the resource already exists, and to the URI of the created resource when the request results in the creation of a new resource.",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t190",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t191",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.797Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP-RSs SHOULD reuse existing vocabularies instead of creating their own duplicate vocabulary terms. In addition to this general rule, some specific cases are covered by other conformance rules.",
+    "dcterms:subject" : "Groups: SHOULD",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t192",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.808Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers MUST respond with status code 412 (Condition Failed) if ETags fail to match when there are no other errors with the request [HTTP11]. LDP servers that require conditional requests MUST respond with status code 428 (Precondition Required) when the absence of a precondition is the only reason for rejecting the request [RFC6585].",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t193",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t194"
+    },
+    "earl:mode" : {
+      "@id" : "_:t198"
+    },
+    "earl:result" : {
+      "@id" : "_:t195"
+    },
+    "earl:subject" : {
+      "@id" : "_:t196"
+    },
+    "earl:test" : {
+      "@id" : "_:t197"
+    }
+  }, {
+    "@id" : "_:t194",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t195",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t196",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t197",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.801Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers MUST provide an RDF representation for LDP-RSs. The HTTP Request-URI of the LDP-RS is typically the subject of most triples in the response.",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t198",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t199",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.799Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers MUST provide a text/turtle representation of the requested LDP-RS [turtle].",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t2",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t20",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t200",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t201",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t202"
+    },
+    "earl:mode" : {
+      "@id" : "_:t206"
+    },
+    "earl:result" : {
+      "@id" : "_:t203"
+    },
+    "earl:subject" : {
+      "@id" : "_:t204"
+    },
+    "earl:test" : {
+      "@id" : "_:t205"
+    }
+  }, {
+    "@id" : "_:t202",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t203",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t204",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t205",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.804Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP server responses MUST use entity tags (either weak or strong ones) as response ETag header values.",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t206",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t207",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.802Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP clients SHOULD use the HTTP If-Match header and HTTP ETags to ensure it isn?t modifying a resource that has changed since the client last retrieved its representation. LDP servers SHOULD require the HTTP If-Match header and HTTP ETags to detect collisions.",
+    "dcterms:subject" : "Groups: SHOULD",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t208",
+    "rdf:type" : {
+      "@id" : "earl:notTested"
+    }
+  }, {
+    "@id" : "_:t209",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t210"
+    },
+    "earl:mode" : {
+      "@id" : "_:t170"
+    },
+    "earl:result" : {
+      "@id" : "_:t211"
+    },
+    "earl:subject" : {
+      "@id" : "_:t212"
+    },
+    "earl:test" : {
+      "@id" : "_:t213"
+    }
+  }, {
+    "@id" : "_:t21",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t22"
+    },
+    "earl:mode" : {
+      "@id" : "_:t26"
+    },
+    "earl:result" : {
+      "@id" : "_:t23"
+    },
+    "earl:subject" : {
+      "@id" : "_:t24"
+    },
+    "earl:test" : {
+      "@id" : "_:t25"
+    }
+  }, {
+    "@id" : "_:t210",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t211",
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipClientTestException: Skipping test. This is a client requirement, not a server requirement.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testServerOpen(RdfSourceTest.java:137)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames",
+    "dcterms:title" : "TEST SKIPPED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:untested"
+    }
+  }, {
+    "@id" : "_:t212",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t213",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.79Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP clients SHOULD always assume that the set of predicates for a LDP-RS of a particular type at an arbitrary server is open, in the sense that different resources of the same type may not all have the same set of predicates in their triples, and the set of predicates that are used in the state of any one LDP-RS is not limited to any pre-defined set.",
+    "dcterms:subject" : "Groups: SHOULD",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t214",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t215"
+    },
+    "earl:mode" : {
+      "@id" : "_:t219"
+    },
+    "earl:result" : {
+      "@id" : "_:t216"
+    },
+    "earl:subject" : {
+      "@id" : "_:t217"
+    },
+    "earl:test" : {
+      "@id" : "_:t218"
+    }
+  }, {
+    "@id" : "_:t215",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t216",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t217",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t218",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.81Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP-RSs representations SHOULD have at least one rdf:type set explicitly. This makes the representations much more useful to client applications that don?t support inferencing.",
+    "dcterms:subject" : "Groups: SHOULD",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t219",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t22",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t220",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.805Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers MUST support the HTTP response headers defined in section 4.2.8 HTTP OPTIONS. ",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t221",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t222"
+    },
+    "earl:mode" : {
+      "@id" : "_:t171"
+    },
+    "earl:result" : {
+      "@id" : "_:t223"
+    },
+    "earl:subject" : {
+      "@id" : "_:t224"
+    },
+    "earl:test" : {
+      "@id" : "_:t225"
+    }
+  }, {
+    "@id" : "_:t222",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t223",
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testUseStandardVocabularies(RdfSourceTest.java:93)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames",
+    "dcterms:title" : "TEST SKIPPED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:untested"
+    }
+  }, {
+    "@id" : "_:t224",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t225",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.794Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP-RSs predicates SHOULD use standard vocabularies such as Dublin Core [DC-TERMS], RDF [rdf11-concepts] and RDF Schema [rdf-schema], whenever possible.",
+    "dcterms:subject" : "Groups: SHOULD",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t226",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.795Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP-RSs SHOULD reuse existing vocabularies instead of creating their own duplicate vocabulary terms. In addition to this general rule, some specific cases are covered by other conformance rules.",
+    "dcterms:subject" : "Groups: SHOULD",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t227",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.807Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - If the resource was created successfully, LDP servers MUST respond with status code 201 (Created) and the Location header set to the new resource?s URL. Clients shall not expect any representation in the response entity body on a 201 (Created) response.",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t228",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.799Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers MUST support the HTTP OPTIONS method. ",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t229",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t23",
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipClientTestException: Skipping test. This is a client requirement, not a server requirement.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testChangeRdfTypeValue(RdfSourceTest.java:120)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames",
+    "dcterms:title" : "TEST SKIPPED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:untested"
+    }
+  }, {
+    "@id" : "_:t230",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t231"
+    },
+    "earl:mode" : {
+      "@id" : "_:t234"
+    },
+    "earl:result" : {
+      "@id" : "_:t232"
+    },
+    "earl:subject" : {
+      "@id" : "_:t233"
+    },
+    "earl:test" : {
+      "@id" : "_:t18"
+    }
+  }, {
+    "@id" : "_:t231",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t232",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t233",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t234",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t235",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.801Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers MUST at least be HTTP/1.1 conformant servers [HTTP11].",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t236",
+    "rdf:type" : {
+      "@id" : "earl:manual"
+    }
+  }, {
+    "@id" : "_:t237",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t238"
+    },
+    "earl:mode" : {
+      "@id" : "_:t200"
+    },
+    "earl:result" : {
+      "@id" : "_:t239"
+    },
+    "earl:subject" : {
+      "@id" : "_:t240"
+    },
+    "earl:test" : {
+      "@id" : "_:t33"
+    }
+  }, {
+    "@id" : "_:t238",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t239",
+    "dcterms:description" : "java.lang.AssertionError: 1 expectation failed.\nExpected status code not between 200 and 209 doesn't match actual status code <201>.\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:557)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:868)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1282)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy:148)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy:272)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testRestrictPutReUseUri(CommonContainerTest.java:466)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 40 stack frames",
+    "dcterms:title" : "TEST FAILED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:fail"
+    }
+  }, {
+    "@id" : "_:t24",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t240",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t241",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.803Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - If a HTTP PUT is accepted on an existing resource, LDP servers MUST replace the entire persistent state of the identified resource with the entity representation in the body of the request.",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t242",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t243"
+    },
+    "earl:mode" : {
+      "@id" : "_:t208"
+    },
+    "earl:result" : {
+      "@id" : "_:t244"
+    },
+    "earl:subject" : {
+      "@id" : "_:t245"
+    },
+    "earl:test" : {
+      "@id" : "_:t47"
+    }
+  }, {
+    "@id" : "_:t243",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t244",
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipClientTestException: Skipping test. This is a client requirement, not a server requirement.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testAllowMultipleRdfTypes(RdfSourceTest.java:106)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames",
+    "dcterms:title" : "TEST SKIPPED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:untested"
+    }
+  }, {
+    "@id" : "_:t245",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t246",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t247"
+    },
+    "earl:mode" : {
+      "@id" : "_:t250"
+    },
+    "earl:result" : {
+      "@id" : "_:t248"
+    },
+    "earl:subject" : {
+      "@id" : "_:t249"
+    },
+    "earl:test" : {
+      "@id" : "_:t48"
+    }
+  }, {
+    "@id" : "_:t247",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t248",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t249",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t25",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.798Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - In the absence of special knowledge of the application or domain, LDP clients MUST assume that the rdf:type values of a given LDP-RS can change over time.",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t250",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t251",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t252",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t253",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t254",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t255"
+    },
+    "earl:mode" : {
+      "@id" : "_:t229"
+    },
+    "earl:result" : {
+      "@id" : "_:t256"
+    },
+    "earl:subject" : {
+      "@id" : "_:t257"
+    },
+    "earl:test" : {
+      "@id" : "_:t67"
+    }
+  }, {
+    "@id" : "_:t255",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t256",
+    "dcterms:description" : "java.lang.AssertionError: 1 expectation failed.\nExpected status code between 200 and 209 doesn't match actual status code <409>.\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:557)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:868)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1282)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy:148)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy:272)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testAllowUpdateResources(CommonResourceTest.java:353)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 40 stack frames",
+    "dcterms:title" : "TEST FAILED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:fail"
+    }
+  }, {
+    "@id" : "_:t257",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t258",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t259",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t260"
+    },
+    "earl:mode" : {
+      "@id" : "_:t236"
+    },
+    "earl:result" : {
+      "@id" : "_:t261"
+    },
+    "earl:subject" : {
+      "@id" : "_:t262"
+    },
+    "earl:test" : {
+      "@id" : "_:t80"
+    }
+  }, {
+    "@id" : "_:t26",
+    "rdf:type" : {
+      "@id" : "earl:notTested"
+    }
+  }, {
+    "@id" : "_:t260",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t261",
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testUseStandardVocabularies(RdfSourceTest.java:93)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames",
+    "dcterms:title" : "TEST SKIPPED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:untested"
+    }
+  }, {
+    "@id" : "_:t262",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t263",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t264"
+    },
+    "earl:mode" : {
+      "@id" : "_:t267"
+    },
+    "earl:result" : {
+      "@id" : "_:t265"
+    },
+    "earl:subject" : {
+      "@id" : "_:t266"
+    },
+    "earl:test" : {
+      "@id" : "_:t81"
+    }
+  }, {
+    "@id" : "_:t264",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t265",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t266",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t267",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t268",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.809Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers that allow member creation via POST SHOULD NOT re-use URIs.",
+    "dcterms:subject" : "Groups: SHOULD",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t269",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t27",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t28"
+    },
+    "earl:mode" : {
+      "@id" : "_:t32"
+    },
+    "earl:result" : {
+      "@id" : "_:t29"
+    },
+    "earl:subject" : {
+      "@id" : "_:t30"
+    },
+    "earl:test" : {
+      "@id" : "_:t31"
+    }
+  }, {
+    "@id" : "_:t270",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.811Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers MUST respond with status code 412 (Condition Failed) if ETags fail to match when there are no other errors with the request [HTTP11]. LDP servers that require conditional requests MUST respond with status code 428 (Precondition Required) when the absence of a precondition is the only reason for rejecting the request [RFC6585].",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t271",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t272",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t273",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t274",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t275"
+    },
+    "earl:mode" : {
+      "@id" : "_:t252"
+    },
+    "earl:result" : {
+      "@id" : "_:t276"
+    },
+    "earl:subject" : {
+      "@id" : "_:t277"
+    },
+    "earl:test" : {
+      "@id" : "_:t278"
+    }
+  }, {
+    "@id" : "_:t275",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t276",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t277",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t278",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.805Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers that support PATCH MUST include an Accept-Patch HTTP response header [RFC5789] on HTTP OPTIONS requests, listing patch document media type(s) supported by the server. ",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t279",
+    "rdf:type" : {
+      "@id" : "earl:manual"
+    }
+  }, {
+    "@id" : "_:t28",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t280",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t281"
+    },
+    "earl:mode" : {
+      "@id" : "_:t258"
+    },
+    "earl:result" : {
+      "@id" : "_:t282"
+    },
+    "earl:subject" : {
+      "@id" : "_:t283"
+    },
+    "earl:test" : {
+      "@id" : "_:t284"
+    }
+  }, {
+    "@id" : "_:t281",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t282",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t283",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t284",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.807Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers MUST respond with status code 412 (Condition Failed) if ETags fail to match when there are no other errors with the request [HTTP11]. LDP servers that require conditional requests MUST respond with status code 428 (Precondition Required) when the absence of a precondition is the only reason for rejecting the request [RFC6585].",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t285",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t286",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.81Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP-RSs representations SHOULD have at least one rdf:type set explicitly. This makes the representations much more useful to client applications that don?t support inferencing.",
+    "dcterms:subject" : "Groups: SHOULD",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t287",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t288",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t289",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t290"
+    },
+    "earl:mode" : {
+      "@id" : "_:t271"
+    },
+    "earl:result" : {
+      "@id" : "_:t291"
+    },
+    "earl:subject" : {
+      "@id" : "_:t292"
+    },
+    "earl:test" : {
+      "@id" : "_:t144"
+    }
+  }, {
+    "@id" : "_:t29",
+    "dcterms:description" : "org.testng.SkipException: Skipping test because there are restrictions on PUT content for this resource\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testPutReplacesResource(CommonResourceTest.java:273)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames",
+    "dcterms:title" : "TEST SKIPPED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:untested"
+    }
+  }, {
+    "@id" : "_:t290",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t291",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t292",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t293",
+    "rdf:type" : {
+      "@id" : "earl:manual"
+    }
+  }, {
+    "@id" : "_:t294",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t295",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t296"
+    },
+    "earl:mode" : {
+      "@id" : "_:t273"
+    },
+    "earl:result" : {
+      "@id" : "_:t297"
+    },
+    "earl:subject" : {
+      "@id" : "_:t298"
+    },
+    "earl:test" : {
+      "@id" : "_:t157"
+    }
+  }, {
+    "@id" : "_:t296",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t297",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t298",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t299",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t3",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t30",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t300",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t301"
+    },
+    "earl:mode" : {
+      "@id" : "_:t279"
+    },
+    "earl:result" : {
+      "@id" : "_:t302"
+    },
+    "earl:subject" : {
+      "@id" : "_:t303"
+    },
+    "earl:test" : {
+      "@id" : "_:t1"
+    }
+  }, {
+    "@id" : "_:t301",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t302",
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRestrictClientInference(RdfSourceTest.java:153)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames",
+    "dcterms:title" : "TEST SKIPPED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:untested"
+    }
+  }, {
+    "@id" : "_:t303",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t304",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t305",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t306"
+    },
+    "earl:mode" : {
+      "@id" : "_:t285"
+    },
+    "earl:result" : {
+      "@id" : "_:t307"
+    },
+    "earl:subject" : {
+      "@id" : "_:t308"
+    },
+    "earl:test" : {
+      "@id" : "_:t4"
+    }
+  }, {
+    "@id" : "_:t306",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t307",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t308",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t309",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t310"
+    },
+    "earl:mode" : {
+      "@id" : "_:t287"
+    },
+    "earl:result" : {
+      "@id" : "_:t311"
+    },
+    "earl:subject" : {
+      "@id" : "_:t312"
+    },
+    "earl:test" : {
+      "@id" : "_:t19"
+    }
+  }, {
+    "@id" : "_:t31",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.792Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - If a HTTP PUT is accepted on an existing resource, LDP servers MUST replace the entire persistent state of the identified resource with the entity representation in the body of the request.",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t310",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t311",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t312",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t313",
+    "rdf:type" : {
+      "@id" : "earl:manual"
+    }
+  }, {
+    "@id" : "_:t314",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t315"
+    },
+    "earl:mode" : {
+      "@id" : "_:t288"
+    },
+    "earl:result" : {
+      "@id" : "_:t316"
+    },
+    "earl:subject" : {
+      "@id" : "_:t317"
+    },
+    "earl:test" : {
+      "@id" : "_:t184"
+    }
+  }, {
+    "@id" : "_:t315",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t316",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t317",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t318",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t319",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t320"
+    },
+    "earl:mode" : {
+      "@id" : "_:t293"
+    },
+    "earl:result" : {
+      "@id" : "_:t321"
+    },
+    "earl:subject" : {
+      "@id" : "_:t322"
+    },
+    "earl:test" : {
+      "@id" : "_:t191"
+    }
+  }, {
+    "@id" : "_:t32",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t320",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t321",
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testReUseVocabularies(RdfSourceTest.java:72)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames",
+    "dcterms:title" : "TEST SKIPPED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:untested"
+    }
+  }, {
+    "@id" : "_:t322",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t323",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t324"
+    },
+    "earl:mode" : {
+      "@id" : "_:t294"
+    },
+    "earl:result" : {
+      "@id" : "_:t325"
+    },
+    "earl:subject" : {
+      "@id" : "_:t326"
+    },
+    "earl:test" : {
+      "@id" : "_:t192"
+    }
+  }, {
+    "@id" : "_:t324",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t325",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t326",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t327",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t328",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t329"
+    },
+    "earl:mode" : {
+      "@id" : "_:t299"
+    },
+    "earl:result" : {
+      "@id" : "_:t330"
+    },
+    "earl:subject" : {
+      "@id" : "_:t331"
+    },
+    "earl:test" : {
+      "@id" : "_:t199"
+    }
+  }, {
+    "@id" : "_:t329",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t33",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.788Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers that allow LDPR creation via PUT SHOULD NOT re-use URIs. For RDF representations (LDP-RSs),the created resource can be thought of as an RDF named graph [rdf11-concepts].",
+    "dcterms:subject" : "Groups: SHOULD",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t330",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t331",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t332",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t333",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t334"
+    },
+    "earl:mode" : {
+      "@id" : "_:t304"
+    },
+    "earl:result" : {
+      "@id" : "_:t335"
+    },
+    "earl:subject" : {
+      "@id" : "_:t336"
+    },
+    "earl:test" : {
+      "@id" : "_:t207"
+    }
+  }, {
+    "@id" : "_:t334",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t335",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t336",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t337",
+    "rdf:type" : {
+      "@id" : "earl:notTested"
+    }
+  }, {
+    "@id" : "_:t338",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t339",
+    "rdf:type" : {
+      "@id" : "earl:manual"
+    }
+  }, {
+    "@id" : "_:t34",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t35"
+    },
+    "earl:mode" : {
+      "@id" : "_:t39"
+    },
+    "earl:result" : {
+      "@id" : "_:t36"
+    },
+    "earl:subject" : {
+      "@id" : "_:t37"
+    },
+    "earl:test" : {
+      "@id" : "_:t38"
+    }
+  }, {
+    "@id" : "_:t340",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t341"
+    },
+    "earl:mode" : {
+      "@id" : "_:t313"
+    },
+    "earl:result" : {
+      "@id" : "_:t342"
+    },
+    "earl:subject" : {
+      "@id" : "_:t2"
+    },
+    "earl:test" : {
+      "@id" : "_:t226"
+    }
+  }, {
+    "@id" : "_:t341",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t342",
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testReUseVocabularies(RdfSourceTest.java:72)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames",
+    "dcterms:title" : "TEST SKIPPED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:untested"
+    }
+  }, {
+    "@id" : "_:t343",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t344"
+    },
+    "earl:mode" : {
+      "@id" : "_:t318"
+    },
+    "earl:result" : {
+      "@id" : "_:t345"
+    },
+    "earl:subject" : {
+      "@id" : "_:t5"
+    },
+    "earl:test" : {
+      "@id" : "_:t228"
+    }
+  }, {
+    "@id" : "_:t344",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t345",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t346",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t347"
+    },
+    "earl:mode" : {
+      "@id" : "_:t327"
+    },
+    "earl:result" : {
+      "@id" : "_:t348"
+    },
+    "earl:subject" : {
+      "@id" : "_:t20"
+    },
+    "earl:test" : {
+      "@id" : "_:t235"
+    }
+  }, {
+    "@id" : "_:t347",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t348",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t349",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t35",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t350",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t351",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t352"
+    },
+    "earl:mode" : {
+      "@id" : "_:t332"
+    },
+    "earl:result" : {
+      "@id" : "_:t353"
+    },
+    "earl:subject" : {
+      "@id" : "_:t40"
+    },
+    "earl:test" : {
+      "@id" : "_:t241"
+    }
+  }, {
+    "@id" : "_:t352",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t353",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t354",
+    "rdf:type" : {
+      "@id" : "earl:notTested"
+    }
+  }, {
+    "@id" : "_:t355",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t356",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t357"
+    },
+    "earl:mode" : {
+      "@id" : "_:t338"
+    },
+    "earl:result" : {
+      "@id" : "_:t358"
+    },
+    "earl:subject" : {
+      "@id" : "_:t359"
+    },
+    "earl:test" : {
+      "@id" : "_:t117"
+    }
+  }, {
+    "@id" : "_:t357",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t358",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t359",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t36",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t360",
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testAllowResponsesFromServer(RdfSourceTest.java:182)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames",
+    "dcterms:title" : "TEST SKIPPED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:untested"
+    }
+  }, {
+    "@id" : "_:t361",
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipClientTestException: Skipping test. This is a client requirement, not a server requirement.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testChangeRdfTypeValue(RdfSourceTest.java:120)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames",
+    "dcterms:title" : "TEST SKIPPED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:untested"
+    }
+  }, {
+    "@id" : "_:t362",
+    "dcterms:title" : "LDP Test Suite",
+    "rdf:type" : {
+      "@id" : "earl:Assertor"
+    }
+  }, {
+    "@id" : "_:t363",
+    "rdf:type" : {
+      "@id" : "earl:manual"
+    }
+  }, {
+    "@id" : "_:t364",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t365",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t366"
+    },
+    "earl:mode" : {
+      "@id" : "_:t349"
+    },
+    "earl:result" : {
+      "@id" : "_:t367"
+    },
+    "earl:subject" : {
+      "@id" : "_:t82"
+    },
+    "earl:test" : {
+      "@id" : "_:t268"
+    }
+  }, {
+    "@id" : "_:t366",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t367",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t368",
+    "dcterms:description" : "java.lang.AssertionError: 1 expectation failed.\nExpected status code between 200 and 209 doesn't match actual status code <409>.\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:57)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:182)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:557)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:868)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1282)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy:148)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy:272)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testRelativeUriResolutionPut(CommonResourceTest.java:191)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 40 stack frames",
+    "dcterms:title" : "TEST FAILED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:fail"
+    }
+  }, {
+    "@id" : "_:t369",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t370"
+    },
+    "earl:mode" : {
+      "@id" : "_:t355"
+    },
+    "earl:result" : {
+      "@id" : "_:t371"
+    },
+    "earl:subject" : {
+      "@id" : "_:t90"
+    },
+    "earl:test" : {
+      "@id" : "_:t270"
+    }
+  }, {
+    "@id" : "_:t37",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t370",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t371",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t372",
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testAllowResponsesFromServer(RdfSourceTest.java:182)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames",
+    "dcterms:title" : "TEST SKIPPED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:untested"
+    }
+  }, {
+    "@id" : "_:t373",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t374",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t375",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t376"
+    },
+    "earl:mode" : {
+      "@id" : "_:t364"
+    },
+    "earl:result" : {
+      "@id" : "_:t377"
+    },
+    "earl:subject" : {
+      "@id" : "_:t125"
+    },
+    "earl:test" : {
+      "@id" : "_:t286"
+    }
+  }, {
+    "@id" : "_:t376",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t377",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t378",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t379",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t38",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.808Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers MUST provide an RDF representation for LDP-RSs. The HTTP Request-URI of the LDP-RS is typically the subject of most triples in the response.",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t380",
+    "rdf:type" : {
+      "@id" : "earl:notTested"
+    }
+  }, {
+    "@id" : "_:t381",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t382",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t383",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t384",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t385",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t386",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t387",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t388",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t389",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t39",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t390",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t391",
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipClientTestException: Skipping test. This is a client requirement, not a server requirement.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testAllowMultipleRdfTypes(RdfSourceTest.java:106)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames",
+    "dcterms:title" : "TEST SKIPPED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:untested"
+    }
+  }, {
+    "@id" : "_:t392",
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRestrictClientInference(RdfSourceTest.java:153)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames",
+    "dcterms:title" : "TEST SKIPPED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:untested"
+    }
+  }, {
+    "@id" : "_:t393",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.787Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - In RDF representations, LDP servers MUST interpret the null relative URI for the subject of triples in the LDPR representation in the request entity body as referring to the entity in the request body. Commonly, that entity is the model for the ?to be created? LDPR, so triples whose subject is the null relative URI will usually result in triples in the created resource whose subject is the created resource.",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t394",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.792Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP clients SHOULD always assume that the set of predicates for a LDP-RS of a particular type at an arbitrary server is open, in the sense that different resources of the same type may not all have the same set of predicates in their triples, and the set of predicates that are used in the state of any one LDP-RS is not limited to any pre-defined set.",
+    "dcterms:subject" : "Groups: SHOULD",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t395",
+    "dcterms:description" : "java.lang.AssertionError: The resource created with URI <http://localhost:8080/DAV/ldp/1e22ea61cc4a2069> does not have the dcterms:identifier as the resource POSTed using the null relative URI. expected [true] but found [false]\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testNullRelativeUri(CommonContainerTest.java:280)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 24 stack frames",
+    "dcterms:title" : "TEST FAILED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:fail"
+    }
+  }, {
+    "@id" : "_:t396",
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipClientTestException: Skipping test. This is a client requirement, not a server requirement.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testServerOpen(RdfSourceTest.java:137)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames",
+    "dcterms:title" : "TEST SKIPPED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:untested"
+    }
+  }, {
+    "@id" : "_:t397",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.791Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP clients MUST be capable of processing responses formed by an LDP server that ignores hints, including LDP-defined hints.",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t398",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.795Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - In the absence of special knowledge of the application or domain, LDP clients MUST assume that the rdf:type values of a given LDP-RS can change over time.",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t399",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.789Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers MUST assign the default base-URI for [RFC3987] relative-URI resolution to be the HTTP Request-URI when the resource already exists, and to the URI of the created resource when the request results in the creation of a new resource.",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t4",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.8Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers MUST support the HTTP HEAD method. ",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t40",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t400",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.793Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP clients MUST be capable of processing responses formed by an LDP server that ignores hints, including LDP-defined hints.",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t401",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t402",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t403",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t378"
+    },
+    "earl:mode" : {
+      "@id" : "_:t337"
+    },
+    "earl:result" : {
+      "@id" : "_:t391"
+    },
+    "earl:subject" : {
+      "@id" : "_:t404"
+    },
+    "earl:test" : {
+      "@id" : "_:t116"
+    }
+  }, {
+    "@id" : "_:t404",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t405",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t379"
+    },
+    "earl:mode" : {
+      "@id" : "_:t339"
+    },
+    "earl:result" : {
+      "@id" : "_:t392"
+    },
+    "earl:subject" : {
+      "@id" : "_:t406"
+    },
+    "earl:test" : {
+      "@id" : "_:t124"
+    }
+  }, {
+    "@id" : "_:t406",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t407",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t383"
+    },
+    "earl:mode" : {
+      "@id" : "_:t350"
+    },
+    "earl:result" : {
+      "@id" : "_:t395"
+    },
+    "earl:subject" : {
+      "@id" : "_:t381"
+    },
+    "earl:test" : {
+      "@id" : "_:t393"
+    }
+  }, {
+    "@id" : "_:t408",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t384"
+    },
+    "earl:mode" : {
+      "@id" : "_:t354"
+    },
+    "earl:result" : {
+      "@id" : "_:t396"
+    },
+    "earl:subject" : {
+      "@id" : "_:t382"
+    },
+    "earl:test" : {
+      "@id" : "_:t394"
+    }
+  }, {
+    "@id" : "_:t409",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t251"
+    },
+    "earl:mode" : {
+      "@id" : "_:t363"
+    },
+    "earl:result" : {
+      "@id" : "_:t360"
+    },
+    "earl:subject" : {
+      "@id" : "_:t385"
+    },
+    "earl:test" : {
+      "@id" : "_:t397"
+    }
+  }, {
+    "@id" : "_:t41",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t42"
+    },
+    "earl:mode" : {
+      "@id" : "_:t46"
+    },
+    "earl:result" : {
+      "@id" : "_:t43"
+    },
+    "earl:subject" : {
+      "@id" : "_:t44"
+    },
+    "earl:test" : {
+      "@id" : "_:t45"
+    }
+  }, {
+    "@id" : "_:t410",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t253"
+    },
+    "earl:mode" : {
+      "@id" : "_:t380"
+    },
+    "earl:result" : {
+      "@id" : "_:t361"
+    },
+    "earl:subject" : {
+      "@id" : "_:t386"
+    },
+    "earl:test" : {
+      "@id" : "_:t398"
+    }
+  }, {
+    "@id" : "_:t411",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t389"
+    },
+    "earl:mode" : {
+      "@id" : "_:t373"
+    },
+    "earl:result" : {
+      "@id" : "_:t401"
+    },
+    "earl:subject" : {
+      "@id" : "_:t412"
+    },
+    "earl:test" : {
+      "@id" : "_:t220"
+    }
+  }, {
+    "@id" : "_:t412",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t413",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t269"
+    },
+    "earl:mode" : {
+      "@id" : "_:t89"
+    },
+    "earl:result" : {
+      "@id" : "_:t368"
+    },
+    "earl:subject" : {
+      "@id" : "_:t387"
+    },
+    "earl:test" : {
+      "@id" : "_:t399"
+    }
+  }, {
+    "@id" : "_:t414",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t390"
+    },
+    "earl:mode" : {
+      "@id" : "_:t374"
+    },
+    "earl:result" : {
+      "@id" : "_:t402"
+    },
+    "earl:subject" : {
+      "@id" : "_:t3"
+    },
+    "earl:test" : {
+      "@id" : "_:t227"
+    }
+  }, {
+    "@id" : "_:t415",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t272"
+    },
+    "earl:mode" : {
+      "@id" : "_:t103"
+    },
+    "earl:result" : {
+      "@id" : "_:t372"
+    },
+    "earl:subject" : {
+      "@id" : "_:t388"
+    },
+    "earl:test" : {
+      "@id" : "_:t400"
+    }
+  }, {
+    "@id" : "_:t42",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t43",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t44",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t45",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.8Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers MUST support the HTTP response headers defined in section 4.2.8 HTTP OPTIONS. ",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t46",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t47",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.793Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - In the absence of special knowledge of the application or domain, LDP clients MUST assume that any LDP-RS can have multiple values for rdf:type.",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t48",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.811Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDPC representations SHOULD NOT use RDF container types rdf:Bag, rdf:Seq or rdf:List.",
+    "dcterms:subject" : "Groups: SHOULD",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t49",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t50"
+    },
+    "earl:mode" : {
+      "@id" : "_:t54"
+    },
+    "earl:result" : {
+      "@id" : "_:t51"
+    },
+    "earl:subject" : {
+      "@id" : "_:t52"
+    },
+    "earl:test" : {
+      "@id" : "_:t53"
+    }
+  }, {
+    "@id" : "_:t5",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t50",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t51",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t52",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t53",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.802Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers MUST provide a text/turtle representation of the requested LDP-RS [turtle].",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t54",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t55",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t56"
+    },
+    "earl:mode" : {
+      "@id" : "_:t60"
+    },
+    "earl:result" : {
+      "@id" : "_:t57"
+    },
+    "earl:subject" : {
+      "@id" : "_:t58"
+    },
+    "earl:test" : {
+      "@id" : "_:t59"
+    }
+  }, {
+    "@id" : "_:t56",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t57",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t58",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t59",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.805Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers that support POST MUST include an Accept-Post response header on HTTP OPTIONS responses, listing post document media type(s) supported by the server.",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t6",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t7"
+    },
+    "earl:mode" : {
+      "@id" : "_:t11"
+    },
+    "earl:result" : {
+      "@id" : "_:t8"
+    },
+    "earl:subject" : {
+      "@id" : "_:t9"
+    },
+    "earl:test" : {
+      "@id" : "_:t10"
+    }
+  }, {
+    "@id" : "_:t60",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t61",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t62"
+    },
+    "earl:mode" : {
+      "@id" : "_:t66"
+    },
+    "earl:result" : {
+      "@id" : "_:t63"
+    },
+    "earl:subject" : {
+      "@id" : "_:t64"
+    },
+    "earl:test" : {
+      "@id" : "_:t65"
+    }
+  }, {
+    "@id" : "_:t62",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t63",
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testGetResourcePreservesTriples(RdfSourceTest.java:169)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 21 stack frames",
+    "dcterms:title" : "TEST SKIPPED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:untested"
+    }
+  }, {
+    "@id" : "_:t64",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t65",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.796Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - A LDP client MUST preserve all triples retrieved from an LDP-RS using HTTP GET that it doesn?t change whether it understands the predicates or not, when its intent is to perform an update using HTTP PUT. The use of HTTP PATCH instead of HTTP PUT for update avoids this burden for clients [RFC5789]. ",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t66",
+    "rdf:type" : {
+      "@id" : "earl:manual"
+    }
+  }, {
+    "@id" : "_:t67",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.784Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers SHOULD allow clients to update resources without requiring detailed knowledge of server-specific constraints. This is a consequence of the requirement to enable simple creation and modification of LDPRs.",
+    "dcterms:subject" : "Groups: SHOULD",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t68",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t69"
+    },
+    "earl:mode" : {
+      "@id" : "_:t73"
+    },
+    "earl:result" : {
+      "@id" : "_:t70"
+    },
+    "earl:subject" : {
+      "@id" : "_:t71"
+    },
+    "earl:test" : {
+      "@id" : "_:t72"
+    }
+  }, {
+    "@id" : "_:t69",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t7",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t70",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t71",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t72",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.808Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers exposing LDPRs MUST advertise their LDP support by exposing a HTTP Link header with a target URI of http://www.w3.org/ns/ldp#Resource, and a link relation type of type (that is, rel='type') in all responses to requests made to the LDPR's HTTP Request-URI.",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t73",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t74",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t75"
+    },
+    "earl:mode" : {
+      "@id" : "_:t79"
+    },
+    "earl:result" : {
+      "@id" : "_:t76"
+    },
+    "earl:subject" : {
+      "@id" : "_:t77"
+    },
+    "earl:test" : {
+      "@id" : "_:t78"
+    }
+  }, {
+    "@id" : "_:t75",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t76",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t77",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t78",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.799Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers MAY choose to allow the creation of new resources using HTTP PUT.",
+    "dcterms:subject" : "Groups: MAY",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t79",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t8",
+    "dcterms:description" : "java.lang.AssertionError: Server reused URIs for POSTed resources.\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testRestrictUriReUse(CommonContainerTest.java:602)\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testRestrictUriReUseSlug(CommonContainerTest.java:346)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:156)\n\tat org.w3.ldp.testsuite.LdpTestSuite.main(LdpTestSuite.java:211)\n... Removed 23 stack frames",
+    "dcterms:title" : "TEST FAILED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:fail"
+    }
+  }, {
+    "@id" : "_:t80",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.791Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP-RSs predicates SHOULD use standard vocabularies such as Dublin Core [DC-TERMS], RDF [rdf11-concepts] and RDF Schema [rdf-schema], whenever possible.",
+    "dcterms:subject" : "Groups: SHOULD",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t81",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.81Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers are RECOMMENDED to support HTTP PATCH as the preferred method for updating an LDPC's empty-container triples. ",
+    "dcterms:subject" : "Groups: SHOULD",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t82",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t83",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t84"
+    },
+    "earl:mode" : {
+      "@id" : "_:t88"
+    },
+    "earl:result" : {
+      "@id" : "_:t85"
+    },
+    "earl:subject" : {
+      "@id" : "_:t86"
+    },
+    "earl:test" : {
+      "@id" : "_:t87"
+    }
+  }, {
+    "@id" : "_:t84",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t85",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t86",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t87",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.801Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.BasicContainerTest - LDP servers MUST accept a request entity body with a request header of Content-Type with value of text/turtle [turtle].",
+    "dcterms:subject" : "Groups: MUST",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t88",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t89",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t9",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t90",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t91",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t92"
+    },
+    "earl:mode" : {
+      "@id" : "_:t96"
+    },
+    "earl:result" : {
+      "@id" : "_:t93"
+    },
+    "earl:subject" : {
+      "@id" : "_:t94"
+    },
+    "earl:test" : {
+      "@id" : "_:t95"
+    }
+  }, {
+    "@id" : "_:t92",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t93",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  }, {
+    "@id" : "_:t94",
+    "dcterms:title" : "http://localhost:8080/DAV/ldp/",
+    "rdf:type" : {
+      "@id" : "earl:TestSubject"
+    }
+  }, {
+    "@id" : "_:t95",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-07-17T16:50:52.804Z"
+    },
+    "dcterms:description" : "Declaring Class: org.w3.ldp.testsuite.test.MemberResourceTest - LDP servers SHOULD allow clients to update resources without requiring detailed knowledge of server-specific constraints. This is a consequence of the requirement to enable simple creation and modification of LDPRs.",
+    "dcterms:subject" : "Groups: SHOULD",
+    "rdf:type" : {
+      "@id" : "earl:TestCase"
+    }
+  }, {
+    "@id" : "_:t96",
+    "rdf:type" : {
+      "@id" : "earl:automatic"
+    }
+  }, {
+    "@id" : "_:t97",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "earl:assertedBy" : {
+      "@id" : "_:t98"
+    },
+    "earl:mode" : {
+      "@id" : "_:t102"
+    },
+    "earl:result" : {
+      "@id" : "_:t99"
+    },
+    "earl:subject" : {
+      "@id" : "_:t100"
+    },
+    "earl:test" : {
+      "@id" : "_:t101"
+    }
+  }, {
+    "@id" : "_:t98",
+    "rdf:type" : {
+      "@id" : "earl:Software"
+    }
+  }, {
+    "@id" : "_:t99",
+    "dcterms:title" : "TEST PASSED",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "earl:outcome" : {
+      "@id" : "earl:pass"
+    }
+  } ],
+  "@context" : {
+    "earl" : "http://www.w3.org/ns/earl#",
+    "foaf" : "http://xmlns.com/foaf/0.1/",
+    "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "dcterms" : "http://purl.org/dc/terms/"
+  }
+}
