@@ -1,0 +1,2106 @@
+{
+  "@graph" : [ {
+    "@id" : "_:t1",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t2",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-PutReadOnlyProperties4xxStatus",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t10",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.761Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t100",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.743Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t101",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t102",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-PutToCreate",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t102",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.743Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t103",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t104",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-PostResponseStatusAndLocation",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t104",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.753Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t105",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.753Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t106",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.764Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t107",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t108",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-GetResourceAcceptTurtle",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t108",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.763Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t109",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t110",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-NullRelativeUriPost",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t11",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.762Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t110",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.773Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t111",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.772Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t112",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.724Z"
+    },
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutPropertiesNotPersisted(RdfSourceTest.java:433)\n... Removed 24 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:untested"
+  }, {
+    "@id" : "_:t113",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t3",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-GetResponseHeaders",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t114",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t4",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-ETagHeadersHead",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t115",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.746Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t116",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.761Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t117",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t11",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-ContainsRdfType",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t118",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t12",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-ETagHeadersGet",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t119",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.77Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t12",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.77Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t120",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.711Z"
+    },
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testReUseVocabularies(RdfSourceTest.java:223)\n... Removed 24 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:untested"
+  }, {
+    "@id" : "_:t121",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t19",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-PreconditionRequiredStatusCode",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t122",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t20",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-AcceptPatchHeader",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t123",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.744Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t124",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.754Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t125",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t23",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-RestrictUriReUseSlug",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t126",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.768Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t127",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t26",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-AcceptPatchHeader",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t128",
+    "rdf:type" : {
+      "@id" : "foaf:Person"
+    },
+    "foaf:mbox" : "spadgett@us.ibm.com",
+    "foaf:name" : "Sam Padgett"
+  }, {
+    "@id" : "_:t129",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.729Z"
+    },
+    "dcterms:description" : "org.testng.SkipException: Skipping test because PUT request was successful.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:512)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxDescribedBy(RdfSourceTest.java:479)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsUnknownProp(RdfSourceTest.java:371)\n... Removed 24 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:untested"
+  }, {
+    "@id" : "_:t13",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t14",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-ContainsRdfType",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t130",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t30",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-PutReplacesResource",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t131",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t31",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-LdpLinkHeader",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t132",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.742Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t133",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t34",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-ConditionFailedStatusCode",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t134",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.762Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t135",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t39",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-PutBadETag",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t136",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.717Z"
+    },
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testIsHttp11Manual(CommonResourceTest.java:104)\n... Removed 24 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:untested"
+  }, {
+    "@id" : "_:t137",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t42",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-RelativeUriResolutionPut",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t138",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:manual",
+    "result" : "_:t43",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-IsHttp11Manual",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t139",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.74Z"
+    },
+    "dcterms:description" : "org.testng.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsReadOnlyProp(RdfSourceTest.java:351)\n... Removed 24 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:untested"
+  }, {
+    "@id" : "_:t14",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.77Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t140",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.746Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t141",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t48",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-AcceptPostResponseHeader",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t142",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t49",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-ConformsRdfSourceLdpResource",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t143",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.758Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t144",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.769Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t145",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t54",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-Options",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t146",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.706Z"
+    },
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsUnknownProp(RdfSourceTest.java:370)\n... Removed 24 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:untested"
+  }, {
+    "@id" : "_:t147",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t55",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-4xxErrorHasResponseBody",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t148",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.734Z"
+    },
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRestrictClientInference(RdfSourceTest.java:268)\n... Removed 24 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:untested"
+  }, {
+    "@id" : "_:t149",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t58",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-PostJsonLd",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t15",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t16",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-PutReadOnlyProperties4xxStatus",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t150",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t59",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-GetResponseHeaders",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t151",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.753Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t152",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.764Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t153",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t64",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-MemberRelationOrIsMemberOfRelationTripleExists",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t154",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t65",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-PutSimpleUpdate",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t155",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.773Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t156",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t72",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-GetResource",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t157",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t73",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-PostResourceUpdatesTriples",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t158",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t78",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-PutReplacesResource",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t159",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t81",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-PutBadETag",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t16",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.713Z"
+    },
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutReadOnlyProperties4xxStatus(RdfSourceTest.java:389)\n... Removed 24 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:untested"
+  }, {
+    "@id" : "_:t160",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t86",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-ResponsePropertiesNotPersisted",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t161",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t87",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-Head",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t162",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t90",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-ConformsContainerRdfResource",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t163",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t93",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-UseMemberPredicate",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t164",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t94",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-PatchMethod",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t165",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t99",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-PutRequiresIfMatch",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t166",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t100",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-RestrictPutReUseUri",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t167",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t105",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-Head",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t168",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t106",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-RequestedInteractionModelCreateNotAllowed",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t169",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t111",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-ETagHeadersHead",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t17",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t18",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-PublishConstraintsReadOnlyProp",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t170",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t112",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-PutPropertiesNotPersisted",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t171",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t115",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-DeleteResourceUpdatesTriples",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t172",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t116",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-Options",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t173",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t119",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-RdfTypeLdpContainer",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t174",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:manual",
+    "result" : "_:t120",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-ReUseVocabularies",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t175",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t123",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-AcceptTurtle",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t176",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t124",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-TypeRdfSource",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t177",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t126",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-PreconditionRequiredStatusCode",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t178",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t129",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-PublishConstraintsUnknownProp",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t179",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t132",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-GetResourceAcceptTurtle",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t18",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.737Z"
+    },
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsReadOnlyProp(RdfSourceTest.java:348)\n... Removed 24 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:untested"
+  }, {
+    "@id" : "_:t180",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t134",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-ContentTypeHeader",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t181",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:manual",
+    "result" : "_:t136",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-IsHttp11Manual",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t182",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t139",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-PublishConstraintsReadOnlyProp",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t183",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t140",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-RequestedInteractionModelHeaders",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t184",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t143",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-MemberResourceTriple",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t185",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t144",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-OptionsAllowHeader",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t186",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t146",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-PublishConstraintsUnknownProp",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t187",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:manual",
+    "result" : "_:t148",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-RestrictClientInference",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t188",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t151",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-ETagHeadersGet",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t189",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t152",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-PostNoSlug",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t19",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.735Z"
+    },
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testPreconditionRequiredStatusCode(CommonResourceTest.java:299)\n... Removed 24 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:untested"
+  }, {
+    "@id" : "_:t190",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t155",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-OptionsAllowHeader",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t2",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.726Z"
+    },
+    "dcterms:description" : "org.testng.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutReadOnlyProperties4xxStatus(RdfSourceTest.java:392)\n... Removed 24 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:untested"
+  }, {
+    "@id" : "_:t20",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.745Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t21",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t22",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-RejectPutModifyingContainmentTriples",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t22",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.744Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t23",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.754Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t24",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t25",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-PostContainer",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t25",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.769Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t26",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.774Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t27",
+    "rdf:type" : {
+      "@id" : "http://stevespeicher.me"
+    }
+  }, {
+    "@id" : "_:t28",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:manual",
+    "result" : "_:t29",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-UseStandardVocabularies",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t29",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.731Z"
+    },
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testUseStandardVocabularies(RdfSourceTest.java:248)\n... Removed 24 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:untested"
+  }, {
+    "@id" : "_:t3",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.741Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t30",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.728Z"
+    },
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.putReplaceResource(RdfSourceTest.java:548)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutReplacesResource(RdfSourceTest.java:136)\n... Removed 24 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:untested"
+  }, {
+    "@id" : "_:t31",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.742Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t32",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t33",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-RestrictUriReUseNoSlug",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t33",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.743Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t34",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.752Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t35",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t36",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-TypeRdfSource",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t36",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.763Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t37",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t38",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-PutRequiresIfMatch",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t38",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.772Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t39",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.771Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t4",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.748Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t40",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t41",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-PutPropertiesNotPersisted",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t41",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.719Z"
+    },
+    "dcterms:description" : "org.testng.SkipException: Skipping test because PUT request was successful.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:512)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutPropertiesNotPersisted(RdfSourceTest.java:434)\n... Removed 24 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:untested"
+  }, {
+    "@id" : "_:t42",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.722Z"
+    },
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRelativeUriResolutionPut(RdfSourceTest.java:75)\n... Removed 24 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:untested"
+  }, {
+    "@id" : "_:t43",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.739Z"
+    },
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testIsHttp11Manual(CommonResourceTest.java:104)\n... Removed 24 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:untested"
+  }, {
+    "@id" : "_:t44",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:manual",
+    "result" : "_:t45",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-ReUseVocabularies",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t45",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.741Z"
+    },
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testReUseVocabularies(RdfSourceTest.java:223)\n... Removed 24 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:untested"
+  }, {
+    "@id" : "_:t46",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t47",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-DeleteRemovesContainmentTriple",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t47",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.747Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t48",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.746Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t49",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.76Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t5",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t6",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-JsonLdRepresentation",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t50",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t51",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-JsonLdRepresentation",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t51",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.758Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t52",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t53",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-RelativeUriResolutionPost",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t53",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.77Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t54",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.769Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t55",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.708Z"
+    },
+    "dcterms:description" : "org.testng.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.test4xxErrorHasResponseBody(RdfSourceTest.java:414)\n... Removed 24 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:untested"
+  }, {
+    "@id" : "_:t56",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t57",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-ResponsePropertiesNotPersisted",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t57",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.734Z"
+    },
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testResponsePropertiesNotPersisted(RdfSourceTest.java:451)\n... Removed 24 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:untested"
+  }, {
+    "@id" : "_:t58",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.744Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t59",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.754Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t6",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.748Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t60",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t61",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-CreateWithoutConstraints",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t61",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.754Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t62",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t63",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-ConformsRdfSourceLdpResource",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t63",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.768Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t64",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.768Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t65",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.773Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t66",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t67",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-GetResource",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t67",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.774Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t68",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t69",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-ConditionFailedStatusCode",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t69",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.727Z"
+    },
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testConditionFailedStatusCode(CommonResourceTest.java:262)\n... Removed 24 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:untested"
+  }, {
+    "@id" : "_:t7",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t8",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-NoRdfBagSeqOrList",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t70",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t71",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-PreferMembershipTriples",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t71",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.742Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t72",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.741Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t73",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.748Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t74",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t75",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-ConformsDcLdpContainer",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t75",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.752Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t76",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t77",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-LdpLinkHeader",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t77",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.747Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t78",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.762Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t79",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t80",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-RelativeUriResolutionPut",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t8",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.747Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t80",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.771Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t81",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.716Z"
+    },
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testPutBadETag(CommonResourceTest.java:354)\n... Removed 24 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:untested"
+  }, {
+    "@id" : "_:t82",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:manual",
+    "result" : "_:t83",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:MemberResource-RestrictClientInference",
+    "ldpt:ranAsClass" : "MemberResourceTest"
+  }, {
+    "@id" : "_:t83",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.715Z"
+    },
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRestrictClientInference(RdfSourceTest.java:268)\n... Removed 24 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:untested"
+  }, {
+    "@id" : "_:t84",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:manual",
+    "result" : "_:t85",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-UseStandardVocabularies",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t85",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.738Z"
+    },
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testUseStandardVocabularies(RdfSourceTest.java:248)\n... Removed 24 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:untested"
+  }, {
+    "@id" : "_:t86",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.736Z"
+    },
+    "dcterms:description" : "org.testng.SkipException: Skipping test because PUT request was successful.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:512)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxResponseBody(RdfSourceTest.java:521)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testResponsePropertiesNotPersisted(RdfSourceTest.java:452)\n... Removed 24 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:untested"
+  }, {
+    "@id" : "_:t87",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.745Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t88",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t89",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-ServerHonorsSlug",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t89",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.746Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t9",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t10",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-HttpLinkHeader",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t90",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.757Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t91",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t92",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-PreferContainmentTriples",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t92",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.769Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t93",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.775Z"
+    },
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:passed"
+  }, {
+    "@id" : "_:t94",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.704Z"
+    },
+    "dcterms:description" : "java.lang.AssertionError: Container <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PATCH support through its HTTP OPTIONS response. expected [true] but found [false]\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testPatchMethod(CommonContainerTest.java:733)\n... Removed 27 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:failed"
+  }, {
+    "@id" : "_:t95",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t96",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-PutSimpleUpdate",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t96",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.707Z"
+    },
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.putReplaceResource(RdfSourceTest.java:548)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutSimpleUpdate(RdfSourceTest.java:150)\n... Removed 24 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:untested"
+  }, {
+    "@id" : "_:t97",
+    "rdf:type" : {
+      "@id" : "earl:Assertion"
+    },
+    "assertedBy" : "http://stevespeicher.me",
+    "mode" : "earl:automatic",
+    "result" : "_:t98",
+    "subject" : "http://stevespeicher.me",
+    "test" : "ldpt:DirectContainer-4xxErrorHasResponseBody",
+    "ldpt:ranAsClass" : "DirectContainerTest"
+  }, {
+    "@id" : "_:t98",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.732Z"
+    },
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.test4xxErrorHasResponseBody(RdfSourceTest.java:411)\n... Removed 24 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:untested"
+  }, {
+    "@id" : "_:t99",
+    "dcterms:date" : {
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value" : "2014-08-21T21:15:18.733Z"
+    },
+    "dcterms:description" : "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testPutRequiresIfMatch(CommonResourceTest.java:226)\n... Removed 24 stack frames",
+    "rdf:type" : {
+      "@id" : "earl:TestResult"
+    },
+    "outcome" : "earl:untested"
+  }, {
+    "@id" : "http://stevespeicher.me",
+    "dcterms:title" : "Reference Implementation",
+    "doap:description" : "Testing against: DirectContainer, RDFSource,Prefer, Container as Resource interaction model.",
+    "developer" : "_:t128",
+    "doap:homepage" : "https://hub.jazz.net/project/sspeiche/LDPjs",
+    "doap:name" : "LDP.js Ref Impl",
+    "doap:programming-language" : "JavaScript",
+    "rdf:type" : [ {
+      "@id" : "earl:Software"
+    }, {
+      "@id" : "doap:Project"
+    }, {
+      "@id" : "earl:Assertor"
+    }, {
+      "@id" : "earl:TestSubject"
+    } ]
+  } ],
+  "@context" : {
+    "result" : {
+      "@id" : "http://www.w3.org/ns/earl#result",
+      "@type" : "@id"
+    },
+    "ranAsClass" : {
+      "@id" : "http://www.w3c.org/ns/ldp/test#ranAsClass",
+      "@type" : "@id"
+    },
+    "assertedBy" : {
+      "@id" : "http://www.w3.org/ns/earl#assertedBy",
+      "@type" : "@id"
+    },
+    "mode" : {
+      "@id" : "http://www.w3.org/ns/earl#mode",
+      "@type" : "@id"
+    },
+    "test" : {
+      "@id" : "http://www.w3.org/ns/earl#test",
+      "@type" : "@id"
+    },
+    "subject" : {
+      "@id" : "http://www.w3.org/ns/earl#subject",
+      "@type" : "@id"
+    },
+    "date" : {
+      "@id" : "http://purl.org/dc/terms/date",
+      "@type" : "@id"
+    },
+    "outcome" : {
+      "@id" : "http://www.w3.org/ns/earl#outcome",
+      "@type" : "@id"
+    },
+    "description" : {
+      "@id" : "http://purl.org/dc/terms/description",
+      "@type" : "@id"
+    },
+    "name" : {
+      "@id" : "http://xmlns.com/foaf/0.1/name",
+      "@type" : "@id"
+    },
+    "mbox" : {
+      "@id" : "http://xmlns.com/foaf/0.1/mbox",
+      "@type" : "@id"
+    },
+    "programming-language" : {
+      "@id" : "http://usefulinc.com/ns/doap#programming-language",
+      "@type" : "@id"
+    },
+    "title" : {
+      "@id" : "http://purl.org/dc/terms/title",
+      "@type" : "@id"
+    },
+    "homepage" : {
+      "@id" : "http://usefulinc.com/ns/doap#homepage",
+      "@type" : "@id"
+    },
+    "developer" : {
+      "@id" : "http://usefulinc.com/ns/doap#developer",
+      "@type" : "@id"
+    },
+    "rdft" : "http://www.w3.org/ns/rdftest#",
+    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+    "earl" : "http://www.w3.org/ns/earl#",
+    "foaf" : "http://xmlns.com/foaf/0.1/",
+    "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "mf" : "http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#",
+    "td" : "http://www.w3.org/2006/03/test-description#",
+    "doap" : "http://usefulinc.com/ns/doap#",
+    "dcterms" : "http://purl.org/dc/terms/",
+    "ldpt" : "http://www.w3c.org/ns/ldp/test#"
+  }
+}

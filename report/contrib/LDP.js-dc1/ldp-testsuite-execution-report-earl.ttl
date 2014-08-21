@@ -1,0 +1,1180 @@
+@prefix rdft:  <http://www.w3.org/ns/rdftest#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix earl:  <http://www.w3.org/ns/earl#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix td:    <http://www.w3.org/2006/03/test-description#> .
+@prefix mf:    <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#> .
+@prefix doap:  <http://usefulinc.com/ns/doap#> .
+@prefix ldpt:  <http://www.w3c.org/ns/ldp/test#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.726Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutReadOnlyProperties4xxStatus(RdfSourceTest.java:392)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-PutReadOnlyProperties4xxStatus ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.748Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-JsonLdRepresentation ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.747Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-NoRdfBagSeqOrList ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.761Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-HttpLinkHeader ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.77Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-ContainsRdfType ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.713Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutReadOnlyProperties4xxStatus(RdfSourceTest.java:389)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-PutReadOnlyProperties4xxStatus ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.737Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsReadOnlyProp(RdfSourceTest.java:348)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-PublishConstraintsReadOnlyProp ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.744Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-RejectPutModifyingContainmentTriples ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.769Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-PostContainer ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a       <http://stevespeicher.me> ] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.731Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testUseStandardVocabularies(RdfSourceTest.java:248)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-UseStandardVocabularies ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.743Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-RestrictUriReUseNoSlug ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.763Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-TypeRdfSource ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.772Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-PutRequiresIfMatch ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.719Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because PUT request was successful.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:512)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutPropertiesNotPersisted(RdfSourceTest.java:434)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-PutPropertiesNotPersisted ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.741Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testReUseVocabularies(RdfSourceTest.java:223)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-ReUseVocabularies ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.747Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-DeleteRemovesContainmentTriple ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.758Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-JsonLdRepresentation ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.77Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-RelativeUriResolutionPost ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.734Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testResponsePropertiesNotPersisted(RdfSourceTest.java:451)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-ResponsePropertiesNotPersisted ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.754Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-CreateWithoutConstraints ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.768Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-ConformsRdfSourceLdpResource ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.774Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-GetResource ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.727Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testConditionFailedStatusCode(CommonResourceTest.java:262)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-ConditionFailedStatusCode ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.742Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-PreferMembershipTriples ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.752Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-ConformsDcLdpContainer ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.747Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-LdpLinkHeader ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.771Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-RelativeUriResolutionPut ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.715Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRestrictClientInference(RdfSourceTest.java:268)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-RestrictClientInference ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.738Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testUseStandardVocabularies(RdfSourceTest.java:248)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-UseStandardVocabularies ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.746Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-ServerHonorsSlug ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.769Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-PreferContainmentTriples ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.707Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.putReplaceResource(RdfSourceTest.java:548)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutSimpleUpdate(RdfSourceTest.java:150)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-PutSimpleUpdate ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.732Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.test4xxErrorHasResponseBody(RdfSourceTest.java:411)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-4xxErrorHasResponseBody ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.743Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-PutToCreate ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.753Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-PostResponseStatusAndLocation ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.763Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-GetResourceAcceptTurtle ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.773Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-NullRelativeUriPost ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.741Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-GetResponseHeaders ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.748Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-ETagHeadersHead ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.762Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-ContainsRdfType ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.77Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-ETagHeadersGet ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.735Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testPreconditionRequiredStatusCode(CommonResourceTest.java:299)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-PreconditionRequiredStatusCode ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.745Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-AcceptPatchHeader ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.754Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-RestrictUriReUseSlug ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.774Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-AcceptPatchHeader ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.728Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.putReplaceResource(RdfSourceTest.java:548)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutReplacesResource(RdfSourceTest.java:136)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-PutReplacesResource ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.742Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-LdpLinkHeader ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.752Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-ConditionFailedStatusCode ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.771Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-PutBadETag ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.722Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRelativeUriResolutionPut(RdfSourceTest.java:75)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-RelativeUriResolutionPut ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.739Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testIsHttp11Manual(CommonResourceTest.java:104)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-IsHttp11Manual ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.746Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-AcceptPostResponseHeader ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.76Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-ConformsRdfSourceLdpResource ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.769Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-Options ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.708Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.test4xxErrorHasResponseBody(RdfSourceTest.java:414)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-4xxErrorHasResponseBody ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.744Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-PostJsonLd ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.754Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-GetResponseHeaders ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.768Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-MemberRelationOrIsMemberOfRelationTripleExists ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+<http://stevespeicher.me>
+        a                          earl:Software , doap:Project , earl:Assertor , earl:TestSubject ;
+        dcterms:title              "Reference Implementation" ;
+        doap:description           "Testing against: DirectContainer, RDFSource,Prefer, Container as Resource interaction model." ;
+        doap:developer             [ a          foaf:Person ;
+                                     foaf:mbox  "spadgett@us.ibm.com" ;
+                                     foaf:name  "Sam Padgett"
+                                   ] ;
+        doap:homepage              "https://hub.jazz.net/project/sspeiche/LDPjs" ;
+        doap:name                  "LDP.js Ref Impl" ;
+        doap:programming-language  "JavaScript" .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.773Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-PutSimpleUpdate ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.741Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-GetResource ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.748Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-PostResourceUpdatesTriples ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.762Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-PutReplacesResource ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.716Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testPutBadETag(CommonResourceTest.java:354)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-PutBadETag ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.736Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because PUT request was successful.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:512)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxResponseBody(RdfSourceTest.java:521)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testResponsePropertiesNotPersisted(RdfSourceTest.java:452)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-ResponsePropertiesNotPersisted ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.745Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-Head ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.757Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-ConformsContainerRdfResource ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.775Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-UseMemberPredicate ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.704Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: Container <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PATCH support through its HTTP OPTIONS response. expected [true] but found [false]\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testPatchMethod(CommonContainerTest.java:733)\n... Removed 27 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:failed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-PatchMethod ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.733Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testPutRequiresIfMatch(CommonResourceTest.java:226)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-PutRequiresIfMatch ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.743Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-RestrictPutReUseUri ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.753Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-Head ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.764Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-RequestedInteractionModelCreateNotAllowed ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.772Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-ETagHeadersHead ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.724Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutPropertiesNotPersisted(RdfSourceTest.java:433)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-PutPropertiesNotPersisted ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.746Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-DeleteResourceUpdatesTriples ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.761Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-Options ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.77Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-RdfTypeLdpContainer ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.711Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testReUseVocabularies(RdfSourceTest.java:223)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-ReUseVocabularies ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.744Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-AcceptTurtle ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.754Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-TypeRdfSource ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.768Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-PreconditionRequiredStatusCode ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.729Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because PUT request was successful.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:512)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxDescribedBy(RdfSourceTest.java:479)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsUnknownProp(RdfSourceTest.java:371)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-PublishConstraintsUnknownProp ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.742Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-GetResourceAcceptTurtle ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.762Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-ContentTypeHeader ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.717Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testIsHttp11Manual(CommonResourceTest.java:104)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-IsHttp11Manual ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.74Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsReadOnlyProp(RdfSourceTest.java:351)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-PublishConstraintsReadOnlyProp ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.746Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-RequestedInteractionModelHeaders ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.758Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-MemberResourceTriple ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.769Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-OptionsAllowHeader ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.706Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/dc-simple> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsUnknownProp(RdfSourceTest.java:370)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-PublishConstraintsUnknownProp ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-21T21:15:18.734Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRestrictClientInference(RdfSourceTest.java:268)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-RestrictClientInference ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.753Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-ETagHeadersGet ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.764Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:DirectContainer-PostNoSlug ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://stevespeicher.me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-21T21:15:18.773Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://stevespeicher.me> ;
+  earl:test        ldpt:MemberResource-OptionsAllowHeader ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
