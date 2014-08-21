@@ -1035,7 +1035,7 @@
                                      foaf:name  "Andrei Sambra"
                                    ] ;
         doap:homepage              "http://test.rww.io/" ;
-        doap:name                  "Andrei" ;
+        doap:name                  "ldphp" ;
         doap:programming-language  "PHP" .
 
 [ a                earl:Assertion ;
