@@ -1,0 +1,1114 @@
+@prefix rdft:  <http://www.w3.org/ns/rdftest#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix earl:  <http://www.w3.org/ns/earl#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix td:    <http://www.w3.org/2006/03/test-description#> .
+@prefix mf:    <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#> .
+@prefix doap:  <http://usefulinc.com/ns/doap#> .
+@prefix ldpt:  <http://www.w3c.org/ns/ldp/test#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.244Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-ETagHeadersGet ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.187Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because there are restrictions on PUT content for this resource. The requirement needs to be tested manually.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.putReplaceResource(RdfSourceTest.java:551)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutReplacesResource(RdfSourceTest.java:136)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-PutReplacesResource ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.198Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.test4xxErrorHasResponseBody(RdfSourceTest.java:414)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-4xxErrorHasResponseBody ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.213Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-TypeRdfSource ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.228Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-Head ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.242Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-OptionsAllowHeader ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.18Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: Server reused URIs for POSTed resources.\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testRestrictUriReUse(CommonContainerTest.java:881)\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testRestrictUriReUseSlug(CommonContainerTest.java:561)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 23 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:failed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-RestrictUriReUseSlug ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.207Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-LdpLinkHeader ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.221Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-AcceptPatchHeader ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.24Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-PostNoSlug ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.202Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because PUT request was successful.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:512)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxResponseBody(RdfSourceTest.java:521)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testResponsePropertiesNotPersisted(RdfSourceTest.java:452)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-ResponsePropertiesNotPersisted ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.219Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-AcceptPatchHeader ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.229Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-ETagHeadersHead ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.185Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: LDP-RS representation does not have rdf:type ldp:RDFSource expected [true] but found [false]\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testTypeRdfSource(RdfSourceTest.java:200)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:failed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-TypeRdfSource ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.196Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because there are restrictions on PUT content for this resource. The requirement needs to be tested manually.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRelativeUriResolutionPut(RdfSourceTest.java:78)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-RelativeUriResolutionPut ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.212Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-ConformsRdfSourceLdpResource ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.227Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-ContainsRdfType ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.177Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: 1 expectation failed.\nExpected status code not between 200 and 209 doesn't match actual status code <201>.\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:557)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:868)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1282)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy:148)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy:272)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testPutRequiresIfMatch(CommonResourceTest.java:236)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 40 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:failed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-PutRequiresIfMatch ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.194Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutReadOnlyProperties4xxStatus(RdfSourceTest.java:392)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-PutReadOnlyProperties4xxStatus ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.205Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsReadOnlyProp(RdfSourceTest.java:351)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-PublishConstraintsReadOnlyProp ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.22Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-PutToCreate ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.239Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-ConformsBcLdpContainer ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.245Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-DeleteRemovesContainmentTriple ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.188Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because PUT request was successful.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:512)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutPropertiesNotPersisted(RdfSourceTest.java:434)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-PutPropertiesNotPersisted ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.214Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-RelativeUriResolutionPost ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.228Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-ContainsRdfType ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.243Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-CreateWithoutConstraints ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.182Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: 1 expectation failed.\nExpected status code not between 200 and 209 doesn't match actual status code <201>.\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:557)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:868)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1282)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy:148)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy:272)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testPutRequiresIfMatch(CommonResourceTest.java:236)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 40 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:failed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-PutRequiresIfMatch ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.207Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-RdfTypeLdpContainer ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.222Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-PatchMethod ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.241Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-GetResourceAcceptTurtle ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.192Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.test4xxErrorHasResponseBody(RdfSourceTest.java:414)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-4xxErrorHasResponseBody ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.202Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because PUT request was successful.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:512)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxResponseBody(RdfSourceTest.java:521)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testResponsePropertiesNotPersisted(RdfSourceTest.java:452)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-ResponsePropertiesNotPersisted ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.23Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-RelativeUriResolutionPut ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.185Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: Server reused URIs for POSTed resources.\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testRestrictUriReUse(CommonContainerTest.java:881)\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testRestrictUriReUseNoSlug(CommonContainerTest.java:574)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 23 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:failed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-RestrictUriReUseNoSlug ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.199Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Server does not require If-Match header.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testPreconditionRequiredStatusCode(CommonResourceTest.java:331)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-PreconditionRequiredStatusCode ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.213Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-PreferContainmentTriples ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.227Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-GetResponseHeaders ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.242Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-GetResponseHeaders ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.179Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: 1 expectation failed.\nExpected status code not between 200 and 209 doesn't match actual status code <201>.\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:557)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:868)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1282)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy:148)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy:272)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testRestrictPutReUseUri(CommonContainerTest.java:654)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 40 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:failed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-RestrictPutReUseUri ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.194Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRestrictClientInference(RdfSourceTest.java:268)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-RestrictClientInference ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.221Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-Head ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.239Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-NoRdfBagSeqOrList ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.188Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsReadOnlyProp(RdfSourceTest.java:351)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-PublishConstraintsReadOnlyProp ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.219Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-AcceptPostResponseHeader ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.214Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-OptionsAllowHeader ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.229Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-PostContainer ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.244Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-ServerHonorsSlug ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.182Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: Expected either 415 Unsupported Media Type or 201 Created in response to POST expected [true] but found [false]\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testContentTypeHeader(CommonContainerTest.java:413)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:failed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-ContentTypeHeader ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.197Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRestrictClientInference(RdfSourceTest.java:268)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-RestrictClientInference ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.207Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-PutReplacesResource ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.241Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-JsonLdRepresentation ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a       <http://test.rww.io/> ] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.192Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because PUT request was successful.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:512)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxDescribedBy(RdfSourceTest.java:479)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsUnknownProp(RdfSourceTest.java:371)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-PublishConstraintsUnknownProp ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.205Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testIsHttp11Manual(CommonResourceTest.java:104)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-IsHttp11Manual ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.23Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-JsonLdRepresentation ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.245Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-NullRelativeUriPost ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.186Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: containerAsResource is null\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testRequestedInteractionModelHeaders(CommonContainerTest.java:345)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-RequestedInteractionModelHeaders ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.2Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testUseStandardVocabularies(RdfSourceTest.java:248)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-UseStandardVocabularies ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.218Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-ConformsRdfSourceLdpResource ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.227Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-ConditionFailedStatusCode ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.243Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-GetResource ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.195Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutReadOnlyProperties4xxStatus(RdfSourceTest.java:392)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-PutReadOnlyProperties4xxStatus ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.226Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-ConformsContainerRdfResource ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.24Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-ConditionFailedStatusCode ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.189Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because PUT request was successful.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:512)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutPropertiesNotPersisted(RdfSourceTest.java:434)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-PutPropertiesNotPersisted ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.203Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testReUseVocabularies(RdfSourceTest.java:223)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-ReUseVocabularies ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.22Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-PutSimpleUpdate ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.214Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-AcceptTurtle ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.244Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-PutBadETag ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.184Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: 2 expectations failed.\nExpected status code <201> doesn't match actual status code <406>.\n\nExpected header \"Location\" was not set, was \"null\". Headers are:\nDate=Wed, 20 Aug 2014 00:18:03 GMT\nServer=Apache/2.2.22 (Ubuntu)\nX-Powered-By=PHP/5.3.10-1ubuntu3.13\nSet-Cookie=SID=l9mapre1bkq9vtkr8l71g0tj74; expires=Mon, 19-Aug-2019 00:18:03 GMT; path=/; domain=.rww.io\nExpires=Thu, 19 Nov 1981 08:52:00 GMT\nCache-Control=no-store, no-cache, must-revalidate, post-check=0, pre-check=0\nPragma=no-cache\nUser=dns:156.39.191.244\nSet-Cookie=showMetaFiles=deleted; expires=Thu, 01-Jan-1970 00:00:01 GMT\nLink=<>; rel=meta\nMS-Author-Via=DAV, SPARQL\nAllow=GET, PUT, POST, OPTIONS, HEAD, MKCOL, DELETE, PATCH\nAccept-Patch=application/json\nAccept-Post=text/turtle;charset=utf-8,text/n3;charset=utf-8,text/nt;charset=utf-8,text/css;charset=utf-8,text/html;charset=utf-8,text/javascript;charset=utf-8,text/plain;charset=utf-8,application/rdf+xml;charset=utf-8,application/json;charset=utf-8,multipart/form-data,image/jpeg,image/jpeg,image/png,image/gif,font/otf\nVary=Accept-Encoding\nContent-Encoding=gzip\nContent-Length=82\nKeep-Alive=timeout=5, max=100\nConnection=Keep-Alive\nContent-Type=text/html\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:57)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:182)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:557)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:868)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1282)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.post(RequestSpecificationImpl.groovy:144)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.post(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.post(ResponseSpecificationImpl.groovy:268)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.post(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testPostJsonLd(CommonContainerTest.java:815)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 42 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:failed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-PostJsonLd ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.197Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testReUseVocabularies(RdfSourceTest.java:223)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-ReUseVocabularies ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.213Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-Options ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.242Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-PostResponseStatusAndLocation ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.18Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: 1 expectation failed.\nExpected status code not between 200 and 209 doesn't match actual status code <201>.\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:557)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:868)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1282)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy:148)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy:272)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testRejectPutModifyingContainmentTriples(CommonContainerTest.java:627)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 40 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:failed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-RejectPutModifyingContainmentTriples ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.193Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because PUT request was successful.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:512)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxDescribedBy(RdfSourceTest.java:479)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsUnknownProp(RdfSourceTest.java:371)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-PublishConstraintsUnknownProp ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.206Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Server does not require If-Match header.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testPreconditionRequiredStatusCode(CommonResourceTest.java:331)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-PreconditionRequiredStatusCode ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.221Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-LdpLinkHeader ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.231Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-PutBadETag ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.201Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because there are restrictions on PUT content for this resource. The requirement needs to be tested manually.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.putReplaceResource(RdfSourceTest.java:551)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutSimpleUpdate(RdfSourceTest.java:150)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-PutSimpleUpdate ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.219Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-ETagHeadersHead ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.229Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-Options ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.243Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-GetResource ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+<http://test.rww.io/>
+        a                          doap:Project , earl:TestSubject , earl:Software , earl:Assertor ;
+        dcterms:title              "ldphp - rww.io" ;
+        doap:developer             [ a          foaf:Person ;
+                                     foaf:name  "Andrei Sambra"
+                                   ] ;
+        doap:homepage              "http://test.rww.io/" ;
+        doap:name                  "Andrei" ;
+        doap:programming-language  "PHP" .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.196Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: containerAsResource is null\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testRequestedInteractionModelCreateNotAllowed(CommonContainerTest.java:310)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-RequestedInteractionModelCreateNotAllowed ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.208Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-ContainerSupportsHttpLinkHeader ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.226Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-ETagHeadersGet ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.191Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testUseStandardVocabularies(RdfSourceTest.java:248)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-UseStandardVocabularies ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-08-20T00:19:07.204Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testIsHttp11Manual(CommonResourceTest.java:104)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:299)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:328)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:BasicContainer-IsHttp11Manual ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
+
+[ a                earl:Assertion ;
+  earl:assertedBy  <http://test.rww.io/> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-08-20T00:19:07.22Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://test.rww.io/> ;
+  earl:test        ldpt:MemberResource-GetResourceAcceptTurtle ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string>
+] .
