@@ -1225,8 +1225,11 @@
 
 <http://marmotta.apache.org>
         a                          doap:Project , earl:TestSubject , earl:Software , earl:Assertor ;
-        doap:developer             [ a  foaf:Person ] ;
+        doap:developer             [ a  foaf:Person;
+        	foaf:name "Sergio Fernández"
+        ] ;
         doap:homepage              "http://marmotta.apache.org" ;
+        doap:name 	"Marmotta";
         doap:programming-language  "Java" .
 
 [ a                earl:Assertion ;
