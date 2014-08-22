@@ -288,10 +288,9 @@ public class LdpHtmlReporter implements IReporter {
 		html.th().content("Revision");
 		html.th().content("Report Date");
 		html.th().content("Skipped Tests");
-		html.th().content("Passed (MUST)");
-		html.th().content("Passed (MAY)");
-		html.th().content("Passed (SHOULD)");
-		// html.th().content("Failed (MUST)");
+		html.th().content("MUST Requirements");
+		html.th().content("SHOULD Requirements");
+		html.th().content("MAY Requirements");
 		html._tr();
 
 		html.tr(class_("alt")).td().content(suiteName);
@@ -306,29 +305,39 @@ public class LdpHtmlReporter implements IReporter {
 
 	private void generateSummaryTable()
 			throws IOException {
-		printCellResult(skipped, total, "");
-		printCellResult(mustPass, mustPass + mustFailed, "MUST");
-		printCellResult(mayPass, mayPass + mayFailed, "SHOULD");
-		printCellResult(shouldPass, shouldPass + shouldFailed, "MAY");
+		printSkipCellResult();
+		printReqCellResult(mustPass, mustFailed, mustSkip);
+		printReqCellResult(shouldPass, shouldFailed, shouldSkip);
+		printReqCellResult(mayPass, mayFailed, maySkip);
 		html._tr();
 	}
 
-	private void printCellResult(int value, int total, String requirement) throws IOException {
-		if (value == 0)
+	private void printSkipCellResult() throws IOException {
+		if (skipped == 0)
 			html.td().i().write("No tests of this type called")._i()._td();
 		else {
-			DecimalFormat df = new DecimalFormat("##.##");
-			double result = (((double) value / total) * 100);
-			String finalTotal = df.format(result);
-			html.td().b().write(finalTotal + "% ")._b();
-			if(requirement.equals(""))
-				html.write("of the total tests (");
-			else 
-				html.write(requirement + " Requirements (");
-			
-			html.b().write(value + "/" + total)._b();
-			html.write(")")._td();
+			html.td();
+			html.write("(");
+			html.b().write(skipped + "/" + total)._b();
+			html.write(") ");
+			html.write("of the total tests.")._td();
 		}
+		
+	}
+
+	private void printReqCellResult(int passed, int failed, int skipped) throws IOException {
+		int total = passed + failed + skipped;
+		
+		html.td().b().write(passed + "/" + total)._b();
+		html.write(" Passed");
+		
+		html.br().b().write(failed + "/" + total)._b();
+		html.write(" Failed");
+		
+		html.br().b().write(skipped + "/" + total)._b();	
+		html.write(" Skipped");	
+		html._td();
+		
 	}
 
 	private void displayGroupsInfo(List<ISuite> suite) throws IOException {
