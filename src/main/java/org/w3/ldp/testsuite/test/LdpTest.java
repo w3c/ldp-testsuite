@@ -9,6 +9,7 @@ import java.io.PrintStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -268,7 +269,7 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	protected boolean containsLinkHeader(String expectedLinkUri, String expectedRel, String requestUri, Response response) {
 		List<Header> linkHeaders = response.getHeaders().getList(LINK);
 		for (Header linkHeader : linkHeaders) {
-			for (String s : linkHeader.getValue().split(",")) {
+			for (String s : splitLinks(linkHeader)) {
 				Link nextLink = new LinkDelegate().fromString(s);
 				if (expectedRel.equals(nextLink.getRel())) {
 					String actualLinkUri = resolveIfRelative(requestUri, nextLink.getUri());
@@ -299,7 +300,7 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	protected String getFirstLinkForRelation(String rel, String requestUri, Response response) {
 		List<Header> linkHeaders = response.getHeaders().getList(LINK);
 		for (Header header : linkHeaders) {
-			for (String s : header.getValue().split(",")) {
+			for (String s : splitLinks(header)) {
 				Link l = new LinkDelegate().fromString(s);
 				if (rel.equals(l.getRel())) {
 					return resolveIfRelative(requestUri, l.getUri());
@@ -308,6 +309,56 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 		}
 
 		return null;
+	}
+
+	/**
+	 * Splits an HTTP Link header that might have multiple links separated by a
+	 * comma.
+	 *
+	 * @param linkHeader
+	 *			the link header
+	 * @return the list of link-values as defined in RFC 5988 (for example,
+	 *		 {@code "<http://example.com/bt/bug432>; rel=related"})
+	 * @see <a href="http://tools.ietf.org/html/rfc5988#page-7">RFC 5988: The Link Header Field</a>
+	 */
+	// LinkDelegate doesn't handle this for us
+	protected List<String> splitLinks(Header linkHeader) {
+		final ArrayList<String> links = new ArrayList<>();
+		final String value = linkHeader.getValue();
+
+		// Track the beginning index for the current link-value.
+		int beginIndex = 0;
+
+		// Is the current char inside a URI-Reference?
+		boolean inUriRef = false;
+
+		// Split the string on commas, but only if not in a URI-Reference
+		// delimited by angle brackets.
+		for (int i = 0; i < value.length(); ++i) {
+			final char c = value.charAt(i);
+
+			if (c == ',' && !inUriRef) {
+				// Found a comma not in a URI-Reference. Split the string.
+				final String link = value.substring(beginIndex, i).trim();
+				links.add(link);
+
+				// Assign the next begin index for the next link.
+				beginIndex = i + 1;
+			} else if (c == '<') {
+				// Angle brackets are not legal characters in a URI, so they can
+				// only be used to mark the start and end of a URI-Reference.
+				// See http://tools.ietf.org/html/rfc3986#section-2
+				inUriRef = true;
+			} else if (c == '>') {
+				inUriRef = false;
+			}
+		}
+
+		// There should be one more link in the string.
+		final String link = value.substring(beginIndex, value.length()).trim();
+		links.add(link);
+
+		return links;
 	}
 
 	/**
