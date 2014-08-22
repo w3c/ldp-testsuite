@@ -1,5 +1,6 @@
 package org.w3.ldp.testsuite.test;
 
+import static com.jayway.restassured.config.LogConfig.logConfig;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.testng.Assert.assertEquals;
@@ -16,11 +17,14 @@ import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
+import org.testng.ITestResult;
 import org.testng.SkipException;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import org.testng.internal.Utils;
 import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
@@ -69,6 +73,20 @@ public abstract class CommonResourceTest extends LdpTest {
 		}
 	}
 
+	@AfterMethod(alwaysRun = true)
+	public void addFailureToHttpLog(ITestResult result) {
+		if (httpLog != null && result.getStatus() == ITestResult.FAILURE) {
+			// Add the failure details after the HTTP trace so it's clear what test it belongs to.
+			httpLog.println(">>> [FAILURE] Test: " + result.getName());
+			Throwable thrown = result.getThrowable();
+			if (thrown != null) {
+				httpLog.append(thrown.getLocalizedMessage());
+				httpLog.println();
+			}
+			httpLog.println();
+		}
+	}
+
 	@Parameters("auth")
 	public CommonResourceTest(@Optional String auth) throws IOException {
 		if (StringUtils.isNotBlank(auth) && auth.contains(":")) {
@@ -83,11 +101,21 @@ public abstract class CommonResourceTest extends LdpTest {
 
 	@Override
 	protected RequestSpecification buildBaseRequestSpecification() {
-		if (auth == null) {
-			return RestAssured.given();
-		} else {
-			return RestAssured.given().auth().preemptive().basic(auth.get("username"), auth.get("password"));
+		RequestSpecification spec = RestAssured.given();
+		if (auth != null) {
+			spec.auth().preemptive().basic(auth.get("username"), auth.get("password"));
 		}
+
+		if (httpLog != null) {
+			spec.config(RestAssured
+					.config()
+					.logConfig(logConfig()
+							.enableLoggingOfRequestAndResponseIfValidationFails()
+							.defaultStream(httpLog)
+							.enablePrettyPrinting(true)));
+		}
+
+		return spec;
 	}
 
 	@Test(

@@ -14,13 +14,11 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 
 public abstract class AbstractEarlReporter {
-
 	protected BufferedWriter writerTurtle;
 	protected BufferedWriter writerJson;
 	protected Model model;
 	protected static final String TURTLE = "TURTLE";
 	protected static final String JSON_LD = "JSON-LD";
-	protected static final String OUTPUT_DIR = "report";
 	protected static final HashMap<String, String> prefixes = new HashMap<String, String>();
 
 	static {
@@ -70,7 +68,7 @@ public abstract class AbstractEarlReporter {
 		model = ModelFactory.createDefaultModel();
 		writePrefixes(model);
 	}
-	
+
 	public void writePrefixes(Model model) {
 		for (Entry<String, String> prefix : prefixes.entrySet()) {
 			model.setNsPrefix(prefix.getKey(), prefix.getValue());

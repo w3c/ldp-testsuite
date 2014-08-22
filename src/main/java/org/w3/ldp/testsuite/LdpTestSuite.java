@@ -46,8 +46,8 @@ import com.jayway.restassured.RestAssured;
 public class LdpTestSuite {
 
 	public static final String NAME = "LDP Test Suite";
-
 	public static final String SPEC_URI = "http://www.w3.org/TR/ldp";
+	public static final String OUTPUT_DIR = "report";
 
 	static final String[] EARLDEPEDENTARGS = {"software", "developer", "language", "homepage", "assertor", "shortname"};
 
@@ -243,6 +243,10 @@ public class LdpTestSuite {
 			testsuite.addIncludedGroup(LdpTest.NR);
 		}
 
+		if (options.hasOption("httpLogging")) {
+			parameters.put("httpLogging", "true");
+		}
+
 		test.setXmlClasses(classList);
 
 		final List<XmlTest> tests = new ArrayList<>();
@@ -398,6 +402,10 @@ public class LdpTestSuite {
 				.withDescription("which tests to run (* is a wildcard)")
 				.hasArgs().withArgName("test names")
 				.create());
+
+		common.addOption(OptionBuilder.withLongOpt("httpLogging")
+				.withDescription("log HTTP requests and responses on validation failures")
+				.isRequired(false).create());
 
 		common.addOption(OptionBuilder.withLongOpt("help")
 				.withDescription("prints this usage help").create());
