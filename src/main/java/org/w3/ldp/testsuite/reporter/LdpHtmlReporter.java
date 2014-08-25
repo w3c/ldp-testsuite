@@ -575,7 +575,8 @@ public class LdpHtmlReporter implements IReporter {
 							for(String groupCover : testLdp.coveredByGroups()) {
 								if(group.contains(groupCover) && !methodName.getName().contains("Conforms")) {
 									String testCaseName = methodName.getDeclaringClass().getSimpleName();
-									html.li().b().write(testCaseName)._b().write("::" +  methodName.getName());
+									String normalizedName = AbstractEarlReporter.createTestCaseName(testCaseName, methodName.getName());
+									html.li().b().write(normalizedName)._b();
 									html.write(" - [Test " + findTestResult(methodName.getName()) + "]");
 									html._li();
 								}								
