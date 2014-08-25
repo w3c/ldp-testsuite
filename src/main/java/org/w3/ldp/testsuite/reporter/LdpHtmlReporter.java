@@ -404,7 +404,6 @@ public class LdpHtmlReporter implements IReporter {
 		html.table(class_("indented"));
 		html.tr().th(class_(title)).a(id((title))).write(title + " Test Cases")._a()._th();
 		html.th(class_(title)).content("Groups");
-		html.th(class_(title)).content("Test Class");
 		html.th(class_(title)).content("Description of Test Method")._tr();
 		for (ITestResult result : tests.getAllResults()) {
 			ITestNGMethod method = result.getMethod();
@@ -419,14 +418,14 @@ public class LdpHtmlReporter implements IReporter {
 				} else {
 					html.tr();
 				}
-
+				
+				String normalizedName = AbstractEarlReporter.createTestCaseName(
+						method.getTestClass().getName(), method.getMethodName());
 				html.td()
 					.a(href("#" + method.getTestClass().getName() + "_"
 							+ method.getMethodName()))
-					.write(method.getMethodName(), NO_ESCAPE)._a()._td();
+					.write(normalizedName)._a()._td();
 				html.td().content(Arrays.toString(method.getGroups()));
-				html.td().content(method.getTestClass().getName());
-
 				html.td().content(
 					(method.getDescription() != null ? method.getDescription()
 							: "No Description found"));
@@ -445,9 +444,11 @@ public class LdpHtmlReporter implements IReporter {
 
 		for(ITestNGMethod method : indirect){
 			html.tr();
+			String normalizedName = AbstractEarlReporter.createTestCaseName(
+					method.getTestClass().getName(), method.getMethodName());
 			html.td()
 				.a(href("#" + method.getTestClass().getName() + "_"
-				+ method.getMethodName())).write(method.getMethodName(), NO_ESCAPE)._a()._td();
+				+ method.getMethodName())).write(normalizedName)._a()._td();
 			ArrayList<String> result = new ArrayList<String>();
 			Method m = method.getConstructorOrMethod().getMethod();
 			SpecTest spec = m.getAnnotation(SpecTest.class);
@@ -503,11 +504,12 @@ public class LdpHtmlReporter implements IReporter {
 	private void generateDetail(IResultMap tests) throws IOException {
 		for (ITestResult m : tests.getAllResults()) {
 			ITestNGMethod method = m.getMethod();
+			String normalizedName = AbstractEarlReporter.createTestCaseName(
+					m.getTestClass().getName(), method.getMethodName());
 			html.h2()
 					.a(id(m.getTestClass().getName() + "_"
 							+ method.getMethodName()))
-					.write(m.getTestClass().getName() + ": "
-							+ method.getMethodName())._a()._h2();
+					.write(normalizedName)._a()._h2();
 			getAdditionalInfo(m, method);
 			html.p(class_("indented"))
 					.b()
