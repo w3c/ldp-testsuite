@@ -23,7 +23,6 @@ import com.hp.hpl.jena.rdf.model.RDFList;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.sparql.vocabulary.EARL;
-import com.hp.hpl.jena.vocabulary.DC;
 import com.hp.hpl.jena.vocabulary.DCTerms;
 import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
@@ -33,8 +32,7 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 
 	private static final Property declaredInClass = ResourceFactory
 			.createProperty(LDP.LDPT_NAMESPACE + "declaredInClass");
-	private static final Property declaredTestCase = ResourceFactory
-			.createProperty(LDP.LDPT_NAMESPACE + "declaredTestCase");
+	private static final Property declaredTestCase = DCTerms.source;
 	private static final Property conformanceLevel = ResourceFactory
 			.createProperty(LDP.LDPT_NAMESPACE + "conformanceLevel");
 
@@ -124,7 +122,7 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 
 		Resource manifest = model.createResource(LDP.LDPT_NAMESPACE + localName+"Manifest",
 				TestManifest.Manifest);
-		manifest.addProperty(DC.title, label);
+		manifest.addProperty(DCTerms.title, label);
 		manifest.addProperty(TestManifest.name, label);
 		manifest.addProperty(RDFS.comment, description);
 		Resource[] ra={};
