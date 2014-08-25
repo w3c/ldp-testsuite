@@ -437,9 +437,8 @@ public class LdpHtmlReporter implements IReporter {
 	
 	private void makeIndirectSummaryTable() throws IOException {
 		html.table(class_("indented"));
-		html.tr().th().a(id(("Indirect"))).write("Indirect Test Cases")._a()._th();
+		html.tr().th().a(id(("Indirect"))).write("Indirectly Tested Test Cases")._a()._th();
 		html.th().content("Overall Test Result");
-		html.th().content("Test Class");
 		html.th().content("Description of Test Method")._tr();
 
 		for(ITestNGMethod method : indirect){
@@ -477,7 +476,6 @@ public class LdpHtmlReporter implements IReporter {
 				else if(result.contains(SKIP) && !result.contains(FAIL) && !result.contains(PASS))
 					html.td(class_("Skipped")).content(SKIP);
 			}
-			html.td().content(method.getTestClass().getName());
 			html.td().content(
 					(method.getDescription() != null ? method.getDescription()
 							: "No Description found"));
