@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.testng.annotations.Test;
+import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.vocab.LDP;
@@ -87,25 +88,25 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 	 */
 	private static final Resource indirect = ResourceFactory
 			.createResource(LDP.LDPT_NAMESPACE + "indirect");
-	
+
 	/**
 	 * @see SpecTest.steps
 	 */
 	private static final Property steps = ResourceFactory
 			.createProperty(LDP.LDPT_NAMESPACE + "steps");
-	
+
 	/**
 	 * List of GROUPS to include in reporting
 	 */
 	private static List<String> conformanceLevels = new ArrayList<String>();
-	
+
 	public void setConformanceLevels(List<String> list){
 		conformanceLevels = list;
 	}
 
 	public void generate(Map<Class<?>, String> classes, String title) {
 		try {
-			createWriter(OUTPUT_DIR, title);
+			createWriter(LdpTestSuite.OUTPUT_DIR, title);
 			System.out.println("Writing test manifest...");
 			createModel();
 			writeTestClasses(classes);
@@ -169,7 +170,7 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 			testLdp = method.getAnnotation(SpecTest.class);
 			test = method.getAnnotation(Test.class);
 			if(!testLdp.testMethod().equals(METHOD.INDIRECT)){
-				
+
 				Resource testCaseResource = createResource(className, method, test, testLdp, conformanceClasses);
 				testCaseResource.addProperty(RDF.type, EARL.TestCase);
 				switch (testLdp.testMethod()) {
@@ -196,14 +197,14 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 						Method[] classMethod = coverTest.getDeclaredMethods();
 						for(Method m : classMethod) {
 							if(m.getAnnotation(Test.class) != null) {
-								String group = Arrays.toString(m.getAnnotation(Test.class).groups()); 
+								String group = Arrays.toString(m.getAnnotation(Test.class).groups());
 								for(String groupCover : testLdp.coveredByGroups()) {
 									if(group.contains(groupCover)) {
 										String testCaseName = createTestCaseName(m.getDeclaringClass().getCanonicalName(), m.getName());
 										String testCaseURL = LDP.LDPT_NAMESPACE + testCaseName;
 										indirectResource.addProperty(DCTerms.hasPart, testCaseURL);
-										
-									}									
+
+									}
 								}
 							}
 						}
@@ -214,11 +215,11 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 		}
 		return null;
 	}
-	
+
 	private Resource createResource(String className, Method method, Test test, SpecTest testLdp,
 			ArrayList<ArrayList<Resource>> conformanceClasses) {
 		String testCaseName = createTestCaseName(className, method.getName());
-		
+
 		// Client only tests should be managed in separate EARL manifest
 		if (testLdp.testMethod() == METHOD.CLIENT_ONLY) {
 			System.err.println("Wrongly received CLIENT_ONLY test for "+testCaseName+
@@ -243,8 +244,8 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 		resource.addProperty(RDFS.comment, test.description());
 		if (allGroups != null)
 			resource.addProperty(DCTerms.subject, allGroups);
-	
-		boolean added = false;		
+
+		boolean added = false;
 		if (testLdp.approval() != SpecTest.STATUS.WG_EXTENSION) {
 			for (String group: test.groups()) {
 				group = group.trim();
@@ -259,7 +260,7 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 		if (!added) {
 			conformanceClasses.get(LdpTestCaseReporter.OTHER).add(resource);
 		}
-	 
+
 		String[] stepsArr = testLdp.steps();
 		if (stepsArr != null && stepsArr.length > 0) {
 			ArrayList<Literal> arr = new ArrayList<Literal>();
@@ -272,7 +273,7 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 
 		// 	Leave action property only to make earl-report happy
 		resource.addProperty(TestManifest.action, "");
-	
+
 		switch (testLdp.approval()) {
 		case WG_APPROVED:
 			resource.addProperty(TestDescription.reviewStatus, TestDescription.approved);
@@ -292,7 +293,7 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 			specRef = model.createResource(testLdp.specRefUri());
 			resource.addProperty(RDFS.seeAlso, specRef);
 		}
-		
+
 		if (test.description() != null && test.description().length() > 0) {
 			Resource excerpt = model.createResource(TestDescription.Excerpt);
 			excerpt.addLiteral(TestDescription.includesText, test.description());
@@ -304,9 +305,9 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 
 		resource.addProperty(documentation,
 				model.createResource(ReportUtils.getJavadocLink(method)));
-		
+
 		return resource;
-		
+
 	}
 
 	private String groups(String[] list) {
