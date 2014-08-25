@@ -2,10 +2,15 @@ package org.w3.ldp.testsuite.test;
 
 import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintStream;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.core.Link;
@@ -13,9 +18,11 @@ import javax.ws.rs.core.Link;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.marmotta.commons.vocabulary.LDP;
 import org.jboss.resteasy.plugins.delegates.LinkDelegate;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
+import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.http.HttpHeaders;
 import org.w3.ldp.testsuite.http.LdpPreferences;
 import org.w3.ldp.testsuite.http.MediaTypes;
@@ -32,11 +39,17 @@ import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.RequestSpecification;
 
 public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences {
+	public final static String HTTP_LOG_FILENAME = "http.log";
 
 	/**
 	 * Alternate content to use on POST requests
 	 */
 	private static Model postModel;
+
+	/**
+	 * For HTTP details on validation failures
+	 */
+	protected PrintStream httpLog;
 
 	/**
 	 * Builds a model from a turtle representation in a file
@@ -76,12 +89,37 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	 * Initialization of generic resource model. This will run only once
 	 * at the beginning of the test suite, so postModel static field
 	 * will be assigned once too.
-	 * @param postTtl
+	 *
+	 * @param postTtl the resource with Turtle content to use for POST requests
+	 * @param httpLogging whether to log HTTP request and response details on errors
 	 */
 	@BeforeSuite(alwaysRun = true)
-	@Parameters("postTtl")
-	public void setPostContent(@Optional String postTtl) {
-		postModel = this.readModel(postTtl);
+	@Parameters({"postTtl", "httpLogging"})
+	public void setup(@Optional String postTtl, @Optional String httpLogging) {
+		postModel = readModel(postTtl);
+		if ("true".equals(httpLogging)) {
+			File dir = new File(LdpTestSuite.OUTPUT_DIR);
+			dir.mkdirs();
+			File file = new File(dir, HTTP_LOG_FILENAME);
+			try {
+				httpLog = new PrintStream(file);
+
+				// Add the date to the top of the log
+				DateFormat df = DateFormat.getDateTimeInstance();
+				httpLog.println("LDP Test Suite: HTTP Log (" + df.format(new Date()) + ")");
+				httpLog.println();
+			} catch (IOException e) {
+				System.err.println("WARNING: Error creating http.log for detailed errors");
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@AfterSuite(alwaysRun = true)
+	public void tearDown() {
+		if (httpLog != null) {
+			httpLog.close();
+		}
 	}
 
 	/**
@@ -108,7 +146,7 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	 * @see <a href="https://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>
 	 */
 	public static final String MAY = "MAY";
-	
+
 
 	/**
 	 * A grouping of tests that may not need to run as part of the regular
@@ -131,6 +169,11 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	public static boolean getWarnings() {
 		return warnings;
 	}
+
+	/**
+	 * If true, log HTTP request and response details on errors.
+	 */
+	protected boolean httpLogging = false;
 
 	/**
 	 * Build a base RestAssured {@link com.jayway.restassured.specification.RequestSpecification}.
@@ -180,8 +223,8 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	 * </p>
 	 *
 	 * @return true if there are restrictions on what triples are allowed; false
-	 *         if the server allows most any RDF
-	 * @see #setPostContent(String)
+	 *		   if the server allows most any RDF
+	 * @see #setup(String)
 	 * @see RdfSourceTest#restrictionsOnTestResourceContent()
 	 */
 	protected boolean restrictionsOnPostContent() {
@@ -195,11 +238,11 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	 * String, Response)}.
 	 *
 	 * @param expectedUri
-	 *            the expected URI
+	 *			  the expected URI
 	 * @param expectedRel
-	 *            the expected link relation (rel)
+	 *			  the expected link relation (rel)
 	 * @param response
-	 *            the HTTP response
+	 *			  the HTTP response
 	 * @see <a href="http://tools.ietf.org/html/rfc5988">RFC 5988</a>
 	 * @see #getFirstLinkForRelation(String, String, Response)
 	 */
@@ -213,20 +256,20 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	 * URI if necessary.
 	 *
 	 * @param expectedLinkUri
-	 *            the expected URI
+	 *			  the expected URI
 	 * @param expectedRel
-	 *            the expected link relation (rel)
+	 *			  the expected link relation (rel)
 	 * @param requestUri
-	 *            the HTTP request URI (for resolving relative URIs)
+	 *			  the HTTP request URI (for resolving relative URIs)
 	 * @param response
-	 *            the HTTP response
+	 *			  the HTTP response
 	 * @see <a href="http://tools.ietf.org/html/rfc5988">RFC 5988</a>
 	 * @see #getFirstLinkForRelation(String, String, Response)
 	 */
 	protected boolean containsLinkHeader(String expectedLinkUri, String expectedRel, String requestUri, Response response) {
 		List<Header> linkHeaders = response.getHeaders().getList(LINK);
 		for (Header linkHeader : linkHeaders) {
-			for (String s : linkHeader.getValue().split(",")) {
+			for (String s : splitLinks(linkHeader)) {
 				Link nextLink = new LinkDelegate().fromString(s);
 				if (expectedRel.equals(nextLink.getRel())) {
 					String actualLinkUri = resolveIfRelative(requestUri, nextLink.getUri());
@@ -245,11 +288,11 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	 * Resolves relative URIs against the request URI if necessary.
 	 *
 	 * @param rel
-	 *            the expected link relation
+	 *			  the expected link relation
 	 * @param requestUri
-	 *            the HTTP request URI (for resolving relative URIs)
+	 *			  the HTTP request URI (for resolving relative URIs)
 	 * @param response
-	 *            the HTTP response
+	 *			  the HTTP response
 	 * @return the first link or {@code null} if none was found
 	 * @see <a href="http://tools.ietf.org/html/rfc5988">RFC 5988</a>
 	 * @see #containsLinkHeader(String, String, Response)
@@ -257,7 +300,7 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	protected String getFirstLinkForRelation(String rel, String requestUri, Response response) {
 		List<Header> linkHeaders = response.getHeaders().getList(LINK);
 		for (Header header : linkHeaders) {
-			for (String s : header.getValue().split(",")) {
+			for (String s : splitLinks(header)) {
 				Link l = new LinkDelegate().fromString(s);
 				if (rel.equals(l.getRel())) {
 					return resolveIfRelative(requestUri, l.getUri());
@@ -266,6 +309,56 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 		}
 
 		return null;
+	}
+
+	/**
+	 * Splits an HTTP Link header that might have multiple links separated by a
+	 * comma.
+	 *
+	 * @param linkHeader
+	 *			the link header
+	 * @return the list of link-values as defined in RFC 5988 (for example,
+	 *		 {@code "<http://example.com/bt/bug432>; rel=related"})
+	 * @see <a href="http://tools.ietf.org/html/rfc5988#page-7">RFC 5988: The Link Header Field</a>
+	 */
+	// LinkDelegate doesn't handle this for us
+	protected List<String> splitLinks(Header linkHeader) {
+		final ArrayList<String> links = new ArrayList<>();
+		final String value = linkHeader.getValue();
+
+		// Track the beginning index for the current link-value.
+		int beginIndex = 0;
+
+		// Is the current char inside a URI-Reference?
+		boolean inUriRef = false;
+
+		// Split the string on commas, but only if not in a URI-Reference
+		// delimited by angle brackets.
+		for (int i = 0; i < value.length(); ++i) {
+			final char c = value.charAt(i);
+
+			if (c == ',' && !inUriRef) {
+				// Found a comma not in a URI-Reference. Split the string.
+				final String link = value.substring(beginIndex, i).trim();
+				links.add(link);
+
+				// Assign the next begin index for the next link.
+				beginIndex = i + 1;
+			} else if (c == '<') {
+				// Angle brackets are not legal characters in a URI, so they can
+				// only be used to mark the start and end of a URI-Reference.
+				// See http://tools.ietf.org/html/rfc3986#section-2
+				inUriRef = true;
+			} else if (c == '>') {
+				inUriRef = false;
+			}
+		}
+
+		// There should be one more link in the string.
+		final String link = value.substring(beginIndex, value.length()).trim();
+		links.add(link);
+
+		return links;
 	}
 
 	/**
@@ -306,12 +399,12 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	 * Resolves a URI if it's a relative path.
 	 *
 	 * @param base
-	 *            the base URI to use
+	 *			  the base URI to use
 	 * @param toResolve
-	 *            a URI that might be relative
+	 *			  a URI that might be relative
 	 * @return the resolved URI
 	 * @throws URISyntaxException
-	 *             on bad URIs (but relative URIs are OK)
+	 *			   on bad URIs (but relative URIs are OK)
 	 */
 	public static String resolveIfRelative(String base, String toResolve) {
 		try {

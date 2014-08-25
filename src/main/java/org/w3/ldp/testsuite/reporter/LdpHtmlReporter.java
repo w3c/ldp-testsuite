@@ -12,8 +12,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.lang.reflect.Method;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -149,13 +147,8 @@ public class LdpHtmlReporter implements IReporter {
 				html._body()._html();
 
 				// send html to a file
-				createWriter("report", html.toHtml(), outputName);
-
-				Files.copy(getClass().getResourceAsStream("/testng-reports.css"),
-						new File(outputDirectory, "testng-reports.css").toPath(),
-						StandardCopyOption.REPLACE_EXISTING);
+				createWriter(LdpTestSuite.OUTPUT_DIR, html.toHtml(), outputName);
 			}
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

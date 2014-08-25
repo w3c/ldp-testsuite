@@ -19,6 +19,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.Test;
 import org.testng.internal.Utils;
 import org.testng.xml.XmlSuite;
+import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.vocab.Earl;
@@ -61,12 +62,12 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 	private static String mailBox;
 	private static String description;
 	private static String shortname;
-	
+
 	private static Property ranAsClass = ResourceFactory
 			.createProperty(LDP.LDPT_NAMESPACE + "ranAsClass");
-	
+
 	private static String TITLE = "ldp-testsuite";
-	
+
 	private IResultMap passedTests;
 	private IResultMap failedTests;
 	private IResultMap skippedTests;
@@ -75,7 +76,7 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 	public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites,
 			String outputDirectory) {
 		try {
-			createWriter(OUTPUT_DIR, "");
+			createWriter(LdpTestSuite.OUTPUT_DIR, "");
 		} catch (IOException e) {
 			e.printStackTrace(System.err);
 			System.exit(1);
@@ -108,13 +109,13 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 
 			mailBox = suite.getParameter("mbox");
 			description = suite.getParameter("description");
-			
+
 			shortname = suite.getParameter("shortname");
 
 			// Make the Assertor Resource
 			Resource assertorRes = model.createResource(assertor);
 			assertorRes.addProperty(RDF.type, Earl.Assertor);
-			
+
 			if (description != null)
 				assertorRes.addProperty(DOAP.description, description);
 
@@ -122,7 +123,7 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 			Resource personResource = model.createResource(null, FOAF.Person);
 			if (mailBox != null)
 				personResource.addProperty(FOAF.mbox, mailBox);
-			if(subjectDev != null) 
+			if(subjectDev != null)
 				personResource.addProperty(FOAF.name, subjectDev);
 
 			assertorRes.addProperty(DOAP.developer, personResource);
@@ -132,7 +133,7 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 					.createResource(assertor, Earl.Software);
 			if (softwareTitle != null)
 				softResource.addProperty(DCTerms.title, softwareTitle);
-			
+
 			if(shortname != null)
 				softResource.addProperty(DOAP.name, shortname);
 
@@ -140,7 +141,7 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 
 			Resource subjectResource = model.createResource(assertor,
 					Earl.TestSubject);
-			
+
 			subjectResource.addProperty(RDF.type, DOAP.Project);
 
 			if (homepage != null)
@@ -177,11 +178,11 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 		String className = result.getTestClass().getName();
 		className = className.substring(className
 				.lastIndexOf(".") + 1);
-		
+
 		Resource assertionResource = model.createResource(null, Earl.Assertion);
 
 		Resource resultResource = model.createResource(null, Earl.TestResult);
-		
+
 		Resource subjectResource = model.getResource(assertor);
 
 		assertionResource.addProperty(Earl.testSubject, subjectResource);
@@ -200,11 +201,11 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 					Method[] classMethod = classVal.getDeclaredMethods();
 					for(Method methodName : classMethod) {
 						if(methodName.getAnnotation(Test.class) != null) {
-							String group = Arrays.toString(methodName.getAnnotation(Test.class).groups()); 
+							String group = Arrays.toString(methodName.getAnnotation(Test.class).groups());
 							for(String groupCover : specTest.coveredByGroups()) {
 								if(group.contains(groupCover) && !methodName.getName().contains("Conforms")) {
 									testResults.add(findTestResult(methodName.getName()));
-								}								
+								}
 							}
 						}
 					}
@@ -268,7 +269,7 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 		assertionResource.addLiteral(ranAsClass, result.getTestClass().getRealClass().getSimpleName());
 
 		resultResource.addProperty(DCTerms.date, model.createTypedLiteral(GregorianCalendar.getInstance()));
-		
+
 		/*
 		 * Add the above resources to the Assertion Resource
 		 */
@@ -283,8 +284,8 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 			resource.addLiteral(DCTerms.description,
 					Utils.stackTrace(thrown, false)[0]);
 	}
-	
-	private String  findTestResult(String methodName) {		
+
+	private String  findTestResult(String methodName) {
 		Iterator<ITestNGMethod> passed = passedTests.getAllMethods().iterator();
 		while(passed.hasNext()){
 			ITestNGMethod method = passed.next();
@@ -292,7 +293,7 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 				return PASS;
 			}
 		}
-		
+
 		Iterator<ITestNGMethod> skipped = skippedTests.getAllMethods().iterator();
 		while(skipped.hasNext()){
 			ITestNGMethod method = skipped.next();
@@ -300,7 +301,7 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 				return SKIP;
 			}
 		}
-		
+
 		Iterator<ITestNGMethod> failed = failedTests.getAllMethods().iterator();
 		while(failed.hasNext()){
 			ITestNGMethod method = failed.next();
@@ -308,7 +309,7 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 				return FAIL;
 			}
 		}
-		
+
 		return null;
 	}
 
@@ -316,7 +317,7 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
     protected String getFilename() {
 	    return TITLE + "-execution-report-earl";
     }
-	
+
 	public void setTitle(String title){
 		TITLE = title;
 	}
