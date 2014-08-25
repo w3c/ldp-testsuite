@@ -414,8 +414,8 @@ public class LdpTestCaseReporter {
 				if (method.getAnnotation(SpecTest.class) != null) {
 					String name = method.getDeclaringClass().getCanonicalName();
 					name = name.substring(name.lastIndexOf(".") + 1);
-					html.li().a(href("#" + method.getName())).b().write(name)._b()
-							.write("::" + method.getName())._a()._li();
+					String normalizedName = AbstractEarlReporter.createTestCaseName(name, method.getName());
+					html.li().a(href("#" + method.getName())).b().write(normalizedName)._b()._a()._li();
 				}
 			}
 			html._ul();
@@ -440,7 +440,8 @@ public class LdpTestCaseReporter {
 			className = entry.getValue();
 			className = className.substring(className.lastIndexOf(".") + 1);
 			methodName = entry.getKey();
-			html.li().a(href("#" + methodName)).b().write(className + "::")._b().write(methodName)._a()._li();
+			String normalizedName = AbstractEarlReporter.createTestCaseName(className, methodName);
+			html.li().a(href("#" + methodName)).b().write(normalizedName)._b()._a()._li();
 		}
 	}
 
@@ -990,7 +991,8 @@ public class LdpTestCaseReporter {
 									if(group.contains(groupCover)) {
 										String testCaseName = m.getDeclaringClass().getCanonicalName();
 										testCaseName = testCaseName.substring(testCaseName.lastIndexOf(".") + 1);
-										html.li().a(href("#" + m.getName())).b().write(testCaseName)._b().write("::" +  m.getName())._a()._li();
+										String normalizedName = AbstractEarlReporter.createTestCaseName(testCaseName, m.getName());
+										html.li().a(href("#" + m.getName())).b().write(normalizedName)._b()._a()._li();
 									}								
 								}
 							}

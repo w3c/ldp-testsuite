@@ -77,7 +77,7 @@ public abstract class AbstractEarlReporter {
 		}
 	}
 
-	public String createTestCaseName(String className, String methodName) {
+	public static String createTestCaseName(String className, String methodName) {
 
 		className = className.substring(className.lastIndexOf(".") + 1);
 
@@ -90,7 +90,7 @@ public abstract class AbstractEarlReporter {
 		return className + "-" + methodName;
 	}
 
-	public String createTestCaseURL(String className, String methodName) {
+	public static String createTestCaseURL(String className, String methodName) {
 		return LDP.LDPT_NAMESPACE + createTestCaseName(className, methodName);
 	}
 }
