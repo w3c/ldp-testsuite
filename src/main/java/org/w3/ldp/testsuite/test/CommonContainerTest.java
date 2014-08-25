@@ -46,7 +46,6 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 
 	public static final String MSG_LOC_NOTFOUND = "Location header missing after POST create.";
 	public static final String MSG_MBRRES_NOTFOUND = "Unable to locate object in triple with predicate ldp:membershipResource.";
-	public static final String MSG_PREFERENCE_NOT_APPLIED = "Server did not return Preference-Applied: return=representation response header";
 
 	@Parameters("auth")
 	public CommonContainerTest(@Optional String auth) throws IOException {
@@ -173,7 +172,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					.get(containerUri);
 		model = response.as(Model.class, new RdfObjectMapper(containerUri));
 
-		assertTrue(isPreferenceApplied(response), MSG_PREFERENCE_NOT_APPLIED);
+		checkPreferenceAppliedHeader(response);
 
 		// Assumes the container is not empty.
 		assertTrue(model.contains(model.getResource(containerUri), model.createProperty(LDP.contains.stringValue())),
@@ -189,7 +188,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					.get(containerUri);
 		model = response.as(Model.class, new RdfObjectMapper(containerUri));
 
-		assertTrue(isPreferenceApplied(response), MSG_PREFERENCE_NOT_APPLIED);
+		checkPreferenceAppliedHeader(response);
 		assertFalse(model.contains(model.getResource(containerUri), model.createProperty(LDP.contains.stringValue())),
 				"Container has containment triples when minimal container was requested");
 
@@ -203,7 +202,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					.get(containerUri);
 		model = response.as(Model.class, new RdfObjectMapper(containerUri));
 
-		assertTrue(isPreferenceApplied(response), MSG_PREFERENCE_NOT_APPLIED);
+		checkPreferenceAppliedHeader(response);
 
 		// Assumes the container is not empty.
 		assertFalse(model.contains(model.getResource(containerUri), model.createProperty(LDP.contains.stringValue())),
@@ -832,7 +831,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 		assertFalse(containsLinkHeader(LDP.NonRDFSource.stringValue(), LINK_REL_TYPE, getResponse),
 				"Resources POSTed using JSON-LD should be treated as RDF source");
 	}
-	
+
 	@Test(
 			groups = {MUST},
 			description = "Each Linked Data Platform Container MUST "

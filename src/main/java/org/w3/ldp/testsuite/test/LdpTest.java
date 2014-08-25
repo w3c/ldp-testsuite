@@ -1,5 +1,6 @@
 package org.w3.ldp.testsuite.test;
 
+import static org.testng.Assert.assertTrue;
 import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
 import java.io.File;
@@ -362,16 +363,25 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	}
 
 	/**
-	 * Checks the response for a
-	 * <code>Preference-Applied: return=representation</code> response header.
+	 * Asserts the response has a <code>Preference-Applied:
+	 * return=representation</code> response header, but only if at
+	 * least one <code>Preference-Applied</code> header is present.
 	 *
 	 * @param response
 	 *			  the HTTP response
-	 * @return true if and only if the response contains the expected
-	 *		   <code>Preference-Applied</code> header
 	 */
-	protected boolean isPreferenceApplied(Response response) {
+	protected void checkPreferenceAppliedHeader(Response response) {
 		List<Header> preferenceAppliedHeaders = response.getHeaders().getList(PREFERNCE_APPLIED);
+		if (preferenceAppliedHeaders.isEmpty()) {
+			// The header is not mandatory.
+			return;
+		}
+
+		assertTrue(hasReturnRepresentation(preferenceAppliedHeaders),
+				"Server responded with a Preference-Applied header, but it did not contain return=representation");
+	}
+
+	protected boolean hasReturnRepresentation(List<Header> preferenceAppliedHeaders) {
 		for (Header h : preferenceAppliedHeaders) {
 			// Handle optional whitespace, quoted preference token values, and
 			// other tokens in the Preference-Applied response header.
