@@ -37,6 +37,7 @@ import org.w3.ldp.testsuite.BuildProperties;
 import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
+import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 
 /**
  * HTML reporter for the LDP test suite. Takes the results of the test methods
@@ -424,7 +425,11 @@ public class LdpHtmlReporter implements IReporter {
 				html.td()
 					.a(href("#" + method.getTestClass().getName() + "_"
 							+ method.getMethodName()))
-					.write(normalizedName)._a()._td();
+					.write(normalizedName)._a();
+				if (method.getConstructorOrMethod().getMethod().getAnnotation(SpecTest.class).approval() == STATUS.WG_PENDING) {
+					html.br().b().em().write("WG Approval Pending")._em()._b();
+				}
+				html._td();
 				html.td().content(Arrays.toString(method.getGroups()));
 				html.td().content(
 					(method.getDescription() != null ? method.getDescription()
