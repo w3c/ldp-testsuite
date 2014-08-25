@@ -1,8 +1,16 @@
 package org.w3.ldp.testsuite.test;
 
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.Resource;
-import com.jayway.restassured.response.Response;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertNull;
+import static org.testng.Assert.assertTrue;
+import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.List;
 
 import org.apache.http.HttpStatus;
 import org.testng.SkipException;
@@ -19,12 +27,10 @@ import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.matcher.HeaderMatchers;
 import org.w3.ldp.testsuite.vocab.LDP;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-
-import static org.hamcrest.Matchers.notNullValue;
-import static org.testng.Assert.*;
-import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.jayway.restassured.response.Header;
+import com.jayway.restassured.response.Response;
 
 public class DirectContainerTest extends CommonContainerTest {
 	private String directContainer;
@@ -249,8 +255,9 @@ public class DirectContainerTest extends CommonContainerTest {
 				isMemberOfRelation = container.getPropertyResourceValue(containerModel.createProperty(LDP.isMemberOfRelation.stringValue()));
 				// Check the container for the triple.
 				if (!containerModel.contains(containerModel.getResource(location), containerModel.createProperty(isMemberOfRelation.getURI()), membershipResource)) {
+					List<Header> preferenceAppliedHeaders = getResponse.getHeaders().getList(PREFERNCE_APPLIED);
 					assertFalse(
-							isPreferenceApplied(getResponse),
+							!preferenceAppliedHeaders.isEmpty() && hasReturnRepresentation(preferenceAppliedHeaders),
 							"Server responded with Preference-Applied header for including membership triples, but membership triple is missing.");
 				}
 
@@ -292,7 +299,7 @@ public class DirectContainerTest extends CommonContainerTest {
 			}
 		}
 	}
-	
+
 	@Test(
 			groups = {MUST},
 			description = "Each LDP Direct Container MUST also be a "
@@ -351,7 +358,7 @@ public class DirectContainerTest extends CommonContainerTest {
 		model = response.as(Model.class, new RdfObjectMapper(directContainer));
 
 		// Assumes the container is not empty.
-		assertTrue(isPreferenceApplied(response), MSG_PREFERENCE_NOT_APPLIED);
+		checkPreferenceAppliedHeader(response);
 		assertTrue(hasMembershipTriples(model), "Container does not have membership triples");
 
 		// Ask for a minimal container.
@@ -364,7 +371,7 @@ public class DirectContainerTest extends CommonContainerTest {
 					.get(directContainer);
 		model = response.as(Model.class, new RdfObjectMapper(directContainer));
 
-		assertTrue(isPreferenceApplied(response), MSG_PREFERENCE_NOT_APPLIED);
+		checkPreferenceAppliedHeader(response);
 		assertFalse(hasMembershipTriples(model), "Container has membership triples when minimal container was requested");
 
 		// Ask to omit membership.
@@ -377,7 +384,7 @@ public class DirectContainerTest extends CommonContainerTest {
 					.get(directContainer);
 		model = response.as(Model.class, new RdfObjectMapper(directContainer));
 
-		assertTrue(isPreferenceApplied(response), MSG_PREFERENCE_NOT_APPLIED);
+		checkPreferenceAppliedHeader(response);
 		assertFalse(hasMembershipTriples(model), "Container has membership triples when client requested server omit them");
 
 		// Ask for a minimal container, but include membership. (Example from spec.)
@@ -391,7 +398,7 @@ public class DirectContainerTest extends CommonContainerTest {
 		model = response.as(Model.class, new RdfObjectMapper(directContainer));
 
 		// Assumes the container is not empty.
-		assertTrue(isPreferenceApplied(response), MSG_PREFERENCE_NOT_APPLIED);
+		checkPreferenceAppliedHeader(response);
 		assertTrue(hasMembershipTriples(model), "Container does not have membership triples");
 		assertFalse(model.contains(model.getResource(directContainer), model.createProperty(LDP.contains.stringValue())),
 				"Container has containment triples when minimal container was requested");
