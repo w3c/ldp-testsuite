@@ -27,7 +27,7 @@
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-21T21:05:12.196Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testIsHttp11Manual(CommonResourceTest.java:104)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
+                     earl:outcome         earl:passed
                    ] ;
   earl:subject     <http://stevespeicher.me> ;
   earl:test        ldpt:MemberResource-IsHttp11Manual ;
@@ -38,9 +38,9 @@
   earl:assertedBy  <http://stevespeicher.me> ;
   earl:mode        earl:automatic ;
   earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-08-21T21:05:12.211Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date         "2014-08-251T21:05:12.211Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/bc> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsReadOnlyProp(RdfSourceTest.java:348)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
+                     earl:outcome         earl:passed
                    ] ;
   earl:subject     <http://stevespeicher.me> ;
   earl:test        ldpt:BasicContainer-PublishConstraintsReadOnlyProp ;
@@ -88,9 +88,9 @@
   earl:assertedBy  <http://stevespeicher.me> ;
   earl:mode        earl:automatic ;
   earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-08-21T21:05:12.206Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date         "2014-08-25T21:05:12.206Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/bc> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testResponsePropertiesNotPersisted(RdfSourceTest.java:451)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
+                     earl:outcome         earl:passed
                    ] ;
   earl:subject     <http://stevespeicher.me> ;
   earl:test        ldpt:BasicContainer-ResponsePropertiesNotPersisted ;
@@ -187,7 +187,7 @@
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-21T21:05:12.209Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      dcterms:description  "org.w3.ldp.testsuite.exception.SkipMethodNotAllowedException: Skipping test since <http://ldpjs.mybluemix.net/r/bc> has not advertised PUT support through its HTTP OPTIONS response. This HTTP method is needed for this test.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.skipIfMethodNotAllowed(CommonResourceTest.java:434)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.putReplaceResource(RdfSourceTest.java:548)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutSimpleUpdate(RdfSourceTest.java:150)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
+                     earl:outcome         earl:passed
                    ] ;
   earl:subject     <http://stevespeicher.me> ;
   earl:test        ldpt:BasicContainer-PutSimpleUpdate ;
