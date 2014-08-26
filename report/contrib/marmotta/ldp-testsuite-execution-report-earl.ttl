@@ -7,7 +7,7 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
-@prefix ldpt:  <http://www.w3c.org/ns/ldp/test#> .
+@prefix ldpt:  <http://w3c.github.io/ldp-testsuite/manifest#> .
 
 [ a                earl:Assertion ;
   earl:assertedBy  <http://marmotta.apache.org> ;
