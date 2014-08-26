@@ -9,7 +9,6 @@ import java.util.Map.Entry;
 
 import org.w3.ldp.testsuite.vocab.LDP;
 
-import com.github.jsonldjava.jena.JenaJSONLD;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 
@@ -22,8 +21,6 @@ public abstract class AbstractEarlReporter {
 	protected static final HashMap<String, String> prefixes = new HashMap<String, String>();
 
 	static {
-		JenaJSONLD.init();
-
 		prefixes.put("doap", "http://usefulinc.com/ns/doap#");
 		prefixes.put("foaf", "http://xmlns.com/foaf/0.1/");
 		prefixes.put("earl", "http://www.w3.org/ns/earl#");
