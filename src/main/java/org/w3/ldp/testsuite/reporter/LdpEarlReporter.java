@@ -54,14 +54,15 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 	// private static String basic;
 	// private static String indirect;
 
-	private static String softwareTitle;
-	private static String subjectDev;
+	private static String software;
+	private static String developer;
 	private static String homepage;
 	private static String assertor;
 	private static String language;
-	private static String mailBox;
+	private static String mbox;
 	private static String description;
 	private static String shortname;
+	private static ArrayList<String> missingParms = new ArrayList<>();
 
 	private static Property ranAsClass = ResourceFactory
 			.createProperty(LDP.LDPT_NAMESPACE + "ranAsClass");
@@ -84,6 +85,20 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 		createModel();
 		createAssertions(suites);
 		write();
+		if (missingParms.size() > 0) {
+			System.out.print("EARL report missing values for parameters: ");
+			boolean first=true;
+			String o="";
+			for (String p: missingParms) {
+				if (first) {
+					first = false;
+					o = p;
+				} else {
+					o = o + ", " + p;
+				}
+			}
+			System.out.println(o);
+		}
 		try {
 			endWriter();
 		} catch (IOException e) {
@@ -101,47 +116,59 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 			// indirect = suite.getParameter("indirectContainer");
 
 			homepage = suite.getParameter("homepage");
+			if (homepage == null) missingParms.add("homepage");
+			
 			assertor = suite.getParameter("assertor");
-
-			softwareTitle = suite.getParameter("software");
-			subjectDev = suite.getParameter("developer");
+			if (assertor == null) missingParms.add("assertor");
+			
+			software = suite.getParameter("software");
+			if (software == null) missingParms.add("software");
+			
+			developer = suite.getParameter("developer");
+			if (developer == null) missingParms.add("developer");
+			
 			language = suite.getParameter("language");
+			if (language == null) missingParms.add("language");
 
-			mailBox = suite.getParameter("mbox");
+			mbox = suite.getParameter("mail");
+			if (mbox == null) missingParms.add("mail");
+
 			description = suite.getParameter("description");
+			if (description == null) missingParms.add("description");
 
 			shortname = suite.getParameter("shortname");
+			if (shortname == null) missingParms.add("shortname");
 
-			// Make the Assertor Resource
+			// Make the Assertor Resource (the thing doing the testing) 
 			Resource assertorRes = model.createResource(assertor);
 			assertorRes.addProperty(RDF.type, Earl.Assertor);
+			
+			// Create the subject resource (the thing being tested)
+			Resource subjectResource = model.createResource(homepage,
+					Earl.TestSubject);
 
 			if (description != null)
-				assertorRes.addProperty(DOAP.description, description);
+				subjectResource.addProperty(DOAP.description, description);
 
 			/* Developer Resource (Person) */
 			Resource personResource = model.createResource(null, FOAF.Person);
-			if (mailBox != null)
-				personResource.addProperty(FOAF.mbox, mailBox);
-			if(subjectDev != null)
-				personResource.addProperty(FOAF.name, subjectDev);
+			if (mbox != null)
+				personResource.addProperty(FOAF.mbox, mbox);
+			if(developer != null)
+				personResource.addProperty(FOAF.name, developer);
 
-			assertorRes.addProperty(DOAP.developer, personResource);
+			subjectResource.addProperty(DOAP.developer, personResource);
 
 			/* Software Resource */
 			Resource softResource = model
-					.createResource(assertor, Earl.Software);
-			if (softwareTitle != null)
-				softResource.addProperty(DCTerms.title, softwareTitle);
+					.createResource(homepage, Earl.Software);
+			if (software != null)
+				softResource.addProperty(DCTerms.title, software);
 
 			if(shortname != null)
 				softResource.addProperty(DOAP.name, shortname);
 
 			/* Add properties to the Test Subject Resource */
-
-			Resource subjectResource = model.createResource(assertor,
-					Earl.TestSubject);
-
 			subjectResource.addProperty(RDF.type, DOAP.Project);
 
 			if (homepage != null)
@@ -150,7 +177,6 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 			if (language != null)
 				subjectResource
 						.addProperty(DOAP.programming_language, language);
-			model.createResource(null, subjectResource);
 
 			Map<String, ISuiteResult> tests = suite.getResults();
 
@@ -183,7 +209,8 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 
 		Resource resultResource = model.createResource(null, Earl.TestResult);
 
-		Resource subjectResource = model.getResource(assertor);
+		Resource subjectResource = model.getResource(homepage);
+		Resource assertorResource = model.getResource(assertor);
 
 		assertionResource.addProperty(Earl.testSubject, subjectResource);
 
@@ -265,7 +292,7 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 			}
 		}
 
-		assertionResource.addProperty(Earl.assertedBy, subjectResource);
+		assertionResource.addProperty(Earl.assertedBy, assertorResource);
 		assertionResource.addLiteral(ranAsClass, result.getTestClass().getRealClass().getSimpleName());
 
 		resultResource.addProperty(DCTerms.date, model.createTypedLiteral(GregorianCalendar.getInstance()));
