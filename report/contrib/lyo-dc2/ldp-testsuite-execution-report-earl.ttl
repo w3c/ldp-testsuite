@@ -11,7 +11,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-26T17:54:09.672Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -24,7 +24,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.688Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -36,7 +36,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.683Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -48,7 +48,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.694Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -60,7 +60,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.704Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -72,7 +72,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-26T17:54:09.668Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -85,7 +85,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:manual ;
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-26T17:54:09.677Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -98,7 +98,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.681Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -110,7 +110,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.702Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -122,7 +122,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.717Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -136,7 +136,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-26T17:54:09.674Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -149,7 +149,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.68Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -161,7 +161,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.695Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -173,7 +173,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.705Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -185,7 +185,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.714Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -197,7 +197,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-26T17:54:09.67Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -210,7 +210,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.678Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -222,7 +222,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.687Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -234,7 +234,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.694Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -246,7 +246,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.703Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -258,7 +258,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.708Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -270,7 +270,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.718Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -282,7 +282,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:manual ;
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-26T17:54:09.675Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -295,7 +295,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.693Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -307,7 +307,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.697Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -319,7 +319,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.706Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -331,7 +331,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-26T17:54:09.672Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -344,7 +344,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.679Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -356,7 +356,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.688Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -368,7 +368,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.687Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -380,7 +380,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.704Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -391,7 +391,7 @@
 ] .
 
 <http://eclipse.org/lyo#dc2>
-        a                          earl:Assertor , doap:Project , earl:Software , earl:TestSubject ;
+        a                          doap:Project , earl:Software , earl:TestSubject ;
         dcterms:title              "Reference Implementation" ;
         doap:description           "Testing against: DirectContainer, RDFSource, NonRDFSource, Prefer,         Container as Resource interaction model.         Configuration of DirectContainer:            ldp:membershipResource != container,            ldp:hasMemberRelation == ldp:member" ;
         doap:developer             [ a          foaf:Person ;
@@ -403,11 +403,14 @@
                                    ];
         doap:homepage              "http://wiki.eclipse.org/Lyo/LDPImpl" ;
         doap:name                  "Eclipse Lyo-DC2" ;
-        doap:programming-language  "Java" .
+        doap:programming-language  "Java" .        
+
+<http://stevespeicher.me#self>
+        a       earl:Assertor .
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-26T17:54:09.669Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -420,7 +423,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:manual ;
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-26T17:54:09.677Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -433,7 +436,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.682Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -445,7 +448,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.702Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -457,7 +460,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.707Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -469,7 +472,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.717Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -481,7 +484,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:manual ;
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-26T17:54:09.666Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -494,7 +497,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-26T17:54:09.674Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -507,7 +510,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.68Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -519,7 +522,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.689Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -531,7 +534,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.696Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -543,7 +546,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.705Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -555,7 +558,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.716Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -567,7 +570,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.678Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -579,7 +582,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.687Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -591,7 +594,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.695Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -603,7 +606,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.704Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -615,7 +618,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.713Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -627,7 +630,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:manual ;
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-26T17:54:09.676Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -640,7 +643,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.681Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -652,7 +655,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.693Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -664,7 +667,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.706Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -676,7 +679,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:manual ;
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-26T17:54:09.673Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -689,7 +692,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.679Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -701,7 +704,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.689Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -713,7 +716,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.705Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -725,7 +728,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.715Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -737,7 +740,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-26T17:54:09.671Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -750,7 +753,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.677Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -762,7 +765,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.683Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -774,7 +777,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.694Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -786,7 +789,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.703Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -798,7 +801,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.707Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -810,7 +813,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.719Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -822,7 +825,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:manual ;
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-26T17:54:09.667Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -835,7 +838,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.68Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -847,7 +850,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.69Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -859,7 +862,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.697Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -871,7 +874,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.706Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -883,7 +886,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.716Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -895,7 +898,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.678Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -907,7 +910,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.688Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -919,7 +922,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.695Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -931,7 +934,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.714Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -943,7 +946,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-26T17:54:09.669Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -956,7 +959,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-26T17:54:09.676Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -969,7 +972,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.682Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -981,7 +984,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.693Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -993,7 +996,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.707Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1005,7 +1008,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.718Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1017,7 +1020,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-26T17:54:09.664Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1030,7 +1033,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-26T17:54:09.674Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1043,7 +1046,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.679Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1055,7 +1058,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.689Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1067,7 +1070,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.696Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1079,7 +1082,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.705Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1091,7 +1094,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.715Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1103,7 +1106,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-26T17:54:09.671Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1116,7 +1119,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.683Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1128,7 +1131,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.694Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1140,7 +1143,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.704Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1152,7 +1155,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.708Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1164,7 +1167,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.719Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1176,7 +1179,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:manual ;
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-26T17:54:09.667Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1189,7 +1192,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.681Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1201,7 +1204,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.692Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1213,7 +1216,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.697Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1225,7 +1228,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.717Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1237,7 +1240,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-26T17:54:09.673Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1250,7 +1253,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.679Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1262,7 +1265,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.695Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1274,7 +1277,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.714Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1286,7 +1289,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-26T17:54:09.67Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1299,7 +1302,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.677Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1311,7 +1314,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.682Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1323,7 +1326,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.693Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1335,7 +1338,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.703Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1347,7 +1350,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.707Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1359,7 +1362,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.718Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1371,7 +1374,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-26T17:54:09.665Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1384,7 +1387,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:manual ;
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-26T17:54:09.675Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1397,7 +1400,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.689Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1409,7 +1412,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.696Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1421,7 +1424,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.706Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
@@ -1433,7 +1436,7 @@
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://eclipse.org/lyo#dc2> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
                      dcterms:date  "2014-08-26T17:54:09.716Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
