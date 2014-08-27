@@ -18,16 +18,16 @@
       -->
     <parameter name="containerAsResource" value="http://localhost:8080/ldp/resources/bc-asres/" />
     
-    <!-- Default values to plug into Properties in the Earl Report  -->
-    <parameter name="language" value = "Java" />
-    <parameter name="homepage" value ="http://example.org/Lyo_impl" />
-    <parameter name="assertor" value="http://example.org/lyo" />
-    <parameter name="shortname" value="LDP Ref Impl" />
+    <!-- Properties for Earl Report, recommended that these be set  -->
+    <parameter name="assertor" value="mailto:joe@example.org" />
     <parameter name="software" value="Reference Implementation" />
+    <parameter name="shortname" value="LDP Ref Impl" />
+    <parameter name="language" value = "Java" />
+    <parameter name="homepage" value ="http://example.org/LDP_impl" />
     <parameter name="mbox" value="jdoe@example.org" />
     <parameter name="developer" value="Jane Doe" />
     <parameter name="description" value="Testing against: BasicContainer, RDFSource, NonRDFSource, Prefer, Container as Resource interaction model." />
-    <parameter name="auth" value="ldpuser:ldpuser" />
+    <parameter name="auth" value="userid:password" />
     
 
     <!-- (Optional) RDF member resource parameter. If left out, the tests will
