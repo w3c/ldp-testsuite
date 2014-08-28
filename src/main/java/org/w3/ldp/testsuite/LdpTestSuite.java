@@ -240,7 +240,6 @@ public class LdpTestSuite {
 
 		if (options.hasOption("non-rdf")) {
 			classList.add(new XmlClass("org.w3.ldp.testsuite.test.NonRDFSourceTest"));
-			testsuite.addIncludedGroup(LdpTest.NR);
 		}
 
 		if (options.hasOption("httpLogging")) {

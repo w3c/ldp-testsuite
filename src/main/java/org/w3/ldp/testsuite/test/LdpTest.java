@@ -156,14 +156,6 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	 */
 	public static final String MANUAL = "MANUAL";
 
-	/**
-	 * A Linked Data Platform Non-RDF Source (LDP-NR). An LDPR whose state
-	 * is not represented in RDF. These are binary or text documents that do not
-	 * have useful RDF representations.
-	 *
-	 * @see <a href="http://www.w3.org/TR/ldp/#terms">LDP Terminology</a>
-	 */
-	public static final String NR = "NON-RDF";
 
 	private static boolean warnings = false;
 

@@ -47,9 +47,6 @@
 
             <run>
                 <include name="allRequirementLevels"/>
-
-                <!-- Include this group if your server supports non-RDF source resources -->
-                <include name="NON-RDF"/>
                 
                 <!-- Will just skip the tests but create entries for the reporters -->
                 <include name="MANUAL"/>

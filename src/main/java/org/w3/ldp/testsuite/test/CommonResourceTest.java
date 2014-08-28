@@ -24,7 +24,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import org.testng.internal.Utils;
 import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
