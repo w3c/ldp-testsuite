@@ -131,6 +131,16 @@ to be included to the official <a href="https://dvcs.w3.org/hg/ldpwg/raw-file/ti
 <li>Sergio Fernández (<a href="http://www.apache.org">ASF</a>)</li>
 </ul>
 
+<h1><a name="testcases" class="anchor" href="#testcases"><span class="octicon octicon-link"></span></a>Contributing Test Cases</h1>
+
+<p>The LDP test suite represents a developed set of test cases, as automated as possible using TestNG and REST-assured.  These test cases
+are contributed via typical individuals who update the source code and send in a pull request.  The maintainers of the repo, review the 
+contribution to ensure the quality.  New test cases should be annotated with the appropriate annotation:</p>
+
+<pre><code>@SpecTest(approval = STATUS.WG_PENDING)</code></pre>
+
+<p>Once there are at least 2 implementations passing this new test, the <a href="http://w3c.github.io/ldp-testsuite/api/java/org/w3/ldp/testsuite/annotations/SpecTest.STATUS.html">status</a> will be changed to <code>STATUS.WG_APPROVED</code>.</p>
+
 <h1><a name="licenses" class="anchor" href="#licenses"><span class="octicon octicon-link"></span></a>Licenses</h1>
 
 <p>The Test Suite software is avaible under the terms of the <a href="http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231">W3C Software Notice and License</a>.
