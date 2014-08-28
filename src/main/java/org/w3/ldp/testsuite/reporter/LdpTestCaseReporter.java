@@ -45,8 +45,6 @@ public class LdpTestCaseReporter {
 
 	private static HtmlCanvas html;
 
-	private static boolean initialRead;
-
 	private static StringWriter graphs = new StringWriter();
 
 	private static Set<String> refURI = new HashSet<String>();
@@ -144,16 +142,15 @@ public class LdpTestCaseReporter {
 	
 	public void generateReport(String title) throws IOException {
 		System.out.println("Executing coverage report...");
-		initialRead = false;
-		this.firstRead();
-		this.makeReport();
-		endReport();
-		createWriter("report", title, html.toHtml());
+		this.initializeTestClasses();
+		this.generateHTMLReport();
+		amendReport();
+		writeReport("report", title, html.toHtml());
 		System.out.println("Done!");
 	}
 
 	@SuppressWarnings("unchecked")
-	protected void makeReport() throws IOException {
+	protected void generateHTMLReport() throws IOException {
 		html = new HtmlCanvas();
 		html.html().head();
 		writeCss();
@@ -172,15 +169,17 @@ public class LdpTestCaseReporter {
 		DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.ENGLISH);
 		html.div().content("Updated: " + dateFormat.format(new Date()));
 
+		// Generate the summary diagrams and information
 		createSummaryReport();
 		toTop();
-
+		
+		// Go through all the classes and generate details of each test case
 		for (@SuppressWarnings("rawtypes") Class testcaseClass: testClasses) {
-			acquireTestCases(testcaseClass);
+			writeTestCasesForClass(testcaseClass);
 		}
 	}
 
-	private static void endReport() throws IOException {
+	private static void amendReport() throws IOException {
 		html.script().content(StringResource.get("/raphael/raphael-min.js"), NO_ESCAPE);
 		html.script().content(StringResource.get("/prototype/prototype.js"), NO_ESCAPE);
 		html.script().content(StringResource.get("/grafico/grafico-min.js"), NO_ESCAPE);
@@ -191,7 +190,6 @@ public class LdpTestCaseReporter {
 
 	protected void createSummaryReport() throws IOException {
 
-		initialRead = true;
 		html.h2().content("Summary of Test Methods");
 		html.table(class_("summary"));
 		html.tr().th().content("Totals");
@@ -237,7 +235,7 @@ public class LdpTestCaseReporter {
 		html.span(class_("chartStart"));
 		// html.label(class_("label")).b().write("Test Case Implementation for Totals")._b()._label();
 		html.div(class_("barChart").id("overall_statusbar"))._div();
-		writeStatusGraph("overall", approve, pend, extnd, deprctd, clarify);
+		generateStatusGraphJSON("overall", approve, pend, extnd, deprctd, clarify);
 		html._span();
 		html._td();
 
@@ -336,7 +334,7 @@ public class LdpTestCaseReporter {
 		html._table();
 
 		writeGraphDescription();
-		generateListOfTestCases();
+		writeSummary();
 
 	}
 
@@ -353,14 +351,14 @@ public class LdpTestCaseReporter {
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	protected void firstRead() throws IOException {
+	protected void initializeTestClasses() throws IOException {
 		for (Class testcaseClass: testClasses) {
-			acquireTestCases(testcaseClass);
+			computeTestCasesStats(testcaseClass);
 		}
 	}
 
 	@SuppressWarnings("unchecked")
-	protected void generateListOfTestCases() throws IOException {
+	protected void writeSummary() throws IOException {
 		html.h2(id("tobeapproved")).content("Test Cases Ready for Approval");
 
 		if (readyToBeApproved.size() == 0) {
@@ -572,7 +570,7 @@ public class LdpTestCaseReporter {
 		}
 
 		// write information into Grafico bar charts
-		writeStatusGraph(classType.getSimpleName(), apprReq, pendReq, extReq, depreReq, clariReq);
+		generateStatusGraphJSON(classType.getSimpleName(), apprReq, pendReq, extReq, depreReq, clariReq);
 		writeImplementationGraph(classType.getSimpleName(), autoReq, unimReq, clientReq, manReq, indirect);
 
 		html.table(class_("classes"));
@@ -630,7 +628,7 @@ public class LdpTestCaseReporter {
 
 	}
 
-	private static void writeStatusGraph(String type, int[] apprReq, int[] pendReq, 
+	private static void generateStatusGraphJSON(String type, int[] apprReq, int[] pendReq, 
 			int[] extReq, int[] depreReq, int[] clariReq)
 			throws IOException {
 		graphs.write("<script>");
@@ -719,292 +717,296 @@ public class LdpTestCaseReporter {
 		}
 	}
 
-	private static <T> void acquireTestCases(Class<T> classType)
+	private static <T> void computeTestCasesStats(Class<T> classType)
 			throws IOException {
-		String name = classType.getCanonicalName();
-		if (initialRead)
-			html.h2().a(id(name)).write("Test Class: " + name)._a()._h2();
-		Method[] declaredMethods = classType.getDeclaredMethods();
-
-		if (initialRead)
-			html.ul();
-		for (Method method : declaredMethods) {
+		String className = classType.getCanonicalName();
+		
+		for (Method method : classType.getDeclaredMethods()) {
 			if (method.isAnnotationPresent(Test.class)) {
-				if (!initialRead) {
-					generateInformation(method, name);
-				} else {
-					html.li(id(method.getName()));
-					html.b();
-					html.a(href(ReportUtils.getJavadocLink(method)))
-							.content(method.getName());
-					html._b();
-					generateInformation(method, name);
-					html._li();
-				}
+				generateTestCaseDetails(method, className);
 			}
-		}
-		if (initialRead) {
-			html._ul();
-			toTop();
 		}
 	}
-
-	private static void generateInformation(Method method, String name)
+	
+	private static <T> void writeTestCasesForClass(Class<T> classType)
 			throws IOException {
-		SpecTest testLdp = null;
-		Test test = null;
-		if (method.getAnnotation(SpecTest.class) != null
-				&& method.getAnnotation(Test.class) != null) {
-			testLdp = method.getAnnotation(SpecTest.class);
-			test = method.getAnnotation(Test.class);
-
-			if (!initialRead) {
-				totalTests++;
-				METHOD methodStatus = testLdp.testMethod();
-				STATUS testApproval = testLdp.approval();
-				String group = Arrays.toString(test.groups());
-				if (!refURI.contains(testLdp.specRefUri())) { // for just the requirement testing
-					refURI.add(testLdp.specRefUri());
-					if (group.contains("MUST")) {
-						mustTotal++;
-						switch (methodStatus) {
-						case AUTOMATED:
-							automated++;
-							++auto[MUST];
-							if (testApproval.equals(STATUS.WG_PENDING))
-								readyToBeApproved.put(method.getName(), method.getDeclaringClass().getCanonicalName());
-							break;
-						case CLIENT_ONLY:
-							clients.add(method.getName());
-							++client[MUST];
-							break;
-						case MANUAL:
-							manuals.add(method.getName());
-							++manual[MUST];
-							break;
-						case NOT_IMPLEMENTED:
-							++unimplmnt[MUST];
-							needCode.put(method.getName(), method.getDeclaringClass().getCanonicalName());
-							break;
-						case INDIRECT:
-							indirectCases.add(method);
-							++indirect[MUST];
-							break;
-						}
-						switch (testApproval) {
-						case WG_APPROVED:
-							++approve[MUST];
-							approved++;
-							break;
-						case WG_CLARIFICATION:
-							clarification++;
-							++clarify[MUST];
-							break;
-						case WG_DEPRECATED:
-							deprecated++;;
-							++deprctd[MUST];
-							break;
-						case WG_EXTENSION:
-							extended++;
-							++extnd[MUST];
-							break;
-						case WG_PENDING:
-							++pend[MUST];
-							pending++;
-						default:
-							break;
-						}
-
-					}
-					if (group.contains("SHOULD")) {
-						shouldTotal++;
-						switch (methodStatus) {
-						case AUTOMATED:
-							automated++;
-							++auto[SHOULD];
-							if (testApproval.equals(STATUS.WG_PENDING))
-								readyToBeApproved.put(method.getName(), method.getDeclaringClass().getCanonicalName());
-							break;
-						case CLIENT_ONLY:
-							clients.add(method.getName());
-							++client[SHOULD];
-							break;
-						case MANUAL:
-							manuals.add(method.getName());
-							++manual[SHOULD];
-							break;
-						case NOT_IMPLEMENTED:
-							++unimplmnt[SHOULD];
-							needCode.put(method.getName(), method.getDeclaringClass().getCanonicalName());
-							break;
-						case INDIRECT:
-							indirectCases.add(method);
-							++indirect[SHOULD];
-							break;
-						}
-						switch (testApproval) {
-						case WG_APPROVED:
-							++approve[SHOULD];
-							approved++;
-							break;
-						case WG_CLARIFICATION:
-							clarification++;
-							++clarify[SHOULD];
-							break;
-						case WG_DEPRECATED:
-							deprecated++;
-							++deprctd[SHOULD];
-							break;
-						case WG_EXTENSION:
-							extended++;
-							++extnd[SHOULD];
-							break;
-						case WG_PENDING:
-							++pend[SHOULD];
-							pending++;
-						default:
-							break;
-						}
-					}
-					if (group.contains("MAY")) {
-						mayTotal++;
-						switch (methodStatus) {
-						case AUTOMATED:
-							automated++;
-							++auto[MAY];
-							if (testApproval.equals(STATUS.WG_PENDING))
-								readyToBeApproved.put(method.getName(), method.getDeclaringClass().getCanonicalName());
-							break;
-						case CLIENT_ONLY:
-							clients.add(method.getName());
-							++client[MAY];
-							break;
-						case MANUAL:
-							manuals.add(method.getName());
-							++manual[MAY];
-							break;
-						case NOT_IMPLEMENTED:
-							++unimplmnt[MAY];
-							needCode.put(method.getName(), method.getDeclaringClass().getCanonicalName());
-							break;
-						case INDIRECT:
-							indirectCases.add(method);
-							++indirect[MAY];
-							break;
-						}
-						switch (testApproval) {
-						case WG_APPROVED:
-							++approve[MAY];
-							approved++;
-							break;
-						case WG_CLARIFICATION:
-							clarification++;
-							++clarify[MAY];
-							break;
-						case WG_DEPRECATED:
-							deprecated++;
-							++deprctd[MAY];
-							break;
-						case WG_EXTENSION:
-							extended++;
-							++extnd[MAY];
-							break;
-						case WG_PENDING:
-							++pend[MAY];
-							pending++;
-						default:
-							break;
-						}
-					}
-				} else { // for all the other test cases
-					switch (methodStatus) {
-					case AUTOMATED:
-						automated++;
-						if (testApproval.equals(STATUS.WG_APPROVED)){
-							if (testApproval.equals(STATUS.WG_PENDING))
-								readyToBeApproved.put(method.getName(), method.getDeclaringClass().getCanonicalName());
-						}
-						break;
-					case CLIENT_ONLY:
-						clients.add(method.getName());
-						break;
-					case MANUAL:
-						manuals.add(method.getName());
-						break;
-					case NOT_IMPLEMENTED:
-						needCode.put(method.getName(), method.getDeclaringClass().getCanonicalName());
-						break;
-					case INDIRECT:
-						indirectCases.add(method);
-						break;
-					}
-					switch (testApproval) {
-					case WG_APPROVED:
-						approved++;
-						break;
-					case WG_CLARIFICATION:
-						clarification++;
-						break;
-					case WG_DEPRECATED:
-						deprecated++;
-						break;
-					case WG_EXTENSION:
-						extended++;
-						break;
-					case WG_PENDING:
-						pending++;
-					default:
-						break;
-					}
-				}
-
-			} else {
-				// write in the test information
-				html.div(class_("pad-left"));
-				html.b().write("Description: ")._b().write(test.description());
-				html.br().b().write("Reference URI: ")._b()
-						.a(href(testLdp.specRefUri()))
-						.write(testLdp.specRefUri())._a();
-				html.br().b().write("Groups: ")._b()
-						.write(Arrays.toString(test.groups()));
-				html.br().b().write("Status: ")._b()
-						.write(testLdp.approval().toString());
-				html.br().b().write("Test Case Implementation: ")._b()
-						.write("" + testLdp.testMethod());
-				html.br().b().write("Enabled: ")._b()
-						.write("" + test.enabled());
-				if(testLdp.steps().length != 0)
-					writeSteps(testLdp.steps(), method.getName());
-				if(!testLdp.comment().equals(""))
-					html.p(class_("note")).b().write("NOTE: ")._b()
-						.write(testLdp.comment())._p();
-				if(testLdp.testMethod().equals(METHOD.INDIRECT)){
-					html.p().b().write("This test is covered Indirectly by other test cases.")._b()._p();
-					html.p().content("Test Cases that cover this test:");
-					html.ul();
-					for(Class<?> coverTest : testLdp.coveredByTests()) {
-						Method[] classMethod = coverTest.getDeclaredMethods();
-						for(Method m : classMethod) {
-							if(m.getAnnotation(Test.class) != null) {
-								String group = Arrays.toString(m.getAnnotation(Test.class).groups()); 
-								for(String groupCover : testLdp.coveredByGroups()) {
-									if(group.contains(groupCover)) {
-										String testCaseName = m.getDeclaringClass().getCanonicalName();
-										testCaseName = testCaseName.substring(testCaseName.lastIndexOf(".") + 1);
-										String normalizedName = AbstractEarlReporter.createTestCaseName(testCaseName, m.getName());
-										html.li().a(href("#" + m.getName())).b().write(normalizedName)._b()._a()._li();
-									}								
-								}
-							}
-						}
-					}
-					html._ul();
-				}
-				html._div();
-				toTestClass(name);
+		String className = classType.getCanonicalName();
+		html.h2().a(id(className)).write("Test Class: " + className)._a()._h2();
+		
+		html.ul();
+		for (Method method : classType.getDeclaredMethods()) {
+			if (method.isAnnotationPresent(Test.class)) {
+				writeTestCaseDetails(method, className);
 			}
 		}
+		html._ul();
+		toTop();
+	}
 
+	private static void generateTestCaseDetails(Method method, String className)
+			throws IOException {
+		SpecTest testLdp =  method.getAnnotation(SpecTest.class);
+		Test test = method.getAnnotation(Test.class);
+		if (testLdp == null || test == null) {
+			return;
+		}
+
+		totalTests++;
+		METHOD methodStatus = testLdp.testMethod();
+		STATUS testApproval = testLdp.approval();
+		String group = Arrays.toString(test.groups());
+		if (!refURI.contains(testLdp.specRefUri())) { // for just the requirement testing
+			refURI.add(testLdp.specRefUri());
+			if (group.contains("MUST")) {
+				mustTotal++;
+				switch (methodStatus) {
+				case AUTOMATED:
+					automated++;
+					++auto[MUST];
+					if (testApproval.equals(STATUS.WG_PENDING))
+						readyToBeApproved.put(method.getName(), method.getDeclaringClass().getCanonicalName());
+					break;
+				case CLIENT_ONLY:
+					clients.add(method.getName());
+					++client[MUST];
+					break;
+				case MANUAL:
+					manuals.add(method.getName());
+					++manual[MUST];
+					break;
+				case NOT_IMPLEMENTED:
+					++unimplmnt[MUST];
+					needCode.put(method.getName(), method.getDeclaringClass().getCanonicalName());
+					break;
+				case INDIRECT:
+					indirectCases.add(method);
+					++indirect[MUST];
+					break;
+				}
+				switch (testApproval) {
+				case WG_APPROVED:
+					++approve[MUST];
+					approved++;
+					break;
+				case WG_CLARIFICATION:
+					clarification++;
+					++clarify[MUST];
+					break;
+				case WG_DEPRECATED:
+					deprecated++;;
+					++deprctd[MUST];
+					break;
+				case WG_EXTENSION:
+					extended++;
+					++extnd[MUST];
+					break;
+				case WG_PENDING:
+					++pend[MUST];
+					pending++;
+				default:
+					break;
+				}
+			}
+			if (group.contains("SHOULD")) {
+				shouldTotal++;
+				switch (methodStatus) {
+				case AUTOMATED:
+					automated++;
+					++auto[SHOULD];
+					if (testApproval.equals(STATUS.WG_PENDING))
+						readyToBeApproved.put(method.getName(), method.getDeclaringClass().getCanonicalName());
+					break;
+				case CLIENT_ONLY:
+					clients.add(method.getName());
+					++client[SHOULD];
+					break;
+				case MANUAL:
+					manuals.add(method.getName());
+					++manual[SHOULD];
+					break;
+				case NOT_IMPLEMENTED:
+					++unimplmnt[SHOULD];
+					needCode.put(method.getName(), method.getDeclaringClass().getCanonicalName());
+					break;
+				case INDIRECT:
+					indirectCases.add(method);
+					++indirect[SHOULD];
+					break;
+				}
+				switch (testApproval) {
+				case WG_APPROVED:
+					++approve[SHOULD];
+					approved++;
+					break;
+				case WG_CLARIFICATION:
+					clarification++;
+					++clarify[SHOULD];
+					break;
+				case WG_DEPRECATED:
+					deprecated++;
+					++deprctd[SHOULD];
+					break;
+				case WG_EXTENSION:
+					extended++;
+					++extnd[SHOULD];
+					break;
+				case WG_PENDING:
+					++pend[SHOULD];
+					pending++;
+				default:
+					break;
+				}
+			}
+			if (group.contains("MAY")) {
+				mayTotal++;
+				switch (methodStatus) {
+				case AUTOMATED:
+					automated++;
+					++auto[MAY];
+					if (testApproval.equals(STATUS.WG_PENDING))
+						readyToBeApproved.put(method.getName(), method.getDeclaringClass().getCanonicalName());
+					break;
+				case CLIENT_ONLY:
+					clients.add(method.getName());
+					++client[MAY];
+					break;
+				case MANUAL:
+					manuals.add(method.getName());
+					++manual[MAY];
+					break;
+				case NOT_IMPLEMENTED:
+					++unimplmnt[MAY];
+					needCode.put(method.getName(), method.getDeclaringClass().getCanonicalName());
+					break;
+				case INDIRECT:
+					indirectCases.add(method);
+					++indirect[MAY];
+					break;
+				}
+				switch (testApproval) {
+				case WG_APPROVED:
+					++approve[MAY];
+					approved++;
+					break;
+				case WG_CLARIFICATION:
+					clarification++;
+					++clarify[MAY];
+					break;
+				case WG_DEPRECATED:
+					deprecated++;
+					++deprctd[MAY];
+					break;
+				case WG_EXTENSION:
+					extended++;
+					++extnd[MAY];
+					break;
+				case WG_PENDING:
+					++pend[MAY];
+					pending++;
+				default:
+					break;
+				}
+			}
+		} else { // for all the other test cases
+			switch (methodStatus) {
+			case AUTOMATED:
+				automated++;
+				if (testApproval.equals(STATUS.WG_APPROVED)){
+					if (testApproval.equals(STATUS.WG_PENDING))
+						readyToBeApproved.put(method.getName(), method.getDeclaringClass().getCanonicalName());
+				}
+				break;
+			case CLIENT_ONLY:
+				clients.add(method.getName());
+				break;
+			case MANUAL:
+				manuals.add(method.getName());
+				break;
+			case NOT_IMPLEMENTED:
+				needCode.put(method.getName(), method.getDeclaringClass().getCanonicalName());
+				break;
+			case INDIRECT:
+				indirectCases.add(method);
+				break;
+			}
+			switch (testApproval) {
+			case WG_APPROVED:
+				approved++;
+				break;
+			case WG_CLARIFICATION:
+				clarification++;
+				break;
+			case WG_DEPRECATED:
+				deprecated++;
+				break;
+			case WG_EXTENSION:
+				extended++;
+				break;
+			case WG_PENDING:
+				pending++;
+			default:
+				break;
+			}
+		}
+	}
+	
+	private static void writeTestCaseDetails(Method method, String className)
+				throws IOException {
+		SpecTest testLdp =  method.getAnnotation(SpecTest.class);
+		Test test = method.getAnnotation(Test.class);
+		if (testLdp == null || test == null) {
+			return;
+		}
+		
+		html.li(id(method.getName()));
+		html.b();
+		html.a(href(ReportUtils.getJavadocLink(method)))
+				.content(method.getName());
+		html._b();
+		
+		html.div(class_("pad-left"));
+		html.p().write("")._p();
+		html.b().write("Description: ")._b().write(test.description());
+		html.br().b().write("Specification Section: ")._b()
+				.a(href(testLdp.specRefUri()))
+				.write(testLdp.specRefUri())._a();
+		html.br().b().write("Groups: ")._b()
+				.write(Arrays.toString(test.groups()));
+		html.br().b().write("Status: ")._b()
+				.write(testLdp.approval().toString());
+		html.br().b().write("Test Case Implementation: ")._b()
+				.write("" + testLdp.testMethod());
+		html.br().b().write("Enabled: ")._b()
+				.write("" + test.enabled());
+		if(testLdp.steps().length != 0)
+			writeSteps(testLdp.steps(), method.getName());
+		if(!testLdp.comment().equals(""))
+			html.p(class_("note")).b().write("NOTE: ")._b()
+				.write(testLdp.comment())._p();
+		if(testLdp.testMethod().equals(METHOD.INDIRECT)){
+			html.p().b().write("This test is covered Indirectly by other test cases.")._b()._p();
+			html.p().content("Test Cases that cover this test:");
+			html.ul();
+			for(Class<?> coverTest : testLdp.coveredByTests()) {
+				Method[] classMethod = coverTest.getDeclaredMethods();
+				for(Method m : classMethod) {
+					if(m.getAnnotation(Test.class) != null) {
+						String group = Arrays.toString(m.getAnnotation(Test.class).groups()); 
+						for(String groupCover : testLdp.coveredByGroups()) {
+							if(group.contains(groupCover)) {
+								String testCaseName = m.getDeclaringClass().getCanonicalName();
+								testCaseName = testCaseName.substring(testCaseName.lastIndexOf(".") + 1);
+								String normalizedName = AbstractEarlReporter.createTestCaseName(testCaseName, m.getName());
+								html.li().a(href("#" + m.getName())).b().write(normalizedName)._b()._a()._li();
+							}								
+						}
+					}
+				}
+			}
+			html._ul();
+		}
+		html._div()._li();
+		toTestClass(className);
 	}
 
 	private static void writeSteps(String[] steps, String title) throws IOException {
@@ -1095,7 +1097,7 @@ public class LdpTestCaseReporter {
 				._style();
 	}
 
-	private static void createWriter(String directory, String title, String output) {
+	private static void writeReport(String directory, String title, String output) {
 		PrettyWriter writer = null;
 		new File(directory).mkdirs();
 		try {
