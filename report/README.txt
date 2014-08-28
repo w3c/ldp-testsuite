@@ -1,8 +1,21 @@
-The output files: ldp.html, ldp.ttl and ldp.jsonld get committed to the W3C Mercurial repo at:
+The generated output files: 
+  ldp.html
+  ldp.ttl
+  ldp.jsonld
+  ldp-earl-manifest*.*
+get committed to the W3C Mercurial repo at:
    https://dvcs.w3.org/hg/ldpwg/file/default/tests/reports
+   
+The generated output files:
+  ldp-testsuite-coverage-report.html
+gets committed to the gh-pages branch as
+  manifest/index.html  
 
-To general a the ldp.html true report needed, you can simply do the following:
-$earl-report -f html -o ldp.html --name "LDP" --bibRef "[[LDP]]" --template ldp-template.html.haml --manifest ldp-earl-manifest.ttl contrib/*.ttl 
+###############################################################################
+To generate the ldp.html WG report needed, you can simply do the following:
+$earl-report -f html -o ldp.html --name "LDP" --bibRef "[[LDP]]" 
+  --template ldp-template.html.haml --manifest ldp-earl-manifest.ttl 
+  (gh-pages-branch)/contrib/*.ttl 
 
 Just need json?
 $earl-report -f json -o ldp.jsonld --manifest ldp-earl-manifest.ttl contrib/*.ttl 
