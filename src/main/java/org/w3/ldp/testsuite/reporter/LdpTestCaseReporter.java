@@ -135,12 +135,12 @@ public class LdpTestCaseReporter {
 		this.specUri = uri;
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, SecurityException {
 		LdpTestCaseReporter reporter = new LdpTestCaseReporter();
 		reporter.generateReport("ldp-testsuite");
 	}
 	
-	public void generateReport(String title) throws IOException {
+	public void generateReport(String title) throws IOException, SecurityException {
 		System.out.println("Executing coverage report...");
 		this.initializeTestClasses();
 		this.generateHTMLReport();
@@ -150,7 +150,7 @@ public class LdpTestCaseReporter {
 	}
 
 	@SuppressWarnings("unchecked")
-	protected void generateHTMLReport() throws IOException {
+	protected void generateHTMLReport() throws IOException, SecurityException {
 		html = new HtmlCanvas();
 		html.html().head();
 		writeCss();
@@ -728,8 +728,8 @@ public class LdpTestCaseReporter {
 		}
 	}
 	
-	private static <T> void writeTestCasesForClass(Class<T> classType)
-			throws IOException {
+	private <T> void writeTestCasesForClass(Class<T> classType)
+			throws IOException, SecurityException {
 		String className = classType.getCanonicalName();
 		html.h2().a(id(className)).write("Test Class: " + className)._a()._h2();
 		
@@ -950,8 +950,8 @@ public class LdpTestCaseReporter {
 		}
 	}
 	
-	private static void writeTestCaseDetails(Method method, String className)
-				throws IOException {
+	private void writeTestCaseDetails(Method method, String className)
+				throws IOException, SecurityException {
 		SpecTest testLdp =  method.getAnnotation(SpecTest.class);
 		Test test = method.getAnnotation(Test.class);
 		if (testLdp == null || test == null) {
@@ -966,7 +966,30 @@ public class LdpTestCaseReporter {
 		
 		html.div(class_("pad-left"));
 		html.p().write("")._p();
-		html.b().write("Description: ")._b().write(test.description());
+		html.b().write("Used by Class: ")._b();
+		boolean seen=false;
+        for (@SuppressWarnings("rawtypes") Class c: testClasses) {
+        	try {
+            @SuppressWarnings("unchecked")
+				Method m = c.getMethod(method.getName(), (Class[])null);
+	        	if (m != null) {
+	        		String cName = c.getCanonicalName();
+					String normalizedName = AbstractEarlReporter.createTestCaseName(cName, method.getName());
+					String labelName;
+					String shortClassName = cName.substring(cName.lastIndexOf(".") + 1);
+					if (seen) {
+						labelName = ", " + shortClassName;
+					} else {
+						seen = true;
+						labelName = shortClassName;						
+					}
+	        		html.span(id(normalizedName)).write(labelName)._span();
+	        	}
+        	} catch (NoSuchMethodException e) { 
+        		// Ignore as not a problem, treat as if getMethod() returned null
+        	}
+        }
+		html.br().b().write("Description: ")._b().write(test.description());
 		html.br().b().write("Specification Section: ")._b()
 				.a(href(testLdp.specRefUri()))
 				.write(testLdp.specRefUri())._a();
