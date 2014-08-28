@@ -45,17 +45,17 @@
 <li>
 <a href="https://dvcs.w3.org/hg/ldpwg/raw-file/default/ldp-bp/ldp-bp.html">LDP Best Practices and Guidelines</a> (W3C Editor's Draft 17 April 2014)</li>
 <li>
-<a href="https://dvcs.w3.org/hg/ldpwg/raw-file/default/Test%20Cases/LDP%20Test%20Cases.html">Linked Data Platform 1.0 Test Cases</a> (W3C Working Group Note 17 April 2014)</li>
+<a href="https://dvcs.w3.org/hg/ldpwg/raw-file/tip/tests/ldp-testsuite.html">Linked Data Platform 1.0 Test Cases</a> (W3C Working Group Note 25 August 2014)</li>
 </ul>
 
 <h1><a name="status" class="anchor" href="#status"><span class="octicon octicon-link"></span></a>Status</h1>
 
-<p>This Test Suite is still <em>work-in-progress</em> (see <a href="https://dvcs.w3.org/hg/ldpwg/raw-file/tip/tests/reports/ldp.html">implementation</a> 
-and <a href="report/ldp-testsuite-coverage-report.html">coverage</a> reports), but you could start to use 
-it to check your implementation and send some early feedback to the <a href="http://www.w3.org/2012/ldp/">working group</a>.</p>
+<p>This Test Suite is still <em>work-in-progress</em> (see <a href="https://dvcs.w3.org/hg/ldpwg/raw-file/tip/tests/reports/ldp.html">conformance reports</a> 
+and <a href="http://w3c.github.io/ldp-testsuite/manifest">coverage</a> reports), but you could start to use 
+it to check your implementation and <a href="https://dvcs.w3.org/hg/ldpwg/raw-file/tip/tests/ldp-testsuite.html#submitting-results">send some early feedback</a> to the <a href="http://www.w3.org/2012/ldp/">working group</a>.</p>
 
 <p>The list of test cases, along with their status (WG approved, manual, client-only) is available in 
-<a href="http://w3c.github.io/ldp-testsuite/report/ldp-testsuite-coverage-report.html">a generated report</a>.</p>
+<a href="http://w3c.github.io/ldp-testsuite/manifest">a generated report</a>.</p>
 
 <h1><a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h1>
 
@@ -68,25 +68,14 @@ $ java -jar target/ldp-testsuite-1.0.0-SNAPSHOT-shaded.jar \
     --server http://localhost --basic
 </code></pre>
 
-<p>Use <code>--basic</code>, <code>--direct</code>, or <code>--indirect</code> for the type of container
-you want to test; <code>--help</code> for getting some more help.</p>
-
-<p>For instance, if you want to test <a href="http://marmotta.apache.org">Apache Marmotta</a>, once you
-<a href="http://marmotta.apache.org/installation.html#source">have it installed</a> the command to use
-would be:</p>
-
-<pre><code>$ java -jar ldp-testsuite-1.0.0-SNAPSHOT-shaded.jar \
-    --server http://localhost:8080/ldp --basic
-</code></pre>
+<p><code>--basic</code>, <code>--direct</code>, or <code>--indirect</code> for the type of container
+you want to test;<br/> <code>--help</code> for getting some more help.</p>
 
 <p>You can also run the test suite against the 
 <a href="https://dvcs.w3.org/hg/ldpwg/raw-file/default/ldp-paging.html">Paging Specification Requirements</a> by using
 the following command (paging tests are still <em>work-in-progress</em>):</p>
 <pre><code>$ java -classpath target/ldp-testsuite-1.0.0-SNAPSHOT-shaded.jar \
 	org.w3.ldp.paging.testsuite.tests.RunPagingTest</code></pre>
-<p>Use <code>--help</code> for getting some more help.</p>
-<p>The <code>-classpath</code> format can also be used if you want to run the normal Test Suite 
-against a server, but this is not necessary.</p>
 
 <h2><a name="maven" class="anchor" href="#maven"><span class="octicon octicon-link"></span></a>Maven</h2>
 
@@ -110,9 +99,14 @@ System.out.println(testSuite.getStatus());
 
 <p>For further details and advance usage, please check the <a href="api/java/index.html?org/w3/ldp/testsuite/LdpTestSuite.html">javadoc</a>.</p>
 
+<h2><a name="eclipse" class="anchor" href="#eclipse"><span class="octicon octicon-link"></span></a>Eclipse</h2>
+
+<p>If you are running from <a href="http://eclipse.org">Eclipse IDE</a>, you can leverage <a href="http://testng.org/doc/eclipse.html">a TestNG plugin</a>.  There is a sample testng.xml with all the parameters.
+Simply update testng.xml and select it, right click and chose "Run As -> TestNG Test suite".</p>
+
 <h1><a name="reporting" class="anchor" href="#contributors"><span class="octicon octicon-link"></span></a>Reporting</h1>
 
-<p>For reporting the status of a concrete implemetation, please use a command like:</p>
+<p>For reporting the status of a concrete implementation, please use a command like:</p>
 
 <pre><code>$ java -jar target/ldp-testsuite-1.0.0-SNAPSHOT-shaded.jar \
     --server http://localhost --basic --non-rdf --earl \
@@ -124,8 +118,8 @@ System.out.println(testSuite.getStatus());
 
 Please, submit the generated reports, (both <code>ldp-testsuite-execution-report-earl.ttl</code> and 
 <code>ldp-testsuite-execution-report.html</code> located at the <code>report</code> directory, to the working 
-group (<a href="mailto:public-ldp@w3.org?subject=LDP Implementation Report for Your Project">public-ldp@w3.org</a>) 
-to be included to the official <a href="report/ldp.html">LDP Implementation Conformance Report</a>.
+group (<a href="mailto:public-ldp-comments@w3.org?subject=LDP Implementation Report for Your Project">public-ldp-comments@w3.org</a>) 
+to be included to the official <a href="https://dvcs.w3.org/hg/ldpwg/raw-file/tip/tests/reports/ldp.html">LDP Implementation Conformance Report</a>.
 
 <h1><a name="contributors" class="anchor" href="#contributors"><span class="octicon octicon-link"></span></a>Contributors</h1>
 
@@ -152,7 +146,6 @@ To contribute to the Test Suite software, you have to <a href="https://www.clahu
           This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
         </footer>
 
-        
       </div>
     </div>
   </body>
