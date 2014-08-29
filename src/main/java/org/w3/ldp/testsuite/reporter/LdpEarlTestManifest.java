@@ -29,19 +29,21 @@ import com.hp.hpl.jena.vocabulary.RDFS;
 import com.hp.hpl.jena.vocabulary.TestManifest;
 
 public class LdpEarlTestManifest extends AbstractEarlReporter {
+	
+	private static String namespace = LDP.LDPT_NAMESPACE;
 
 	private static final Property declaredInClass = ResourceFactory
-			.createProperty(LDP.LDPT_NAMESPACE + "declaredInClass");
+			.createProperty(namespace + "declaredInClass");
 	private static final Property declaredTestCase = DCTerms.source;
 	private static final Property conformanceLevel = ResourceFactory
-			.createProperty(LDP.LDPT_NAMESPACE + "conformanceLevel");
+			.createProperty(namespace + "conformanceLevel");
 
 	/**
 	 * A link to the published Javadoc for the test case (which in turn links to
 	 * the source code).
 	 */
 	private static final Property documentation = ResourceFactory
-			.createProperty(LDP.LDPT_NAMESPACE + "documentation");
+			.createProperty(namespace + "documentation");
 
 	/**
 	 * The test method: {@link #automated}, {@link #manual}, {@link #clientOnly},
@@ -56,42 +58,42 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 	 *      earl:mode</a>
 	 */
 	private static final Property testMethod = ResourceFactory
-			.createProperty(LDP.LDPT_NAMESPACE + "testMethod");
+			.createProperty(namespace + "testMethod");
 
 	/**
 	 * @see SpecTest.METHOD#AUTOMATED
 	 */
 	private static final Resource automated = ResourceFactory
-			.createResource(LDP.LDPT_NAMESPACE + "automated");
+			.createResource(namespace + "automated");
 
 	/**
 	 * @see SpecTest.METHOD#MANUAL
 	 */
 	private static final Resource manual = ResourceFactory
-			.createResource(LDP.LDPT_NAMESPACE + "manual");
+			.createResource(namespace + "manual");
 
 	/**
 	 * @see SpecTest.METHOD#CLIENT_ONLY
 	 */
 	private static final Resource clientOnly = ResourceFactory
-			.createResource(LDP.LDPT_NAMESPACE + "clientOnly");
+			.createResource(namespace + "clientOnly");
 
 	/**
 	 * @see SpecTest.METHOD#NOT_IMPLEMENTED
 	 */
 	private static final Resource notImplemented = ResourceFactory
-			.createResource(LDP.LDPT_NAMESPACE + "notImplemented");
+			.createResource(namespace + "notImplemented");
 	/**
 	 * @see SpecTest.METHOD#INDIRECT
 	 */
 	private static final Resource indirect = ResourceFactory
-			.createResource(LDP.LDPT_NAMESPACE + "indirect");
+			.createResource(namespace + "indirect");
 
 	/**
 	 * @see SpecTest.steps
 	 */
 	private static final Property steps = ResourceFactory
-			.createProperty(LDP.LDPT_NAMESPACE + "steps");
+			.createProperty(namespace + "steps");
 
 	/**
 	 * List of GROUPS to include in reporting
@@ -116,11 +118,15 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 			System.exit(1);
 		}
 	}
+	
+	public void setNamespaceUri(String name){
+		namespace = name;
+	}
 
 	private void writeManifest(ArrayList<Resource> testcases, String localName, String label, String description) {
 		if (testcases.size() == 0) return;
 
-		Resource manifest = model.createResource(LDP.LDPT_NAMESPACE + localName+"Manifest",
+		Resource manifest = model.createResource(namespace + localName+"Manifest",
 				TestManifest.Manifest);
 		manifest.addProperty(DCTerms.title, label);
 		manifest.addProperty(TestManifest.name, label);
@@ -199,7 +205,7 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 								for(String groupCover : testLdp.coveredByGroups()) {
 									if(group.contains(groupCover)) {
 										String testCaseName = createTestCaseName(m.getDeclaringClass().getCanonicalName(), m.getName());
-										String testCaseURL = LDP.LDPT_NAMESPACE + testCaseName;
+										String testCaseURL = namespace + testCaseName;
 										indirectResource.addProperty(DCTerms.hasPart, testCaseURL);
 
 									}
@@ -231,8 +237,8 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 
 
 		String testCaseDeclaringName = createTestCaseName(method.getDeclaringClass().getCanonicalName(), method.getName());
-		String testCaseURL = LDP.LDPT_NAMESPACE + testCaseName;
-		String testCaseDeclaringURL = LDP.LDPT_NAMESPACE + testCaseDeclaringName;
+		String testCaseURL = namespace + testCaseName;
+		String testCaseDeclaringURL = namespace + testCaseDeclaringName;
 
 		Resource resource = model.createResource(testCaseURL);
 		resource.addProperty(RDFS.label, testCaseName);
@@ -248,7 +254,7 @@ public class LdpEarlTestManifest extends AbstractEarlReporter {
 			for (String group: test.groups()) {
 				group = group.trim();
 				if (conformanceLevels.contains(group))  {
-					resource.addProperty(conformanceLevel, model.createResource(LDP.LDPT_NAMESPACE + group));
+					resource.addProperty(conformanceLevel, model.createResource(namespace + group));
 					conformanceClasses.get(LdpTestCaseReporter.getConformanceIndex(group)).add(resource);
 					added = true;
 				}
