@@ -1,7 +1,11 @@
 package org.w3.ldp.testsuite.test;
 
-import com.jayway.restassured.response.Response;
+import static org.testng.Assert.assertTrue;
+
+import java.io.IOException;
+
 import org.apache.http.HttpStatus;
+import org.apache.marmotta.commons.constants.Namespace.FOAF;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
@@ -13,18 +17,24 @@ import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.vocab.LDP;
 
-import java.io.IOException;
-
-import static org.testng.Assert.assertTrue;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.ResourceFactory;
+import com.jayway.restassured.response.Response;
 
 public class IndirectContainerTest extends CommonContainerTest {
-
+	// Default Inserted Content Relation
+	private final static String DEFAULT_ICR = FOAF.primaryTopic;
+	
 	private String indirectContainer;
-
-	@Parameters({"indirectContainer", "auth"})
-	public IndirectContainerTest(@Optional String indirectContainer, @Optional String auth) throws IOException {
+	private Property insertedContentRelation;
+	
+	@Parameters({"indirectContainer", "auth", "insertedContentRelation"})
+	public IndirectContainerTest(@Optional String indirectContainer, @Optional String auth, @Optional String insertedContentRelation) throws IOException {
 		super(auth);
 		this.indirectContainer = indirectContainer;
+		this.insertedContentRelation = ResourceFactory.createProperty(insertedContentRelation);
 	}
 
 	@BeforeClass(alwaysRun = true)
@@ -33,6 +43,19 @@ public class IndirectContainerTest extends CommonContainerTest {
 			throw new SkipException(
 					"No indirectContainer parameter provided in testng.xml. Skipping ldp:IndirectContainer tests.");
 		}
+		if(insertedContentRelation == null) {
+			insertedContentRelation = ResourceFactory.createProperty(DEFAULT_ICR);
+		}
+	}
+	
+	@Override
+	protected Model getDefaultModel() {
+		Model model = super.getDefaultModel();
+		Resource resource = model.getResource("");
+		resource.addProperty(insertedContentRelation,
+				model.createResource("#me"));
+
+		return model;
 	}
 
 	// TODO implement tests, signatures are from LDP spec
