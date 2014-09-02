@@ -344,15 +344,32 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 			throw new SkipException("containerAsResource is null");
 
 		// Ensure we don't get back any of the container types in the rel='type' Link header
-		Response response = buildBaseRequestSpecification().expect().statusCode(HttpStatus.SC_OK)
-				.options(containerAsResource);
+		Response response = buildBaseRequestSpecification()
+				.expect()
+					.statusCode(HttpStatus.SC_OK)
+				.when()
+					.options(containerAsResource);
 		assertFalse(
-				containsLinkHeader(LDP.BasicContainer.stringValue(), LINK_REL_TYPE, response) ||
-				containsLinkHeader(LDP.DirectContainer.stringValue(), LINK_REL_TYPE, response) ||
-				containsLinkHeader(LDP.IndirectContainer.stringValue(), LINK_REL_TYPE, response),
+				containsLinkHeader(
+						containerAsResource,
+						LINK_REL_TYPE,
+						LDP.BasicContainer.stringValue(),
+						containerAsResource,
+						response) ||
+				containsLinkHeader(
+						containerAsResource,
+						LINK_REL_TYPE,
+						LDP.DirectContainer.stringValue(),
+						containerAsResource,
+						response) ||
+				containsLinkHeader(
+						containerAsResource,
+						LINK_REL_TYPE,
+						LDP.IndirectContainer.stringValue(),
+						containerAsResource,
+						response),
 				"Resource wrongly advertising itself as a rel='type' of one of the container types."
 		);
-
 	}
 
 	@Test(
@@ -410,7 +427,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 		// in which case it might have treated the POST content as binary. Check
 		// the response Content-Type if we ask for the new resource.
 		assertTrue(postResponse.getStatusCode() == HttpStatus.SC_CREATED ||
-                        postResponse.getStatusCode() == HttpStatus.SC_UNSUPPORTED_MEDIA_TYPE,
+						postResponse.getStatusCode() == HttpStatus.SC_UNSUPPORTED_MEDIA_TYPE,
 				"Expected either 415 Unsupported Media Type or 201 Created in response to POST");
 
 		String location = postResponse.getHeader(LOCATION);
@@ -426,8 +443,16 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 				.extract().response();
 
 			// Also make sure there is no Link header indicating this is an RDF source.
-			assertFalse(containsLinkHeader(LDP.RDFSource.stringValue(), LINK_REL_TYPE, getResponse),
-					"Server should not respond with RDF source Link header when content was created with non-RDF Content-Type");
+			assertFalse(
+					containsLinkHeader(
+							location,
+							LINK_REL_TYPE,
+							LDP.RDFSource.stringValue(),
+							location,
+							getResponse
+					),
+					"Server should not respond with RDF source Link header when content was " +
+					"created with non-RDF Content-Type");
 		} finally {
 			// Clean up.
 			buildBaseRequestSpecification().delete(location);
@@ -823,13 +848,21 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 
 		// Get the resource back to make sure it wasn't simply treated as a
 		// binary resource. We should be able to get it as text/turtle.
+		final String location = postResponse.getHeader(LOCATION);
 		Response getResponse = buildBaseRequestSpecification()
 			.expect()
 				.statusCode(isSuccessful())
 				.contentType(TEXT_TURTLE)	// if no Accept header, LDP servers must return text/turtle for RDF source
 			.when()
-				.get(postResponse.getHeader(LOCATION));
-		assertFalse(containsLinkHeader(LDP.NonRDFSource.stringValue(), LINK_REL_TYPE, getResponse),
+				.get(location);
+		assertFalse(
+				containsLinkHeader(
+						location,
+						LINK_REL_TYPE,
+						LDP.NonRDFSource.stringValue(),
+						location,
+						getResponse
+				),
 				"Resources POSTed using JSON-LD should be treated as RDF source");
 	}
 

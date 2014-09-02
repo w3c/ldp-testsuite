@@ -76,7 +76,13 @@ public class DirectContainerTest extends CommonContainerTest {
 				.expect().statusCode(HttpStatus.SC_OK).when()
 				.get(directContainer);
 		assertTrue(
-				containsLinkHeader(LDP.DirectContainer.stringValue(), LINK_REL_TYPE, response),
+				containsLinkHeader(
+						directContainer,
+						LINK_REL_TYPE,
+						LDP.DirectContainer.stringValue(),
+						directContainer,
+						response
+				),
 				"LDP DirectContainers must advertise their LDP support by exposing a HTTP Link header with a URI matching <" + LDP.DirectContainer.stringValue() + "> and rel='type'");
 	}
 

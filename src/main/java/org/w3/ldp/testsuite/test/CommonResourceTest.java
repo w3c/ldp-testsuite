@@ -183,11 +183,18 @@ public abstract class CommonResourceTest extends LdpTest {
 			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_APPROVED)
 	public void testLdpLinkHeader() {
+		final String uri = getResourceUri();
 		Response response = buildBaseRequestSpecification()
-				.expect().statusCode(isSuccessful())
-				.when().get(getResourceUri());
+				.when()
+					.get(getResourceUri());
 		assertTrue(
-				containsLinkHeader(LDP.Resource.stringValue(), LINK_REL_TYPE, response),
+				containsLinkHeader(
+						uri,
+						LINK_REL_TYPE,
+						LDP.Resource.stringValue(),
+						uri,
+						response
+				),
 				"4.2.1.4 LDP servers exposing LDPRs must advertise their LDP support by exposing a HTTP Link header "
 						+ "with a target URI of http://www.w3.org/ns/ldp#Resource, and a link relation type of type (that is, "
 						+ "rel='type') in all responses to requests made to the LDPR's HTTP Request-URI. Actual: "
