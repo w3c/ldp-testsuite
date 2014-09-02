@@ -418,11 +418,12 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 
 		try {
 			Response getResponse = buildBaseRequestSpecification()
-				.expect()
-					.statusCode(isSuccessful())
-					.contentType(not(TEXT_TURTLE))
 				.when()
-					.get(location);
+					.get(location)
+				.then().assertThat()
+					.statusCode(isSuccessful())
+					.and().contentType(not(TEXT_TURTLE))
+				.extract().response();
 
 			// Also make sure there is no Link header indicating this is an RDF source.
 			assertFalse(containsLinkHeader(LDP.RDFSource.stringValue(), LINK_REL_TYPE, getResponse),
