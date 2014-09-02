@@ -1,0 +1,1927 @@
+@prefix rdft:  <http://www.w3.org/ns/rdftest#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix earl:  <http://www.w3.org/ns/earl#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix td:    <http://www.w3.org/2006/03/test-description#> .
+@prefix mf:    <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#> .
+@prefix doap:  <http://usefulinc.com/ns/doap#> .
+@prefix ldpt:  <http://w3c.github.io/ldp-testsuite/manifest#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.316Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because there are restrictions on PUT content for this resource. The requirement needs to be tested manually.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.putReplaceResource(RdfSourceTest.java:551)\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutReplacesResource(RdfSourceTest.java:136)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-PutReplacesResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.313Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testReUseVocabularies(RdfSourceTest.java:223)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-ReUseVocabularies
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.319Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-PutBadETag
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.306Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.IllegalArgumentException: uri param was null\r\n\tat org.jboss.resteasy.specimpl.LinkBuilderImpl.uri(LinkBuilderImpl.java:51)\r\n\tat org.jboss.resteasy.plugins.delegates.LinkDelegate$Parser.populateLink(LinkDelegate.java:71)\r\n\tat org.jboss.resteasy.plugins.delegates.LinkDelegate$Parser.parse(LinkDelegate.java:64)\r\n\tat org.jboss.resteasy.plugins.delegates.LinkDelegate.fromString(LinkDelegate.java:158)\r\n\tat org.w3.ldp.testsuite.test.LdpTest.containsLinkHeader(LdpTest.java:266)\r\n\tat org.w3.ldp.testsuite.test.LdpTest.containsLinkHeader(LdpTest.java:243)\r\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testLdpLinkHeader(CommonResourceTest.java:190)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:failed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:NonRDFSource-LdpLinkHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.313Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsReadOnlyProp(RdfSourceTest.java:351)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-PublishConstraintsReadOnlyProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.311Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\r\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testIsHttp11Manual(CommonResourceTest.java:131)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:MemberResource-IsHttp11Manual
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.317Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\r\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testIsHttp11Manual(CommonResourceTest.java:131)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-IsHttp11Manual
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.344Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-NullRelativeUriPost
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.308Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because PUT request was successful.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:512)\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutPropertiesNotPersisted(RdfSourceTest.java:434)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:MemberResource-PutPropertiesNotPersisted
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.315Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsReadOnlyProp(RdfSourceTest.java:351)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:MemberResource-PublishConstraintsReadOnlyProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.342Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:MemberResource-PutBadETag
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.347Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:NonRDFSource-OptionsAllowHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.326Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-LdpLinkHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.346Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-NullRelativeUriPost
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.33Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:NonRDFSource-ConditionFailedStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.312Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because PUT request was successful.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:512)\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutPropertiesNotPersisted(RdfSourceTest.java:434)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-PutPropertiesNotPersisted
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.336Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-Options
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.318Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:NonRDFSource-OptionsHasSameLinkHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.346Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-PostContainer
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.323Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-ConformsRdfSourceLdpResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.344Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:NonRDFSource-GetResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.329Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-AcceptPostResponseHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.31Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRestrictClientInference(RdfSourceTest.java:268)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-RestrictClientInference
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.334Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-PutBadETag
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.326Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-PostResponseStatusAndLocation
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.316Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testReUseVocabularies(RdfSourceTest.java:223)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-ReUseVocabularies
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.331Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-AcceptTurtle
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.319Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:NonRDFSource-PutBadETag
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.341Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:NonRDFSource-PreconditionRequiredStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.327Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-GetResourceAcceptTurtle
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.346Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-GetResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.331Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-AcceptPatchHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.324Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-PostContainer
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.341Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-GetResourceAcceptTurtle
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.33Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-RequestedInteractionModelCreateNotAllowed
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.336Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-AcceptPostResponseHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.344Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-RelativeUriResolutionPost
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.32Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:MemberResource-PutReplacesResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.329Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-DeleteRemovesContainmentTriple
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.332Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-RequestedInteractionModelCreateNotAllowed
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.342Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-GetResponseHeaders
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.341Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-Options
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.326Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:NonRDFSource-ETagHeadersGet
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.331Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-Head
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.336Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:NonRDFSource-ETagHeadersHead
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.323Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:MemberResource-AcceptPatchHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.33Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-OptionsAllowHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.335Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-ConformsDcLdpContainer
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.307Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: 2 expectations failed.\r\nExpected header \"Accept-Patch\" was not not null, was \"null\". Headers are:\r\nServer=nginx/1.7.0\r\nDate=Mon, 01 Sep 2014 23:18:20 GMT\r\nContent-Type=image/png\r\nContent-Length=5063\r\nConnection=keep-alive\r\nAccess-Control-Allow-Origin=*\r\nAllow=GET, HEAD, PUT, PATCH, DELETE\r\nLocation=http://carbonldp.com/apps/ldp-testsuite/nonRDFContainer/test\r\nLink=\"http://www.w3.org/ns/ldp#Resource\"; rel=type\r\nLink=\"http://www.w3.org/ns/ldp#NonRDFSource\"; rel=type\r\nLink=<http://carbonldp.com/apps/ldp-testsuite/nonRDFContainer/test>; rel=describedby\r\nETag=W/\"2014-09-01T18:18:19.451-05:00\"\r\n\r\nExpected header \"Accept-Post\" was not not null, was \"null\". Headers are:\r\nServer=nginx/1.7.0\r\nDate=Mon, 01 Sep 2014 23:18:20 GMT\r\nContent-Type=image/png\r\nContent-Length=5063\r\nConnection=keep-alive\r\nAccess-Control-Allow-Origin=*\r\nAllow=GET, HEAD, PUT, PATCH, DELETE\r\nLocation=http://carbonldp.com/apps/ldp-testsuite/nonRDFContainer/test\r\nLink=\"http://www.w3.org/ns/ldp#Resource\"; rel=type\r\nLink=\"http://www.w3.org/ns/ldp#NonRDFSource\"; rel=type\r\nLink=<http://carbonldp.com/apps/ldp-testsuite/nonRDFContainer/test>; rel=describedby\r\nETag=W/\"2014-09-01T18:18:19.451-05:00\"\r\n\r\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\r\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:587)\r\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:884)\r\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1304)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\r\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy:146)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy)\r\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\r\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.get(ResponseSpecificationImpl.groovy:266)\r\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.get(ResponseSpecificationImpl.groovy)\r\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testGetResponseHeaders(CommonResourceTest.java:233)\r\n... Removed 42 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:failed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:NonRDFSource-GetResponseHeaders
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.314Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsReadOnlyProp(RdfSourceTest.java:351)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-PublishConstraintsReadOnlyProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.312Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRestrictClientInference(RdfSourceTest.java:268)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-RestrictClientInference
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.318Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because PUT request was successful.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:512)\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxDescribedBy(RdfSourceTest.java:479)\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsUnknownProp(RdfSourceTest.java:371)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-PublishConstraintsUnknownProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.309Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRestrictClientInference(RdfSourceTest.java:268)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:MemberResource-RestrictClientInference
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.315Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because there are restrictions on PUT content for this resource. The requirement needs to be tested manually.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.putReplaceResource(RdfSourceTest.java:551)\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutSimpleUpdate(RdfSourceTest.java:150)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-PutSimpleUpdate
+] .
+
+<mailto:miguel.aragon@base22.com>
+        a       earl:Assertor .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.309Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because there are restrictions on PUT content for this resource. The requirement needs to be tested manually.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRelativeUriResolutionPut(RdfSourceTest.java:78)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-RelativeUriResolutionPut
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.315Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because there are restrictions on PUT content for this resource. The requirement needs to be tested manually.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.putReplaceResource(RdfSourceTest.java:551)\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutReplacesResource(RdfSourceTest.java:136)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-PutReplacesResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.313Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because there are restrictions on PUT content for this resource. The requirement needs to be tested manually.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRelativeUriResolutionPut(RdfSourceTest.java:78)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-RelativeUriResolutionPut
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.319Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-AcceptPatchHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.346Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:MemberResource-Options
+] .
+
+<http://carbonldp.com>
+        a                          doap:Project , earl:Software , earl:TestSubject ;
+        dcterms:title              "Carbon Linked Data Platform" ;
+        doap:description           "Testing against: BasicContainer, RDFSource, NonRDFSource, Prefer, Container as Resource interaction model." ;
+        doap:developer             [ a          foaf:Person ;
+                                     foaf:name  "Miguel Aragon"
+                                   ] ;
+        doap:homepage              "http://carbonldp.com" ;
+        doap:name                  "Carbon LDP" ;
+        doap:programming-language  "Java" .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.31Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because there are restrictions on PUT content for this resource. The requirement needs to be tested manually.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRelativeUriResolutionPut(RdfSourceTest.java:78)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-RelativeUriResolutionPut
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.317Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testUseStandardVocabularies(RdfSourceTest.java:248)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-UseStandardVocabularies
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.344Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:MemberResource-ETagHeadersHead
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.319Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-LdpLinkHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.328Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-PutPropertiesNotPersisted
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.308Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRestrictClientInference(RdfSourceTest.java:268)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-RestrictClientInference
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.347Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-Options
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.331Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-NullRelativeUriPost
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.314Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutReadOnlyProperties4xxStatus(RdfSourceTest.java:392)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:MemberResource-PutReadOnlyProperties4xxStatus
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.342Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-GetResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.341Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-AcceptTurtle
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.347Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-GetResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.325Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-ConditionFailedStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.345Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:MemberResource-ConditionFailedStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.33Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-ETagHeadersHead
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.322Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-ConformsContainerRdfResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.312Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\r\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testIsHttp11Manual(CommonResourceTest.java:131)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:NonRDFSource-IsHttp11Manual
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.336Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:MemberResource-GetResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.329Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:NonRDFSource-Head
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.318Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsReadOnlyProp(RdfSourceTest.java:351)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-PublishConstraintsReadOnlyProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.332Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:MemberResource-LdpLinkHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.322Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-MemberRelationOrIsMemberOfRelationTripleExists
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.343Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-ConformsRdfSourceLdpResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.342Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-ETagHeadersHead
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.329Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-HttpLinkHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.333Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-ConformsRdfSourceLdpResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.326Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-RelativeUriResolutionPost
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.331Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-LdpLinkHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.341Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-ConformsContainerRdfResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.346Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-ETagHeadersGet
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.324Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-PostResponseStatusAndLocation
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.33Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-ContainerSupportsHttpLinkHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.336Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:MemberResource-GetResponseHeaders
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.344Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:MemberResource-RelativeUriResolutionPut
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.32Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-RequestedInteractionModelCreateNotAllowed
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.329Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:MemberResource-GetResourceAcceptTurtle
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.332Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-Head
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.341Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-PublishConstraintsUnknownProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.326Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-DeleteRemovesContainmentTriple
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.331Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:NonRDFSource-AcceptPatchHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.336Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-ETagHeadersGet
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.31Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because there are restrictions on PUT content for this resource. The requirement needs to be tested manually.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.putReplaceResource(RdfSourceTest.java:551)\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutReplacesResource(RdfSourceTest.java:136)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-PutReplacesResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.316Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutReadOnlyProperties4xxStatus(RdfSourceTest.java:392)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-PutReadOnlyProperties4xxStatus
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.307Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: 1 expectation failed.\r\nExpected status code <201> doesn't match actual status code <409>.\r\n\r\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\r\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:57)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:182)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\r\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:587)\r\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:884)\r\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1304)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\r\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.post(RequestSpecificationImpl.groovy:150)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.post(RequestSpecificationImpl.groovy)\r\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\r\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.post(ResponseSpecificationImpl.groovy:270)\r\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.post(ResponseSpecificationImpl.groovy)\r\n\tat org.w3.ldp.testsuite.test.NonRDFSourceTest.postNonRDFSource(NonRDFSourceTest.java:413)\r\n\tat org.w3.ldp.testsuite.test.NonRDFSourceTest.testPostResourceAndCheckAssociatedResource(NonRDFSourceTest.java:315)\r\n... Removed 42 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:failed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:NonRDFSource-PostResourceAndCheckAssociatedResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.314Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testReUseVocabularies(RdfSourceTest.java:223)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:MemberResource-ReUseVocabularies
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.311Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because there are restrictions on PUT content for this resource. The requirement needs to be tested manually.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.putReplaceResource(RdfSourceTest.java:551)\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutSimpleUpdate(RdfSourceTest.java:150)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-PutSimpleUpdate
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.317Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testReUseVocabularies(RdfSourceTest.java:223)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-ReUseVocabularies
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.311Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because there are restrictions on PUT content for this resource. The requirement needs to be tested manually.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.putReplaceResource(RdfSourceTest.java:551)\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutSimpleUpdate(RdfSourceTest.java:150)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-PutSimpleUpdate
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.318Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because PUT request was successful.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:512)\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxDescribedBy(RdfSourceTest.java:479)\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsUnknownProp(RdfSourceTest.java:371)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-PublishConstraintsUnknownProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.308Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because PUT request was successful.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:512)\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutPropertiesNotPersisted(RdfSourceTest.java:434)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-PutPropertiesNotPersisted
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.315Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because PUT request was successful.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:512)\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxDescribedBy(RdfSourceTest.java:479)\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsUnknownProp(RdfSourceTest.java:371)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:MemberResource-PublishConstraintsUnknownProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.342Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-PreconditionRequiredStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.347Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:MemberResource-OptionsAllowHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.312Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testUseStandardVocabularies(RdfSourceTest.java:248)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-UseStandardVocabularies
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.319Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-RequestedInteractionModelHeaders
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.346Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-AcceptPatchHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.323Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-PreconditionRequiredStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.344Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-GetResourceAcceptTurtle
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.329Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-RequestedInteractionModelHeaders
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.31Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testUseStandardVocabularies(RdfSourceTest.java:248)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-UseStandardVocabularies
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.334Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-Head
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.316Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutReadOnlyProperties4xxStatus(RdfSourceTest.java:392)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-PutReadOnlyProperties4xxStatus
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.344Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-RelativeUriResolutionPost
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.319Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-ConditionFailedStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.328Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-ConformsBcLdpContainer
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.308Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testUseStandardVocabularies(RdfSourceTest.java:248)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:MemberResource-UseStandardVocabularies
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.346Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-RequestedInteractionModelHeaders
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.331Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:NonRDFSource-Options
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.325Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:MemberResource-ConformsRdfSourceLdpResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.314Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\r\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutReadOnlyProperties4xxStatus(RdfSourceTest.java:392)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-PutReadOnlyProperties4xxStatus
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.341Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-PostContainer
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.33Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-PreconditionRequiredStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.336Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-GetResponseHeaders
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.325Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-OptionsAllowHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.345Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-ConformsContainerRdfResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.33Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-OptionsAllowHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.32Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-MemberResourceTriple
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.336Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-PutBadETag
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.329Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-DeleteResourceUpdatesTriples
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.332Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-ETagHeadersHead
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.342Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-ContainerSupportsHttpLinkHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.342Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:MemberResource-PreconditionRequiredStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.326Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-AcceptTurtle
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.331Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-PostResourceUpdatesTriples
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.337Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:MemberResource-ETagHeadersGet
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.346Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:MemberResource-PutSimpleUpdate
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.323Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:MemberResource-Head
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.33Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-AcceptPostResponseHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.336Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-DeleteRemovesContainmentTriple
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.319Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-GetResponseHeaders
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.328Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-ETagHeadersGet
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.332Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-PostResponseStatusAndLocation
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.341Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:BasicContainer-ConditionFailedStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.312Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\r\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testIsHttp11Manual(CommonResourceTest.java:131)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:DirectContainer-IsHttp11Manual
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-01T23:18:21.318Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\r\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testIsHttp11Manual(CommonResourceTest.java:131)\r\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:IndirectContainer-IsHttp11Manual
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <mailto:miguel.aragon@base22.com> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-01T23:18:21.309Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <http://carbonldp.com> ;
+  earl:test        ldpt:NonRDFSource-DeleteNonRDFSourceDeletesAssociatedResource
+] .
