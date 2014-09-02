@@ -298,7 +298,7 @@ public abstract class CommonResourceTest extends LdpTest {
 
 		buildBaseRequestSpecification()
 					.contentType(contentType)
-					.header(IF_MATCH, "These aren't the ETags you're looking for.")
+					.header(IF_MATCH, "\"These aren't the ETags you're looking for.\"")
 					.body(response.asByteArray())
 				.expect()
 					.statusCode(HttpStatus.SC_PRECONDITION_FAILED)
