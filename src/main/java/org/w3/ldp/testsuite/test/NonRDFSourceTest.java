@@ -12,7 +12,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
 import org.apache.marmotta.commons.util.HashUtils;
 import org.apache.marmotta.commons.vocabulary.LDP;
-import org.openrdf.model.URI;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.AfterSuite;
@@ -37,7 +36,6 @@ public class NonRDFSourceTest extends CommonResourceTest {
 	private final static String SETUP_ERROR = "ERROR: Could not create test resource for NonRDFSourceTest. Skipping tests.";
 
 	private String container;
-	private URI containerType;
 	/** Resource for CommonResourceTest */
 	private String nonRdfSource;
 
@@ -51,13 +49,10 @@ public class NonRDFSourceTest extends CommonResourceTest {
 	public void setup(@Optional String basicContainer, @Optional String directContainer, @Optional String indirectContainer) {
 		if (StringUtils.isNotBlank(basicContainer)) {
 			container = basicContainer;
-			containerType = LDP.BasicContainer;
 		} else if (StringUtils.isNotBlank(directContainer)) {
 			container = directContainer;
-			containerType = LDP.DirectContainer;
 		} else if (StringUtils.isNotBlank(indirectContainer)) {
 			container = indirectContainer;
-			containerType = LDP.IndirectContainer;
 		} else {
 			throw new SkipException("No root container provided in testng.xml. Skipping LDP Non-RDF Source (LDP-NR) tests.");
 		}
@@ -128,7 +123,6 @@ public class NonRDFSourceTest extends CommonResourceTest {
 
 		// Make sure we can post binary resources
 		Response response = postNonRDFSource(slug, file, mimeType);
-		Assert.assertTrue(containsLinkHeader(containerType.stringValue(), LINK_REL_TYPE, response));
 		buildBaseRequestSpecification().delete(response.getHeader(LOCATION));
 	}
 
@@ -152,8 +146,6 @@ public class NonRDFSourceTest extends CommonResourceTest {
 		// Make sure we can post binary resources
 		Response response = postNonRDFSource(slug, file, mimeType);
 		try {
-			Assert.assertTrue(containsLinkHeader(containerType.stringValue(), LINK_REL_TYPE, response));
-
 			// Check the container contains the new resource
 			Model model = buildBaseRequestSpecification()
 					.header(ACCEPT, TEXT_TURTLE)
@@ -187,8 +179,6 @@ public class NonRDFSourceTest extends CommonResourceTest {
 		// Make sure we can post binary resources
 		Response response = postNonRDFSource(slug, file, mimeType);
 		try {
-			Assert.assertTrue(containsLinkHeader(containerType.stringValue(), LINK_REL_TYPE, response));
-
 			// And then check we get the binary back
 			final String expectedMD5 = HashUtils.md5sum(NonRDFSourceTest.class.getResourceAsStream("/" + file));
 			final byte[] binary = buildBaseRequestSpecification()
@@ -213,7 +203,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpnr-are-ldpr",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_APPROVED)
+			approval = STATUS.WG_PENDING)
 	public void testPostResourceGetMetadataAndBinary() throws IOException {
 		// Test constants
 		final String slug = "test",
@@ -225,9 +215,9 @@ public class NonRDFSourceTest extends CommonResourceTest {
 		String location = response.getHeader(LOCATION);
 
 		try {
-			String describedBy = getFirstLinkForRelation(LINK_REL_DESCRIBEDBY, container, response);
-			Assert.assertNotNull(describedBy, "Expected Link response header with relation 'describedby'");
-			Assert.assertTrue(containsLinkHeader(containerType.stringValue(), LINK_REL_TYPE, response));
+			String associatedRdfSource = getFirstLinkForRelation(location, LINK_REL_DESCRIBEDBY, container, response);
+			Assert.assertNotNull(associatedRdfSource, "No Link response header with relation \"describedby\" " +
+					"and anchor parameter matching the newly-created resource URI");
 
 			// And then check we get the metadata of back
 			buildBaseRequestSpecification()
@@ -237,8 +227,8 @@ public class NonRDFSourceTest extends CommonResourceTest {
 					.contentType(TEXT_TURTLE)
 					.header(ETAG, HeaderMatchers.isValidEntityTag())
 				.when()
-					.get(describedBy)
-					.as(Model.class, new RdfObjectMapper(describedBy));
+					.get(associatedRdfSource)
+					.as(Model.class, new RdfObjectMapper(associatedRdfSource));
 
 			// And the binary too
 			final String expectedMD5 = HashUtils.md5sum(NonRDFSourceTest.class.getResourceAsStream("/" + file));
@@ -275,18 +265,23 @@ public class NonRDFSourceTest extends CommonResourceTest {
 
 		// Make sure we can post binary resources
 		Response postResponse = postNonRDFSource(slug, file, mimeType);
+		final String location = postResponse.getHeader(LOCATION);
 
 		try {
-			Assert.assertTrue(containsLinkHeader(containerType.stringValue(), LINK_REL_TYPE, postResponse));
-
 			// And then check the link when requesting the LDP-NR
 			Response getResponse = buildBaseRequestSpecification()
 				.expect()
 					.statusCode(isSuccessful())
 					.header(ETAG, HeaderMatchers.isValidEntityTag())
 				.when()
-					.get(postResponse.getHeader(LOCATION));
-			Assert.assertTrue(containsLinkHeader(LDP.NonRDFSource.stringValue(), LINK_REL_TYPE, getResponse));
+					.get(location);
+			Assert.assertTrue(containsLinkHeader(
+					location,
+					LINK_REL_TYPE,
+					LDP.NonRDFSource.stringValue(),
+					location,
+					getResponse
+			));
 		} finally {
 			buildBaseRequestSpecification().delete(postResponse.header(LOCATION));
 		}
@@ -303,7 +298,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-createbinlinkmetahdr",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_APPROVED)
+			approval = STATUS.WG_PENDING)
 	public void testPostResourceAndCheckAssociatedResource() throws IOException {
 		// Test constants
 		final String slug = "test",
@@ -314,9 +309,9 @@ public class NonRDFSourceTest extends CommonResourceTest {
 		Response postResponse = postNonRDFSource(slug, file, mimeType);
 		String location = postResponse.getHeader(LOCATION);
 		try {
-			String describedBy = getFirstLinkForRelation(LINK_REL_DESCRIBEDBY, location, postResponse);
-			Assert.assertNotNull(describedBy, "Expected Link response header with relation 'describedby'");
-			Assert.assertTrue(containsLinkHeader(containerType.stringValue(), LINK_REL_TYPE, postResponse));
+			String associatedRdfSource = getFirstLinkForRelation(location, LINK_REL_DESCRIBEDBY, location, postResponse);
+			Assert.assertNotNull(associatedRdfSource, "No Link response header with relation \"describedby\" " +
+					"and anchor parameter matching the newly-created resource URI");
 
 			// Check the link when requesting the LDP-NS
 			Response getResponse = buildBaseRequestSpecification()
@@ -325,7 +320,13 @@ public class NonRDFSourceTest extends CommonResourceTest {
 					.header(ETAG, HeaderMatchers.headerPresent())
 				.when()
 					.get(location);
-			Assert.assertTrue(containsLinkHeader(describedBy, LINK_REL_DESCRIBEDBY, getResponse));
+			Assert.assertTrue(containsLinkHeader(
+					location,
+					LINK_REL_DESCRIBEDBY,
+					associatedRdfSource,
+					location,
+					getResponse
+			));
 
 			// And then check the associated LDP-RS is actually there
 			buildBaseRequestSpecification()
@@ -335,7 +336,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 					.contentType(TEXT_TURTLE)
 					.header(ETAG, HeaderMatchers.isValidEntityTag())
 				.when()
-					.get(describedBy);
+					.get(associatedRdfSource);
 		} finally {
 			buildBaseRequestSpecification().delete(location);
 		}
@@ -363,8 +364,9 @@ public class NonRDFSourceTest extends CommonResourceTest {
 		boolean deleted = false;
 
 		try {
-			String describedBy = getFirstLinkForRelation(LINK_REL_DESCRIBEDBY, container, postResponse);
-			Assert.assertNotNull(describedBy, "Expected Link response header with relation 'describedby'");
+			String associatedRdfSource = getFirstLinkForRelation(location, LINK_REL_DESCRIBEDBY, container, postResponse);
+			Assert.assertNotNull(associatedRdfSource, "No Link response header with relation \"describedby\" " +
+					"and anchor parameter matching the newly-created resource URI");
 
 			// And then check the associated LDP-RS is actually there
 			buildBaseRequestSpecification()
@@ -373,7 +375,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 					.statusCode(isSuccessful())
 					.contentType(TEXT_TURTLE)
 				.when()
-					.get(describedBy);
+					.get(associatedRdfSource);
 
 			// Delete the LDP-NR.
 			deleted = true;
@@ -389,7 +391,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 				.expect()
 					.statusCode(isNotFoundOrGone())
 				.when()
-					.get(describedBy);
+					.get(associatedRdfSource);
 		} finally {
 			// Clean up if an assertion failed before we could delete the resource.
 			if (!deleted) {
@@ -432,8 +434,9 @@ public class NonRDFSourceTest extends CommonResourceTest {
 		String location = postResponse.getHeader(LOCATION);
 
 		try {
-			String describedBy = getFirstLinkForRelation(LINK_REL_DESCRIBEDBY, container, postResponse);
-			Assert.assertNotNull(describedBy, "Expected Link response header with relation 'describedby' for LDP-NR POST request");
+			String associatedRdfSource = getFirstLinkForRelation(location, LINK_REL_DESCRIBEDBY, container, postResponse);
+			Assert.assertNotNull(associatedRdfSource, "No Link response header with relation \"describedby\" " +
+					"and anchor parameter matching the newly-created resource URI");
 
 			// Check the Link headers on an HTTP OPTIONS for the LDP-NR
 			Response optionsResponse = buildBaseRequestSpecification()
@@ -441,9 +444,15 @@ public class NonRDFSourceTest extends CommonResourceTest {
 					.statusCode(isSuccessful())
 				.when()
 					.options(location);
-			Assert.assertTrue(containsLinkHeader(describedBy, LINK_REL_DESCRIBEDBY, location, optionsResponse),
-					"Expected Link response header with relation 'describedby' and URI <"
-							+ describedBy + "> for LDP-NR OPTIONS request");
+			Assert.assertTrue(containsLinkHeader(
+						location,
+						LINK_REL_DESCRIBEDBY,
+						associatedRdfSource,
+						location,
+						optionsResponse
+					),
+					"No Link response header with relation \"describedby\" and URI <"
+							+ associatedRdfSource + "> for LDP-NR OPTIONS request");
 		} finally {
 			buildBaseRequestSpecification().delete(location);
 		}

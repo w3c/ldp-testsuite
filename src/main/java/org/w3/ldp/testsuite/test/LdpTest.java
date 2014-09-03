@@ -225,48 +225,39 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	}
 
 	/**
-	 * Tests if a Link response header with the expected URI and relation is
-	 * present in an HTTP response. Does not resolve relative URIs. If a Link
-	 * URI might be relative, use {@link #containsLinkHeader(String, String,
-	 * String, Response)}.
+	 * Tests if a Link response header with the expected context URI, link
+	 * relation, and target URI is present in an HTTP response. Resolves
+	 * relative URIs against the request URI if necessary.
 	 *
-	 * @param expectedUri
-	 *			  the expected URI
-	 * @param expectedRel
-	 *			  the expected link relation (rel)
-	 * @param response
-	 *			  the HTTP response
-	 * @see <a href="http://tools.ietf.org/html/rfc5988">RFC 5988</a>
-	 * @see #getFirstLinkForRelation(String, String, Response)
-	 */
-	protected boolean containsLinkHeader(String expectedUri, String expectedRel, Response response) {
-		return containsLinkHeader(expectedUri, expectedRel, null, response);
-	}
-
-	/**
-	 * Tests if a Link response header with the expected URI and relation is
-	 * present in an HTTP response. Resolves relative URIs against the request
-	 * URI if necessary.
-	 *
-	 * @param expectedLinkUri
-	 *			  the expected URI
-	 * @param expectedRel
-	 *			  the expected link relation (rel)
+	 * @param linkContext
+	 *            the context of the Link (usually the request URI, but can be
+	 *            changed with an anchor parameter)
+	 * @param relation
+	 *            the expected link relation (rel)
+	 * @param linkTarget
+	 *            the expected URI
 	 * @param requestUri
-	 *			  the HTTP request URI (for resolving relative URIs)
+	 *            the HTTP request URI (for determing a Link's context and
+	 *            resolving relative URIs)
 	 * @param response
-	 *			  the HTTP response
+	 *            the HTTP response
 	 * @see <a href="http://tools.ietf.org/html/rfc5988">RFC 5988</a>
 	 * @see #getFirstLinkForRelation(String, String, Response)
 	 */
-	protected boolean containsLinkHeader(String expectedLinkUri, String expectedRel, String requestUri, Response response) {
+	protected boolean containsLinkHeader(
+			String linkContext,
+			String relation,
+			String linkTarget,
+			String requestUri,
+			Response response) {
 		List<Header> linkHeaders = response.getHeaders().getList(LINK);
 		for (Header linkHeader : linkHeaders) {
 			for (String s : splitLinks(linkHeader)) {
 				Link nextLink = new LinkDelegate().fromString(s);
-				if (expectedRel.equals(nextLink.getRel())) {
+				if (relation.equals(nextLink.getRel())) {
 					String actualLinkUri = resolveIfRelative(requestUri, nextLink.getUri());
-					if (expectedLinkUri.equals(actualLinkUri)) {
+					if (linkMatchesContext(linkContext, requestUri, nextLink) &&
+							linkTarget.equals(actualLinkUri)) {
 						return true;
 					}
 				}
@@ -280,22 +271,27 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	 * Gets the first link from {@code response} with link relation {@code rel}.
 	 * Resolves relative URIs against the request URI if necessary.
 	 *
-	 * @param rel
-	 *			  the expected link relation
+	 * @param linkContext
+	 *            the context of the Link (usually the request URI, but can be
+	 *            changed with an anchor parameter)
+	 * @param relation
+	 *            the expected link relation
 	 * @param requestUri
-	 *			  the HTTP request URI (for resolving relative URIs)
+	 *            the HTTP request URI (for determing a Link's context and
+	 *            resolving relative URIs)
 	 * @param response
-	 *			  the HTTP response
+	 *            the HTTP response
 	 * @return the first link or {@code null} if none was found
 	 * @see <a href="http://tools.ietf.org/html/rfc5988">RFC 5988</a>
 	 * @see #containsLinkHeader(String, String, Response)
 	 */
-	protected String getFirstLinkForRelation(String rel, String requestUri, Response response) {
+	protected String getFirstLinkForRelation(String linkContext, String relation, String requestUri, Response response) {
 		List<Header> linkHeaders = response.getHeaders().getList(LINK);
 		for (Header header : linkHeaders) {
 			for (String s : splitLinks(header)) {
 				Link l = new LinkDelegate().fromString(s);
-				if (rel.equals(l.getRel())) {
+				if (relation.equals(l.getRel()) &&
+						linkMatchesContext(linkContext, requestUri, l)) {
 					return resolveIfRelative(requestUri, l.getUri());
 				}
 			}
@@ -352,6 +348,15 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 		links.add(link);
 
 		return links;
+	}
+
+	private boolean linkMatchesContext(String expectedContext, String requestUri, Link link) {
+		String anchor = link.getParams().get("anchor");
+		if (anchor == null) {
+			anchor = requestUri;
+		}
+
+		return anchor.equals(expectedContext);
 	}
 
 	/**

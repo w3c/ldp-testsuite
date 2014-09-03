@@ -1,7 +1,9 @@
 package org.w3.ldp.testsuite.test;
 
-import com.jayway.restassured.response.Response;
-import org.apache.http.HttpStatus;
+import static org.testng.Assert.assertTrue;
+
+import java.io.IOException;
+
 import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
@@ -13,9 +15,7 @@ import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.vocab.LDP;
 
-import java.io.IOException;
-
-import static org.testng.Assert.assertTrue;
+import com.jayway.restassured.response.Response;
 
 public class BasicContainerTest extends CommonContainerTest {
 
@@ -26,7 +26,7 @@ public class BasicContainerTest extends CommonContainerTest {
 		super(auth);
 		this.basicContainer = basicContainer;
 	}
-	
+
 	@Test(
 			groups = {MUST},
 			description = "Each LDP Basic Container MUST also be a "
@@ -67,13 +67,17 @@ public class BasicContainerTest extends CommonContainerTest {
 					+ "IndirectContainerTest.testContainerSupportsHttpLinkHeader "
 					+ "covers the rest.")
 	public void testContainerSupportsHttpLinkHeader() {
-		Response response = buildBaseRequestSpecification().header(ACCEPT, TEXT_TURTLE)
-				.expect().statusCode(HttpStatus.SC_OK).when()
-				.get(basicContainer);
+		Response response = buildBaseRequestSpecification().get(basicContainer);
 		assertTrue(
-				containsLinkHeader(LDP.BasicContainer.stringValue(), LINK_REL_TYPE,
-						response),
-				"LDP BasicContainers must advertise their LDP support by exposing a HTTP Link header with a URI matching <"
+				containsLinkHeader(
+						basicContainer,
+						LINK_REL_TYPE,
+						LDP.BasicContainer.stringValue(),
+						basicContainer,
+						response
+				),
+				"LDP BasicContainers must advertise their LDP support by exposing " +
+						"a HTTP Link header with a URI matching <"
 						+ LDP.BasicContainer.stringValue() + "> and rel='type'"
 		);
 	}
