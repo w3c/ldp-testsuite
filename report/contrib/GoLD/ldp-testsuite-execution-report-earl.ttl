@@ -1,0 +1,1097 @@
+@prefix rdft:  <http://www.w3.org/ns/rdftest#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix earl:  <http://www.w3.org/ns/earl#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix td:    <http://www.w3.org/2006/03/test-description#> .
+@prefix mf:    <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#> .
+@prefix doap:  <http://usefulinc.com/ns/doap#> .
+@prefix ldpt:  <http://w3c.github.io/ldp-testsuite/manifest#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<https://github.com/linkeddata/gold>
+        a                          doap:Project , earl:Software , earl:TestSubject ;
+        dcterms:title              "GoLD - Linked Data server in Go" ;
+        doap:developer             [ a          foaf:Person ;
+                                     foaf:name  "Andrei Sambra"
+                                   ] ;
+        doap:homepage              "https://github.com/linkeddata/gold" ;
+        doap:name                  "gold" ;
+        doap:programming-language  "Go" .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.796Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-UseStandardVocabularies
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-02T20:00:41.806Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because there are restrictions on PUT content for this resource. The requirement needs to be tested manually.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.putReplaceResource(RdfSourceTest.java:551)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutReplacesResource(RdfSourceTest.java:136)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:307)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:336)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-PutReplacesResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.82Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-PutPropertiesNotPersisted
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.828Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-ConformsContainerRdfResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.834Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-RejectPutModifyingContainmentTriples
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.803Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-Head
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.824Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-PutToCreate
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.832Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-ContainerSupportsHttpLinkHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.798Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-ETagHeadersHead
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.808Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-4xxErrorHasResponseBody
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.821Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-AcceptPostResponseHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.82Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-TypeRdfSource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.842Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-RdfTypeLdpContainer
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.793Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-ConditionFailedStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.805Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-ReUseVocabularies
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.818Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-PutBadETag
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.833Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-PutBadETag
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-02T20:00:41.791Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.apache.http.NoHttpResponseException: The target server failed to respond\n\tat org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:95)\n\tat org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:61)\n\tat org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:254)\n\tat org.apache.http.impl.AbstractHttpClientConnection.receiveResponseHeader(AbstractHttpClientConnection.java:289)\n\tat org.apache.http.impl.conn.DefaultClientConnection.receiveResponseHeader(DefaultClientConnection.java:252)\n\tat org.apache.http.impl.conn.ManagedClientConnectionImpl.receiveResponseHeader(ManagedClientConnectionImpl.java:191)\n\tat org.apache.http.protocol.HttpRequestExecutor.doReceiveResponse(HttpRequestExecutor.java:300)\n\tat org.apache.http.protocol.HttpRequestExecutor.execute(HttpRequestExecutor.java:127)\n\tat org.apache.http.impl.client.DefaultRequestDirector.tryExecute(DefaultRequestDirector.java:715)\n\tat org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:520)\n\tat org.apache.http.impl.client.AbstractHttpClient.execute(AbstractHttpClient.java:906)\n\tat org.apache.http.impl.client.AbstractHttpClient.execute(AbstractHttpClient.java:805)\n\tat org.apache.http.client.HttpClient$execute$0.call(Unknown Source)\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)\n\tat org.apache.http.client.HttpClient$execute$0.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl$RestAssuredHttpBuilder.doRequest(RequestSpecificationImpl.groovy:1638)\n\tat com.jayway.restassured.internal.http.HTTPBuilder.doRequest(HTTPBuilder.java:481)\n\tat com.jayway.restassured.internal.http.HTTPBuilder.request(HTTPBuilder.java:430)\n\tat com.jayway.restassured.internal.http.HTTPBuilder$request$2.call(Unknown Source)\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)\n\tat com.jayway.restassured.internal.http.HTTPBuilder$request$2.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.sendHttpRequest(RequestSpecificationImpl.groovy:1166)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$sendHttpRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.sendRequest(RequestSpecificationImpl.groovy:1008)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$sendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:128)\n\tat com.jayway.restassured.internal.filter.SendRequestFilter.filter(SendRequestFilter.groovy:31)\n\tat com.jayway.restassured.filter.Filter$filter.call(Unknown Source)\n\tat com.jayway.restassured.internal.filter.FilterContextImpl.next(FilterContextImpl.groovy:49)\n\tat com.jayway.restassured.filter.FilterContext$next.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:883)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1304)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy:146)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.get(ResponseSpecificationImpl.groovy:266)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.get(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testJsonLdRepresentation(RdfSourceTest.java:321)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:307)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:336)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 41 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:failed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-JsonLdRepresentation
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-02T20:00:41.801Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRestrictClientInference(RdfSourceTest.java:268)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:307)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:336)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-RestrictClientInference
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.81Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-RestrictClientInference
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.823Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-PublishConstraintsUnknownProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.831Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-ContentTypeHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.807Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-PutReadOnlyProperties4xxStatus
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.82Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-DeleteRemovesContainmentTriple
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.83Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-ETagHeadersGet
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.837Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-ConformsRdfSourceLdpResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-02T20:00:41.804Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.test4xxErrorHasResponseBody(RdfSourceTest.java:414)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:307)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:336)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-4xxErrorHasResponseBody
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.813Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-PublishConstraintsUnknownProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.824Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-Head
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-02T20:00:41.787Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: 2 expectations failed.\nExpected status code <201> doesn't match actual status code <415>.\n\nExpected header \"Location\" was not set, was \"null\". Headers are:\nUser=dns:127.0.0.1\nDate=Tue, 02 Sep 2014 20:00:33 GMT\nContent-Length=42\nContent-Type=text/plain; charset=utf-8\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:57)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:182)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:587)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:884)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1304)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.post(RequestSpecificationImpl.groovy:150)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.post(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.post(ResponseSpecificationImpl.groovy:270)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.post(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testPostJsonLd(CommonContainerTest.java:814)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:307)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:336)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 42 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:failed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-PostJsonLd
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.799Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-ContainsRdfType
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-02T20:00:41.809Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testReUseVocabularies(RdfSourceTest.java:223)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:307)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:336)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-ReUseVocabularies
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.822Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-PutPropertiesNotPersisted
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.843Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-Options
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.796Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-LdpLinkHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.805Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-ResponsePropertiesNotPersisted
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-02T20:00:41.818Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsReadOnlyProp(RdfSourceTest.java:351)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:307)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:336)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-PublishConstraintsReadOnlyProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.829Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-RelativeUriResolutionPost
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.834Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-GetResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-02T20:00:41.792Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: Container has containment triples when minimal container was requested expected [false] but found [true]\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testPreferContainmentTriples(CommonContainerTest.java:192)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:307)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:336)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:failed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-PreferContainmentTriples
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-02T20:00:41.811Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutReadOnlyProperties4xxStatus(RdfSourceTest.java:392)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:307)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:336)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-PutReadOnlyProperties4xxStatus
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.823Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-ConditionFailedStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.832Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-GetResponseHeaders
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.807Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-GetResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.821Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-ServerHonorsSlug
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.83Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-RestrictUriReUseNoSlug
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.793Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-PutSimpleUpdate
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.804Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-OptionsAllowHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.814Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-ETagHeadersGet
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.824Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-ContainsRdfType
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-02T20:00:41.789Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: 1 expectation failed.\nExpected status code not between 200 and 209 doesn't match actual status code <201>.\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:587)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:884)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1304)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy:154)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1085)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:909)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:730)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy:274)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testRestrictPutReUseUri(CommonContainerTest.java:653)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:307)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:336)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 40 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:failed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-RestrictPutReUseUri
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-02T20:00:41.802Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testIsHttp11Manual(CommonResourceTest.java:131)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:307)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:336)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-IsHttp11Manual
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.809Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-JsonLdRepresentation
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.822Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-PutRequiresIfMatch
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.831Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-AcceptTurtle
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.843Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-PostResponseStatusAndLocation
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.797Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-PublishConstraintsReadOnlyProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.819Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-AcceptPatchHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.829Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-CreateWithoutConstraints
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.838Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-ResponsePropertiesNotPersisted
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.792Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-PreconditionRequiredStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.811Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-GetResponseHeaders
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.823Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-PostNoSlug
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.833Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-AcceptPatchHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-02T20:00:41.8Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because PUT request failed with valid If-Match header.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testPreconditionRequiredStatusCode(CommonResourceTest.java:344)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:307)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:336)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-PreconditionRequiredStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.807Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-PutRequiresIfMatch
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.83Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-NullRelativeUriPost
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-02T20:00:41.795Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: containerAsResource is null\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testRequestedInteractionModelHeaders(CommonContainerTest.java:344)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:307)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:336)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-RequestedInteractionModelHeaders
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-02T20:00:41.806Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testUseStandardVocabularies(RdfSourceTest.java:248)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:307)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:336)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-UseStandardVocabularies
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.818Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-ConformsRdfSourceLdpResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.825Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-ETagHeadersHead
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.834Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-LdpLinkHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-02T20:00:41.79Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: LDP-RS representation does not have rdf:type ldp:RDFSource expected [true] but found [false]\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testTypeRdfSource(RdfSourceTest.java:200)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:307)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:336)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 24 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:failed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-TypeRdfSource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.803Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-Options
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.822Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-NoRdfBagSeqOrList
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.832Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-RestrictUriReUseSlug
+] .
+
+<https://deiu.rww.io/profile/card#me>
+        a       earl:Assertor .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.798Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-RelativeUriResolutionPut
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.821Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-PostContainer
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-02T20:00:41.819Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because there are restrictions on PUT content for this resource. The requirement needs to be tested manually.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.putReplaceResource(RdfSourceTest.java:551)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutSimpleUpdate(RdfSourceTest.java:150)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:307)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:336)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-PutSimpleUpdate
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.829Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-OptionsAllowHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.842Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-ConformsBcLdpContainer
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.792Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-GetResourceAcceptTurtle
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.805Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-IsHttp11Manual
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-02T20:00:41.813Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: containerAsResource is null\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testRequestedInteractionModelCreateNotAllowed(CommonContainerTest.java:309)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:307)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:336)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-RequestedInteractionModelCreateNotAllowed
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.833Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-PatchMethod
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.8Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:MemberResource-PutReplacesResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-09-02T20:00:41.81Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Skipping test because there are restrictions on PUT content for this resource. The requirement needs to be tested manually.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRelativeUriResolutionPut(RdfSourceTest.java:78)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:307)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:336)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:53)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:untested
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-RelativeUriResolutionPut
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <https://deiu.rww.io/profile/card#me> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-02T20:00:41.831Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://github.com/linkeddata/gold> ;
+  earl:test        ldpt:BasicContainer-GetResourceAcceptTurtle
+] .
