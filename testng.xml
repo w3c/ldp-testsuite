@@ -10,6 +10,8 @@
     <parameter name="basicContainer" value="http://localhost:8080/ldp/resources/bc/"/>
     <!-- <parameter name="directContainer" value="http://localhost:8080/ldp/resources/dc-simple/" /> -->
     <!-- <parameter name="indirectContainer" value="http://localhost:8080/ldp/resources/" /> -->
+    <!-- (Optional) Inserted Content Relation that the IndirectContainer uses -->
+    <!-- <parameter name="insertedContentRelation" value="http://purl.org/dc/elements/1.1/relation" /> -->
     
     <!-- A resource whose internal RDF state has a type triple of one of container types
          but whose interaction model was created with header on POST request of:
