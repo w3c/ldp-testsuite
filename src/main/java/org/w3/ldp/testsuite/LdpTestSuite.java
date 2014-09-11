@@ -145,7 +145,7 @@ public class LdpTestSuite {
 		final String server;
 		if (options.hasOption("server")) {
 			server = options.getOptionValue("server");
-			if (!"https".equals(server)) { // allow self-signed certificates for development servers
+			if (StringUtils.startsWith(server, "https:")) { // allow self-signed certificates for development servers
 				RestAssured.useRelaxedHTTPSValidation();
 			}
 			try {
