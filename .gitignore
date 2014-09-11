@@ -15,5 +15,7 @@ target/
 .idea/
 .metadata/
 maven-eclipse.xml
+atlassian-ide-plugin.xml
 test-output
+report
 /bin
