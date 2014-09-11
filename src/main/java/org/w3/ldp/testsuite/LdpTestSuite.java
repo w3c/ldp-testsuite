@@ -2,11 +2,7 @@ package org.w3.ldp.testsuite;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Pattern;
 
 import org.apache.commons.cli.BasicParser;
@@ -47,17 +43,15 @@ public class LdpTestSuite {
 
 	public static final String NAME = "LDP Test Suite";
 	public static final String SPEC_URI = "http://www.w3.org/TR/ldp";
-	public static final String OUTPUT_DIR = "report";
+	public static final String OUTPUT_DIR = "reportTitle";
 
 	static final String[] EARLDEPEDENTARGS = {"software", "developer", "language", "homepage", "assertor", "shortname"};
 
 	private final TestNG testng;
 
-	private static List<XmlClass> classList; // for test types to add in
+	private final List<XmlClass> classList; // for test types to add in
 
-	private static String report;
-
-	private static ArrayList<String> addParams = new ArrayList<String>();
+	private final String reportTitle;
 
 	enum ContainerType {
 		BASIC, DIRECT, INDIRECT
@@ -69,8 +63,7 @@ public class LdpTestSuite {
 	 * @param options map of options
 	 */
 	public LdpTestSuite(final Map<String, String> options) {
-		testng = new TestNG();
-		this.setupSuite(new OptionsHandler(options));
+		this(new OptionsHandler(options));
 	}
 
 	/**
@@ -79,9 +72,29 @@ public class LdpTestSuite {
 	 * @param cmd command-line options
 	 */
 	public LdpTestSuite(final CommandLine cmd) {
+		this(new OptionsHandler(cmd));
+	}
+
+	/**
+	 * Initialize the test suite with options as the row command-line input
+	 *
+	 * @param cmd command-line options
+	 * @param reportTitle report title
+	 */
+	public LdpTestSuite(final CommandLine cmd, String reportTitle) {
+		this(new OptionsHandler(cmd), reportTitle);
+	}
+
+	private LdpTestSuite(OptionsHandler optionsHandler) {
+		this(optionsHandler, null);
+	}
+
+	private LdpTestSuite(OptionsHandler optionsHandler, String reportTitle) {
 		// see: http://testng.org/doc/documentation-main.html#running-testng-programmatically
 		testng = new TestNG();
-		this.setupSuite(new OptionsHandler(cmd));
+		this.reportTitle = reportTitle;
+		this.classList = new ArrayList<>();
+		this.setupSuite(optionsHandler);
 	}
 
 	public void checkUriScheme(String uri) throws URISyntaxException {
@@ -92,8 +105,6 @@ public class LdpTestSuite {
 	}
 
 	private void setupSuite(OptionsHandler options) {
-		// allow self-signed certifcates for development servers
-		RestAssured.useRelaxedHTTPSValidation();
 
 		testng.setDefaultSuiteName(NAME);
 
@@ -134,8 +145,9 @@ public class LdpTestSuite {
 		final String server;
 		if (options.hasOption("server")) {
 			server = options.getOptionValue("server");
-			for(String add : addParams) // add parameters from main
-				parameters.put(add, server);
+			if (!"https".equals(server)) { // allow self-signed certificates for development servers
+				RestAssured.useRelaxedHTTPSValidation();
+			}
 			try {
 				checkUriScheme(server);
 			} catch (Exception e) {
@@ -162,17 +174,21 @@ public class LdpTestSuite {
 			}
 		}
 
-		testng.addListener(new LdpTestListener());
-		LdpHtmlReporter reporter = new LdpHtmlReporter();
-		reporter.setTitle(report);
-		testng.addListener(reporter);
-
 		// Add method enabler (Annotation Transformer)
 		testng.addListener(new MethodEnabler());
 
+		testng.addListener(new LdpTestListener());
+		LdpHtmlReporter reporter = new LdpHtmlReporter();
+		if (StringUtils.isNotBlank(reportTitle)) {
+			reporter.setTitle(reportTitle);
+		}
+		testng.addListener(reporter);
+
 		if (options.hasOption("earl")) {
 			LdpEarlReporter earlReport = new LdpEarlReporter();
-			earlReport.setTitle(report);
+			if (StringUtils.isNotBlank(reportTitle)) {
+				earlReport.setTitle(reportTitle);
+			}
 			testng.addListener(earlReport);
 
 			// required --earl args
@@ -235,6 +251,22 @@ public class LdpTestSuite {
 			parameters.put("memberResource", memberResource);
 		}
 
+		ContainerType type = getSelectedType(options);
+		switch (type) {
+			case BASIC:
+				classList.add(new XmlClass("org.w3.ldp.testsuite.test.BasicContainerTest"));
+				parameters.put("basicContainer", server);
+				break;
+			case DIRECT:
+				classList.add(new XmlClass("org.w3.ldp.testsuite.test.DirectContainerTest"));
+				parameters.put("directContainer", server);
+				break;
+			case INDIRECT:
+				classList.add(new XmlClass("org.w3.ldp.testsuite.test.IndirectContainerTest"));
+				parameters.put("indirectContainer", server);
+				break;
+		}
+
 		classList.add(new XmlClass("org.w3.ldp.testsuite.test.MemberResourceTest"));
 		testsuite.addIncludedGroup("ldpMember");
 
@@ -284,8 +316,26 @@ public class LdpTestSuite {
 		}
 	}
 
-	public static void addParameter(ArrayList<String> params) {
-		addParams = params;
+	private ContainerType getSelectedType(OptionsHandler options) {
+		if (options.hasOption("direct")) {
+			return ContainerType.DIRECT;
+		} else if (options.hasOption("indirect")) {
+			return ContainerType.INDIRECT;
+		} else {
+			return ContainerType.BASIC;
+		}
+	}
+
+	public void addTestClass(String klass) {
+		addTestClass(new XmlClass(klass));
+	}
+
+	public void addTestClass(XmlClass klass) {
+		this.classList.add(klass);
+	}
+
+	public void addTestClasses(Collection<XmlClass> classes) {
+		this.classList.addAll(classes);
 	}
 
 	public String wildcardPatternToRegex(String wildcardPattern) {
@@ -311,8 +361,7 @@ public class LdpTestSuite {
 		return testng.getStatus();
 	}
 
-	public static CommandLine getCommandLine(Options options, String[] args, List<XmlClass> list){
-		classList = list;
+	public static CommandLine getCommandLine(Options options, String[] args){
 		CommandLineParser parser = new BasicParser();
 		CommandLine cmd = null;
 		try {
@@ -328,11 +377,15 @@ public class LdpTestSuite {
 		return cmd;
 	}
 
-	public static void executeTestSuite(CommandLine cmd, Options options, String type) {
+	public static void executeTestSuite(String[] args, Options options, String reportTitle) {
+		executeTestSuite(args, options, reportTitle, Collections.<XmlClass>emptyList());
+	}
+	public static void executeTestSuite(String[] args, Options options, String reportTitle, List<XmlClass> classes) {
 		// actual test suite execution
 		try {
-			report = type;
-			LdpTestSuite ldpTestSuite = new LdpTestSuite(cmd);
+			CommandLine cmd = LdpTestSuite.getCommandLine(options, args);
+			LdpTestSuite ldpTestSuite = new LdpTestSuite(cmd, reportTitle);
+			ldpTestSuite.addTestClasses(classes);
 			ldpTestSuite.run();
 			System.exit(ldpTestSuite.getStatus());
 		} catch (Exception e) {
@@ -342,6 +395,7 @@ public class LdpTestSuite {
 			printUsage(options);
 		}
 	}
+
 
 	private static void printUsage(Options options) {
 		HelpFormatter formatter = new HelpFormatter();
