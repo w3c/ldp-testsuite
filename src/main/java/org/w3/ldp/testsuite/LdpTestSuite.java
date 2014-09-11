@@ -43,7 +43,7 @@ public class LdpTestSuite {
 
 	public static final String NAME = "LDP Test Suite";
 	public static final String SPEC_URI = "http://www.w3.org/TR/ldp";
-	public static final String OUTPUT_DIR = "reportTitle";
+	public static final String OUTPUT_DIR = "report";
 
 	static final String[] EARLDEPEDENTARGS = {"software", "developer", "language", "homepage", "assertor", "shortname"};
 
