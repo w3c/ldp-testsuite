@@ -40,6 +40,9 @@ import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.RequestSpecification;
 
 public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences {
+
+	public final static String SKIPPED_LOG = "skipped.log";
+
 	public final static String HTTP_LOG_FILENAME = "http.log";
 
 	/**
@@ -217,7 +220,6 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	 *
 	 * @return true if there are restrictions on what triples are allowed; false
 	 *		   if the server allows most any RDF
-	 * @see #setup(String)
 	 * @see RdfSourceTest#restrictionsOnTestResourceContent()
 	 */
 	protected boolean restrictionsOnPostContent() {
@@ -242,7 +244,6 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	 * @param response
 	 *            the HTTP response
 	 * @see <a href="http://tools.ietf.org/html/rfc5988">RFC 5988</a>
-	 * @see #getFirstLinkForRelation(String, String, Response)
 	 */
 	protected boolean containsLinkHeader(
 			String linkContext,
@@ -283,7 +284,6 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	 *            the HTTP response
 	 * @return the first link or {@code null} if none was found
 	 * @see <a href="http://tools.ietf.org/html/rfc5988">RFC 5988</a>
-	 * @see #containsLinkHeader(String, String, Response)
 	 */
 	protected String getFirstLinkForRelation(String linkContext, String relation, String requestUri, Response response) {
 		List<Header> linkHeaders = response.getHeaders().getList(LINK);

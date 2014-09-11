@@ -278,6 +278,10 @@ public class LdpTestSuite {
 			parameters.put("httpLogging", "true");
 		}
 
+		if (options.hasOption("skipLogging")) {
+			parameters.put("skipLogging", "true");
+		}
+
 		test.setXmlClasses(classList);
 
 		final List<XmlTest> tests = new ArrayList<>();
@@ -460,6 +464,10 @@ public class LdpTestSuite {
 				.withDescription("log HTTP requests and responses on validation failures")
 				.isRequired(false).create());
 
+		common.addOption(OptionBuilder.withLongOpt("skipLogging")
+				.withDescription("log skip test messages")
+				.isRequired(false).create());
+
 		common.addOption(OptionBuilder.withLongOpt("help")
 				.withDescription("prints this usage help").create());
 		return common;
@@ -511,4 +519,5 @@ public class LdpTestSuite {
 		// end of --earl dependent values
 		return earl;
 	}
+
 }
