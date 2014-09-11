@@ -23,7 +23,7 @@ public class RunPagingTest {
 		final List<XmlClass> classes = new ArrayList<>();
 		classes.add(new XmlClass( "org.w3.ldp.paging.testsuite.tests.PagingTest"));
 		
-		LdpTestSuite.executeTestSuite(LdpTestSuite.getCommandLine(options, args, classes), options, "paging");
+		LdpTestSuite.executeTestSuite(args, options, "paging", classes);
 	}
 	
 }
