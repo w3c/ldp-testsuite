@@ -4,7 +4,6 @@ import static org.testng.Assert.assertTrue;
 
 import java.io.IOException;
 
-import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -13,6 +12,7 @@ import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
+import org.w3.ldp.testsuite.exception.SkipException;
 import org.w3.ldp.testsuite.vocab.LDP;
 
 import com.jayway.restassured.response.Response;
@@ -45,7 +45,7 @@ public class BasicContainerTest extends CommonContainerTest {
 	@BeforeClass(alwaysRun = true)
 	public void hasBasicContainer() {
 		if (basicContainer == null) {
-			throw new SkipException(
+			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
 					"No basicContainer parameter provided in testng.xml. Skipping ldp:basicContainer tests.");
 		}
 	}

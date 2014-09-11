@@ -3,11 +3,11 @@ package org.w3.ldp.testsuite.test;
 import java.io.IOException;
 
 import org.apache.http.HttpStatus;
-import org.testng.SkipException;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
+import org.w3.ldp.testsuite.exception.SkipException;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 
 import com.hp.hpl.jena.rdf.model.Model;
@@ -42,7 +42,8 @@ public class MemberResourceTest extends RdfSourceTest {
 		} else if (basicContainer != null) {
 			this.container = basicContainer;
 		} else {
-			throw new SkipException("No memberResource or container parameters defined in testng.xml");
+			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
+					"No memberResource or container parameters defined in testng.xml");
 		}
 
 		if (this.memberResource == null) {
@@ -80,7 +81,8 @@ public class MemberResourceTest extends RdfSourceTest {
 	@Override
 	protected String getResourceUri() {
 		if (memberResource == null) {
-			throw new SkipException("Skipping test because test resource is null.");
+			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
+					"Skipping test because test resource is null.");
 		}
 		return memberResource;
 	}

@@ -13,7 +13,6 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 import org.apache.http.HttpStatus;
-import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -22,6 +21,7 @@ import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
+import org.w3.ldp.testsuite.exception.SkipException;
 import org.w3.ldp.testsuite.http.HttpMethod;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.matcher.HeaderMatchers;
@@ -44,7 +44,8 @@ public class DirectContainerTest extends CommonContainerTest {
 	@BeforeClass(alwaysRun = true)
 	public void hasDirectContainer() {
 		if (directContainer == null) {
-			throw new SkipException("No directContainer parameter provided in testng.xml. Skipping ldp:DirectContainer tests.");
+			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
+					"No directContainer parameter provided in testng.xml. Skipping ldp:DirectContainer tests.");
 		}
 	}
 
@@ -99,7 +100,8 @@ public class DirectContainerTest extends CommonContainerTest {
 		Model containerModel = getAsModel(directContainer);
 		Resource container = containerModel.getResource(directContainer);
 		if (container.hasProperty(containerModel.createProperty(LDP.isMemberOfRelation.stringValue()))) {
-			throw new SkipException("This test does not apply to containers using the ldp:isMemberOfRelation membership pattern.");
+			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
+					"This test does not apply to containers using the ldp:isMemberOfRelation membership pattern.");
 		}
 		Resource hasMemberRelation = container.getPropertyResourceValue(containerModel.createProperty(LDP.hasMemberRelation.stringValue()));
 		assertEquals(LDP.member.stringValue(), hasMemberRelation.getURI(), "LDP Direct Containers should use the ldp:member predicate if "

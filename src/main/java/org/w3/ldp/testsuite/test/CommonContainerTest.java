@@ -17,7 +17,6 @@ import javax.ws.rs.core.UriBuilder;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.http.HttpStatus;
-import org.testng.SkipException;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -25,6 +24,7 @@ import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
+import org.w3.ldp.testsuite.exception.SkipException;
 import org.w3.ldp.testsuite.http.HttpMethod;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.matcher.HeaderMatchers;
@@ -81,7 +81,8 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 		skipIfMethodNotAllowed(HttpMethod.POST);
 
 		if (restrictionsOnPostContent()) {
-			throw new SkipException("Skipping test because there are restrictions on POST content. "
+			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
+					"Skipping test because there are restrictions on POST content. "
 					+ "The requirement needs to be tested manually.");
 		}
 
@@ -306,7 +307,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					+ "testRequestedInteractionModelHeaders covers the rest.")
 	public void testRequestedInteractionModelCreateNotAllowed(@Optional String containerAsResource) {
 		if (containerAsResource == null)
-			throw new SkipException("containerAsResource is null");
+			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(), "containerAsResource is null");
 
 		Model model = postContent();
 
@@ -341,7 +342,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					+ "testRequestedInteractionModelCreateNotAllowed covers the rest.")
 	public void testRequestedInteractionModelHeaders(@Optional String containerAsResource) {
 		if (containerAsResource == null)
-			throw new SkipException("containerAsResource is null");
+			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(), "containerAsResource is null");
 
 		// Ensure we don't get back any of the container types in the rel='type' Link header
 		Response response = buildBaseRequestSpecification()
@@ -710,8 +711,8 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 
 		// POST support is optional. Only test delete if the POST succeeded.
 		if (postResponse.getStatusCode() != HttpStatus.SC_CREATED) {
-			throw new SkipException("HTTP POST failed with status "
-					+ postResponse.getStatusCode());
+			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
+					"HTTP POST failed with status " + postResponse.getStatusCode());
 		}
 
 		String location = postResponse.getHeader(LOCATION);

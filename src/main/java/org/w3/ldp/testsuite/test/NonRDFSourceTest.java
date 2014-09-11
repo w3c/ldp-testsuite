@@ -13,7 +13,6 @@ import org.apache.http.HttpStatus;
 import org.apache.marmotta.commons.util.HashUtils;
 import org.apache.marmotta.commons.vocabulary.LDP;
 import org.testng.Assert;
-import org.testng.SkipException;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
@@ -23,6 +22,7 @@ import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
+import org.w3.ldp.testsuite.exception.SkipException;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.matcher.HeaderMatchers;
 
@@ -54,7 +54,8 @@ public class NonRDFSourceTest extends CommonResourceTest {
 		} else if (StringUtils.isNotBlank(indirectContainer)) {
 			container = indirectContainer;
 		} else {
-			throw new SkipException("No root container provided in testng.xml. Skipping LDP Non-RDF Source (LDP-NR) tests.");
+			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
+					"No root container provided in testng.xml. Skipping LDP Non-RDF Source (LDP-NR) tests.");
 		}
 
 		final String slug = "test",
@@ -98,7 +99,8 @@ public class NonRDFSourceTest extends CommonResourceTest {
 	@Override
 	protected String getResourceUri() {
 		if (nonRdfSource == null) {
-			throw new SkipException("Skipping test because test resource is null.");
+			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
+					"Skipping test because test resource is null.");
 		}
 
 		return nonRdfSource;

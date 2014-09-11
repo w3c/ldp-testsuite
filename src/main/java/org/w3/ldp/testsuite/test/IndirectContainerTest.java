@@ -2,7 +2,6 @@ package org.w3.ldp.testsuite.test;
 
 import com.jayway.restassured.response.Response;
 import org.apache.http.HttpStatus;
-import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -11,6 +10,7 @@ import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
+import org.w3.ldp.testsuite.exception.SkipException;
 import org.w3.ldp.testsuite.vocab.LDP;
 
 import java.io.IOException;
@@ -30,7 +30,7 @@ public class IndirectContainerTest extends CommonContainerTest {
 	@BeforeClass(alwaysRun = true)
 	public void hasIndirectContainer() {
 		if (indirectContainer == null) {
-			throw new SkipException(
+			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
 					"No indirectContainer parameter provided in testng.xml. Skipping ldp:IndirectContainer tests.");
 		}
 	}
