@@ -119,7 +119,7 @@
                 <executions>
                     <execution>
                         <id>attach-sources</id>
-                        <phase>deploy</phase>
+                        <phase>package</phase>
                         <goals>
                             <goal>jar-no-fork</goal>
                         </goals>
@@ -136,7 +136,7 @@
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
-                        <phase>deploy</phase>
+                        <phase>package</phase>
                         <goals>
                             <goal>jar</goal>
                         </goals>
@@ -268,8 +268,8 @@
                                 <configuration>
                                     <mainClass>org.w3.ldp.testsuite.reporter.RunLdpEarlTestManifest</mainClass>
                                 </configuration>
-                             </execution>
-                             <execution>
+                            </execution>
+                            <execution>
                                 <id>generate-test-manifest-html</id>
                                 <phase>compile</phase>
                                 <goals>
