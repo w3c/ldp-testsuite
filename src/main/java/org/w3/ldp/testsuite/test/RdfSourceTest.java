@@ -338,8 +338,9 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 			groups = {MUST},
 			description = "LDP servers MUST publish any constraints on LDP clients’ "
 					+ "ability to create or update LDPRs, by adding a Link header "
-					+ "with rel='describedby' [RFC5988] to all responses to requests "
-					+ "which fail due to violation of those constraints.")
+					+ "with rel='http://www.w3.org/ns/ldp#constrainedBy' [RFC5988] "
+					+ "to all responses to requests which fail due to violation of "
+					+ "those constraints.")
 	@Parameters({ "readOnlyProp" })
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-pubclireqs",
@@ -362,8 +363,9 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 			groups = {MUST},
 			description = "LDP servers MUST publish any constraints on LDP clients’ "
 					+ "ability to create or update LDPRs, by adding a Link header "
-					+ "with rel='describedby' [RFC5988] to all responses to requests "
-					+ "which fail due to violation of those constraints.")
+					+ "with rel='http://www.w3.org/ns/ldp#constrainedBy' [RFC5988] "
+					+ "to all responses to requests which fail due to violation of "
+					+ "those constraints.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-pubclireqs",
 			testMethod = METHOD.AUTOMATED,
@@ -484,8 +486,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	protected void expectPut4xxDescribedBy(String invalidProp) {
 		Response putResponse = expectPut4xxStatus(invalidProp);
 		final String uri = getResourceUri();
-		String describedby = getFirstLinkForRelation(uri, LINK_REL_DESCRIBEDBY, uri, putResponse);
-		assertNotNull(describedby, "Response did not contain a Link header with rel=\"describedby\"");
+		String describedby = getFirstLinkForRelation(uri, LINK_REL_CONSTRAINEDBY, uri, putResponse);
+		assertNotNull(describedby, "Response did not contain a Link header with rel=\"http://www.w3.org/ns/ldp#constrainedBy\"");
 
 		// Make sure we can GET the describedby link.
 		buildBaseRequestSpecification()
