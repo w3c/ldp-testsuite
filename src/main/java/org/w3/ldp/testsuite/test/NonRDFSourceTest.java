@@ -55,7 +55,8 @@ public class NonRDFSourceTest extends CommonResourceTest {
 			container = indirectContainer;
 		} else {
 			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
-					"No root container provided in testng.xml. Skipping LDP Non-RDF Source (LDP-NR) tests.");
+					"No root container provided in testng.xml. Skipping LDP Non-RDF Source (LDP-NR) tests.",
+					skipLog);
 		}
 
 		final String slug = "test",
@@ -100,7 +101,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 	protected String getResourceUri() {
 		if (nonRdfSource == null) {
 			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
-					"Skipping test because test resource is null.");
+					"Skipping test because test resource is null.", skipLog);
 		}
 
 		return nonRdfSource;

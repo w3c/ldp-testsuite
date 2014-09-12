@@ -83,7 +83,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 		if (restrictionsOnPostContent()) {
 			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
 					"Skipping test because there are restrictions on POST content. "
-					+ "The requirement needs to be tested manually.");
+					+ "The requirement needs to be tested manually.", skipLog);
 		}
 
 		// POST content with a relative URI (other than the null relative URI).
@@ -307,7 +307,8 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					+ "testRequestedInteractionModelHeaders covers the rest.")
 	public void testRequestedInteractionModelCreateNotAllowed(@Optional String containerAsResource) {
 		if (containerAsResource == null)
-			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(), "containerAsResource is null");
+			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
+					"containerAsResource is null", skipLog);
 
 		Model model = postContent();
 
@@ -342,7 +343,8 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					+ "testRequestedInteractionModelCreateNotAllowed covers the rest.")
 	public void testRequestedInteractionModelHeaders(@Optional String containerAsResource) {
 		if (containerAsResource == null)
-			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(), "containerAsResource is null");
+			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
+					"containerAsResource is null", skipLog);
 
 		// Ensure we don't get back any of the container types in the rel='type' Link header
 		Response response = buildBaseRequestSpecification()
@@ -712,7 +714,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 		// POST support is optional. Only test delete if the POST succeeded.
 		if (postResponse.getStatusCode() != HttpStatus.SC_CREATED) {
 			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
-					"HTTP POST failed with status " + postResponse.getStatusCode());
+					"HTTP POST failed with status " + postResponse.getStatusCode(), skipLog);
 		}
 
 		String location = postResponse.getHeader(LOCATION);

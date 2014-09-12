@@ -75,7 +75,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		skipIfMethodNotAllowed(HttpMethod.PUT);
 
 		if (restrictionsOnTestResourceContent()) {
-			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(), MSG_PUT_RESTRICTIONS);
+			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
+					MSG_PUT_RESTRICTIONS, skipLog);
 		}
 
 		String resourceUri = getResourceUri();
@@ -100,7 +101,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 				.when().put(resourceUri);
 		if (!isSuccessful().matches(put.getStatusCode())) {
 			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
-					"Cannot verify relative URI resolution because the PUT request failed. Skipping test.");
+					"Cannot verify relative URI resolution because the PUT request failed. Skipping test.",
+					skipLog);
 		}
 
 		// Get the resource again to verify its content.
@@ -221,7 +223,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 				+ "ex:label or ex:title are used, instead of DCTERMS or RDFS, then the test "
 				+ "should fail."})
 	public void testReUseVocabularies() {
-		throw new SkipNotTestableException(Thread.currentThread().getStackTrace()[1].getMethodName());
+		throw new SkipNotTestableException(Thread.currentThread().getStackTrace()[1].getMethodName(), skipLog);
 	}
 
 	@Test(
@@ -246,7 +248,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		   Also could look for similar/like short predicate short names or even
 		   look for owl:sameAs.
 		*/
-		throw new SkipNotTestableException(Thread.currentThread().getStackTrace()[1].getMethodName());
+		throw new SkipNotTestableException(Thread.currentThread().getStackTrace()[1].getMethodName(), skipLog);
 	}
 
 	@Test(
@@ -266,7 +268,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 					+ "could run an inferencing tool and compare results, seeing if needed information"
 					+ "should have been explicitly listed by the server."})
 	public void testRestrictClientInference() {
-		throw new SkipNotTestableException(Thread.currentThread().getStackTrace()[1].getMethodName());
+		throw new SkipNotTestableException(Thread.currentThread().getStackTrace()[1].getMethodName(), skipLog);
 	}
 
 	@Test(
@@ -350,7 +352,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 
 		if (readOnlyProp == null) {
 			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
-					MSG_NO_READ_ONLY_PROPERTY);
+					MSG_NO_READ_ONLY_PROPERTY, skipLog);
 		}
 
 		expectPut4xxDescribedBy(readOnlyProp);
@@ -392,7 +394,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 
 		if (readOnlyProp == null) {
 			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
-					MSG_NO_READ_ONLY_PROPERTY);
+					MSG_NO_READ_ONLY_PROPERTY, skipLog);
 		}
 
 		expectPut4xxStatus(readOnlyProp);
@@ -414,7 +416,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		skipIfMethodNotAllowed(HttpMethod.PUT);
 
 		if (readOnlyProp == null) {
-			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(), MSG_NO_READ_ONLY_PROPERTY);
+			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
+					MSG_NO_READ_ONLY_PROPERTY, skipLog);
 		}
 
 		expectPut4xxResponseBody(readOnlyProp);
@@ -514,7 +517,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 				.put(resourceUri);
 		if (isSuccessful().matches(putResponse.getStatusCode())) {
 			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
-					"Skipping test because PUT request was successful.");
+					"Skipping test because PUT request was successful.", skipLog);
 		}
 
 		assertThat(putResponse.statusCode(), is4xxRange());
@@ -553,7 +556,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		skipIfMethodNotAllowed(HttpMethod.PUT);
 
 		if (restrictionsOnTestResourceContent()) {
-			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(), MSG_PUT_RESTRICTIONS);
+			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
+					MSG_PUT_RESTRICTIONS, skipLog);
 		}
 
 		String resourceUri = getResourceUri();
@@ -587,7 +591,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		if (!isSuccessful().matches(response.getStatusCode())) {
 			if (continueOnError) {
 				throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
-						"Skipping test because the PUT failed. The server may have restrictions on its content.");
+						"Skipping test because the PUT failed. The server may have restrictions on its content.",
+						skipLog);
 			} else {
 				throw new Failure("Unable to do simple update on resource, received code: "+response.getStatusLine());
 			}

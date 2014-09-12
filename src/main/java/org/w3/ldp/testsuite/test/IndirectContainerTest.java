@@ -31,7 +31,8 @@ public class IndirectContainerTest extends CommonContainerTest {
 	public void hasIndirectContainer() {
 		if (indirectContainer == null) {
 			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
-					"No indirectContainer parameter provided in testng.xml. Skipping ldp:IndirectContainer tests.");
+					"No indirectContainer parameter provided in testng.xml. Skipping ldp:IndirectContainer tests.",
+					skipLog);
 		}
 	}
 

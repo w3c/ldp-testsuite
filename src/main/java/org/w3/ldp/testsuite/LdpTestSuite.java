@@ -469,7 +469,8 @@ public class LdpTestSuite {
 				.isRequired(false).create());
 
 		common.addOption(OptionBuilder.withLongOpt("help")
-				.withDescription("prints this usage help").create());
+				.withDescription("prints this usage help")
+				.isRequired(false).create());
 		return common;
 	}
 

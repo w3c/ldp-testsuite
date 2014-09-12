@@ -9,12 +9,14 @@ import static org.w3.ldp.testsuite.matcher.HeaderMatchers.isValidEntityTag;
 import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
 import java.io.IOException;
+import java.io.PrintStream;
 import java.net.URISyntaxException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.io.output.WriterOutputStream;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
 import org.testng.ITestResult;
@@ -110,7 +112,7 @@ public abstract class CommonResourceTest extends LdpTest {
 					.config()
 					.logConfig(logConfig()
 							.enableLoggingOfRequestAndResponseIfValidationFails()
-							.defaultStream(httpLog)
+							.defaultStream(new PrintStream(new WriterOutputStream(httpLog)))
 							.enablePrettyPrinting(true)));
 		}
 
@@ -128,7 +130,7 @@ public abstract class CommonResourceTest extends LdpTest {
 			comment = "Covers only part of the specification requirement. "
 					+ "testIsHttp11Server covers the rest.")
 	public void testIsHttp11Manual() throws URISyntaxException {
-		throw new SkipNotTestableException(Thread.currentThread().getStackTrace()[1].getMethodName());
+		throw new SkipNotTestableException(Thread.currentThread().getStackTrace()[1].getMethodName(), skipLog);
 	}
 
 	@Test(
@@ -349,7 +351,8 @@ public abstract class CommonResourceTest extends LdpTest {
 					.put(resourceUri);
 		if (!isSuccessful().matches(ifMatchResponse.getStatusCode())) {
 			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
-					"Skipping test because PUT request failed with valid If-Match header.");
+					"Skipping test because PUT request failed with valid If-Match header.",
+					skipLog);
 		}
 
 		// Now try WITHOUT the If-Match header. If the result is NOT successful,
@@ -364,7 +367,7 @@ public abstract class CommonResourceTest extends LdpTest {
 			// It worked. This server doesn't require If-Match, which is only a
 			// SHOULD requirement (see testPutRequiresIfMatch). Skip the test.
 			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
-					"Server does not require If-Match header.");
+					"Server does not require If-Match header.", skipLog);
 		}
 
 		assertEquals(428, noIfMatchResponse.getStatusCode(), "Expected 428 Precondition Required error on PUT request with no If-Match header");
@@ -467,7 +470,7 @@ public abstract class CommonResourceTest extends LdpTest {
 
 	protected void skipIfMethodNotAllowed(HttpMethod method) {
 		if (!supports(method)) {
-			throw new SkipMethodNotAllowedException(Thread.currentThread().getStackTrace()[1].getMethodName(), getResourceUri(), method);
+			throw new SkipMethodNotAllowedException(Thread.currentThread().getStackTrace()[1].getMethodName(), getResourceUri(), method, skipLog);
 		}
 	}
 }

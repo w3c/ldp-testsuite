@@ -3,12 +3,10 @@ package org.w3.ldp.testsuite.test;
 import static org.testng.Assert.assertTrue;
 import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintStream;
+import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,6 +14,7 @@ import java.util.List;
 
 import javax.ws.rs.core.Link;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.marmotta.commons.vocabulary.LDP;
 import org.jboss.resteasy.plugins.delegates.LinkDelegate;
@@ -41,7 +40,7 @@ import com.jayway.restassured.specification.RequestSpecification;
 
 public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences {
 
-	public final static String SKIPPED_LOG = "skipped.log";
+	public final static String SKIPPED_LOG_FILENAME = "skipped.log";
 
 	public final static String HTTP_LOG_FILENAME = "http.log";
 
@@ -53,7 +52,12 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	/**
 	 * For HTTP details on validation failures
 	 */
-	protected PrintStream httpLog;
+	protected static PrintWriter httpLog;
+
+	/**
+	 * For skipped test logging
+	 */
+	protected static boolean skipLog;
 
 	/**
 	 * Builds a model from a turtle representation in a file
@@ -98,30 +102,39 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	 * @param httpLogging whether to log HTTP request and response details on errors
 	 */
 	@BeforeSuite(alwaysRun = true)
-	@Parameters({"postTtl", "httpLogging"})
-	public void setup(@Optional String postTtl, @Optional String httpLogging) {
+	@Parameters({"postTtl", "httpLogging", "skipLogging"})
+	public void setup(@Optional String postTtl, @Optional String httpLogging, @Optional String skipLogging) throws IOException {
 		postModel = readModel(postTtl);
+
+		File dir = new File(LdpTestSuite.OUTPUT_DIR);
+		//FileUtils.deleteDirectory(dir);
+		dir.mkdirs();
+
+		System.out.println("httpLogginggggggggggggggggggggggggggggg: " + httpLogging);
 		if ("true".equals(httpLogging)) {
-			File dir = new File(LdpTestSuite.OUTPUT_DIR);
-			dir.mkdirs();
 			File file = new File(dir, HTTP_LOG_FILENAME);
 			try {
-				httpLog = new PrintStream(file);
+				httpLog = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
 
 				// Add the date to the top of the log
 				DateFormat df = DateFormat.getDateTimeInstance();
-				httpLog.println("LDP Test Suite: HTTP Log (" + df.format(new Date()) + ")");
+				httpLog.println(String.format("LDP Test Suite: HTTP Log (%s)", df.format(new Date())));
 				httpLog.println();
 			} catch (IOException e) {
-				System.err.println("WARNING: Error creating http.log for detailed errors");
+				System.err.println(String.format("WARNING: Error creating %s for detailed errors", HTTP_LOG_FILENAME));
 				e.printStackTrace();
 			}
 		}
+
+		System.out.println("skipLogginggggggggggggggggggggggggggggg: " + skipLogging);
+		skipLog = "true".equals(skipLogging);
+
 	}
 
 	@AfterSuite(alwaysRun = true)
 	public void tearDown() {
 		if (httpLog != null) {
+			httpLog.flush();
 			httpLog.close();
 		}
 	}

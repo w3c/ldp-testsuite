@@ -46,7 +46,8 @@ public class BasicContainerTest extends CommonContainerTest {
 	public void hasBasicContainer() {
 		if (basicContainer == null) {
 			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
-					"No basicContainer parameter provided in testng.xml. Skipping ldp:basicContainer tests.");
+					"No basicContainer parameter provided in testng.xml. Skipping ldp:basicContainer tests.",
+					skipLog);
 		}
 	}
 

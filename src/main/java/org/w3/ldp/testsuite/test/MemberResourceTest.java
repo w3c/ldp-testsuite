@@ -43,7 +43,7 @@ public class MemberResourceTest extends RdfSourceTest {
 			this.container = basicContainer;
 		} else {
 			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
-					"No memberResource or container parameters defined in testng.xml");
+					"No memberResource or container parameters defined in testng.xml", skipLog);
 		}
 
 		if (this.memberResource == null) {
@@ -82,7 +82,7 @@ public class MemberResourceTest extends RdfSourceTest {
 	protected String getResourceUri() {
 		if (memberResource == null) {
 			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
-					"Skipping test because test resource is null.");
+					"Skipping test because test resource is null.", skipLog);
 		}
 		return memberResource;
 	}

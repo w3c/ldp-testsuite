@@ -45,7 +45,8 @@ public class DirectContainerTest extends CommonContainerTest {
 	public void hasDirectContainer() {
 		if (directContainer == null) {
 			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
-					"No directContainer parameter provided in testng.xml. Skipping ldp:DirectContainer tests.");
+					"No directContainer parameter provided in testng.xml. Skipping ldp:DirectContainer tests.",
+					skipLog);
 		}
 	}
 
@@ -101,7 +102,8 @@ public class DirectContainerTest extends CommonContainerTest {
 		Resource container = containerModel.getResource(directContainer);
 		if (container.hasProperty(containerModel.createProperty(LDP.isMemberOfRelation.stringValue()))) {
 			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
-					"This test does not apply to containers using the ldp:isMemberOfRelation membership pattern.");
+					"This test does not apply to containers using the ldp:isMemberOfRelation membership pattern.",
+					skipLog);
 		}
 		Resource hasMemberRelation = container.getPropertyResourceValue(containerModel.createProperty(LDP.hasMemberRelation.stringValue()));
 		assertEquals(LDP.member.stringValue(), hasMemberRelation.getURI(), "LDP Direct Containers should use the ldp:member predicate if "
