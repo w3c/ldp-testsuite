@@ -24,7 +24,6 @@ public class SkipException extends org.testng.SkipException {
 
 	public SkipException(String test, String skipMessage, PrintWriter skipLog) {
 		super(skipMessage);
-		System.out.println("skipLog = " + skipLog);
 		if (skipLog != null) {
 			skipLog.println(String.format("[%s] skipped test %s: %s", df.format(new Date()), test, skipMessage));
 		}
