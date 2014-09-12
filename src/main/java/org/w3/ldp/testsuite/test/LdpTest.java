@@ -43,6 +43,7 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	public final static String SKIPPED_LOG_FILENAME = "skipped.log";
 
 	public final static String HTTP_LOG_FILENAME = "http.log";
+	public static final DateFormat df = DateFormat.getDateTimeInstance();
 
 	/**
 	 * Alternate content to use on POST requests
@@ -57,7 +58,7 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	/**
 	 * For skipped test logging
 	 */
-	protected static boolean skipLog;
+	protected static PrintWriter skipLog;
 
 	/**
 	 * Builds a model from a turtle representation in a file
@@ -110,32 +111,43 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 		//FileUtils.deleteDirectory(dir);
 		dir.mkdirs();
 
-		System.out.println("httpLogginggggggggggggggggggggggggggggg: " + httpLogging);
 		if ("true".equals(httpLogging)) {
 			File file = new File(dir, HTTP_LOG_FILENAME);
 			try {
 				httpLog = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
-
-				// Add the date to the top of the log
-				DateFormat df = DateFormat.getDateTimeInstance();
 				httpLog.println(String.format("LDP Test Suite: HTTP Log (%s)", df.format(new Date())));
-				httpLog.println();
+				httpLog.println("---------------------------------------------------");
 			} catch (IOException e) {
 				System.err.println(String.format("WARNING: Error creating %s for detailed errors", HTTP_LOG_FILENAME));
 				e.printStackTrace();
 			}
 		}
 
-		System.out.println("skipLogginggggggggggggggggggggggggggggg: " + skipLogging);
-		skipLog = "true".equals(skipLogging);
+		if ("true".equals(httpLogging)) {
+			File file = new File(dir, SKIPPED_LOG_FILENAME);
+			try {
+				skipLog = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
+				skipLog.println(String.format("LDP Test Suite: Skipped Tests Log (%s)", df.format(new Date())));
+				skipLog.println("------------------------------------------------------------");
+			} catch (IOException e) {
+				System.err.println(String.format("WARNING: Error creating %s for detailed errors", SKIPPED_LOG_FILENAME));
+				e.printStackTrace();
+			}
+		}
 
 	}
 
 	@AfterSuite(alwaysRun = true)
 	public void tearDown() {
 		if (httpLog != null) {
+			httpLog.println();
 			httpLog.flush();
 			httpLog.close();
+		}
+		if (skipLog != null) {
+			skipLog.println();
+			skipLog.flush();
+			skipLog.close();
 		}
 	}
 
@@ -164,14 +176,12 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	 */
 	public static final String MAY = "MAY";
 
-
 	/**
 	 * A grouping of tests that may not need to run as part of the regular
 	 * TestNG runs.  Though by including it, it will allow for the generation
 	 * via various reporters.
 	 */
 	public static final String MANUAL = "MANUAL";
-
 
 	private static boolean warnings = false;
 
