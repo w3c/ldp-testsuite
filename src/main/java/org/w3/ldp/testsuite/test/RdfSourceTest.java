@@ -356,7 +356,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 					MSG_NO_READ_ONLY_PROPERTY, skipLog);
 		}
 
-		expectPut4xxDescribedBy(readOnlyProp);
+		expectPut4xxConstrainedBy(readOnlyProp);
 	}
 
 	@Test(
@@ -374,7 +374,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 					+ "testPublishConstraintsReadOnlyProp covers the rest.")
 	public void testPublishConstraintsUnknownProp() {
 		skipIfMethodNotAllowed(HttpMethod.PUT);
-		expectPut4xxDescribedBy(UNKNOWN_PROPERTY);
+		expectPut4xxConstrainedBy(UNKNOWN_PROPERTY);
 	}
 
 
@@ -483,18 +483,18 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		r.addProperty(p, "modified");
 	}
 
-	protected void expectPut4xxDescribedBy(String invalidProp) {
+	protected void expectPut4xxConstrainedBy(String invalidProp) {
 		Response putResponse = expectPut4xxStatus(invalidProp);
 		final String uri = getResourceUri();
-		String describedby = getFirstLinkForRelation(uri, LINK_REL_CONSTRAINEDBY, uri, putResponse);
-		assertNotNull(describedby, "Response did not contain a Link header with rel=\"http://www.w3.org/ns/ldp#constrainedBy\"");
+		String constrainedBy = getFirstLinkForRelation(uri, LINK_REL_CONSTRAINEDBY, uri, putResponse);
+		assertNotNull(constrainedBy, "Response did not contain a Link header with rel=\"http://www.w3.org/ns/ldp#constrainedBy\"");
 
-		// Make sure we can GET the describedby link.
+		// Make sure we can GET the constrainedBy link.
 		buildBaseRequestSpecification()
 			.expect()
 				.statusCode(isSuccessful())
 			.when()
-				.get(describedby);
+				.get(constrainedBy);
 	}
 
 	protected Response expectPut4xxStatus(String invalidProp) {
