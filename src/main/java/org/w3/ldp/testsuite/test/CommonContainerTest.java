@@ -827,7 +827,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	}
 
 	@Test(
-			groups = {SHOULD},
+			groups = {MUST},
 			description = "LDP servers SHOULD accept a request entity "
 					+ "body with a request header of Content-Type with "
 					+ "value of application/ld+json [JSON-LD].")

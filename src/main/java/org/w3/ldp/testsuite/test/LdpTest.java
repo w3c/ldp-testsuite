@@ -6,7 +6,6 @@ import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful
 import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.nio.file.Files;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,7 +13,6 @@ import java.util.List;
 
 import javax.ws.rs.core.Link;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.marmotta.commons.vocabulary.LDP;
 import org.jboss.resteasy.plugins.delegates.LinkDelegate;

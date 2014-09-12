@@ -1,10 +1,5 @@
 package org.w3.ldp.testsuite.exception;
 
-import org.w3.ldp.testsuite.test.LdpTest;
-
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.util.Date;

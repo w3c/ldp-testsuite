@@ -273,14 +273,9 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 
 	@Test(
 			groups = {MUST},
-			description = "LDP servers must provide a text/turtle representation "
-					+ "of the requested LDP-RS whenever HTTP content negotiation "
-					+ "does not force another outcome [turtle]. In other words, if "
-					+ "the server receives a GET request whose Request-URI "
-					+ "identifies a LDP-RS, and either text/turtle has the highest "
-					+ "relative quality factor (q= value) in the Accept request "
-					+ "header or that header is absent, then an LDP server has to "
-					+ "respond with Turtle.")
+			description = "LDP servers must respond with a Turtle representation of the "
+					+ "requested LDP-RS when the request includes an Accept header specifying "
+					+ "text/turtle, unless HTTP content negotiation requires a different outcome [turtle].")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-get-turtle",
 			testMethod = METHOD.AUTOMATED,
@@ -291,8 +286,8 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 				.expect().statusCode(isSuccessful()).contentType(TEXT_TURTLE)
 				.when().get(getResourceUri()).as(Model.class, new RdfObjectMapper(getResourceUri()));
 
-		// No Accept header
-		buildBaseRequestSpecification()
+		// More complicated Accept header
+		buildBaseRequestSpecification().header(ACCEPT, "text/turtle;q=0.9,application/json;q=0.8")
 				.expect().statusCode(isSuccessful()).contentType(TEXT_TURTLE)
 				.when().get(getResourceUri()).as(Model.class, new RdfObjectMapper(getResourceUri()));
 
@@ -305,17 +300,29 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		buildBaseRequestSpecification().header(ACCEPT, "text/*")
 				.expect().statusCode(isSuccessful()).contentType(TEXT_TURTLE)
 				.when().get(getResourceUri()).as(Model.class, new RdfObjectMapper(getResourceUri()));
-
-		// More complicated Accept header
-		buildBaseRequestSpecification().header(ACCEPT, "text/turtle;q=0.9,application/json;q=0.8")
+	}
+	
+	@Test(
+			groups = {SHOULD},
+			description = "LDP servers should respond with a text/turtle representation of the "
+					+ "requested LDP-RS whenever the Accept request header is absent [turtle].")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-get-conneg",
+			testMethod = METHOD.AUTOMATED,
+			approval = STATUS.WG_APPROVED)
+	public void testGetResourceAsTurtleNoAccept() {
+		// No Accept header
+		buildBaseRequestSpecification()
 				.expect().statusCode(isSuccessful()).contentType(TEXT_TURTLE)
 				.when().get(getResourceUri()).as(Model.class, new RdfObjectMapper(getResourceUri()));
 	}
 
 	@Test(
-			groups = {SHOULD},
-			description = "LDP servers SHOULD offer a application/ld+json representation"
-					+ " of the requested LDP-RS [JSON-LD]. ")
+			groups = {MUST},
+			description = " LDP servers must respond with a application/ld+json "
+					+ "representation of the requested LDP-RS when the request "
+					+ "includes an Accept header, unless content negotiation or "
+					+ "Turtle support requires a different outcome [JSON-LD].")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-get-jsonld",
 			testMethod = METHOD.AUTOMATED,
