@@ -12,6 +12,30 @@
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
   earl:assertedBy  <http://stevespeicher.me#self> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-12T15:05:28.65Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:BasicContainer-GetResourceAsTurtleNoAccept
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-09-12T15:05:28.65Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#bc> ;
+  earl:test        ldpt:MemberResource-GetResourceAsTurtleNoAccept
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
   earl:mode        earl:manual ;
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-08-26T17:00:43.147Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
