@@ -75,7 +75,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-defbaseuri",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING,
+			approval = STATUS.WG_APPROVED,
 			comment = "Covers only part of the specification requirement. ")
 	public void testRelativeUriResolutionPost() {
 		skipIfMethodNotAllowed(HttpMethod.POST);
@@ -157,7 +157,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-prefer",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_APPROVED)
 	public void testPreferContainmentTriples() {
 		Response response;
 		Model model;
@@ -302,7 +302,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-createrdf",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING,
+			approval = STATUS.WG_APPROVED,
 			comment = "Covers only part of the specification requirement. "
 					+ "testRequestedInteractionModelHeaders covers the rest.")
 	public void testRequestedInteractionModelCreateNotAllowed(@Optional String containerAsResource) {
@@ -338,7 +338,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-createrdf",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING,
+			approval = STATUS.WG_APPROVED,
 			comment = "Covers only part of the specification requirement. "
 					+ "testRequestedInteractionModelCreateNotAllowed covers the rest.")
 	public void testRequestedInteractionModelHeaders(@Optional String containerAsResource) {
@@ -407,7 +407,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-contenttype",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_APPROVED)
 	public void testContentTypeHeader() throws URISyntaxException {
 		skipIfMethodNotAllowed(HttpMethod.POST);
 
@@ -522,7 +522,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-serverassignuri",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_APPROVED)
 	public void testPostNoSlug() {
 		skipIfMethodNotAllowed(HttpMethod.POST);
 
@@ -776,7 +776,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-typecontainer",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_APPROVED)
 	public void testRdfTypeLdpContainer() {
 		String container = getResourceUri();
 		Model m = buildBaseRequestSpecification()
@@ -804,7 +804,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-slug",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_APPROVED)
 	public void testServerHonorsSlug() {
 		skipIfMethodNotAllowed(HttpMethod.POST);
 
@@ -834,7 +834,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-jsonld",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_APPROVED)
 	public void testPostJsonLd() {
 		skipIfMethodNotAllowed(HttpMethod.POST);
 
@@ -876,7 +876,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-isldpr",
 			testMethod = METHOD.INDIRECT,
-			approval = STATUS.WG_PENDING,
+			approval = STATUS.WG_APPROVED,
 			coveredByTests = {RdfSourceTest.class},
 			coveredByGroups = {MUST})
 	public void testConformsContainerRdfResource() {

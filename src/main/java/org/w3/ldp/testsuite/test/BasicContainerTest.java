@@ -35,7 +35,7 @@ public class BasicContainerTest extends CommonContainerTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpbc-are-ldpcs",
 			testMethod = METHOD.INDIRECT,
-			approval = STATUS.WG_PENDING,
+			approval = STATUS.WG_APPROVED,
 			coveredByTests = {CommonContainerTest.class},
 			coveredByGroups = {MUST})
 	public void testConformsBcLdpContainer() {

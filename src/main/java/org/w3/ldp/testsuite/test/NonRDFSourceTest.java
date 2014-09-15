@@ -137,7 +137,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-createbins",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING,
+			approval = STATUS.WG_APPROVED,
 			comment = "Covers only part of the specification requirement. "
 					+ "testPostNonRDFSource covers the rest.")
 	public void testPostResourceAndGetFromContainer() throws IOException {
@@ -206,7 +206,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpnr-are-ldpr",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_APPROVED)
 	public void testPostResourceGetMetadataAndBinary() throws IOException {
 		// Test constants
 		final String slug = "test",
@@ -301,7 +301,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-post-createbinlinkmetahdr",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_APPROVED)
 	public void testPostResourceAndCheckAssociatedResource() throws IOException {
 		// Test constants
 		final String slug = "test",
@@ -354,7 +354,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-del-contremovescontres",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_APPROVED)
 	public void testDeleteNonRDFSourceDeletesAssociatedResource() throws IOException {
 		// Test constants
 		final String slug = "test",
@@ -425,7 +425,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-options-linkmetahdr",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_APPROVED)
 	public void testOptionsHasSameLinkHeader() throws IOException {
 		// Test constants
 		final String slug = "test",

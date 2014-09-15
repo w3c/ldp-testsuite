@@ -141,7 +141,7 @@ public abstract class CommonResourceTest extends LdpTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-etags",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING,
+			approval = STATUS.WG_APPROVED,
 			comment = "Covers only part of the specification requirement. "
 					+ "testETagHeadersHead covers the rest.")
 	public void testETagHeadersGet() {

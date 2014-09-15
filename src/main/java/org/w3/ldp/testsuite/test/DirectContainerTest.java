@@ -318,7 +318,7 @@ public class DirectContainerTest extends CommonContainerTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpdc-are-ldpcs",
 			testMethod = METHOD.INDIRECT,
-			approval = STATUS.WG_PENDING,
+			approval = STATUS.WG_APPROVED,
 			coveredByTests = {CommonContainerTest.class},
 			coveredByGroups = {MUST})
 	public void testConformsDcLdpContainer() {
@@ -351,7 +351,7 @@ public class DirectContainerTest extends CommonContainerTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpc-prefer",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING,
+			approval = STATUS.WG_APPROVED,
 			comment = "Covers only part of the specification requirement. ")
 	public void testPreferMembershipTriples() {
 		Response response;

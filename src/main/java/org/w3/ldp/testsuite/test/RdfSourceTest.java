@@ -70,7 +70,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-defbaseuri",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_APPROVED)
 	public void testRelativeUriResolutionPut() {
 		skipIfMethodNotAllowed(HttpMethod.PUT);
 
@@ -148,7 +148,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-put-simpleupdate",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_APPROVED)
 	public void testPutSimpleUpdate() {
 		putReplaceResource(false);
 	}
@@ -196,7 +196,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-rdftype",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_APPROVED)
 	public void testTypeRdfSource() {
 		Model containerModel = getAsModel(getResourceUri());
 		Resource r = containerModel.getResource(getResourceUri());
@@ -326,7 +326,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-get-jsonld",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_APPROVED)
 	public void testJsonLdRepresentation() throws IOException, JsonLdError {
 		Response response = buildBaseRequestSpecification()
 				.header(ACCEPT, "application/ld+json, application/json;q=0.5")
@@ -352,7 +352,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-pubclireqs",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING,
+			approval = STATUS.WG_APPROVED,
 			comment = "Covers only part of the specification requirement. "
 					+ "testPublishConstraintsUnknownProp covers the rest.")
 	public void testPublishConstraintsReadOnlyProp(@Optional String readOnlyProp) {
@@ -376,7 +376,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-pubclireqs",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING,
+			approval = STATUS.WG_APPROVED,
 			comment = "Covers only part of the specification requirement. "
 					+ "testPublishConstraintsReadOnlyProp covers the rest.")
 	public void testPublishConstraintsUnknownProp() {
@@ -395,7 +395,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-put-servermanagedprops",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING,
+			approval = STATUS.WG_APPROVED,
 			comment = "Covers only part of the specification requirement. "
 					+ "test4xxErrorHasResponseBody covers the rest.")
 	public void testPutReadOnlyProperties4xxStatus(@Optional String readOnlyProp) {
@@ -418,7 +418,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-put-servermanagedprops",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING,
+			approval = STATUS.WG_APPROVED,
 			comment = "Covers only part of the specification requirement. "
 					+ "testPutReadOnlyProperties4xxStatus covers the rest.")
 	public void test4xxErrorHasResponseBody(@Optional String readOnlyProp) {
@@ -441,7 +441,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-put-failed",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING,
+			approval = STATUS.WG_APPROVED,
 			comment = "Covers only part of the specification requirement. "
 					+ "testResponsePropertiesNotPersisted covers the rest.")
 	public void testPutPropertiesNotPersisted() {
@@ -459,7 +459,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-put-failed",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING,
+			approval = STATUS.WG_APPROVED,
 			comment = "Covers only part of the specification requirement. "
 					+ "testPutPropertiesNotPersisted covers the rest.")
 	public void testResponsePropertiesNotPersisted() {
@@ -475,7 +475,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldprs-are-ldpr",
 			testMethod = METHOD.INDIRECT,
-			approval = STATUS.WG_PENDING,
+			approval = STATUS.WG_APPROVED,
 			coveredByTests = {CommonResourceTest.class},
 			coveredByGroups = {MUST})
 	public void testConformsRdfSourceLdpResource() {
