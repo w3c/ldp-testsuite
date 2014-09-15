@@ -6,7 +6,7 @@
 @prefix td:    <http://www.w3.org/2006/03/test-description#> .
 @prefix mf:    <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#> .
 @prefix doap:  <http://usefulinc.com/ns/doap#> .
-@prefix ldpt:  <http://www.w3c.org/ns/ldp/test#> .
+@prefix ldpt:  <http://w3c.github.io/ldp-testsuite/manifest#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
 ldpt:MemberResource-ChangeRdfTypeValue
