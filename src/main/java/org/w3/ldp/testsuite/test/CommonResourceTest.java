@@ -336,10 +336,10 @@ public abstract class CommonResourceTest extends LdpTest {
 
 		String resourceUri = getResourceUri();
 		Response getResponse = buildBaseRequestSpecification()
-				.expect()
+			.expect()
 				.statusCode(isSuccessful())
 				.header(ETAG, isValidEntityTag())
-				.when()
+			.when()
 				.get(resourceUri);
 
 		// Verify that we can successfully PUT the resource WITH an If-Match header.
