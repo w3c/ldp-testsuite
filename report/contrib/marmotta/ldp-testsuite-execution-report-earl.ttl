@@ -1160,7 +1160,10 @@
         a                          doap:Project , earl:Software , earl:TestSubject , earl:Assertor ;
         dcterms:title              "Apache Marmotta" ;
         doap:developer             [ a          foaf:Person ;
-                                     foaf:name  "Jakob Frank, Sergio Fernández"
+                                     foaf:name  "Jakob Frank"
+                                   ] ;
+        doap:developer             [ a          foaf:Person ;
+                                     foaf:name  "Sergio Fernández"
                                    ] ;
         doap:homepage              "http://marmotta.apache.org" ;
         doap:name                  "Marmotta" ;
