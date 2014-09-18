@@ -147,8 +147,9 @@ public class LdpTestSuite {
 		final Map<String, String> parameters = new HashMap<>();
 
 		if (options.hasOption("output")) {
-			outputDir = options.getOptionValue("output");
-			testng.setOutputDirectory(outputDir + File.separator + TestNG.DEFAULT_OUTPUTDIR);
+			final String output = options.getOptionValue("output");
+			outputDir = output + File.separator + LdpTestSuite.OUTPUT_DIR;
+			testng.setOutputDirectory(output + File.separator + TestNG.DEFAULT_OUTPUTDIR);
 		}
 		parameters.put("output", outputDir);
 
