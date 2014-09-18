@@ -148,7 +148,7 @@ public class LdpTestSuite {
 
 		if (options.hasOption("output")) {
 			outputDir = options.getOptionValue("output");
-			testng.setOutputDirectory(outputDir + File.pathSeparator + TestNG.DEFAULT_OUTPUTDIR);
+			testng.setOutputDirectory(outputDir + File.separator + TestNG.DEFAULT_OUTPUTDIR);
 		}
 		parameters.put("output", outputDir);
 
