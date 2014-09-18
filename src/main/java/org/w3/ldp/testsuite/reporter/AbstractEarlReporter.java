@@ -13,12 +13,19 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 
 public abstract class AbstractEarlReporter {
+
 	protected BufferedWriter writerTurtle;
 	protected BufferedWriter writerJson;
 	protected Model model;
 	protected static final String TURTLE = "TURTLE";
 	protected static final String JSON_LD = "JSON-LD";
 	protected static final HashMap<String, String> prefixes = new HashMap<String, String>();
+
+	protected String outputDirectory;
+
+	public void setOutputDirectory(String outputDirectory) {
+		this.outputDirectory = outputDirectory;
+	}
 
 	static {
 		prefixes.put("doap", "http://usefulinc.com/ns/doap#");

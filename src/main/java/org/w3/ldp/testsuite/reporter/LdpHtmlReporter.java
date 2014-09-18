@@ -84,8 +84,13 @@ public class LdpHtmlReporter implements IReporter {
 	
 	private static ArrayList<String> colors = new ArrayList<String>(Arrays.asList("#42d992", "#1cbfbb", "#1d0b4e", "#bf1c56"));
 
-	public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites,
-							   String outputDirectory) {
+	private String outputDirectory = LdpTestSuite.OUTPUT_DIR;
+
+	public void setOutputDirectory(String outputDirectory) {
+		this.outputDirectory = outputDirectory;
+	}
+
+	public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites, String outputDirectory) {
 		try {
 			for (ISuite suite : suites) {
 				html = new HtmlCanvas();
@@ -148,7 +153,7 @@ public class LdpHtmlReporter implements IReporter {
 				html._body()._html();
 
 				// send html to a file
-				createWriter(LdpTestSuite.OUTPUT_DIR, html.toHtml(), outputName);
+				createWriter(this.outputDirectory, html.toHtml(), outputName);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

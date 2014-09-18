@@ -101,11 +101,11 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	 * @param httpLogging whether to log HTTP request and response details on errors
 	 */
 	@BeforeSuite(alwaysRun = true)
-	@Parameters({"postTtl", "httpLogging", "skipLogging"})
-	public void setup(@Optional String postTtl, @Optional String httpLogging, @Optional String skipLogging) throws IOException {
+	@Parameters({"output", "postTtl", "httpLogging", "skipLogging"})
+	public void setup(String outputDir, @Optional String postTtl, @Optional String httpLogging, @Optional String skipLogging) throws IOException {
 		postModel = readModel(postTtl);
 
-		File dir = new File(LdpTestSuite.OUTPUT_DIR);
+		File dir = new File(outputDir);
 		//FileUtils.deleteDirectory(dir);
 		dir.mkdirs();
 

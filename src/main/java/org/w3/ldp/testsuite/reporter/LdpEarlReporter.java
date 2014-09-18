@@ -73,11 +73,16 @@ public class LdpEarlReporter extends AbstractEarlReporter implements IReporter {
 	private IResultMap failedTests;
 	private IResultMap skippedTests;
 
+	private String outputDirectory = LdpTestSuite.OUTPUT_DIR;
+
+	public void setOutputDirectory(String outputDirectory) {
+		this.outputDirectory = outputDirectory;
+	}
+
 	@Override
-	public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites,
-			String outputDirectory) {
+	public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites, String outputDirectory) {
 		try {
-			createWriter(LdpTestSuite.OUTPUT_DIR, "");
+			createWriter(this.outputDirectory, "");
 		} catch (IOException e) {
 			e.printStackTrace(System.err);
 			System.exit(1);
