@@ -1,5 +1,6 @@
 package org.w3.ldp.testsuite;
 
+import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.*;
@@ -147,6 +148,7 @@ public class LdpTestSuite {
 
 		if (options.hasOption("output")) {
 			outputDir = options.getOptionValue("output");
+			testng.setOutputDirectory(outputDir + File.pathSeparator + TestNG.DEFAULT_OUTPUTDIR);
 		}
 		parameters.put("output", outputDir);
 
