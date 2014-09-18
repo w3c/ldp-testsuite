@@ -53,6 +53,8 @@ public class LdpTestSuite {
 
 	private final String reportTitle;
 
+	private String outputDir;
+
 	enum ContainerType {
 		BASIC, DIRECT, INDIRECT
 	}
@@ -93,6 +95,7 @@ public class LdpTestSuite {
 		// see: http://testng.org/doc/documentation-main.html#running-testng-programmatically
 		testng = new TestNG();
 		this.reportTitle = reportTitle;
+		this.outputDir = OUTPUT_DIR;
 		this.classList = new ArrayList<>();
 		this.setupSuite(optionsHandler);
 	}
@@ -182,6 +185,7 @@ public class LdpTestSuite {
 		if (StringUtils.isNotBlank(reportTitle)) {
 			reporter.setTitle(reportTitle);
 		}
+		reporter.setOutputDirectory(outputDir);
 		testng.addListener(reporter);
 
 		if (options.hasOption("earl")) {
@@ -189,6 +193,7 @@ public class LdpTestSuite {
 			if (StringUtils.isNotBlank(reportTitle)) {
 				earlReport.setTitle(reportTitle);
 			}
+
 			testng.addListener(earlReport);
 
 			// required --earl args
@@ -273,6 +278,11 @@ public class LdpTestSuite {
 		if (options.hasOption("non-rdf")) {
 			classList.add(new XmlClass("org.w3.ldp.testsuite.test.NonRDFSourceTest"));
 		}
+
+		if (options.hasOption("output")) {
+			outputDir = options.getOptionValue("output");
+		}
+		parameters.put("output", outputDir);
 
 		if (options.hasOption("httpLogging")) {
 			parameters.put("httpLogging", "true");
@@ -363,6 +373,10 @@ public class LdpTestSuite {
 
 	public int getStatus() {
 		return testng.getStatus();
+	}
+
+	public String getOutputDir() {
+		return outputDir;
 	}
 
 	public static CommandLine getCommandLine(Options options, String[] args){
@@ -459,6 +473,11 @@ public class LdpTestSuite {
 				.withDescription("which tests to run (* is a wildcard)")
 				.hasArgs().withArgName("test names")
 				.create());
+
+		common.addOption(OptionBuilder.withLongOpt("output")
+				.withDescription("output directory ('" + OUTPUT_DIR + "' by default)")
+				.hasArgs().withArgName("toutput")
+				.isRequired(false).create());
 
 		common.addOption(OptionBuilder.withLongOpt("httpLogging")
 				.withDescription("log HTTP requests and responses on validation failures")
