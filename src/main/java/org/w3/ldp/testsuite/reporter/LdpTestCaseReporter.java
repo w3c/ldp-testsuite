@@ -145,7 +145,7 @@ public class LdpTestCaseReporter {
 		this.initializeTestClasses();
 		this.generateHTMLReport();
 		amendReport();
-		writeReport("report", title, html.toHtml());
+		writeReport(LdpTestSuite.OUTPUT_DIR, title, html.toHtml());
 		System.out.println("Done!");
 	}
 
