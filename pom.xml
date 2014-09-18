@@ -10,7 +10,7 @@
 
     <groupId>org.w3</groupId>
     <artifactId>ldp-testsuite</artifactId>
-    <version>0.1.1-SNAPSHOT</version>
+    <version>0.1.1</version>
     <packaging>jar</packaging>
 
     <name>LDP Test Suite</name>
