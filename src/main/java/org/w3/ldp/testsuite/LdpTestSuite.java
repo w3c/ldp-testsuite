@@ -145,6 +145,11 @@ public class LdpTestSuite {
 		// Test suite parameters
 		final Map<String, String> parameters = new HashMap<>();
 
+		if (options.hasOption("output")) {
+			outputDir = options.getOptionValue("output");
+		}
+		parameters.put("output", outputDir);
+
 		final String server;
 		if (options.hasOption("server")) {
 			server = options.getOptionValue("server");
@@ -193,7 +198,7 @@ public class LdpTestSuite {
 			if (StringUtils.isNotBlank(reportTitle)) {
 				earlReport.setTitle(reportTitle);
 			}
-
+			earlReport.setOutputDirectory(outputDir);
 			testng.addListener(earlReport);
 
 			// required --earl args
@@ -205,8 +210,9 @@ public class LdpTestSuite {
 			}
 
 			// optional --earl args
-			if (options.hasOptionWithValue("mbox"))
+			if (options.hasOptionWithValue("mbox")) {
 				parameters.put("mbox", options.getOptionValue("mbox"));
+			}
 
 		}
 
@@ -278,11 +284,6 @@ public class LdpTestSuite {
 		if (options.hasOption("non-rdf")) {
 			classList.add(new XmlClass("org.w3.ldp.testsuite.test.NonRDFSourceTest"));
 		}
-
-		if (options.hasOption("output")) {
-			outputDir = options.getOptionValue("output");
-		}
-		parameters.put("output", outputDir);
 
 		if (options.hasOption("httpLogging")) {
 			parameters.put("httpLogging", "true");
