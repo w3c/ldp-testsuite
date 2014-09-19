@@ -479,8 +479,8 @@ public class LdpTestSuite {
 				.create());
 
 		common.addOption(OptionBuilder.withLongOpt("output")
-				.withDescription("output directory ('" + OUTPUT_DIR + "' by default)")
-				.hasArgs().withArgName("toutput")
+				.withDescription("output directory (current directory by default)")
+				.hasArgs().withArgName("output")
 				.isRequired(false).create());
 
 		common.addOption(OptionBuilder.withLongOpt("httpLogging")
