@@ -64,7 +64,7 @@ it to check your implementation and <a href="https://dvcs.w3.org/hg/ldpwg/raw-fi
 <p>You can run the test suite against an arbitrary server:</p>
 
 <pre><code>$ mvn package
-$ java -jar target/ldp-testsuite-1.0.0-SNAPSHOT-shaded.jar \
+$ java -jar target/ldp-testsuite-0.1.1-shaded.jar \
     --server http://localhost --basic
 </code></pre>
 
@@ -85,7 +85,7 @@ test suite as dependency for your tests:</p>
 <pre><code>&lt;dependency&gt;
     &lt;groupId&gt;org.w3&lt;/groupId&gt;
     &lt;artifactId&gt;ldp-testsuite&lt;/artifactId&gt;
-    &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
+    &lt;version&gt;0.1.1-SNAPSHOT&lt;/version&gt;
     &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
 </code></pre>
@@ -108,7 +108,7 @@ Simply update testng.xml and select it, right click and chose "Run As -> TestNG 
 
 <p>For reporting the status of a concrete implementation, please use a command like:</p>
 
-<pre><code>$ java -jar target/ldp-testsuite-1.0.0-SNAPSHOT-shaded.jar \
+<pre><code>$ java -jar target/ldp-testsuite-0.1.1-shaded.jar \
     --server http://localhost --basic --non-rdf --earl \
     --software "Your Software" --shortname "Yours" --language "Java" \
     --homepage http://ldp.example.org  \
