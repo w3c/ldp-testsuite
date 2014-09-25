@@ -1,17 +1,9 @@
 package org.w3.ldp.testsuite.test;
 
-import static org.hamcrest.Matchers.notNullValue;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertNull;
-import static org.testng.Assert.assertTrue;
-import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
-
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.List;
-
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.jayway.restassured.response.Header;
+import com.jayway.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
@@ -27,10 +19,17 @@ import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.matcher.HeaderMatchers;
 import org.w3.ldp.testsuite.vocab.LDP;
 
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.Resource;
-import com.jayway.restassured.response.Header;
-import com.jayway.restassured.response.Response;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.List;
+
+import static org.hamcrest.Matchers.notNullValue;
+import static org.testng.Assert.*;
+import static org.w3.ldp.testsuite.http.HttpHeaders.*;
+import static org.w3.ldp.testsuite.http.LdpPreferences.PREFER_MEMBERSHIP;
+import static org.w3.ldp.testsuite.http.LdpPreferences.PREFER_MINIMAL_CONTAINER;
+import static org.w3.ldp.testsuite.http.MediaTypes.TEXT_TURTLE;
+import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
 public class DirectContainerTest extends CommonContainerTest {
 	private String directContainer;

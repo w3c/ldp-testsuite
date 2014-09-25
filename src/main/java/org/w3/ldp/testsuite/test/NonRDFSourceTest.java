@@ -1,23 +1,14 @@
 package org.w3.ldp.testsuite.test;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-import static org.w3.ldp.testsuite.matcher.HttpStatusNotFoundOrGoneMatcher.isNotFoundOrGone;
-import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
-
-import java.io.IOException;
-
+import com.hp.hpl.jena.rdf.model.Model;
+import com.jayway.restassured.response.Response;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
 import org.apache.marmotta.commons.util.HashUtils;
 import org.apache.marmotta.commons.vocabulary.LDP;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
@@ -26,8 +17,14 @@ import org.w3.ldp.testsuite.exception.SkipException;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.matcher.HeaderMatchers;
 
-import com.hp.hpl.jena.rdf.model.Model;
-import com.jayway.restassured.response.Response;
+import java.io.IOException;
+
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+import static org.w3.ldp.testsuite.http.HttpHeaders.*;
+import static org.w3.ldp.testsuite.http.MediaTypes.TEXT_TURTLE;
+import static org.w3.ldp.testsuite.matcher.HttpStatusNotFoundOrGoneMatcher.isNotFoundOrGone;
+import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
 /**
  * Tests Non-RDF Source LDP resources.

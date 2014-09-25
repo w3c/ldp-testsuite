@@ -16,6 +16,9 @@ import org.w3.ldp.testsuite.vocab.LDP;
 import java.io.IOException;
 
 import static org.testng.Assert.assertTrue;
+import static org.w3.ldp.testsuite.http.HttpHeaders.ACCEPT;
+import static org.w3.ldp.testsuite.http.HttpHeaders.LINK_REL_TYPE;
+import static org.w3.ldp.testsuite.http.MediaTypes.TEXT_TURTLE;
 
 public class IndirectContainerTest extends CommonContainerTest {
 

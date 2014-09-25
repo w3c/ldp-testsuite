@@ -1,20 +1,13 @@
 package org.w3.ldp.testsuite.test;
 
-import static org.hamcrest.core.IsNot.not;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertNotEquals;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertTrue;
-import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.UUID;
-
-import javax.ws.rs.core.UriBuilder;
-
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.util.ResourceUtils;
+import com.hp.hpl.jena.vocabulary.DCTerms;
+import com.hp.hpl.jena.vocabulary.RDF;
+import com.jayway.restassured.response.Response;
+import com.jayway.restassured.specification.RequestSpecification;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Optional;
@@ -30,14 +23,21 @@ import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.matcher.HeaderMatchers;
 import org.w3.ldp.testsuite.vocab.LDP;
 
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.util.ResourceUtils;
-import com.hp.hpl.jena.vocabulary.DCTerms;
-import com.hp.hpl.jena.vocabulary.RDF;
-import com.jayway.restassured.response.Response;
-import com.jayway.restassured.specification.RequestSpecification;
+import javax.ws.rs.core.UriBuilder;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.UUID;
+
+import static org.hamcrest.core.IsNot.not;
+import static org.testng.Assert.*;
+import static org.w3.ldp.testsuite.http.HttpHeaders.*;
+import static org.w3.ldp.testsuite.http.LdpPreferences.PREFER_CONTAINMENT;
+import static org.w3.ldp.testsuite.http.LdpPreferences.PREFER_MINIMAL_CONTAINER;
+import static org.w3.ldp.testsuite.http.MediaTypes.APPLICATION_LD_JSON;
+import static org.w3.ldp.testsuite.http.MediaTypes.TEXT_TURTLE;
+import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
 /**
  * Common tests for all LDP container types.

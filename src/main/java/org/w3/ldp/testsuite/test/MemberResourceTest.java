@@ -1,7 +1,7 @@
 package org.w3.ldp.testsuite.test;
 
-import java.io.IOException;
-
+import com.hp.hpl.jena.rdf.model.Model;
+import com.jayway.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
@@ -10,8 +10,10 @@ import org.testng.annotations.Parameters;
 import org.w3.ldp.testsuite.exception.SkipException;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 
-import com.hp.hpl.jena.rdf.model.Model;
-import com.jayway.restassured.response.Response;
+import java.io.IOException;
+
+import static org.w3.ldp.testsuite.http.HttpHeaders.LOCATION;
+import static org.w3.ldp.testsuite.http.MediaTypes.TEXT_TURTLE;
 
 /**
  * Tests that run on an LDP-RS that is not a container.
