@@ -44,17 +44,17 @@ public abstract class LdpTest {
 	/**
 	 * Alternate content to use on POST requests
 	 */
-	private static Model postModel;
+	private Model postModel;
 
 	/**
 	 * For HTTP details on validation failures
 	 */
-	protected static PrintWriter httpLog;
+	protected PrintWriter httpLog;
 
 	/**
 	 * For skipped test logging
 	 */
-	protected static PrintWriter skipLog;
+	protected PrintWriter skipLog;
 
 	/**
 	 * Builds a model from a turtle representation in a file
@@ -179,9 +179,9 @@ public abstract class LdpTest {
 	 */
 	public static final String MANUAL = "MANUAL";
 
-	private static boolean warnings = false;
+	private boolean warnings = false;
 
-	public static boolean getWarnings() {
+	public boolean getWarnings() {
 		return warnings;
 	}
 
