@@ -100,7 +100,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 	@Override
 	protected String getResourceUri() {
 		if (nonRdfSource == null) {
-			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
+			throw new SkipException(Thread.currentThread().getStackTrace()[2].getMethodName(),
 					"Skipping test because test resource is null.", skipLog);
 		}
 

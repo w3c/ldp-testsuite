@@ -81,7 +81,7 @@ public class MemberResourceTest extends RdfSourceTest {
 	@Override
 	protected String getResourceUri() {
 		if (memberResource == null) {
-			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
+			throw new SkipException(Thread.currentThread().getStackTrace()[2].getMethodName(),
 					"Skipping test because test resource is null.", skipLog);
 		}
 		return memberResource;
