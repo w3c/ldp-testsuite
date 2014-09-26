@@ -3,6 +3,8 @@ package org.w3.ldp.testsuite.test;
 import java.io.IOException;
 
 import org.apache.http.HttpStatus;
+import org.hamcrest.CoreMatchers;
+import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
@@ -54,26 +56,28 @@ public class MemberResourceTest extends RdfSourceTest {
 				}
 
 				Response postResponse = buildBaseRequestSpecification()
+					.with()
 						.contentType(TEXT_TURTLE)
 						.body(model, new RdfObjectMapper())
-						.post(this.container);
+					//.expect()
+					//	.header(LOCATION, CoreMatchers.nullValue())
+					//	.statusCode(HttpStatus.SC_CREATED)
+					.post(this.container);
+
 				if (postResponse.getStatusCode() != HttpStatus.SC_CREATED) {
-					System.err.println(SETUP_ERROR);
-					System.err.println("POST failed with status code: " + postResponse.getStatusCode());
-					System.err.println();
-					return;
+					throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
+							"Could not create test resource for MemberResourceTest, POST failed with status code: " + postResponse.getStatusCode(), skipLog);
 				}
 
 				this.memberResource = postResponse.getHeader(LOCATION);
 				if (this.memberResource == null) {
-					System.err.println(SETUP_ERROR);
-					System.err.println("Location response header missing");
-					System.err.println();
-					return;
+					throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
+							"Could not create test resource for MemberResourceTest, Location response header missing.", skipLog);
 				}
 			} catch (Exception e) {
-				System.err.println(SETUP_ERROR);
-				e.printStackTrace();
+				// Assert.fail(SETUP_ERROR, e);
+				throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
+						SETUP_ERROR, skipLog);
 			}
 		}
 	}

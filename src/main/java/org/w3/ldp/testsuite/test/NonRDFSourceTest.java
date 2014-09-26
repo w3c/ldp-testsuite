@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
 import org.apache.marmotta.commons.util.HashUtils;
 import org.apache.marmotta.commons.vocabulary.LDP;
+import org.hamcrest.CoreMatchers;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
@@ -66,27 +67,29 @@ public class NonRDFSourceTest extends CommonResourceTest {
 		// Create a resource to use for CommonResourceTest.
 		try {
 			Response response = buildBaseRequestSpecification()
+				.with()
 					.header(SLUG, slug)
 					.body(IOUtils.toByteArray(getClass().getResourceAsStream("/" + file)))
 					.contentType(mimeType)
-					.post(container);
+				.expect()
+				//	.statusCode(HttpStatus.SC_CREATED)
+				//	.header(LOCATION, CoreMatchers.notNullValue())
+				.post(container);
+
 			if (response.getStatusCode() != HttpStatus.SC_CREATED) {
-				System.err.println(SETUP_ERROR);
-				System.err.println("POST failed with status code: " + response.getStatusCode());
-				System.err.println();
-				return;
+				throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
+						"Could not create test resource for MemberResourceTest, POST failed with status code: " + response.getStatusCode(), skipLog);
 			}
 
 			nonRdfSource = response.getHeader(LOCATION);
 			if (nonRdfSource == null) {
-				System.err.println(SETUP_ERROR);
-				System.err.println("Location response header missing");
-				System.err.println();
-				return;
+				throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
+						"Could not create test resource for MemberResourceTest, Location response header missing.", skipLog);
 			}
 		} catch (Exception e) {
-			System.err.println(SETUP_ERROR);
-			e.printStackTrace();
+			// Assert.fail(SETUP_ERROR, e);
+			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
+					SETUP_ERROR, skipLog);
 		}
 	}
 
