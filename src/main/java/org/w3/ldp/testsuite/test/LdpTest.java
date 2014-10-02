@@ -1,31 +1,5 @@
 package org.w3.ldp.testsuite.test;
 
-import static org.testng.Assert.assertTrue;
-import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
-
-import java.io.*;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import javax.ws.rs.core.Link;
-
-import org.apache.commons.lang3.StringUtils;
-import org.apache.marmotta.commons.vocabulary.LDP;
-import org.jboss.resteasy.plugins.delegates.LinkDelegate;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
-import org.w3.ldp.testsuite.LdpTestSuite;
-import org.w3.ldp.testsuite.http.HttpHeaders;
-import org.w3.ldp.testsuite.http.LdpPreferences;
-import org.w3.ldp.testsuite.http.MediaTypes;
-import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
-
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
@@ -35,8 +9,32 @@ import com.hp.hpl.jena.vocabulary.RDF;
 import com.jayway.restassured.response.Header;
 import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.RequestSpecification;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.marmotta.commons.vocabulary.LDP;
+import org.jboss.resteasy.plugins.delegates.LinkDelegate;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
+import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 
-public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences {
+import javax.ws.rs.core.Link;
+import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import static org.testng.Assert.assertTrue;
+import static org.w3.ldp.testsuite.http.HttpHeaders.*;
+import static org.w3.ldp.testsuite.http.LdpPreferences.PREFERENCE_INCLUDE;
+import static org.w3.ldp.testsuite.http.LdpPreferences.PREFERENCE_OMIT;
+import static org.w3.ldp.testsuite.http.MediaTypes.TEXT_TURTLE;
+import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
+
+public abstract class LdpTest {
 
 	public final static String SKIPPED_LOG_FILENAME = "skipped.log";
 
@@ -46,17 +44,17 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	/**
 	 * Alternate content to use on POST requests
 	 */
-	private static Model postModel;
+	private Model postModel;
 
 	/**
 	 * For HTTP details on validation failures
 	 */
-	protected static PrintWriter httpLog;
+	protected PrintWriter httpLog;
 
 	/**
 	 * For skipped test logging
 	 */
-	protected static PrintWriter skipLog;
+	protected PrintWriter skipLog;
 
 	/**
 	 * Builds a model from a turtle representation in a file
@@ -181,9 +179,9 @@ public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences
 	 */
 	public static final String MANUAL = "MANUAL";
 
-	private static boolean warnings = false;
+	private boolean warnings = false;
 
-	public static boolean getWarnings() {
+	public boolean getWarnings() {
 		return warnings;
 	}
 

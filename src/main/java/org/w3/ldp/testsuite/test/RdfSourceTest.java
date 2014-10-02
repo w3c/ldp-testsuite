@@ -1,18 +1,15 @@
 package org.w3.ldp.testsuite.test;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.not;
-import static org.hamcrest.text.IsEmptyString.isEmptyOrNullString;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertTrue;
-import static org.w3.ldp.testsuite.matcher.HeaderMatchers.isValidEntityTag;
-import static org.w3.ldp.testsuite.matcher.HttpStatus4xxRangeMatcher.is4xxRange;
-import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
-
-import java.io.IOException;
-import java.net.URISyntaxException;
-
+import com.github.jsonldjava.core.JsonLdError;
+import com.github.jsonldjava.core.JsonLdProcessor;
+import com.github.jsonldjava.utils.JsonUtils;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.StmtIterator;
+import com.hp.hpl.jena.vocabulary.DCTerms;
+import com.hp.hpl.jena.vocabulary.RDF;
+import com.jayway.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.apache.marmotta.commons.vocabulary.LDP;
 import org.jboss.resteasy.spi.Failure;
@@ -29,16 +26,18 @@ import org.w3.ldp.testsuite.http.HttpMethod;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.matcher.HeaderMatchers;
 
-import com.github.jsonldjava.core.JsonLdError;
-import com.github.jsonldjava.core.JsonLdProcessor;
-import com.github.jsonldjava.utils.JsonUtils;
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.Property;
-import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.rdf.model.StmtIterator;
-import com.hp.hpl.jena.vocabulary.DCTerms;
-import com.hp.hpl.jena.vocabulary.RDF;
-import com.jayway.restassured.response.Response;
+import java.io.IOException;
+import java.net.URISyntaxException;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.text.IsEmptyString.isEmptyOrNullString;
+import static org.testng.Assert.*;
+import static org.w3.ldp.testsuite.http.HttpHeaders.*;
+import static org.w3.ldp.testsuite.http.MediaTypes.TEXT_TURTLE;
+import static org.w3.ldp.testsuite.matcher.HeaderMatchers.isValidEntityTag;
+import static org.w3.ldp.testsuite.matcher.HttpStatus4xxRangeMatcher.is4xxRange;
+import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
 /**
  * Tests all RDF source LDP resources, including containers and member resources.

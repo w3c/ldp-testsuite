@@ -1,9 +1,6 @@
 package org.w3.ldp.testsuite.test;
 
-import static org.testng.Assert.assertTrue;
-
-import java.io.IOException;
-
+import com.jayway.restassured.response.Response;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -15,7 +12,10 @@ import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.exception.SkipException;
 import org.w3.ldp.testsuite.vocab.LDP;
 
-import com.jayway.restassured.response.Response;
+import java.io.IOException;
+
+import static org.testng.Assert.assertTrue;
+import static org.w3.ldp.testsuite.http.HttpHeaders.LINK_REL_TYPE;
 
 public class BasicContainerTest extends CommonContainerTest {
 
