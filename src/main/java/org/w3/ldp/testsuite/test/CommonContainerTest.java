@@ -853,9 +853,10 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 		// binary resource. We should be able to get it as text/turtle.
 		final String location = postResponse.getHeader(LOCATION);
 		Response getResponse = buildBaseRequestSpecification()
+				.header(ACCEPT, TEXT_TURTLE)
 			.expect()
 				.statusCode(isSuccessful())
-				.contentType(TEXT_TURTLE)	// if no Accept header, LDP servers must return text/turtle for RDF source
+				.contentType(TEXT_TURTLE)
 			.when()
 				.get(location);
 		assertFalse(
