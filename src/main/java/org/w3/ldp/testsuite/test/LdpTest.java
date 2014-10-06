@@ -43,6 +43,8 @@ public abstract class LdpTest {
 
 	public final static String HTTP_LOG_FILENAME = "http.log";
 	public static final DateFormat df = DateFormat.getDateTimeInstance();
+	
+	public final static String DEFAULT_MODEL_TYPE = "http://example.com/ns#Bug";
 
 	/**
 	 * Alternate content to use on POST requests
@@ -216,7 +218,7 @@ public abstract class LdpTest {
 	protected Model getDefaultModel() {
 		Model model = ModelFactory.createDefaultModel();
 		Resource resource = model.createResource("",
-				model.createResource("http://example.com/ns#Bug"));
+				model.createResource(DEFAULT_MODEL_TYPE));
 		resource.addProperty(RDF.type, model.createResource(LDP.RDFSource.stringValue()));
 		resource.addProperty(
 				model.createProperty("http://example.com/ns#severity"), "High");
@@ -239,7 +241,7 @@ public abstract class LdpTest {
 				return model.listObjectsOfProperty(loc, primaryTopic).next().asResource();
 			}
 		}
-		ResIterator bugs = model.listSubjectsWithProperty(RDF.type, model.createResource("http://example.com/ns#Bug"));
+		ResIterator bugs = model.listSubjectsWithProperty(RDF.type, model.createResource(DEFAULT_MODEL_TYPE));
 		if (bugs.hasNext()) {
 			return bugs.nextResource();
 		} else {
