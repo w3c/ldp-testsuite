@@ -36,6 +36,7 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import static org.w3.ldp.testsuite.http.HttpHeaders.*;
+import static org.w3.ldp.testsuite.http.MediaTypes.TEXT_TURTLE;
 import static org.w3.ldp.testsuite.matcher.HeaderMatchers.isValidEntityTag;
 import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;
 
