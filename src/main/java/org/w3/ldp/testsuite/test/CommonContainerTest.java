@@ -117,7 +117,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 			String relationAbsoluteUri = resolveIfRelative(location, RELATIVE_URI);
 			assertTrue(
 					responseModel.contains(
-							responseModel.getResource(location),
+							getPrimaryTopic(responseModel, location),
 							DCTerms.relation,
 							responseModel.getResource(relationAbsoluteUri)
 					),
@@ -500,7 +500,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 			// Rename the subject of the request model so it matches the received location
 			// and intersect both models.
 			ResourceUtils.renameResource(
-					requestModel.getResource(""), location);
+					requestModel.getResource(""), getPrimaryTopic(responseModel, location).getURI());
 			Model intersectionModel = requestModel.intersection(responseModel);
 
 			// OK if the result is not empty
