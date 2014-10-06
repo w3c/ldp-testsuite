@@ -2,6 +2,9 @@ package org.w3.ldp.testsuite.test;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.NodeIterator;
+import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.ResIterator;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.util.ResourceUtils;
 import com.hp.hpl.jena.vocabulary.DCTerms;
@@ -221,6 +224,27 @@ public abstract class LdpTest {
 		resource.addProperty(DCTerms.description, "Issues that need to be fixed.");
 
 		return model;
+	}
+
+	protected Resource getPrimaryTopic(Model model, String location) {
+		Resource loc = model.getResource(location);
+		Property insertedContentRelation = model.getProperty(LDP.insertedContentRelation.stringValue());
+		NodeIterator relations = model.listObjectsOfProperty(loc, insertedContentRelation);
+		if (relations.hasNext()) {
+			String relation = relations.next().toString();
+			if (LDP.MemberSubject.stringValue().equals(relation)) {
+				return loc;
+			} else {
+				Property primaryTopic = model.getProperty(relation);
+				return model.listObjectsOfProperty(loc, primaryTopic).next().asResource();
+			}
+		}
+		ResIterator bugs = model.listSubjectsWithProperty(RDF.type, model.createResource("http://example.com/ns#Bug"));
+		if (bugs.hasNext()) {
+			return bugs.nextResource();
+		} else {
+			return loc;
+		}
 	}
 
 	protected Model postContent() {
