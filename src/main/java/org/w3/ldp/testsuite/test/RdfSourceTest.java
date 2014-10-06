@@ -282,22 +282,22 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	public void testGetResourceAcceptTurtle() {
 		// Accept: text/turtle
 		buildBaseRequestSpecification().header(ACCEPT, TEXT_TURTLE)
-				.expect().statusCode(isSuccessful()).contentType(TEXT_TURTLE)
+				.expect().statusCode(isSuccessful()).contentType(HeaderMatchers.isTurtleCompatibleContentType())
 				.when().get(getResourceUri()).as(Model.class, new RdfObjectMapper(getResourceUri()));
 
 		// More complicated Accept header
 		buildBaseRequestSpecification().header(ACCEPT, "text/turtle;q=0.9,application/json;q=0.8")
-				.expect().statusCode(isSuccessful()).contentType(TEXT_TURTLE)
+				.expect().statusCode(isSuccessful()).contentType(HeaderMatchers.isTurtleCompatibleContentType())
 				.when().get(getResourceUri()).as(Model.class, new RdfObjectMapper(getResourceUri()));
 
 		// Wildcard
 		buildBaseRequestSpecification().header(ACCEPT, "*/*")
-				.expect().statusCode(isSuccessful()).contentType(TEXT_TURTLE)
+				.expect().statusCode(isSuccessful()).contentType(HeaderMatchers.isTurtleCompatibleContentType())
 				.when().get(getResourceUri()).as(Model.class, new RdfObjectMapper(getResourceUri()));
 
 		// Accept: text/*
 		buildBaseRequestSpecification().header(ACCEPT, "text/*")
-				.expect().statusCode(isSuccessful()).contentType(TEXT_TURTLE)
+				.expect().statusCode(isSuccessful()).contentType(HeaderMatchers.isTurtleCompatibleContentType())
 				.when().get(getResourceUri()).as(Model.class, new RdfObjectMapper(getResourceUri()));
 	}
 	

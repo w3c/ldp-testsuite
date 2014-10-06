@@ -17,6 +17,8 @@
  */
 package org.w3.ldp.testsuite.matcher;
 
+import java.util.regex.Pattern;
+
 import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.CustomTypeSafeMatcher;
@@ -32,6 +34,7 @@ import javax.ws.rs.core.Link;
  */
 public class HeaderMatchers {
 
+	private static final Pattern TURTLE_REGEX = Pattern.compile("^" + MediaTypes.TEXT_TURTLE + "\\s*(;|$)");
 	/**
 	 * Regular expression matching valid ETag values.
 	 *
@@ -107,6 +110,22 @@ public class HeaderMatchers {
 			@Override
 			protected boolean matchesSafely(String item) {
 				return item.equals(MediaTypes.APPLICATION_LD_JSON) || item.equals(MediaTypes.APPLICATION_JSON);
+			}
+		};
+	}
+
+	/**
+	 * Matcher testing a Content-Type response header's compatibility with
+	 * Turtle (expects text/turtle).
+	 *
+	 * @return the matcher
+	 */
+	public static Matcher<String> isTurtleCompatibleContentType() {
+		return new CustomTypeSafeMatcher<String>("text/turtle") {
+			@Override
+			protected boolean matchesSafely(String item) {
+				return MediaTypes.TEXT_TURTLE.equals(item)
+						|| TURTLE_REGEX.matcher(item).find();
 			}
 		};
 	}
