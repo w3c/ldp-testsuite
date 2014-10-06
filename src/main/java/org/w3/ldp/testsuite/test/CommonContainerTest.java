@@ -856,7 +856,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 				.header(ACCEPT, TEXT_TURTLE)
 			.expect()
 				.statusCode(isSuccessful())
-				.contentType(TEXT_TURTLE)
+				.contentType(HeaderMatchers.isTurtleCompatibleContentType())
 			.when()
 				.get(location);
 		assertFalse(
