@@ -507,6 +507,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		// Get the resource.
 		String resourceUri = getResourceUri();
 		Response getResponse = buildBaseRequestSpecification()
+				.header(ACCEPT, TEXT_TURTLE)
 			.expect()
 				.statusCode(isSuccessful())
 				.header(ETAG, isValidEntityTag())
