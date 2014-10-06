@@ -91,7 +91,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		Model model = response.as(Model.class, new RdfObjectMapper(resourceUri));
 
 		// Add a statement with a relative URI.
-		model.getResource(resourceUri).addProperty(DCTerms.relation, model.getResource(RELATIVE_URI));
+		getPrimaryTopic(model, resourceUri).addProperty(DCTerms.relation, model.getResource(RELATIVE_URI));
 
 		// Put the resource back using relative URIs.
 		Response put = buildBaseRequestSpecification()
@@ -116,7 +116,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		String relationAbsoluteUri = resolveIfRelative(resourceUri, RELATIVE_URI);
 		assertTrue(
 				model.contains(
-						model.getResource(resourceUri),
+						getPrimaryTopic(model, resourceUri),
 						DCTerms.relation,
 						model.getResource(relationAbsoluteUri)
 				),
@@ -184,7 +184,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 			approval = STATUS.WG_APPROVED)
 	public void testContainsRdfType() {
 		Model containerModel = getAsModel(getResourceUri());
-		Resource r = containerModel.getResource(getResourceUri());
+		Resource r = getPrimaryTopic(containerModel, getResourceUri());
 		assertTrue(r.hasProperty(RDF.type), "LDP-RS representation has no explicit rdf:type");
 	}
 
@@ -482,7 +482,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	}
 
 	protected void modifyProperty(Model m, String resourceUri, String property) {
-		Resource r = m.getResource(resourceUri);
+		Resource r = getPrimaryTopic(m, resourceUri);
 		Property p = m.createProperty(property);
 		r.removeAll(p);
 		// Don't sweat the value or datatype since we expect the PUT to fail anyway.
@@ -579,7 +579,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 
 		String eTag = response.getHeader(ETAG);
 		Model originalModel = response.as(Model.class, new RdfObjectMapper(resourceUri));
-		Resource resource = originalModel.getResource(resourceUri);
+		Resource resource = getPrimaryTopic(originalModel, resourceUri);
 
 		assertNotNull(resource, "Expected to location resource in response for "+resourceUri);
 
@@ -618,11 +618,11 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		Model updatedModel = response.as(Model.class, new RdfObjectMapper(resourceUri));
 
 		// Validate the updated statement/triple is there.
-		Resource updatedResource = updatedModel.getResource(resourceUri);
+		Resource updatedResource = getPrimaryTopic(updatedModel, resourceUri);
 		assertTrue(updatedResource.hasProperty(DCTerms.title, UPDATED_TITLE), "Expected updated resource to have title: " + UPDATED_TITLE);
 
 		// Make sure it's the only title
-		Resource diffResource = updatedModel.getResource(resourceUri);
+		Resource diffResource = getPrimaryTopic(updatedModel, resourceUri);
 		StmtIterator diffTitleProps = diffResource.listProperties(DCTerms.title);
 		int diffTitlePropSize = diffTitleProps.toSet().size();
 		assertEquals(diffTitlePropSize, 1, "Updated resource contains additional unexpected dcterms:title changes.");
