@@ -46,8 +46,8 @@
   - subjects = tests['testSubjects']
   %head
     %meta{"http-equiv" => "Content-Type", :content => "text/html;charset=utf-8"}
-    %link{:rel => "alternate", :href => "earl.ttl"}
-    %link{:rel => "alternate", :href => "earl.jsonld"}
+    %link{:rel => "alternate", :href => "ldp.ttl"}
+    %link{:rel => "alternate", :href => "ldp.jsonld"}
     - tests['assertions'].each do |file|
       %link{:rel => "related", :href => file}
     %title
