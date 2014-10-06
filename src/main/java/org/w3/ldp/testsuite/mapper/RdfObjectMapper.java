@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
 import org.w3.ldp.testsuite.http.MediaTypes;
+import org.w3.ldp.testsuite.matcher.HeaderMatchers;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
@@ -25,7 +26,7 @@ public class RdfObjectMapper implements ObjectMapper {
 	}
 
 	private String getLang(String mediaType) {
-		if (MediaTypes.TEXT_TURTLE.equals(mediaType)) {
+		if (HeaderMatchers.isTurtleCompatibleContentType().matches(mediaType)) {
 			return "TURTLE";
 		} else if (MediaTypes.APPLICATION_RDF_XML.equals(mediaType)) {
 			return "RDF/XML";
