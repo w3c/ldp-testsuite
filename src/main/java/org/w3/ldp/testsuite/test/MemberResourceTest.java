@@ -29,9 +29,12 @@ public class MemberResourceTest extends RdfSourceTest {
 		super(auth);
 	}
 
+	/*
+	 * Creates a resource to test if there's no memberResource test parameter.
+	 */
 	@Parameters({"memberResource", "directContainer", "indirectContainer", "basicContainer", "memberTtl"})
 	@BeforeSuite(alwaysRun = true)
-	public void setup(@Optional String memberResource, @Optional String directContainer,
+	public void createTestResource(@Optional String memberResource, @Optional String directContainer,
 			@Optional String indirectContainer, @Optional String basicContainer,
 			@Optional String memberTtl) {
 		// If resource is defined, use that. Otherwise, fall back to creating one from one of the containers.
@@ -89,8 +92,12 @@ public class MemberResourceTest extends RdfSourceTest {
 		return memberResource;
 	}
 
+	/*
+	 * Deletes the test resource to clean up if it's wasn't provided using the
+	 * memberResource test parameter.
+	 */
 	@AfterSuite(alwaysRun = true)
-	public void tearDown() {
+	public void deleteTestResource() {
 		// If container isn't null, we created the resource ourselves. To clean up, delete the resource.
 		if (container != null) {
 			buildBaseRequestSpecification().delete(memberResource);
