@@ -43,7 +43,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 
 	@Parameters({ "basicContainer", "directContainer", "indirectContainer" })
 	@BeforeSuite(alwaysRun = true)
-	public void setup(@Optional String basicContainer, @Optional String directContainer, @Optional String indirectContainer) {
+	public void createTestResource(@Optional String basicContainer, @Optional String directContainer, @Optional String indirectContainer) {
 		if (StringUtils.isNotBlank(basicContainer)) {
 			container = basicContainer;
 		} else if (StringUtils.isNotBlank(directContainer)) {
@@ -88,7 +88,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 	}
 
 	@AfterSuite(alwaysRun = true)
-	public void tearDown() {
+	public void deleteTestResource() {
 		if (nonRdfSource != null) {
 			buildBaseRequestSpecification().delete(nonRdfSource);
 		}

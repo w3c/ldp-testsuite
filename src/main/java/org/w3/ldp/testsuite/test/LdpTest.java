@@ -42,24 +42,29 @@ public abstract class LdpTest {
 	public final static String SKIPPED_LOG_FILENAME = "skipped.log";
 
 	public final static String HTTP_LOG_FILENAME = "http.log";
-	public static final DateFormat df = DateFormat.getDateTimeInstance();
-	
+	public final static DateFormat df = DateFormat.getDateTimeInstance();
+
 	public final static String DEFAULT_MODEL_TYPE = "http://example.com/ns#Bug";
+
+	/*
+	 * The following properties are marked static because commonSetup() is only called
+	 * one time, even if several test classes inherit from LdpTest.
+	 */
 
 	/**
 	 * Alternate content to use on POST requests
 	 */
-	private Model postModel;
+	private static Model postModel;
 
 	/**
 	 * For HTTP details on validation failures
 	 */
-	protected PrintWriter httpLog;
+	protected static PrintWriter httpLog;
 
 	/**
 	 * For skipped test logging
 	 */
-	protected PrintWriter skipLog;
+	protected static PrintWriter skipLog;
 
 	/**
 	 * Builds a model from a turtle representation in a file
@@ -105,11 +110,16 @@ public abstract class LdpTest {
 	 */
 	@BeforeSuite(alwaysRun = true)
 	@Parameters({"output", "postTtl", "httpLogging", "skipLogging"})
-	public void setup(String outputDir, @Optional String postTtl, @Optional String httpLogging, @Optional String skipLogging) throws IOException {
+	public void commonSetup(String outputDir, @Optional String postTtl, @Optional String httpLogging, @Optional String skipLogging) throws IOException {
+
+		/*
+		 * Note: This method is only called one time, even if many classes inherit
+		 * from LdpTest. Don't set non-static members here.
+		 */
+
 		postModel = readModel(postTtl);
 
 		File dir = new File(outputDir);
-		//FileUtils.deleteDirectory(dir);
 		dir.mkdirs();
 
 		if ("true".equals(httpLogging)) {
@@ -139,7 +149,7 @@ public abstract class LdpTest {
 	}
 
 	@AfterSuite(alwaysRun = true)
-	public void tearDown() {
+	public void commonTearDown() {
 		if (httpLog != null) {
 			httpLog.println();
 			httpLog.flush();
@@ -183,17 +193,6 @@ public abstract class LdpTest {
 	 * via various reporters.
 	 */
 	public static final String MANUAL = "MANUAL";
-
-	private boolean warnings = false;
-
-	public boolean getWarnings() {
-		return warnings;
-	}
-
-	/**
-	 * If true, log HTTP request and response details on errors.
-	 */
-	protected boolean httpLogging = false;
 
 	/**
 	 * Build a base RestAssured {@link com.jayway.restassured.specification.RequestSpecification}.
