@@ -151,7 +151,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 					.header(ACCEPT, TEXT_TURTLE)
 				.expect()
 					.statusCode(HttpStatus.SC_OK)
-					.contentType(TEXT_TURTLE)
+					.contentType(HeaderMatchers.isTurtleCompatibleContentType())
 				.get(container)
 					.body().as(Model.class, new RdfObjectMapper(container));
 
@@ -224,7 +224,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 					.header(ACCEPT, TEXT_TURTLE)
 				.expect()
 					.statusCode(HttpStatus.SC_OK)
-					.contentType(TEXT_TURTLE)
+					.contentType(HeaderMatchers.isTurtleCompatibleContentType())
 					.header(ETAG, HeaderMatchers.isValidEntityTag())
 				.when()
 					.get(associatedRdfSource)
@@ -333,7 +333,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 					.header(ACCEPT, TEXT_TURTLE)
 				.expect()
 					.statusCode(isSuccessful())
-					.contentType(TEXT_TURTLE)
+					.contentType(HeaderMatchers.isTurtleCompatibleContentType())
 					.header(ETAG, HeaderMatchers.isValidEntityTag())
 				.when()
 					.get(associatedRdfSource);
@@ -373,7 +373,7 @@ public class NonRDFSourceTest extends CommonResourceTest {
 					.header(ACCEPT, TEXT_TURTLE)
 				.expect()
 					.statusCode(isSuccessful())
-					.contentType(TEXT_TURTLE)
+					.contentType(HeaderMatchers.isTurtleCompatibleContentType())
 				.when()
 					.get(associatedRdfSource);
 

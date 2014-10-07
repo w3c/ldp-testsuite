@@ -168,7 +168,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		// should succeed for all LDP-RS.
 		buildBaseRequestSpecification()
 				.header(ACCEPT, TEXT_TURTLE)
-				.expect().statusCode(HttpStatus.SC_OK).contentType(TEXT_TURTLE)
+				.expect().statusCode(HttpStatus.SC_OK).contentType(HeaderMatchers.isTurtleCompatibleContentType())
 				.when().get(getResourceUri()).as(Model.class, new RdfObjectMapper(getResourceUri()));
 	}
 
@@ -302,7 +302,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	public void testGetResourceAsTurtleNoAccept() {
 		// No Accept header
 		buildBaseRequestSpecification()
-				.expect().statusCode(isSuccessful()).contentType(TEXT_TURTLE)
+				.expect().statusCode(isSuccessful()).contentType(HeaderMatchers.isTurtleCompatibleContentType())
 				.when().get(getResourceUri()).as(Model.class, new RdfObjectMapper(getResourceUri()));
 	}
 

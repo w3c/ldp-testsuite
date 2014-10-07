@@ -260,6 +260,7 @@ public abstract class CommonResourceTest extends LdpTest {
 
 		String resourceUri = getResourceUri();
 		Response response = buildBaseRequestSpecification()
+				.header(ACCEPT, TEXT_TURTLE)
 			.expect()
 				.statusCode(isSuccessful())
 				.header(ETAG, isValidEntityTag())
@@ -296,6 +297,7 @@ public abstract class CommonResourceTest extends LdpTest {
 
 		String resourceUri = getResourceUri();
 		Response response = buildBaseRequestSpecification()
+				.header(ACCEPT, TEXT_TURTLE)
 				.expect()
 					.statusCode(isSuccessful()).header(ETAG, isValidEntityTag())
 				.when()
@@ -392,6 +394,7 @@ public abstract class CommonResourceTest extends LdpTest {
 
 		String resourceUri = getResourceUri();
 		Response response = buildBaseRequestSpecification()
+				.header(ACCEPT, TEXT_TURTLE)
 			.expect()
 				.statusCode(isSuccessful()).header(ETAG, isValidEntityTag())
 			.when()
