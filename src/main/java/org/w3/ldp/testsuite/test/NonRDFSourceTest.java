@@ -56,8 +56,8 @@ public class NonRDFSourceTest extends CommonResourceTest {
 					skipLog);
 		}
 
-		final String slug = "test",
-				file = slug + ".png",
+		final String slug = "non-rdf-source",
+				file = "test.png",
 				mimeType = "image/png";
 
 		// Create a resource to use for CommonResourceTest.
