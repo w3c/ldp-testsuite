@@ -349,7 +349,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 		// Ensure we don't get back any of the container types in the rel='type' Link header
 		Response response = buildBaseRequestSpecification()
 				.expect()
-					.statusCode(HttpStatus.SC_OK)
+					.statusCode(isSuccessful())
 				.when()
 					.options(containerAsResource);
 		assertFalse(
