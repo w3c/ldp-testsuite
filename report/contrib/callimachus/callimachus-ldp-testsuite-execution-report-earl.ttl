@@ -12,6 +12,45 @@
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
   earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-15T13:02:36.867Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description "Tested manually.";
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-CreateIndirectContainer
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-15T13:02:36.869Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description "Tested manually.";
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-PostResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-15T13:02:36.867Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description "Tested manually.";
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-ContainsLdpcUri
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a                    earl:TestResult ;
                      dcterms:date         "2014-10-09T19:49:31.659Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
