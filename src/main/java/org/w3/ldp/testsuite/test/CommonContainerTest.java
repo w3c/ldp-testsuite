@@ -881,7 +881,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 			coveredByTests = {RdfSourceTest.class},
 			coveredByGroups = {MUST})
 	public void testConformsContainerRdfResource() {
-		// TODO impl testConformsBcLdpResource
+		throw new org.testng.SkipException("Covered indirectly by the MUST tests defined in RdfSourceTest class");
 	}
 
 	@Override

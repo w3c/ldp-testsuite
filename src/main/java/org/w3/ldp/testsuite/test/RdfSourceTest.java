@@ -468,7 +468,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 			coveredByTests = {CommonResourceTest.class},
 			coveredByGroups = {MUST})
 	public void testConformsRdfSourceLdpResource() {
-		// TODO impl testConformsRdfSourceLdpResource
+		throw new org.testng.SkipException("Covered indirectly by the MUST tests defined in CommonResourceTest class");
 	}
 
 	protected void modifyProperty(Model m, String resourceUri, String property) {

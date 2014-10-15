@@ -39,7 +39,7 @@ public class BasicContainerTest extends CommonContainerTest {
 			coveredByTests = {CommonContainerTest.class},
 			coveredByGroups = {MUST})
 	public void testConformsBcLdpContainer() {
-		// TODO impl testConformsBcLdpResource
+		throw new org.testng.SkipException("Covered indirectly by the MUST tests defined in CommonContainerTest class");
 	}
 
 	@BeforeClass(alwaysRun = true)

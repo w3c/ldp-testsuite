@@ -153,17 +153,17 @@ public class DirectContainerTest extends CommonContainerTest {
 
 	@Test(
 			groups = {MUST},
-			enabled = false, // not implemented
 			description = "LDP Direct Containers MUST behave as if they have a "
 					+ "(LDPC URI, ldp:insertedContentRelation , ldp:MemberSubject)"
 					+ " triple, but LDP imposes no requirement to materialize such "
 					+ "a triple in the LDP-DC representation.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpdc-indirectmbr-basic",
-			testMethod = METHOD.NOT_IMPLEMENTED,
+			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_PENDING)
 	public void testActAsIfInsertedContentRelationTripleExists() {
-		// TODO: Impl testActAsIfInsertedContentRelationTripleExists
+		// TODO: This should probably just treat this as an indirect test, see issue #206
+		testPostResourceUpdatesTriples();
 	}
 
 	@Test(
@@ -321,7 +321,7 @@ public class DirectContainerTest extends CommonContainerTest {
 			coveredByTests = {CommonContainerTest.class},
 			coveredByGroups = {MUST})
 	public void testConformsDcLdpContainer() {
-		// TODO impl testConformsDcLdpResource
+		throw new org.testng.SkipException("Covered indirectly by the MUST tests defined in CommonContainerTest class");
 	}
 
 	private boolean hasMembershipTriples(Model containerModel) {
