@@ -1470,3 +1470,16 @@
   earl:subject     <http://eclipse.org/lyo#dc4> ;
   earl:test        ldpt:MemberResource-RelativeUriResolutionPut
 ] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-15T01:57:45.666Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://eclipse.org/lyo#dc4> ;
+  earl:test        ldpt:DirectContainer-ActAsIfInsertedContentRelationTripleExists
+] .
+
