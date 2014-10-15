@@ -14,111 +14,12 @@
   earl:assertedBy  <http://callimachusproject.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-02T20:56:03.178Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "java.lang.AssertionError: 1 expectation failed.\nExpected status code <201> doesn't match actual status code <405>.\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:577)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:927)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1347)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:133)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy:159)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy:274)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:166)\n\tat org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:56)\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:133)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:141)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy:301)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.putToCreate(CommonContainerTest.java:953)\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testPutToCreate(CommonContainerTest.java:64)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 44 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     dcterms:date         "2014-10-09T19:49:31.659Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: 1 expectation failed.\nExpected status code <201> doesn't match actual status code <400>.\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:57)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:182)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:577)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:927)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1347)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.post(RequestSpecificationImpl.groovy:155)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.post(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.post(ResponseSpecificationImpl.groovy:270)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.post(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testCreateWithoutConstraints(CommonContainerTest.java:563)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 42 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
                      earl:outcome         earl:failed
                    ] ;
   earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-PutToCreate
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.187Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-DeleteRemovesContainmentTriple
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.192Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-ContentTypeHeader
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.197Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-PatchMethod
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:manual ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.197Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-RestrictClientInference
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-02T20:56:03.186Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.test4xxErrorHasResponseBody(RdfSourceTest.java:429)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-4xxErrorHasResponseBody
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.195Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-PutBadETag
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-02T20:56:03.18Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: Server does not require If-Match header.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testPreconditionRequiredStatusCode(CommonResourceTest.java:370)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-PreconditionRequiredStatusCode
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-02T20:56:03.185Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: Skipping test because PUT request was successful.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:529)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxConstrainedBy(RdfSourceTest.java:494)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsUnknownProp(RdfSourceTest.java:385)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-PublishConstraintsUnknownProp
+  earl:test        ldpt:IndirectContainer-CreateWithoutConstraints
 ] .
 
 [ a                earl:Assertion ;
@@ -126,117 +27,7 @@
   earl:assertedBy  <http://callimachusproject.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.188Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-Options
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.194Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-ServerHonorsSlug
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.198Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-GetResponseHeaders
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-02T20:56:03.177Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "java.lang.AssertionError: 1 expectation failed.\nExpected content-type text/turtle doesn't match actual content-type \"text/html;charset=UTF-8\".\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:577)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:927)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1347)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy:151)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.get(ResponseSpecificationImpl.groovy:266)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.get(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testGetResourceAcceptTurtle(RdfSourceTest.java:298)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 39 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:failed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-GetResourceAcceptTurtle
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-02T20:56:03.183Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: Server does not require If-Match header.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testPreconditionRequiredStatusCode(CommonResourceTest.java:370)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-PreconditionRequiredStatusCode
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.19Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-OptionsAllowHeader
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.197Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-OptionsAllowHeader
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:manual ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.197Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-UseStandardVocabularies
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.189Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-Head
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.188Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-09T19:49:31.663Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
   earl:subject     <http://callimachusproject.org> ;
@@ -248,7 +39,19 @@
   earl:assertedBy  <http://callimachusproject.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.194Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-09T19:49:31.667Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-RejectPutModifyingContainmentTriples
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.67Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
   earl:subject     <http://callimachusproject.org> ;
@@ -260,56 +63,7 @@
   earl:assertedBy  <http://callimachusproject.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.198Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-Head
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-02T20:56:03.178Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: Skipping test because PUT request was successful.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:529)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutPropertiesNotPersisted(RdfSourceTest.java:450)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-PutPropertiesNotPersisted
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:manual ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.197Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-RestrictClientInference
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.187Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-AcceptPostResponseHeader
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.197Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-09T19:49:31.672Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
   earl:subject     <http://callimachusproject.org> ;
@@ -317,16 +71,27 @@
 ] .
 
 [ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.676Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:NonRDFSource-LdpLinkHeader
+] .
+
+[ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
   earl:assertedBy  <http://callimachusproject.org> ;
   earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-02T20:56:03.182Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: Skipping test because PUT request was successful.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:529)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxConstrainedBy(RdfSourceTest.java:494)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsUnknownProp(RdfSourceTest.java:385)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.68Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
                    ] ;
   earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-PublishConstraintsUnknownProp
+  earl:test        ldpt:MemberResource-LdpLinkHeader
 ] .
 
 [ a                earl:Assertion ;
@@ -334,11 +99,351 @@
   earl:assertedBy  <http://callimachusproject.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.187Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-09T19:49:31.666Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
   earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-RestrictUriReUseNoSlug
+  earl:test        ldpt:IndirectContainer-PreconditionRequiredStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.669Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-AcceptTurtle
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.672Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-PutBadETag
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.674Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-AcceptPostResponseHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.679Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:MemberResource-ConditionFailedStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.663Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-ContainsRdfType
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.668Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-4xxErrorHasResponseBody
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.671Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-Options
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.677Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-ResponsePropertiesNotPersisted
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-09T19:49:31.658Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: 1 expectation failed.\nExpected status code <201> doesn't match actual status code <405>.\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:577)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:927)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1347)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:133)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy:159)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy:274)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:166)\n\tat org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:56)\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:133)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:141)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy:301)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.putToCreate(CommonContainerTest.java:950)\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testPutToCreate(CommonContainerTest.java:64)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 44 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:failed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-PutToCreate
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-09T19:49:31.662Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRestrictClientInference(RdfSourceTest.java:270)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-RestrictClientInference
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.666Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-PatchMethod
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.669Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-PublishConstraintsUnknownProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.674Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-GetResourceAsTurtleNoAccept
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.68Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:MemberResource-OptionsAllowHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-09T19:49:31.661Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testReUseVocabularies(RdfSourceTest.java:225)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:MemberResource-ReUseVocabularies
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.665Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-GetResourceAcceptTurtle
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.668Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:MemberResource-PublishConstraintsUnknownProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.671Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:NonRDFSource-AcceptPatchHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.673Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:NonRDFSource-PostNonRDFSource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.679Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:MemberResource-GetResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-09T19:49:31.659Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: Skipping test because there are restrictions on PUT content for this resource. The requirement needs to be tested manually.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRelativeUriResolutionPut(RdfSourceTest.java:77)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-RelativeUriResolutionPut
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.667Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:NonRDFSource-Head
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.67Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:MemberResource-ContainsRdfType
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.673Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-JsonLdRepresentation
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.676Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:NonRDFSource-ETagHeadersHead
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.68Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-PreferContainmentTriples
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.669Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:NonRDFSource-OptionsHasSameLinkHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.666Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:NonRDFSource-ETagHeadersGet
 ] .
 
 <http://callimachusproject.org>
@@ -352,65 +457,27 @@
         doap:programming-language  "Java" .
 
 [ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.195Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-PostResponseStatusAndLocation
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.199Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-NullRelativeUriPost
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-02T20:56:03.18Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: containerAsResource is null\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testRequestedInteractionModelHeaders(CommonContainerTest.java:346)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-RequestedInteractionModelHeaders
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-02T20:56:03.185Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: Skipping test because PUT request was successful.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:529)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutPropertiesNotPersisted(RdfSourceTest.java:450)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-PutPropertiesNotPersisted
-] .
-
-[ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
   earl:assertedBy  <http://callimachusproject.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.189Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-09T19:49:31.672Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
   earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-GetResource
+  earl:test        ldpt:MemberResource-GetResourceAsTurtleNoAccept
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.679Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:NonRDFSource-Options
 ] .
 
 [ a                earl:Assertion ;
@@ -418,386 +485,7 @@
   earl:assertedBy  <http://callimachusproject.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.194Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-AcceptPatchHeader
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.198Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-PutReplacesResource
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-02T20:56:03.183Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: Skipping test because PUT request was successful.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:529)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxResponseBody(RdfSourceTest.java:539)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testResponsePropertiesNotPersisted(RdfSourceTest.java:468)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-ResponsePropertiesNotPersisted
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.192Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-ETagHeadersHead
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.197Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-LdpLinkHeader
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:manual ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.197Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-IsHttp11Manual
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-02T20:56:03.186Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsReadOnlyProp(RdfSourceTest.java:363)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-PublishConstraintsReadOnlyProp
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.189Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-PutRequiresIfMatch
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.188Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-GetResourceAsTurtleNoAccept
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.199Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-RejectPutModifyingContainmentTriples
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:manual ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.197Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-UseStandardVocabularies
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-02T20:56:03.184Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutReadOnlyProperties4xxStatus(RdfSourceTest.java:406)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-PutReadOnlyProperties4xxStatus
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.188Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-PostContainer
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.198Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-ContainsRdfType
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-02T20:56:03.177Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "java.lang.AssertionError: 2 expectations failed.\nExpected status code <201> doesn't match actual status code <500>.\n\nExpected header \"Location\" was not set, was \"null\". Headers are:\nContent-Type=text/html;charset=UTF-8\nAllow=GET,HEAD,POST,PATCH,DELETE,PUT\nVia=1.1 localhost (Apache-HttpClient/4.3.5 (cache))\nDate=Thu, 02 Oct 2014 20:55:52 GMT\nContent-Length=10062\nContent-Encoding=identity\nConnection=Keep-Alive\nServer=Callimachus/1.4.0-beta+022054\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:57)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:182)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:577)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:927)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1347)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.post(RequestSpecificationImpl.groovy:155)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.post(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.post(ResponseSpecificationImpl.groovy:270)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.post(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testPostJsonLd(CommonContainerTest.java:852)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 42 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:failed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-PostJsonLd
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-02T20:56:03.182Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutReadOnlyProperties4xxStatus(RdfSourceTest.java:406)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-PutReadOnlyProperties4xxStatus
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.187Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-RdfTypeLdpContainer
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.19Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-TypeRdfSource
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.196Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-ConformsRdfSourceLdpResource
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.197Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-PutReplacesResource
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.189Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-TypeRdfSource
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.195Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-LdpLinkHeader
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.198Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-ConditionFailedStatusCode
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.197Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-RelativeUriResolutionPut
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.187Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-ContainsRdfType
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.194Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:failed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-ConformsContainerRdfResource
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-02T20:56:03.176Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "java.lang.AssertionError: 1 expectation failed.\nExpected content-type text/turtle doesn't match actual content-type \"text/html;charset=UTF-8\".\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:577)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:927)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1347)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy:151)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.get(ResponseSpecificationImpl.groovy:266)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.get(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testGetResourceAcceptTurtle(RdfSourceTest.java:298)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 39 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:failed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-GetResourceAcceptTurtle
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:manual ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.197Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-ReUseVocabularies
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-02T20:56:03.186Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: containerAsResource is null\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testRequestedInteractionModelCreateNotAllowed(CommonContainerTest.java:310)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-RequestedInteractionModelCreateNotAllowed
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.189Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-JsonLdRepresentation
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.199Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-RelativeUriResolutionPost
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.18Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-09T19:49:31.66Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:untested
                    ] ;
   earl:subject     <http://callimachusproject.org> ;
@@ -809,23 +497,11 @@
   earl:assertedBy  <http://callimachusproject.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.197Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-09T19:49:31.664Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
   earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-PutSimpleUpdate
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.188Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-ConditionFailedStatusCode
+  earl:test        ldpt:IndirectContainer-TypeRdfSource
 ] .
 
 [ a                earl:Assertion ;
@@ -833,7 +509,409 @@
   earl:assertedBy  <http://callimachusproject.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.194Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-09T19:49:31.668Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-ContentTypeHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.671Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:MemberResource-PreconditionRequiredStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.678Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-ConformsRdfSourceLdpResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-09T19:49:31.658Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: Server reused URIs for POSTed resources.\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testRestrictUriReUse(CommonContainerTest.java:918)\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testRestrictUriReUseSlug(CommonContainerTest.java:589)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 23 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:failed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-RestrictUriReUseSlug
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.663Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-PostJsonLd
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.667Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-RequestedInteractionModelHeaders
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.67Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:NonRDFSource-PostResourceGetMetadataAndBinary
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.672Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-RequestedInteractionModelCreateNotAllowed
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.675Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:MemberResource-PublishConstraintsReadOnlyProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.68Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-PostResponseStatusAndLocation
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-09T19:49:31.661Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testReUseVocabularies(RdfSourceTest.java:225)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-ReUseVocabularies
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.668Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:NonRDFSource-OptionsAllowHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.671Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:MemberResource-Head
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.674Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-RdfTypeLdpContainer
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.679Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-ServerHonorsSlug
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-09T19:49:31.66Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: Skipping test because there are restrictions on PUT content for this resource. The requirement needs to be tested manually.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.putReplaceResource(RdfSourceTest.java:558)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutSimpleUpdate(RdfSourceTest.java:152)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-PutSimpleUpdate
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.667Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-ContainerSupportsHttpLinkHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.67Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-PutPropertiesNotPersisted
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.673Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-RestrictUriReUseNoSlug
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.68Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-PostNoSlug
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-09T19:49:31.662Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testIsHttp11Manual(CommonResourceTest.java:130)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-IsHttp11Manual
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.666Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:NonRDFSource-DeleteNonRDFSourceDeletesAssociatedResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.672Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-RelativeUriResolutionPost
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.679Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:MemberResource-PutPropertiesNotPersisted
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-09T19:49:31.661Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testUseStandardVocabularies(RdfSourceTest.java:250)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:MemberResource-UseStandardVocabularies
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.666Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:MemberResource-ETagHeadersGet
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.668Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:MemberResource-4xxErrorHasResponseBody
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.671Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:MemberResource-PutRequiresIfMatch
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.674Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:MemberResource-JsonLdRepresentation
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.678Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:NonRDFSource-GetResponseHeaders
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-09T19:49:31.659Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: expected [true] but found [false]\n\tat org.w3.ldp.testsuite.test.NonRDFSourceTest.testPostResourceAndCheckLink(NonRDFSourceTest.java:278)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 25 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:failed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:NonRDFSource-PostResourceAndCheckLink
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.663Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:NonRDFSource-PreconditionRequiredStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.67Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:MemberResource-PutReadOnlyProperties4xxStatus
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.672Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
   earl:subject     <http://callimachusproject.org> ;
@@ -845,24 +923,36 @@
   earl:assertedBy  <http://callimachusproject.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.198Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-09T19:49:31.677Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
   earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-PutBadETag
+  earl:test        ldpt:MemberResource-GetResourceAcceptTurtle
 ] .
 
 [ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
   earl:assertedBy  <http://callimachusproject.org> ;
   earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.68Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:NonRDFSource-ConditionFailedStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:manual ;
   earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-02T20:56:03.178Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "java.lang.AssertionError: 1 expectation failed.\nExpected status code <201> doesn't match actual status code <400>.\n\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:577)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:927)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1347)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.post(RequestSpecificationImpl.groovy:155)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.post(RequestSpecificationImpl.groovy)\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.post(ResponseSpecificationImpl.groovy:270)\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.post(ResponseSpecificationImpl.groovy)\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testCreateWithoutConstraints(CommonContainerTest.java:571)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 40 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:failed
+                     dcterms:date         "2014-10-09T19:49:31.662Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testIsHttp11Manual(CommonResourceTest.java:130)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
                    ] ;
   earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-CreateWithoutConstraints
+  earl:test        ldpt:NonRDFSource-IsHttp11Manual
 ] .
 
 [ a                earl:Assertion ;
@@ -870,31 +960,7 @@
   earl:assertedBy  <http://callimachusproject.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.187Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-AcceptPatchHeader
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.191Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-ConformsRdfSourceLdpResource
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.197Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-09T19:49:31.669Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
   earl:subject     <http://callimachusproject.org> ;
@@ -902,15 +968,27 @@
 ] .
 
 [ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
   earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:manual ;
+  earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.197Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-09T19:49:31.668Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
   earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-IsHttp11Manual
+  earl:test        ldpt:MemberResource-AcceptPatchHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.671Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:MemberResource-Options
 ] .
 
 [ a                earl:Assertion ;
@@ -918,98 +996,24 @@
   earl:assertedBy  <http://callimachusproject.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.189Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-09T19:49:31.674Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
   earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-Options
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.195Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-ETagHeadersGet
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-02T20:56:03.179Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.test4xxErrorHasResponseBody(RdfSourceTest.java:429)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-4xxErrorHasResponseBody
+  earl:test        ldpt:IndirectContainer-LdpLinkHeader
 ] .
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
   earl:assertedBy  <http://callimachusproject.org> ;
   earl:mode        earl:manual ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.197Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-ReUseVocabularies
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.188Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-GetResourceAsTurtleNoAccept
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.194Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-PreferContainmentTriples
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
   earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-02T20:56:03.176Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "java.lang.AssertionError: Server reused URIs for POSTed resources.\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testRestrictUriReUse(CommonContainerTest.java:919)\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testRestrictUriReUseSlug(CommonContainerTest.java:591)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 23 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:failed
+                     dcterms:date         "2014-10-09T19:49:31.66Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testUseStandardVocabularies(RdfSourceTest.java:250)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
                    ] ;
   earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-RestrictUriReUseSlug
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-02T20:56:03.183Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: Skipping test because PUT request was successful.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:529)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxResponseBody(RdfSourceTest.java:539)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testResponsePropertiesNotPersisted(RdfSourceTest.java:468)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-ResponsePropertiesNotPersisted
+  earl:test        ldpt:IndirectContainer-UseStandardVocabularies
 ] .
 
 [ a                earl:Assertion ;
@@ -1017,23 +1021,11 @@
   earl:assertedBy  <http://callimachusproject.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.186Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-09T19:49:31.664Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
   earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-AcceptTurtle
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.19Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-ETagHeadersGet
+  earl:test        ldpt:IndirectContainer-NullRelativeUriPost
 ] .
 
 [ a                earl:Assertion ;
@@ -1041,56 +1033,7 @@
   earl:assertedBy  <http://callimachusproject.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.197Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-JsonLdRepresentation
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.199Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-PostNoSlug
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-02T20:56:03.181Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: Skipping test because we have no read-only properties to PUT. Server-managed properties are specified using the \"read-only-prop\" command-line parameter.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsReadOnlyProp(RdfSourceTest.java:363)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:MemberResource-PublishConstraintsReadOnlyProp
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.188Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-GetResponseHeaders
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://callimachusproject.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.194Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-09T19:49:31.668Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
   earl:subject     <http://callimachusproject.org> ;
@@ -1102,9 +1045,324 @@
   earl:assertedBy  <http://callimachusproject.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-02T20:56:03.198Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-09T19:49:31.673Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
   earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-ContainerSupportsHttpLinkHeader
+  earl:test        ldpt:IndirectContainer-ETagHeadersGet
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.681Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-OptionsAllowHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.663Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:MemberResource-ResponsePropertiesNotPersisted
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.667Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:MemberResource-PutReplacesResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.672Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:NonRDFSource-PostResourceAndCheckAssociatedResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.676Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-ConformsContainerRdfResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.68Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:MemberResource-GetResponseHeaders
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-09T19:49:31.661Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testIsHttp11Manual(CommonResourceTest.java:130)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:MemberResource-IsHttp11Manual
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.666Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:MemberResource-ETagHeadersHead
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.669Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-PostContainer
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.671Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-ConditionFailedStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.674Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:NonRDFSource-PostResourceGetBinary
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.679Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:NonRDFSource-PutRequiresIfMatch
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.663Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-PutReadOnlyProperties4xxStatus
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.67Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:MemberResource-TypeRdfSource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.673Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-AcceptPatchHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.677Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:NonRDFSource-PostResourceAndGetFromContainer
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-09T19:49:31.662Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipNotTestableException: This requirement or recommendation must be tested manually. It is difficult or impossible to write automated tests for and is not part of the testsuite.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRestrictClientInference(RdfSourceTest.java:270)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:MemberResource-RestrictClientInference
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.666Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-PublishConstraintsReadOnlyProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.669Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-GetResponseHeaders
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.669Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:NonRDFSource-PutBadETag
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.674Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-Head
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-09T19:49:31.66Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: Skipping test because there are restrictions on PUT content for this resource. The requirement needs to be tested manually.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.putReplaceResource(RdfSourceTest.java:558)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutReplacesResource(RdfSourceTest.java:138)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-PutReplacesResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.665Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:MemberResource-ConformsRdfSourceLdpResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.668Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:IndirectContainer-DeleteRemovesContainmentTriple
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.673Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:MemberResource-PutBadETag
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://callimachusproject.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-09T19:49:31.678Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://callimachusproject.org> ;
+  earl:test        ldpt:NonRDFSource-GetResource
 ] .
