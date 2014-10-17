@@ -1182,3 +1182,16 @@
   earl:subject     <https://hub.jazz.net/project/sspeiche/LDPjs#dc-simple> ;
   earl:test        ldpt:DirectContainer-ConformsDcLdpContainer
 ] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://stevespeicher.me#self> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-16T01:57:45.666Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <https://hub.jazz.net/project/sspeiche/LDPjs#dc-simple> ;
+  earl:test        ldpt:DirectContainer-ActAsIfInsertedContentRelationTripleExists
+] .
+
