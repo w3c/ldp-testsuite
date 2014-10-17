@@ -316,7 +316,7 @@
                                      foaf:mbox  "sspeiche@gmail.com" ;
                                      foaf:name  "Steve Speicher"
                                    ] ;        doap:homepage              "https://hub.jazz.net/project/sspeiche/LDPjs#dc-simple" ;
-        doap:name                  "LDP.js Ref Impl" ;
+        doap:name                  "LDP.js DC" ;
         doap:programming-language  "JavaScript" .
 
 [ a                earl:Assertion ;
