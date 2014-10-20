@@ -19,7 +19,7 @@
                      earl:outcome  earl:passed
                    ] ;
   earl:subject     <http://callimachusproject.org> ;
-  earl:test        ldpt:IndirectContainer-CreateIndirectContainer
+  earl:test        ldpt:IndirectContainer-ConformsIcLdpContainer
 ] .
 
 [ a                earl:Assertion ;
