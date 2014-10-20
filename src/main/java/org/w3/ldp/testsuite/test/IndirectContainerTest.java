@@ -84,8 +84,8 @@ public class IndirectContainerTest extends CommonContainerTest {
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpic-are-ldpcs",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
-	public void testCreateIndirectContainer() {
-		// TODO: Impl testCreateIndirectContainer
+	public void testConformsIcLdpContainer() {
+		// TODO: Impl testConformsIcLdpContainer
 	}
 
 	@Test(
