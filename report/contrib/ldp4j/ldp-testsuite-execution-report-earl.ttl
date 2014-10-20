@@ -2594,5 +2594,15 @@
   earl:test        ldpt:IndirectContainer-ReUseVocabularies
 ] .
 
-
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-20T09:15:55.548Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-ActAsIfInsertedContentRelationTripleExists
+] .
 
