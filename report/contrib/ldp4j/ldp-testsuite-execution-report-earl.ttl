@@ -1,1128 +1,2598 @@
-@prefix rdft:  <http://www.w3.org/ns/rdftest#> .
-@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix earl:  <http://www.w3.org/ns/earl#> .
-@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
-@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix td:    <http://www.w3.org/2006/03/test-description#> .
-@prefix mf:    <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#> .
 @prefix doap:  <http://usefulinc.com/ns/doap#> .
-@prefix ldpt:  <http://w3c.github.io/ldp-testsuite/manifest#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdft:  <http://www.w3.org/ns/rdftest#> .
+@prefix earl:  <http://www.w3.org/ns/earl#> .
+@prefix mf:    <http://www.w3.org/2001/sw/DataAccess/tests/test-manifest#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix ldpt:  <http://w3c.github.io/ldp-testsuite/manifest#> .
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.104Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-NullRelativeUriPost
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-16T12:54:39.759Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.testng.SkipException: Covered indirectly by the MUST tests defined in CommonResourceTest class\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testConformsRdfSourceLdpResource(RdfSourceTest.java:471)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     dcterms:date         "2014-10-19T21:34:34.083Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "Tested manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
                      earl:outcome         earl:passed
                    ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-ConformsRdfSourceLdpResource
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.798Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-PreferContainmentTriples
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.827Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-AcceptPostResponseHeader
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.821Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-4xxErrorHasResponseBody
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.866Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-TypeRdfSource
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:manual ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-16T12:54:39.717Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "Verified manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-RestrictClientInference
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.788Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-GetResponseHeaders
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.815Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-PublishConstraintsReadOnlyProp
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.859Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-PutRequiresIfMatch
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:manual ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-16T12:54:39.711Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "Verified manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-UseStandardVocabularies
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.765Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:untested
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-RestrictPutReUseUri
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.803Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-PutBadETag
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.833Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-TypeRdfSource
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.852Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-PublishConstraintsUnknownProp
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.87Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-AcceptPatchHeader
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.794Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-Head
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.823Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-AcceptPatchHeader
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.847Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-PreconditionRequiredStatusCode
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.863Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-GetResponseHeaders
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.784Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-ContainsRdfType
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.811Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-PostResponseStatusAndLocation
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.838Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-GetResource
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-16T12:54:39.698Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "Patch method is not supported in this version of LDP4j"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:failed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-PatchMethod
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-16T12:54:39.761Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "Verified manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-PutSimpleUpdate
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.799Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-RestrictUriReUseNoSlug
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.828Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-ConditionFailedStatusCode
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.867Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-PostNoSlug
-] .
-
-<http://ldp4j.org>  a              doap:Project , earl:Software , earl:TestSubject ;
-        dcterms:title              "LDP4j" ;
-        doap:developer             [ a          foaf:Person ;
-                                     foaf:name  "Miguel Esteban Gutiérrez"
-                                   ] ;
-        doap:developer             [ a          foaf:Person ;
-                                     foaf:name  "Nandana Mihindukulasooriya"
-                                   ] ;
-        doap:developer             [ a          foaf:Person ;
-                                     foaf:name  "Raúl García Castro"
-                                   ] ;
-        doap:homepage              "http://ldp4j.org" ;
-        doap:name                  "LDP4j" ;
-        doap:programming-language  "Java" .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-16T12:54:39.748Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.testng.SkipException: Covered indirectly by the MUST tests defined in CommonResourceTest class\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testConformsRdfSourceLdpResource(RdfSourceTest.java:471)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-ConformsRdfSourceLdpResource
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.789Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-PostJsonLd
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.816Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-RdfTypeLdpContainer
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.844Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-GetResourceAcceptTurtle
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.86Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-OptionsAllowHeader
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-16T12:54:39.712Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "Verified manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-RelativeUriResolutionPut
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.804Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-ConditionFailedStatusCode
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.834Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-RejectPutModifyingContainmentTriples
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.857Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-PublishConstraintsReadOnlyProp
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.795Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-ETagHeadersHead
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.825Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-PutPropertiesNotPersisted
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.849Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-PostContainer
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:manual ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-16T12:54:39.719Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "Verified manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-RestrictClientInference
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.785Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-PutPropertiesNotPersisted
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.812Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-AcceptTurtle
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.84Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-JsonLdRepresentation
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-16T12:54:39.703Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "Put-create is not supported in this version of LDP4j"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:failed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-PutToCreate
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-16T12:54:39.767Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: containerAsResource is null\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testRequestedInteractionModelCreateNotAllowed(CommonContainerTest.java:310)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-RequestedInteractionModelCreateNotAllowed
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.8Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-PutRequiresIfMatch
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.83Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-PutReadOnlyProperties4xxStatus
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.853Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-DeleteRemovesContainmentTriple
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.868Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-LdpLinkHeader
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:manual ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-16T12:54:39.75Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "Verified manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-UseStandardVocabularies
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.818Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-PutSimpleUpdate
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.845Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-RelativeUriResolutionPost
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.864Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-LdpLinkHeader
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-16T12:54:39.714Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "Verified manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
+  earl:subject     <http://www.ldp4j.org> ;
   earl:test        ldpt:BasicContainer-PutReplacesResource
 ] .
 
 [ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.806Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-ResponsePropertiesNotPersisted
-] .
-
-[ a                earl:Assertion ;
   ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.836Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-19T21:34:34.094Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-ContainerSupportsHttpLinkHeader
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-ServerHonorsSlug
 ] .
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.858Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-19T21:34:34.1Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-PutBadETag
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-16T12:54:39.763Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: containerAsResource is null\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testRequestedInteractionModelHeaders(CommonContainerTest.java:346)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-RequestedInteractionModelHeaders
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.796Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-OptionsAllowHeader
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.85Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-PreconditionRequiredStatusCode
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-PutRequiresIfMatch
 ] .
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:manual ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-16T12:54:39.722Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "Verified manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-IsHttp11Manual
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.791Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-19T21:34:34.102Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-ETagHeadersHead
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.814Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
+  earl:subject     <http://www.ldp4j.org> ;
   earl:test        ldpt:MemberResource-JsonLdRepresentation
 ] .
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.841Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-19T21:34:34.086Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-ContentTypeHeader
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.861Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-RestrictUriReUseSlug
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-16T12:54:39.709Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "Slug headers are not supported in this version of LDP4j"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:failed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-ServerHonorsSlug
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-16T12:54:39.781Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.testng.SkipException: Covered indirectly by the MUST tests defined in RdfSourceTest class\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testConformsContainerRdfResource(CommonContainerTest.java:884)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-ConformsContainerRdfResource
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.831Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-ResponsePropertiesNotPersisted
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-AcceptPostResponseHeader
 ] .
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.854Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-19T21:34:34.093Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-RelativeUriResolutionPut
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-PreconditionRequiredStatusCode
 ] .
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.101Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-TypeRdfSource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
   earl:mode        earl:manual ;
   earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-16T12:54:39.751Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "Verified manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     dcterms:date         "2014-10-19T21:34:34.084Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "Tested manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
                      earl:outcome         earl:passed
                    ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-IsHttp11Manual
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.826Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-Options
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-RestrictClientInference
 ] .
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.819Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-19T21:34:34.092Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-Head
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.846Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-ContainsRdfType
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.865Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-GetResourceAcceptTurtle
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:manual ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-16T12:54:39.716Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "Verified manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-ReUseVocabularies
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.787Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-ETagHeadersGet
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.809Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
+  earl:subject     <http://www.ldp4j.org> ;
   earl:test        ldpt:BasicContainer-ETagHeadersGet
 ] .
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.859Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-19T21:34:34.097Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-4xxErrorHasResponseBody
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-PutBadETag
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.1Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-PostNoSlug
 ] .
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.103Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-PutPropertiesNotPersisted
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
   earl:mode        earl:manual ;
   earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-16T12:54:39.764Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "Verified manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     dcterms:date         "2014-10-19T21:34:34.082Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "Tested manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
                      earl:outcome         earl:passed
                    ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-ReUseVocabularies
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-RestrictClientInference
 ] .
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.802Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-19T21:34:34.089Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-GetResource
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-ConditionFailedStatusCode
 ] .
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.851Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-19T21:34:34.099Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-NoRdfBagSeqOrList
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-OptionsAllowHeader
 ] .
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.869Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-19T21:34:34.102Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-GetResourceAsTurtleNoAccept
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-JsonLdRepresentation
 ] .
 
 [ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:manual ;
   earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-10-16T12:54:39.739Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.testng.SkipException: Covered indirectly by the MUST tests defined in CommonContainerTest class\n\tat org.w3.ldp.testsuite.test.BasicContainerTest.testConformsBcLdpContainer(BasicContainerTest.java:42)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     dcterms:date         "2014-10-19T21:34:34.085Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "Tested manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
                      earl:outcome         earl:passed
                    ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-ConformsBcLdpContainer
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-UseStandardVocabularies
 ] .
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.792Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-19T21:34:34.099Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
-  earl:subject     <http://ldp4j.org> ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-PutPropertiesNotPersisted
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.098Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-PostJsonLd
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.101Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
   earl:test        ldpt:BasicContainer-CreateWithoutConstraints
 ] .
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.822Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-19T21:34:34.106Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-Options
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-ConformsRdfSourceLdpResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-19T21:34:34.083Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "Tested manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-PutSimpleUpdate
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.092Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-PutReadOnlyProperties4xxStatus
 ] .
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.842Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-19T21:34:34.096Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
-  earl:subject     <http://ldp4j.org> ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-ConformsRdfSourceLdpResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.103Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-GetResourceAsTurtleNoAccept
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.086Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-PublishConstraintsUnknownProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.094Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-PreferContainmentTriples
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.101Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-PostContainer
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.106Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-LdpLinkHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-19T21:34:34.085Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "Tested manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-RelativeUriResolutionPut
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.092Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-AcceptPatchHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.098Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-AcceptTurtle
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.101Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-Options
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.103Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-GetResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.089Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-RelativeUriResolutionPost
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.1Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-4xxErrorHasResponseBody
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.102Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-ETagHeadersHead
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.086Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
   earl:test        ldpt:MemberResource-PutReadOnlyProperties4xxStatus
 ] .
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.862Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-19T21:34:34.093Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-PublishConstraintsUnknownProp
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.783Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-PutReplacesResource
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.837Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:MemberResource-GetResourceAsTurtleNoAccept
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-RequestedInteractionModelHeaders
 ] .
 
 [ a                earl:Assertion ;
   ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://id.nandana.org/card#me> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-16T12:54:39.856Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-10-19T21:34:34.099Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
-  earl:subject     <http://ldp4j.org> ;
-  earl:test        ldpt:BasicContainer-NullRelativeUriPost
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-GetResource
 ] .
 
-<http://id.nandana.org/card#me>
-        a       earl:Assertor .
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.098Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-GetResourceAcceptTurtle
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.106Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-RequestedInteractionModelCreateNotAllowed
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-19T21:34:34.083Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "Tested manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-IsHttp11Manual
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.092Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-PublishConstraintsUnknownProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.097Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-Head
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.103Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-LdpLinkHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-19T21:34:34.082Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "Tested manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-ReUseVocabularies
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.086Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-Head
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.094Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-RejectPutModifyingContainmentTriples
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.1Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-ContainsRdfType
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.102Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-NoRdfBagSeqOrList
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.106Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-GetResponseHeaders
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.093Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-ContainsRdfType
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.098Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-RelativeUriResolutionPut
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.101Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-GetResponseHeaders
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.104Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-PutBadETag
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.09Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-TypeRdfSource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.097Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-RdfTypeLdpContainer
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.1Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-PublishConstraintsReadOnlyProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-19T21:34:34.078Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: Container <http://localhost:8080/ldp4j-server-tckf/ldp4j/api/basic_container/> has not advertised PATCH support through its HTTP OPTIONS response. expected [true] but found [false]\r\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testPatchMethod(CommonContainerTest.java:761)\r\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\r\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\r\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\r\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\r\n\tat com.intellij.rt.execution.application.AppMain.main(AppMain.java:134)\r\n... Removed 28 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:failed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-PatchMethod
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.086Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-PreconditionRequiredStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.093Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-DeleteRemovesContainmentTriple
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.099Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-PostResponseStatusAndLocation
+] .
+
+<http://www.ldp4j.org>
+        a                          doap:Project , earl:Software , earl:TestSubject , earl:Assertor ;
+        dcterms:title              "LDP4j" ;
+        doap:description           "Testing against: RDFSource, BasicContainer, DirectContainer, and IndirectContainer" ;
+        doap:developer             [ a          foaf:Person ;
+                                     foaf:name  "Miguel Esteban Guti�rrez";
+                                     foaf:mbox  "mesteban@fi.upm.es" ;
+                                   ] ;
+        doap:developer             [ a          foaf:Person ;
+                                     foaf:name  "Nandana Mihindukulasooriya";
+                                     foaf:mbox  "nmihindu@fi.upm.es"
+                                   ] ;
+        doap:developer             [ a          foaf:Person ;
+                                     foaf:name  "Ra�l Garc�a Castro";
+                                     foaf:mbox  "rgarcia@fi.upm.es"
+                                   ] ;                                                                    
+        doap:homepage              "http://www.ldp4j.org" ;
+        doap:name                  "LDP4j" ;
+        doap:programming-language  "Java" .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.106Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-ContainerSupportsHttpLinkHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.085Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-RestrictPutReUseUri
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.092Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-RestrictUriReUseNoSlug
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.097Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-AcceptPatchHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.101Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-ResponsePropertiesNotPersisted
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.103Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-OptionsAllowHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-19T21:34:34.082Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "Tested manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-UseStandardVocabularies
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.094Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-PublishConstraintsReadOnlyProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.1Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-ContentTypeHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.102Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-ConditionFailedStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.093Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-PutReplacesResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.098Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-PutRequiresIfMatch
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.101Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-4xxErrorHasResponseBody
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-19T21:34:34.084Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "Tested manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-IsHttp11Manual
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.092Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-ConformsContainerRdfResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.097Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-Options
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.1Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-PutSimpleUpdate
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-19T21:34:34.079Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: 1 expectation failed.\r\nExpected status code <201> doesn't match actual status code <404>.\r\n\r\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\r\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:57)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:182)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\r\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:577)\r\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:927)\r\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1347)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\r\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\r\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:133)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy:159)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy)\r\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\r\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\r\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy:274)\r\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:166)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:56)\r\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:133)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:141)\r\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy:301)\r\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy)\r\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.putToCreate(CommonContainerTest.java:952)\r\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testPutToCreate(CommonContainerTest.java:64)\r\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\r\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\r\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\r\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\r\n\tat com.intellij.rt.execution.application.AppMain.main(AppMain.java:134)\r\n... Removed 50 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:failed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-PutToCreate
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.089Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-ConformsBcLdpContainer
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.094Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-ETagHeadersGet
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.099Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-GetResourceAsTurtleNoAccept
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.102Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-ETagHeadersHead
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.106Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-ResponsePropertiesNotPersisted
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-19T21:34:34.085Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "Tested manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:MemberResource-ReUseVocabularies
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.098Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-GetResourceAcceptTurtle
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:34:34.101Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:BasicContainer-RestrictUriReUseSlug
+] .
+
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.084Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-JsonLdRepresentation
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.094Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-PutRequiresIfMatch
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.105Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-ServerHonorsSlug
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.111Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-ConformsContainerRdfResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.083Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-ETagHeadersHead
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.09Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-PreconditionRequiredStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.093Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-OptionsAllowHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.107Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-GetResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.089Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-PostJsonLd
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.092Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-DeleteResourceUpdatesTriples
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-19T21:35:05.08Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "Tested manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-PutReplacesResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.09Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-MemberResourceTriple
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.094Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-NoRdfBagSeqOrList
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.105Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-GetResponseHeaders
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.109Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-RequestedInteractionModelCreateNotAllowed
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.089Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-UseMemberPredicate
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.093Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-CreateWithoutConstraints
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.094Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-HttpLinkHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.111Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-GetResourceAcceptTurtle
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-19T21:35:05.077Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: 1 expectation failed.\r\nExpected status code <201> doesn't match actual status code <404>.\r\n\r\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\r\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:57)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:182)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\r\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:577)\r\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:927)\r\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1347)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\r\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\r\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:133)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy:159)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy)\r\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\r\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\r\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy:274)\r\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:166)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:56)\r\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:133)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:141)\r\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy:301)\r\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy)\r\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.putToCreate(CommonContainerTest.java:952)\r\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testPutToCreate(CommonContainerTest.java:64)\r\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\r\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\r\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\r\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\r\n\tat com.intellij.rt.execution.application.AppMain.main(AppMain.java:134)\r\n... Removed 50 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:failed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-PutToCreate
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.09Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-Options
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.093Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-PreferMembershipTriples
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.107Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-GetResourceAsTurtleNoAccept
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.089Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-MemberRelationOrIsMemberOfRelationTripleExists
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.106Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-NullRelativeUriPost
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-19T21:35:05.08Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "Tested manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-UseStandardVocabularies
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.094Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-ETagHeadersGet
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.105Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-RestrictUriReUseSlug
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.109Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-RdfTypeLdpContainer
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.089Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-PostContainer
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.093Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-RelativeUriResolutionPost
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.104Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-PutReadOnlyProperties4xxStatus
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.095Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-PublishConstraintsReadOnlyProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-19T21:35:05.079Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: Container <http://localhost:8080/ldp4j-server-tckf/ldp4j/api/resource/direct_container/> has not advertised PATCH support through its HTTP OPTIONS response. expected [true] but found [false]\r\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testPatchMethod(CommonContainerTest.java:761)\r\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\r\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\r\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\r\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\r\n\tat com.intellij.rt.execution.application.AppMain.main(AppMain.java:134)\r\n... Removed 28 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:failed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-PatchMethod
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.084Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-AcceptPostResponseHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.09Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-AcceptPatchHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.105Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-DeleteRemovesContainmentTriple
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.107Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-AcceptTurtle
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-19T21:35:05.082Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "Tested manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-PutSimpleUpdate
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.106Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-PostResourceUpdatesTriples
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.08Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-RestrictPutReUseUri
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.091Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-Head
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.094Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-TypeRdfSource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.104Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-PreferContainmentTriples
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-19T21:35:05.081Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "Tested manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-ReUseVocabularies
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.089Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-ConditionFailedStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.091Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-RejectPutModifyingContainmentTriples
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-19T21:35:05.079Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "Tested manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-RestrictClientInference
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.084Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-4xxErrorHasResponseBody
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.094Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-PostNoSlug
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.109Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-ContainsRdfType
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-19T21:35:05.083Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "Tested manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-RelativeUriResolutionPut
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.092Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-RestrictUriReUseNoSlug
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.104Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-PostResponseStatusAndLocation
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.106Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-PutPropertiesNotPersisted
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.085Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-ResponsePropertiesNotPersisted
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.091Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-PublishConstraintsUnknownProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.106Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-PutBadETag
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.083Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-ContentTypeHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.09Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-RequestedInteractionModelHeaders
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.105Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-LdpLinkHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.108Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-ConformsRdfSourceLdpResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-19T21:35:05.082Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "Tested manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-IsHttp11Manual
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:05.102Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:DirectContainer-ConformsDcLdpContainer
+] .
+
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.783Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-DeleteRemovesContainmentTriple
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.789Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-NullRelativeUriPost
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-19T21:35:32.782Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "Tested manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-PutReplacesResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.788Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-PublishConstraintsReadOnlyProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.793Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-ConformsRdfSourceLdpResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-19T21:35:32.781Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "Tested manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-RestrictClientInference
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.787Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-OptionsAllowHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.787Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-GetResourceAcceptTurtle
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.791Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-PreferContainmentTriples
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.793Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-Options
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.786Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-PostResponseStatusAndLocation
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.79Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-RequestedInteractionModelCreateNotAllowed
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.792Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-PublishConstraintsUnknownProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.783Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-GetResourceAsTurtleNoAccept
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.789Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-PutPropertiesNotPersisted
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.793Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-ETagHeadersHead
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.786Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-Head
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.788Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-JsonLdRepresentation
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.791Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-4xxErrorHasResponseBody
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-19T21:35:32.78Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "Tested manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-IsHttp11Manual
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.783Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-PostContainer
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.787Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-PutReadOnlyProperties4xxStatus
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.786Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-RelativeUriResolutionPost
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.789Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-ResponsePropertiesNotPersisted
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.792Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-ServerHonorsSlug
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.785Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-ConformsContainerRdfResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.79Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-CreateWithoutConstraints
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-19T21:35:32.779Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: Container <http://localhost:8080/ldp4j-server-tckf/ldp4j/api/resource/indirect_container/> has not advertised PATCH support through its HTTP OPTIONS response. expected [true] but found [false]\r\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testPatchMethod(CommonContainerTest.java:761)\r\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\r\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\r\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\r\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\r\n\tat com.intellij.rt.execution.application.AppMain.main(AppMain.java:134)\r\n... Removed 28 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:failed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-PatchMethod
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.787Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-PostJsonLd
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.786Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-AcceptPostResponseHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.788Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-ETagHeadersGet
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.792Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-AcceptTurtle
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.787Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-GetResponseHeaders
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.789Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-PreconditionRequiredStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.789Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-LdpLinkHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.781Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:untested
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-RestrictPutReUseUri
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.788Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-ConditionFailedStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.79Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-RejectPutModifyingContainmentTriples
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-19T21:35:32.78Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "java.lang.AssertionError: 1 expectation failed.\r\nExpected status code <201> doesn't match actual status code <404>.\r\n\r\n\tat org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)\r\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:57)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:182)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)\r\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:577)\r\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeFilterChain(RequestSpecificationImpl.groovy:927)\r\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1347)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.this$2$applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy)\r\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)\r\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:133)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:149)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy:159)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.put(RequestSpecificationImpl.groovy)\r\n\tat groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1207)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1016)\r\n\tat groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:807)\r\n\tat com.jayway.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)\r\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)\r\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy:274)\r\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSite.invoke(PogoMetaMethodSite.java:166)\r\n\tat org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:56)\r\n\tat org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:133)\r\n\tat org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:141)\r\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy:301)\r\n\tat com.jayway.restassured.internal.ResponseSpecificationImpl.put(ResponseSpecificationImpl.groovy)\r\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.putToCreate(CommonContainerTest.java:952)\r\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testPutToCreate(CommonContainerTest.java:64)\r\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:375)\r\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:411)\r\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:403)\r\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:25)\r\n\tat com.intellij.rt.execution.application.AppMain.main(AppMain.java:134)\r\n... Removed 50 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:failed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-PutToCreate
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.783Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-ContentTypeHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.791Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-PutRequiresIfMatch
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.793Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-RequestedInteractionModelHeaders
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-19T21:35:32.782Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "Tested manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-RelativeUriResolutionPut
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.788Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-AcceptPatchHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.79Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-TypeRdfSource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.792Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-PostNoSlug
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-19T21:35:32.781Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "Tested manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-UseStandardVocabularies
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.787Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-RestrictUriReUseNoSlug
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.791Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-RdfTypeLdpContainer
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.783Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-NoRdfBagSeqOrList
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.787Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-RestrictUriReUseSlug
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-19T21:35:32.782Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "Tested manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-PutSimpleUpdate
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.786Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-PutBadETag
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.788Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-ContainerSupportsHttpLinkHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.79Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-ContainsRdfType
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-10-19T21:35:32.792Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-GetResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "IndirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://www.ldp4j.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-10-19T21:35:32.78Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "Tested manually"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://www.ldp4j.org> ;
+  earl:test        ldpt:IndirectContainer-ReUseVocabularies
+] .
+
+
+
