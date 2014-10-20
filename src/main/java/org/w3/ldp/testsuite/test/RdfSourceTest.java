@@ -27,6 +27,7 @@ import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.matcher.HeaderMatchers;
 
 import java.io.IOException;
+import java.net.URI;
 import java.net.URISyntaxException;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -485,12 +486,20 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		String constrainedBy = getFirstLinkForRelation(uri, LINK_REL_CONSTRAINEDBY, uri, putResponse);
 		assertNotNull(constrainedBy, "Response did not contain a Link header with rel=\"http://www.w3.org/ns/ldp#constrainedBy\"");
 
-		// Make sure we can GET the constrainedBy link.
-		buildBaseRequestSpecification()
-			.expect()
-				.statusCode(isSuccessful())
-			.when()
-				.get(constrainedBy);
+		try {
+			final URI linkUri = new URI(uri);
+
+			if (linkUri.getScheme().startsWith("http")) {
+				// Make sure we can GET the constrainedBy link.
+				buildBaseRequestSpecification()
+						.expect()
+							.statusCode(isSuccessful())
+						.when()
+							.get(constrainedBy);
+			}
+		} catch (URISyntaxException e) {
+			throw new IllegalArgumentException(e);
+		}
 	}
 
 	protected Response expectPut4xxStatus(String invalidProp) {
