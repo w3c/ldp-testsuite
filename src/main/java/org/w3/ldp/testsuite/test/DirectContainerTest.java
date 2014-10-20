@@ -160,7 +160,7 @@ public class DirectContainerTest extends CommonContainerTest {
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpdc-indirectmbr-basic",
 			testMethod = METHOD.AUTOMATED,
-			approval = STATUS.WG_PENDING)
+			approval = STATUS.WG_APPROVED)
 	public void testActAsIfInsertedContentRelationTripleExists() {
 		// TODO: This should probably just treat this as an indirect test, see issue #206
 		testPostResourceUpdatesTriples();
