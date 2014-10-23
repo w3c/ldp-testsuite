@@ -487,7 +487,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		assertNotNull(constrainedBy, "Response did not contain a Link header with rel=\"http://www.w3.org/ns/ldp#constrainedBy\"");
 
 		try {
-			final URI linkUri = new URI(uri);
+			final URI linkUri = new URI(constrainedBy);
 
 			if (linkUri.getScheme().startsWith("http")) {
 				// Make sure we can GET the constrainedBy link.
