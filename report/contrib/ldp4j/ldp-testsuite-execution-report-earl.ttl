@@ -791,7 +791,7 @@
         dcterms:title              "LDP4j" ;
         doap:description           "Testing against: RDFSource, BasicContainer, DirectContainer, and IndirectContainer" ;
         doap:developer             [ a          foaf:Person ;
-                                     foaf:name  "Miguel Esteban Gutiï¿½rrez";
+                                     foaf:name  "Miguel Esteban Gutiérrez";
                                      foaf:mbox  "mesteban@fi.upm.es" ;
                                    ] ;
         doap:developer             [ a          foaf:Person ;
@@ -799,7 +799,7 @@
                                      foaf:mbox  "nmihindu@fi.upm.es"
                                    ] ;
         doap:developer             [ a          foaf:Person ;
-                                     foaf:name  "Raï¿½l Garcï¿½a Castro";
+                                     foaf:name  "Raúl García Castro";
                                      foaf:mbox  "rgarcia@fi.upm.es"
                                    ] ;                                                                    
         doap:homepage              "http://www.ldp4j.org" ;
@@ -2594,15 +2594,5 @@
   earl:test        ldpt:IndirectContainer-ReUseVocabularies
 ] .
 
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "DirectContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://www.ldp4j.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-10-20T09:15:55.548Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://www.ldp4j.org> ;
-  earl:test        ldpt:DirectContainer-ActAsIfInsertedContentRelationTripleExists
-] .
+
 
