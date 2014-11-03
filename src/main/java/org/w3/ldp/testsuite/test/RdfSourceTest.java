@@ -617,14 +617,10 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		eTag = response.getHeader(ETAG);
 		Model updatedModel = response.as(Model.class, new RdfObjectMapper(resourceUri));
 
-		// Validate the updated statement/triple is there.
+		// Make sure it's the only title (we removed all before PUTting)
 		Resource updatedResource = getPrimaryTopic(updatedModel, resourceUri);
-		assertTrue(updatedResource.hasProperty(DCTerms.title, UPDATED_TITLE), "Expected updated resource to have title: " + UPDATED_TITLE);
-
-		// Make sure it's the only title
-		Resource diffResource = getPrimaryTopic(updatedModel, resourceUri);
-		StmtIterator diffTitleProps = diffResource.listProperties(DCTerms.title);
-		int diffTitlePropSize = diffTitleProps.toSet().size();
-		assertEquals(diffTitlePropSize, 1, "Updated resource contains additional unexpected dcterms:title changes.");
+		StmtIterator titleProps = updatedResource.listProperties(DCTerms.title);
+		int titlePropSize = titleProps.toSet().size();
+		assertEquals(titlePropSize, 1, "Updated resource should only contain one dcterms:title changes but instead found "+titlePropSize+" changes");
 	}
 }
