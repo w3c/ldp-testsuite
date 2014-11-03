@@ -115,7 +115,7 @@ public class IndirectContainerTest extends CommonContainerTest {
 					+ "membership triples is chosen.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpic-indirectmbr",
-			testMethod = METHOD.NOT_IMPLEMENTED,
+			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_PENDING)
 	public void testContainerHasInsertedContentRelation() {
 		Response getResponse = buildBaseRequestSpecification()
