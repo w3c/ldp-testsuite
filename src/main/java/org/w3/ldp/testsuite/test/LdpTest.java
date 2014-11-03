@@ -454,8 +454,6 @@ public abstract class LdpTest {
 	 * @param toResolve
 	 *			  a URI that might be relative
 	 * @return the resolved URI
-	 * @throws URISyntaxException
-	 *			   on bad URIs (but relative URIs are OK)
 	 */
 	public static String resolveIfRelative(String base, String toResolve) {
 		try {
