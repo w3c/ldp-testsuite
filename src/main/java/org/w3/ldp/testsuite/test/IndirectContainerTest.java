@@ -6,6 +6,7 @@ import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
+import com.hp.hpl.jena.rdf.model.Statement;
 import com.jayway.restassured.response.Response;
 
 import org.apache.http.HttpStatus;
@@ -18,6 +19,7 @@ import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.exception.SkipException;
+import org.w3.ldp.testsuite.http.LdpPreferences;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.vocab.LDP;
 
@@ -33,13 +35,14 @@ import static org.w3.ldp.testsuite.http.MediaTypes.TEXT_TURTLE;
 public class IndirectContainerTest extends CommonContainerTest {
 
 	private String indirectContainer;
+	private Property insertedContentRelationProperty = null;
 
 	@Parameters({"indirectContainer", "auth"})
 	public IndirectContainerTest(@Optional String indirectContainer, @Optional String auth) throws IOException {
 		super(auth);
 		this.indirectContainer = indirectContainer;
 	}
-
+	
 	@BeforeClass(alwaysRun = true)
 	public void hasIndirectContainer() {
 		if (indirectContainer == null) {
@@ -47,6 +50,10 @@ public class IndirectContainerTest extends CommonContainerTest {
 					"No indirectContainer parameter provided in testng.xml. Skipping ldp:IndirectContainer tests.",
 					skipLog);
 		}
+		
+		try {
+			setInsertedContentRelation();
+		} catch(Exception ignore) {}
 	}
 
 	// TODO implement tests, signatures are from LDP spec
@@ -164,9 +171,42 @@ public class IndirectContainerTest extends CommonContainerTest {
 		// TODO: Impl testPostResource
 	}
 
+	private void setInsertedContentRelation() {
+		Response getResponse = buildBaseRequestSpecification()
+				.header(ACCEPT, TEXT_TURTLE)
+				.header(PREFER, include(LdpPreferences.PREFER_MINIMAL_CONTAINER))
+				.when()
+					.get(indirectContainer);
+		
+		Model containerModel = getResponse.as(Model.class, new RdfObjectMapper(indirectContainer));
+		Resource container = containerModel.getResource(indirectContainer);
+		Property insertedContentRelation = containerModel.getProperty(LDP.insertedContentRelation.stringValue());
+		
+		if ( ! container.hasProperty(insertedContentRelation) ) return;
+		
+		Statement statement = container.getProperty(insertedContentRelation);
+		RDFNode node = statement.getObject();
+		
+		if ( ! node.isURIResource() ) return;
+		
+		String propertyURI = node.asResource().getURI();
+		insertedContentRelationProperty = ResourceFactory.createProperty(propertyURI);
+	}
+	
 	@Override
 	protected String getResourceUri() {
 		return indirectContainer;
+	}
+	
+	@Override
+	protected Model getDefaultModel() {
+		Model model = super.getDefaultModel();
+		
+		if ( insertedContentRelationProperty == null ) return model;
+		
+		Resource resource = model.getResource("");
+		resource.addProperty(insertedContentRelationProperty, model.createResource("#me"));
+		return model;
 	}
 
 }
