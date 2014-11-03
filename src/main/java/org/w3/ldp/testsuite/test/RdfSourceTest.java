@@ -67,16 +67,21 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 					+ "Request-URI when the resource already exists, and to "
 					+ "the URI of the created resource when the request results "
 					+ "in the creation of a new resource.")
+	@Parameters("relativeUri")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-defbaseuri",
 			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_APPROVED)
-	public void testRelativeUriResolutionPut() {
+	public void testRelativeUriResolutionPut(@Optional String relativeUri) {
 		skipIfMethodNotAllowed(HttpMethod.PUT);
 
 		if (restrictionsOnTestResourceContent()) {
 			throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
 					MSG_PUT_RESTRICTIONS, skipLog);
+		}
+
+		if (relativeUri == null) {
+			relativeUri = RELATIVE_URI;
 		}
 
 		String resourceUri = getResourceUri();
@@ -92,7 +97,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 		Model model = response.as(Model.class, new RdfObjectMapper(resourceUri));
 
 		// Add a statement with a relative URI.
-		getPrimaryTopic(model, resourceUri).addProperty(DCTerms.relation, model.getResource(RELATIVE_URI));
+		getPrimaryTopic(model, resourceUri).addProperty(DCTerms.relation, model.getResource(relativeUri));
 
 		// Put the resource back using relative URIs.
 		Response put = buildBaseRequestSpecification()
@@ -114,7 +119,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 				.get(resourceUri).as(Model.class, new RdfObjectMapper(resourceUri));
 
 		// Verify the change.
-		String relationAbsoluteUri = resolveIfRelative(resourceUri, RELATIVE_URI);
+		String relationAbsoluteUri = resolveIfRelative(resourceUri, relativeUri);
 		assertTrue(
 				model.contains(
 						getPrimaryTopic(model, resourceUri),
@@ -546,7 +551,7 @@ public abstract class RdfSourceTest extends CommonResourceTest {
 	 *
 	 * <p>
 	 * This method is used for {@link #testPutReplacesResource()} and
-	 * {@link #testRelativeUriResolutionPut()}.
+	 * {@link #testRelativeUriResolutionPut(String)}.
 	 * </p>
 	 *
 	 * @return true if there are restrictions on what triples are allowed; false

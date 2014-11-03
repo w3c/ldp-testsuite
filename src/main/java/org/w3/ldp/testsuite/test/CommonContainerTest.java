@@ -72,12 +72,13 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					+ "Request-URI when the resource already exists, and to "
 					+ "the URI of the created resource when the request results "
 					+ "in the creation of a new resource.")
+	@Parameters("relativeUri")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-defbaseuri",
 			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_APPROVED,
 			comment = "Covers only part of the specification requirement. ")
-	public void testRelativeUriResolutionPost() {
+	public void testRelativeUriResolutionPost(@Optional String relativeUri) {
 		skipIfMethodNotAllowed(HttpMethod.POST);
 
 		if (restrictionsOnPostContent()) {
@@ -86,10 +87,14 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 					+ "The requirement needs to be tested manually.", skipLog);
 		}
 
+		if (relativeUri == null) {
+			relativeUri = RELATIVE_URI;
+		}
+
 		// POST content with a relative URI (other than the null relative URI).
 		Model requestModel = postContent();
 		Resource r = requestModel.getResource("");
-		r.addProperty(DCTerms.relation, requestModel.createResource(RELATIVE_URI));
+		r.addProperty(DCTerms.relation, requestModel.createResource(relativeUri));
 
 		String containerUri = getResourceUri();
 		Response postResponse = buildBaseRequestSpecification()
@@ -114,7 +119,7 @@ public abstract class CommonContainerTest extends RdfSourceTest {
 			// Check that the dcterms:relation URI was resolved relative to the
 			// URI assigned to the new resource (location).
 			Model responseModel = getResponse.as(Model.class, new RdfObjectMapper(location));
-			String relationAbsoluteUri = resolveIfRelative(location, RELATIVE_URI);
+			String relationAbsoluteUri = resolveIfRelative(location, relativeUri);
 			assertTrue(
 					responseModel.contains(
 							getPrimaryTopic(responseModel, location),

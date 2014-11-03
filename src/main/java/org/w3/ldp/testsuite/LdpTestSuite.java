@@ -233,6 +233,10 @@ public class LdpTestSuite {
 			parameters.put("readOnlyProp", options.getOptionValue("read-only-prop"));
 		}
 
+		if (options.hasOption("relative-uri")) {
+			parameters.put("relativeUri", options.getOptionValue("relative-uri"));
+		}
+
 		if (options.hasOptionWithValue("auth")) {
 			final String auth = options.getOptionValue("auth");
 			if (auth.contains(":")) {
