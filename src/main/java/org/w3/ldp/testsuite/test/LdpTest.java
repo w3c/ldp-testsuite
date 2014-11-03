@@ -12,6 +12,7 @@ import com.hp.hpl.jena.vocabulary.RDF;
 import com.jayway.restassured.response.Header;
 import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.RequestSpecification;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.marmotta.commons.vocabulary.LDP;
 import org.jboss.resteasy.plugins.delegates.LinkDelegate;
@@ -19,9 +20,11 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
+import org.w3.ldp.testsuite.LdpTestSuite;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 
 import javax.ws.rs.core.Link;
+
 import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -110,7 +113,7 @@ public abstract class LdpTest {
 	 */
 	@BeforeSuite(alwaysRun = true)
 	@Parameters({"output", "postTtl", "httpLogging", "skipLogging"})
-	public void commonSetup(String outputDir, @Optional String postTtl, @Optional String httpLogging, @Optional String skipLogging) throws IOException {
+	public void commonSetup(@Optional String outputDir, @Optional String postTtl, @Optional String httpLogging, @Optional String skipLogging) throws IOException {
 
 		/*
 		 * Note: This method is only called one time, even if many classes inherit
@@ -119,6 +122,9 @@ public abstract class LdpTest {
 
 		postModel = readModel(postTtl);
 
+		if (outputDir == null || outputDir.length() == 0)
+			outputDir = LdpTestSuite.OUTPUT_DIR;
+		
 		File dir = new File(outputDir);
 		dir.mkdirs();
 
