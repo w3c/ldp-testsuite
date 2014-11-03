@@ -1,6 +1,13 @@
 package org.w3.ldp.testsuite.test;
 
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.ResourceFactory;
+import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.jayway.restassured.response.Response;
+
 import org.apache.http.HttpStatus;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
@@ -11,6 +18,7 @@ import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.exception.SkipException;
+import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.vocab.LDP;
 
 import java.io.IOException;
@@ -18,6 +26,8 @@ import java.io.IOException;
 import static org.testng.Assert.assertTrue;
 import static org.w3.ldp.testsuite.http.HttpHeaders.ACCEPT;
 import static org.w3.ldp.testsuite.http.HttpHeaders.LINK_REL_TYPE;
+import static org.w3.ldp.testsuite.http.HttpHeaders.PREFER;
+import static org.w3.ldp.testsuite.http.LdpPreferences.PREFER_MINIMAL_CONTAINER;
 import static org.w3.ldp.testsuite.http.MediaTypes.TEXT_TURTLE;
 
 public class IndirectContainerTest extends CommonContainerTest {
@@ -90,7 +100,7 @@ public class IndirectContainerTest extends CommonContainerTest {
 
 	@Test(
 			groups = {MUST},
-			enabled = false,
+			enabled = true,
 			description = "LDP Indirect Containers MUST contain exactly one "
 					+ "triple whose subject is the LDPC URI, whose predicate "
 					+ "is ldp:insertedContentRelation, and whose object ICR "
@@ -100,8 +110,39 @@ public class IndirectContainerTest extends CommonContainerTest {
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpic-indirectmbr",
 			testMethod = METHOD.NOT_IMPLEMENTED,
 			approval = STATUS.WG_PENDING)
-	public void testContainsLdpcUri() {
-		// TODO: Impl testContainsLdpcUri
+	public void testContainerHasInsertedContentRelation() {
+		Response getResponse = buildBaseRequestSpecification()
+				.header(ACCEPT, TEXT_TURTLE)
+				.header(PREFER, include(PREFER_MINIMAL_CONTAINER))
+				.expect()
+					.statusCode(HttpStatus.SC_OK)
+				.when()
+					.get(indirectContainer);
+		Model containerModel = getResponse.as(Model.class, new RdfObjectMapper(indirectContainer));
+		Resource container = containerModel.getResource(indirectContainer);
+		Property insertedContentRelation = ResourceFactory.createProperty(LDP.insertedContentRelation.stringValue());
+		
+		assertTrue(
+				container.hasProperty(insertedContentRelation),
+				"Container <"
+						+ indirectContainer
+						+ "> does not have a triple with the LDPC URI as the subject and ldp:insertedContentRelation as the predicate."
+		);
+		
+		StmtIterator stmtIterator = container.listProperties(insertedContentRelation);
+		RDFNode node = stmtIterator.next().getObject();
+		
+		assertTrue(
+				node.isURIResource(),
+				"The property with predicate ldp:insertedContentRelation, doesn't point to an RDF Object."
+		);
+		
+		assertTrue(
+				! stmtIterator.hasNext(),
+				"Container <"
+						+ indirectContainer
+						+ "> has more than one triple with the LDPC URI as the subject and ldp:insertedContentRelation as the predicate."
+		);
 	}
 
 	@Test(
