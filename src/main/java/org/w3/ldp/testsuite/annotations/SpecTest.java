@@ -88,7 +88,7 @@ public @interface SpecTest {
 	 * Steps needed to be taken to validate the test.  For manual/client tests
 	 * it specify the actions (step) what should be done to verify the result.  
 	 * For automation tests, it summarized what the automated test does.
-	 * @return
+	 * @return String[] The steps
 	 */
 	public String[] steps() default {};
 	

@@ -2,8 +2,6 @@ package org.w3.ldp.testsuite.test;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.NodeIterator;
-import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.ResIterator;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.util.ResourceUtils;
@@ -242,7 +240,7 @@ public abstract class LdpTest {
 	 * 
 	 * @param model
 	 * @param location
-	 * @return
+	 * @return Resource primary from model
 	 */
 	protected Resource getPrimaryTopic(Model model, String location) {
 		Resource loc = model.getResource(location);
