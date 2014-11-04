@@ -4,6 +4,7 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.NodeIterator;
 import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.ResIterator;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.util.ResourceUtils;
@@ -236,16 +237,22 @@ public abstract class LdpTest {
 	protected Resource getPrimaryTopic(Model model, String location) {
 		Resource loc = model.getResource(location);
 		Property insertedContentRelation = model.getProperty(LDP.insertedContentRelation.stringValue());
-		NodeIterator relations = model.listObjectsOfProperty(loc, insertedContentRelation);
-		if (relations.hasNext()) {
-			String relation = relations.next().toString();
-			if (LDP.MemberSubject.stringValue().equals(relation)) {
-				return loc;
-			} else {
-				Property primaryTopic = model.getProperty(relation);
-				return model.listObjectsOfProperty(loc, primaryTopic).next().asResource();
+		if ( loc.hasProperty(insertedContentRelation) ) {
+			RDFNode node = loc.getProperty(insertedContentRelation).getObject();
+			if ( node.isURIResource() ) {
+				Resource relation = node.asResource();
+				if ( LDP.MemberSubject.stringValue().equals(relation.getURI()) ) {
+					return loc;
+				} else {
+					Property relationProperty = model.getProperty(relation.getURI());
+					if ( loc.hasProperty(relationProperty) ) {
+						RDFNode relationNode = loc.getProperty(relationProperty).getObject();
+						if ( relationNode.isURIResource() ) return relationNode.asResource();
+					}
+				}
 			}
 		}
+		
 		ResIterator bugs = model.listSubjectsWithProperty(RDF.type, model.createResource(DEFAULT_MODEL_TYPE));
 		if (bugs.hasNext()) {
 			return bugs.nextResource();
