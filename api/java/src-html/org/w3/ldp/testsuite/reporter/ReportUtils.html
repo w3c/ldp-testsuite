@@ -13,13 +13,39 @@
 <span class="sourceLineNo">005</span>public class ReportUtils {<a name="line.5"></a>
 <span class="sourceLineNo">006</span>        public static final String JAVADOC_BASE_URI = "http://w3c.github.io/ldp-testsuite/api/java/";<a name="line.6"></a>
 <span class="sourceLineNo">007</span><a name="line.7"></a>
-<span class="sourceLineNo">008</span>        public static String getJavadocLink(Method method) {<a name="line.8"></a>
-<span class="sourceLineNo">009</span>                final String path =<a name="line.9"></a>
-<span class="sourceLineNo">010</span>                                method.getDeclaringClass().getCanonicalName().replace(".", "/") + ".html";<a name="line.10"></a>
-<span class="sourceLineNo">011</span>                final String hash = "#" + method.getName() + "()";<a name="line.11"></a>
-<span class="sourceLineNo">012</span>                return JAVADOC_BASE_URI + path + hash;<a name="line.12"></a>
-<span class="sourceLineNo">013</span>        }<a name="line.13"></a>
-<span class="sourceLineNo">014</span>}<a name="line.14"></a>
+<span class="sourceLineNo">008</span>        /**<a name="line.8"></a>
+<span class="sourceLineNo">009</span>         * Generates a link to the Javadoc hosted on w3c.github.io for the<a name="line.9"></a>
+<span class="sourceLineNo">010</span>         * corresponding test method, which in turn link back to the source. This<a name="line.10"></a>
+<span class="sourceLineNo">011</span>         * can be added to HTML and EARL test reports.<a name="line.11"></a>
+<span class="sourceLineNo">012</span>         *<a name="line.12"></a>
+<span class="sourceLineNo">013</span>         * @param method<a name="line.13"></a>
+<span class="sourceLineNo">014</span>         *            the test method<a name="line.14"></a>
+<span class="sourceLineNo">015</span>         * @return a link to the Javadoc.<a name="line.15"></a>
+<span class="sourceLineNo">016</span>         * @see &lt;a href="http://w3c.github.io/ldp-testsuite/api/java/"&gt;Hosted Javadoc&lt;/a&gt;<a name="line.16"></a>
+<span class="sourceLineNo">017</span>         */<a name="line.17"></a>
+<span class="sourceLineNo">018</span>        public static String getJavadocLink(final Method method) {<a name="line.18"></a>
+<span class="sourceLineNo">019</span>                // Example link:<a name="line.19"></a>
+<span class="sourceLineNo">020</span>                //   http://w3c.github.io/ldp-testsuite/api/java/org/w3/ldp/testsuite/test/CommonContainerTest.html#testRequestedInteractionModelCreateNotAllowed(java.lang.String)<a name="line.20"></a>
+<span class="sourceLineNo">021</span>                final StringBuilder link = new StringBuilder();<a name="line.21"></a>
+<span class="sourceLineNo">022</span>                link.append(JAVADOC_BASE_URI);<a name="line.22"></a>
+<span class="sourceLineNo">023</span>                link.append(method.getDeclaringClass().getCanonicalName().replace(".", "/"));<a name="line.23"></a>
+<span class="sourceLineNo">024</span>                link.append(".html#");<a name="line.24"></a>
+<span class="sourceLineNo">025</span>                link.append(method.getName());<a name="line.25"></a>
+<span class="sourceLineNo">026</span>                link.append("(");<a name="line.26"></a>
+<span class="sourceLineNo">027</span>                boolean first = true;<a name="line.27"></a>
+<span class="sourceLineNo">028</span>                for (Class&lt;?&gt; paramType : method.getParameterTypes()) {<a name="line.28"></a>
+<span class="sourceLineNo">029</span>                        if (!first) {<a name="line.29"></a>
+<span class="sourceLineNo">030</span>                                link.append(", ");<a name="line.30"></a>
+<span class="sourceLineNo">031</span>                        }<a name="line.31"></a>
+<span class="sourceLineNo">032</span><a name="line.32"></a>
+<span class="sourceLineNo">033</span>                        link.append(paramType.getCanonicalName());<a name="line.33"></a>
+<span class="sourceLineNo">034</span>                        first = false;<a name="line.34"></a>
+<span class="sourceLineNo">035</span>                }<a name="line.35"></a>
+<span class="sourceLineNo">036</span>                link.append(")");<a name="line.36"></a>
+<span class="sourceLineNo">037</span><a name="line.37"></a>
+<span class="sourceLineNo">038</span>                return link.toString();<a name="line.38"></a>
+<span class="sourceLineNo">039</span>        }<a name="line.39"></a>
+<span class="sourceLineNo">040</span>}<a name="line.40"></a>
 
 
 

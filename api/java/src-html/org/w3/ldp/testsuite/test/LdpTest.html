@@ -8,332 +8,488 @@
 <div class="sourceContainer">
 <pre><span class="sourceLineNo">001</span>package org.w3.ldp.testsuite.test;<a name="line.1"></a>
 <span class="sourceLineNo">002</span><a name="line.2"></a>
-<span class="sourceLineNo">003</span>import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;<a name="line.3"></a>
-<span class="sourceLineNo">004</span><a name="line.4"></a>
-<span class="sourceLineNo">005</span>import java.io.IOException;<a name="line.5"></a>
-<span class="sourceLineNo">006</span>import java.io.InputStream;<a name="line.6"></a>
-<span class="sourceLineNo">007</span>import java.net.URI;<a name="line.7"></a>
-<span class="sourceLineNo">008</span>import java.net.URISyntaxException;<a name="line.8"></a>
-<span class="sourceLineNo">009</span>import java.util.List;<a name="line.9"></a>
-<span class="sourceLineNo">010</span><a name="line.10"></a>
-<span class="sourceLineNo">011</span>import javax.ws.rs.core.Link;<a name="line.11"></a>
-<span class="sourceLineNo">012</span><a name="line.12"></a>
-<span class="sourceLineNo">013</span>import org.apache.commons.lang3.StringUtils;<a name="line.13"></a>
-<span class="sourceLineNo">014</span>import org.apache.marmotta.commons.vocabulary.LDP;<a name="line.14"></a>
-<span class="sourceLineNo">015</span>import org.jboss.resteasy.plugins.delegates.LinkDelegate;<a name="line.15"></a>
-<span class="sourceLineNo">016</span>import org.testng.annotations.BeforeSuite;<a name="line.16"></a>
-<span class="sourceLineNo">017</span>import org.testng.annotations.Optional;<a name="line.17"></a>
-<span class="sourceLineNo">018</span>import org.testng.annotations.Parameters;<a name="line.18"></a>
-<span class="sourceLineNo">019</span>import org.w3.ldp.testsuite.http.HttpHeaders;<a name="line.19"></a>
-<span class="sourceLineNo">020</span>import org.w3.ldp.testsuite.http.LdpPreferences;<a name="line.20"></a>
-<span class="sourceLineNo">021</span>import org.w3.ldp.testsuite.http.MediaTypes;<a name="line.21"></a>
-<span class="sourceLineNo">022</span>import org.w3.ldp.testsuite.mapper.RdfObjectMapper;<a name="line.22"></a>
-<span class="sourceLineNo">023</span><a name="line.23"></a>
-<span class="sourceLineNo">024</span>import com.hp.hpl.jena.rdf.model.Model;<a name="line.24"></a>
-<span class="sourceLineNo">025</span>import com.hp.hpl.jena.rdf.model.ModelFactory;<a name="line.25"></a>
-<span class="sourceLineNo">026</span>import com.hp.hpl.jena.rdf.model.Resource;<a name="line.26"></a>
-<span class="sourceLineNo">027</span>import com.hp.hpl.jena.util.ResourceUtils;<a name="line.27"></a>
-<span class="sourceLineNo">028</span>import com.hp.hpl.jena.vocabulary.DC_11;<a name="line.28"></a>
-<span class="sourceLineNo">029</span>import com.hp.hpl.jena.vocabulary.RDF;<a name="line.29"></a>
-<span class="sourceLineNo">030</span>import com.jayway.restassured.response.Header;<a name="line.30"></a>
-<span class="sourceLineNo">031</span>import com.jayway.restassured.response.Response;<a name="line.31"></a>
-<span class="sourceLineNo">032</span>import com.jayway.restassured.specification.RequestSpecification;<a name="line.32"></a>
-<span class="sourceLineNo">033</span><a name="line.33"></a>
-<span class="sourceLineNo">034</span>public abstract class LdpTest implements HttpHeaders, MediaTypes, LdpPreferences {<a name="line.34"></a>
+<span class="sourceLineNo">003</span>import com.hp.hpl.jena.rdf.model.Model;<a name="line.3"></a>
+<span class="sourceLineNo">004</span>import com.hp.hpl.jena.rdf.model.ModelFactory;<a name="line.4"></a>
+<span class="sourceLineNo">005</span>import com.hp.hpl.jena.rdf.model.NodeIterator;<a name="line.5"></a>
+<span class="sourceLineNo">006</span>import com.hp.hpl.jena.rdf.model.Property;<a name="line.6"></a>
+<span class="sourceLineNo">007</span>import com.hp.hpl.jena.rdf.model.ResIterator;<a name="line.7"></a>
+<span class="sourceLineNo">008</span>import com.hp.hpl.jena.rdf.model.Resource;<a name="line.8"></a>
+<span class="sourceLineNo">009</span>import com.hp.hpl.jena.util.ResourceUtils;<a name="line.9"></a>
+<span class="sourceLineNo">010</span>import com.hp.hpl.jena.vocabulary.DCTerms;<a name="line.10"></a>
+<span class="sourceLineNo">011</span>import com.hp.hpl.jena.vocabulary.RDF;<a name="line.11"></a>
+<span class="sourceLineNo">012</span>import com.jayway.restassured.response.Header;<a name="line.12"></a>
+<span class="sourceLineNo">013</span>import com.jayway.restassured.response.Response;<a name="line.13"></a>
+<span class="sourceLineNo">014</span>import com.jayway.restassured.specification.RequestSpecification;<a name="line.14"></a>
+<span class="sourceLineNo">015</span><a name="line.15"></a>
+<span class="sourceLineNo">016</span>import org.apache.commons.lang3.StringUtils;<a name="line.16"></a>
+<span class="sourceLineNo">017</span>import org.apache.marmotta.commons.vocabulary.LDP;<a name="line.17"></a>
+<span class="sourceLineNo">018</span>import org.jboss.resteasy.plugins.delegates.LinkDelegate;<a name="line.18"></a>
+<span class="sourceLineNo">019</span>import org.testng.annotations.AfterSuite;<a name="line.19"></a>
+<span class="sourceLineNo">020</span>import org.testng.annotations.BeforeSuite;<a name="line.20"></a>
+<span class="sourceLineNo">021</span>import org.testng.annotations.Optional;<a name="line.21"></a>
+<span class="sourceLineNo">022</span>import org.testng.annotations.Parameters;<a name="line.22"></a>
+<span class="sourceLineNo">023</span>import org.w3.ldp.testsuite.LdpTestSuite;<a name="line.23"></a>
+<span class="sourceLineNo">024</span>import org.w3.ldp.testsuite.mapper.RdfObjectMapper;<a name="line.24"></a>
+<span class="sourceLineNo">025</span><a name="line.25"></a>
+<span class="sourceLineNo">026</span>import javax.ws.rs.core.Link;<a name="line.26"></a>
+<span class="sourceLineNo">027</span><a name="line.27"></a>
+<span class="sourceLineNo">028</span>import java.io.*;<a name="line.28"></a>
+<span class="sourceLineNo">029</span>import java.net.URI;<a name="line.29"></a>
+<span class="sourceLineNo">030</span>import java.net.URISyntaxException;<a name="line.30"></a>
+<span class="sourceLineNo">031</span>import java.text.DateFormat;<a name="line.31"></a>
+<span class="sourceLineNo">032</span>import java.util.ArrayList;<a name="line.32"></a>
+<span class="sourceLineNo">033</span>import java.util.Date;<a name="line.33"></a>
+<span class="sourceLineNo">034</span>import java.util.List;<a name="line.34"></a>
 <span class="sourceLineNo">035</span><a name="line.35"></a>
-<span class="sourceLineNo">036</span>        /**<a name="line.36"></a>
-<span class="sourceLineNo">037</span>         * Alternate content to use on POST requests<a name="line.37"></a>
-<span class="sourceLineNo">038</span>         */<a name="line.38"></a>
-<span class="sourceLineNo">039</span>        private static Model postModel;<a name="line.39"></a>
-<span class="sourceLineNo">040</span><a name="line.40"></a>
-<span class="sourceLineNo">041</span>        /**<a name="line.41"></a>
-<span class="sourceLineNo">042</span>         * Builds a model from a turtle representation in a file<a name="line.42"></a>
-<span class="sourceLineNo">043</span>         * @param path<a name="line.43"></a>
-<span class="sourceLineNo">044</span>         */<a name="line.44"></a>
-<span class="sourceLineNo">045</span>        protected Model readModel(String path) {<a name="line.45"></a>
-<span class="sourceLineNo">046</span>                Model model = null;<a name="line.46"></a>
-<span class="sourceLineNo">047</span>                if (path != null) {<a name="line.47"></a>
-<span class="sourceLineNo">048</span>                        model = ModelFactory.createDefaultModel();<a name="line.48"></a>
-<span class="sourceLineNo">049</span>                        InputStream  inputStream = getClass().getClassLoader().getResourceAsStream(path);<a name="line.49"></a>
-<span class="sourceLineNo">050</span><a name="line.50"></a>
-<span class="sourceLineNo">051</span>                        String fakeUri = "http://w3c.github.io/ldp-testsuite/fakesubject";<a name="line.51"></a>
-<span class="sourceLineNo">052</span>                        // Even though null relative URIs are used in the resource representation file,<a name="line.52"></a>
-<span class="sourceLineNo">053</span>                        // the resulting model doesn't keep them intact. They are changed to "file://..." if<a name="line.53"></a>
-<span class="sourceLineNo">054</span>                        // an empty string is passed as base to this method.<a name="line.54"></a>
-<span class="sourceLineNo">055</span>                        model.read(inputStream, fakeUri, "TURTLE");<a name="line.55"></a>
+<span class="sourceLineNo">036</span>import static org.testng.Assert.assertTrue;<a name="line.36"></a>
+<span class="sourceLineNo">037</span>import static org.w3.ldp.testsuite.http.HttpHeaders.*;<a name="line.37"></a>
+<span class="sourceLineNo">038</span>import static org.w3.ldp.testsuite.http.LdpPreferences.PREFERENCE_INCLUDE;<a name="line.38"></a>
+<span class="sourceLineNo">039</span>import static org.w3.ldp.testsuite.http.LdpPreferences.PREFERENCE_OMIT;<a name="line.39"></a>
+<span class="sourceLineNo">040</span>import static org.w3.ldp.testsuite.http.MediaTypes.TEXT_TURTLE;<a name="line.40"></a>
+<span class="sourceLineNo">041</span>import static org.w3.ldp.testsuite.matcher.HttpStatusSuccessMatcher.isSuccessful;<a name="line.41"></a>
+<span class="sourceLineNo">042</span><a name="line.42"></a>
+<span class="sourceLineNo">043</span>public abstract class LdpTest {<a name="line.43"></a>
+<span class="sourceLineNo">044</span><a name="line.44"></a>
+<span class="sourceLineNo">045</span>        public final static String SKIPPED_LOG_FILENAME = "skipped.log";<a name="line.45"></a>
+<span class="sourceLineNo">046</span><a name="line.46"></a>
+<span class="sourceLineNo">047</span>        public final static String HTTP_LOG_FILENAME = "http.log";<a name="line.47"></a>
+<span class="sourceLineNo">048</span>        public final static DateFormat df = DateFormat.getDateTimeInstance();<a name="line.48"></a>
+<span class="sourceLineNo">049</span><a name="line.49"></a>
+<span class="sourceLineNo">050</span>        public final static String DEFAULT_MODEL_TYPE = "http://example.com/ns#Bug";<a name="line.50"></a>
+<span class="sourceLineNo">051</span><a name="line.51"></a>
+<span class="sourceLineNo">052</span>        /*<a name="line.52"></a>
+<span class="sourceLineNo">053</span>         * The following properties are marked static because commonSetup() is only called<a name="line.53"></a>
+<span class="sourceLineNo">054</span>         * one time, even if several test classes inherit from LdpTest.<a name="line.54"></a>
+<span class="sourceLineNo">055</span>         */<a name="line.55"></a>
 <span class="sourceLineNo">056</span><a name="line.56"></a>
-<span class="sourceLineNo">057</span>                        // At this point, the model should contain a resource named<a name="line.57"></a>
-<span class="sourceLineNo">058</span>                        // "http://w3c.github.io/ldp-testsuite/fakesubject" if<a name="line.58"></a>
-<span class="sourceLineNo">059</span>                        // there was a null relative URI in the resource representation<a name="line.59"></a>
-<span class="sourceLineNo">060</span>                        // file.<a name="line.60"></a>
-<span class="sourceLineNo">061</span>                        Resource subject = model.getResource(fakeUri);<a name="line.61"></a>
-<span class="sourceLineNo">062</span>                        if (subject != null) {<a name="line.62"></a>
-<span class="sourceLineNo">063</span>                                ResourceUtils.renameResource(subject, "");<a name="line.63"></a>
-<span class="sourceLineNo">064</span>                        }<a name="line.64"></a>
-<span class="sourceLineNo">065</span><a name="line.65"></a>
-<span class="sourceLineNo">066</span>                        try {<a name="line.66"></a>
-<span class="sourceLineNo">067</span>                                inputStream.close();<a name="line.67"></a>
-<span class="sourceLineNo">068</span>                        } catch (IOException e) {<a name="line.68"></a>
-<span class="sourceLineNo">069</span>                                e.printStackTrace();<a name="line.69"></a>
-<span class="sourceLineNo">070</span>                        }<a name="line.70"></a>
-<span class="sourceLineNo">071</span>                }<a name="line.71"></a>
-<span class="sourceLineNo">072</span>                return model;<a name="line.72"></a>
-<span class="sourceLineNo">073</span>        }<a name="line.73"></a>
-<span class="sourceLineNo">074</span><a name="line.74"></a>
-<span class="sourceLineNo">075</span>        /**<a name="line.75"></a>
-<span class="sourceLineNo">076</span>         * Initialization of generic resource model. This will run only once<a name="line.76"></a>
-<span class="sourceLineNo">077</span>         * at the beginning of the test suite, so postModel static field<a name="line.77"></a>
-<span class="sourceLineNo">078</span>         * will be assigned once too.<a name="line.78"></a>
-<span class="sourceLineNo">079</span>         * @param postTtl<a name="line.79"></a>
-<span class="sourceLineNo">080</span>         */<a name="line.80"></a>
-<span class="sourceLineNo">081</span>        @BeforeSuite(alwaysRun = true)<a name="line.81"></a>
-<span class="sourceLineNo">082</span>        @Parameters("postTtl")<a name="line.82"></a>
-<span class="sourceLineNo">083</span>        public void setPostContent(@Optional String postTtl) {<a name="line.83"></a>
-<span class="sourceLineNo">084</span>                postModel = this.readModel(postTtl);<a name="line.84"></a>
-<span class="sourceLineNo">085</span>        }<a name="line.85"></a>
-<span class="sourceLineNo">086</span><a name="line.86"></a>
-<span class="sourceLineNo">087</span>        /**<a name="line.87"></a>
-<span class="sourceLineNo">088</span>         * An absolute requirement of the specification.<a name="line.88"></a>
-<span class="sourceLineNo">089</span>         *<a name="line.89"></a>
-<span class="sourceLineNo">090</span>         * @see &lt;a href="https://www.ietf.org/rfc/rfc2119.txt"&gt;RFC 2119&lt;/a&gt;<a name="line.90"></a>
-<span class="sourceLineNo">091</span>         */<a name="line.91"></a>
-<span class="sourceLineNo">092</span>        public static final String MUST = "MUST";<a name="line.92"></a>
-<span class="sourceLineNo">093</span><a name="line.93"></a>
-<span class="sourceLineNo">094</span>        /**<a name="line.94"></a>
-<span class="sourceLineNo">095</span>         * There may exist valid reasons in particular circumstances to ignore a<a name="line.95"></a>
-<span class="sourceLineNo">096</span>         * particular item, but the full implications must be understood and<a name="line.96"></a>
-<span class="sourceLineNo">097</span>         * carefully weighed before choosing a different course.<a name="line.97"></a>
-<span class="sourceLineNo">098</span>         *<a name="line.98"></a>
-<span class="sourceLineNo">099</span>         * @see &lt;a href="https://www.ietf.org/rfc/rfc2119.txt"&gt;RFC 2119&lt;/a&gt;<a name="line.99"></a>
-<span class="sourceLineNo">100</span>         */<a name="line.100"></a>
-<span class="sourceLineNo">101</span>        public static final String SHOULD = "SHOULD";<a name="line.101"></a>
-<span class="sourceLineNo">102</span><a name="line.102"></a>
-<span class="sourceLineNo">103</span>        /**<a name="line.103"></a>
-<span class="sourceLineNo">104</span>         * An item is truly optional. One vendor may choose to include the item<a name="line.104"></a>
-<span class="sourceLineNo">105</span>         * because a particular marketplace requires it or because the vendor feels<a name="line.105"></a>
-<span class="sourceLineNo">106</span>         * that it enhances the product while another vendor may omit the same item.<a name="line.106"></a>
-<span class="sourceLineNo">107</span>         *<a name="line.107"></a>
-<span class="sourceLineNo">108</span>         * @see &lt;a href="https://www.ietf.org/rfc/rfc2119.txt"&gt;RFC 2119&lt;/a&gt;<a name="line.108"></a>
-<span class="sourceLineNo">109</span>         */<a name="line.109"></a>
-<span class="sourceLineNo">110</span>        public static final String MAY = "MAY";<a name="line.110"></a>
-<span class="sourceLineNo">111</span><a name="line.111"></a>
-<span class="sourceLineNo">112</span>        /**<a name="line.112"></a>
-<span class="sourceLineNo">113</span>         * A Linked Data Platform Non-RDF Source (LDP-NR). An LDPR whose state<a name="line.113"></a>
-<span class="sourceLineNo">114</span>         * is not represented in RDF. These are binary or text documents that do not<a name="line.114"></a>
-<span class="sourceLineNo">115</span>         * have useful RDF representations.<a name="line.115"></a>
-<span class="sourceLineNo">116</span>         *<a name="line.116"></a>
-<span class="sourceLineNo">117</span>         * @see &lt;a href="http://www.w3.org/TR/ldp/#terms"&gt;LDP Terminology&lt;/a&gt;<a name="line.117"></a>
-<span class="sourceLineNo">118</span>         */<a name="line.118"></a>
-<span class="sourceLineNo">119</span>        public static final String NR = "NON-RDF";<a name="line.119"></a>
-<span class="sourceLineNo">120</span><a name="line.120"></a>
-<span class="sourceLineNo">121</span>        private static boolean warnings = false;<a name="line.121"></a>
+<span class="sourceLineNo">057</span>        /**<a name="line.57"></a>
+<span class="sourceLineNo">058</span>         * Alternate content to use on POST requests<a name="line.58"></a>
+<span class="sourceLineNo">059</span>         */<a name="line.59"></a>
+<span class="sourceLineNo">060</span>        private static Model postModel;<a name="line.60"></a>
+<span class="sourceLineNo">061</span><a name="line.61"></a>
+<span class="sourceLineNo">062</span>        /**<a name="line.62"></a>
+<span class="sourceLineNo">063</span>         * For HTTP details on validation failures<a name="line.63"></a>
+<span class="sourceLineNo">064</span>         */<a name="line.64"></a>
+<span class="sourceLineNo">065</span>        protected static PrintWriter httpLog;<a name="line.65"></a>
+<span class="sourceLineNo">066</span><a name="line.66"></a>
+<span class="sourceLineNo">067</span>        /**<a name="line.67"></a>
+<span class="sourceLineNo">068</span>         * For skipped test logging<a name="line.68"></a>
+<span class="sourceLineNo">069</span>         */<a name="line.69"></a>
+<span class="sourceLineNo">070</span>        protected static PrintWriter skipLog;<a name="line.70"></a>
+<span class="sourceLineNo">071</span><a name="line.71"></a>
+<span class="sourceLineNo">072</span>        /**<a name="line.72"></a>
+<span class="sourceLineNo">073</span>         * Builds a model from a turtle representation in a file<a name="line.73"></a>
+<span class="sourceLineNo">074</span>         * @param path<a name="line.74"></a>
+<span class="sourceLineNo">075</span>         */<a name="line.75"></a>
+<span class="sourceLineNo">076</span>        protected Model readModel(String path) {<a name="line.76"></a>
+<span class="sourceLineNo">077</span>                Model model = null;<a name="line.77"></a>
+<span class="sourceLineNo">078</span>                if (path != null) {<a name="line.78"></a>
+<span class="sourceLineNo">079</span>                        model = ModelFactory.createDefaultModel();<a name="line.79"></a>
+<span class="sourceLineNo">080</span>                        InputStream  inputStream = getClass().getClassLoader().getResourceAsStream(path);<a name="line.80"></a>
+<span class="sourceLineNo">081</span><a name="line.81"></a>
+<span class="sourceLineNo">082</span>                        String fakeUri = "http://w3c.github.io/ldp-testsuite/fakesubject";<a name="line.82"></a>
+<span class="sourceLineNo">083</span>                        // Even though null relative URIs are used in the resource representation file,<a name="line.83"></a>
+<span class="sourceLineNo">084</span>                        // the resulting model doesn't keep them intact. They are changed to "file://..." if<a name="line.84"></a>
+<span class="sourceLineNo">085</span>                        // an empty string is passed as base to this method.<a name="line.85"></a>
+<span class="sourceLineNo">086</span>                        model.read(inputStream, fakeUri, "TURTLE");<a name="line.86"></a>
+<span class="sourceLineNo">087</span><a name="line.87"></a>
+<span class="sourceLineNo">088</span>                        // At this point, the model should contain a resource named<a name="line.88"></a>
+<span class="sourceLineNo">089</span>                        // "http://w3c.github.io/ldp-testsuite/fakesubject" if<a name="line.89"></a>
+<span class="sourceLineNo">090</span>                        // there was a null relative URI in the resource representation<a name="line.90"></a>
+<span class="sourceLineNo">091</span>                        // file.<a name="line.91"></a>
+<span class="sourceLineNo">092</span>                        Resource subject = model.getResource(fakeUri);<a name="line.92"></a>
+<span class="sourceLineNo">093</span>                        if (subject != null) {<a name="line.93"></a>
+<span class="sourceLineNo">094</span>                                ResourceUtils.renameResource(subject, "");<a name="line.94"></a>
+<span class="sourceLineNo">095</span>                        }<a name="line.95"></a>
+<span class="sourceLineNo">096</span><a name="line.96"></a>
+<span class="sourceLineNo">097</span>                        try {<a name="line.97"></a>
+<span class="sourceLineNo">098</span>                                inputStream.close();<a name="line.98"></a>
+<span class="sourceLineNo">099</span>                        } catch (IOException e) {<a name="line.99"></a>
+<span class="sourceLineNo">100</span>                                e.printStackTrace();<a name="line.100"></a>
+<span class="sourceLineNo">101</span>                        }<a name="line.101"></a>
+<span class="sourceLineNo">102</span>                }<a name="line.102"></a>
+<span class="sourceLineNo">103</span>                return model;<a name="line.103"></a>
+<span class="sourceLineNo">104</span>        }<a name="line.104"></a>
+<span class="sourceLineNo">105</span><a name="line.105"></a>
+<span class="sourceLineNo">106</span>        /**<a name="line.106"></a>
+<span class="sourceLineNo">107</span>         * Initialization of generic resource model. This will run only once<a name="line.107"></a>
+<span class="sourceLineNo">108</span>         * at the beginning of the test suite, so postModel static field<a name="line.108"></a>
+<span class="sourceLineNo">109</span>         * will be assigned once too.<a name="line.109"></a>
+<span class="sourceLineNo">110</span>         *<a name="line.110"></a>
+<span class="sourceLineNo">111</span>         * @param postTtl the resource with Turtle content to use for POST requests<a name="line.111"></a>
+<span class="sourceLineNo">112</span>         * @param httpLogging whether to log HTTP request and response details on errors<a name="line.112"></a>
+<span class="sourceLineNo">113</span>         */<a name="line.113"></a>
+<span class="sourceLineNo">114</span>        @BeforeSuite(alwaysRun = true)<a name="line.114"></a>
+<span class="sourceLineNo">115</span>        @Parameters({"output", "postTtl", "httpLogging", "skipLogging"})<a name="line.115"></a>
+<span class="sourceLineNo">116</span>        public void commonSetup(@Optional String outputDir, @Optional String postTtl, @Optional String httpLogging, @Optional String skipLogging) throws IOException {<a name="line.116"></a>
+<span class="sourceLineNo">117</span><a name="line.117"></a>
+<span class="sourceLineNo">118</span>                /*<a name="line.118"></a>
+<span class="sourceLineNo">119</span>                 * Note: This method is only called one time, even if many classes inherit<a name="line.119"></a>
+<span class="sourceLineNo">120</span>                 * from LdpTest. Don't set non-static members here.<a name="line.120"></a>
+<span class="sourceLineNo">121</span>                 */<a name="line.121"></a>
 <span class="sourceLineNo">122</span><a name="line.122"></a>
-<span class="sourceLineNo">123</span>        public static boolean getWarnings() {<a name="line.123"></a>
-<span class="sourceLineNo">124</span>                return warnings;<a name="line.124"></a>
-<span class="sourceLineNo">125</span>        }<a name="line.125"></a>
-<span class="sourceLineNo">126</span><a name="line.126"></a>
-<span class="sourceLineNo">127</span>        /**<a name="line.127"></a>
-<span class="sourceLineNo">128</span>         * Build a base RestAssured {@link com.jayway.restassured.specification.RequestSpecification}.<a name="line.128"></a>
-<span class="sourceLineNo">129</span>         *<a name="line.129"></a>
-<span class="sourceLineNo">130</span>         * @return RestAssured Request Specification<a name="line.130"></a>
-<span class="sourceLineNo">131</span>         */<a name="line.131"></a>
-<span class="sourceLineNo">132</span>        protected abstract RequestSpecification buildBaseRequestSpecification();<a name="line.132"></a>
-<span class="sourceLineNo">133</span><a name="line.133"></a>
-<span class="sourceLineNo">134</span>        public Model getAsModel(String uri) {<a name="line.134"></a>
-<span class="sourceLineNo">135</span>                return getResourceAsModel(uri, TEXT_TURTLE);<a name="line.135"></a>
-<span class="sourceLineNo">136</span>        }<a name="line.136"></a>
-<span class="sourceLineNo">137</span><a name="line.137"></a>
-<span class="sourceLineNo">138</span>        public Model getResourceAsModel(String uri, String mediaType) {<a name="line.138"></a>
-<span class="sourceLineNo">139</span>                return buildBaseRequestSpecification()<a name="line.139"></a>
-<span class="sourceLineNo">140</span>                                .header(ACCEPT, mediaType)<a name="line.140"></a>
-<span class="sourceLineNo">141</span>                        .expect()<a name="line.141"></a>
-<span class="sourceLineNo">142</span>                                .statusCode(isSuccessful())<a name="line.142"></a>
-<span class="sourceLineNo">143</span>                        .when()<a name="line.143"></a>
-<span class="sourceLineNo">144</span>                                .get(uri).as(Model.class, new RdfObjectMapper(uri));<a name="line.144"></a>
-<span class="sourceLineNo">145</span>        }<a name="line.145"></a>
-<span class="sourceLineNo">146</span><a name="line.146"></a>
-<span class="sourceLineNo">147</span>        protected Model getDefaultModel() {<a name="line.147"></a>
-<span class="sourceLineNo">148</span>                Model model = ModelFactory.createDefaultModel();<a name="line.148"></a>
-<span class="sourceLineNo">149</span>                Resource resource = model.createResource("",<a name="line.149"></a>
-<span class="sourceLineNo">150</span>                                model.createResource("http://example.com/ns#Bug"));<a name="line.150"></a>
-<span class="sourceLineNo">151</span>                resource.addProperty(RDF.type, model.createResource(LDP.RDFSource.stringValue()));<a name="line.151"></a>
-<span class="sourceLineNo">152</span>                resource.addProperty(<a name="line.152"></a>
-<span class="sourceLineNo">153</span>                                model.createProperty("http://example.com/ns#severity"), "High");<a name="line.153"></a>
-<span class="sourceLineNo">154</span>                resource.addProperty(DC_11.title, "Another bug to test.");<a name="line.154"></a>
-<span class="sourceLineNo">155</span>                resource.addProperty(DC_11.description, "Issues that need to be fixed.");<a name="line.155"></a>
+<span class="sourceLineNo">123</span>                postModel = readModel(postTtl);<a name="line.123"></a>
+<span class="sourceLineNo">124</span><a name="line.124"></a>
+<span class="sourceLineNo">125</span>                if (outputDir == null || outputDir.length() == 0)<a name="line.125"></a>
+<span class="sourceLineNo">126</span>                        outputDir = LdpTestSuite.OUTPUT_DIR;<a name="line.126"></a>
+<span class="sourceLineNo">127</span>                <a name="line.127"></a>
+<span class="sourceLineNo">128</span>                File dir = new File(outputDir);<a name="line.128"></a>
+<span class="sourceLineNo">129</span>                dir.mkdirs();<a name="line.129"></a>
+<span class="sourceLineNo">130</span><a name="line.130"></a>
+<span class="sourceLineNo">131</span>                if ("true".equals(httpLogging)) {<a name="line.131"></a>
+<span class="sourceLineNo">132</span>                        File file = new File(dir, HTTP_LOG_FILENAME);<a name="line.132"></a>
+<span class="sourceLineNo">133</span>                        try {<a name="line.133"></a>
+<span class="sourceLineNo">134</span>                                httpLog = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));<a name="line.134"></a>
+<span class="sourceLineNo">135</span>                                httpLog.println(String.format("LDP Test Suite: HTTP Log (%s)", df.format(new Date())));<a name="line.135"></a>
+<span class="sourceLineNo">136</span>                                httpLog.println("---------------------------------------------------");<a name="line.136"></a>
+<span class="sourceLineNo">137</span>                        } catch (IOException e) {<a name="line.137"></a>
+<span class="sourceLineNo">138</span>                                System.err.println(String.format("WARNING: Error creating %s for detailed errors", HTTP_LOG_FILENAME));<a name="line.138"></a>
+<span class="sourceLineNo">139</span>                                e.printStackTrace();<a name="line.139"></a>
+<span class="sourceLineNo">140</span>                        }<a name="line.140"></a>
+<span class="sourceLineNo">141</span>                }<a name="line.141"></a>
+<span class="sourceLineNo">142</span><a name="line.142"></a>
+<span class="sourceLineNo">143</span>                if ("true".equals(httpLogging)) {<a name="line.143"></a>
+<span class="sourceLineNo">144</span>                        File file = new File(dir, SKIPPED_LOG_FILENAME);<a name="line.144"></a>
+<span class="sourceLineNo">145</span>                        try {<a name="line.145"></a>
+<span class="sourceLineNo">146</span>                                skipLog = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));<a name="line.146"></a>
+<span class="sourceLineNo">147</span>                                skipLog.println(String.format("LDP Test Suite: Skipped Tests Log (%s)", df.format(new Date())));<a name="line.147"></a>
+<span class="sourceLineNo">148</span>                                skipLog.println("------------------------------------------------------------");<a name="line.148"></a>
+<span class="sourceLineNo">149</span>                        } catch (IOException e) {<a name="line.149"></a>
+<span class="sourceLineNo">150</span>                                System.err.println(String.format("WARNING: Error creating %s for detailed errors", SKIPPED_LOG_FILENAME));<a name="line.150"></a>
+<span class="sourceLineNo">151</span>                                e.printStackTrace();<a name="line.151"></a>
+<span class="sourceLineNo">152</span>                        }<a name="line.152"></a>
+<span class="sourceLineNo">153</span>                }<a name="line.153"></a>
+<span class="sourceLineNo">154</span><a name="line.154"></a>
+<span class="sourceLineNo">155</span>        }<a name="line.155"></a>
 <span class="sourceLineNo">156</span><a name="line.156"></a>
-<span class="sourceLineNo">157</span>                return model;<a name="line.157"></a>
-<span class="sourceLineNo">158</span>        }<a name="line.158"></a>
-<span class="sourceLineNo">159</span><a name="line.159"></a>
-<span class="sourceLineNo">160</span>        protected Model postContent() {<a name="line.160"></a>
-<span class="sourceLineNo">161</span>                return postModel != null? postModel : getDefaultModel();<a name="line.161"></a>
-<span class="sourceLineNo">162</span>        }<a name="line.162"></a>
-<span class="sourceLineNo">163</span><a name="line.163"></a>
-<span class="sourceLineNo">164</span>        /**<a name="line.164"></a>
-<span class="sourceLineNo">165</span>         * Are there any restrictions on content when creating resources? This is<a name="line.165"></a>
-<span class="sourceLineNo">166</span>         * assumed to be true if POST content was provided using the {@code postTtl}<a name="line.166"></a>
-<span class="sourceLineNo">167</span>         * test parameter.<a name="line.167"></a>
-<span class="sourceLineNo">168</span>         *<a name="line.168"></a>
-<span class="sourceLineNo">169</span>         * &lt;p&gt;<a name="line.169"></a>
-<span class="sourceLineNo">170</span>         * This method is used for<a name="line.170"></a>
-<span class="sourceLineNo">171</span>         * {@link CommonContainerTest#testRelativeUriResolutionPost()}.<a name="line.171"></a>
-<span class="sourceLineNo">172</span>         * &lt;/p&gt;<a name="line.172"></a>
+<span class="sourceLineNo">157</span>        @AfterSuite(alwaysRun = true)<a name="line.157"></a>
+<span class="sourceLineNo">158</span>        public void commonTearDown() {<a name="line.158"></a>
+<span class="sourceLineNo">159</span>                if (httpLog != null) {<a name="line.159"></a>
+<span class="sourceLineNo">160</span>                        httpLog.println();<a name="line.160"></a>
+<span class="sourceLineNo">161</span>                        httpLog.flush();<a name="line.161"></a>
+<span class="sourceLineNo">162</span>                        httpLog.close();<a name="line.162"></a>
+<span class="sourceLineNo">163</span>                }<a name="line.163"></a>
+<span class="sourceLineNo">164</span>                if (skipLog != null) {<a name="line.164"></a>
+<span class="sourceLineNo">165</span>                        skipLog.println();<a name="line.165"></a>
+<span class="sourceLineNo">166</span>                        skipLog.flush();<a name="line.166"></a>
+<span class="sourceLineNo">167</span>                        skipLog.close();<a name="line.167"></a>
+<span class="sourceLineNo">168</span>                }<a name="line.168"></a>
+<span class="sourceLineNo">169</span>        }<a name="line.169"></a>
+<span class="sourceLineNo">170</span><a name="line.170"></a>
+<span class="sourceLineNo">171</span>        /**<a name="line.171"></a>
+<span class="sourceLineNo">172</span>         * An absolute requirement of the specification.<a name="line.172"></a>
 <span class="sourceLineNo">173</span>         *<a name="line.173"></a>
-<span class="sourceLineNo">174</span>         * @return true if there are restrictions on what triples are allowed; false<a name="line.174"></a>
-<span class="sourceLineNo">175</span>         *         if the server allows most any RDF<a name="line.175"></a>
-<span class="sourceLineNo">176</span>         * @see #setPostContent(String)<a name="line.176"></a>
-<span class="sourceLineNo">177</span>         * @see RdfSourceTest#restrictionsOnTestResourceContent()<a name="line.177"></a>
-<span class="sourceLineNo">178</span>         */<a name="line.178"></a>
-<span class="sourceLineNo">179</span>        protected boolean restrictionsOnPostContent() {<a name="line.179"></a>
-<span class="sourceLineNo">180</span>                return postModel != null;<a name="line.180"></a>
-<span class="sourceLineNo">181</span>        }<a name="line.181"></a>
-<span class="sourceLineNo">182</span><a name="line.182"></a>
-<span class="sourceLineNo">183</span>        /**<a name="line.183"></a>
-<span class="sourceLineNo">184</span>         * Tests if a Link response header with the expected URI and relation is<a name="line.184"></a>
-<span class="sourceLineNo">185</span>         * present in an HTTP response. Does not resolve relative URIs. If a Link<a name="line.185"></a>
-<span class="sourceLineNo">186</span>         * URI might be relative, use {@link #containsLinkHeader(String, String,<a name="line.186"></a>
-<span class="sourceLineNo">187</span>         * String, Response)}.<a name="line.187"></a>
-<span class="sourceLineNo">188</span>         *<a name="line.188"></a>
-<span class="sourceLineNo">189</span>         * @param expectedUri<a name="line.189"></a>
-<span class="sourceLineNo">190</span>         *            the expected URI<a name="line.190"></a>
-<span class="sourceLineNo">191</span>         * @param expectedRel<a name="line.191"></a>
-<span class="sourceLineNo">192</span>         *            the expected link relation (rel)<a name="line.192"></a>
-<span class="sourceLineNo">193</span>         * @param response<a name="line.193"></a>
-<span class="sourceLineNo">194</span>         *            the HTTP response<a name="line.194"></a>
-<span class="sourceLineNo">195</span>         * @see &lt;a href="http://tools.ietf.org/html/rfc5988"&gt;RFC 5988&lt;/a&gt;<a name="line.195"></a>
-<span class="sourceLineNo">196</span>         * @see #getFirstLinkForRelation(String, String, Response)<a name="line.196"></a>
-<span class="sourceLineNo">197</span>         */<a name="line.197"></a>
-<span class="sourceLineNo">198</span>        protected boolean containsLinkHeader(String expectedUri, String expectedRel, Response response) {<a name="line.198"></a>
-<span class="sourceLineNo">199</span>                return containsLinkHeader(expectedUri, expectedRel, null, response);<a name="line.199"></a>
-<span class="sourceLineNo">200</span>        }<a name="line.200"></a>
-<span class="sourceLineNo">201</span><a name="line.201"></a>
-<span class="sourceLineNo">202</span>        /**<a name="line.202"></a>
-<span class="sourceLineNo">203</span>         * Tests if a Link response header with the expected URI and relation is<a name="line.203"></a>
-<span class="sourceLineNo">204</span>         * present in an HTTP response. Resolves relative URIs against the request<a name="line.204"></a>
-<span class="sourceLineNo">205</span>         * URI if necessary.<a name="line.205"></a>
-<span class="sourceLineNo">206</span>         *<a name="line.206"></a>
-<span class="sourceLineNo">207</span>         * @param expectedLinkUri<a name="line.207"></a>
-<span class="sourceLineNo">208</span>         *            the expected URI<a name="line.208"></a>
-<span class="sourceLineNo">209</span>         * @param expectedRel<a name="line.209"></a>
-<span class="sourceLineNo">210</span>         *            the expected link relation (rel)<a name="line.210"></a>
-<span class="sourceLineNo">211</span>         * @param requestUri<a name="line.211"></a>
-<span class="sourceLineNo">212</span>         *            the HTTP request URI (for resolving relative URIs)<a name="line.212"></a>
-<span class="sourceLineNo">213</span>         * @param response<a name="line.213"></a>
-<span class="sourceLineNo">214</span>         *            the HTTP response<a name="line.214"></a>
-<span class="sourceLineNo">215</span>         * @see &lt;a href="http://tools.ietf.org/html/rfc5988"&gt;RFC 5988&lt;/a&gt;<a name="line.215"></a>
-<span class="sourceLineNo">216</span>         * @see #getFirstLinkForRelation(String, String, Response)<a name="line.216"></a>
-<span class="sourceLineNo">217</span>         */<a name="line.217"></a>
-<span class="sourceLineNo">218</span>        protected boolean containsLinkHeader(String expectedLinkUri, String expectedRel, String requestUri, Response response) {<a name="line.218"></a>
-<span class="sourceLineNo">219</span>                List&lt;Header&gt; linkHeaders = response.getHeaders().getList(LINK);<a name="line.219"></a>
-<span class="sourceLineNo">220</span>                for (Header linkHeader : linkHeaders) {<a name="line.220"></a>
-<span class="sourceLineNo">221</span>                        for (String s : linkHeader.getValue().split(",")) {<a name="line.221"></a>
-<span class="sourceLineNo">222</span>                                Link nextLink = new LinkDelegate().fromString(s);<a name="line.222"></a>
-<span class="sourceLineNo">223</span>                                if (expectedRel.equals(nextLink.getRel())) {<a name="line.223"></a>
-<span class="sourceLineNo">224</span>                                        String actualLinkUri = resolveIfRelative(requestUri, nextLink.getUri());<a name="line.224"></a>
-<span class="sourceLineNo">225</span>                                        if (expectedLinkUri.equals(actualLinkUri)) {<a name="line.225"></a>
-<span class="sourceLineNo">226</span>                                                return true;<a name="line.226"></a>
-<span class="sourceLineNo">227</span>                                        }<a name="line.227"></a>
-<span class="sourceLineNo">228</span>                                }<a name="line.228"></a>
-<span class="sourceLineNo">229</span>                        }<a name="line.229"></a>
-<span class="sourceLineNo">230</span>                }<a name="line.230"></a>
-<span class="sourceLineNo">231</span><a name="line.231"></a>
-<span class="sourceLineNo">232</span>                return false;<a name="line.232"></a>
-<span class="sourceLineNo">233</span>        }<a name="line.233"></a>
-<span class="sourceLineNo">234</span><a name="line.234"></a>
-<span class="sourceLineNo">235</span>        /**<a name="line.235"></a>
-<span class="sourceLineNo">236</span>         * Gets the first link from {@code response} with link relation {@code rel}.<a name="line.236"></a>
-<span class="sourceLineNo">237</span>         * Resolves relative URIs against the request URI if necessary.<a name="line.237"></a>
-<span class="sourceLineNo">238</span>         *<a name="line.238"></a>
-<span class="sourceLineNo">239</span>         * @param rel<a name="line.239"></a>
-<span class="sourceLineNo">240</span>         *            the expected link relation<a name="line.240"></a>
-<span class="sourceLineNo">241</span>         * @param requestUri<a name="line.241"></a>
-<span class="sourceLineNo">242</span>         *            the HTTP request URI (for resolving relative URIs)<a name="line.242"></a>
-<span class="sourceLineNo">243</span>         * @param response<a name="line.243"></a>
-<span class="sourceLineNo">244</span>         *            the HTTP response<a name="line.244"></a>
-<span class="sourceLineNo">245</span>         * @return the first link or {@code null} if none was found<a name="line.245"></a>
-<span class="sourceLineNo">246</span>         * @see &lt;a href="http://tools.ietf.org/html/rfc5988"&gt;RFC 5988&lt;/a&gt;<a name="line.246"></a>
-<span class="sourceLineNo">247</span>         * @see #containsLinkHeader(String, String, Response)<a name="line.247"></a>
-<span class="sourceLineNo">248</span>         */<a name="line.248"></a>
-<span class="sourceLineNo">249</span>        protected String getFirstLinkForRelation(String rel, String requestUri, Response response) {<a name="line.249"></a>
-<span class="sourceLineNo">250</span>                List&lt;Header&gt; linkHeaders = response.getHeaders().getList(LINK);<a name="line.250"></a>
-<span class="sourceLineNo">251</span>                for (Header header : linkHeaders) {<a name="line.251"></a>
-<span class="sourceLineNo">252</span>                        for (String s : header.getValue().split(",")) {<a name="line.252"></a>
-<span class="sourceLineNo">253</span>                                Link l = new LinkDelegate().fromString(s);<a name="line.253"></a>
-<span class="sourceLineNo">254</span>                                if (rel.equals(l.getRel())) {<a name="line.254"></a>
-<span class="sourceLineNo">255</span>                                        return resolveIfRelative(requestUri, l.getUri());<a name="line.255"></a>
-<span class="sourceLineNo">256</span>                                }<a name="line.256"></a>
-<span class="sourceLineNo">257</span>                        }<a name="line.257"></a>
-<span class="sourceLineNo">258</span>                }<a name="line.258"></a>
-<span class="sourceLineNo">259</span><a name="line.259"></a>
-<span class="sourceLineNo">260</span>                return null;<a name="line.260"></a>
-<span class="sourceLineNo">261</span>        }<a name="line.261"></a>
-<span class="sourceLineNo">262</span><a name="line.262"></a>
-<span class="sourceLineNo">263</span>        /**<a name="line.263"></a>
-<span class="sourceLineNo">264</span>         * Checks the response for a<a name="line.264"></a>
-<span class="sourceLineNo">265</span>         * &lt;code&gt;Preference-Applied: return=representation&lt;/code&gt; response header.<a name="line.265"></a>
-<span class="sourceLineNo">266</span>         *<a name="line.266"></a>
-<span class="sourceLineNo">267</span>         * @param response<a name="line.267"></a>
-<span class="sourceLineNo">268</span>         *                        the HTTP response<a name="line.268"></a>
-<span class="sourceLineNo">269</span>         * @return true if and only if the response contains the expected<a name="line.269"></a>
-<span class="sourceLineNo">270</span>         *                 &lt;code&gt;Preference-Applied&lt;/code&gt; header<a name="line.270"></a>
-<span class="sourceLineNo">271</span>         */<a name="line.271"></a>
-<span class="sourceLineNo">272</span>        protected boolean isPreferenceApplied(Response response) {<a name="line.272"></a>
-<span class="sourceLineNo">273</span>                List&lt;Header&gt; preferenceAppliedHeaders = response.getHeaders().getList(PREFERNCE_APPLIED);<a name="line.273"></a>
-<span class="sourceLineNo">274</span>                for (Header h : preferenceAppliedHeaders) {<a name="line.274"></a>
-<span class="sourceLineNo">275</span>                        // Handle optional whitespace, quoted preference token values, and<a name="line.275"></a>
-<span class="sourceLineNo">276</span>                        // other tokens in the Preference-Applied response header.<a name="line.276"></a>
-<span class="sourceLineNo">277</span>                        if (h.getValue().matches("(^|[ ;])return *= *\"?representation\"?($|[ ;])")) {<a name="line.277"></a>
-<span class="sourceLineNo">278</span>                                return true;<a name="line.278"></a>
-<span class="sourceLineNo">279</span>                        }<a name="line.279"></a>
-<span class="sourceLineNo">280</span>                }<a name="line.280"></a>
-<span class="sourceLineNo">281</span><a name="line.281"></a>
-<span class="sourceLineNo">282</span>                return false;<a name="line.282"></a>
-<span class="sourceLineNo">283</span>        }<a name="line.283"></a>
-<span class="sourceLineNo">284</span><a name="line.284"></a>
-<span class="sourceLineNo">285</span>        public static String include(String... preferences) {<a name="line.285"></a>
-<span class="sourceLineNo">286</span>                return ldpPreference(PREFERENCE_INCLUDE, preferences);<a name="line.286"></a>
-<span class="sourceLineNo">287</span>        }<a name="line.287"></a>
-<span class="sourceLineNo">288</span><a name="line.288"></a>
-<span class="sourceLineNo">289</span>        public static String omit(String... preferences) {<a name="line.289"></a>
-<span class="sourceLineNo">290</span>           return ldpPreference(PREFERENCE_OMIT, preferences);<a name="line.290"></a>
-<span class="sourceLineNo">291</span>        }<a name="line.291"></a>
-<span class="sourceLineNo">292</span><a name="line.292"></a>
-<span class="sourceLineNo">293</span>        private static String ldpPreference(String name, String... values) {<a name="line.293"></a>
-<span class="sourceLineNo">294</span>                return "return=representation; " + name + "=\"" + StringUtils.join(values, " ") + "\"";<a name="line.294"></a>
-<span class="sourceLineNo">295</span>        }<a name="line.295"></a>
-<span class="sourceLineNo">296</span><a name="line.296"></a>
-<span class="sourceLineNo">297</span>        /**<a name="line.297"></a>
-<span class="sourceLineNo">298</span>         * Resolves a URI if it's a relative path.<a name="line.298"></a>
-<span class="sourceLineNo">299</span>         *<a name="line.299"></a>
-<span class="sourceLineNo">300</span>         * @param base<a name="line.300"></a>
-<span class="sourceLineNo">301</span>         *            the base URI to use<a name="line.301"></a>
-<span class="sourceLineNo">302</span>         * @param toResolve<a name="line.302"></a>
-<span class="sourceLineNo">303</span>         *            a URI that might be relative<a name="line.303"></a>
-<span class="sourceLineNo">304</span>         * @return the resolved URI<a name="line.304"></a>
-<span class="sourceLineNo">305</span>         * @throws URISyntaxException<a name="line.305"></a>
-<span class="sourceLineNo">306</span>         *             on bad URIs (but relative URIs are OK)<a name="line.306"></a>
-<span class="sourceLineNo">307</span>         */<a name="line.307"></a>
-<span class="sourceLineNo">308</span>        public static String resolveIfRelative(String base, String toResolve) {<a name="line.308"></a>
-<span class="sourceLineNo">309</span>                try {<a name="line.309"></a>
-<span class="sourceLineNo">310</span>                        // The URI constructor accepts relative paths<a name="line.310"></a>
-<span class="sourceLineNo">311</span>                        return resolveIfRelative(base, new URI(toResolve));<a name="line.311"></a>
-<span class="sourceLineNo">312</span>                } catch (URISyntaxException e) {<a name="line.312"></a>
-<span class="sourceLineNo">313</span>                        throw new IllegalArgumentException(e);<a name="line.313"></a>
-<span class="sourceLineNo">314</span>                }<a name="line.314"></a>
-<span class="sourceLineNo">315</span>        }<a name="line.315"></a>
-<span class="sourceLineNo">316</span><a name="line.316"></a>
-<span class="sourceLineNo">317</span>        protected static String resolveIfRelative(String base, URI toResolve) {<a name="line.317"></a>
-<span class="sourceLineNo">318</span>                if (toResolve.isAbsolute()) {<a name="line.318"></a>
-<span class="sourceLineNo">319</span>                        return toResolve.toString();<a name="line.319"></a>
-<span class="sourceLineNo">320</span>                }<a name="line.320"></a>
-<span class="sourceLineNo">321</span><a name="line.321"></a>
-<span class="sourceLineNo">322</span>                try {<a name="line.322"></a>
-<span class="sourceLineNo">323</span>                        return new URI(base).resolve(toResolve).toString();<a name="line.323"></a>
-<span class="sourceLineNo">324</span>                } catch (URISyntaxException e) {<a name="line.324"></a>
-<span class="sourceLineNo">325</span>                        throw new IllegalArgumentException(e);<a name="line.325"></a>
-<span class="sourceLineNo">326</span>                }<a name="line.326"></a>
-<span class="sourceLineNo">327</span>        }<a name="line.327"></a>
-<span class="sourceLineNo">328</span>}<a name="line.328"></a>
+<span class="sourceLineNo">174</span>         * @see &lt;a href="https://www.ietf.org/rfc/rfc2119.txt"&gt;RFC 2119&lt;/a&gt;<a name="line.174"></a>
+<span class="sourceLineNo">175</span>         */<a name="line.175"></a>
+<span class="sourceLineNo">176</span>        public static final String MUST = "MUST";<a name="line.176"></a>
+<span class="sourceLineNo">177</span><a name="line.177"></a>
+<span class="sourceLineNo">178</span>        /**<a name="line.178"></a>
+<span class="sourceLineNo">179</span>         * There may exist valid reasons in particular circumstances to ignore a<a name="line.179"></a>
+<span class="sourceLineNo">180</span>         * particular item, but the full implications must be understood and<a name="line.180"></a>
+<span class="sourceLineNo">181</span>         * carefully weighed before choosing a different course.<a name="line.181"></a>
+<span class="sourceLineNo">182</span>         *<a name="line.182"></a>
+<span class="sourceLineNo">183</span>         * @see &lt;a href="https://www.ietf.org/rfc/rfc2119.txt"&gt;RFC 2119&lt;/a&gt;<a name="line.183"></a>
+<span class="sourceLineNo">184</span>         */<a name="line.184"></a>
+<span class="sourceLineNo">185</span>        public static final String SHOULD = "SHOULD";<a name="line.185"></a>
+<span class="sourceLineNo">186</span><a name="line.186"></a>
+<span class="sourceLineNo">187</span>        /**<a name="line.187"></a>
+<span class="sourceLineNo">188</span>         * An item is truly optional. One vendor may choose to include the item<a name="line.188"></a>
+<span class="sourceLineNo">189</span>         * because a particular marketplace requires it or because the vendor feels<a name="line.189"></a>
+<span class="sourceLineNo">190</span>         * that it enhances the product while another vendor may omit the same item.<a name="line.190"></a>
+<span class="sourceLineNo">191</span>         *<a name="line.191"></a>
+<span class="sourceLineNo">192</span>         * @see &lt;a href="https://www.ietf.org/rfc/rfc2119.txt"&gt;RFC 2119&lt;/a&gt;<a name="line.192"></a>
+<span class="sourceLineNo">193</span>         */<a name="line.193"></a>
+<span class="sourceLineNo">194</span>        public static final String MAY = "MAY";<a name="line.194"></a>
+<span class="sourceLineNo">195</span><a name="line.195"></a>
+<span class="sourceLineNo">196</span>        /**<a name="line.196"></a>
+<span class="sourceLineNo">197</span>         * A grouping of tests that may not need to run as part of the regular<a name="line.197"></a>
+<span class="sourceLineNo">198</span>         * TestNG runs.  Though by including it, it will allow for the generation<a name="line.198"></a>
+<span class="sourceLineNo">199</span>         * via various reporters.<a name="line.199"></a>
+<span class="sourceLineNo">200</span>         */<a name="line.200"></a>
+<span class="sourceLineNo">201</span>        public static final String MANUAL = "MANUAL";<a name="line.201"></a>
+<span class="sourceLineNo">202</span><a name="line.202"></a>
+<span class="sourceLineNo">203</span>        /**<a name="line.203"></a>
+<span class="sourceLineNo">204</span>         * Build a base RestAssured {@link com.jayway.restassured.specification.RequestSpecification}.<a name="line.204"></a>
+<span class="sourceLineNo">205</span>         *<a name="line.205"></a>
+<span class="sourceLineNo">206</span>         * @return RestAssured Request Specification<a name="line.206"></a>
+<span class="sourceLineNo">207</span>         */<a name="line.207"></a>
+<span class="sourceLineNo">208</span>        protected abstract RequestSpecification buildBaseRequestSpecification();<a name="line.208"></a>
+<span class="sourceLineNo">209</span><a name="line.209"></a>
+<span class="sourceLineNo">210</span>        public Model getAsModel(String uri) {<a name="line.210"></a>
+<span class="sourceLineNo">211</span>                return getResourceAsModel(uri, TEXT_TURTLE);<a name="line.211"></a>
+<span class="sourceLineNo">212</span>        }<a name="line.212"></a>
+<span class="sourceLineNo">213</span><a name="line.213"></a>
+<span class="sourceLineNo">214</span>        public Model getResourceAsModel(String uri, String mediaType) {<a name="line.214"></a>
+<span class="sourceLineNo">215</span>                return buildBaseRequestSpecification()<a name="line.215"></a>
+<span class="sourceLineNo">216</span>                                .header(ACCEPT, mediaType)<a name="line.216"></a>
+<span class="sourceLineNo">217</span>                        .expect()<a name="line.217"></a>
+<span class="sourceLineNo">218</span>                                .statusCode(isSuccessful())<a name="line.218"></a>
+<span class="sourceLineNo">219</span>                        .when()<a name="line.219"></a>
+<span class="sourceLineNo">220</span>                                .get(uri).as(Model.class, new RdfObjectMapper(uri));<a name="line.220"></a>
+<span class="sourceLineNo">221</span>        }<a name="line.221"></a>
+<span class="sourceLineNo">222</span><a name="line.222"></a>
+<span class="sourceLineNo">223</span>        protected Model getDefaultModel() {<a name="line.223"></a>
+<span class="sourceLineNo">224</span>                Model model = ModelFactory.createDefaultModel();<a name="line.224"></a>
+<span class="sourceLineNo">225</span>                Resource resource = model.createResource("",<a name="line.225"></a>
+<span class="sourceLineNo">226</span>                                model.createResource(DEFAULT_MODEL_TYPE));<a name="line.226"></a>
+<span class="sourceLineNo">227</span>                resource.addProperty(RDF.type, model.createResource(LDP.RDFSource.stringValue()));<a name="line.227"></a>
+<span class="sourceLineNo">228</span>                resource.addProperty(<a name="line.228"></a>
+<span class="sourceLineNo">229</span>                                model.createProperty("http://example.com/ns#severity"), "High");<a name="line.229"></a>
+<span class="sourceLineNo">230</span>                resource.addProperty(DCTerms.title, "Another bug to test.");<a name="line.230"></a>
+<span class="sourceLineNo">231</span>                resource.addProperty(DCTerms.description, "Issues that need to be fixed.");<a name="line.231"></a>
+<span class="sourceLineNo">232</span><a name="line.232"></a>
+<span class="sourceLineNo">233</span>                return model;<a name="line.233"></a>
+<span class="sourceLineNo">234</span>        }<a name="line.234"></a>
+<span class="sourceLineNo">235</span><a name="line.235"></a>
+<span class="sourceLineNo">236</span>        /**<a name="line.236"></a>
+<span class="sourceLineNo">237</span>         * Given the location (URI), locate the appropriate "primary" resource within<a name="line.237"></a>
+<span class="sourceLineNo">238</span>         * the model.  Often models will have many triples with various subjects, which<a name="line.238"></a>
+<span class="sourceLineNo">239</span>         * don't always match the request-URI.  This attempts to resolve to the appropriate<a name="line.239"></a>
+<span class="sourceLineNo">240</span>         * resource for the request-URI.  This method is used to determine which subject<a name="line.240"></a>
+<span class="sourceLineNo">241</span>         * URI should be used to assign new triples to for tests such as PUT.<a name="line.241"></a>
+<span class="sourceLineNo">242</span>         * <a name="line.242"></a>
+<span class="sourceLineNo">243</span>         * @param model<a name="line.243"></a>
+<span class="sourceLineNo">244</span>         * @param location<a name="line.244"></a>
+<span class="sourceLineNo">245</span>         * @return<a name="line.245"></a>
+<span class="sourceLineNo">246</span>         */<a name="line.246"></a>
+<span class="sourceLineNo">247</span>        protected Resource getPrimaryTopic(Model model, String location) {<a name="line.247"></a>
+<span class="sourceLineNo">248</span>                Resource loc = model.getResource(location);<a name="line.248"></a>
+<span class="sourceLineNo">249</span>                ResIterator bugs = model.listSubjectsWithProperty(RDF.type, model.createResource(DEFAULT_MODEL_TYPE));<a name="line.249"></a>
+<span class="sourceLineNo">250</span>                if (bugs.hasNext()) {<a name="line.250"></a>
+<span class="sourceLineNo">251</span>                        return bugs.nextResource();<a name="line.251"></a>
+<span class="sourceLineNo">252</span>                } else {<a name="line.252"></a>
+<span class="sourceLineNo">253</span>                        return loc;<a name="line.253"></a>
+<span class="sourceLineNo">254</span>                }<a name="line.254"></a>
+<span class="sourceLineNo">255</span>        }<a name="line.255"></a>
+<span class="sourceLineNo">256</span><a name="line.256"></a>
+<span class="sourceLineNo">257</span>        protected Model postContent() {<a name="line.257"></a>
+<span class="sourceLineNo">258</span>                return postModel != null? postModel : getDefaultModel();<a name="line.258"></a>
+<span class="sourceLineNo">259</span>        }<a name="line.259"></a>
+<span class="sourceLineNo">260</span><a name="line.260"></a>
+<span class="sourceLineNo">261</span>        /**<a name="line.261"></a>
+<span class="sourceLineNo">262</span>         * Are there any restrictions on content when creating resources? This is<a name="line.262"></a>
+<span class="sourceLineNo">263</span>         * assumed to be true if POST content was provided using the {@code postTtl}<a name="line.263"></a>
+<span class="sourceLineNo">264</span>         * test parameter.<a name="line.264"></a>
+<span class="sourceLineNo">265</span>         *<a name="line.265"></a>
+<span class="sourceLineNo">266</span>         * &lt;p&gt;<a name="line.266"></a>
+<span class="sourceLineNo">267</span>         * This method is used for<a name="line.267"></a>
+<span class="sourceLineNo">268</span>         * {@link CommonContainerTest#testRelativeUriResolutionPost(String)}.<a name="line.268"></a>
+<span class="sourceLineNo">269</span>         * &lt;/p&gt;<a name="line.269"></a>
+<span class="sourceLineNo">270</span>         *<a name="line.270"></a>
+<span class="sourceLineNo">271</span>         * @return true if there are restrictions on what triples are allowed; false<a name="line.271"></a>
+<span class="sourceLineNo">272</span>         *                 if the server allows most any RDF<a name="line.272"></a>
+<span class="sourceLineNo">273</span>         * @see RdfSourceTest#restrictionsOnTestResourceContent()<a name="line.273"></a>
+<span class="sourceLineNo">274</span>         */<a name="line.274"></a>
+<span class="sourceLineNo">275</span>        protected boolean restrictionsOnPostContent() {<a name="line.275"></a>
+<span class="sourceLineNo">276</span>                return postModel != null;<a name="line.276"></a>
+<span class="sourceLineNo">277</span>        }<a name="line.277"></a>
+<span class="sourceLineNo">278</span><a name="line.278"></a>
+<span class="sourceLineNo">279</span>        /**<a name="line.279"></a>
+<span class="sourceLineNo">280</span>         * Tests if a Link response header with the expected context URI, link<a name="line.280"></a>
+<span class="sourceLineNo">281</span>         * relation, and target URI is present in an HTTP response. Resolves<a name="line.281"></a>
+<span class="sourceLineNo">282</span>         * relative URIs against the request URI if necessary.<a name="line.282"></a>
+<span class="sourceLineNo">283</span>         *<a name="line.283"></a>
+<span class="sourceLineNo">284</span>         * @param linkContext<a name="line.284"></a>
+<span class="sourceLineNo">285</span>         *            the context of the Link (usually the request URI, but can be<a name="line.285"></a>
+<span class="sourceLineNo">286</span>         *            changed with an anchor parameter)<a name="line.286"></a>
+<span class="sourceLineNo">287</span>         * @param relation<a name="line.287"></a>
+<span class="sourceLineNo">288</span>         *            the expected link relation (rel)<a name="line.288"></a>
+<span class="sourceLineNo">289</span>         * @param linkTarget<a name="line.289"></a>
+<span class="sourceLineNo">290</span>         *            the expected URI<a name="line.290"></a>
+<span class="sourceLineNo">291</span>         * @param requestUri<a name="line.291"></a>
+<span class="sourceLineNo">292</span>         *            the HTTP request URI (for determing a Link's context and<a name="line.292"></a>
+<span class="sourceLineNo">293</span>         *            resolving relative URIs)<a name="line.293"></a>
+<span class="sourceLineNo">294</span>         * @param response<a name="line.294"></a>
+<span class="sourceLineNo">295</span>         *            the HTTP response<a name="line.295"></a>
+<span class="sourceLineNo">296</span>         * @see &lt;a href="http://tools.ietf.org/html/rfc5988"&gt;RFC 5988&lt;/a&gt;<a name="line.296"></a>
+<span class="sourceLineNo">297</span>         */<a name="line.297"></a>
+<span class="sourceLineNo">298</span>        protected boolean containsLinkHeader(<a name="line.298"></a>
+<span class="sourceLineNo">299</span>                        String linkContext,<a name="line.299"></a>
+<span class="sourceLineNo">300</span>                        String relation,<a name="line.300"></a>
+<span class="sourceLineNo">301</span>                        String linkTarget,<a name="line.301"></a>
+<span class="sourceLineNo">302</span>                        String requestUri,<a name="line.302"></a>
+<span class="sourceLineNo">303</span>                        Response response) {<a name="line.303"></a>
+<span class="sourceLineNo">304</span>                List&lt;Header&gt; linkHeaders = response.getHeaders().getList(LINK);<a name="line.304"></a>
+<span class="sourceLineNo">305</span>                for (Header linkHeader : linkHeaders) {<a name="line.305"></a>
+<span class="sourceLineNo">306</span>                        for (String s : splitLinks(linkHeader)) {<a name="line.306"></a>
+<span class="sourceLineNo">307</span>                                Link nextLink = new LinkDelegate().fromString(s);<a name="line.307"></a>
+<span class="sourceLineNo">308</span>                                if (relation.equals(nextLink.getRel())) {<a name="line.308"></a>
+<span class="sourceLineNo">309</span>                                        String actualLinkUri = resolveIfRelative(requestUri, nextLink.getUri());<a name="line.309"></a>
+<span class="sourceLineNo">310</span>                                        if (linkMatchesContext(linkContext, requestUri, nextLink) &amp;&amp;<a name="line.310"></a>
+<span class="sourceLineNo">311</span>                                                        linkTarget.equals(actualLinkUri)) {<a name="line.311"></a>
+<span class="sourceLineNo">312</span>                                                return true;<a name="line.312"></a>
+<span class="sourceLineNo">313</span>                                        }<a name="line.313"></a>
+<span class="sourceLineNo">314</span>                                }<a name="line.314"></a>
+<span class="sourceLineNo">315</span>                        }<a name="line.315"></a>
+<span class="sourceLineNo">316</span>                }<a name="line.316"></a>
+<span class="sourceLineNo">317</span><a name="line.317"></a>
+<span class="sourceLineNo">318</span>                return false;<a name="line.318"></a>
+<span class="sourceLineNo">319</span>        }<a name="line.319"></a>
+<span class="sourceLineNo">320</span><a name="line.320"></a>
+<span class="sourceLineNo">321</span>        /**<a name="line.321"></a>
+<span class="sourceLineNo">322</span>         * Gets the first link from {@code response} with link relation {@code rel}.<a name="line.322"></a>
+<span class="sourceLineNo">323</span>         * Resolves relative URIs against the request URI if necessary.<a name="line.323"></a>
+<span class="sourceLineNo">324</span>         *<a name="line.324"></a>
+<span class="sourceLineNo">325</span>         * @param linkContext<a name="line.325"></a>
+<span class="sourceLineNo">326</span>         *            the context of the Link (usually the request URI, but can be<a name="line.326"></a>
+<span class="sourceLineNo">327</span>         *            changed with an anchor parameter)<a name="line.327"></a>
+<span class="sourceLineNo">328</span>         * @param relation<a name="line.328"></a>
+<span class="sourceLineNo">329</span>         *            the expected link relation<a name="line.329"></a>
+<span class="sourceLineNo">330</span>         * @param requestUri<a name="line.330"></a>
+<span class="sourceLineNo">331</span>         *            the HTTP request URI (for determing a Link's context and<a name="line.331"></a>
+<span class="sourceLineNo">332</span>         *            resolving relative URIs)<a name="line.332"></a>
+<span class="sourceLineNo">333</span>         * @param response<a name="line.333"></a>
+<span class="sourceLineNo">334</span>         *            the HTTP response<a name="line.334"></a>
+<span class="sourceLineNo">335</span>         * @return the first link or {@code null} if none was found<a name="line.335"></a>
+<span class="sourceLineNo">336</span>         * @see &lt;a href="http://tools.ietf.org/html/rfc5988"&gt;RFC 5988&lt;/a&gt;<a name="line.336"></a>
+<span class="sourceLineNo">337</span>         */<a name="line.337"></a>
+<span class="sourceLineNo">338</span>        protected String getFirstLinkForRelation(String linkContext, String relation, String requestUri, Response response) {<a name="line.338"></a>
+<span class="sourceLineNo">339</span>                List&lt;Header&gt; linkHeaders = response.getHeaders().getList(LINK);<a name="line.339"></a>
+<span class="sourceLineNo">340</span>                for (Header header : linkHeaders) {<a name="line.340"></a>
+<span class="sourceLineNo">341</span>                        for (String s : splitLinks(header)) {<a name="line.341"></a>
+<span class="sourceLineNo">342</span>                                Link l = new LinkDelegate().fromString(s);<a name="line.342"></a>
+<span class="sourceLineNo">343</span>                                if (relation.equals(l.getRel()) &amp;&amp;<a name="line.343"></a>
+<span class="sourceLineNo">344</span>                                                linkMatchesContext(linkContext, requestUri, l)) {<a name="line.344"></a>
+<span class="sourceLineNo">345</span>                                        return resolveIfRelative(requestUri, l.getUri());<a name="line.345"></a>
+<span class="sourceLineNo">346</span>                                }<a name="line.346"></a>
+<span class="sourceLineNo">347</span>                        }<a name="line.347"></a>
+<span class="sourceLineNo">348</span>                }<a name="line.348"></a>
+<span class="sourceLineNo">349</span><a name="line.349"></a>
+<span class="sourceLineNo">350</span>                return null;<a name="line.350"></a>
+<span class="sourceLineNo">351</span>        }<a name="line.351"></a>
+<span class="sourceLineNo">352</span><a name="line.352"></a>
+<span class="sourceLineNo">353</span>        /**<a name="line.353"></a>
+<span class="sourceLineNo">354</span>         * Splits an HTTP Link header that might have multiple links separated by a<a name="line.354"></a>
+<span class="sourceLineNo">355</span>         * comma.<a name="line.355"></a>
+<span class="sourceLineNo">356</span>         *<a name="line.356"></a>
+<span class="sourceLineNo">357</span>         * @param linkHeader<a name="line.357"></a>
+<span class="sourceLineNo">358</span>         *                      the link header<a name="line.358"></a>
+<span class="sourceLineNo">359</span>         * @return the list of link-values as defined in RFC 5988 (for example,<a name="line.359"></a>
+<span class="sourceLineNo">360</span>         *               {@code "&lt;http://example.com/bt/bug432&gt;; rel=related"})<a name="line.360"></a>
+<span class="sourceLineNo">361</span>         * @see &lt;a href="http://tools.ietf.org/html/rfc5988#page-7"&gt;RFC 5988: The Link Header Field&lt;/a&gt;<a name="line.361"></a>
+<span class="sourceLineNo">362</span>         */<a name="line.362"></a>
+<span class="sourceLineNo">363</span>        // LinkDelegate doesn't handle this for us<a name="line.363"></a>
+<span class="sourceLineNo">364</span>        protected List&lt;String&gt; splitLinks(Header linkHeader) {<a name="line.364"></a>
+<span class="sourceLineNo">365</span>                final ArrayList&lt;String&gt; links = new ArrayList&lt;&gt;();<a name="line.365"></a>
+<span class="sourceLineNo">366</span>                final String value = linkHeader.getValue();<a name="line.366"></a>
+<span class="sourceLineNo">367</span><a name="line.367"></a>
+<span class="sourceLineNo">368</span>                // Track the beginning index for the current link-value.<a name="line.368"></a>
+<span class="sourceLineNo">369</span>                int beginIndex = 0;<a name="line.369"></a>
+<span class="sourceLineNo">370</span><a name="line.370"></a>
+<span class="sourceLineNo">371</span>                // Is the current char inside a URI-Reference?<a name="line.371"></a>
+<span class="sourceLineNo">372</span>                boolean inUriRef = false;<a name="line.372"></a>
+<span class="sourceLineNo">373</span><a name="line.373"></a>
+<span class="sourceLineNo">374</span>                // Split the string on commas, but only if not in a URI-Reference<a name="line.374"></a>
+<span class="sourceLineNo">375</span>                // delimited by angle brackets.<a name="line.375"></a>
+<span class="sourceLineNo">376</span>                for (int i = 0; i &lt; value.length(); ++i) {<a name="line.376"></a>
+<span class="sourceLineNo">377</span>                        final char c = value.charAt(i);<a name="line.377"></a>
+<span class="sourceLineNo">378</span><a name="line.378"></a>
+<span class="sourceLineNo">379</span>                        if (c == ',' &amp;&amp; !inUriRef) {<a name="line.379"></a>
+<span class="sourceLineNo">380</span>                                // Found a comma not in a URI-Reference. Split the string.<a name="line.380"></a>
+<span class="sourceLineNo">381</span>                                final String link = value.substring(beginIndex, i).trim();<a name="line.381"></a>
+<span class="sourceLineNo">382</span>                                links.add(link);<a name="line.382"></a>
+<span class="sourceLineNo">383</span><a name="line.383"></a>
+<span class="sourceLineNo">384</span>                                // Assign the next begin index for the next link.<a name="line.384"></a>
+<span class="sourceLineNo">385</span>                                beginIndex = i + 1;<a name="line.385"></a>
+<span class="sourceLineNo">386</span>                        } else if (c == '&lt;') {<a name="line.386"></a>
+<span class="sourceLineNo">387</span>                                // Angle brackets are not legal characters in a URI, so they can<a name="line.387"></a>
+<span class="sourceLineNo">388</span>                                // only be used to mark the start and end of a URI-Reference.<a name="line.388"></a>
+<span class="sourceLineNo">389</span>                                // See http://tools.ietf.org/html/rfc3986#section-2<a name="line.389"></a>
+<span class="sourceLineNo">390</span>                                inUriRef = true;<a name="line.390"></a>
+<span class="sourceLineNo">391</span>                        } else if (c == '&gt;') {<a name="line.391"></a>
+<span class="sourceLineNo">392</span>                                inUriRef = false;<a name="line.392"></a>
+<span class="sourceLineNo">393</span>                        }<a name="line.393"></a>
+<span class="sourceLineNo">394</span>                }<a name="line.394"></a>
+<span class="sourceLineNo">395</span><a name="line.395"></a>
+<span class="sourceLineNo">396</span>                // There should be one more link in the string.<a name="line.396"></a>
+<span class="sourceLineNo">397</span>                final String link = value.substring(beginIndex, value.length()).trim();<a name="line.397"></a>
+<span class="sourceLineNo">398</span>                links.add(link);<a name="line.398"></a>
+<span class="sourceLineNo">399</span><a name="line.399"></a>
+<span class="sourceLineNo">400</span>                return links;<a name="line.400"></a>
+<span class="sourceLineNo">401</span>        }<a name="line.401"></a>
+<span class="sourceLineNo">402</span><a name="line.402"></a>
+<span class="sourceLineNo">403</span>        private boolean linkMatchesContext(String expectedContext, String requestUri, Link link) {<a name="line.403"></a>
+<span class="sourceLineNo">404</span>                String anchor = link.getParams().get("anchor");<a name="line.404"></a>
+<span class="sourceLineNo">405</span>                if (anchor == null) {<a name="line.405"></a>
+<span class="sourceLineNo">406</span>                        anchor = requestUri;<a name="line.406"></a>
+<span class="sourceLineNo">407</span>                }<a name="line.407"></a>
+<span class="sourceLineNo">408</span><a name="line.408"></a>
+<span class="sourceLineNo">409</span>                return anchor.equals(expectedContext);<a name="line.409"></a>
+<span class="sourceLineNo">410</span>        }<a name="line.410"></a>
+<span class="sourceLineNo">411</span><a name="line.411"></a>
+<span class="sourceLineNo">412</span>        /**<a name="line.412"></a>
+<span class="sourceLineNo">413</span>         * Asserts the response has a &lt;code&gt;Preference-Applied:<a name="line.413"></a>
+<span class="sourceLineNo">414</span>         * return=representation&lt;/code&gt; response header, but only if at<a name="line.414"></a>
+<span class="sourceLineNo">415</span>         * least one &lt;code&gt;Preference-Applied&lt;/code&gt; header is present.<a name="line.415"></a>
+<span class="sourceLineNo">416</span>         *<a name="line.416"></a>
+<span class="sourceLineNo">417</span>         * @param response<a name="line.417"></a>
+<span class="sourceLineNo">418</span>         *                        the HTTP response<a name="line.418"></a>
+<span class="sourceLineNo">419</span>         */<a name="line.419"></a>
+<span class="sourceLineNo">420</span>        protected void checkPreferenceAppliedHeader(Response response) {<a name="line.420"></a>
+<span class="sourceLineNo">421</span>                List&lt;Header&gt; preferenceAppliedHeaders = response.getHeaders().getList(PREFERNCE_APPLIED);<a name="line.421"></a>
+<span class="sourceLineNo">422</span>                if (preferenceAppliedHeaders.isEmpty()) {<a name="line.422"></a>
+<span class="sourceLineNo">423</span>                        // The header is not mandatory.<a name="line.423"></a>
+<span class="sourceLineNo">424</span>                        return;<a name="line.424"></a>
+<span class="sourceLineNo">425</span>                }<a name="line.425"></a>
+<span class="sourceLineNo">426</span><a name="line.426"></a>
+<span class="sourceLineNo">427</span>                assertTrue(hasReturnRepresentation(preferenceAppliedHeaders),<a name="line.427"></a>
+<span class="sourceLineNo">428</span>                                "Server responded with a Preference-Applied header, but it did not contain return=representation");<a name="line.428"></a>
+<span class="sourceLineNo">429</span>        }<a name="line.429"></a>
+<span class="sourceLineNo">430</span><a name="line.430"></a>
+<span class="sourceLineNo">431</span>        protected boolean hasReturnRepresentation(List&lt;Header&gt; preferenceAppliedHeaders) {<a name="line.431"></a>
+<span class="sourceLineNo">432</span>                for (Header h : preferenceAppliedHeaders) {<a name="line.432"></a>
+<span class="sourceLineNo">433</span>                        // Handle optional whitespace, quoted preference token values, and<a name="line.433"></a>
+<span class="sourceLineNo">434</span>                        // other tokens in the Preference-Applied response header.<a name="line.434"></a>
+<span class="sourceLineNo">435</span>                        if (h.getValue().matches("(^|[ ;])return *= *\"?representation\"?($|[ ;])")) {<a name="line.435"></a>
+<span class="sourceLineNo">436</span>                                return true;<a name="line.436"></a>
+<span class="sourceLineNo">437</span>                        }<a name="line.437"></a>
+<span class="sourceLineNo">438</span>                }<a name="line.438"></a>
+<span class="sourceLineNo">439</span><a name="line.439"></a>
+<span class="sourceLineNo">440</span>                return false;<a name="line.440"></a>
+<span class="sourceLineNo">441</span>        }<a name="line.441"></a>
+<span class="sourceLineNo">442</span><a name="line.442"></a>
+<span class="sourceLineNo">443</span>        public static String include(String... preferences) {<a name="line.443"></a>
+<span class="sourceLineNo">444</span>                return ldpPreference(PREFERENCE_INCLUDE, preferences);<a name="line.444"></a>
+<span class="sourceLineNo">445</span>        }<a name="line.445"></a>
+<span class="sourceLineNo">446</span><a name="line.446"></a>
+<span class="sourceLineNo">447</span>        public static String omit(String... preferences) {<a name="line.447"></a>
+<span class="sourceLineNo">448</span>           return ldpPreference(PREFERENCE_OMIT, preferences);<a name="line.448"></a>
+<span class="sourceLineNo">449</span>        }<a name="line.449"></a>
+<span class="sourceLineNo">450</span><a name="line.450"></a>
+<span class="sourceLineNo">451</span>        private static String ldpPreference(String name, String... values) {<a name="line.451"></a>
+<span class="sourceLineNo">452</span>                return "return=representation; " + name + "=\"" + StringUtils.join(values, " ") + "\"";<a name="line.452"></a>
+<span class="sourceLineNo">453</span>        }<a name="line.453"></a>
+<span class="sourceLineNo">454</span><a name="line.454"></a>
+<span class="sourceLineNo">455</span>        /**<a name="line.455"></a>
+<span class="sourceLineNo">456</span>         * Resolves a URI if it's a relative path.<a name="line.456"></a>
+<span class="sourceLineNo">457</span>         *<a name="line.457"></a>
+<span class="sourceLineNo">458</span>         * @param base<a name="line.458"></a>
+<span class="sourceLineNo">459</span>         *                        the base URI to use<a name="line.459"></a>
+<span class="sourceLineNo">460</span>         * @param toResolve<a name="line.460"></a>
+<span class="sourceLineNo">461</span>         *                        a URI that might be relative<a name="line.461"></a>
+<span class="sourceLineNo">462</span>         * @return the resolved URI<a name="line.462"></a>
+<span class="sourceLineNo">463</span>         */<a name="line.463"></a>
+<span class="sourceLineNo">464</span>        public static String resolveIfRelative(String base, String toResolve) {<a name="line.464"></a>
+<span class="sourceLineNo">465</span>                try {<a name="line.465"></a>
+<span class="sourceLineNo">466</span>                        // The URI constructor accepts relative paths<a name="line.466"></a>
+<span class="sourceLineNo">467</span>                        return resolveIfRelative(base, new URI(toResolve));<a name="line.467"></a>
+<span class="sourceLineNo">468</span>                } catch (URISyntaxException e) {<a name="line.468"></a>
+<span class="sourceLineNo">469</span>                        throw new IllegalArgumentException(e);<a name="line.469"></a>
+<span class="sourceLineNo">470</span>                }<a name="line.470"></a>
+<span class="sourceLineNo">471</span>        }<a name="line.471"></a>
+<span class="sourceLineNo">472</span><a name="line.472"></a>
+<span class="sourceLineNo">473</span>        protected static String resolveIfRelative(String base, URI toResolve) {<a name="line.473"></a>
+<span class="sourceLineNo">474</span>                if (toResolve.isAbsolute()) {<a name="line.474"></a>
+<span class="sourceLineNo">475</span>                        return toResolve.toString();<a name="line.475"></a>
+<span class="sourceLineNo">476</span>                }<a name="line.476"></a>
+<span class="sourceLineNo">477</span><a name="line.477"></a>
+<span class="sourceLineNo">478</span>                try {<a name="line.478"></a>
+<span class="sourceLineNo">479</span>                        return new URI(base).resolve(toResolve).toString();<a name="line.479"></a>
+<span class="sourceLineNo">480</span>                } catch (URISyntaxException e) {<a name="line.480"></a>
+<span class="sourceLineNo">481</span>                        throw new IllegalArgumentException(e);<a name="line.481"></a>
+<span class="sourceLineNo">482</span>                }<a name="line.482"></a>
+<span class="sourceLineNo">483</span>        }<a name="line.483"></a>
+<span class="sourceLineNo">484</span>}<a name="line.484"></a>
 
 
 

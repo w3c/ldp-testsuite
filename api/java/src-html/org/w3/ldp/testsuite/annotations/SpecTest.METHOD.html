@@ -41,7 +41,7 @@
 <span class="sourceLineNo">033</span>                /**<a name="line.33"></a>
 <span class="sourceLineNo">034</span>                 * WG_CLARIFICATION - requires further clarification from the working group<a name="line.34"></a>
 <span class="sourceLineNo">035</span>                 */<a name="line.35"></a>
-<span class="sourceLineNo">036</span>                WG_CLARIFICATION<a name="line.36"></a>
+<span class="sourceLineNo">036</span>                WG_CLARIFICATION                <a name="line.36"></a>
 <span class="sourceLineNo">037</span>        }<a name="line.37"></a>
 <span class="sourceLineNo">038</span><a name="line.38"></a>
 <span class="sourceLineNo">039</span>        ;<a name="line.39"></a>
@@ -70,20 +70,47 @@
 <span class="sourceLineNo">062</span>                MANUAL, <a name="line.62"></a>
 <span class="sourceLineNo">063</span>                <a name="line.63"></a>
 <span class="sourceLineNo">064</span>                /** CLIENT_ONLY - test is only client-side, this test suite doesn't test it. */<a name="line.64"></a>
-<span class="sourceLineNo">065</span>                CLIENT_ONLY<a name="line.65"></a>
-<span class="sourceLineNo">066</span>        };<a name="line.66"></a>
-<span class="sourceLineNo">067</span><a name="line.67"></a>
-<span class="sourceLineNo">068</span>        /**<a name="line.68"></a>
-<span class="sourceLineNo">069</span>         * Whether the test case itself has been implemented or not<a name="line.69"></a>
-<span class="sourceLineNo">070</span>         */<a name="line.70"></a>
-<span class="sourceLineNo">071</span>        public METHOD testMethod() default METHOD.NOT_IMPLEMENTED;<a name="line.71"></a>
+<span class="sourceLineNo">065</span>                CLIENT_ONLY,<a name="line.65"></a>
+<span class="sourceLineNo">066</span>                <a name="line.66"></a>
+<span class="sourceLineNo">067</span>                /**<a name="line.67"></a>
+<span class="sourceLineNo">068</span>                 * INDIRECT - other test cases indirectly cover this test case<a name="line.68"></a>
+<span class="sourceLineNo">069</span>                 */<a name="line.69"></a>
+<span class="sourceLineNo">070</span>                INDIRECT<a name="line.70"></a>
+<span class="sourceLineNo">071</span>        };<a name="line.71"></a>
 <span class="sourceLineNo">072</span><a name="line.72"></a>
 <span class="sourceLineNo">073</span>        /**<a name="line.73"></a>
-<span class="sourceLineNo">074</span>         * Whether further comment that can be useful<a name="line.74"></a>
+<span class="sourceLineNo">074</span>         * Whether the test case itself has been implemented or not<a name="line.74"></a>
 <span class="sourceLineNo">075</span>         */<a name="line.75"></a>
-<span class="sourceLineNo">076</span>        public String comment() default "";<a name="line.76"></a>
+<span class="sourceLineNo">076</span>        public METHOD testMethod() default METHOD.NOT_IMPLEMENTED;<a name="line.76"></a>
 <span class="sourceLineNo">077</span><a name="line.77"></a>
-<span class="sourceLineNo">078</span>}<a name="line.78"></a>
+<span class="sourceLineNo">078</span>        /**<a name="line.78"></a>
+<span class="sourceLineNo">079</span>         * Whether further comment that can be useful<a name="line.79"></a>
+<span class="sourceLineNo">080</span>         * The description property matches the spec requirement,<a name="line.80"></a>
+<span class="sourceLineNo">081</span>         * the comment can be used to describe whether the test only<a name="line.81"></a>
+<span class="sourceLineNo">082</span>         * covers part of the spec requirement<a name="line.82"></a>
+<span class="sourceLineNo">083</span>         * ie) Shared specRefUri<a name="line.83"></a>
+<span class="sourceLineNo">084</span>         */<a name="line.84"></a>
+<span class="sourceLineNo">085</span>        public String comment() default "";<a name="line.85"></a>
+<span class="sourceLineNo">086</span>        <a name="line.86"></a>
+<span class="sourceLineNo">087</span>        /**<a name="line.87"></a>
+<span class="sourceLineNo">088</span>         * Steps needed to be taken to validate the test.  For manual/client tests<a name="line.88"></a>
+<span class="sourceLineNo">089</span>         * it specify the actions (step) what should be done to verify the result.  <a name="line.89"></a>
+<span class="sourceLineNo">090</span>         * For automation tests, it summarized what the automated test does.<a name="line.90"></a>
+<span class="sourceLineNo">091</span>         * @return<a name="line.91"></a>
+<span class="sourceLineNo">092</span>         */<a name="line.92"></a>
+<span class="sourceLineNo">093</span>        public String[] steps() default {};<a name="line.93"></a>
+<span class="sourceLineNo">094</span>        <a name="line.94"></a>
+<span class="sourceLineNo">095</span>        /**<a name="line.95"></a>
+<span class="sourceLineNo">096</span>         * List out the test class that covers an indirect test.<a name="line.96"></a>
+<span class="sourceLineNo">097</span>         */<a name="line.97"></a>
+<span class="sourceLineNo">098</span>        public Class&lt;?&gt;[] coveredByTests() default {};<a name="line.98"></a>
+<span class="sourceLineNo">099</span>        <a name="line.99"></a>
+<span class="sourceLineNo">100</span>        /**<a name="line.100"></a>
+<span class="sourceLineNo">101</span>         * List out the group values that covers the indirect test.<a name="line.101"></a>
+<span class="sourceLineNo">102</span>         */<a name="line.102"></a>
+<span class="sourceLineNo">103</span>        public String[] coveredByGroups() default {};<a name="line.103"></a>
+<span class="sourceLineNo">104</span><a name="line.104"></a>
+<span class="sourceLineNo">105</span>}<a name="line.105"></a>
 
 
 
