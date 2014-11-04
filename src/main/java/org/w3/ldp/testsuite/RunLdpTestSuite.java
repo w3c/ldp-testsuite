@@ -21,6 +21,7 @@ public class RunLdpTestSuite {
 
 		addContResOption();
 		addReadOnlyOption();
+		addRelativeUriOption();
 
 		LdpTestSuite.executeTestSuite(args, options, "ldp-testsuite");
 	}
@@ -45,6 +46,14 @@ public class RunLdpTestSuite {
 	private static void addReadOnlyOption() {
 		options.addOption(OptionBuilder.withLongOpt("read-only-prop")
 				.withDescription("a read-only property to test error conditions")
+				.hasArg().withArgName("uri")
+				.create());
+	}
+
+	@SuppressWarnings("static-access")
+	private static void addRelativeUriOption() {
+		options.addOption(OptionBuilder.withLongOpt("relative-uri")
+				.withDescription("a relative uri to test relative uri resolution")
 				.hasArg().withArgName("uri")
 				.create());
 	}

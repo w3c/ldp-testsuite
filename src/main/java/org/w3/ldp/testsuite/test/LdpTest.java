@@ -265,7 +265,7 @@ public abstract class LdpTest {
 	 *
 	 * <p>
 	 * This method is used for
-	 * {@link CommonContainerTest#testRelativeUriResolutionPost()}.
+	 * {@link CommonContainerTest#testRelativeUriResolutionPost(String)}.
 	 * </p>
 	 *
 	 * @return true if there are restrictions on what triples are allowed; false
