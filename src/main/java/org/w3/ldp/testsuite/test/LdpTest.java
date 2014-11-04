@@ -233,19 +233,19 @@ public abstract class LdpTest {
 		return model;
 	}
 
+	/**
+	 * Given the location (URI), locate the appropriate "primary" resource within
+	 * the model.  Often models will have many triples with various subjects, which
+	 * don't always match the request-URI.  This attempts to resolve to the appropriate
+	 * resource for the request-URI.  This method is used to determine which subject
+	 * URI should be used to assign new triples to for tests such as PUT.
+	 * 
+	 * @param model
+	 * @param location
+	 * @return
+	 */
 	protected Resource getPrimaryTopic(Model model, String location) {
 		Resource loc = model.getResource(location);
-		Property insertedContentRelation = model.getProperty(LDP.insertedContentRelation.stringValue());
-		NodeIterator relations = model.listObjectsOfProperty(loc, insertedContentRelation);
-		if (relations.hasNext()) {
-			String relation = relations.next().toString();
-			if (LDP.MemberSubject.stringValue().equals(relation)) {
-				return loc;
-			} else {
-				Property primaryTopic = model.getProperty(relation);
-				return model.listObjectsOfProperty(loc, primaryTopic).next().asResource();
-			}
-		}
 		ResIterator bugs = model.listSubjectsWithProperty(RDF.type, model.createResource(DEFAULT_MODEL_TYPE));
 		if (bugs.hasNext()) {
 			return bugs.nextResource();
