@@ -1,12 +1,26 @@
 package org.w3.ldp.paging.testsuite.tests;
 
+import static com.jayway.restassured.config.LogConfig.logConfig;
+
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.Map;
+
+import org.apache.commons.io.output.WriterOutputStream;
+import org.apache.commons.lang3.StringUtils;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.test.LdpTest;
 
-public abstract class PagingTest extends LdpTest{
+import com.google.common.collect.ImmutableMap;
+import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.specification.RequestSpecification;
+
+public class PagingTest extends LdpTest{
 	
 	public static final String PAGING = "PAGING";
 	public static final String SPEC_URI = "https://dvcs.w3.org/hg/ldpwg/raw-file/default/ldp-paging.html";
@@ -446,12 +460,44 @@ public abstract class PagingTest extends LdpTest{
 					+ "page-ordering values for which [sparql11-query] does not use collations.")
 	@SpecTest(
 			specRefUri = SPEC_URI + "#ldpc-sortcollation",
-			testMethod = METHOD.NOT_IMPLEMENTED,
+			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_PENDING)
 	public void testRestrictCollation() {
 		// TODO: Impl testRestrictCollation
 		// "Covers only part of the specification
 		// requirement. testSortCollation covers the rest."
+	}
+	
+	protected Map<String,String> auth;
+
+	@Parameters("auth")
+	public PagingTest(@Optional String auth) throws IOException {
+		if (StringUtils.isNotBlank(auth) && auth.contains(":")) {
+			String[] split = auth.split(":");
+			if (split.length == 2 && StringUtils.isNotBlank(split[0]) && StringUtils.isNotBlank(split[1])) {
+				this.auth = ImmutableMap.of("username", split[0], "password", split[1]);
+			}
+		} else {
+			this.auth = null;
+		}
+	}
+	
+	@Override
+	protected RequestSpecification buildBaseRequestSpecification() {
+		RequestSpecification spec = RestAssured.given();
+		if (auth != null) {
+			spec.auth().preemptive().basic(auth.get("username"), auth.get("password"));
+		}
+
+		if (httpLog != null) {
+			spec.config(RestAssured
+					.config()
+					.logConfig(logConfig()
+							.enableLoggingOfRequestAndResponseIfValidationFails()
+							.defaultStream(new PrintStream(new WriterOutputStream(httpLog)))
+							.enablePrettyPrinting(true)));
+		}
+		return spec;
 	}
 	
 }
