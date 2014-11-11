@@ -13,576 +13,21 @@
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
   earl:assertedBy  <http://marmotta.apache.org> ;
   earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.912Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:MemberResource-AcceptPatchHeader
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.92Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:NonRDFSource-ETagHeadersHead
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
   earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-09-16T16:57:30.889Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: Skipping test because PUT request failed with valid If-Match header.\n\tat org.w3.ldp.testsuite.test.CommonResourceTest.testPreconditionRequiredStatusCode(CommonResourceTest.java:353)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:361)\n\tat org.apache.marmotta.platform.ldp.LdpSuiteTest.testRunSuite(LdpSuiteTest.java:142)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)\n\tat org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)\n\tat org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)\n\tat org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)\n\tat org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)\n\tat org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)\n\tat org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)\n\tat org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)\n\tat org.junit.runners.ParentRunner.run(ParentRunner.java:309)\n\tat org.junit.runner.JUnitCore.run(JUnitCore.java:160)\n\tat org.junit.runner.JUnitCore.run(JUnitCore.java:138)\n... Removed 47 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-PreconditionRequiredStatusCode
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.898Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
+                     dcterms:date         "2014-11-11T12:30:21.646Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Covered indirectly by the MUST tests defined in CommonResourceTest class\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testConformsRdfSourceLdpResource(RdfSourceTest.java:477)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:379)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:415)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:407)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:26)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
                    ] ;
   earl:subject     <http://marmotta.apache.org> ;
   earl:test        ldpt:MemberResource-ConformsRdfSourceLdpResource
 ] .
 
 [ a                earl:Assertion ;
-  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.903Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:NonRDFSource-PutRequiresIfMatch
-] .
-
-[ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
   earl:assertedBy  <http://marmotta.apache.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.91Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:MemberResource-GetResourceAsTurtleNoAccept
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.914Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-ServerHonorsSlug
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.918Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-RestrictUriReUseNoSlug
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.893Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-TypeRdfSource
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.906Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:NonRDFSource-AcceptPatchHeader
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.913Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-CreateWithoutConstraints
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.917Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-GetResponseHeaders
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.921Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-ContentTypeHeader
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-09-16T16:57:30.891Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: Skipping test because there are restrictions on PUT content for this resource. The requirement needs to be tested manually.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testRelativeUriResolutionPut(RdfSourceTest.java:78)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:361)\n\tat org.apache.marmotta.platform.ldp.LdpSuiteTest.testRunSuite(LdpSuiteTest.java:142)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)\n\tat org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)\n\tat org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)\n\tat org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)\n\tat org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)\n\tat org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)\n\tat org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)\n\tat org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)\n\tat org.junit.runners.ParentRunner.run(ParentRunner.java:309)\n\tat org.junit.runner.JUnitCore.run(JUnitCore.java:160)\n\tat org.junit.runner.JUnitCore.run(JUnitCore.java:138)\n... Removed 47 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-RelativeUriResolutionPut
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.904Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-ConditionFailedStatusCode
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.911Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:NonRDFSource-PostResourceAndGetFromContainer
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.915Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-OptionsAllowHeader
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.894Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-PreferContainmentTriples
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.902Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-PutToCreate
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.914Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:NonRDFSource-Options
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.922Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-JsonLdRepresentation
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.892Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:MemberResource-ETagHeadersHead
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.901Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-DeleteRemovesContainmentTriple
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.905Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:MemberResource-PutRequiresIfMatch
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.912Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-PostJsonLd
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.916Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:NonRDFSource-PreconditionRequiredStatusCode
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.92Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-4xxErrorHasResponseBody
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-09-16T16:57:30.889Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: Skipping test because PUT request was successful.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:528)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutPropertiesNotPersisted(RdfSourceTest.java:449)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:361)\n\tat org.apache.marmotta.platform.ldp.LdpSuiteTest.testRunSuite(LdpSuiteTest.java:142)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)\n\tat org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)\n\tat org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)\n\tat org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)\n\tat org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)\n\tat org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)\n\tat org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)\n\tat org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)\n\tat org.junit.runners.ParentRunner.run(ParentRunner.java:309)\n\tat org.junit.runner.JUnitCore.run(JUnitCore.java:160)\n\tat org.junit.runner.JUnitCore.run(JUnitCore.java:138)\n... Removed 47 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:MemberResource-PutPropertiesNotPersisted
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.898Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:MemberResource-4xxErrorHasResponseBody
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.91Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-RequestedInteractionModelCreateNotAllowed
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.914Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:MemberResource-PutReadOnlyProperties4xxStatus
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.919Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:MemberResource-GetResourceAcceptTurtle
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.894Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:MemberResource-JsonLdRepresentation
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.908Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-PutBadETag
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.906Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:MemberResource-GetResource
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.913Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:NonRDFSource-LdpLinkHeader
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.917Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:MemberResource-RelativeUriResolutionPut
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-09-16T16:57:30.891Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: Skipping test because there are restrictions on PUT content for this resource. The requirement needs to be tested manually.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.putReplaceResource(RdfSourceTest.java:568)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutReplacesResource(RdfSourceTest.java:139)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:361)\n\tat org.apache.marmotta.platform.ldp.LdpSuiteTest.testRunSuite(LdpSuiteTest.java:142)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)\n\tat org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)\n\tat org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)\n\tat org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)\n\tat org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)\n\tat org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)\n\tat org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)\n\tat org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)\n\tat org.junit.runners.ParentRunner.run(ParentRunner.java:309)\n\tat org.junit.runner.JUnitCore.run(JUnitCore.java:160)\n\tat org.junit.runner.JUnitCore.run(JUnitCore.java:138)\n... Removed 47 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-PutReplacesResource
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.899Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:MemberResource-LdpLinkHeader
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.904Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:MemberResource-PutBadETag
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.916Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:MemberResource-TypeRdfSource
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.895Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:NonRDFSource-PostResourceGetBinary
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.903Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-AcceptPatchHeader
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.914Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-PostResponseStatusAndLocation
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.918Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-RejectPutModifyingContainmentTriples
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.893Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-PutReadOnlyProperties4xxStatus
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.901Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:NonRDFSource-PostResourceAndCheckLink
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.907Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-11-11T12:30:21.65Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
   earl:subject     <http://marmotta.apache.org> ;
@@ -594,11 +39,11 @@
   earl:assertedBy  <http://marmotta.apache.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.912Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-11-11T12:30:21.654Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
   earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:NonRDFSource-PutBadETag
+  earl:test        ldpt:NonRDFSource-ConditionFailedStatusCode
 ] .
 
 [ a                earl:Assertion ;
@@ -606,43 +51,7 @@
   earl:assertedBy  <http://marmotta.apache.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.917Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-PutPropertiesNotPersisted
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.921Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:NonRDFSource-PostResourceAndCheckAssociatedResource
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.898Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:NonRDFSource-DeleteNonRDFSourceDeletesAssociatedResource
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.911Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-11-11T12:30:21.66Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
   earl:subject     <http://marmotta.apache.org> ;
@@ -653,580 +62,26 @@
   ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
   earl:assertedBy  <http://marmotta.apache.org> ;
   earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.915Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-RestrictPutReUseUri
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.919Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-GetResource
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.894Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-NullRelativeUriPost
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.902Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-ETagHeadersHead
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.908Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:MemberResource-ConditionFailedStatusCode
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.906Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:MemberResource-Options
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.918Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:MemberResource-PutReplacesResource
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.892Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:NonRDFSource-PostResourceGetMetadataAndBinary
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.899Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-Head
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.905Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-ResponsePropertiesNotPersisted
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.916Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-AcceptPostResponseHeader
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.92Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:MemberResource-PutSimpleUpdate
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
   earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-09-16T16:57:30.89Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: Skipping test because PUT request was successful.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:528)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxResponseBody(RdfSourceTest.java:538)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testResponsePropertiesNotPersisted(RdfSourceTest.java:467)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:361)\n\tat org.apache.marmotta.platform.ldp.LdpSuiteTest.testRunSuite(LdpSuiteTest.java:142)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)\n\tat org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)\n\tat org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)\n\tat org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)\n\tat org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)\n\tat org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)\n\tat org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)\n\tat org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)\n\tat org.junit.runners.ParentRunner.run(ParentRunner.java:309)\n\tat org.junit.runner.JUnitCore.run(JUnitCore.java:160)\n\tat org.junit.runner.JUnitCore.run(JUnitCore.java:138)\n... Removed 47 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:MemberResource-ResponsePropertiesNotPersisted
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.896Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-ConformsContainerRdfResource
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.903Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:NonRDFSource-GetResource
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.91Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-PublishConstraintsReadOnlyProp
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.914Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-AcceptTurtle
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.918Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-ContainerSupportsHttpLinkHeader
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.902Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:MemberResource-PublishConstraintsReadOnlyProp
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.907Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:MemberResource-ETagHeadersGet
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.913Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-GetResourceAcceptTurtle
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.917Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-ContainsRdfType
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.921Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:NonRDFSource-OptionsAllowHeader
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.899Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:NonRDFSource-ConditionFailedStatusCode
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.904Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:NonRDFSource-GetResponseHeaders
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.911Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:NonRDFSource-ETagHeadersGet
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.919Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-ETagHeadersGet
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-09-16T16:57:30.888Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: Skipping test because PUT request was successful.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxStatus(RdfSourceTest.java:528)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.expectPut4xxConstrainedBy(RdfSourceTest.java:494)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPublishConstraintsUnknownProp(RdfSourceTest.java:384)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:361)\n\tat org.apache.marmotta.platform.ldp.LdpSuiteTest.testRunSuite(LdpSuiteTest.java:142)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)\n\tat org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)\n\tat org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)\n\tat org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)\n\tat org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)\n\tat org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)\n\tat org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)\n\tat org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)\n\tat org.junit.runners.ParentRunner.run(ParentRunner.java:309)\n\tat org.junit.runner.JUnitCore.run(JUnitCore.java:160)\n\tat org.junit.runner.JUnitCore.run(JUnitCore.java:138)\n... Removed 47 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:MemberResource-PublishConstraintsUnknownProp
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.894Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:MemberResource-Head
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.902Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:MemberResource-ContainsRdfType
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.91Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-ConformsRdfSourceLdpResource
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.918Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-LdpLinkHeader
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.893Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-RequestedInteractionModelHeaders
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.901Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
+                     dcterms:date         "2014-11-11T12:30:21.635Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Covered indirectly by the MUST tests defined in CommonContainerTest class\n\tat org.w3.ldp.testsuite.test.BasicContainerTest.testConformsBcLdpContainer(BasicContainerTest.java:42)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:379)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:415)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:407)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:26)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
                    ] ;
   earl:subject     <http://marmotta.apache.org> ;
   earl:test        ldpt:BasicContainer-ConformsBcLdpContainer
 ] .
 
 [ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.905Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-PostNoSlug
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.913Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-NoRdfBagSeqOrList
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.916Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-Options
-] .
-
-[ a                earl:Assertion ;
   ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
   earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.92Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:MemberResource-GetResponseHeaders
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
+  earl:mode        earl:manual ;
   earl:result      [ a                    earl:TestResult ;
-                     dcterms:date         "2014-09-16T16:57:30.89Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     dcterms:description  "org.w3.ldp.testsuite.exception.SkipException: Skipping test because there are restrictions on PUT content for this resource. The requirement needs to be tested manually.\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.putReplaceResource(RdfSourceTest.java:568)\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testPutSimpleUpdate(RdfSourceTest.java:153)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:361)\n\tat org.apache.marmotta.platform.ldp.LdpSuiteTest.testRunSuite(LdpSuiteTest.java:142)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)\n\tat org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)\n\tat org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)\n\tat org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)\n\tat org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)\n\tat org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)\n\tat org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)\n\tat org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)\n\tat org.junit.runners.ParentRunner.run(ParentRunner.java:309)\n\tat org.junit.runner.JUnitCore.run(JUnitCore.java:160)\n\tat org.junit.runner.JUnitCore.run(JUnitCore.java:138)\n... Removed 47 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
-                     earl:outcome         earl:untested
+                     dcterms:date         "2014-11-11T12:30:21.643Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "manual check"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
                    ] ;
   earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-PutSimpleUpdate
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.903Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-PatchMethod
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.911Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-RestrictUriReUseSlug
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.915Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-PostContainer
-] .
-
-<http://marmotta.apache.org>
-        a                          doap:Project , earl:Software , earl:TestSubject , earl:Assertor ;
-        dcterms:title              "Apache Marmotta" ;
-        doap:developer             [ a          foaf:Person ;
-                                     foaf:name  "Jakob Frank"
-                                   ] ;
-        doap:developer             [ a          foaf:Person ;
-                                     foaf:name  "Sergio Fernández"
-                                   ] ;
-        doap:homepage              "http://marmotta.apache.org" ;
-        doap:name                  "Marmotta" ;
-        doap:programming-language  "Java" .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.919Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-PublishConstraintsUnknownProp
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.902Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:NonRDFSource-Head
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.907Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-RelativeUriResolutionPost
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.913Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:NonRDFSource-PostNonRDFSource
-] .
-
-[ a                earl:Assertion ;
-  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
-  earl:assertedBy  <http://marmotta.apache.org> ;
-  earl:mode        earl:automatic ;
-  earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.921Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-                     earl:outcome  earl:passed
-                   ] ;
-  earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-PutRequiresIfMatch
+  earl:test        ldpt:MemberResource-IsHttp11Manual
 ] .
 
 [ a                earl:Assertion ;
@@ -1234,7 +89,7 @@
   earl:assertedBy  <http://marmotta.apache.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.892Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-11-11T12:30:21.649Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
   earl:subject     <http://marmotta.apache.org> ;
@@ -1246,7 +101,1084 @@
   earl:assertedBy  <http://marmotta.apache.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.899Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-11-11T12:30:21.653Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:NonRDFSource-Head
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.659Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-AcceptPostResponseHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.662Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-PostJsonLd
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-11-11T12:30:21.642Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Covered indirectly by the MUST tests defined in RdfSourceTest class\n\tat org.w3.ldp.testsuite.test.CommonContainerTest.testConformsContainerRdfResource(CommonContainerTest.java:889)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:379)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:415)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:407)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:26)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-ConformsContainerRdfResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.647Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-PublishConstraintsReadOnlyProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.651Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-PostNoSlug
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.655Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:NonRDFSource-OptionsAllowHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.657Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-PutReadOnlyProperties4xxStatus
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.661Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-PreconditionRequiredStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-11-11T12:30:21.636Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "manual checked"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-IsHttp11Manual
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.649Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-ConditionFailedStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.653Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:NonRDFSource-PutRequiresIfMatch
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.657Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-Head
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.659Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:NonRDFSource-Options
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.663Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-RelativeUriResolutionPost
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.648Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:NonRDFSource-GetResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.652Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:NonRDFSource-PostNonRDFSource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.655Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-ContainerSupportsHttpLinkHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.661Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-ETagHeadersGet
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-11-11T12:30:21.639Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "manually checked"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:NonRDFSource-PreconditionRequiredStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.647Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-PublishConstraintsReadOnlyProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.65Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-ETagHeadersHead
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.654Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-PutToCreate
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.66Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-ConditionFailedStatusCode
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-11-11T12:30:21.635Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "manually checked, denied properties are reported with 409 Response"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-ResponsePropertiesNotPersisted
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-11-11T12:30:21.644Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "manual checked"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:NonRDFSource-IsHttp11Manual
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.649Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-AcceptPatchHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.653Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-RestrictUriReUseNoSlug
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.656Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:NonRDFSource-ETagHeadersGet
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.659Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-TypeRdfSource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.662Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-AcceptTurtle
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-11-11T12:30:21.642Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "manual checked, using DCTERMS and RDFS"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-UseStandardVocabularies
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.651Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-PostResponseStatusAndLocation
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.655Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-CreateWithoutConstraints
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.658Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:NonRDFSource-PostResourceGetBinary
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.661Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-NoRdfBagSeqOrList
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-11-11T12:30:21.636Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "manual checked, using DCTERMS and RDFS"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-ReUseVocabularies
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.65Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-GetResourceAcceptTurtle
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.654Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-ContentTypeHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.657Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:NonRDFSource-PostResourceAndGetFromContainer
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.663Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-PutBadETag
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-11-11T12:30:21.643Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "manual checked, using DCTERMS and RDFS"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-ReUseVocabularies
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.648Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-Head
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.656Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-JsonLdRepresentation
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.662Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-PutRequiresIfMatch
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-11-11T12:30:21.639Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "manual checked, types are materialized"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-RestrictClientInference
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.647Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-PutSimpleUpdate
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.651Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:NonRDFSource-DeleteNonRDFSourceDeletesAssociatedResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.654Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-PutReplacesResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.658Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-GetResourceAsTurtleNoAccept
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.66Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:NonRDFSource-PostResourceAndCheckAssociatedResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-11-11T12:30:21.636Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "manually checked"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-PutReplacesResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-11-11T12:30:21.644Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "manually checked, constraints are published using the standard property"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-PublishConstraintsUnknownProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.653Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-PutBadETag
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.656Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-ContainsRdfType
+] .
+
+<http://marmotta.apache.org>
+        a       earl:Assertor .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.66Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-RelativeUriResolutionPut
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.662Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-Options
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-11-11T12:30:21.642Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "manually tested"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-PutSimpleUpdate
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.652Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-RequestedInteractionModelCreateNotAllowed
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.651Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-RestrictPutReUseUri
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.655Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-PutReadOnlyProperties4xxStatus
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.658Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:NonRDFSource-GetResponseHeaders
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-11-11T12:30:21.637Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "manually checked"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-PutPropertiesNotPersisted
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.647Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-GetResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.65Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-PatchMethod
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.657Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:NonRDFSource-AcceptPatchHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.663Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-LdpLinkHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-11-11T12:30:21.644Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "manually checked"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-PutPropertiesNotPersisted
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.649Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-GetResourceAcceptTurtle
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.656Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-ETagHeadersHead
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.659Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:NonRDFSource-PostResourceGetMetadataAndBinary
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.662Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-GetResponseHeaders
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-11-11T12:30:21.64Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "manual checked, using DCTERMS and RDFS"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-UseStandardVocabularies
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.648Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-GetResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.652Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-GetResponseHeaders
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.655Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-RequestedInteractionModelHeaders
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.658Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-4xxErrorHasResponseBody
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.661Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-ContainsRdfType
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:manual ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-11-11T12:30:21.645Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "manual checked, types are materialized"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-RestrictClientInference
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.654Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-PutRequiresIfMatch
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.656Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-JsonLdRepresentation
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.66Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-LdpLinkHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-11-11T12:30:21.643Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "manually checked"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-RelativeUriResolutionPut
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.648Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-4xxErrorHasResponseBody
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.652Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:NonRDFSource-LdpLinkHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.652Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-TypeRdfSource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.658Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-DeleteRemovesContainmentTriple
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-11-11T12:30:21.638Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "org.testng.SkipException: Covered indirectly by the MUST tests defined in CommonResourceTest class\n\tat org.w3.ldp.testsuite.test.RdfSourceTest.testConformsRdfSourceLdpResource(RdfSourceTest.java:477)\n\tat org.w3.ldp.testsuite.LdpTestSuite.run(LdpTestSuite.java:379)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:415)\n\tat org.w3.ldp.testsuite.LdpTestSuite.executeTestSuite(LdpTestSuite.java:407)\n\tat org.w3.ldp.testsuite.RunLdpTestSuite.main(RunLdpTestSuite.java:26)\n... Removed 21 stack frames"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-ConformsRdfSourceLdpResource
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.647Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
   earl:subject     <http://marmotta.apache.org> ;
@@ -1258,9 +1190,204 @@
   earl:assertedBy  <http://marmotta.apache.org> ;
   earl:mode        earl:automatic ;
   earl:result      [ a             earl:TestResult ;
-                     dcterms:date  "2014-09-16T16:57:30.905Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:date  "2014-11-11T12:30:21.651Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
                      earl:outcome  earl:passed
                    ] ;
   earl:subject     <http://marmotta.apache.org> ;
-  earl:test        ldpt:BasicContainer-GetResourceAsTurtleNoAccept
+  earl:test        ldpt:BasicContainer-ServerHonorsSlug
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.657Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-ETagHeadersGet
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.66Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-OptionsAllowHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.663Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-NullRelativeUriPost
+] .
+
+<http://marmotta.apache.org>
+        a                          doap:Project , earl:Software , earl:TestSubject ;
+        dcterms:title              "Apache Marmotta" ;
+        doap:developer             [ a          foaf:Person ;
+                                     foaf:name  "Jakob Frank"
+                                   ] ;
+        doap:developer             [ a          foaf:Person ;
+                                     foaf:name  "Sergio Fernández"
+                                   ] ;
+        doap:homepage              "http://marmotta.apache.org" ;
+        doap:name                  "Apache Marmotta" ;
+        doap:programming-language  "Java" .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-11-11T12:30:21.636Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "manually checked, constraints are published using the standard property"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-PublishConstraintsUnknownProp
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a                    earl:TestResult ;
+                     dcterms:date         "2014-11-11T12:30:21.644Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     dcterms:description  "manually checked, denied properties are reported with 409 Response"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                     earl:outcome         earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-ResponsePropertiesNotPersisted
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.649Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-AcceptPatchHeader
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.653Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-RejectPutModifyingContainmentTriples
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.656Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-RestrictUriReUseSlug
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.659Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-PreferContainmentTriples
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.663Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:NonRDFSource-PutBadETag
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.648Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:NonRDFSource-PostResourceAndCheckLink
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.652Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-Options
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "BasicContainerTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.655Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:BasicContainer-PostContainer
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "MemberResourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.658Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:MemberResource-GetResourceAsTurtleNoAccept
+] .
+
+[ a                earl:Assertion ;
+  ldpt:ranAsClass  "NonRDFSourceTest"^^<http://www.w3.org/2001/XMLSchema#string> ;
+  earl:assertedBy  <http://marmotta.apache.org> ;
+  earl:mode        earl:automatic ;
+  earl:result      [ a             earl:TestResult ;
+                     dcterms:date  "2014-11-11T12:30:21.661Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                     earl:outcome  earl:passed
+                   ] ;
+  earl:subject     <http://marmotta.apache.org> ;
+  earl:test        ldpt:NonRDFSource-ETagHeadersHead
 ] .
