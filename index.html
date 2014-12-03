@@ -79,13 +79,14 @@ the following command (paging tests are still <em>work-in-progress</em>):</p>
 
 <h2><a name="maven" class="anchor" href="#maven"><span class="octicon octicon-link"></span></a>Maven</h2>
 
-<p>If you are using <a href="http://maven.apache.org">Maven</a> for building your project, you can use the 
-test suite as dependency for your tests:</p>
+<p>If you are using <a href="http://maven.apache.org">Maven</a> for building your project, you can use the test suite, 
+<a href="http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.w3%22%20AND%20a%3A%22ldp-testsuite%22">available from Maven Central</a>,
+as dependency for your tests:</p>
 
 <pre><code>&lt;dependency&gt;
     &lt;groupId&gt;org.w3&lt;/groupId&gt;
     &lt;artifactId&gt;ldp-testsuite&lt;/artifactId&gt;
-    &lt;version&gt;0.1.1-SNAPSHOT&lt;/version&gt;
+    &lt;version&gt;0.1.1&lt;/version&gt;
     &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
 </code></pre>
@@ -97,7 +98,10 @@ testSuite.run();
 System.out.println(testSuite.getStatus());
 </code></pre>
 
-<p>For further details and advance usage, please check the <a href="api/java/index.html?org/w3/ldp/testsuite/LdpTestSuite.html">javadoc</a>.</p>
+<p>For complete programmatic usage example, you can check 
+<a href="https://github.com/apache/marmotta/blob/develop/platform/marmotta-ldp/src/test/java/org/apache/marmotta/platform/ldp/LdpSuiteTest.java#L116">how
+Apache Marmotta integrates the LDP Test Suite</a> in the regular build. For further details and advance usage, 
+please check the <a href="api/java/index.html?org/w3/ldp/testsuite/LdpTestSuite.html">javadoc</a>.</p>
 
 <h2><a name="eclipse" class="anchor" href="#eclipse"><span class="octicon octicon-link"></span></a>Eclipse</h2>
 
@@ -119,7 +123,7 @@ Simply update testng.xml and select it, right click and chose "Run As -> TestNG 
 Please, submit the generated reports, (both <code>ldp-testsuite-execution-report-earl.ttl</code> and 
 <code>ldp-testsuite-execution-report.html</code> located at the <code>report</code> directory, to the working 
 group (<a href="mailto:public-ldp-comments@w3.org?subject=LDP Implementation Report for Your Project">public-ldp-comments@w3.org</a>) 
-to be included to the official <a href="https://dvcs.w3.org/hg/ldpwg/raw-file/tip/tests/reports/ldp.html">LDP Implementation Conformance Report</a>.
+to be included to the official <a href="https://dvcs.w3.org/hg/ldpwg/raw-file/default/tests/reports/ldp.html">LDP Implementation Conformance Report</a>.
 
 <h1><a name="contributors" class="anchor" href="#contributors"><span class="octicon octicon-link"></span></a>Contributors</h1>
 
