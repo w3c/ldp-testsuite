@@ -19,15 +19,18 @@ import org.w3.ldp.testsuite.annotations.SpecTest;
 import org.w3.ldp.testsuite.annotations.SpecTest.METHOD;
 import org.w3.ldp.testsuite.annotations.SpecTest.STATUS;
 import org.w3.ldp.testsuite.exception.SkipException;
+import org.w3.ldp.testsuite.http.HttpMethod;
 import org.w3.ldp.testsuite.http.LdpPreferences;
 import org.w3.ldp.testsuite.mapper.RdfObjectMapper;
 import org.w3.ldp.testsuite.vocab.LDP;
 
 import java.io.IOException;
 
+import static org.hamcrest.Matchers.notNullValue;
 import static org.testng.Assert.assertTrue;
 import static org.w3.ldp.testsuite.http.HttpHeaders.ACCEPT;
 import static org.w3.ldp.testsuite.http.HttpHeaders.LINK_REL_TYPE;
+import static org.w3.ldp.testsuite.http.HttpHeaders.LOCATION;
 import static org.w3.ldp.testsuite.http.HttpHeaders.PREFER;
 import static org.w3.ldp.testsuite.http.LdpPreferences.PREFER_MINIMAL_CONTAINER;
 import static org.w3.ldp.testsuite.http.MediaTypes.TEXT_TURTLE;
@@ -154,7 +157,7 @@ public class IndirectContainerTest extends CommonContainerTest {
 
 	@Test(
 			groups = {MUST},
-			enabled = false,
+			enabled = true,
 			description = "LDPCs whose ldp:insertedContentRelation triple has an "
 					+ "object other than ldp:MemberSubject and that create new "
 					+ "resources MUST add a triple to the container whose subject is "
@@ -165,10 +168,48 @@ public class IndirectContainerTest extends CommonContainerTest {
 					+ "newly created resource in certain cases.")
 	@SpecTest(
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpic-post-indirectmbrrel",
-			testMethod = METHOD.NOT_IMPLEMENTED,
+			testMethod = METHOD.AUTOMATED,
 			approval = STATUS.WG_PENDING)
 	public void testPostResource() {
-		// TODO: Impl testPostResource
+		skipIfMethodNotAllowed(HttpMethod.POST);
+		
+		if ( insertedContentRelationProperty != null ) {
+			if ( insertedContentRelationProperty.getURI().equals(LDP.MemberSubject.stringValue()) ) {
+				throw new SkipException(Thread.currentThread().getStackTrace()[1].getMethodName(),
+						"The indirectContainer's ldp:insertedContentRelation triple has ldp:MemberSubject as the object.",
+						skipLog);
+			}
+		}
+		
+		Model model = postContent();
+		Response postResponse = buildBaseRequestSpecification()
+				.contentType(TEXT_TURTLE)
+				.body(model, new RdfObjectMapper())
+				.expect()
+					.statusCode(HttpStatus.SC_CREATED)
+					.header(LOCATION, notNullValue())
+				.when()
+					.post(indirectContainer);
+
+		String location = postResponse.getHeader(LOCATION);
+		
+		Response getResponse = buildBaseRequestSpecification()
+				.header(ACCEPT, TEXT_TURTLE)
+				.header(PREFER, include(LdpPreferences.PREFER_CONTAINMENT))
+				.when()
+					.get(indirectContainer);
+		Model containerModel = getResponse.as(Model.class, new RdfObjectMapper(indirectContainer));
+		Resource container = containerModel.getResource(indirectContainer);
+		Property contains = ResourceFactory.createProperty(LDP.contains.stringValue());
+		
+		assertTrue(
+				container.hasProperty(contains, containerModel.getResource(location)),
+				"The IndirectContainer <"
+						+ indirectContainer
+						+ "> didn't create a triple with the containerURI as a subject, ldp:contains as the predicate "
+						+ "and the resource's newly created URI as the object."
+		);
+				
 	}
 
 	private void setInsertedContentRelation() {
