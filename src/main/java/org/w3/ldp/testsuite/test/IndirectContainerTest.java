@@ -223,12 +223,12 @@ public class IndirectContainerTest extends CommonContainerTest {
 		Resource container = containerModel.getResource(indirectContainer);
 		Property insertedContentRelation = containerModel.getProperty(LDP.insertedContentRelation.stringValue());
 		
-		if ( ! container.hasProperty(insertedContentRelation) ) return;
+		if (!container.hasProperty(insertedContentRelation)) return;
 		
 		Statement statement = container.getProperty(insertedContentRelation);
 		RDFNode node = statement.getObject();
 		
-		if ( ! node.isURIResource() ) return;
+		if (!node.isURIResource()) return;
 		
 		String propertyURI = node.asResource().getURI();
 		insertedContentRelationProperty = ResourceFactory.createProperty(propertyURI);
@@ -243,7 +243,7 @@ public class IndirectContainerTest extends CommonContainerTest {
 	protected Model getDefaultModel() {
 		Model model = super.getDefaultModel();
 		
-		if ( insertedContentRelationProperty == null ) return model;
+		if (insertedContentRelationProperty == null) return model;
 		
 		Resource resource = model.getResource("");
 		resource.addProperty(insertedContentRelationProperty, model.createResource("#me"));
