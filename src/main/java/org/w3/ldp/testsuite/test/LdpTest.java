@@ -138,7 +138,7 @@ public abstract class LdpTest {
 			}
 		}
 
-		if ("true".equals(httpLogging)) {
+		if ("true".equals(skipLogging)) {
 			File file = new File(dir, SKIPPED_LOG_FILENAME);
 			try {
 				skipLog = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
