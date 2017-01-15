@@ -430,7 +430,7 @@ public abstract class LdpTest {
 		for (Header h : preferenceAppliedHeaders) {
 			// Handle optional whitespace, quoted preference token values, and
 			// other tokens in the Preference-Applied response header.
-			if (h.getValue().matches("(^|[ ;])return *= *\"?representation\"?($|[ ;])")) {
+			if (h.getValue().matches("(^|.*[ ;])return *= *\"?representation\"?($|[ ;].*)")) {
 				return true;
 			}
 		}
