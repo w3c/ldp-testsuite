@@ -10,6 +10,7 @@ import com.jayway.restassured.specification.ResponseSpecification;
 import org.apache.commons.io.output.WriterOutputStream;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
+import org.hamcrest.CoreMatchers;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import org.w3.ldp.testsuite.LdpTestSuite;
@@ -117,6 +118,24 @@ public abstract class CommonResourceTest extends LdpTest {
 	}
 
 	@Test(
+			groups = {MUST},
+			description = "LDP servers MUST at least be"
+					+ " HTTP/1.1 conformant servers [HTTP11].")
+	@SpecTest(
+			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-http",
+			testMethod = METHOD.AUTOMATED,
+			approval = STATUS.WG_APPROVED,
+			comment = "Covers only part of the specification requirement. "
+					+ "testIsHttp11Server covers the rest.")
+	public void testIsHttp11() throws URISyntaxException {
+		buildBaseRequestSpecification()
+			.expect()
+				.statusLine(CoreMatchers.startsWith("HTTP/1.1 "))
+			.when()
+				.get(getResourceUri());
+	}
+
+	@Test(
 			groups = {MUST, MANUAL},
 			description = "LDP servers MUST at least be"
 					+ " HTTP/1.1 conformant servers [HTTP11].")
@@ -124,10 +143,10 @@ public abstract class CommonResourceTest extends LdpTest {
 			specRefUri = LdpTestSuite.SPEC_URI + "#ldpr-gen-http",
 			testMethod = METHOD.MANUAL,
 			approval = STATUS.WG_APPROVED,
-			comment = "Covers only part of the specification requirement. "
-					+ "testIsHttp11Server covers the rest.")
-	public void testIsHttp11Manual() throws URISyntaxException {
-		throw new SkipNotTestableException(Thread.currentThread().getStackTrace()[1].getMethodName(), skipLog);
+			comment = "Covers the manual part of the specification requirement. "
+					+ "testIsHttp11 covers the basics.")
+	public void testIsHttp11Manual() {
+		throw new SkipNotTestableException("testIsHttp11Manual", skipLog);
 	}
 
 	@Test(

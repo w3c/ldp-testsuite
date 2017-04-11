@@ -406,6 +406,7 @@ public class LdpTestSuite {
 	public static void executeTestSuite(String[] args, Options options, String reportTitle) {
 		executeTestSuite(args, options, reportTitle, Collections.<XmlClass>emptyList());
 	}
+
 	public static void executeTestSuite(String[] args, Options options, String reportTitle, List<XmlClass> classes) {
 		// actual test suite execution
 		try {
