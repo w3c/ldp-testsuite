@@ -236,7 +236,7 @@ public abstract class CommonResourceTest extends LdpTest {
 			expectResponse.header(ACCEPT_POST, notNullValue());
 		}
 
-		expectResponse.when().get(getResourceUri());
+		expectResponse.when().options(getResourceUri());
 	}
 
 
