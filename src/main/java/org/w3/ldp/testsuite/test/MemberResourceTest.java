@@ -1,6 +1,6 @@
 package org.w3.ldp.testsuite.test;
 
-import com.hp.hpl.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.Model;
 import com.jayway.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.AfterSuite;
